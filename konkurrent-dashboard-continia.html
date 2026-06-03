@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konkurrent-overvågning · Continia</title>
+<style>
+  :root{
+    --navy:#052975;
+    --navy-2:#0a3a9c;
+    --navy-d:#041c52;
+    --cyan:#8ff8ff;
+    --cyan-soft:#ecffff;
+    --navy-tint:#9fb0d6;
+    --bg:#ffffff;
+    --bg-soft:#f3f6fc;
+    --bg-soft2:#fafbfe;
+    --line:#dde3f0;
+    --line-2:#cdd5e8;
+    --txt:#1d2c4d;
+    --txt-mid:#566488;
+    --txt-dim:#8b96b2;
+    --font:"Alliance No.2","Alliance No.1","Alliance",-apple-system,"Helvetica Neue",Arial,system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--txt);font-family:var(--font);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 26px}
+  .hl{background:var(--cyan);color:var(--navy);padding:0 .18em;border-radius:3px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+
+  /* HERO */
+  .hero{background:#2b2e34;color:#fff;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;width:600px;height:600px;border-radius:50%;
+    background:radial-gradient(circle,rgba(143,248,255,.42),transparent 62%);top:-240px;right:-120px;filter:blur(8px)}
+  .hero::after{content:"";position:absolute;inset:0;opacity:.55;
+    background-image:linear-gradient(rgba(255,255,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.05) 1px,transparent 1px);
+    background-size:46px 46px;mask-image:linear-gradient(180deg,#000,transparent)}
+  .hero .wrap{position:relative;z-index:2;padding:50px 26px 42px}
+  .kicker{font-weight:700;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:11px}
+  .kicker::before{content:"";width:30px;height:2px;background:var(--cyan);display:inline-block}
+  h1{font-weight:800;font-size:clamp(34px,6vw,62px);line-height:1.0;letter-spacing:-.02em;margin:16px 0 10px}
+  .hero .sub{color:#cdd6ec;font-size:16px;max-width:660px}
+  .meta-row{display:flex;flex-wrap:wrap;gap:9px 26px;margin-top:24px;font-size:13px;color:#9aa6c6}
+  .meta-row b{color:#eef2fb;font-weight:600}
+  .live{width:8px;height:8px;border-radius:50%;background:var(--cyan);display:inline-block;margin-right:7px;box-shadow:0 0 0 0 rgba(143,248,255,.6);animation:p 2.4s infinite}
+  @keyframes p{0%{box-shadow:0 0 0 0 rgba(143,248,255,.5)}70%{box-shadow:0 0 0 9px rgba(143,248,255,0)}100%{box-shadow:0 0 0 0 rgba(143,248,255,0)}}
+
+  /* METRICS */
+  .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:-32px 0 36px;position:relative;z-index:5}
+  .metric{background:#fff;border:1px solid var(--line);border-radius:16px;padding:20px 20px 18px;box-shadow:0 14px 34px -22px rgba(5,41,117,.45);position:relative;overflow:hidden}
+  .metric::after{content:"";position:absolute;top:0;left:0;width:100%;height:3px;background:var(--cyan)}
+  .metric .num{font-weight:800;font-size:38px;line-height:1;color:var(--navy)}
+  .metric .lbl{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--txt-dim);margin-top:11px}
+  .metric .note{font-size:12.5px;color:var(--txt-mid);margin-top:4px}
+
+  /* INSIGHTS */
+  .insight{border-radius:18px;padding:24px 26px;margin-bottom:16px;border:1px solid var(--line)}
+  .insight.primary{background:linear-gradient(115deg,var(--cyan-soft),#fff 80%);border-color:#bdeef2}
+  .insight.secondary{background:var(--bg-soft);display:flex;gap:18px;align-items:flex-start}
+  .insight .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);background:var(--cyan);padding:5px 11px;border-radius:30px;margin-bottom:12px}
+  .insight.secondary .tag{background:var(--navy);color:#fff;margin-bottom:0;margin-top:2px;white-space:nowrap}
+  .insight h3{font-weight:800;font-size:22px;letter-spacing:-.01em;margin-bottom:7px;color:var(--navy)}
+  .insight p{color:var(--txt-mid);font-size:14.5px;max-width:880px}
+
+  /* SECTION HEAD + FILTERS */
+  .shead{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:40px 0 16px}
+  .shead h2{font-weight:800;font-size:25px;letter-spacing:-.01em;color:var(--navy)}
+  .filters{display:flex;flex-direction:column;gap:9px;margin-bottom:22px}
+  .filter-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+  .filter-row .flabel{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt-dim);margin-right:4px;min-width:118px}
+  .chip{font-family:var(--font);font-size:13px;font-weight:600;color:var(--txt-mid);background:#fff;border:1px solid var(--line-2);border-radius:30px;padding:7px 14px;cursor:pointer;transition:.18s}
+  .chip:hover{border-color:var(--navy)}
+  .chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .chip .dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:7px;vertical-align:middle}
+
+  /* CARDS */
+  .cards{display:grid;grid-template-columns:1fr;gap:13px}
+  .card{background:#fff;border:1px solid var(--line);border-left:4px solid var(--c);border-radius:14px;overflow:hidden;transition:box-shadow .22s}
+  .card:hover{box-shadow:0 16px 38px -26px rgba(5,41,117,.5)}
+  .card.hide{display:none}
+  .ctop{display:grid;grid-template-columns:248px 1fr auto;gap:20px;align-items:center;padding:20px 22px;cursor:pointer}
+  .brand .name{font-weight:800;font-size:23px;letter-spacing:-.01em;line-height:1;color:var(--navy)}
+  .brand .owner{font-size:12px;color:var(--txt-dim);margin-top:6px}
+  .brand .cat{font-size:12.5px;color:var(--txt-mid);margin-top:5px}
+  .headline{font-size:14.5px;color:var(--txt-mid)}
+  .right{display:flex;flex-direction:column;align-items:flex-end;gap:9px;white-space:nowrap}
+  .badge{font-size:11px;font-weight:700;letter-spacing:.04em;padding:5px 12px;border-radius:30px;border:1px solid var(--navy);color:var(--navy);background:#fff}
+  .stance-ai .badge{background:var(--cyan);border-color:var(--cyan);color:var(--navy)}
+  .stance-cons .badge{background:var(--navy);border-color:var(--navy);color:#fff}
+  .stance-steady .badge{background:#fff;border-color:var(--navy);color:var(--navy)}
+  .prox{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--txt-dim)}
+  .prox b{color:var(--txt-mid)}
+  .chev{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--txt-dim);transition:transform .3s}
+  .carrow{display:inline-block;transition:transform .3s}
+  .card.open .carrow{transform:rotate(90deg)}
+  .card.open .ctxt{display:none}
+  .detail{max-height:0;overflow:hidden;transition:max-height .45s ease}
+  .card.open .detail{max-height:680px}
+  .din{padding:2px 22px 22px;border-top:1px solid var(--line);margin-top:2px}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px 26px;margin-top:18px}
+  .field .ft{font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--navy);margin-bottom:5px}
+  .field .ft::before{content:"";display:inline-block;width:14px;height:8px;background:var(--cyan);margin-right:7px;border-radius:2px;vertical-align:middle}
+  .field p{font-size:13.5px;color:var(--txt-mid)}
+  .field .stat{font-weight:800;font-size:16px;color:var(--navy)}
+  .sources{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+  .sources a{font-size:12px;font-weight:600;color:var(--txt-mid);text-decoration:none;border:1px solid var(--line-2);padding:5px 11px;border-radius:8px;transition:.18s}
+  .sources a:hover{border-color:var(--navy);color:var(--navy);background:var(--cyan-soft)}
+  .noresult{display:none;text-align:center;color:var(--txt-dim);font-size:14px;padding:30px}
+
+  /* EVENTS */
+  .events{margin-top:14px;display:grid;gap:0}
+  .ev{display:grid;grid-template-columns:118px 1fr;gap:18px;padding:14px 4px;border-top:1px solid var(--line)}
+  .ev:last-child{border-bottom:1px solid var(--line)}
+  .ev .when{font-weight:700;font-size:13px;color:var(--txt-dim);display:flex;align-items:center;gap:9px}
+  .ev .when .d{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none;border:1px solid rgba(5,41,117,.25)}
+  .ev .what{font-size:14px;color:var(--txt-mid)}
+  .ev .what b{color:var(--navy);font-weight:800}
+
+  /* METHOD */
+  .method{background:var(--navy);color:#fff;border-radius:18px;padding:26px 28px;margin:42px 0 30px}
+  .method h2{font-weight:800;font-size:21px;margin-bottom:15px}
+  .method ul{list-style:none;display:grid;gap:11px}
+  .method li{padding-left:24px;position:relative;font-size:13.5px;color:#cdd6ec}
+  .method li::before{content:"";position:absolute;left:0;top:7px;width:9px;height:9px;background:var(--cyan);transform:rotate(45deg)}
+  .method li.warn::before{background:#fff}
+  .method b{color:#fff;font-weight:600}
+
+  footer{text-align:center;font-size:12px;color:var(--txt-dim);padding:8px 0 40px}
+
+  .reveal{opacity:0;transform:translateY(12px);animation:rise .6s cubic-bezier(.2,.7,.2,1) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  @media(max-width:860px){
+    .metrics{grid-template-columns:1fr 1fr;margin-top:-24px}
+    .ctop{grid-template-columns:1fr;gap:13px}
+    .right{flex-direction:row;align-items:center;justify-content:space-between}
+    .grid2{grid-template-columns:1fr}
+    .filter-row .flabel{min-width:0;width:100%}
+    .ev{grid-template-columns:1fr;gap:5px}
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="kicker">Continia · Marketing Intelligence</div>
+    <h1>Konkurrent&#8209;overvågning</h1>
+    <p class="sub">Øjebliksbillede af 20 rivaler og naboer i Business&nbsp;Central&#8209;/Dynamics&#8209;feltet for finans&#8209; og AP&#8209;automation. Bygget på offentlige kilder: hjemmesider, presse og produktnoter.</p>
+    <div class="meta-row">
+      <span><span class="live"></span><b>Status:</b> Prøvekørsel</span>
+      <span><b>Sidst opdateret:</b> 2. juni 2026</span>
+      <span><b>Konkurrenter:</b> 20</span>
+      <span><b>Periode:</b> 2025–maj 2026</span>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="metrics">
+    <div class="metric reveal" style="animation-delay:.04s"><div class="num">20</div><div class="lbl">Sporede aktører</div><div class="note">AP · e-invoicing · banking · expense · output</div></div>
+    <div class="metric reveal" style="animation-delay:.1s"><div class="num">AI</div><div class="lbl">Dominerende tema</div><div class="note">agentisk automation</div></div>
+    <div class="metric reveal" style="animation-delay:.16s"><div class="num">6</div><div class="lbl">M&amp;A / kapital-træk</div><div class="note">opkøb &amp; funding 2025–26</div></div>
+    <div class="metric reveal" style="animation-delay:.22s"><div class="num">9</div><div class="lbl">BC-native aktører</div><div class="note">inkl. Microsofts egen Expense Agent</div></div>
+  </div>
+
+  <div class="insight primary reveal" style="animation-delay:.24s">
+    <span class="tag">Hovedindsigt</span>
+    <h3><span class="hl">AI &amp; agentisk automation</span> er slagmarken i 2026</h3>
+    <p>Næsten alle rivaler lancerer enten et dedikeret agent-produkt (Dooap Studio, Tipalti-agenter, Medius' autonome AP, Tungstens TotalAgility) eller har AI som selve kernen (Stampli). For Continia betyder det, at en skarp, troværdig AI-fortælling ikke længere er et plus — det er adgangskravet for at blive taget alvorligt i evalueringer.</p>
+  </div>
+  <div class="insight secondary reveal" style="animation-delay:.27s">
+    <span class="tag">Mønster #2</span>
+    <div>
+      <h3 style="font-size:18px;margin-bottom:5px">Konsolidering trækker fokus mod betalings-rails</h3>
+      <p>Flere rivaler er nu ejet af payments- eller PE-kæmper (AvidXchange → TPG/Corpay, MineralTree → Global Payments) eller vokser via opkøb (onPhase, SignUp/DynamicWeb). Det skubber dem mod at tjene på betalingsvolumen frem for selve BC-flowet — og åbner en position for Continia som neutral, 100% BC-native finansautomation. Reelt er kun ExFlow og Zetadocs direkte BC-native rivaler; resten konkurrerer bredere på tværs af ERP'er.</p>
+    </div>
+  </div>
+
+  <div class="insight secondary reveal" style="animation-delay:.29s">
+    <span class="tag">BC-native fund</span>
+    <div>
+      <h3 style="font-size:18px;margin-bottom:5px">Den skarpeste BC-native trussel: Microsoft selv</h3>
+      <p>Søgningen tilføjede fire BC-native aktører — Lasernet (output), AMC Banking (betalinger) og Acubiz (expense) rammer hvert sit Continia-produktben. Mest bemærkelsesværdigt: Microsoft introducerede i april 2026 en AI-dreven Expense Agent native i Business Central. Når platform-ejeren bygger funktionalitet direkte ind, presser det tredjeparts-løsninger — men det understreger også Continias styrke: dyb, samlet \u201Cbuilt inside\u201D-funktionalitet på tværs af AP, banking, output og expense, ikke bare ét hjørne.</p>
+    </div>
+  </div>
+
+  <div class="insight secondary reveal" style="animation-delay:.31s">
+    <span class="tag">E-invoicing-laget</span>
+    <div>
+      <h3 style="font-size:18px;margin-bottom:5px">Continia konkurrerer også i BC's egne e-invoicing-connectors</h3>
+      <p>Business Centrals indbyggede E-Documents/Peppol-understøttelse bygger på API'er fra Avalara, B2Brouter, Continia, Logiq, Pagero og SignUp — så her står Continia eDocuments side om side med dedikerede netværksspillere. Med e-invoicing-mandater der ruller ud i hele EU (bl.a. Belgien fra 1. jan 2026) bliver det her et hurtigt voksende slagfelt. Tilføjet i denne kørsel: Pagero (Thomson Reuters-ejet netværk), B2Brouter og Qvalia.</p>
+    </div>
+  </div>
+
+  <div class="shead"><h2>Konkurrenter</h2></div>
+  <div class="filters">
+    <div class="filter-row" id="stanceFilters">
+      <span class="flabel">Strategisk profil</span>
+      <button class="chip active" data-type="stance" data-val="all">Alle (20)</button>
+      <button class="chip" data-type="stance" data-val="ai"><span class="dot" style="background:var(--cyan)"></span>AI-offensiv</button>
+      <button class="chip" data-type="stance" data-val="cons"><span class="dot" style="background:var(--navy)"></span>Konsolidering / M&amp;A</button>
+      <button class="chip" data-type="stance" data-val="steady"><span class="dot" style="background:var(--navy-tint)"></span>Stabil / niche</button>
+    </div>
+    <div class="filter-row" id="proxFilters">
+      <span class="flabel">Dynamics-nærhed</span>
+      <button class="chip active" data-type="prox" data-val="all">Alle</button>
+      <button class="chip" data-type="prox" data-val="Høj">Høj</button>
+      <button class="chip" data-type="prox" data-val="Middel">Middel</button>
+      <button class="chip" data-type="prox" data-val="Lav">Lav</button>
+    </div>
+  </div>
+
+  <div class="cards" id="cards"></div>
+  <div class="noresult" id="noresult">Ingen aktører matcher de valgte filtre.</div>
+
+  <div class="shead"><h2>Nøglebegivenheder · 2025–2026</h2></div>
+  <div class="events" id="events"></div>
+
+  <div class="shead" style="margin-top:42px">
+    <h2>YouTube-analyse</h2>
+    <span style="font-size:12px;font-family:var(--font);color:var(--txt-dim);font-weight:500">Kilde: Social Blade estimater &middot; seneste 30 dage &middot; 2. juni 2026</span>
+  </div>
+
+  <div style="background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;margin-bottom:16px">
+    <div style="overflow-x:auto">
+      <table style="width:100%;border-collapse:collapse;font-family:var(--font);font-size:13.5px">
+        <thead>
+          <tr style="background:var(--navy);color:#fff">
+            <th style="padding:12px 14px;text-align:left;font-weight:700;white-space:nowrap">#</th>
+            <th style="padding:12px 16px;text-align:left;font-weight:700">Kanal</th>
+            <th style="padding:12px 16px;text-align:right;font-weight:700;white-space:nowrap">Subscribers</th>
+            <th style="padding:12px 24px 12px 16px;text-align:left;font-weight:700;min-width:220px">Månedlige views <span style="font-weight:400;opacity:.65">(30 dage)</span></th>
+            <th style="padding:12px 16px;text-align:right;font-weight:700;white-space:nowrap">Mdr. subs</th>
+            <th style="padding:12px 16px;text-align:right;font-weight:700;white-space:nowrap">Est. mdr. indtjening</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-top:1px solid var(--line)">
+            <td style="padding:13px 14px;font-weight:700;color:var(--txt-dim)">1 &#127947;</td>
+            <td style="padding:13px 16px"><div style="font-weight:800;color:var(--navy)">Medius</div><div style="font-size:11px;color:var(--txt-dim);margin-top:2px">@mediusapautomation &middot; 5,07M total views</div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:700;color:var(--navy)">326</td>
+            <td style="padding:13px 24px 13px 16px"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:7px;background:var(--bg-soft);border-radius:4px;overflow:hidden"><div style="height:100%;width:100%;background:var(--cyan);border-radius:4px"></div></div><span style="font-weight:700;color:var(--navy);white-space:nowrap;min-width:48px;text-align:right">+147K</span></div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:600;color:var(--navy)">+10</td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-mid)">$37 &ndash; $589</td>
+          </tr>
+          <tr style="border-top:1px solid var(--line);background:var(--bg-soft2)">
+            <td style="padding:13px 14px;font-weight:700;color:var(--txt-dim)">2 &#129352;</td>
+            <td style="padding:13px 16px"><div style="font-weight:800;color:var(--navy)">Stampli</div><div style="font-size:11px;color:var(--txt-dim);margin-top:2px">@stampli &middot; 819K total views</div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:700;color:var(--navy)">1.78K</td>
+            <td style="padding:13px 24px 13px 16px"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:7px;background:var(--bg-soft);border-radius:4px;overflow:hidden"><div style="height:100%;width:38.8%;background:var(--cyan);border-radius:4px"></div></div><span style="font-weight:700;color:var(--navy);white-space:nowrap;min-width:48px;text-align:right">+57K</span></div></td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-mid)">0</td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-mid)">$14 &ndash; $226</td>
+          </tr>
+          <tr style="border-top:1px solid var(--line)">
+            <td style="padding:13px 14px;font-weight:700;color:var(--txt-dim)">3 &#129353;</td>
+            <td style="padding:13px 16px"><div style="font-weight:800;color:var(--navy)">Yooz</div><div style="font-size:11px;color:var(--txt-dim);margin-top:2px">@why_yooz &middot; 135K total views</div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:700;color:var(--navy)">199</td>
+            <td style="padding:13px 24px 13px 16px"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:7px;background:var(--bg-soft);border-radius:4px;overflow:hidden"><div style="height:100%;width:3.5%;background:var(--cyan);border-radius:4px"></div></div><span style="font-weight:700;color:var(--navy);white-space:nowrap;min-width:48px;text-align:right">+5.1K</span></div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:600;color:var(--navy)">+6</td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-mid)">$1 &ndash; $21</td>
+          </tr>
+          <tr style="border-top:1px solid var(--line);background:var(--bg-soft2)">
+            <td style="padding:13px 14px;font-weight:700;color:var(--txt-dim)">4</td>
+            <td style="padding:13px 16px"><div style="font-weight:800;color:var(--navy)">Tipalti</div><div style="font-size:11px;color:var(--txt-dim);margin-top:2px">@tipaltivideos &middot; 3,01M total views</div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:700;color:var(--navy)">3.24K</td>
+            <td style="padding:13px 24px 13px 16px"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:7px;background:var(--bg-soft);border-radius:4px;overflow:hidden"><div style="height:100%;width:1.1%;background:var(--cyan);border-radius:4px"></div></div><span style="font-weight:700;color:var(--navy);white-space:nowrap;min-width:48px;text-align:right">+1.6K</span></div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:600;color:var(--navy)">+10</td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-mid)">$0 &ndash; $6</td>
+          </tr>
+          <tr style="border-top:2px solid var(--cyan);background:#edfffe">
+            <td style="padding:13px 14px;font-weight:700;color:var(--txt-dim)">5</td>
+            <td style="padding:13px 16px">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <span style="font-weight:800;color:var(--navy)">Continia</span>
+                <span style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:var(--navy);color:#fff;padding:2px 7px;border-radius:20px">VORES</span>
+              </div>
+              <div style="font-size:11px;color:var(--txt-dim);margin-top:2px">@continiasoftware &middot; 509K total views</div>
+            </td>
+            <td style="padding:13px 16px;text-align:right;font-weight:700;color:var(--navy)">1.45K</td>
+            <td style="padding:13px 24px 13px 16px"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:7px;background:var(--bg-soft);border-radius:4px;overflow:hidden"><div style="height:100%;width:5%;background:#e05050;border-radius:4px"></div></div><span style="font-weight:700;color:#c03030;white-space:nowrap;min-width:48px;text-align:right">&minus;7.3K</span></div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:600;color:var(--navy)">+10</td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-mid)">$0</td>
+          </tr>
+          <tr style="border-top:1px solid var(--line)">
+            <td style="padding:13px 14px;font-weight:700;color:var(--txt-dim)">6</td>
+            <td style="padding:13px 16px"><div style="font-weight:800;color:var(--navy)">Equisys (Zetadocs)</div><div style="font-size:11px;color:var(--txt-dim);margin-top:2px">@equisysplc &middot; 42K total views</div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:700;color:var(--navy)">128</td>
+            <td style="padding:13px 24px 13px 16px"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:7px;background:var(--bg-soft);border-radius:4px;overflow:hidden"><div style="height:100%;width:0.2%;background:var(--cyan);border-radius:4px"></div></div><span style="font-weight:600;color:var(--txt-mid);white-space:nowrap;min-width:48px;text-align:right">+227</span></div></td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-mid)">+1</td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-mid)">$0 &ndash; $1</td>
+          </tr>
+          <tr style="border-top:1px solid var(--line);background:var(--bg-soft2)">
+            <td style="padding:13px 14px;font-weight:700;color:var(--txt-dim)">7</td>
+            <td style="padding:13px 16px"><div style="font-weight:800;color:var(--navy)">Dooap</div><div style="font-size:11px;color:var(--txt-dim);margin-top:2px">@dooap &middot; 146K total views &middot; ingen aktivitet seneste 30 dage</div></td>
+            <td style="padding:13px 16px;text-align:right;font-weight:700;color:var(--navy)">60</td>
+            <td style="padding:13px 24px 13px 16px"><div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:7px;background:var(--bg-soft);border-radius:4px;overflow:hidden"></div><span style="font-weight:600;color:var(--txt-dim);white-space:nowrap;min-width:48px;text-align:right">0</span></div></td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-dim)">0</td>
+            <td style="padding:13px 16px;text-align:right;color:var(--txt-dim)">$0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div style="padding:12px 20px;background:var(--bg-soft);border-top:1px solid var(--line);font-size:11.5px;color:var(--txt-dim);font-family:var(--font)">
+      Social Blade estimater &middot; alle kanaler er C-grade (normalt for B2B-kanaler) &middot; estimerede indtjeningstal er vejledende og ikke et mål for kanalkvalitet
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(115deg,var(--cyan-soft),#fff 80%);border:1px solid #bdeef2;border-radius:16px;padding:22px 26px;margin-bottom:34px">
+    <span style="display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--navy);background:var(--cyan);padding:5px 11px;border-radius:30px;margin-bottom:12px">YouTube-indsigt</span>
+    <h3 style="font-family:var(--font);font-weight:800;font-size:20px;letter-spacing:-.01em;margin-bottom:7px;color:var(--navy)">Medius dominerer YouTube — med f&aelig;rre subscribers end Continia</h3>
+    <p style="color:var(--txt-mid);font-size:14.5px">Medius h&aelig;nter 147.000 views om m&aring;neden med kun 326 subscribers &mdash; 45&times; Continias m&aring;nedlige views-tal, men med 3&times; f&aelig;rre f&oslash;lgere. Det tyder p&aring; at de rammer YouTubes s&oslash;ge- og anbefalingsalgoritme. Stampli viser samme m&oslash;nster: 57K views/m&aring;ned p&aring; blot 48 videoer. Continias negative m&aring;nedlige viewtal (&minus;7,3K) skyldes sandsynligvis YouTubes l&oslash;bende oprydning af ugyldige visninger snarere end reel tilbagegang &mdash; men det er v&aelig;rd at investere i indhold der kan fange algoritmens gunst p&aring; samme m&aring;de som Medius og Stampli. Dooap er g&aring;et stille p&aring; kanalen de seneste 30 dage trods aggressiv AI-satsning ellers.</p>
+  </div>
+
+  <div class="method">
+    <h2>Metode &amp; forbehold</h2>
+    <ul>
+      <li><b>Hvad er med:</b> produktudgivelser, presse, M&amp;A og positionering fra offentligt tilgængelige kilder. Kilder er klikbare inde i hvert kort.</li>
+      <li><b>Øjebliksbillede:</b> dataene er fra denne kørsel — ikke live. Rapporten genereres på ny når konkurrent-listen køres igennem (fx månedligt).</li>
+      <li><b>Nye BC-native aktører:</b> Lasernet (output), AMC Banking (betalinger), Acubiz (expense) og Microsofts egen Expense Agent — plus e-invoicing-laget Pagero, B2Brouter og Qvalia — er tilføjet i denne kørsel.</li>
+      <li><b>Kategori-note:</b> Dime Scheduler er BC-native, men i en anden kategori (planlægning) — medtaget som ISV-nabo, ikke direkte AP-rival.</li>
+      <li class="warn"><b>LinkedIn-engagement</b> (likes/kommentarer pr. opslag) er ikke med — kræver et social listening-værktøj.</li>
+      <li class="warn"><b>YouTube-tal</b> pr. video for sidste måned kan ikke hentes pålideligt automatisk; kun aktivitetsniveau kan beskrives.</li>
+    </ul>
+  </div>
+
+  <footer>Genereret som prøvekørsel · Continia Marketing Intelligence · 20 aktører · 2. juni 2026</footer>
+</div>
+
+<script>
+const C = {ai:"#8ff8ff", cons:"#052975", steady:"#9fb0d6"};
+const data = [
+ {n:"ExFlow", o:"SignUp Software · Stockholm", stance:"cons", sl:"Ekspanderende (opkøb)", prox:"Høj",
+  cat:"AP-automation · D365 F&O + BC",
+  head:"Opkøb af DynamicWeb trækker dem ud over ren AP; ny F&O-version med mere ML.",
+  rel:"ExFlow AP til D365 F&O, jan 2026 — ML-\u201CPredictions\u201D kan nu bruges allerede ved import af fakturaer.",
+  str:"Opkøb af DynamicWeb (e-commerce/PIM). Platform/docs rebrandet til \u201CTruvio\u201D.",
+  pos:"Fuldt indlejret/native i Dynamics — intet tredjepartssystem.",
+  ai:"ML-drevne forudsigelser i AP-flowet (kodning, leverandøropsætning).",
+  sc:"150+ ansatte · 1.300+ organisationer",
+  s:[["Truvio news","https://docs.signupsoftware.com/finance-operations/docs/user-manual/whats-new-and-planned/news"],["SignUp news","https://www.signupsoftware.com/resources/news/"]]},
+
+ {n:"Dooap", o:"Dooap · Austin (Pagero)", stance:"ai", sl:"AI-aggressiv", prox:"Høj",
+  cat:"AP-automation · D365 Finance (F&O)",
+  head:"Lancerede et dedikeret agentisk AI-produkt — mest offensive AI-træk i feltet.",
+  rel:"Dooap Studio, 11. maj 2026 — AP-teams designer og styrer egne AI-agenter uden IT.",
+  str:"Agenter til GL-kodning, PO-match, svindel og routing — med begrundelse, konfidens og audit trail.",
+  pos:"Mobile-first, cloud-native — budskab: \u201CAI du selv kontrollerer.\u201D",
+  ai:"Selvstændigt agent-produkt, ikke blot AI-features.",
+  sc:"Microsoft Certified Software (sep 2025)",
+  s:[["Dooap Studio (PR)","https://www.prnewswire.com/news-releases/dooap-inc-launches-dooap-studio-putting-agentic-ap-automation-directly-in-the-hands-of-finance-teams-302768534.html"],["YouTube","https://www.youtube.com/@dooap"]]},
+
+ {n:"Zetadocs", o:"Equisys", stance:"steady", sl:"Stabil kadence", prox:"Høj",
+  cat:"Delivery · Capture · Expenses · BC",
+  head:"Fast månedlig leverancerytme; AI lagt ind i kernen frem for store armbevægelser.",
+  rel:"Delivery & Capture opdateret jan, mar og maj 2026; Expenses maj 2026 (cloud, browser, iOS, Android).",
+  str:"Tre produktben holdt i synkron, hyppig kadence.",
+  pos:"Alt foregår inde i Business Central — ét miljø, mindre friktion.",
+  ai:"AI-drevet dataindtastning + automatisk ordre-/fakturamatch.",
+  sc:"3 produktben (Delivery · Capture · Expenses)",
+  s:[["Maj 2026-update","https://www.equisys.com/blog/whats-new-in-zetadocs-expenses-may-2026-update"],["Equisys blog","https://www.equisys.com/blog"]]},
+
+ {n:"Medius", o:"Medius", stance:"ai", sl:"AI-leder", prox:"Middel",
+  cat:"AP-automation + spend/payments · multi-ERP",
+  head:"Kåret AI-leder af analytikere; dyb, autonom AI gennem hele AP-livscyklen.",
+  rel:"Ardent Partners 2026: Market Leader + Elite Performer for AI Innovation.",
+  str:"SmartFlow (proprietær CNN), Medius Copilot, Supplier Conversations (autonom mail-håndtering), \u201CAI workmate\u201D.",
+  pos:"\u201CAutonom AP\u201D — finansteamet bevarer kontrollen; egne modeller frem for dyre LLM'er til kernearbejde.",
+  ai:"Hævder at have mest af AP-/betalingslivscyklen automatiseret med AI.",
+  sc:"4.000+ kunder · 102 lande · $200 mia. spend/år",
+  s:[["Medius AI advantage","https://www.medius.com/ai-innovation/medius-ai-advantage/"],["Ardent 2026","https://www.medius.com/resources/guides-reports/2026-ap-automation-payments-technology-advisor/"]]},
+
+ {n:"Tipalti", o:"Tipalti · Foster City", stance:"ai", sl:"AI + kapital", prox:"Lav",
+  cat:"Payables + global payments + procurement + expenses",
+  head:"Rejste $200M til AI; udruller agenter på tværs af hele finansflowet.",
+  rel:"AI Assistant + AI-agenter (Invoice Capture, Bill Approvers, reporting, tax, purchase request); tariff-refund AI (apr 2026).",
+  str:"$200M-runde (Hercules, efterår 2025) øremærket AI; agentisk fokus.",
+  pos:"End-to-end payables + globale udbetalinger i 200+ lande.",
+  ai:"Konversationel assistent + autonome agenter, indlejret i hele platformen.",
+  sc:"~$75 mia. betalinger/år",
+  s:[["Tipalti AI agents","https://tipalti.com/accounts-payable-software/finance-ai/"],["American Banker","https://www.americanbanker.com/payments/news/tipalti-enhances-ai-tech-to-improve-tariff-refund-processing"]]},
+
+ {n:"Yooz", o:"Yooz · Dallas", stance:"ai", sl:"AI + fraud", prox:"Middel",
+  cat:"AP / P2P automation · multi-ERP",
+  head:"AI/Deep Learning-P2P med stærkt fraud-fokus; aktiv i BC- og GP-økosystemet.",
+  rel:"YoozProtect (fraud, NA-launch jan 2026); Line-Level Matching (2025); Yooz 2026 AI in Finance-rapport.",
+  str:"AI + RPA + Big Data; fraud-forebyggelse som spydspids.",
+  pos:"Enkel, hurtig, sikker cloud-P2P; unlimited users.",
+  ai:"Smart data-ekstraktion, routing og fraud-detektion.",
+  sc:"5.000+ kunder · 300.000 brugere",
+  s:[["YoozProtect","https://www.getyooz.com/blog/yooz-protect-launch"],["Yooz + BC/GP","https://msdynamicsworld.com/blog/two-days-two-erps-how-yooz-powering-ap-automation-gp-and-business-central"]]},
+
+ {n:"Stampli", o:"Stampli · Mountain View", stance:"ai", sl:"AI-veteran", prox:"Lav",
+  cat:"AP-automation (invoice-centreret) · 70+ ERP'er",
+  head:"AI (\u201CBilly the Bot\u201D) som kerne i snart 10 år; rejste kapital fra Blackstone.",
+  rel:"$61M fra Blackstone (~$148M total rejst); Stampli Card / Direct Pay; løbende Billy-forbedringer.",
+  str:"Invoice-centreret kommunikation + \u201CAI-medarbejder\u201D.",
+  pos:"Hurtig implementering (uger, ikke måneder); godkendere behøver ikke ERP-adgang.",
+  ai:"Profilerer sig på \u201Cbeviste\u201D AI til capture, kodning, routing, dubletter og fraud.",
+  sc:"1.600+ kunder · $80–85 mia. fakturaer/år",
+  s:[["Stampli AP","https://www.stampli.com/ap-automation/"],["Blackstone funding","https://financialit.net/news/fundraising-news/stampli-secures-61m-advanced-ai-powered-ap-automation"]]},
+
+ {n:"AvidXchange", o:"TPG + Corpay · Charlotte", stance:"cons", sl:"Opkøbt (payments)", prox:"Lav",
+  cat:"AP + payment automation · mid-market",
+  head:"Taget privat af TPG + Corpay (~$2,2 mia., okt 2025) — peger mod payment-rails.",
+  rel:"Første gen-AI \u201Cagenter\u201D apr 2025; AI-fraud/BEC-detektion i AvidPay-netværket.",
+  str:"Take-private; Corpay-ejerandel → fokus på betalingsvolumen og interchange.",
+  pos:"Mid-market invoice-to-pay + AvidPay-betalingsnetværk.",
+  ai:"AI til fraud/anomali-detektion; senere på AI-kurven end de rene AI-spillere.",
+  sc:"~$450M omsætning · 25+ års historik",
+  s:[["TPG/Corpay close","https://www.avidxchange.com/press-releases/tpg-corpay-complete-acquisition-of-avidxchange/"],["Payments Dive","https://www.paymentsdive.com/news/avidxchange-tpg-corpay-accounts-payable-payments/747520/"]]},
+
+ {n:"Compleat", o:"Compleat Software · UK", stance:"steady", sl:"SMB / pris", prox:"Lav",
+  cat:"P2P / AP automation + online buying",
+  head:"Prisvenlig P2P til mindre virksomheder; UK/EMEA-fokus, ikke Dynamics-først.",
+  rel:"Capture + godkendelses-workflows + online buying; integration med Sage, Xero, QuickBooks.",
+  str:"Affordable SaaS for alle størrelser; procurement + AP samlet.",
+  pos:"Billig, enkel adgang (abonnement fra et lavt niveau).",
+  ai:"AI-OCR til capture/kodning — markant mindre AI-marketing end de store.",
+  sc:"500+ virksomheder · EMEA/APAC/AMAC",
+  s:[["Zone&Co 2026","https://www.zoneandco.com/articles/top-16-ap-automation-software-solutions-in-2026"],["Capterra","https://www.capterra.com/p/88208/Compleat-Purchase-to-Pay/"]]},
+
+ {n:"Tungsten Automation", o:"tidl. Kofax · Irvine", stance:"ai", sl:"AI-indhentende", prox:"Lav",
+  cat:"IDP / RPA + AP (InvoiceAgility)",
+  head:"Rebrandet fra Kofax; satser hårdt på agentisk AI for at indhente forspring.",
+  rel:"TotalAgility 2026.2 (preview apr 2026) med agentiske AI-features; InvoiceAgility til AP.",
+  str:"Jan 2026: nye topfolk incl. første Chief AI Officer; \u201CAI-first\u201D-repositionering.",
+  pos:"Bred intelligent automation (dokument/workflow) — stor på IDP-omsætning.",
+  ai:"Agentisk AI på vej; analytikere: var 9–12 mdr bagud, nu ved at indhente.",
+  sc:"~40 års historik · 70+ lande",
+  s:[["Agentic AI hires","https://www.tungstenautomation.com/about/press-releases/2026/tungsten-automation-invests-in-innovation-and-agentic-ai-with-key-executive-hires"],["Deep Analysis","https://www.deep-analysis.net/boring-ai-how-tungsten-plans-to-move-beyond-its-idp-roots/"]]},
+
+ {n:"onPhase", o:"tidl. DocuPhase · Tampa", stance:"cons", sl:"Opkøbende + rebrand", prox:"Lav",
+  cat:"AP + payments + dokumenthåndtering",
+  head:"Rebrandet fra DocuPhase; vokser via opkøb og indlejrede betalinger.",
+  rel:"Opkøb af iPayables (jan 2026) + Clearwater Payments; Bottomline Paymode-netværk indlejret.",
+  str:"AI-drevet AP + embedded payments; 173% 3-årig vækst (Inc. 5000).",
+  pos:"Samlet finans-automation for SMB → enterprise.",
+  ai:"AI-drevet capture/automation kombineret med betalinger.",
+  sc:"Hurtigvoksende · NetSuite-centreret m.fl.",
+  s:[["onPhase news","https://www.onphase.com/news"],["Accounting automation","https://www.docuphase.com/accounting-automation"]]},
+
+ {n:"MineralTree", o:"Global Payments · Boston", stance:"cons", sl:"Payments-ejet", prox:"Lav",
+  cat:"AP + payment automation · multi-ERP",
+  head:"Ejet af betalingskæmpen Global Payments; styrke i multi-currency/internationale betalinger.",
+  rel:"Multi-currency (TransferMate, 130+ valutaer); enterprise multi-ERP-fokus.",
+  str:"Del af Global Payments ($500M-opkøb) → betalingsmonetisering.",
+  pos:"End-to-end invoice-to-pay, fraud-beskyttelse, multi-ERP.",
+  ai:"Mindre AI-profilering; fokus på betalinger og visibility.",
+  sc:"3.000+ virksomheder · mid-market → Fortune 500",
+  s:[["Global Payments acq.","https://investors.globalpayments.com/news-events/press-releases/detail/23/global-payments-agrees-to-acquire-mineraltree-a-leader-in"],["Crunchbase","https://www.crunchbase.com/organization/mineraltree"]]},
+
+ {n:"Dime Scheduler", o:"Dime Software (Dimenics) · BE", stance:"steady", sl:"Tilstødende (scheduling)", prox:"Høj",
+  cat:"Visuel ressource-/projektplanlægning · BC",
+  head:"BC-native, men i en anden kategori (planlægning) — ISV-nabo, ikke direkte AP-rival.",
+  rel:"Real-time BC-sync, Gantt, drag-drop, kapacitets-pivot, kort/ruteplan; Outlook/Exchange-sync.",
+  str:"Visuelt planlægningslag oven på BC/NAV/CRM/Power Platform.",
+  pos:"\u201CStop med at gætte, begynd at planlægge\u201D — let at implementere (~5 dage).",
+  ai:"Begrænset AI-profil; styrken er visuel planlægning.",
+  sc:"Abonnement fra ~€50/år · mange sprog",
+  s:[["Features","https://www.dimescheduler.com/features"],["Microsoft Marketplace","https://marketplace.microsoft.com/en-us/product/web-apps/dimenics-3435744.dimescheduler"]]},
+
+ {n:"Microsoft Expense Agent", o:"Microsoft · native i BC", stance:"ai", sl:"Platform-ejer · AI", prox:"Høj",
+  cat:"AI-expense capture · native i Business Central",
+  head:"Platform-ejeren selv rykker ind på expense-området med en AI-agent — den vigtigste BC-native udvikling at holde øje med.",
+  rel:"Expense Agent introduceret i D365 Business Central (apr 2026) — AI-drevet expense-capture, indsendelse og compliance.",
+  str:"Microsoft bygger AI-funktionalitet direkte ind i BC, som overlapper med tredjeparts-expense-løsninger.",
+  pos:"Native i platformen — ingen ekstra leverandør, følger med Business Central.",
+  ai:"AI-agent til medarbejder-expenses indlejret i selve ERP'en.",
+  sc:"Indbygget i Microsoft Dynamics 365 Business Central",
+  s:[["Microsoft blog","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"]]},
+
+ {n:"Lasernet", o:"Formpipe · DK/UK", stance:"steady", sl:"BC-native · output", prox:"Høj",
+  cat:"Dokument-output & e-invoicing · BC + F&O",
+  head:"BC-native dokument-/output-motor — rammer Continia Document Output direkte.",
+  rel:"Ny Lasernet Connector til BC (2025) med 20+ rapporttyper; Azure AI til mapping; bred e-invoicing-compliance.",
+  str:"Lavkode dokumentdesign og -distribution inde i BC, uden udvikler; central hub også uden for Dynamics.",
+  pos:"Indlejret i BC — design, udsend og arkivér dokumenter uden at forlade ERP'en.",
+  ai:"Azure AI til datamapping; primært stærk på output/compliance frem for AI-marketing.",
+  sc:"20+ års dokumenterfaring · globalt",
+  s:[["Lasernet for BC","https://www.formpipe.com/en/erp-banking/software/lasernet/business-central/"],["BC connector live","https://www.formpipe.com/news-blogs/lasernet-for-bc-live"]]},
+
+ {n:"AMC Banking", o:"AMC-Consult · Danmark", stance:"steady", sl:"BC-native · banking", prox:"Høj",
+  cat:"Bank-integration & betalinger · BC + F&O",
+  head:"BC-native bank-/betalingsløsning — rammer Continia Banking & Payment Management direkte.",
+  rel:"Standardiserer 600+ bankformater via cloud-platformen XTendLink; Fundamentals følger med som BC-extension.",
+  str:"PSD2-licenseret betalingsinstitut; payment-eksport, kontoudtog og afstemning direkte i BC.",
+  pos:"Indlejret i BC — fra betalingsjournal direkte til banken (host-to-host).",
+  ai:"Datadrevet auto-match; mindre AI-profilering, mere drift og compliance.",
+  sc:"600+ banker · dansk leverandør",
+  s:[["AMC Banking BC","https://www.amcbanking.com/bc-fundamentals/"],["Microsoft Learn","https://learn.microsoft.com/en-us/dynamics365/business-central/ui-extensions-amc-banking"]]},
+
+ {n:"Acubiz", o:"Acubiz · Danmark", stance:"steady", sl:"Expense · integreret", prox:"Middel",
+  cat:"Expense management · certificeret BC-integration",
+  head:"Dansk expense-spiller med certificeret BC-integration — rammer Continia Expense Management.",
+  rel:"Certificeret integration til BC (+ e-conomic, Danløn, 40+ systemer); app + webportal til udlæg, kort og kørsel.",
+  str:"Standalone expense-platform der kobler på BC — ikke \u201Cbuilt inside\u201D som Continia.",
+  pos:"Real-time overblik over medarbejderforbrug; automatisk import til BC.",
+  ai:"Automatisering af kvitterings-/udlægsflow; begrænset AI-profil.",
+  sc:"Dansk · 40+ system-integrationer",
+  s:[["Acubiz platform","https://acubiz.com/platform/"]]},
+
+ {n:"Pagero", o:"Thomson Reuters", stance:"cons", sl:"TR-ejet · e-invoicing", prox:"Høj",
+  cat:"E-invoicing-netværk & compliance · BC-connector",
+  head:"Globalt e-invoicing-netværk, nu ejet af Thomson Reuters — én af BC's indbyggede E-Document-connectors.",
+  rel:"ONESOURCE Pagero (e-invoicing + tax-compliance); embedded løsning til Oracle (2026); global Deloitte-alliance (jan 2026).",
+  str:"Opkøbt af Thomson Reuters (2024) og slået sammen med ONESOURCE-tax; \u201Ctwo-step\u201D format-konvertering globalt.",
+  pos:"Åbent, ERP-uafhængigt netværk; BC-extension sender e-/PDF/print-faktura via én forbindelse.",
+  ai:"Fokus på compliance/CTC-mandater frem for AI-marketing.",
+  sc:"14 mio.+ virksomheder · 100+ netværk · IDC-leder",
+  s:[["Pagero for BC","https://europe.thomsonreuters.com/pagero-network/system-connectivity/microsoft"],["Deloitte-alliance","https://www.thomsonreuters.com/en/press-releases/2026/january/deloitte-and-thomson-reuters-launch-a-strategic-alliance-to-support-end-to-end-global-e-invoicing-and-e-reporting-for-organizations"]]},
+
+ {n:"B2Brouter", o:"B2Brouter Global · ES", stance:"steady", sl:"Peppol · BC-connector", prox:"Høj",
+  cat:"Peppol / e-invoicing access point · BC-connector",
+  head:"Certificeret Peppol-access point med native BC-connector — én af BC's indbyggede E-Document-API'er.",
+  rel:"BC-connector på AppSource; understøtter Peppol BIS 3.0, UBL, XRechnung, FatturaPA, Chorus Pro, FACe og SDI.",
+  str:"Én forbindelse til hele Peppol-netværket; automatisk format-konvertering og compliance.",
+  pos:"Native i Dynamics — send og modtag e-faktura uden eksterne portaler.",
+  ai:"Ingen markant AI-profil; styrken er compliance-bredde på tværs af lande.",
+  sc:"30+ lande · ISO 27001 · EESPA-medlem",
+  s:[["B2Brouter for Dynamics","https://www.b2brouter.net/global/e-invoicing-microsoft-dynamics/"],["Microsoft Learn (E-Docs)","https://learn.microsoft.com/en-us/dynamics365/business-central/faq-electronic-invoicing"]]},
+
+ {n:"Qvalia", o:"Qvalia · SE", stance:"steady", sl:"Peppol · BC-app", prox:"Høj",
+  cat:"Peppol e-invoicing & order management · BC-app",
+  head:"Ready-made BC-app til Peppol med AI-posteringsforslag — opsætning uden kode.",
+  rel:"Sender/modtager Peppol-faktura + ordrehåndtering; automatisk postering i BC; AI-forslag til konto-mapping.",
+  str:"Plug-and-play BC-connector via Qvalia-platformen; ingen IT-ressourcer nødvendige.",
+  pos:"Alt bogføres automatisk i BC — ingen dobbeltindtastning.",
+  ai:"AI-genererede posteringsforslag for indgående leverandørfaktura.",
+  sc:"EN 16931 · Peppol BIS · svensk udbyder",
+  s:[["Qvalia for BC","https://qvalia.com/peppol-e-invoicing-for-business-central/"]]}
+];
+
+const events = [
+ {w:"11. maj 2026", c:"ai", t:"<b>Dooap</b> lancerer Dooap Studio — agentisk AI-platform."},
+ {w:"13. maj 2026", c:"steady", t:"<b>Zetadocs</b> Expenses maj-opdatering (cloud, browser, iOS, Android)."},
+ {w:"28. apr 2026", c:"ai", t:"<b>Tungsten</b> previewer TotalAgility 2026.2 med agentiske AI-features (London Summit)."},
+ {w:"28. apr 2026", c:"ai", t:"<b>Microsoft</b> introducerer Expense Agent native i Business Central — AI-expense fra platform-ejeren selv."},
+ {w:"Apr 2026", c:"ai", t:"<b>Tipalti</b> udvider agentisk AI til bl.a. tariff-refund-håndtering."},
+ {w:"Tidlig 2026", c:"ai", t:"<b>Medius</b> kåret Market Leader + Elite Performer for AI Innovation (Ardent Partners 2026)."},
+ {w:"22. jan 2026", c:"cons", t:"<b>Pagero</b> (Thomson Reuters) og Deloitte indgår global e-invoicing-alliance."},
+ {w:"21. jan 2026", c:"cons", t:"<b>onPhase</b> (DocuPhase) opkøber enterprise-AP-spilleren iPayables."},
+ {w:"20. jan 2026", c:"ai", t:"<b>Tungsten</b> henter nye topfolk, herunder sin første Chief AI Officer."},
+ {w:"Jan 2026", c:"cons", t:"<b>ExFlow</b>/SignUp ny F&O-version; SignUp opkøber DynamicWeb (e-commerce/PIM)."},
+ {w:"1. jan 2026", c:"steady", t:"<b>E-invoicing-mandat</b> i Belgien træder i kraft — struktureret faktura via Peppol påkrævet."},
+ {w:"15. okt 2025", c:"cons", t:"<b>AvidXchange</b> taget privat af TPG + Corpay for ~$2,2 mia."},
+ {w:"Efterår 2025", c:"ai", t:"<b>Tipalti</b> rejser $200M (Hercules Capital) øremærket AI."},
+ {w:"2025", c:"steady", t:"<b>Lasernet</b> (Formpipe) lancerer ny BC-connector med 20+ rapporttyper."},
+ {w:"Sep 2025", c:"ai", t:"<b>Dooap</b> opnår Microsofts Certified Software-designation."}
+];
+
+const cardsEl=document.getElementById('cards');
+data.forEach((d,i)=>{
+  const col=C[d.stance];
+  const card=document.createElement('div');
+  card.className='card reveal stance-'+d.stance;
+  card.style.setProperty('--c',col);
+  card.style.animationDelay=(0.05+i*0.03)+'s';
+  card.dataset.stance=d.stance; card.dataset.prox=d.prox;
+  const src=d.s.map(x=>`<a href="${x[1]}" target="_blank" rel="noopener">${x[0]} \u2197</a>`).join('');
+  card.innerHTML=`
+    <div class="ctop">
+      <div class="brand"><div class="name">${d.n}</div><div class="owner">${d.o}</div><div class="cat">${d.cat}</div></div>
+      <div class="headline">${d.head}</div>
+      <div class="right">
+        <span class="badge">${d.sl}</span>
+        <span class="prox">Dynamics-nærhed: <b>${d.prox}</b></span>
+        <span class="chev"><span class="ctxt">DETALJER </span><span class="carrow">&#9654;</span></span>
+      </div>
+    </div>
+    <div class="detail"><div class="din">
+      <div class="grid2">
+        <div class="field"><div class="ft">Seneste / nøgleudvikling</div><p>${d.rel}</p></div>
+        <div class="field"><div class="ft">Strategisk træk</div><p>${d.str}</p></div>
+        <div class="field"><div class="ft">Positionering</div><p>${d.pos}</p></div>
+        <div class="field"><div class="ft">AI-vinkel</div><p>${d.ai}</p></div>
+        <div class="field"><div class="ft">Skala / status</div><p class="stat">${d.sc}</p></div>
+      </div>
+      <div class="sources">${src}</div>
+    </div></div>`;
+  card.querySelector('.ctop').addEventListener('click',()=>card.classList.toggle('open'));
+  cardsEl.appendChild(card);
+});
+
+const evEl=document.getElementById('events');
+events.forEach(e=>{
+  const row=document.createElement('div');
+  row.className='ev'; row.style.setProperty('--c',C[e.c]);
+  row.innerHTML=`<div class="when"><span class="d"></span>${e.w}</div><div class="what">${e.t}</div>`;
+  evEl.appendChild(row);
+});
+
+let fStance='all', fProx='all';
+function applyFilter(){
+  let visible=0;
+  document.querySelectorAll('.card').forEach(c=>{
+    const ok=(fStance==='all'||c.dataset.stance===fStance)&&(fProx==='all'||c.dataset.prox===fProx);
+    c.classList.toggle('hide',!ok); if(ok)visible++;
+  });
+  document.getElementById('noresult').style.display=visible? 'none':'block';
+}
+document.querySelectorAll('.chip').forEach(ch=>{
+  ch.addEventListener('click',()=>{
+    const type=ch.dataset.type;
+    document.querySelectorAll(`.chip[data-type="${type}"]`).forEach(x=>x.classList.remove('active'));
+    ch.classList.add('active');
+    if(type==='stance')fStance=ch.dataset.val; else fProx=ch.dataset.val;
+    applyFilter();
+  });
+});
+</script>
+</body>
+</html>
