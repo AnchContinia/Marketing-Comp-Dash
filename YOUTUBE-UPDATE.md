@@ -110,11 +110,16 @@ The local folder `~/Desktop/Claude-Marketing-dashboard` is a git working copy of
 So Claude finishes the update directly — no manual GitHub upload anymore:
 
 1. Claude writes the new snapshot into `youtube-data.js`.
-2. Claude commits **only** `youtube-data.js` and pushes to `origin/main`:
-   `git add youtube-data.js && git commit -m "..." && git push origin main`.
+2. **Stamp the date.** Set `DASHBOARD_UPDATED` in `index.html` (the single
+   source of truth near the bottom, `var DASHBOARD_UPDATED = "YYYY-MM-DD";`) to
+   **today's date**. Both the topbar "Updated …" and the footer read from it, so
+   this one change keeps every date stamp on the page consistent. Do this on
+   **every** refresh — YouTube *and* News.
+3. Claude commits the changed files and pushes to `origin/main`:
+   `git add youtube-data.js index.html && git commit -m "..." && git push origin main`.
    (The `.gitignore` keeps local-only files — the `.indd`, images, MCP links,
    backups — out of the push automatically.)
-3. GitHub Pages updates the live dashboard within a minute. Claude confirms with
+4. GitHub Pages updates the live dashboard within a minute. Claude confirms with
    the new commit hash on `origin/main`.
 
 If a push ever fails with an auth error, the keychain token has expired — make a
