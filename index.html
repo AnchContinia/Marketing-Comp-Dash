@@ -73,16 +73,13 @@
 .ci-score{text-align:right;font-size:22px;font-weight:850;color:var(--navy);line-height:1}
 .ci-arrow{width:30px;height:30px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--navy);font-weight:850;transition:transform .18s}
 .ci-item[open] .ci-arrow{transform:rotate(90deg)}
-.ci-detail{border-top:1px solid var(--line);padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;align-items:start}
-.ci-meter{height:9px;background:#eaf0f7;border-radius:999px;overflow:hidden;margin-bottom:10px}
-.ci-meter i{display:block;height:100%;width:var(--w);background:#052975;border-radius:999px}
-.ci-reason{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
-.ci-source-title{font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin-bottom:8px}
-.ci-sources{display:flex;flex-wrap:wrap;gap:7px}
+.ci-detail{border-top:1px solid var(--line);padding:14px 16px}
+.ci-reason{font-size:13px;color:var(--muted);margin:0;line-height:1.45;max-width:108ch}
+.ci-sources{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
 .ci-sources a{text-decoration:none;border:1px solid var(--line2);border-radius:8px;padding:7px 9px;font-size:12px;font-weight:750;color:#334155;background:#fff}
-.ci-sources a:hover{border-color:#93b7ff;color:var(--navy)}
+.ci-sources a:hover{border-color:#052975;background:#052975;color:#fff}
 @media(max-width:760px){.vi-pair{grid-template-columns:1fr}}
-@media(max-width:760px){.ci-row{grid-template-columns:1fr auto;gap:8px}.ci-type,.ci-copy{grid-column:1}.ci-score{grid-column:1;text-align:left}.ci-arrow{grid-column:2;grid-row:1 / span 3}.ci-detail{grid-template-columns:1fr}}
+@media(max-width:760px){.ci-row{grid-template-columns:1fr auto;gap:8px}.ci-type,.ci-copy{grid-column:1}.ci-score{grid-column:1;text-align:left}.ci-arrow{grid-column:2;grid-row:1 / span 3}}
 </style>
 </head>
 <body>
@@ -388,10 +385,7 @@ if(contentIdeasList){
         '<span class="ci-score">'+idea.score+'%</span>'+
         '<span class="ci-arrow" aria-hidden="true">›</span>'+
       '</summary>'+
-      '<div class="ci-detail">'+
-        '<div><div class="ci-meter"><i style="--w:'+idea.score+'%"></i></div><p class="ci-reason">'+idea.reason+'</p></div>'+
-        '<div><div class="ci-source-title">Sources</div><div class="ci-sources">'+sources+'</div></div>'+
-      '</div>'+
+      '<div class="ci-detail"><p class="ci-reason">'+idea.reason+'</p><div class="ci-sources">'+sources+'</div></div>'+
     '</details>';
   }).join('');
 }
