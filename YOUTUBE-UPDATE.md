@@ -88,8 +88,12 @@ Blade — so it needs the vidIQ channel page open.
 - Set `windowLabel` to vidIQ's "Since …" date.
 - Refresh `recent[]` from the **Latest videos** tab (newest first): `title`,
   `views`, and `outlier` (string like `"1.61x"`, or `null` when vidIQ shows "—").
-- vidIQ is JS-rendered, so a plain fetch won't work — read it in a real browser
-  (Claude in Chrome) or hand Claude a screenshot of the two tabs.
+- **Default: Claude reads vidIQ itself via Claude in Chrome — no screenshots
+  needed from you.** vidIQ is JS-rendered, so a plain fetch won't work; Claude
+  navigates to the channel URL in the browser, sets the toggle to `28D`, reads
+  the Long-form vs Shorts panel and the Latest videos tab, and writes the
+  numbers into `continiaUploads`. (Handing Claude a screenshot of the two tabs
+  still works as a fallback if Chrome isn't connected.)
 - Keep this **last-30-days only**; do not add the all-time "Top videos" here.
 
 ## Honest caveats (keep these in mind, don't over-read the data)
