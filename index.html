@@ -62,7 +62,27 @@
 .vi-ticks i.on{background:#052975}
 .vi-title{font-size:15px;font-weight:850;color:var(--ink);margin:0 0 5px;line-height:1.25}
 .vi-desc{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
+.content-menu{padding:14px 18px 16px;display:grid;gap:8px}
+.ci-item{border:1px solid var(--line);border-radius:8px;background:#fff;overflow:hidden}
+.ci-item[open]{border-color:#b8c5d7;background:#fbfdff}
+.ci-row{list-style:none;display:grid;grid-template-columns:190px minmax(0,1fr) 82px 32px;gap:14px;align-items:center;padding:12px;cursor:pointer}
+.ci-row::-webkit-details-marker{display:none}
+.ci-type{display:inline-flex;width:max-content;align-items:center;border:1px solid var(--line);background:#f8fafc;color:#334155;border-radius:999px;padding:4px 8px;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.08em}
+.ci-title{display:block;font-size:15px;font-weight:850;color:var(--ink);line-height:1.25;margin-bottom:5px}
+.ci-tease{display:block;font-size:12px;color:var(--muted);line-height:1.4}
+.ci-score{text-align:right;font-size:22px;font-weight:850;color:var(--navy);line-height:1}
+.ci-arrow{width:30px;height:30px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--navy);font-weight:850;transition:transform .18s}
+.ci-item[open] .ci-arrow{transform:rotate(90deg)}
+.ci-detail{border-top:1px solid var(--line);padding:14px 16px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:16px;align-items:start}
+.ci-meter{height:9px;background:#eaf0f7;border-radius:999px;overflow:hidden;margin-bottom:10px}
+.ci-meter i{display:block;height:100%;width:var(--w);background:#052975;border-radius:999px}
+.ci-reason{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
+.ci-source-title{font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.08em;color:#64748b;margin-bottom:8px}
+.ci-sources{display:flex;flex-wrap:wrap;gap:7px}
+.ci-sources a{text-decoration:none;border:1px solid var(--line2);border-radius:8px;padding:7px 9px;font-size:12px;font-weight:750;color:#334155;background:#fff}
+.ci-sources a:hover{border-color:#93b7ff;color:var(--navy)}
 @media(max-width:760px){.vi-pair{grid-template-columns:1fr}}
+@media(max-width:760px){.ci-row{grid-template-columns:1fr auto;gap:8px}.ci-type,.ci-copy{grid-column:1}.ci-score{grid-column:1;text-align:left}.ci-arrow{grid-column:2;grid-row:1 / span 3}.ci-detail{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -72,6 +92,7 @@
 <div class="metrics"><div class="metric"><div class="num">20</div><div class="lbl">Tracked stakeholders</div><div class="note">AP · e-invoicing · banking · expense · output</div></div><div class="metric"><div class="num">AI</div><div class="lbl">Dominant theme</div><div class="note">agentic automation</div></div><div class="metric"><div class="num">6</div><div class="lbl">M&A / capital moves</div><div class="note">acquisitions and funding 2025-26</div></div><div class="metric"><div class="num">9</div><div class="lbl">BC-native players</div><div class="note">incl. Microsoft's own Expense Agent</div></div></div>
 <div class="grid"><section class="section"><div class="section-head"><h2>Strategic Insights</h2><span class="hint">2026 readout</span></div><div class="insights"><article class="insight primary"><span class="tag">Key insight</span><h3>AI and agentic automation is the battleground in 2026</h3><p>Almost every rival is either launching a dedicated agent product or using AI as the core of their evaluation story. For Continia, a sharp and credible AI narrative is now an entry requirement.</p></article><article class="insight"><span class="tag">Market structure</span><h3>Consolidation is shifting focus toward payment rails</h3><p>Several rivals are now owned by payments or PE giants, pushing them toward monetising payment volume rather than the BC flow itself.</p></article><article class="insight"><span class="tag">Platform risk</span><h3>The sharpest BC-native threat is Microsoft itself</h3><p>Microsoft's Expense Agent (Apr 2026) shows the platform owner moving into ISV territory — and BC 2026 Wave 1 (Apr 30) adds MCP Server support and custom AL agents, letting businesses build their own automation directly inside BC without a third-party ISV.</p></article><article class="insight"><span class="tag">E-invoicing</span><h3>Continia competes inside BC's own connector layer</h3><p>BC's built-in E-Documents/Peppol support places Continia next to Pagero, B2Brouter and Qvalia. The battleground is expanding fast: France B2B e-invoicing is mandatory from September 2026 (large/mid-size), joining Belgium (Jan 2026) — with Germany, Spain and Norway to follow by 2027.</p></article><article class="insight"><span class="tag">Positioning</span><h3>Neutral and BC-native still reads as a strong wedge</h3><p>Payment-owned competitors make Continia's deep, embedded Business Central position easier to explain as focused rather than generic.</p></article><article class="insight"><span class="tag">Analyst signal</span><h3>Forrester: agentic branding is widespread, real autonomy is rare</h3><p>Forrester's April 2026 AP report warns enterprises to evaluate on production performance — accuracy, exception reduction, matching success — not feature lists or demos. This sets up a credibility test that favours vendors with proven track records over those making agentic claims.</p></article></div></section><section class="section" id="events"><div class="section-head"><h2>Key Events</h2><span class="hint">2025-2026</span></div><div class="events" id="eventsList"></div></section></div>
 <section class="section" id="competitors"><div class="section-head"><h2>Competitors</h2><span class="hint" id="countLabel">20 visible</span></div><div class="toolbar"><input class="search" id="search" type="search" placeholder="Search competitor, category, positioning..." autocomplete="off"><div class="hint">Click a row to expand</div></div><div class="filter-stack"><div class="filter-row"><span class="flabel">Strategic profile</span><button class="chip active" data-type="stance" data-val="all">All (20)</button><button class="chip" data-type="stance" data-val="ai"><span class="dot ai"></span>AI-offensive</button><button class="chip" data-type="stance" data-val="cons"><span class="dot cons"></span>Consolidation / M&A</button><button class="chip" data-type="stance" data-val="steady"><span class="dot steady"></span>Stable / niche</button></div><div class="filter-row"><span class="flabel">Dynamics proximity</span><button class="chip active" data-type="prox" data-val="all">All</button><button class="chip" data-type="prox" data-val="High">High</button><button class="chip" data-type="prox" data-val="Medium">Medium</button><button class="chip" data-type="prox" data-val="Low">Low</button></div></div><div class="cards" id="cards"></div><div class="noresult" id="noresult">No players match the selected filters.</div></section>
+<section class="section" id="content-ideas"><div class="section-head"><h2>Content Ideas</h2><span class="hint">Competitor-informed · sourced rationale</span></div><div class="content-menu" id="contentIdeasList"></div><div class="footnote">Scores combine strategic relevance, Continia fit, source strength and likely usefulness for Business Central finance audiences.</div></section>
 <section class="section" id="youtube"><div class="section-head"><h2>YouTube Analysis</h2><span class="hint" id="yt-asof">Social Blade estimates · last 30 days</span></div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Channel</th><th class="num">Subscribers</th><th>Monthly views</th><th class="num">Monthly subs</th><th class="num">Est. monthly earnings</th></tr></thead><tbody id="yt-body"></tbody></table></div><div class="footnote" id="yt-footnote">Social Blade estimates · all channels are C-grade, which is normal for B2B channels · estimated earnings are directional and not a measure of channel quality.</div></section>
 <section class="section" id="continia-uploads"><div class="section-head"><h2>In-depth Continia upload info</h2><span class="hint" id="cu-asof">vidIQ · last 30 days</span></div><div class="cu-wrap"><div class="cu-split"><div class="cu-block"><div class="cu-h">Uploads</div><div class="cu-bar" id="cu-uploads-bar"></div><div class="cu-legend" id="cu-uploads-legend"></div></div><div class="cu-block"><div class="cu-h">Views</div><div class="cu-bar" id="cu-views-bar"></div><div class="cu-legend" id="cu-views-legend"></div></div></div><div class="cu-recent"><div class="cu-h">Recent uploads (last 30 days)</div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Video</th><th class="num">Total views</th><th class="num">Outlier score</th></tr></thead><tbody id="cu-recent-body"></tbody></table></div></div></div><div class="footnote" id="cu-footnote">vidIQ · last 30 days · Long-form vs Shorts split and recent uploads for the Continia Software channel. The all-time top videos are intentionally excluded — this module is last-30-days only, like the rest of the YouTube section.</div></section>
 <div class="vi-pair" id="video-ideas"><section class="section" id="video-ideas-long"><div class="section-head"><h2>Long-form &bull; Video ideas</h2><span class="hint">Predicted performance · 0–100%</span></div><div class="vi-stack" id="vi-long-grid"></div><div class="footnote">Each score is an estimate of how well the idea would perform on the Continia channel — judged from the channel's proven top videos (product demos &amp; how-tos) and the dashboard's strategic signals (AI as the dominant theme, the 2026 e-invoicing mandates).</div></section><section class="section" id="video-ideas-short"><div class="section-head"><h2>Short-form &bull; Video ideas</h2><span class="hint">Predicted performance · 0–100%</span></div><div class="vi-stack" id="vi-short-grid"></div><div class="footnote">Short-form ideas are designed for quick LinkedIn/YouTube Shorts cuts: one clear hook, one visual proof point, and a fast CTA back to a deeper Continia demo.</div></section></div>
@@ -303,6 +324,34 @@ const events = [
  {w:"Sep 2025", c:"ai", t:"<b>Dooap</b> achieves Microsoft Certified Software designation."}
 ];
 
+const contentIdeas = [
+ {type:"AI narrative", score:88,
+  title:"Can AI approve invoices yet? The AP reality check for Business Central",
+  tease:"Use competitor AI claims as the hook, then show where governance, audit trails and BC-native workflows still matter.",
+  reason:"Dooap, Medius and Microsoft are all pushing the agentic AI story hard. Continia can own a more credible angle: AI is valuable, but production AP still depends on traceability, approval control, exception handling and native Business Central context.",
+  s:[["Dooap Studio","https://www.prnewswire.com/news-releases/dooap-inc-launches-dooap-studio-putting-agentic-ap-automation-directly-in-the-hands-of-finance-teams-302768534.html"],["Medius AI Advantage","https://www.medius.com/ai-innovation/medius-ai-advantage/"],["Microsoft Expense Agent","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"],["Continia Document Capture","https://www.continia.com/solutions/document-capture/"]]},
+ {type:"E-invoicing", score:86,
+  title:"Peppol panic map: what BC teams must do before France 2026",
+  tease:"Turn the mandate pressure into a practical Business Central checklist with Continia Delivery Network as the answer.",
+  reason:"E-invoicing is shifting from optional efficiency project to compliance risk. Competitors and connector players are crowding the BC conversation, so a clear mandate-readiness guide gives Continia a timely, searchable content asset.",
+  s:[["Continia Delivery Network","https://www.continia.com/use-cases/continia-delivery-network/"],["Built-in e-invoicing access","https://www.continia.com/news/built-in-access-to-e-invoicing-with-continia/"],["Microsoft E-Docs FAQ","https://learn.microsoft.com/en-us/dynamics365/business-central/faq-electronic-invoicing"],["B2Brouter for Dynamics","https://www.b2brouter.net/global/e-invoicing-microsoft-dynamics/"]]},
+ {type:"Product demo", score:82,
+  title:"From inbox to archive: the 5-step invoice flow inside Business Central",
+  tease:"A concrete walkthrough for teams comparing AP automation options and trying to picture the real workflow.",
+  reason:"The strongest Continia fit is still practical product education. This idea converts existing AP automation pages into a clean demo narrative: import, OCR, register, approve and archive, with the BC-native flow as the proof point.",
+  s:[["AP automation in 5 steps","https://www.continia.com/use-cases/ap-automation-in-5-simple-steps/"],["Document Capture solution","https://www.continia.com/solutions/document-capture/"],["Document Capture docs","https://docs.continia.com/en-us/continia-document-capture/"],["Business functionality","https://docs.continia.com/en-us/continia-document-capture/getting-started/business-functionality"]]},
+ {type:"Positioning", score:76,
+  title:"Payment-owned AP platforms vs BC-native independence",
+  tease:"Explain why ownership and payment-rail incentives should matter when finance teams choose AP automation.",
+  reason:"AvidXchange, MineralTree and Tipalti show how much of the AP category is moving toward payment monetisation and financial networks. Continia can contrast that with a focused Business Central-native position without sounding defensive.",
+  s:[["AvidXchange acquisition","https://www.avidxchange.com/press-releases/tpg-corpay-complete-acquisition-of-avidxchange/"],["Global Payments + MineralTree","https://investors.globalpayments.com/news-events/press-releases/detail/23/global-payments-agrees-to-acquire-mineraltree-a-leader-in"],["Tipalti AI agents","https://tipalti.com/accounts-payable-software/finance-ai/"],["Continia Document Capture","https://www.continia.com/solutions/document-capture/"]]},
+ {type:"Document Output", score:73,
+  title:"The hidden risk after invoice approval: output, delivery and audit trail",
+  tease:"Broaden the story beyond AP capture by showing what can still go wrong after documents leave Business Central.",
+  reason:"Lasernet is visible in the BC-native output space, while Continia Document Output has strong material around automated distribution, protected PDFs, eIDAS and AI-powered translations. This is a useful adjacent content pillar for buyers thinking beyond invoice intake.",
+  s:[["Continia Document Output","https://www.continia.com/solutions/document-output/"],["Online access docs","https://docs.continia.com/en-us/continia-document-output/development-and-administration/online/overview"],["Lasernet for BC","https://www.formpipe.com/en/erp-banking/software/lasernet/business-central/"],["Output Profiles","https://docs.continia.com/en-us/continia-document-output/business-functionality/general/output-profiles/"]]}
+];
+
 const cardsEl=document.getElementById('cards');
 const countLabel=document.getElementById('countLabel');
 const searchEl=document.getElementById('search');
@@ -327,6 +376,25 @@ let fStance='all', fProx='all', q='';
 function applyFilter(){let visible=0;document.querySelectorAll('.card').forEach(function(c){const ok=(fStance==='all'||c.dataset.stance===fStance)&&(fProx==='all'||c.dataset.prox===fProx)&&(!q||c.dataset.search.includes(q));c.classList.toggle('hide',!ok);if(ok)visible++;});document.getElementById('noresult').style.display=visible?'none':'block';countLabel.textContent=visible+' visible';}
 document.querySelectorAll('.chip').forEach(function(ch){ch.addEventListener('click',function(){const type=ch.dataset.type;document.querySelectorAll('.chip[data-type="'+type+'"]').forEach(function(x){x.classList.remove('active');});ch.classList.add('active');if(type==='stance')fStance=ch.dataset.val;else fProx=ch.dataset.val;applyFilter();});});
 searchEl.addEventListener('input',function(){q=searchEl.value.trim().toLowerCase();applyFilter();});
+
+const contentIdeasList=document.getElementById('contentIdeasList');
+if(contentIdeasList){
+  contentIdeasList.innerHTML=contentIdeas.map(function(idea,i){
+    const sources=idea.s.map(function(x){return '<a href="'+x[1]+'" target="_blank" rel="noopener">'+x[0]+' ↗</a>';}).join('');
+    return '<details class="ci-item"'+(i===0?' open':'')+'>'+
+      '<summary class="ci-row">'+
+        '<span class="ci-type">'+idea.type+'</span>'+
+        '<span class="ci-copy"><span class="ci-title">'+idea.title+'</span><span class="ci-tease">'+idea.tease+'</span></span>'+
+        '<span class="ci-score">'+idea.score+'%</span>'+
+        '<span class="ci-arrow" aria-hidden="true">›</span>'+
+      '</summary>'+
+      '<div class="ci-detail">'+
+        '<div><div class="ci-meter"><i style="--w:'+idea.score+'%"></i></div><p class="ci-reason">'+idea.reason+'</p></div>'+
+        '<div><div class="ci-source-title">Sources</div><div class="ci-sources">'+sources+'</div></div>'+
+      '</div>'+
+    '</details>';
+  }).join('');
+}
 
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
 (function(){
