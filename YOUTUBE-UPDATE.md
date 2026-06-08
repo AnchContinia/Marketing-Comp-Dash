@@ -105,7 +105,18 @@ history for trend charts later. Example shape:
 
 ## Finish
 
-1. Claude gives you the updated `youtube-data.js`.
-2. Commit/push it to `AnchContinia/Marketing-Comp-Dash` (no other file changes
-   needed — `index.html` already reads the newest snapshot automatically).
-3. GitHub Pages updates the live dashboard within a minute.
+The local folder `~/Desktop/Claude-Marketing-dashboard` is a git working copy of
+`AnchContinia/Marketing-Comp-Dash` (HTTPS remote, token in the macOS keychain).
+So Claude finishes the update directly — no manual GitHub upload anymore:
+
+1. Claude writes the new snapshot into `youtube-data.js`.
+2. Claude commits **only** `youtube-data.js` and pushes to `origin/main`:
+   `git add youtube-data.js && git commit -m "..." && git push origin main`.
+   (The `.gitignore` keeps local-only files — the `.indd`, images, MCP links,
+   backups — out of the push automatically.)
+3. GitHub Pages updates the live dashboard within a minute. Claude confirms with
+   the new commit hash on `origin/main`.
+
+If a push ever fails with an auth error, the keychain token has expired — make a
+new fine-grained PAT (Contents: read/write on the repo) and re-store it with:
+`printf "protocol=https\nhost=github.com\nusername=AnchContinia\npassword=NEW_TOKEN\n" | git credential-osxkeychain store`
