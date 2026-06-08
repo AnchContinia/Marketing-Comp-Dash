@@ -51,6 +51,16 @@
 @media(max-width:760px){#continia-uploads .cu-split{grid-template-columns:1fr}}
 .bar i{background:#052975}
 .bar i.hot{background:#052975}
+.vi-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;padding:16px 18px}
+.vi-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:20px 18px;display:flex;flex-direction:column;gap:14px}
+.vi-label{font-size:11px;font-weight:850;letter-spacing:.09em;text-transform:uppercase;color:#94a3b8}
+.vi-pct{font-size:40px;font-weight:850;color:var(--ink);line-height:1}
+.vi-ticks{display:flex;gap:3px;align-items:stretch;height:34px}
+.vi-ticks i{flex:1;border-radius:2px;background:#e2e8f0}
+.vi-ticks i.on{background:#052975}
+.vi-title{font-size:15px;font-weight:850;color:var(--ink);margin:2px 0 0;line-height:1.25}
+.vi-desc{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
+@media(max-width:760px){.vi-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -62,6 +72,7 @@
 <section class="section" id="competitors"><div class="section-head"><h2>Competitors</h2><span class="hint" id="countLabel">20 visible</span></div><div class="toolbar"><input class="search" id="search" type="search" placeholder="Search competitor, category, positioning..." autocomplete="off"><div class="hint">Click a row to expand</div></div><div class="filter-stack"><div class="filter-row"><span class="flabel">Strategic profile</span><button class="chip active" data-type="stance" data-val="all">All (20)</button><button class="chip" data-type="stance" data-val="ai"><span class="dot ai"></span>AI-offensive</button><button class="chip" data-type="stance" data-val="cons"><span class="dot cons"></span>Consolidation / M&A</button><button class="chip" data-type="stance" data-val="steady"><span class="dot steady"></span>Stable / niche</button></div><div class="filter-row"><span class="flabel">Dynamics proximity</span><button class="chip active" data-type="prox" data-val="all">All</button><button class="chip" data-type="prox" data-val="High">High</button><button class="chip" data-type="prox" data-val="Medium">Medium</button><button class="chip" data-type="prox" data-val="Low">Low</button></div></div><div class="cards" id="cards"></div><div class="noresult" id="noresult">No players match the selected filters.</div></section>
 <section class="section" id="youtube"><div class="section-head"><h2>YouTube Analysis</h2><span class="hint" id="yt-asof">Social Blade estimates · last 30 days</span></div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Channel</th><th class="num">Subscribers</th><th>Monthly views</th><th class="num">Monthly subs</th><th class="num">Est. monthly earnings</th></tr></thead><tbody id="yt-body"></tbody></table></div><div class="footnote" id="yt-footnote">Social Blade estimates · all channels are C-grade, which is normal for B2B channels · estimated earnings are directional and not a measure of channel quality.</div></section>
 <section class="section" id="continia-uploads"><div class="section-head"><h2>In-depth Continia upload info</h2><span class="hint" id="cu-asof">vidIQ · last 30 days</span></div><div class="cu-wrap"><div class="cu-split"><div class="cu-block"><div class="cu-h">Uploads</div><div class="cu-bar" id="cu-uploads-bar"></div><div class="cu-legend" id="cu-uploads-legend"></div></div><div class="cu-block"><div class="cu-h">Views</div><div class="cu-bar" id="cu-views-bar"></div><div class="cu-legend" id="cu-views-legend"></div></div></div><div class="cu-recent"><div class="cu-h">Recent uploads (last 30 days)</div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Video</th><th class="num">Total views</th><th class="num">Outlier score</th></tr></thead><tbody id="cu-recent-body"></tbody></table></div></div></div><div class="footnote" id="cu-footnote">vidIQ · last 30 days · Long-form vs Shorts split and recent uploads for the Continia Software channel. The all-time top videos are intentionally excluded — this module is last-30-days only, like the rest of the YouTube section.</div></section>
+<section class="section" id="video-ideas-long"><div class="section-head"><h2>Video ideas — Long-form</h2><span class="hint">Predicted performance · 0–100%</span></div><div class="vi-grid" id="vi-long-grid"></div><div class="footnote">Each score is an estimate of how well the idea would perform on the Continia channel — judged from the channel's proven top videos (product demos &amp; how-tos) and the dashboard's strategic signals (AI as the dominant theme, the 2026 e-invoicing mandates).</div></section>
 <section class="section" id="method"><div class="method"><h2>Methodology & Caveats</h2><ul><li><b>What's included:</b> product releases, press, M&A and positioning from publicly available sources. Sources are clickable inside each card.</li><li><b>Snapshot:</b> data is from this run, not live. The report is regenerated each time the competitor list is run through.</li><li><b>New BC-native players:</b> Lasernet, AMC Banking, Acubiz and Microsoft's own Expense Agent, plus Pagero, B2Brouter and Qvalia.</li><li><b>Category note:</b> Dime Scheduler is BC-native but included as an ISV neighbour, not a direct AP rival.</li><li><b>LinkedIn engagement</b> is not included and requires a social listening tool.</li><li><b>YouTube figures</b> per video for the last month cannot be reliably fetched automatically.</li></ul></div></section><footer>Continia Marketing Dashboard · <span id="footerDate">June 8, 2026</span></footer></div></main></div>
 <script src="./youtube-data.js"></script>
 <script>
@@ -392,6 +403,35 @@ searchEl.addEventListener('input',function(){q=searchEl.value.trim().toLowerCase
         '<td class="num">'+out+'</td></tr>';
     }).join("");
   }
+})();
+
+/* ---- Video ideas: predicted-performance cards with a 0–100% tick bar ---- */
+(function(){
+  if(typeof window.YT_DATA==="undefined") return;
+  var VI=window.YT_DATA.videoIdeas;
+  if(!VI) return;
+  var TICKS=32;
+  function ticks(score){
+    var on=Math.round(Math.max(0,Math.min(100,score))/100*TICKS);
+    var out="";
+    for(var i=0;i<TICKS;i++){ out+='<i class="'+(i<on?"on":"")+'"></i>'; }
+    return out;
+  }
+  function render(arr,mountId,label){
+    var m=document.getElementById(mountId);
+    if(!m||!arr||!arr.length) return;
+    m.innerHTML=arr.map(function(idea){
+      return '<article class="vi-card">'+
+        '<div class="vi-label">'+label+'</div>'+
+        '<div class="vi-pct">'+idea.score+'%</div>'+
+        '<div class="vi-ticks">'+ticks(idea.score)+'</div>'+
+        '<h3 class="vi-title">'+idea.title+'</h3>'+
+        '<p class="vi-desc">'+idea.desc+'</p>'+
+      '</article>';
+    }).join("");
+  }
+  render(VI.longForm,"vi-long-grid","Long-form idea");
+  render(VI.shortForm,"vi-short-grid","Short-form idea");
 })();
 
 /* ---- Single source of truth for the "Updated" stamp ----

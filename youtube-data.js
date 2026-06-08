@@ -90,5 +90,34 @@ window.YT_DATA = {
         ]
       }
     ]
+  },
+
+  /* =========================================================================
+     Video ideas — content ideas with a predicted-performance score (0–100).
+     The score estimates how well the idea would perform on the Continia
+     channel, judged from the channel's proven top videos (product demos &
+     how-tos) and the dashboard's strategic signals (AI as the dominant theme,
+     the 2026 e-invoicing mandates). The page draws a 0–100% tick bar from it.
+     longForm renders now; shortForm renders the same way once filled in.
+     ========================================================================= */
+  videoIdeas: {
+    longForm: [
+      {
+        score: 82,
+        title: "End-to-end AP automation in Business Central",
+        desc: "Follow one invoice from PDF capture and OCR through coding, the approval portal and payment — the full flow in a single demo. Matches the channel's top-performing how-tos."
+      },
+      {
+        score: 74,
+        title: "e-Invoicing & Peppol before the 2026 mandates",
+        desc: "A step-by-step compliance walkthrough tied to the France and Belgium 2026 mandates, showing how to get a Business Central setup Peppol-ready. High, recurring EU search demand."
+      },
+      {
+        score: 63,
+        title: "Continia vs native BC AI agents (2026 Wave 1)",
+        desc: "A comparison of what Continia automates versus BC's new GA AI agents, helping AP teams decide what to hand to which tool. Rides the AI theme but is more niche and dates faster."
+      }
+    ],
+    shortForm: []
   }
 };
