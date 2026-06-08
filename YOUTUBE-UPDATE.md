@@ -74,6 +74,24 @@ text shown next to the bar.
 
 ---
 
+## In-depth Continia upload info (vidIQ — last 30 days)
+
+A second module sits under the main YouTube table: **"In-depth Continia upload
+info"** (Long-form vs Shorts split + recent uploads). Its data lives in the
+`continiaUploads` block in `youtube-data.js` and is read from vidIQ, not Social
+Blade — so it needs the vidIQ channel page open.
+
+- Source: <https://vidiq.com/youtube-stats/channel/UCVADP02U9sc7Xy2zeSx4xoA/?tab=overview>
+- **Set the period toggle to `28D`** (closest to last-30-days) before reading.
+- Read off the **Long-form vs Shorts** panel: `uploads.longForm` / `uploads.shorts`
+  and `views.longForm` / `views.shorts` (plain counts — the page computes the %).
+- Set `windowLabel` to vidIQ's "Since …" date.
+- Refresh `recent[]` from the **Latest videos** tab (newest first): `title`,
+  `views`, and `outlier` (string like `"1.61x"`, or `null` when vidIQ shows "—").
+- vidIQ is JS-rendered, so a plain fetch won't work — read it in a real browser
+  (Claude in Chrome) or hand Claude a screenshot of the two tabs.
+- Keep this **last-30-days only**; do not add the all-time "Top videos" here.
+
 ## Honest caveats (keep these in mind, don't over-read the data)
 
 - Social Blade's "last 30 days" figures are themselves estimates from daily

@@ -31,6 +31,24 @@
 .brief .pill{background:rgba(143,248,255,.14);border-color:rgba(143,248,255,.5)}
 .brief .eyebrow:before{background:#8ff8ff;box-shadow:0 0 0 3px rgba(143,248,255,.18);animation:heroPulse 2.4s infinite}
 @keyframes heroPulse{0%{box-shadow:0 0 0 0 rgba(143,248,255,.46)}70%{box-shadow:0 0 0 9px rgba(143,248,255,0)}100%{box-shadow:0 0 0 0 rgba(143,248,255,0)}}
+#continia-uploads .cu-wrap{padding:16px 18px;display:grid;gap:18px}
+#continia-uploads .cu-split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+#continia-uploads .cu-block{border:1px solid var(--line);border-radius:8px;padding:15px 16px;background:#fff}
+#continia-uploads .cu-h{font-size:11px;font-weight:850;letter-spacing:.08em;text-transform:uppercase;color:#475569;margin-bottom:12px}
+#continia-uploads .cu-bar{display:flex;height:12px;border-radius:999px;overflow:hidden;background:#eaf0f7}
+#continia-uploads .cu-bar i{display:block;height:100%}
+#continia-uploads .cu-bar i.lf{background:var(--blue)}
+#continia-uploads .cu-bar i.sh{background:#f97316}
+#continia-uploads .cu-legend{display:flex;justify-content:space-between;gap:10px;margin-top:12px;font-size:13px;color:#334155;flex-wrap:wrap}
+#continia-uploads .cu-legend .k{display:flex;align-items:center;gap:7px}
+#continia-uploads .cu-legend .sw{width:9px;height:9px;border-radius:50%;display:inline-block}
+#continia-uploads .cu-legend .sw.lf{background:var(--blue)}
+#continia-uploads .cu-legend .sw.sh{background:#f97316}
+#continia-uploads .cu-legend b{color:var(--ink)}
+#continia-uploads .cu-legend .pct{color:var(--muted);font-weight:700}
+#continia-uploads .yt-table{min-width:540px}
+#continia-uploads .cu-outlier{display:inline-block;background:#f3ecff;color:#983EAE;border:1px solid #e3d2f0;border-radius:999px;padding:3px 8px;font-size:12px;font-weight:850}
+@media(max-width:760px){#continia-uploads .cu-split{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -41,6 +59,7 @@
 <div class="grid"><section class="section"><div class="section-head"><h2>Strategic Insights</h2><span class="hint">2026 readout</span></div><div class="insights"><article class="insight primary"><span class="tag">Key insight</span><h3>AI and agentic automation is the battleground in 2026</h3><p>Almost every rival is either launching a dedicated agent product or using AI as the core of their evaluation story. For Continia, a sharp and credible AI narrative is now an entry requirement.</p></article><article class="insight"><span class="tag">Market structure</span><h3>Consolidation is shifting focus toward payment rails</h3><p>Several rivals are now owned by payments or PE giants, pushing them toward monetising payment volume rather than the BC flow itself.</p></article><article class="insight"><span class="tag">Platform risk</span><h3>The sharpest BC-native threat is Microsoft itself</h3><p>Microsoft's Expense Agent (Apr 2026) shows the platform owner moving into ISV territory — and BC 2026 Wave 1 (Apr 30) adds MCP Server support and custom AL agents, letting businesses build their own automation directly inside BC without a third-party ISV.</p></article><article class="insight"><span class="tag">E-invoicing</span><h3>Continia competes inside BC's own connector layer</h3><p>BC's built-in E-Documents/Peppol support places Continia next to Pagero, B2Brouter and Qvalia. The battleground is expanding fast: France B2B e-invoicing is mandatory from September 2026 (large/mid-size), joining Belgium (Jan 2026) — with Germany, Spain and Norway to follow by 2027.</p></article><article class="insight"><span class="tag">Positioning</span><h3>Neutral and BC-native still reads as a strong wedge</h3><p>Payment-owned competitors make Continia's deep, embedded Business Central position easier to explain as focused rather than generic.</p></article><article class="insight"><span class="tag">Analyst signal</span><h3>Forrester: agentic branding is widespread, real autonomy is rare</h3><p>Forrester's April 2026 AP report warns enterprises to evaluate on production performance — accuracy, exception reduction, matching success — not feature lists or demos. This sets up a credibility test that favours vendors with proven track records over those making agentic claims.</p></article></div></section><section class="section" id="events"><div class="section-head"><h2>Key Events</h2><span class="hint">2025-2026</span></div><div class="events" id="eventsList"></div></section></div>
 <section class="section" id="competitors"><div class="section-head"><h2>Competitors</h2><span class="hint" id="countLabel">20 visible</span></div><div class="toolbar"><input class="search" id="search" type="search" placeholder="Search competitor, category, positioning..." autocomplete="off"><div class="hint">Click a row to expand</div></div><div class="filter-stack"><div class="filter-row"><span class="flabel">Strategic profile</span><button class="chip active" data-type="stance" data-val="all">All (20)</button><button class="chip" data-type="stance" data-val="ai"><span class="dot ai"></span>AI-offensive</button><button class="chip" data-type="stance" data-val="cons"><span class="dot cons"></span>Consolidation / M&A</button><button class="chip" data-type="stance" data-val="steady"><span class="dot steady"></span>Stable / niche</button></div><div class="filter-row"><span class="flabel">Dynamics proximity</span><button class="chip active" data-type="prox" data-val="all">All</button><button class="chip" data-type="prox" data-val="High">High</button><button class="chip" data-type="prox" data-val="Medium">Medium</button><button class="chip" data-type="prox" data-val="Low">Low</button></div></div><div class="cards" id="cards"></div><div class="noresult" id="noresult">No players match the selected filters.</div></section>
 <section class="section" id="youtube"><div class="section-head"><h2>YouTube Analysis</h2><span class="hint" id="yt-asof">Social Blade estimates · last 30 days</span></div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Channel</th><th class="num">Subscribers</th><th>Monthly views</th><th class="num">Monthly subs</th><th class="num">Est. monthly earnings</th></tr></thead><tbody id="yt-body"></tbody></table></div><div class="footnote" id="yt-footnote">Social Blade estimates · all channels are C-grade, which is normal for B2B channels · estimated earnings are directional and not a measure of channel quality.</div></section>
+<section class="section" id="continia-uploads"><div class="section-head"><h2>In-depth Continia upload info</h2><span class="hint" id="cu-asof">vidIQ · last 30 days</span></div><div class="cu-wrap"><div class="cu-split"><div class="cu-block"><div class="cu-h">Uploads</div><div class="cu-bar" id="cu-uploads-bar"></div><div class="cu-legend" id="cu-uploads-legend"></div></div><div class="cu-block"><div class="cu-h">Views</div><div class="cu-bar" id="cu-views-bar"></div><div class="cu-legend" id="cu-views-legend"></div></div></div><div class="cu-recent"><div class="cu-h">Recent uploads (last 30 days)</div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Video</th><th class="num">Total views</th><th class="num">Outlier score</th></tr></thead><tbody id="cu-recent-body"></tbody></table></div></div></div><div class="footnote" id="cu-footnote">vidIQ · last 30 days · Long-form vs Shorts split and recent uploads for the Continia Software channel. The all-time top videos are intentionally excluded — this module is last-30-days only, like the rest of the YouTube section.</div></section>
 <section class="section" id="method"><div class="method"><h2>Methodology & Caveats</h2><ul><li><b>What's included:</b> product releases, press, M&A and positioning from publicly available sources. Sources are clickable inside each card.</li><li><b>Snapshot:</b> data is from this run, not live. The report is regenerated each time the competitor list is run through.</li><li><b>New BC-native players:</b> Lasernet, AMC Banking, Acubiz and Microsoft's own Expense Agent, plus Pagero, B2Brouter and Qvalia.</li><li><b>Category note:</b> Dime Scheduler is BC-native but included as an ISV neighbour, not a direct AP rival.</li><li><b>LinkedIn engagement</b> is not included and requires a social listening tool.</li><li><b>YouTube figures</b> per video for the last month cannot be reliably fetched automatically.</li></ul></div></section><footer>Continia Marketing Dashboard · <span id="footerDate">June 8, 2026</span></footer></div></main></div>
 <script src="./youtube-data.js"></script>
 <script>
@@ -338,6 +357,38 @@ searchEl.addEventListener('input',function(){q=searchEl.value.trim().toLowerCase
   if(hasFlag){
     var fn=document.getElementById("yt-footnote");
     if(fn) fn.innerHTML+=' \u00b7 <b>*</b> a one-time Social Blade recount, not monthly performance \u2014 shown for transparency but excluded from the bar scale.';
+  }
+})();
+
+/* ---- In-depth Continia upload info: rendered from youtube-data.js (newest snapshot) ---- */
+(function(){
+  if(typeof window.YT_DATA==="undefined") return;
+  var CU=window.YT_DATA.continiaUploads;
+  if(!CU||!CU.snapshots||!CU.snapshots.length) return;
+  var s=CU.snapshots[CU.snapshots.length-1];
+  var asof=document.getElementById("cu-asof");
+  if(asof) asof.textContent=(CU.source||"vidIQ")+(s.windowLabel?" · "+s.windowLabel:"");
+  function pct(a,b){var t=a+b;return t?Math.round(a/t*100):0;}
+  function renderSplit(barId,legId,lf,sh){
+    var lfp=pct(lf,sh), shp=100-lfp;
+    var bar=document.getElementById(barId);
+    if(bar) bar.innerHTML='<i class="lf" style="width:'+lfp+'%"></i><i class="sh" style="width:'+shp+'%"></i>';
+    var leg=document.getElementById(legId);
+    if(leg) leg.innerHTML=
+      '<span class="k"><span class="sw lf"></span>Long-form <b>'+lf+'</b> <span class="pct">· '+lfp+'%</span></span>'+
+      '<span class="k"><span class="sw sh"></span>Shorts <b>'+sh+'</b> <span class="pct">· '+shp+'%</span></span>';
+  }
+  renderSplit("cu-uploads-bar","cu-uploads-legend",s.uploads.longForm,s.uploads.shorts);
+  renderSplit("cu-views-bar","cu-views-legend",s.views.longForm,s.views.shorts);
+  var tb=document.getElementById("cu-recent-body");
+  if(tb && s.recent){
+    tb.innerHTML=s.recent.map(function(v,i){
+      var out=v.outlier?'<span class="cu-outlier">'+v.outlier+'</span>':'—';
+      var age=v.age?'<div class="handle">'+v.age+'</div>':'';
+      return '<tr><td>'+(i+1)+'</td><td><div class="channel">'+v.title+'</div>'+age+'</td>'+
+        '<td class="num"><b>'+(v.views!=null?v.views:'—')+'</b></td>'+
+        '<td class="num">'+out+'</td></tr>';
+    }).join("");
   }
 })();
 

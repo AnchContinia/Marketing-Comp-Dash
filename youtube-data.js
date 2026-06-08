@@ -62,5 +62,33 @@ window.YT_DATA = {
         "Dooap":              { subs: "60",   monthlyViews:  30,     monthlyViewsLabel: "+30",   monthlySubs: "0",   earnings: "$0" }
       }
     }
-  ]
+  ],
+
+  /* =========================================================================
+     In-depth Continia upload info — from vidIQ, last 30 days.
+     Source: vidIQ channel overview (Long-form vs Shorts + recent uploads).
+     Update each month: copy the newest snapshot, change "date", "windowLabel"
+     and the numbers. uploads/views are simple counts — percentages are computed
+     in the page. "recent" = uploads from the last ~30 days (vidIQ "Latest").
+     outlier: string as shown (e.g. "1.61x") or null when vidIQ shows "—".
+     ========================================================================= */
+  continiaUploads: {
+    source: "vidIQ · last 30 days",
+    channelUrl: "https://vidiq.com/youtube-stats/channel/UCVADP02U9sc7Xy2zeSx4xoA/?tab=overview",
+    snapshots: [
+      {
+        date: "2026-06-08",
+        windowLabel: "Since May 11, 2026",
+        uploads: { longForm: 2,  shorts: 6   },
+        views:   { longForm: 55, shorts: 610 },
+        recent: [
+          { title: "Expense Management — Smarter expense management — What's new in 2026 R1 (NA)", views: 32, outlier: null,    age: "a month ago" },
+          { title: "Document Output — Automated Document sending — What's new in 2026 R1 (NA)",    views: 31, outlier: null,    age: "a month ago" },
+          { title: "Faster & smarter — What's new in 2026 R1",                                     views: 64, outlier: "1.32x", age: "a month ago" },
+          { title: "Expense Management 2026 R1 — Optimiza tu gestión de gastos",                   views: 21, outlier: null,    age: "a month ago" },
+          { title: "Continia Banking 2026 - Zahlungen & Abstimmung NEXT LEVEL!",                   views: 69, outlier: "1.61x", age: "a month ago" }
+        ]
+      }
+    ]
+  }
 };
