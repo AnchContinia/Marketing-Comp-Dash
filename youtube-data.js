@@ -98,7 +98,7 @@ window.YT_DATA = {
      channel, judged from the channel's proven top videos (product demos &
      how-tos) and the dashboard's strategic signals (AI as the dominant theme,
      the 2026 e-invoicing mandates). The page draws a 0–100% tick bar from it.
-     longForm renders now; shortForm renders the same way once filled in.
+     Long-form and short-form ideas render as matching card stacks.
      ========================================================================= */
   videoIdeas: {
     longForm: [
@@ -118,6 +118,22 @@ window.YT_DATA = {
         desc: "A comparison of what Continia automates versus BC's new GA AI agents, helping AP teams decide what to hand to which tool. Rides the AI theme but is more niche and dates faster."
       }
     ],
-    shortForm: []
+    shortForm: [
+      {
+        score: 79,
+        title: "One invoice, three approvals, zero chasing",
+        desc: "A 30-second before/after cut showing an invoice stuck in email versus the same approval moving cleanly through Continia. Strong visual hook for finance teams."
+      },
+      {
+        score: 71,
+        title: "Peppol readiness in 20 seconds",
+        desc: "Turn the 2026 e-invoicing deadline into a quick checklist: receive, validate, approve and archive inside Business Central. Timely, practical and easy to repurpose."
+      },
+      {
+        score: 66,
+        title: "AI is helpful, but your AP flow still matters",
+        desc: "A fast myth-vs-reality clip: AI can suggest and extract, but clean approval rules and audit trails are what make AP automation production-ready."
+      }
+    ]
   }
 };
