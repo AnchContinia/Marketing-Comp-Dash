@@ -88,6 +88,19 @@ window.YT_DATA = {
           { title: "Expense Management 2026 R1 — Optimiza tu gestión de gastos",                   views: 21, outlier: null,    age: "a month ago" },
           { title: "Continia Banking 2026 - Zahlungen & Abstimmung NEXT LEVEL!",                   views: 69, outlier: "1.61x", age: "a month ago" }
         ]
+      },
+      {
+        date: "2026-06-09",
+        windowLabel: "Since May 12, 2026",
+        uploads: { longForm: 0, shorts: 4   },
+        views:   { longForm: 0, shorts: 415 },
+        recent: [
+          { title: "Expense Management — Smarter expense management — What's new in 2026 R1 (NA)", views: 32, outlier: null,    age: "a month ago" },
+          { title: "Document Output — Automated Document sending — What's new in 2026 R1 (NA)",    views: 31, outlier: null,    age: "a month ago" },
+          { title: "Faster & smarter — What's new in 2026 R1",                                     views: 64, outlier: "1.32x", age: "a month ago" },
+          { title: "Expense Management 2026 R1 — Optimiza tu gestión de gastos",                   views: 22, outlier: null,    age: "a month ago" },
+          { title: "Continia Banking 2026 - Zahlungen & Abstimmung NEXT LEVEL!",                   views: 73, outlier: "1.61x", age: "a month ago" }
+        ]
       }
     ]
   },
