@@ -1,0 +1,11 @@
+# Root config for Cloudflare's Git-connected Workers build.
+# It deploys the TinyJPG proxy Worker — NOT the static dashboard.
+# No [assets] block on purpose: this is a fetch handler, not a static site,
+# so Cloudflare must not try to upload the repo files (incl. the large .git pack).
+#
+# The API key is NOT here — set it as an encrypted secret in the Cloudflare
+# dashboard (Settings → Variables and Secrets → add TINIFY_KEY).
+
+name = "tinyjpg-proxy"
+main = "tinyjpg-proxy/worker.js"
+compatibility_date = "2024-11-01"
