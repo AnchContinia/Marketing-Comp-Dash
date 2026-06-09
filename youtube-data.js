@@ -73,7 +73,7 @@ window.YT_DATA = {
      outlier: string as shown (e.g. "1.61x") or null when vidIQ shows "—".
      ========================================================================= */
   continiaUploads: {
-    source: "vidIQ · last 30 days",
+    source: "vidIQ",
     channelUrl: "https://vidiq.com/youtube-stats/channel/UCVADP02U9sc7Xy2zeSx4xoA/?tab=overview",
     snapshots: [
       {
@@ -91,15 +91,28 @@ window.YT_DATA = {
       },
       {
         date: "2026-06-09",
-        windowLabel: "Since May 12, 2026",
-        uploads: { longForm: 0, shorts: 4   },
-        views:   { longForm: 0, shorts: 415 },
+        defaultPeriod: "28D",
+        /* Long-form vs Shorts per period, from vidIQ longShortStats (uploads + views). */
+        periods: {
+          "7D":  { longForm: { uploads: 0,  views: 0     }, shorts: { uploads: 0,  views: 0    } },
+          "28D": { longForm: { uploads: 0,  views: 0     }, shorts: { uploads: 4,  views: 415  } },
+          "3M":  { longForm: { uploads: 17, views: 923   }, shorts: { uploads: 16, views: 1872 } },
+          "1Y":  { longForm: { uploads: 40, views: 10439 }, shorts: { uploads: 16, views: 1872 } },
+          "YTD": { longForm: { uploads: 22, views: 2919  }, shorts: { uploads: 16, views: 1872 } }
+        },
         recent: [
           { title: "Expense Management — Smarter expense management — What's new in 2026 R1 (NA)", views: 32, outlier: null,    age: "a month ago" },
           { title: "Document Output — Automated Document sending — What's new in 2026 R1 (NA)",    views: 31, outlier: null,    age: "a month ago" },
           { title: "Faster & smarter — What's new in 2026 R1",                                     views: 64, outlier: "1.32x", age: "a month ago" },
           { title: "Expense Management 2026 R1 — Optimiza tu gestión de gastos",                   views: 22, outlier: null,    age: "a month ago" },
           { title: "Continia Banking 2026 - Zahlungen & Abstimmung NEXT LEVEL!",                   views: 73, outlier: "1.61x", age: "a month ago" }
+        ],
+        top: [
+          { title: "Mobile App – Expense Management",                                              views: 5881, vph: "0.19", outlier: "8.41x"  },
+          { title: "Document Output – Solution demo intro (2023)",                                 views: 5368, vph: "0.23", outlier: null      },
+          { title: "Create expenses – Expense Management",                                         views: 5263, vph: "0.24", outlier: "5.83x"  },
+          { title: "Why Expense Management?",                                                      views: 5290, vph: "0.24", outlier: "10.02x" },
+          { title: "Continia Document Capture 2025 | Full Demo & Invoice Automation Overview",     views: 3960, vph: "0.38", outlier: "10.99x" }
         ]
       }
     ]
