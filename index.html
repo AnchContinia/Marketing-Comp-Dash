@@ -82,6 +82,18 @@
 @media(max-width:760px){.vi-pair{grid-template-columns:1fr}}
 @media(max-width:760px){.vi-ticks{height:32px}.vi-ticks i{width:3px;flex:0 0 3px}}
 @media(max-width:760px){.ci-row{grid-template-columns:1fr auto;gap:8px}.ci-type,.ci-copy{grid-column:1}.ci-score{grid-column:1;text-align:left}.ci-arrow{grid-column:2;grid-row:1 / span 3}}
+#image-search .is-wrap{padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+#image-search .is-search{position:relative}
+#image-search .is-search input{width:100%;height:44px;border:1px solid var(--line2);border-radius:10px;padding:0 14px 0 40px;background:#fff;color:var(--ink);font-size:14px}
+#image-search .is-search input:focus{outline:2px solid rgba(5,41,117,.15);border-color:#052975}
+#image-search .is-search .ic{position:absolute;left:14px;top:0;height:44px;display:flex;align-items:center;color:#94a3b8;pointer-events:none}
+#image-search .is-meta{font-size:12px;color:var(--muted);font-weight:650}
+#image-search .is-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+#image-search .is-card{position:relative;margin:0;border-radius:14px;overflow:hidden;background:#f1f5f9;aspect-ratio:1/1;border:1px solid var(--line)}
+#image-search .is-card img{width:100%;height:100%;object-fit:cover;display:block}
+#image-search .is-cap{position:absolute;inset:auto 0 0 0;padding:20px 12px 11px;background:linear-gradient(180deg,rgba(15,23,42,0),rgba(15,23,42,.8));color:#fff;font-size:12px;font-weight:700;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#image-search .is-empty{grid-column:1/-1;text-align:center;color:var(--muted);font-size:13px;padding:26px}
+@media(max-width:760px){#image-search .is-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -92,11 +104,13 @@
 <div class="grid"><section class="section"><div class="section-head"><h2>Strategic Insights</h2><span class="hint">2026 readout</span></div><div class="insights"><article class="insight primary"><span class="tag">Key insight</span><h3>AI and agentic automation is the battleground in 2026</h3><p>Almost every rival is either launching a dedicated agent product or using AI as the core of their evaluation story. For Continia, a sharp and credible AI narrative is now an entry requirement.</p></article><article class="insight"><span class="tag">Market structure</span><h3>Consolidation is shifting focus toward payment rails</h3><p>Several rivals are now owned by payments or PE giants, pushing them toward monetising payment volume rather than the BC flow itself.</p></article><article class="insight"><span class="tag">Platform risk</span><h3>The sharpest BC-native threat is Microsoft itself</h3><p>Microsoft's Expense Agent (Apr 2026) shows the platform owner moving into ISV territory — and BC 2026 Wave 1 (Apr 30) adds MCP Server support and custom AL agents, letting businesses build their own automation directly inside BC without a third-party ISV.</p></article><article class="insight"><span class="tag">E-invoicing</span><h3>Continia competes inside BC's own connector layer</h3><p>BC's built-in E-Documents/Peppol support places Continia next to Pagero, B2Brouter and Qvalia. The battleground is expanding fast: France B2B e-invoicing is mandatory from September 2026 (large/mid-size), joining Belgium (Jan 2026) — with Germany, Spain and Norway to follow by 2027.</p></article><article class="insight"><span class="tag">Positioning</span><h3>Neutral and BC-native still reads as a strong wedge</h3><p>Payment-owned competitors make Continia's deep, embedded Business Central position easier to explain as focused rather than generic.</p></article><article class="insight"><span class="tag">Analyst signal</span><h3>Forrester: agentic branding is widespread, real autonomy is rare</h3><p>Forrester's April 2026 AP report warns enterprises to evaluate on production performance — accuracy, exception reduction, matching success — not feature lists or demos. This sets up a credibility test that favours vendors with proven track records over those making agentic claims.</p></article></div></section><section class="section" id="events"><div class="section-head"><h2>Key Events</h2><span class="hint">2025-2026</span></div><div class="events" id="eventsList"></div></section></div>
 <section class="section" id="competitors"><div class="section-head"><h2>Competitors</h2><span class="hint" id="countLabel">20 visible</span></div><div class="toolbar"><input class="search" id="search" type="search" placeholder="Search competitor, category, positioning..." autocomplete="off"><div class="hint">Click a row to expand</div></div><div class="filter-stack"><div class="filter-row"><span class="flabel">Strategic profile</span><button class="chip active" data-type="stance" data-val="all">All (20)</button><button class="chip" data-type="stance" data-val="ai"><span class="dot ai"></span>AI-offensive</button><button class="chip" data-type="stance" data-val="cons"><span class="dot cons"></span>Consolidation / M&A</button><button class="chip" data-type="stance" data-val="steady"><span class="dot steady"></span>Stable / niche</button></div><div class="filter-row"><span class="flabel">Dynamics proximity</span><button class="chip active" data-type="prox" data-val="all">All</button><button class="chip" data-type="prox" data-val="High">High</button><button class="chip" data-type="prox" data-val="Medium">Medium</button><button class="chip" data-type="prox" data-val="Low">Low</button></div></div><div class="cards" id="cards"></div><div class="noresult" id="noresult">No players match the selected filters.</div></section>
 <section class="section" id="content-ideas"><div class="section-head"><h2>Content Ideas</h2><span class="hint">Competitor-informed · sourced rationale</span></div><div class="content-menu" id="contentIdeasList"></div><div class="footnote">Scores combine strategic relevance, Continia fit, source strength and likely usefulness for Business Central finance audiences.</div></section>
+<section class="section" id="image-search"><div class="section-head"><h2>Image search</h2><span class="hint" id="is-hint">LinkedIn assets</span></div><div class="is-wrap"><div class="is-search"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><input id="is-input" type="search" placeholder="Search LinkedIn images — e.g. webinar, banking, Elevate, e-invoicing…" autocomplete="off"></div><div class="is-meta" id="is-meta"></div><div class="is-grid" id="is-grid"></div></div></section>
 <section class="section" id="youtube"><div class="section-head"><h2>YouTube Analysis</h2><span class="hint" id="yt-asof">Social Blade estimates · last 30 days</span></div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Channel</th><th class="num">Subscribers</th><th>Monthly views</th><th class="num">Monthly subs</th><th class="num">Est. monthly earnings</th></tr></thead><tbody id="yt-body"></tbody></table></div><div class="footnote" id="yt-footnote">Social Blade estimates · all channels are C-grade, which is normal for B2B channels · estimated earnings are directional and not a measure of channel quality.</div></section>
 <section class="section" id="continia-uploads"><div class="section-head"><h2>In-depth Continia upload info</h2><span class="hint" id="cu-asof">vidIQ · last 30 days</span></div><div class="cu-wrap"><div class="cu-split"><div class="cu-block"><div class="cu-h">Uploads</div><div class="cu-bar" id="cu-uploads-bar"></div><div class="cu-legend" id="cu-uploads-legend"></div></div><div class="cu-block"><div class="cu-h">Views</div><div class="cu-bar" id="cu-views-bar"></div><div class="cu-legend" id="cu-views-legend"></div></div></div><div class="cu-recent"><div class="cu-h">Recent uploads (last 30 days)</div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Video</th><th class="num">Total views</th><th class="num">Outlier score</th></tr></thead><tbody id="cu-recent-body"></tbody></table></div></div></div><div class="footnote" id="cu-footnote">vidIQ · last 30 days · Long-form vs Shorts split and recent uploads for the Continia Software channel. The all-time top videos are intentionally excluded — this module is last-30-days only, like the rest of the YouTube section.</div></section>
 <div class="vi-pair" id="video-ideas"><section class="section" id="video-ideas-long"><div class="section-head"><h2>Long-form &bull; Video ideas</h2><span class="hint">Predicted performance · 0–100%</span></div><div class="vi-stack" id="vi-long-grid"></div><div class="footnote">Each score is an estimate of how well the idea would perform on the Continia channel — judged from the channel's proven top videos (product demos &amp; how-tos) and the dashboard's strategic signals (AI as the dominant theme, the 2026 e-invoicing mandates).</div></section><section class="section" id="video-ideas-short"><div class="section-head"><h2>Short-form &bull; Video ideas</h2><span class="hint">Predicted performance · 0–100%</span></div><div class="vi-stack" id="vi-short-grid"></div><div class="footnote">Short-form ideas are designed for quick LinkedIn/YouTube Shorts cuts: one clear hook, one visual proof point, and a fast CTA back to a deeper Continia demo.</div></section></div>
 <section class="section" id="method"><div class="method"><h2>Methodology & Caveats</h2><ul><li><b>What's included:</b> product releases, press, M&A and positioning from publicly available sources. Sources are clickable inside each card.</li><li><b>Snapshot:</b> data is from this run, not live. The report is regenerated each time the competitor list is run through.</li><li><b>New BC-native players:</b> Lasernet, AMC Banking, Acubiz and Microsoft's own Expense Agent, plus Pagero, B2Brouter and Qvalia.</li><li><b>Category note:</b> Dime Scheduler is BC-native but included as an ISV neighbour, not a direct AP rival.</li><li><b>LinkedIn engagement</b> is not included and requires a social listening tool.</li><li><b>YouTube figures</b> per video for the last month cannot be reliably fetched automatically.</li></ul></div></section><footer>Continia Marketing Dashboard · <span id="footerDate">June 8, 2026</span></footer></div></main></div>
 <script src="./youtube-data.js?v=20260608-video-ideas"></script>
+<script src="./linkedin-images.js?v=20260608-images"></script>
 <script>
 const C = {ai:"#8ff8ff", cons:"#5f9e8d", steady:"#983EAE"};
 const data = [
@@ -497,6 +511,42 @@ if(contentIdeasList){
   }
   render(VI.longForm,"vi-long-grid");
   render(VI.shortForm,"vi-short-grid");
+})();
+
+/* ---- Image search: client-side search over Assets/Linkedin images ---- */
+(function(){
+  if(typeof window.LINKEDIN_IMAGES==="undefined") return;
+  var ALL=window.LINKEDIN_IMAGES, FOLDER="Linkedin images";
+  var grid=document.getElementById("is-grid");
+  var meta=document.getElementById("is-meta");
+  var input=document.getElementById("is-input");
+  var hint=document.getElementById("is-hint");
+  if(!grid||!input) return;
+  if(hint) hint.textContent=ALL.length+" LinkedIn images";
+  function src(f){return "Assets/"+encodeURIComponent(FOLDER)+"/"+encodeURIComponent(f);}
+  function title(f){
+    var t=f.replace(/\.[^.]+$/,"").replace(/_/g," ").replace(/\bLinked ?In\b/gi,"").replace(/\s{2,}/g," ").trim();
+    return t||f;
+  }
+  function esc(s){return s.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  function card(f){
+    var t=esc(title(f));
+    return '<figure class="is-card" title="'+t+'"><img loading="lazy" src="'+src(f)+'" alt="'+t+'"><figcaption class="is-cap">'+t+'</figcaption></figure>';
+  }
+  function show(q){
+    q=(q||"").trim().toLowerCase();
+    var list,label;
+    if(!q){ list=ALL.slice(0,3); label="Showing the 3 most recent uploads"; }
+    else {
+      list=ALL.filter(function(f){return (f+" "+title(f)).toLowerCase().indexOf(q)>-1;});
+      label=list.length+" result"+(list.length===1?"":"s")+' for “'+q+'”';
+      list=list.slice(0,9);
+    }
+    meta.textContent=label;
+    grid.innerHTML = list.length ? list.map(card).join("") : '<div class="is-empty">No images match — try a different keyword.</div>';
+  }
+  input.addEventListener("input",function(){show(input.value);});
+  show("");
 })();
 
 /* ---- Single source of truth for the "Updated" stamp ----
