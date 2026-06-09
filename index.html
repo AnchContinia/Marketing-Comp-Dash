@@ -110,6 +110,31 @@
 .is-lb-prev{left:20px}
 .is-lb-next{right:20px}
 @media(max-width:760px){.is-lb-nav{width:40px;height:40px;font-size:24px}.is-lb-prev{left:10px}.is-lb-next{right:10px}}
+#image-compress .cmp-wrap{padding:16px 18px;display:flex;flex-direction:column;gap:14px}
+#image-compress .cmp-drop{display:block;border:2px dashed var(--line2);border-radius:12px;background:#f8fafc;padding:26px 18px;text-align:center;cursor:pointer;transition:.15s}
+#image-compress .cmp-drop:hover,#image-compress .cmp-drop.drag{border-color:#052975;background:#eef3fb}
+#image-compress .cmp-drop .cmp-ico{color:#052975;display:inline-flex}
+#image-compress .cmp-drop b{display:block;color:var(--ink);font-size:14px;margin-top:8px}
+#image-compress .cmp-drop span{display:block;color:var(--muted);font-size:12px;margin-top:4px}
+#image-compress .cmp-list{display:flex;flex-direction:column;gap:10px}
+#image-compress .cmp-row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff}
+#image-compress .cmp-thumb{width:44px;height:44px;border-radius:8px;object-fit:cover;background:#eef2f7}
+#image-compress .cmp-name{font-size:13px;font-weight:750;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#image-compress .cmp-meta{font-size:12px;color:var(--muted);margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+#image-compress .cmp-meta .save{color:#16a34a;font-weight:850}
+#image-compress .cmp-meta b{color:var(--ink)}
+#image-compress .cmp-right{display:flex;align-items:center;gap:10px;justify-self:end}
+#image-compress .cmp-btn{border:1px solid #052975;background:#052975;color:#fff;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:850;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
+#image-compress .cmp-btn:hover{background:#06317f}
+#image-compress .cmp-btn.ghost{background:#fff;color:#052975}
+#image-compress .cmp-spin{width:14px;height:14px;border:2px solid #cbd5e1;border-top-color:#052975;border-radius:50%;animation:cmpspin .7s linear infinite;display:inline-block}
+@keyframes cmpspin{to{transform:rotate(360deg)}}
+#image-compress .cmp-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#image-compress .cmp-actions[hidden]{display:none}
+#image-compress .cmp-total{font-size:12px;color:var(--muted);font-weight:700}
+#image-compress .cmp-err{color:var(--rose);font-weight:750}
+#image-compress .cmp-note{font-size:12.5px;color:var(--muted)}
+@media(max-width:760px){#image-compress .cmp-row{grid-template-columns:40px minmax(0,1fr);gap:10px}#image-compress .cmp-right{grid-column:1 / -1;justify-self:start}}
 </style>
 </head>
 <body>
@@ -125,6 +150,7 @@
 <section class="section" id="youtube"><div class="section-head"><h2>YouTube Analysis</h2><span class="hint" id="yt-asof">Social Blade estimates · last 30 days</span></div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Channel</th><th class="num">Subscribers</th><th>Monthly views</th><th class="num">Monthly subs</th><th class="num">Est. monthly earnings</th></tr></thead><tbody id="yt-body"></tbody></table></div><div class="footnote" id="yt-footnote">Social Blade estimates · all channels are C-grade, which is normal for B2B channels · estimated earnings are directional and not a measure of channel quality.</div></section>
 <section class="section" id="continia-uploads"><div class="section-head"><h2>In-depth Continia upload info</h2><span class="hint" id="cu-asof">vidIQ · last 30 days</span></div><div class="cu-wrap"><div class="cu-periods" id="cu-periods"></div><div class="cu-split"><div class="cu-block"><div class="cu-h">Uploads</div><div class="cu-bar" id="cu-uploads-bar"></div><div class="cu-legend" id="cu-uploads-legend"></div></div><div class="cu-block"><div class="cu-h">Views</div><div class="cu-bar" id="cu-views-bar"></div><div class="cu-legend" id="cu-views-legend"></div></div></div><div class="cu-recent"><div class="cu-h">Latest videos</div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Video</th><th class="num">Total views</th><th class="num">Outlier score</th></tr></thead><tbody id="cu-recent-body"></tbody></table></div></div><div class="cu-recent"><div class="cu-h">Top videos</div><div class="youtube-wrap"><table class="yt-table"><thead><tr><th>#</th><th>Video</th><th class="num">Total views</th><th class="num">VPH</th><th class="num">Outlier score</th></tr></thead><tbody id="cu-top-body"></tbody></table></div></div></div><div class="footnote" id="cu-footnote">vidIQ · Continia Software channel · Long-form vs Shorts split across periods (7D–YTD), latest uploads and all-time top videos.</div></section>
 <div class="vi-pair" id="video-ideas"><section class="section" id="video-ideas-long"><div class="section-head"><h2>Long-form &bull; Video ideas</h2><span class="hint">Predicted performance · 0–100%</span></div><div class="vi-stack" id="vi-long-grid"></div><div class="footnote">Each score is an estimate of how well the idea would perform on the Continia channel — judged from the channel's proven top videos (product demos &amp; how-tos) and the dashboard's strategic signals (AI as the dominant theme, the 2026 e-invoicing mandates).</div></section><section class="section" id="video-ideas-short"><div class="section-head"><h2>Short-form &bull; Video ideas</h2><span class="hint">Predicted performance · 0–100%</span></div><div class="vi-stack" id="vi-short-grid"></div><div class="footnote">Short-form ideas are designed for quick LinkedIn/YouTube Shorts cuts: one clear hook, one visual proof point, and a fast CTA back to a deeper Continia demo.</div></section></div>
+<section class="section" id="image-compress"><div class="section-head"><h2>Image compression</h2><span class="hint">TinyJPG · up to 5 images</span></div><div class="cmp-wrap"><label class="cmp-drop" id="cmp-drop"><input type="file" id="cmp-input" accept="image/png,image/jpeg,image/webp" multiple hidden><span class="cmp-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"></path><path d="m6 10 6-6 6 6"></path><path d="M4 20h16"></path></svg></span><b>Drop images here or click to browse</b><span>PNG, JPG or WebP · up to 5 at a time</span></label><div class="cmp-note" id="cmp-config"></div><div class="cmp-list" id="cmp-list"></div><div class="cmp-actions" id="cmp-actions" hidden><button class="cmp-btn" id="cmp-dl-all">Download all</button><button class="cmp-btn ghost" id="cmp-clear">Clear</button><span class="cmp-total" id="cmp-total"></span></div></div><div class="footnote">Powered by TinyJPG via a serverless proxy — your API key stays server-side and is never exposed in the page.</div></section>
 <section class="section" id="method"><div class="method"><h2>Methodology & Caveats</h2><ul><li><b>What's included:</b> product releases, press, M&A and positioning from publicly available sources. Sources are clickable inside each card.</li><li><b>Snapshot:</b> data is from this run, not live. The report is regenerated each time the competitor list is run through.</li><li><b>New BC-native players:</b> Lasernet, AMC Banking, Acubiz and Microsoft's own Expense Agent, plus Pagero, B2Brouter and Qvalia.</li><li><b>Category note:</b> Dime Scheduler is BC-native but included as an ISV neighbour, not a direct AP rival.</li><li><b>LinkedIn engagement</b> is not included and requires a social listening tool.</li><li><b>YouTube figures</b> per video for the last month cannot be reliably fetched automatically.</li></ul></div></section><footer>Continia Marketing Dashboard · <span id="footerDate">June 8, 2026</span></footer></div></main></div>
 <script src="./youtube-data.js?v=20260608-video-ideas"></script>
 <script src="./linkedin-images.js?v=20260608-images"></script>
@@ -611,6 +637,89 @@ if(contentIdeasList){
   });
 
   show("");
+})();
+
+/* ---- Image compression: upload up to 5 images, compress via the TinyJPG proxy ---- */
+(function(){
+  /* Paste the deployed Cloudflare Worker URL here (see tinyjpg-proxy/README.md).
+     Leave empty until the proxy is deployed — the module shows a friendly note. */
+  var PROXY = "";
+
+  var MAX=5;
+  var input=document.getElementById("cmp-input");
+  var drop=document.getElementById("cmp-drop");
+  var listEl=document.getElementById("cmp-list");
+  var actions=document.getElementById("cmp-actions");
+  var totalEl=document.getElementById("cmp-total");
+  var dlAll=document.getElementById("cmp-dl-all");
+  var clearBtn=document.getElementById("cmp-clear");
+  var config=document.getElementById("cmp-config");
+  if(!input||!drop||!listEl) return;
+  var items=[];
+
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  function fmt(n){ if(n==null||isNaN(n)) return "—"; if(n<1024) return n+" B"; if(n<1048576) return (n/1024).toFixed(1)+" KB"; return (n/1048576).toFixed(2)+" MB"; }
+  function dlName(name){ var i=name.lastIndexOf("."); return i>0 ? name.slice(0,i)+"-min"+name.slice(i) : name+"-min"; }
+
+  if(!PROXY && config){ config.innerHTML='⚙️ Compression backend not configured yet — deploy the TinyJPG proxy (see <b>tinyjpg-proxy/README.md</b>) and paste its URL into <b>PROXY</b>.'; config.classList.add("cmp-err"); }
+
+  function handleFiles(fl){
+    var files=[].slice.call(fl).filter(function(f){return /^image\/(png|jpe?g|webp)$/i.test(f.type);});
+    if(!files.length) return;
+    if(files.length>MAX) files=files.slice(0,MAX);
+    listEl.innerHTML=""; items=[]; totalEl.textContent="";
+    if(!PROXY){ actions.hidden=true; return; }
+    files.forEach(addItem);
+    actions.hidden=false;
+    items.forEach(compress);
+  }
+  function addItem(f){
+    var it={ file:f, name:f.name, inSize:f.size, outSize:null, url:null, status:"queued" };
+    var row=document.createElement("div"); row.className="cmp-row";
+    row.innerHTML='<img class="cmp-thumb" src="'+URL.createObjectURL(f)+'" alt="">'+
+      '<div><div class="cmp-name">'+esc(f.name)+'</div>'+
+      '<div class="cmp-meta" data-meta>'+fmt(f.size)+' · <span class="cmp-spin"></span> compressing…</div></div>'+
+      '<div class="cmp-right" data-right></div>';
+    listEl.appendChild(row); it.row=row; items.push(it);
+  }
+  function compress(it){
+    fetch(PROXY,{ method:"POST", headers:{ "Content-Type":it.file.type||"application/octet-stream", "X-Filename":it.name }, body:it.file })
+      .then(function(res){
+        if(!res.ok) throw new Error("HTTP "+res.status);
+        var outS=parseInt(res.headers.get("X-Output-Size")||"0",10);
+        return res.blob().then(function(b){ return { blob:b, outS: outS||b.size }; });
+      })
+      .then(function(r){
+        it.outSize=r.outS; it.url=URL.createObjectURL(r.blob); it.status="done";
+        var saved = it.inSize ? Math.max(0, Math.round((1-(it.outSize/it.inSize))*100)) : 0;
+        it.row.querySelector("[data-meta]").innerHTML = fmt(it.inSize)+' → <b>'+fmt(it.outSize)+'</b> · <span class="save">−'+saved+'%</span>';
+        var a=document.createElement("a"); a.className="cmp-btn"; a.textContent="Download"; a.href=it.url; a.download=dlName(it.name);
+        it.row.querySelector("[data-right]").appendChild(a);
+        updateTotal();
+      })
+      .catch(function(e){
+        it.status="error";
+        var m=it.row.querySelector("[data-meta]"); if(m) m.innerHTML='<span class="cmp-err">Failed — '+esc(e.message||"error")+'</span>';
+      });
+  }
+  function updateTotal(){
+    var done=items.filter(function(it){return it.status==="done";});
+    if(!done.length){ totalEl.textContent=""; return; }
+    var inT=done.reduce(function(a,it){return a+it.inSize;},0);
+    var outT=done.reduce(function(a,it){return a+(it.outSize||0);},0);
+    var saved=inT?Math.round((1-(outT/inT))*100):0;
+    totalEl.textContent=done.length+" done · "+fmt(inT)+" → "+fmt(outT)+" (−"+saved+"%)";
+  }
+  input.addEventListener("change",function(){ handleFiles(input.files); input.value=""; });
+  drop.addEventListener("dragover",function(e){ e.preventDefault(); drop.classList.add("drag"); });
+  drop.addEventListener("dragleave",function(){ drop.classList.remove("drag"); });
+  drop.addEventListener("drop",function(e){ e.preventDefault(); drop.classList.remove("drag"); if(e.dataTransfer&&e.dataTransfer.files) handleFiles(e.dataTransfer.files); });
+  if(dlAll) dlAll.addEventListener("click",function(){
+    items.filter(function(it){return it.status==="done"&&it.url;}).forEach(function(it,k){
+      setTimeout(function(){ var a=document.createElement("a"); a.href=it.url; a.download=dlName(it.name); document.body.appendChild(a); a.click(); a.remove(); }, k*300);
+    });
+  });
+  if(clearBtn) clearBtn.addEventListener("click",function(){ listEl.innerHTML=""; items=[]; actions.hidden=true; totalEl.textContent=""; });
 })();
 
 /* ---- Single source of truth for the "Updated" stamp ----
