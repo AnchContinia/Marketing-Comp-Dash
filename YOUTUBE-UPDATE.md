@@ -83,11 +83,19 @@ Blade — so it needs the vidIQ channel page open.
 
 - Source: <https://vidiq.com/youtube-stats/channel/UCVADP02U9sc7Xy2zeSx4xoA/?tab=overview>
 - **Set the period toggle to `28D`** (closest to last-30-days) before reading.
-- Read off the **Long-form vs Shorts** panel: `uploads.longForm` / `uploads.shorts`
-  and `views.longForm` / `views.shorts` (plain counts — the page computes the %).
-- Set `windowLabel` to vidIQ's "Since …" date.
-- Refresh `recent[]` from the **Latest videos** tab (newest first): `title`,
-  `views`, and `outlier` (string like `"1.61x"`, or `null` when vidIQ shows "—").
+- The fastest, most reliable read is from vidIQ's embedded JSON: view source and
+  find the `__next_f.push(...)` script containing `longShortStats` — it holds
+  every period at once (`7d`/`28d`/`3mo`/`1y`/`ytd`, each with `long`/`short`
+  `uploads`+`views`), plus `latestVideos` and `topVideos` arrays. Copy those
+  numbers straight into the newest snapshot's `periods`, `recent` and `top`.
+- `periods` keys are `"7D"`,`"28D"`,`"3M"`,`"1Y"`,`"YTD"`; each has
+  `longForm:{uploads,views}` and `shorts:{uploads,views}` (plain counts — the
+  page computes the %). Set `defaultPeriod` (usually `"28D"`).
+- `recent[]` = **Latest videos** (newest first): `title`, `views`, `outlier`
+  (string like `"1.61x"`, or `null`). `top[]` = **Top videos**: `title`,
+  `views`, `vph` (string), `outlier`.
+- ALWAYS show the parsed numbers to the user for a quick confirm before pushing
+  data — they are pixel-read from a screenshot and easy to get wrong.
 - **Default: Claude reads vidIQ itself via Claude in Chrome — no screenshots
   needed from you.** vidIQ is JS-rendered, so a plain fetch won't work; Claude
   navigates to the channel URL in the browser, sets the toggle to `28D`, reads
