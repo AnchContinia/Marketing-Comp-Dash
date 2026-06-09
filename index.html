@@ -58,8 +58,8 @@
 .vi-stack{display:flex;flex-direction:column;gap:14px;padding:16px 18px}
 .vi-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:20px 18px;display:flex;flex-direction:column;gap:0}
 .vi-pct{font-size:40px;font-weight:850;color:var(--ink);line-height:1;margin-bottom:14px}
-.vi-ticks{display:grid;grid-template-columns:repeat(32,minmax(4px,9px));gap:5px;align-items:stretch;height:36px;margin-bottom:12px}
-.vi-ticks i{border-radius:999px;background:#e2e8f0}
+.vi-ticks{display:flex;justify-content:space-between;align-items:stretch;height:36px;margin-bottom:12px}
+.vi-ticks i{width:4px;flex:0 0 4px;border-radius:999px;background:#e2e8f0}
 .vi-ticks i.on{background:#052975}
 .vi-title{font-size:15px;font-weight:850;color:var(--ink);margin:0 0 5px;line-height:1.25}
 .vi-desc{font-size:13px;color:var(--muted);margin:0;line-height:1.45}
@@ -80,7 +80,7 @@
 .ci-sources a{text-decoration:none;border:1px solid var(--line2);border-radius:8px;padding:7px 9px;font-size:12px;font-weight:750;color:#334155;background:#fff}
 .ci-sources a:hover{border-color:#052975;background:#052975;color:#fff}
 @media(max-width:760px){.vi-pair{grid-template-columns:1fr}}
-@media(max-width:760px){.vi-ticks{grid-template-columns:repeat(32,minmax(2px,1fr));gap:3px;height:32px}}
+@media(max-width:760px){.vi-ticks{height:32px}.vi-ticks i{width:3px;flex:0 0 3px}}
 @media(max-width:760px){.ci-row{grid-template-columns:1fr auto;gap:8px}.ci-type,.ci-copy{grid-column:1}.ci-score{grid-column:1;text-align:left}.ci-arrow{grid-column:2;grid-row:1 / span 3}}
 </style>
 </head>
@@ -476,7 +476,7 @@ if(contentIdeasList){
   if(typeof window.YT_DATA==="undefined") return;
   var VI=window.YT_DATA.videoIdeas;
   if(!VI) return;
-  var TICKS=32;
+  var TICKS=48;
   function ticks(score){
     var on=Math.round(Math.max(0,Math.min(100,score))/100*TICKS);
     var out="";
