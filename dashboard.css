@@ -26,7 +26,7 @@
 .grid>.section:first-child .insight{gap:5px 18px;align-content:start}
 .grid>.section:first-child .insight h3{margin:0}
 .grid>.section:first-child .insight p{margin:0}
-.brief{background-image:linear-gradient(90deg,rgba(5,41,117,.72),rgba(15,23,42,.32)),url('./Dashboard_images_export.jpg');background-size:cover;background-position:center;border-color:rgba(255,255,255,.18)}
+.brief{position:relative;overflow:hidden;background:#052975;border-color:rgba(255,255,255,.18)}.brief-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}.brief:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(5,41,117,.72),rgba(15,23,42,.32))}.brief-body{position:relative;z-index:2}
 .brief,.brief h1,.brief .sub,.brief .eyebrow,.brief .pill,.brief .pill b{color:#fff}
 .brief .eyebrow{color:#8ff8ff}
 .brief .pill{background:rgba(143,248,255,.14);border-color:rgba(143,248,255,.5)}
