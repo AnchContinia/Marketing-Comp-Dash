@@ -772,3 +772,17 @@ if(contentIdeasList){
   var top=document.getElementById("lastUpdated"); if(top) top.textContent="Updated "+pretty;
   var ft=document.getElementById("footerDate");   if(ft)  ft.textContent=pretty;
 })();
+
+/* ---- Hero banner: fade the video in over the poster jpg once it starts playing ----
+   The jpg shows instantly as the .brief background; the video sits on top at
+   opacity 0 and crossfades in on the first "playing" event. If neither the mp4
+   nor the webm can play (e.g. an old browser), the jpg simply stays. */
+(function(){
+  var vids=document.querySelectorAll(".brief-bg");
+  if(!vids.length) return;
+  vids.forEach(function(v){
+    function reveal(){ v.classList.add("is-playing"); }
+    if(!v.paused && !v.ended && v.readyState>2) reveal();   // already playing before JS ran
+    v.addEventListener("playing", reveal);
+  });
+})();
