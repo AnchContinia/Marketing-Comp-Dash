@@ -140,6 +140,7 @@
 .sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:#fbfbfa;border-right:1px solid var(--line);padding:18px 14px;display:flex;flex-direction:column;gap:6px;z-index:30}
 .sb-brand{display:flex;align-items:center;gap:11px;padding:6px 8px 15px;border-bottom:1px solid var(--line);margin-bottom:8px}
 .sb-logo{width:36px;height:36px;border-radius:9px;background:#052975;color:#fff;display:grid;place-items:center;font-weight:850;font-size:17px;flex:none}
+.sb-logo img{width:19px;height:19px;display:block}
 .sb-brand b{display:block;font-size:14px;color:var(--ink);line-height:1.15}
 .sb-brand span{display:block;font-size:12px;color:var(--muted);margin-top:1px}
 .sb-nav{display:flex;flex-direction:column;gap:3px}

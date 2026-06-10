@@ -635,13 +635,8 @@ if(contentIdeasList){
   var mount=document.getElementById("sidebar");
   if(!mount) return;
   var NAV=[
-    {page:"index.html", icon:"fa-grid-2", label:"Index", items:[
+    {page:"index.html", icon:"fa-house", label:"Home", items:[
       {id:"overview", icon:"fa-binoculars", label:"Public competitor insights"},
-      {id:"exec-signal", icon:"fa-bolt", label:"Executive signal"},
-      {id:"m-stakeholders", icon:"fa-users", label:"Tracked stakeholders"},
-      {id:"m-theme", icon:"fa-robot", label:"Dominant theme"},
-      {id:"m-mna", icon:"fa-handshake", label:"M&A / Capital moves"},
-      {id:"m-bcnative", icon:"fa-cubes", label:"BC-native players"},
       {id:"competitors", icon:"fa-people-group", label:"Competitors"}
     ]},
     {page:"content.html", icon:"fa-newspaper", label:"Content", items:[
@@ -662,7 +657,7 @@ if(contentIdeasList){
   var path=(location.pathname.split("/").pop()||"index.html");
   if(path==="") path="index.html";
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
-  var html='<div class="sb-brand"><div class="sb-logo">C</div><div><b>Continia</b><span>Marketing Dashboard</span></div></div><nav class="sb-nav">';
+  var html='<div class="sb-brand"><div class="sb-logo"><img src="Assets/Hourglass.svg" alt=""></div><div><b>Continia</b><span>Marketing Hub</span></div></div><nav class="sb-nav">';
   NAV.forEach(function(g){
     var cur=g.page===path;
     html+='<div class="sb-group'+(cur?" current":"")+'">';
