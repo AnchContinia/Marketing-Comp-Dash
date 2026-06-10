@@ -677,7 +677,14 @@ if(contentIdeasList){
   var targets=curLinks.map(function(a){ var id=a.getAttribute("data-anchor"); return {id:id, el:document.getElementById(id)}; }).filter(function(t){ return t.el; });
   if(!targets.length) return;
   function setActive(id){ curLinks.forEach(function(a){ a.classList.toggle("active", a.getAttribute("data-anchor")===id); }); }
+  /* A click is authoritative: highlight the clicked section immediately and
+     briefly lock the scroll-spy so it can't override it mid-scroll. */
+  var lockUntil=0;
+  curLinks.forEach(function(a){ a.addEventListener("click",function(){ setActive(a.getAttribute("data-anchor")); lockUntil=Date.now()+900; }); });
   function onScroll(){
+    if(Date.now()<lockUntil) return;
+    var doc=document.documentElement;
+    if(window.innerHeight+window.scrollY >= doc.scrollHeight-4){ setActive(targets[targets.length-1].id); return; } /* page bottom → last section */
     var offset=120, cur=null, curTop=-Infinity, minTop=Infinity, first=null;
     targets.forEach(function(t){
       var top=t.el.getBoundingClientRect().top;
