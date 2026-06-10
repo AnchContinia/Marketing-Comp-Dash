@@ -482,6 +482,67 @@ if(contentIdeasList){
   show("");
 })();
 
+/* ---- Newsletter image bank: client-side search over Assets/Newsletter images ---- */
+(function(){
+  if(typeof window.NEWSLETTER_IMAGES==="undefined") return;
+  var ALL=window.NEWSLETTER_IMAGES, FOLDER="Newsletter images", current=[];
+  var grid=document.getElementById("ns-grid");
+  var meta=document.getElementById("ns-meta");
+  var input=document.getElementById("ns-input");
+  var hint=document.getElementById("ns-hint");
+  if(!grid||!input) return;
+  if(hint) hint.textContent=ALL.length+" newsletter images";
+  function src(f){return "Assets/"+encodeURIComponent(FOLDER)+"/"+encodeURIComponent(f);}
+  function title(f){
+    var t=f.replace(/\.[^.]+$/,"").replace(/_/g," ").replace(/\bnewsletter\b/gi,"").replace(/\s{2,}/g," ").trim();
+    return t||f;
+  }
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  function card(f){
+    var t=esc(title(f));
+    return '<figure class="is-card" data-file="'+esc(f)+'" title="'+t+'"><img loading="lazy" src="'+src(f)+'" alt="'+t+'"><figcaption class="is-cap">'+t+'</figcaption></figure>';
+  }
+  function show(q){
+    q=(q||"").trim().toLowerCase();
+    var list,label;
+    if(!q){ list=ALL.slice(0,4); label="Showing the 4 most recent uploads"; }
+    else if(q==="all"){ list=ALL.slice(); label="Showing all "+ALL.length+" images"; }
+    else {
+      list=ALL.filter(function(f){return (f+" "+title(f)).toLowerCase().indexOf(q)>-1;});
+      label=list.length+" result"+(list.length===1?"":"s")+' for “'+q+'”';
+    }
+    current=list;
+    meta.textContent=label;
+    grid.innerHTML = list.length ? list.map(card).join("") : '<div class="is-empty">No images match — try a different keyword.</div>';
+  }
+  input.addEventListener("input",function(){show(input.value);});
+
+  var lb=document.getElementById("ns-lightbox"),
+      lbImg=document.getElementById("ns-lb-img"),
+      lbCap=document.getElementById("ns-lb-cap"),
+      lbClose=document.getElementById("ns-lb-close"),
+      lbPrev=document.getElementById("ns-lb-prev"),
+      lbNext=document.getElementById("ns-lb-next"),
+      lbIndex=-1;
+  function loadLB(){ var f=current[lbIndex]; if(!f) return; lbImg.src=src(f); lbImg.alt=title(f); lbCap.textContent=title(f)+"  ·  "+(lbIndex+1)+" / "+current.length; }
+  function openLB(i){ if(!lb||i<0) return; lbIndex=i; loadLB(); lb.classList.add("open"); lb.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; }
+  function closeLB(){ if(!lb) return; lb.classList.remove("open"); lb.setAttribute("aria-hidden","true"); lbImg.src=""; lbIndex=-1; document.body.style.overflow=""; }
+  function navLB(d){ if(lbIndex<0||!current.length) return; lbIndex=(lbIndex+d+current.length)%current.length; loadLB(); }
+  grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(fig&&fig.dataset.file){ var i=current.indexOf(fig.dataset.file); if(i>-1) openLB(i); } });
+  if(lb) lb.addEventListener("click",function(e){ if(e.target===lb) closeLB(); });
+  if(lbClose) lbClose.addEventListener("click",closeLB);
+  if(lbPrev) lbPrev.addEventListener("click",function(){navLB(-1);});
+  if(lbNext) lbNext.addEventListener("click",function(){navLB(1);});
+  document.addEventListener("keydown",function(e){
+    if(!lb||!lb.classList.contains("open")) return;
+    if(e.key==="Escape"||e.keyCode===27){ closeLB(); }
+    else if(e.key==="ArrowLeft"||e.keyCode===37){ navLB(-1); }
+    else if(e.key==="ArrowRight"||e.keyCode===39){ navLB(1); }
+  });
+
+  show("");
+})();
+
 /* ---- YouTube thumbnails bank: client-side search over Assets/Youtube images ---- */
 (function(){
   if(typeof window.YOUTUBE_IMAGES==="undefined") return;
@@ -644,6 +705,7 @@ if(contentIdeasList){
       {id:"events", icon:"fa-calendar-days", label:"Key Events"},
       {id:"content-ideas", icon:"fa-pen-nib", label:"Content Ideas"},
       {id:"image-search", icon:"fa-images", label:"Linkedin image bank"},
+      {id:"newsletter-bank", icon:"fa-envelope-open-text", label:"Newsletter image bank"},
       {id:"image-compress", icon:"fa-compress", label:"Image compression"}
     ]},
     {page:"video.html", icon:"fa-clapperboard", label:"Video", items:[
