@@ -792,8 +792,7 @@ if(contentIdeasList){
       {id:"content-ideas", icon:"fa-pen-nib", label:"Content Ideas"},
       {id:"image-search", icon:"fa-images", label:"Linkedin image bank"},
       {id:"newsletter-bank", icon:"fa-envelope-open-text", label:"Newsletter image bank"},
-      {id:"image-compress", icon:"fa-compress", label:"Image compression"},
-      {id:"pdf-compress", icon:"fa-file-pdf", label:"PDF compression"}
+      {id:"compress", icon:"fa-compress", label:"Image & PDF compression"}
     ]},
     {page:"video.html", icon:"fa-clapperboard", label:"Video", items:[
       {id:"youtube", icon:"fa-chart-line", label:"YouTube Analysis"},
