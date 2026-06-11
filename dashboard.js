@@ -788,7 +788,7 @@ if(contentIdeasList){
     listEl.appendChild(row); it.row=row; items.push(it);
   }
   function compress(it){
-    fetch(PROXY_PDF,{ method:"POST", headers:{ "Content-Type":"application/pdf", "X-Filename":it.name }, body:it.file })
+    fetch(PROXY_PDF,{ method:"POST", headers:{ "Content-Type":"application/pdf", "X-Filename":encodeURIComponent(it.name) }, body:it.file })
       .then(function(res){
         if(!res.ok) throw new Error("HTTP "+res.status);
         var outS=parseInt(res.headers.get("X-Output-Size")||"0",10);

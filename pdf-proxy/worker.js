@@ -60,7 +60,11 @@ export default {
       return json({ error: "Server is missing ILOVEPDF_PUBLIC_KEY secret" }, 500, origin);
     }
 
-    const filename = request.headers.get("X-Filename") || "document.pdf";
+    // Filename rides in an ASCII-only header URL-encoded by the browser
+    // (so names with æøå/spaces/emoji don't make fetch throw). Decode it back.
+    const rawFilename = request.headers.get("X-Filename") || "document.pdf";
+    let filename = rawFilename;
+    try { filename = decodeURIComponent(rawFilename); } catch (e) { /* keep raw if not %-encoded */ }
     const body = await request.arrayBuffer();
     if (!body || body.byteLength === 0) return json({ error: "No PDF data" }, 400, origin);
     if (body.byteLength > MAX_BYTES) return json({ error: "PDF too large (max 50 MB)" }, 413, origin);
