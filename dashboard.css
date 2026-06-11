@@ -161,3 +161,22 @@
 .sb-sub a.active>i{color:#052975}
 section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 @media(max-width:1100px){.app{grid-template-columns:1fr !important}.sidebar{position:static;height:auto;overflow:visible;border-right:0;border-bottom:1px solid var(--line)}}
+/* LinkedIn engagement: expandable per-company post list */
+.li-row{cursor:pointer}
+.li-row:hover{background:#f8fafc}
+.li-row.ours:hover{background:#e8fbff}
+.li-carrow{display:inline-block;font-size:13px;color:#475569;transition:transform .22s;margin-left:4px;vertical-align:1px}
+.li-row.open .li-carrow{transform:rotate(90deg)}
+.li-detail{display:none}
+.li-detail.open{display:table-row}
+.li-detail>td{padding:0;background:#fbfcff}
+.li-posts{display:grid;gap:0;padding:4px 14px 10px}
+.li-post{display:grid;grid-template-columns:26px minmax(0,1fr) auto;gap:14px;align-items:center;padding:9px 4px;border-bottom:1px solid var(--line)}
+.li-post:last-child{border-bottom:0}
+.li-pn{font-weight:850;color:#94a3b8;font-size:12px;text-align:center}
+.li-pt{min-width:0;font-size:13px;color:#334155}
+.li-pt b{color:var(--ink);font-weight:750}
+.li-ty{display:inline-block;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.06em;color:#475569;background:#f1f5f9;border:1px solid var(--line);border-radius:999px;padding:2px 7px;margin-left:4px;white-space:nowrap}
+.li-pm{display:flex;gap:16px;white-space:nowrap;font-size:12px;color:var(--muted)}
+.li-pm b{color:var(--navy);font-weight:850}
+@media(max-width:760px){.li-post{grid-template-columns:22px minmax(0,1fr)}.li-pm{grid-column:2;gap:12px;margin-top:3px}}

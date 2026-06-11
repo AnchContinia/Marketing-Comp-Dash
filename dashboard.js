@@ -305,11 +305,12 @@ if(contentIdeasList){
   function fmtDate(s){var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var p=String(s).split("-");return m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];}
   var asof=document.getElementById("li-asof");
   if(asof) asof.textContent=(D.source||"LinkedIn")+" · "+(D.windowLabel||"last 10 posts")+" · "+fmtDate(D.captured);
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   var rows=D.companies.map(function(co){
     var posts=co.posts||[], n=posts.length, R=0,C=0,P=0;
     posts.forEach(function(p){R+=p.r||0;C+=p.c||0;P+=p.rp||0;});
     var total=R+C+P;
-    return {name:co.name, ours:!!co.ours, n:n, R:R, C:C, P:P, total:total, avg:n?total/n:0};
+    return {name:co.name, ours:!!co.ours, posts:posts, n:n, R:R, C:C, P:P, total:total, avg:n?total/n:0};
   });
   rows.sort(function(a,b){return b.total-a.total;});
   var scale=Math.max.apply(null, rows.map(function(r){return r.total;}))||1;
@@ -317,16 +318,32 @@ if(contentIdeasList){
     var w=r.total===0?0:Math.min(Math.max(r.total/scale*100,0.2),100);
     var barCls=r.total===scale?"hot":"";
     var ours=r.ours?' <span class="ours-badge">Ours</span>':"";
-    var trCls=r.ours?' class="ours"':"";
-    return '<tr'+trCls+'>'+
+    var trCls="li-row"+(r.ours?" ours":"");
+    var posts=r.posts.map(function(p,j){
+      return '<div class="li-post">'+
+        '<span class="li-pn">'+(j+1)+'</span>'+
+        '<div class="li-pt"><b>'+esc(p.t)+'</b><span class="li-ty">'+esc(p.ty||"—")+'</span></div>'+
+        '<div class="li-pm"><span><b>'+(p.r||0)+'</b> reactions</span><span><b>'+(p.c||0)+'</b> comments</span><span><b>'+(p.rp||0)+'</b> reposts</span></div>'+
+      '</div>';
+    }).join("");
+    return '<tr class="'+trCls+'" data-li="'+i+'">'+
       '<td>'+(i+1)+'</td>'+
-      '<td><div class="channel">'+r.name+ours+'</div><div class="handle">Ø '+r.avg.toFixed(1)+'/post · '+r.n+' posts</div></td>'+
+      '<td><div class="channel">'+esc(r.name)+ours+' <span class="li-carrow">›</span></div><div class="handle">Ø '+r.avg.toFixed(1)+'/post · '+r.n+' posts · tap to see them</div></td>'+
       '<td><div class="barline"><div class="bar"><i class="'+barCls+'" style="--w:'+w.toFixed(1)+'%"></i></div><span>'+r.total+'</span></div></td>'+
       '<td class="num"><b>'+r.R+'</b></td>'+
       '<td class="num">'+r.C+'</td>'+
       '<td class="num">'+r.P+'</td>'+
-    '</tr>';
+    '</tr>'+
+    '<tr class="li-detail" data-li-detail="'+i+'"><td colspan="6"><div class="li-posts">'+posts+'</div></td></tr>';
   }).join("");
+  Array.prototype.forEach.call(tb.querySelectorAll(".li-row"),function(row){
+    row.addEventListener("click",function(){
+      var i=row.getAttribute("data-li");
+      var det=tb.querySelector('.li-detail[data-li-detail="'+i+'"]');
+      var open=row.classList.toggle("open");
+      if(det) det.classList.toggle("open",open);
+    });
+  });
 })();
 
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
