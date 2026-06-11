@@ -112,7 +112,7 @@
 @media(max-width:760px){.is-lb-nav{width:40px;height:40px;font-size:24px}.is-lb-prev{left:10px}.is-lb-next{right:10px}}
 #image-compress .cmp-wrap{padding:16px 18px;display:flex;flex-direction:column;gap:14px}
 #image-compress .cmp-drop{display:block;border:2px dashed var(--line2);border-radius:12px;background:#f8fafc;padding:26px 18px;text-align:center;cursor:pointer;transition:.15s}
-#image-compress .cmp-drop:hover,#image-compress .cmp-drop.drag{border-color:#052975;background:#eef3fb}
+#image-compress .cmp-drop:hover,.cmp-drop.drag{border-color:#052975;background:#eef3fb}
 #image-compress .cmp-drop .cmp-ico{color:#052975;display:inline-flex}
 #image-compress .cmp-drop b{display:block;color:var(--ink);font-size:14px;margin-top:8px}
 #image-compress .cmp-drop span{display:block;color:var(--muted);font-size:12px;margin-top:4px}

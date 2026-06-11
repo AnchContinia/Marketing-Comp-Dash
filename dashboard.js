@@ -695,7 +695,7 @@ if(contentIdeasList){
   /* Paste the deployed pdf-proxy Worker URL here once it's live. */
   var PROXY_PDF = "https://pdf-compressor.anch-5c7.workers.dev";
 
-  var MAX=5;
+  var MAX=2;
   var input=document.getElementById("pdfc-input");
   var drop=document.getElementById("pdfc-drop");
   var listEl=document.getElementById("pdfc-list");
