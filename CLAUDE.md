@@ -84,8 +84,12 @@ There are two distinct date types on the page; never confuse them:
 
 ## Monthly update runbooks
 
-Two trigger-phrase routines, each with a runbook doc:
+Trigger-phrase routines, each with a runbook doc:
 
+- **[FULL-UPDATE.md](FULL-UPDATE.md)** — trigger "Opdater alt." The master routine: runs every data
+  refresh in one pass (competitor cards + per-source sweep, Key Events, YouTube Social Blade snapshot,
+  Continia vidIQ uploads, image-bank index regen), stamps `DASHBOARD_UPDATED` once, and pushes once.
+  Supersedes running the two below separately. Needs Claude in Chrome connected for Social Blade/vidIQ.
 - **[NEWS-UPDATE.md](NEWS-UPDATE.md)** — trigger "Kør news-opdateringen." Refreshes the `events`
   and `data` arrays (Key Events + competitor cards) in `dashboard.js`. Every claim stays backed by
   a clickable public source in the card's `s` array.
@@ -93,6 +97,10 @@ Two trigger-phrase routines, each with a runbook doc:
   numbers off Social Blade and appends a new snapshot to `youtube-data.js` (keep old snapshots for
   history; newest is rendered). `monthlyViews` must be a real number — it sizes the bar and a
   negative value renders a red "down" bar; use `flag:"correction"` for one-time recount spikes.
+
+> **Stale-location note:** NEWS-UPDATE.md and YOUTUBE-UPDATE.md still say the `data`/`events` arrays
+> and `DASHBOARD_UPDATED` live in `index.html` — they were moved to `dashboard.js`. FULL-UPDATE.md
+> has the correct map.
 
 ## TinyJPG proxy (separate from the site)
 
