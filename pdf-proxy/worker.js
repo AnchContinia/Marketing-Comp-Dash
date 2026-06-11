@@ -69,7 +69,7 @@ export default {
     const authRes = await fetch("https://api.ilovepdf.com/v1/auth", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ public_key: env.ILOVEPDF_PUBLIC_KEY })
+      body: JSON.stringify({ public_key: env.ILOVEPDF_PUBLIC_KEY.trim() })
     });
     if (!authRes.ok) {
       const detail = await authRes.text();

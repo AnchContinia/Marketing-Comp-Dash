@@ -693,7 +693,7 @@ if(contentIdeasList){
    — the module then shows a friendly "configure backend" note instead of failing. */
 (function(){
   /* Paste the deployed pdf-proxy Worker URL here once it's live. */
-  var PROXY_PDF = "";
+  var PROXY_PDF = "https://pdf-compressor.anch-5c7.workers.dev";
 
   var MAX=5;
   var input=document.getElementById("pdfc-input");
