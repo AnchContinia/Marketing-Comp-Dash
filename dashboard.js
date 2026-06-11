@@ -860,7 +860,7 @@ if(contentIdeasList){
   var path=(location.pathname.split("/").pop()||"index.html");
   if(path==="") path="index.html";
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
-  var html='<div class="sb-brand"><div class="sb-logo"><img src="Assets/Hourglass.svg" alt=""></div><div><b>Continia</b><span>Marketing Hub</span></div></div><nav class="sb-nav">';
+  var html='<a class="sb-brand" href="index.html"><div class="sb-logo"><img src="Assets/Hourglass.svg" alt=""></div><div><b>Continia</b><span>Marketing Hub</span></div></a><nav class="sb-nav">';
   NAV.forEach(function(g){
     var cur=g.page===path;
     html+='<div class="sb-group'+(cur?" current":"")+'">';
