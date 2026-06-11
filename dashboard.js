@@ -687,6 +687,92 @@ if(contentIdeasList){
   if(clearBtn) clearBtn.addEventListener("click",function(){ listEl.innerHTML=""; items=[]; actions.hidden=true; totalEl.textContent=""; });
 })();
 
+/* ---- PDF compression: upload up to 5 PDFs, compress via the iLovePDF proxy ----
+   Mirrors the image-compression module but posts to a SEPARATE Cloudflare Worker
+   (see pdf-proxy/README.md). Leave PROXY_PDF empty until that Worker is deployed
+   — the module then shows a friendly "configure backend" note instead of failing. */
+(function(){
+  /* Paste the deployed pdf-proxy Worker URL here once it's live. */
+  var PROXY_PDF = "";
+
+  var MAX=5;
+  var input=document.getElementById("pdfc-input");
+  var drop=document.getElementById("pdfc-drop");
+  var listEl=document.getElementById("pdfc-list");
+  var actions=document.getElementById("pdfc-actions");
+  var totalEl=document.getElementById("pdfc-total");
+  var dlAll=document.getElementById("pdfc-dl-all");
+  var clearBtn=document.getElementById("pdfc-clear");
+  var config=document.getElementById("pdfc-config");
+  if(!input||!drop||!listEl) return;
+  var items=[];
+
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+  function fmt(n){ if(n==null||isNaN(n)) return "—"; if(n<1024) return n+" B"; if(n<1048576) return (n/1024).toFixed(1)+" KB"; return (n/1048576).toFixed(2)+" MB"; }
+  function dlName(name){ var i=name.lastIndexOf("."); return i>0 ? name.slice(0,i)+"-min"+name.slice(i) : name+"-min"; }
+  var PDF_ICON='<div class="cmp-thumb" style="display:grid;place-items:center"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><path d="M14 2v6h6"></path></svg></div>';
+
+  if(!PROXY_PDF && config){ config.innerHTML='⚙️ PDF backend not configured yet — deploy the iLovePDF proxy (see <b>pdf-proxy/README.md</b>) and paste its URL into <b>PROXY_PDF</b>.'; config.classList.add("cmp-err"); }
+
+  function handleFiles(fl){
+    var files=[].slice.call(fl).filter(function(f){return f.type==="application/pdf"||/\.pdf$/i.test(f.name);});
+    if(!files.length) return;
+    if(files.length>MAX) files=files.slice(0,MAX);
+    listEl.innerHTML=""; items=[]; totalEl.textContent="";
+    if(!PROXY_PDF){ actions.hidden=true; return; }
+    files.forEach(addItem);
+    actions.hidden=false;
+    items.forEach(compress);
+  }
+  function addItem(f){
+    var it={ file:f, name:f.name, inSize:f.size, outSize:null, url:null, status:"queued" };
+    var row=document.createElement("div"); row.className="cmp-row";
+    row.innerHTML=PDF_ICON+
+      '<div><div class="cmp-name">'+esc(f.name)+'</div>'+
+      '<div class="cmp-meta" data-meta>'+fmt(f.size)+' · <span class="cmp-spin"></span> compressing…</div></div>'+
+      '<div class="cmp-right" data-right></div>';
+    listEl.appendChild(row); it.row=row; items.push(it);
+  }
+  function compress(it){
+    fetch(PROXY_PDF,{ method:"POST", headers:{ "Content-Type":"application/pdf", "X-Filename":it.name }, body:it.file })
+      .then(function(res){
+        if(!res.ok) throw new Error("HTTP "+res.status);
+        var outS=parseInt(res.headers.get("X-Output-Size")||"0",10);
+        return res.blob().then(function(b){ return { blob:b, outS: outS||b.size }; });
+      })
+      .then(function(r){
+        it.outSize=r.outS; it.url=URL.createObjectURL(r.blob); it.status="done";
+        var saved = it.inSize ? Math.max(0, Math.round((1-(it.outSize/it.inSize))*100)) : 0;
+        it.row.querySelector("[data-meta]").innerHTML = fmt(it.inSize)+' → <b>'+fmt(it.outSize)+'</b> · <span class="save">−'+saved+'%</span>';
+        var a=document.createElement("a"); a.className="cmp-btn"; a.textContent="Download"; a.href=it.url; a.download=dlName(it.name);
+        it.row.querySelector("[data-right]").appendChild(a);
+        updateTotal();
+      })
+      .catch(function(e){
+        it.status="error";
+        var m=it.row.querySelector("[data-meta]"); if(m) m.innerHTML='<span class="cmp-err">Failed — '+esc(e.message||"error")+'</span>';
+      });
+  }
+  function updateTotal(){
+    var done=items.filter(function(it){return it.status==="done";});
+    if(!done.length){ totalEl.textContent=""; return; }
+    var inT=done.reduce(function(a,it){return a+it.inSize;},0);
+    var outT=done.reduce(function(a,it){return a+(it.outSize||0);},0);
+    var saved=inT?Math.round((1-(outT/inT))*100):0;
+    totalEl.textContent=done.length+" done · "+fmt(inT)+" → "+fmt(outT)+" (−"+saved+"%)";
+  }
+  input.addEventListener("change",function(){ handleFiles(input.files); input.value=""; });
+  drop.addEventListener("dragover",function(e){ e.preventDefault(); drop.classList.add("drag"); });
+  drop.addEventListener("dragleave",function(){ drop.classList.remove("drag"); });
+  drop.addEventListener("drop",function(e){ e.preventDefault(); drop.classList.remove("drag"); if(e.dataTransfer&&e.dataTransfer.files) handleFiles(e.dataTransfer.files); });
+  if(dlAll) dlAll.addEventListener("click",function(){
+    items.filter(function(it){return it.status==="done"&&it.url;}).forEach(function(it,k){
+      setTimeout(function(){ var a=document.createElement("a"); a.href=it.url; a.download=dlName(it.name); document.body.appendChild(a); a.click(); a.remove(); }, k*300);
+    });
+  });
+  if(clearBtn) clearBtn.addEventListener("click",function(){ listEl.innerHTML=""; items=[]; actions.hidden=true; totalEl.textContent=""; });
+})();
+
 /* ---- Left sidebar: built from one source, injected on every page ----
    Index is the home page; Content and Video are sub-pages. Each group header
    links to its page; sub-items link to anchors on that page (same-page when you
@@ -706,7 +792,8 @@ if(contentIdeasList){
       {id:"content-ideas", icon:"fa-pen-nib", label:"Content Ideas"},
       {id:"image-search", icon:"fa-images", label:"Linkedin image bank"},
       {id:"newsletter-bank", icon:"fa-envelope-open-text", label:"Newsletter image bank"},
-      {id:"image-compress", icon:"fa-compress", label:"Image compression"}
+      {id:"image-compress", icon:"fa-compress", label:"Image compression"},
+      {id:"pdf-compress", icon:"fa-file-pdf", label:"PDF compression"}
     ]},
     {page:"video.html", icon:"fa-clapperboard", label:"Video", items:[
       {id:"youtube", icon:"fa-chart-line", label:"YouTube Analysis"},

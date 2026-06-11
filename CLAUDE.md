@@ -102,3 +102,14 @@ The Content page's image-compression tool calls a **Cloudflare Worker** in
 block on purpose). The proxy URL is hardcoded as `var PROXY` in `dashboard.js`; the API key lives
 only as the encrypted Cloudflare secret `TINIFY_KEY`. See [tinyjpg-proxy/README.md](tinyjpg-proxy/README.md)
 for deploy steps.
+
+## PDF proxy (separate from the site)
+
+The Content page's **PDF compression** tool works the same way via a **second, independent**
+Cloudflare Worker in [pdf-proxy/](pdf-proxy/), which runs iLovePDF's
+auth → start → upload → process → download flow server-side. It is **not** deployed by the root
+`wrangler.toml` (that one only does tinyjpg-proxy) — deploy it manually with `wrangler deploy` from
+inside `pdf-proxy/`, which uses its own `pdf-proxy/wrangler.toml`. The proxy URL is hardcoded as
+`var PROXY_PDF` in `dashboard.js` (empty until the Worker is deployed → the module shows a friendly
+"configure backend" note); the iLovePDF key lives only as the encrypted secret `ILOVEPDF_PUBLIC_KEY`.
+See [pdf-proxy/README.md](pdf-proxy/README.md) for deploy steps.
