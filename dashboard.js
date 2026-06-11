@@ -295,6 +295,40 @@ if(contentIdeasList){
   }).join('');
 }
 
+/* ---- LinkedIn engagement comparison: rendered from linkedin-data.js ---- */
+(function(){
+  if(typeof window.LI_DATA==="undefined") return;
+  var D=window.LI_DATA;
+  if(!D.companies||!D.companies.length) return;
+  var tb=document.getElementById("li-body");
+  if(!tb) return;
+  function fmtDate(s){var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var p=String(s).split("-");return m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];}
+  var asof=document.getElementById("li-asof");
+  if(asof) asof.textContent=(D.source||"LinkedIn")+" · "+(D.windowLabel||"last 10 posts")+" · "+fmtDate(D.captured);
+  var rows=D.companies.map(function(co){
+    var posts=co.posts||[], n=posts.length, R=0,C=0,P=0;
+    posts.forEach(function(p){R+=p.r||0;C+=p.c||0;P+=p.rp||0;});
+    var total=R+C+P;
+    return {name:co.name, ours:!!co.ours, n:n, R:R, C:C, P:P, total:total, avg:n?total/n:0};
+  });
+  rows.sort(function(a,b){return b.total-a.total;});
+  var scale=Math.max.apply(null, rows.map(function(r){return r.total;}))||1;
+  tb.innerHTML=rows.map(function(r,i){
+    var w=r.total===0?0:Math.min(Math.max(r.total/scale*100,0.2),100);
+    var barCls=r.total===scale?"hot":"";
+    var ours=r.ours?' <span class="ours-badge">Ours</span>':"";
+    var trCls=r.ours?' class="ours"':"";
+    return '<tr'+trCls+'>'+
+      '<td>'+(i+1)+'</td>'+
+      '<td><div class="channel">'+r.name+ours+'</div><div class="handle">Ø '+r.avg.toFixed(1)+'/post · '+r.n+' posts</div></td>'+
+      '<td><div class="barline"><div class="bar"><i class="'+barCls+'" style="--w:'+w.toFixed(1)+'%"></i></div><span>'+r.total+'</span></div></td>'+
+      '<td class="num"><b>'+r.R+'</b></td>'+
+      '<td class="num">'+r.C+'</td>'+
+      '<td class="num">'+r.P+'</td>'+
+    '</tr>';
+  }).join("");
+})();
+
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
 (function(){
   if(typeof window.YT_DATA==="undefined") return;
@@ -793,6 +827,7 @@ if(contentIdeasList){
       {id:"insights", icon:"fa-lightbulb", label:"Strategic Insights"},
       {id:"events", icon:"fa-calendar-days", label:"Key Events"},
       {id:"content-ideas", icon:"fa-pen-nib", label:"Content Ideas"},
+      {id:"linkedin-compare", icon:"fa-thumbs-up", label:"LinkedIn Engagement"},
       {id:"image-search", icon:"fa-images", label:"Linkedin image bank"},
       {id:"newsletter-bank", icon:"fa-envelope-open-text", label:"Newsletter image bank"},
       {id:"compress", icon:"fa-compress", label:"Image & PDF compression"}

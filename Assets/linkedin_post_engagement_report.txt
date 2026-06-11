@@ -1,0 +1,118 @@
+LINKEDIN POST ENGAGEMENT REPORT
+8 companies - last 10 posts each
+Format per post: Title | Type | Reactions / Comments / Reposts
+Type = Image, Carousel, Video, Document, or Text/Link
+Captured: 11 June 2026
+Note: Posts appear in LinkedIn "Top" (most relevant) order, not strictly chronological. Fields with 0 are shown as 0.
+
+========================================
+TRUVIO
+========================================
+1. Webinar July 2 - product data as the key to AI-driven eCommerce (PIM) | Carousel | 12 / 2 / 1
+2. Community Summit NA Roadshow in Charlotte, June 9 | Carousel | 13 / 0 / 1
+3. 88% of manufacturers/wholesalers now sell online (B2B report) | Carousel | 22 / 0 / 4
+4. 5 years of reliable AP automation at recucare (ExFlow) | Carousel | 19 / 0 / 3
+5. Last chance: Truvio Talks Podcast with Parkfield Collective | Video | 1 / 0 / 0
+6. Agentic AI for Truvio Commerce Suite (Backend MCP Server) | Carousel | 34 / 0 / 5
+7. More than half of B2B revenue now comes from online orders | Carousel | 23 / 0 / 5
+8. Fomaco webinar: self-service spare parts portal (D365 F&O) | Carousel | 26 / 0 / 3
+9. Three industries, similar commerce challenges (3 webinars) | Carousel | 14 / 0 / 5
+10. The State of B2B eCommerce 2026 (Truvio + Sapio Research) | Image + Event | 13 / 0 / 3
+
+========================================
+CONTINIA SOFTWARE
+========================================
+1. From a full-time AP person to automation (The Reserves Network) | Image | 11 / 0 / 0
+2. Continia Elevate in Warsaw, Poland | Carousel | 56 / 1 / 0
+3. Kicking off Continia Elevate in the UK (London) | Video | 46 / 2 / 0
+4. We are ISO 27001 certified | Carousel | 170 / 2 / 1
+5. Bike to Work - we cycled to work in May | Image | 64 / 1 / 0
+6. 250 Continia solutions celebrated with Softvaerket | Carousel | 62 / 1 / 2
+7. Thanks for a great time at DynamicsMinds | Carousel | 88 / 2 / 0
+8. Continia is growing - swipe to find your next role | Document | 42 / 0 / 0
+9. That's a wrap on Directions ASIA | Carousel | 59 / 0 / 0
+10. Your BC setup is almost there - upgrade for free (Continia Finance) | Video | 34 / 0 / 4
+
+========================================
+EQUISYS
+========================================
+1. Hours away from webinar: Best AP Automation for Business Central | Carousel | 0 / 0 / 1
+2. Less than 24 hours to webinar (June 10) | Carousel | 2 / 0 / 3
+3. Thanks for stopping by at Directions North America 2026 | Image | 12 / 0 / 2
+4. Book a demo of Zetadocs Expenses | Carousel | 3 / 0 / 3
+5. Looking forward to AP Automation Comparison Showcase (shared from ERP Software Blog) | Carousel | 1 / 0 / 0
+6. Celebrating 15 years of the Equisys blog | Document | 3 / 0 / 1
+7. Amazing first day at Directions North America (booth E-32) | Carousel | 14 / 0 / 5
+8. We'll be in Orlando for Directions - visit booth E-32 | Carousel | 5 / 0 / 3
+9. Ready to streamline AP? Implementation tips | Document | 2 / 0 / 2
+10. Team meet-up in London (HMS Wellington) | Image | 5 / 0 / 0
+
+========================================
+MEDIUS
+========================================
+1. Charterhouse Holdings: 10,000+ invoices a year (customer case) | Image | 7 / 0 / 0
+2. How AI is revolutionizing manufacturing AP processes | Image | 9 / 0 / 2
+3. Improve AP without disrupting your ERP (guide) | Image | 8 / 0 / 1
+4. Daniel Ball on stage, Gartner Finance Symposium (autonomous finance) | Carousel | 55 / 0 / 3
+5. Webinar June 11 with Antaras: touchless AP in Infor LN | Carousel | 22 / 0 / 4
+6. Excited to work with Antaras on webinar (shared from Antaras) | Carousel | 2 / 1 / 1
+7. Got 30 minutes? June webinars | Document | 11 / 0 / 0
+8. Thanks for three days at DynamicsMinds 2026 | Carousel | 63 / 7 / 0
+9. Amazing day 1 at Gartner Finance Symposium/Xpo 2026 | Carousel | 94 / 0 / 5
+10. Medius reached 30,000 LinkedIn followers | Carousel | 75 / 0 / 0
+
+========================================
+QVALIA
+========================================
+1. E-invoicing mandates are becoming infrastructure decisions (Slovakia) | Carousel | 0 / 0 / 0
+2. New Billentis report on the global e-invoicing market | Carousel | 4 / 0 / 0
+3. Slovakia's eFaktura framework (Peppol BIS) | Carousel | 20 / 0 / 1
+4. Qvalia certified for Slovakia e-invoicing (eFaktura) | Carousel | 29 / 1 / 5
+5. Qvalia ISO 22301:2019 certified | Carousel | 4 / 0 / 0
+6. Qvalia now listed in Cloud Security Alliance STAR Registry | Carousel | 6 / 1 / 0
+7. Thanks for joining the IDP webinar (Intelligent Document Processing) | Image | 29 / 3 / 3
+8. AI in finance through the decades (1940s to today) | Image | 7 / 0 / 0
+9. Qvalia now available on iPhone and Android (app) | Carousel | 42 / 5 / 5
+10. Summer reading no 4: The definitive guide to Peppol | Document | 7 / 0 / 0
+
+========================================
+AMC BANKING
+========================================
+1. Thanks to everybody who showed up at the reception in our new building | Carousel | 28 / 1 / 0
+2. AMC operates under Service Provider Agreements with banks | Image | 9 / 0 / 0
+3. We're moving - join us for a reception (AMC Banking Reception) | Event | 12 / 0 / 1
+4. New app to simplify cash management in D365 Business Central | Document | 4 / 0 / 0
+5. AMC webinar: new AMC Banking app for D365 BC | Video | 6 / 0 / 0
+6. Bank integration: Myth vs reality | Video | 10 / 0 / 3
+7. AMC is expanding - looking for a Java developer | Article/Link | 12 / 0 / 3
+8. Still uploading payment files manually? (direct bank integration) | Article/Link | 6 / 0 / 0
+9. AMC Banking webinar series: Simplifying Cash Management in D365 | Video | 10 / 0 / 1
+10. AMC Webinar: Intelligent cash sweeping | Video | 11 / 0 / 0
+
+========================================
+B2BROUTER
+========================================
+1. Legal SaaS platforms in France: 2026 is a product deadline (FR) | Document | 2 / 0 / 0
+2. B2Brouter at ERP Summit Spain (repost of Sergio Ramon Ruiz Mahillo) | Carousel | 33 / 0 / 2
+3. Germany's B2B e-invoicing roadmap is already moving | Document | 7 / 2 / 1
+4. Ley Crea y Crece vs VeriFactu - are they the same? | Document | 7 / 0 / 1
+5. In 8 days: Peppol Conference Europe 2026 in Brussels | Text/Link | 5 / 0 / 2
+6. Germany's e-invoicing roadmap (shared from Capde) | Carousel | 0 / 0 / 0
+7. Tomorrow: webinar on Ley Crea y Crece (Camara de Comercio Tui) | Carousel | 3 / 0 / 0
+8. Upcoming webinars June 2026 (API + Ley Crea y Crece, Spanish) | Carousel | 6 / 0 / 2
+9. Upcoming webinars June 2026 (B2Brouter API, English) | Carousel | 6 / 0 / 2
+10. It's tomorrow! Webinar on VeriFactu, May 28 | Carousel | 7 / 0 / 2
+
+========================================
+DOOAP
+========================================
+1. Dynamics community comes to Toronto (DUG Regional) | Carousel | 14 / 0 / 0
+2. Just think of the possibilities with Dooap Studio (shared from Anna Tujunen) | Carousel | 9 / 0 / 1
+3. Dooap Unleashed: Run With Us - Eftsure | Video | 30 / 2 / 1
+4. Trends from DynamicsCon & DynamicsMinds 2026 (blog) | Carousel | 19 / 0 / 0
+5. This is what agentic AP automation looks like (Dooap Studio) | Video | 15 / 0 / 5
+6. That's a wrap on DynamicsMinds (Slovenia) | Carousel | 65 / 4 / 0
+7. Let Dooap help herd your AP with AI (booth 207) | Image | 57 / 1 / 2
+8. Set up and ready for "Herd your AP with AI Agents" | Carousel | 27 / 2 / 3
+9. Run With Us on Dooap Unleashed - first up: Corpay | Video | 69 / 10 / 3
+10. Heading to DynamicsMinds 2026 | Carousel | 30 / 0 / 1
