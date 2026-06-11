@@ -1,14 +1,14 @@
 const C = {ai:"#8ff8ff", cons:"#5f9e8d", steady:"#983EAE"};
 const data = [
- {n:"ExFlow", o:"SignUp Software · Stockholm", stance:"cons", sl:"Expanding (acquisition)", prox:"High",
+ {n:"ExFlow", o:"Truvio (formerly SignUp Software) · Stockholm", stance:"cons", sl:"Rebranded → Truvio + AI", prox:"High",
   cat:"AP automation · D365 F&O + BC",
-  head:"Acquisition of DynamicWeb pulls them beyond pure AP; new F&O version with more ML.",
-  rel:"ExFlow AP for D365 F&O, Jan 2026 — ML \u201cPredictions\u201d can now be applied at invoice import.",
-  str:"Acquisition of DynamicWeb (e-commerce/PIM). Platform/docs rebranded as \u201cTruvio\u201d.",
+  head:"Rebrand to Truvio complete — ExFlow, Axtension, DynamicWeb and SKSoft unified into one Microsoft-native portfolio, now shipping its own AI.",
+  rel:"June 2026: AP Automation (powered by ExFlow) 2.19.0 for D365 F&O adds “TruvioSense Coding & Approval” — AI/LLM coding suggestions from previously approved invoices.",
+  str:"Rebranded SignUp Software → Truvio, unifying ExFlow/Axtension/DynamicWeb/SKSoft into one D365-native suite (beyond pure AP).",
   pos:"Fully embedded/native in Dynamics — no third-party system.",
-  ai:"ML-driven predictions in the AP flow (coding, vendor setup).",
+  ai:"TruvioSense adds LLM-based invoice interpretation + coding suggestions on top of the existing ML Predictions.",
   sc:"150+ employees · 1,300+ organisations",
-  s:[["Truvio news","https://docs.signupsoftware.com/finance-operations/docs/user-manual/whats-new-and-planned/news"],["SignUp news","https://www.signupsoftware.com/resources/news/"]]},
+  s:[["Truvio: What's New","https://truvio.com/whats-new"],["Rebrand","https://enterprisesoftwareexpress.com/signup-software-signs-up-for-a-new-name/"],["Release notes","https://docs.signupsoftware.com/finance-operations/docs/user-manual/whats-new-and-planned/release-notes"]]},
 
  {n:"Dooap", o:"Dooap · Austin (Pagero)", stance:"ai", sl:"AI-aggressive", prox:"High",
   cat:"AP automation · D365 Finance (F&O)",
@@ -63,12 +63,12 @@ const data = [
  {n:"Stampli", o:"Stampli · Mountain View", stance:"ai", sl:"AI veteran", prox:"Low",
   cat:"AP automation (invoice-centric) · 70+ ERPs",
   head:"AI (\u201cBilly the Bot\u201d) at the core for nearly 10 years; raised capital from Blackstone.",
-  rel:"$61M from Blackstone (~$148M total raised); Stampli Card / Direct Pay; ongoing Billy improvements.",
+  rel:"Stampli Deep Finance (Mar 2026) turns invoice data into consultant-grade executive spend intelligence; Stampli Card / Direct Pay; $61M Blackstone Series D (~$148M total).",
   str:"Invoice-centric communication + \u201cAI employee\u201d.",
   pos:"Fast implementation (weeks, not months); approvers need no ERP access.",
   ai:"Positions itself on \u201cproven\u201d AI for capture, coding, routing, duplicates and fraud.",
   sc:"1,600+ customers · $80–85B invoices/year",
-  s:[["Stampli AP","https://www.stampli.com/ap-automation/"],["Blackstone funding","https://financialit.net/news/fundraising-news/stampli-secures-61m-advanced-ai-powered-ap-automation"]]},
+  s:[["Stampli AP","https://www.stampli.com/ap-automation/"],["Deep Finance","https://www.prnewswire.com/news-releases/stampli-launches-deep-finance-turning-invoice-data-into-executive-spend-intelligence-302729234.html"],["Blackstone funding","https://financialit.net/news/fundraising-news/stampli-secures-61m-advanced-ai-powered-ap-automation"]]},
 
  {n:"AvidXchange", o:"TPG + Corpay · Charlotte", stance:"cons", sl:"Acquired (payments)", prox:"Low",
   cat:"AP + payment automation · mid-market",
@@ -93,12 +93,12 @@ const data = [
  {n:"Tungsten Automation", o:"formerly Kofax · Irvine", stance:"ai", sl:"AI catch-up", prox:"Low",
   cat:"IDP / RPA + AP (InvoiceAgility)",
   head:"Rebranded from Kofax; betting hard on agentic AI to close the gap.",
-  rel:"TotalAgility 2026.2 (preview Apr 2026) with agentic AI features; InvoiceAgility for AP.",
+  rel:"TotalAgility now GA in three tiers (Standard/Advanced/Enterprise) with agentic AI, Quick AI Agents and multi-agent orchestration; quarterly releases from 2026; InvoiceAgility for AP.",
   str:"Jan 2026: new executives incl. first Chief AI Officer; \u201cAI-first\u201d repositioning.",
   pos:"Broad intelligent automation (document/workflow) — large IDP revenue base.",
-  ai:"Agentic AI on the way; analysts: was 9–12 months behind, now catching up.",
+  ai:"Agentic AI now shipping (multi-agent orchestration); analysts said it was 9–12 months behind — now closing the gap.",
   sc:"~40 years of history · 70+ countries",
-  s:[["Agentic AI hires","https://www.tungstenautomation.com/about/press-releases/2026/tungsten-automation-invests-in-innovation-and-agentic-ai-with-key-executive-hires"],["Deep Analysis","https://www.deep-analysis.net/boring-ai-how-tungsten-plans-to-move-beyond-its-idp-roots/"]]},
+  s:[["TotalAgility platform","https://www.tungstenautomation.com/products/totalagility/release-highlights"],["Agentic AI hires","https://www.tungstenautomation.com/about/press-releases/2026/tungsten-automation-invests-in-innovation-and-agentic-ai-with-key-executive-hires"],["Deep Analysis","https://www.deep-analysis.net/boring-ai-how-tungsten-plans-to-move-beyond-its-idp-roots/"]]},
 
  {n:"onPhase", o:"formerly DocuPhase · Tampa", stance:"cons", sl:"Acquisitive + rebrand", prox:"Low",
   cat:"AP + payments + document management",
@@ -140,15 +140,15 @@ const data = [
   sc:"Built into Microsoft Dynamics 365 Business Central",
   s:[["Microsoft blog","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"]]},
 
- {n:"Lasernet", o:"Formpipe · DK/UK", stance:"steady", sl:"BC-native · output", prox:"High",
+ {n:"Lasernet", o:"Lasernet Group · DK/UK", stance:"steady", sl:"BC-native · output", prox:"High",
   cat:"Document output & e-invoicing · BC + F&O",
-  head:"BC-native document/output engine — directly competes with Continia Document Output.",
-  rel:"New Lasernet Connector for BC (2025) with 20+ report types; Azure AI for mapping; broad e-invoicing compliance.",
-  str:"Low-code document design and distribution inside BC, without a developer; central hub also outside Dynamics.",
+  head:"Now independent (split from Formpipe, renamed Lasernet Group in 2026) — BC-native output engine competing with Continia Document Output.",
+  rel:"Lasernet for BC live on AppSource (20+ report types, Azure AI mapping); new BC product offering planned Q4 2026; named Temenos Exchange Partner of the Year 2026; joined the IFS partner network.",
+  str:"De-merged from Formpipe into a standalone, listed Lasernet Group focused solely on the Lasernet platform; doubling down on BC/Dynamics.",
   pos:"Embedded in BC — design, send and archive documents without leaving the ERP.",
   ai:"Azure AI for data mapping; primarily strong on output/compliance rather than AI marketing.",
   sc:"20+ years of document expertise · global",
-  s:[["Lasernet for BC","https://www.formpipe.com/en/erp-banking/software/lasernet/business-central/"],["BC connector live","https://www.formpipe.com/news-blogs/lasernet-for-bc-live"]]},
+  s:[["Lasernet Group","https://www.lasernetgroup.com/news-blogs/bc-connector-now-on-appsource"],["Formpipe/Lasernet split","https://www.formpipe.com/news-formpipe-lasernet-split"]]},
 
  {n:"AMC Banking", o:"AMC-Consult · Denmark", stance:"steady", sl:"BC-native · banking", prox:"High",
   cat:"Bank integration & payments · BC + F&O",
@@ -173,12 +173,12 @@ const data = [
  {n:"Pagero", o:"Thomson Reuters", stance:"cons", sl:"TR-owned · e-invoicing", prox:"High",
   cat:"E-invoicing network & compliance · BC connector",
   head:"Global e-invoicing network, now owned by Thomson Reuters — one of BC's built-in E-Document connectors.",
-  rel:"ONESOURCE Pagero (e-invoicing + tax compliance); embedded solution for Oracle (2026); global Deloitte alliance (Jan 2026).",
+  rel:"ONESOURCE Pagero (e-invoicing + tax); embedded e-invoicing for Oracle Fusion (2026); Deloitte global alliance (Jan 2026); pre-approved ASP for the UAE mandate (from Jul 2026); passed the EU ViDA Peppol 5-corner pilot.",
   str:"Acquired by Thomson Reuters (2024) and merged with ONESOURCE tax; \u201ctwo-step\u201d format conversion globally.",
   pos:"Open, ERP-agnostic network; BC extension sends e-/PDF/print invoice via one connection.",
   ai:"Focus on compliance/CTC mandates rather than AI marketing.",
   sc:"14M+ businesses · 100+ networks · IDC leader",
-  s:[["Pagero for BC","https://europe.thomsonreuters.com/pagero-network/system-connectivity/microsoft"],["Deloitte-alliance","https://www.thomsonreuters.com/en/press-releases/2026/january/deloitte-and-thomson-reuters-launch-a-strategic-alliance-to-support-end-to-end-global-e-invoicing-and-e-reporting-for-organizations"]]},
+  s:[["Pagero for BC","https://europe.thomsonreuters.com/pagero-network/system-connectivity/microsoft"],["UAE ASP","https://europe.thomsonreuters.com/newsroom/pagero-part-of-thomson-reuters-listed-as-pre-approved-e-invoicing-service-provider-in-the-uae"],["Deloitte-alliance","https://www.thomsonreuters.com/en/press-releases/2026/january/deloitte-and-thomson-reuters-launch-a-strategic-alliance-to-support-end-to-end-global-e-invoicing-and-e-reporting-for-organizations"]]},
 
  {n:"B2Brouter", o:"B2Brouter Global · ES", stance:"steady", sl:"Peppol · BC connector", prox:"High",
   cat:"Peppol / e-invoicing access point · BC connector",
@@ -203,7 +203,9 @@ const data = [
 
 const events = [
  {w:"Sept 2026 →", c:"steady", t:"<b>France B2B e-invoicing</b> mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027."},
+ {w:"Jul 1, 2026", c:"steady", t:"<b>UAE e-invoicing</b> rollout begins for large businesses (revenue ≥ AED 50M); <b>Pagero</b> is listed as a pre-approved accredited service provider."},
  {w:"June 2, 2026", c:"ai", t:"<b>Microsoft Build 2026</b> reframes the PC as an agentic OS — Windows Agent Framework open-sourced, Office Agent Mode runs agents natively."},
+ {w:"June 2026", c:"ai", t:"<b>Truvio</b> (formerly SignUp Software/ExFlow) completes its rebrand and ships TruvioSense Coding & Approval — AI/LLM invoice-coding suggestions in D365 F&O."},
  {w:"May 11, 2026", c:"ai", t:"<b>Dooap</b> launches Dooap Studio — agentic AI platform."},
  {w:"May 13, 2026", c:"steady", t:"<b>Zetadocs</b> Expenses May update (cloud, browser, iOS, Android)."},
  {w:"Apr 30, 2026", c:"ai", t:"<b>BC 2026 Wave 1</b> ships two GA AI agents and MCP Server support — custom AL agents can now be built natively inside Business Central."},
@@ -211,6 +213,7 @@ const events = [
  {w:"Apr 28, 2026", c:"ai", t:"<b>Microsoft</b> introduces Expense Agent native to Business Central — AI-expense from the platform owner itself."},
  {w:"Apr 14, 2026", c:"ai", t:"<b>Forrester</b> publishes Top Agentic AI Use Cases for AP 2026 — warns that agentic branding is widespread but real autonomy is rare; evaluators should prioritise production metrics over demos."},
  {w:"Apr 2026", c:"ai", t:"<b>Tipalti</b> expands agentic AI to include tariff-refund processing."},
+ {w:"Mar 31, 2026", c:"ai", t:"<b>Stampli</b> launches Deep Finance — turning invoice data into consultant-grade executive spend intelligence."},
  {w:"Early 2026", c:"ai", t:"<b>Medius</b> named Market Leader + Elite Performer for AI Innovation (Ardent Partners 2026)."},
  {w:"Jan 22, 2026", c:"cons", t:"<b>Pagero</b> (Thomson Reuters) and Deloitte launch global e-invoicing alliance."},
  {w:"Jan 21, 2026", c:"cons", t:"<b>onPhase</b> (DocuPhase) acquires enterprise AP player iPayables."},
@@ -851,7 +854,7 @@ if(contentIdeasList){
    Both the topbar and the footer read from it, so they can never drift apart.
    The YouTube/News update routine sets this to today's date on every refresh. */
 (function(){
-  var DASHBOARD_UPDATED = "2026-06-08";
+  var DASHBOARD_UPDATED = "2026-06-11";
   var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var p=String(DASHBOARD_UPDATED).split("-");
   var pretty=m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];
