@@ -37,11 +37,23 @@ don't anymore.** Current locations:
 
 ## The two-kinds-of-dates rule (never break this)
 
-1. **Content/event dates** — the `events` `w` field and any date inside card
+There are **refresh dates** (which all move to the run date) and **historical
+dates** (which never move):
+
+**Refresh dates → set to the run date** (the day "Opdater alt" is executed):
+1. **`DASHBOARD_UPDATED`** in `dashboard.js` — the "last refreshed" stamp that
+   drives both the topbar "Updated …" and the footer date. Set to today
+   (`YYYY-MM-DD`), once, at the end of the run (step 6).
+2. **The "Period" pill** in the hero — `Period: 2025-<Mon> <Year>` — on **all
+   three** pages. Bump its **end month + year** to the run month/year (e.g. a
+   June 2026 run → `Period: 2025-Jun 2026`). Keep the `2025-` start; the pilot
+   began in 2025. Use the same 3-letter month style already there (`Jun`, `Jul`…).
+
+**Historical dates → never move:**
+3. **Content/event dates** — the `events` `w` field and any date inside card
    text — are **real historical dates**. Use the date the thing actually
-   happened. **Never** bump them to today.
-2. **`DASHBOARD_UPDATED`** is the "last refreshed" stamp. **Set it to today**,
-   once, at the end of the full run (step 5).
+   happened. **Never** bump these to the run date; doing so would destroy the
+   timeline. "All dates move to today" means the *refresh* dates above, not these.
 
 ---
 
@@ -119,19 +131,23 @@ Then **`git add` the actual `Assets/<folder>` images too** — not just the inde
 JS — or new bank images render broken (the index lists files that aren't in the
 repo). If an index file is unchanged it just produces no diff; that's fine.
 
-## Step 6 — Stamp the date, commit once, push once
+## Step 6 — Stamp the dates, commit once, push once
 
 1. Set `DASHBOARD_UPDATED` in `dashboard.js` to **today's date** (`YYYY-MM-DD`).
    Both the topbar "Updated …" and the footer read from it.
-2. **Bump cache-busts** if a versioned file changed: editing `dashboard.js`
+2. **Bump the "Period" pill** on all three pages (`index.html`, `content.html`,
+   `video.html`): `Period: 2025-<Mon> <Year>` → the run month/year, e.g.
+   `Period: 2025-Jun 2026`. (Leave the `2025-` start untouched.) These three must
+   stay in sync — the hero is shared.
+3. **Bump cache-busts** if a versioned file changed: editing `dashboard.js`
    means bumping `dashboard.js?v=…` on **all three** pages
    (`index.html`, `content.html`, `video.html`) so browsers don't serve a stale
    copy. Same rule for any `*-images.js` you regenerated.
-3. Commit everything in one go and push:
+4. Commit everything in one go and push:
    ```bash
    git add -A && git commit -m "Opdater alt: news + competitor sweep + YouTube + vidIQ + image banks" && git push origin main
    ```
-4. GitHub Pages is live within ~1 min. Confirm with the new commit hash on
+5. GitHub Pages is live within ~1 min. Confirm with the new commit hash on
    `origin/main`.
 
 > If the push fails with an auth error, the keychain token has expired — see the
