@@ -62,7 +62,7 @@
 #video-ideas>.section{display:flex;flex-direction:column}
 #video-ideas>.section>.footnote{margin-top:auto}
 .vi-stack{display:flex;flex-direction:column;gap:8px;padding:14px 18px 16px;flex:1}
-.vi-stack>.ci-item{flex:1 1 0;display:flex;flex-direction:column;justify-content:center}
+.vi-stack>.ci-item{flex:1 0 auto;display:flex;flex-direction:column;justify-content:center}
 .ci-row-static{cursor:default}
 .vi-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:20px 18px;display:flex;flex-direction:column;gap:0}
 .vi-pct{font-size:40px;font-weight:850;color:var(--ink);line-height:1;margin-bottom:14px}
