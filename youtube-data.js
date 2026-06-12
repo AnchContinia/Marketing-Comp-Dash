@@ -180,6 +180,21 @@ window.YT_DATA = {
         score: 63,
         title: "Continia vs native BC AI agents (2026 Wave 1)",
         desc: "A comparison of what Continia automates versus BC's new GA AI agents, helping AP teams decide what to hand to which tool. Rides the AI theme but is more niche and dates faster."
+      },
+      {
+        score: 78,
+        title: "Document Capture deep-dive: OCR templates that actually stick",
+        desc: "A hands-on build of capture templates for messy real-world invoices — multi-line, multi-currency, recurring vendors. Plays directly to the channel's proven product-demo strength."
+      },
+      {
+        score: 70,
+        title: "Building your approval workflow from scratch",
+        desc: "A practical setup tour of the Continia approval portal — routing rules, delegation, mobile sign-off and the audit trail behind each step. Evergreen onboarding content with steady search demand."
+      },
+      {
+        score: 67,
+        title: "Why BC-native beats a bolt-on AP tool",
+        desc: "A grounded explainer on what 'embedded in Business Central' really buys finance teams versus payment-owned rivals — no data sync, one ledger, one audit trail. Reinforces the neutral, focused positioning."
       }
     ],
     shortForm: [
@@ -197,6 +212,21 @@ window.YT_DATA = {
         score: 66,
         title: "AI is helpful, but your AP flow still matters",
         desc: "A fast myth-vs-reality clip: AI can suggest and extract, but clean approval rules and audit trails are what make AP automation production-ready."
+      },
+      {
+        score: 75,
+        title: "Approve an invoice from your phone in 10 seconds",
+        desc: "A single-take mobile screen-grab of a manager approving on the go — no laptop, no VPN, no chasing. Punchy proof point that demos the value instantly."
+      },
+      {
+        score: 69,
+        title: "3 invoice fields OCR should be reading for you",
+        desc: "A quick tip clip pointing at vendor, amount and due date being captured automatically instead of keyed by hand. Educational, repurposable and easy to series."
+      },
+      {
+        score: 64,
+        title: "The hidden cost of one lost invoice",
+        desc: "A snappy stat-led hook on duplicate payments and late fees, landing on Continia's audit trail as the fix. Pattern-interrupt opener built for the LinkedIn feed."
       }
     ]
   }
