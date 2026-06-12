@@ -195,21 +195,21 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 .seo-score b{font-size:30px;font-weight:850;color:var(--navy);line-height:1}
 .seo-score span{font-size:13px;color:var(--muted)}
 .seo-counts{display:flex;gap:12px;font-weight:750}
-.seo-c.err{color:#7c3aed}
-.seo-c.warn{color:#ca8a04}
-.seo-c.info{color:#0284c7}
+.seo-c.err{color:#983eae}
+.seo-c.warn{color:#a87c12}
+.seo-c.info{color:#052975}
 .seo-scanned{font-size:12px;color:var(--muted);margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:50%}
 .seo-list{display:grid;gap:8px;margin-top:10px}
 .seo-item{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;border:1px solid var(--line);border-radius:8px;padding:12px 14px;background:#fff}
-.seo-item.sev-error{background:#f6f3ff}
-.seo-item.sev-warn{background:#fefce8}
-.seo-item.sev-info{background:#f0f9ff}
-.seo-item.sev-good{background:#ecfdf5}
+.seo-item.sev-error{background:#f5edfa}
+.seo-item.sev-warn{background:#fff7e3}
+.seo-item.sev-info{background:#def5ff}
+.seo-item.sev-good{background:#eef5f2}
 .seo-sev{font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
-.sev-error .seo-sev{color:#7c3aed}
-.sev-warn .seo-sev{color:#ca8a04}
-.sev-info .seo-sev{color:#0284c7}
-.sev-good .seo-sev{color:#059669}
+.sev-error .seo-sev{color:#983eae}
+.sev-warn .seo-sev{color:#a87c12}
+.sev-info .seo-sev{color:#052975}
+.sev-good .seo-sev{color:#4f8576}
 .seo-t{font-size:14px;font-weight:800;color:var(--ink)}
 .seo-i{font-size:13px;color:var(--muted);margin-top:3px}
 .seo-f{font-size:13px;color:#334155;margin-top:5px}
