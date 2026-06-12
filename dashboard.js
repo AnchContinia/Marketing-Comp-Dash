@@ -227,31 +227,36 @@ const events = [
 ];
 
 const contentIdeas = [
- {type:"AI narrative", score:88,
+ {type:"AI narrative", score:88, fmt:["Blog","Webpage","Social"],
   title:"Can AI approve invoices yet? The AP reality check for Business Central",
   tease:"Use competitor AI claims as the hook, then show where governance, audit trails and BC-native workflows still matter.",
-  reason:"Dooap, Medius and Microsoft are all pushing the agentic AI story hard. Continia can own a more credible angle: AI is valuable, but production AP still depends on traceability, approval control, exception handling and native Business Central context.",
-  s:[["Dooap Studio","https://www.prnewswire.com/news-releases/dooap-inc-launches-dooap-studio-putting-agentic-ap-automation-directly-in-the-hands-of-finance-teams-302768534.html"],["Medius AI Advantage","https://www.medius.com/ai-innovation/medius-ai-advantage/"],["Microsoft Expense Agent","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"],["Continia Document Capture","https://www.continia.com/solutions/document-capture/"]]},
- {type:"E-invoicing", score:86,
-  title:"Peppol panic map: what BC teams must do before France 2026",
-  tease:"Turn the mandate pressure into a practical Business Central checklist with Continia Delivery Network as the answer.",
-  reason:"E-invoicing is shifting from optional efficiency project to compliance risk. Competitors and connector players are crowding the BC conversation, so a clear mandate-readiness guide gives Continia a timely, searchable content asset.",
-  s:[["Continia Delivery Network","https://www.continia.com/use-cases/continia-delivery-network/"],["Built-in e-invoicing access","https://www.continia.com/news/built-in-access-to-e-invoicing-with-continia/"],["Microsoft E-Docs FAQ","https://learn.microsoft.com/en-us/dynamics365/business-central/faq-electronic-invoicing"],["B2Brouter for Dynamics","https://www.b2brouter.net/global/e-invoicing-microsoft-dynamics/"]]},
- {type:"Product demo", score:82,
+  reason:"Dooap, Medius, Tungsten (TotalAgility 2026.2) and even Microsoft are all pushing the agentic AI story hard — and Truvio's new TruvioSense now adds LLM invoice-coding suggestions on top of ML. Continia can own a more credible angle: AI is valuable, but production AP still depends on traceability, approval control, exception handling and native Business Central context.",
+  s:[["Dooap Studio","https://www.prnewswire.com/news-releases/dooap-inc-launches-dooap-studio-putting-agentic-ap-automation-directly-in-the-hands-of-finance-teams-302768534.html"],["Truvio: What's New","https://truvio.com/whats-new"],["Microsoft Expense Agent","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"],["Continia Document Capture","https://www.continia.com/solutions/document-capture/"]]},
+ {type:"E-invoicing", score:86, fmt:["Blog","Webpage","Newsletter"],
+  title:"Mandate map 2026: France, the UAE and ViDA — what BC teams must do",
+  tease:"Turn the wave of new mandates into a practical Business Central readiness checklist with Continia Delivery Network as the answer.",
+  reason:"E-invoicing is going global and compliance-critical at once: France's mandate hits large and mid-size firms in September 2026, the UAE begins its rollout on 1 July 2026 (with accredited providers like Pagero already listed), and the EU's ViDA reforms loom behind them. A clear, BC-focused mandate-readiness guide is a timely, searchable asset that positions Continia against the connector crowd.",
+  s:[["Continia Delivery Network","https://www.continia.com/use-cases/continia-delivery-network/"],["Built-in e-invoicing access","https://www.continia.com/news/built-in-access-to-e-invoicing-with-continia/"],["UAE pre-approved providers","https://europe.thomsonreuters.com/newsroom/pagero-part-of-thomson-reuters-listed-as-pre-approved-e-invoicing-service-provider-in-the-uae"],["Microsoft E-Docs FAQ","https://learn.microsoft.com/en-us/dynamics365/business-central/faq-electronic-invoicing"]]},
+ {type:"Product demo", score:82, fmt:["Video","Webpage","Webinar"],
   title:"From inbox to archive: the 5-step invoice flow inside Business Central",
   tease:"A concrete walkthrough for teams comparing AP automation options and trying to picture the real workflow.",
   reason:"The strongest Continia fit is still practical product education. This idea converts existing AP automation pages into a clean demo narrative: import, OCR, register, approve and archive, with the BC-native flow as the proof point.",
   s:[["AP automation in 5 steps","https://www.continia.com/use-cases/ap-automation-in-5-simple-steps/"],["Document Capture solution","https://www.continia.com/solutions/document-capture/"],["Document Capture docs","https://docs.continia.com/en-us/continia-document-capture/"],["Business functionality","https://docs.continia.com/en-us/continia-document-capture/getting-started/business-functionality"]]},
- {type:"Positioning", score:76,
+ {type:"Analytics", score:79, fmt:["Blog","Social","Newsletter"],
+  title:"Beyond approval: turning Business Central invoice data into spend intelligence",
+  tease:"Competitors now market captured AP data as executive insight — show how BC + Continia data already powers spend visibility, natively.",
+  reason:"Stampli's Deep Finance (Mar 2026) reframes captured invoice data as 'consultant-grade executive spend intelligence' — a sign the category is moving from processing to insight (and Stampli just raised $61M from Blackstone to push it). Continia can meet this by showing how Document Capture data lives natively in Business Central and feeds dimensions, reporting and Power BI — insight without leaving the ERP.",
+  s:[["Stampli Deep Finance","https://www.prnewswire.com/news-releases/stampli-launches-deep-finance-turning-invoice-data-into-executive-spend-intelligence-302729234.html"],["Stampli $61M raise","https://financialit.net/news/fundraising-news/stampli-secures-61m-advanced-ai-powered-ap-automation"],["Continia Document Capture","https://www.continia.com/solutions/document-capture/"],["Document Capture docs","https://docs.continia.com/en-us/continia-document-capture/"]]},
+ {type:"Positioning", score:76, fmt:["Blog","Social"],
   title:"Payment-owned AP platforms vs BC-native independence",
   tease:"Explain why ownership and payment-rail incentives should matter when finance teams choose AP automation.",
-  reason:"AvidXchange, MineralTree and Tipalti show how much of the AP category is moving toward payment monetisation and financial networks. Continia can contrast that with a focused Business Central-native position without sounding defensive.",
-  s:[["AvidXchange acquisition","https://www.avidxchange.com/press-releases/tpg-corpay-complete-acquisition-of-avidxchange/"],["Global Payments + MineralTree","https://investors.globalpayments.com/news-events/press-releases/detail/23/global-payments-agrees-to-acquire-mineraltree-a-leader-in"],["Tipalti AI agents","https://tipalti.com/accounts-payable-software/finance-ai/"],["Continia Document Capture","https://www.continia.com/solutions/document-capture/"]]},
- {type:"Document Output", score:73,
+  reason:"AvidXchange, MineralTree and Tipalti show how much of the AP category is moving toward payment monetisation and financial networks, while Stampli's fresh $61M Blackstone round funds more of the same. Continia can contrast that with a focused Business Central-native position without sounding defensive.",
+  s:[["AvidXchange acquisition","https://www.avidxchange.com/press-releases/tpg-corpay-complete-acquisition-of-avidxchange/"],["Global Payments + MineralTree","https://investors.globalpayments.com/news-events/press-releases/detail/23/global-payments-agrees-to-acquire-mineraltree-a-leader-in"],["Stampli $61M raise","https://financialit.net/news/fundraising-news/stampli-secures-61m-advanced-ai-powered-ap-automation"],["Continia Document Capture","https://www.continia.com/solutions/document-capture/"]]},
+ {type:"Document Output", score:73, fmt:["Blog","Webpage"],
   title:"The hidden risk after invoice approval: output, delivery and audit trail",
   tease:"Broaden the story beyond AP capture by showing what can still go wrong after documents leave Business Central.",
-  reason:"Lasernet is visible in the BC-native output space, while Continia Document Output has strong material around automated distribution, protected PDFs, eIDAS and AI-powered translations. This is a useful adjacent content pillar for buyers thinking beyond invoice intake.",
-  s:[["Continia Document Output","https://www.continia.com/solutions/document-output/"],["Online access docs","https://docs.continia.com/en-us/continia-document-output/development-and-administration/online/overview"],["Lasernet for BC","https://www.formpipe.com/en/erp-banking/software/lasernet/business-central/"],["Output Profiles","https://docs.continia.com/en-us/continia-document-output/business-functionality/general/output-profiles/"]]}
+  reason:"Lasernet — now independent as Lasernet Group and live on BC AppSource with Azure AI mapping — is visible in the BC-native output space, while Continia Document Output has strong material around automated distribution, protected PDFs, eIDAS and AI-powered translations. This is a useful adjacent content pillar for buyers thinking beyond invoice intake.",
+  s:[["Continia Document Output","https://www.continia.com/solutions/document-output/"],["Online access docs","https://docs.continia.com/en-us/continia-document-output/development-and-administration/online/overview"],["Lasernet Group on AppSource","https://www.lasernetgroup.com/news-blogs/bc-connector-now-on-appsource"],["Output Profiles","https://docs.continia.com/en-us/continia-document-output/business-functionality/general/output-profiles/"]]}
 ];
 
 const cardsEl=document.getElementById('cards');
@@ -286,7 +291,7 @@ if(contentIdeasList){
     return '<details class="ci-item"'+(i===0?' open':'')+'>'+
       '<summary class="ci-row">'+
         '<span class="ci-type">'+idea.type+'</span>'+
-        '<span class="ci-copy"><span class="ci-title">'+idea.title+'</span><span class="ci-tease">'+idea.tease+'</span></span>'+
+        '<span class="ci-copy"><span class="ci-title">'+idea.title+'</span><span class="ci-tease">'+idea.tease+'</span>'+((idea.fmt&&idea.fmt.length)?'<span class="ci-fmt">'+idea.fmt.map(function(f){return '<span class="ci-fmt-tag">'+f+'</span>';}).join('')+'</span>':'')+'</span>'+
         '<span class="ci-score">'+idea.score+'%</span>'+
         '<span class="ci-arrow" aria-hidden="true">›</span>'+
       '</summary>'+
