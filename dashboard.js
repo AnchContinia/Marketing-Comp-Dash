@@ -1047,8 +1047,7 @@ if(contentIdeasList){
     {page:"video.html", icon:"fa-clapperboard", label:"Video", items:[
       {id:"youtube", icon:"fa-chart-line", label:"YouTube Analysis"},
       {id:"continia-uploads", icon:"fa-magnifying-glass-chart", label:"In-depth Continia"},
-      {id:"video-ideas-long", icon:"fa-film", label:"Long-form ideas"},
-      {id:"video-ideas-short", icon:"fa-mobile-screen", label:"Short-form ideas"},
+      {id:"video-ideas", icon:"fa-film", label:"Long- & short form ideas"},
       {id:"youtube-bank", icon:"fa-photo-film", label:"Youtube thumbnails bank"}
     ]}
   ];

@@ -58,7 +58,7 @@
 .bar i.hot{background:#052975}
 .vi-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;margin-bottom:18px}
 .vi-pair>.section{margin-bottom:0}
-#video-ideas{align-items:stretch}
+#video-ideas{align-items:stretch;scroll-margin-top:84px}
 #video-ideas>.section{display:flex;flex-direction:column}
 #video-ideas>.section>.footnote{margin-top:auto}
 .vi-stack{display:flex;flex-direction:column;gap:8px;padding:14px 18px 16px}
