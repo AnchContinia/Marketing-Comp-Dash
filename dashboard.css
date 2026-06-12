@@ -58,7 +58,8 @@
 .bar i.hot{background:#052975}
 .vi-pair{display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:start;margin-bottom:18px}
 .vi-pair>.section{margin-bottom:0}
-.vi-stack{display:flex;flex-direction:column;gap:14px;padding:16px 18px}
+.vi-stack{display:flex;flex-direction:column;gap:8px;padding:14px 18px 16px}
+.ci-row-static{cursor:default}
 .vi-card{border:1px solid var(--line);border-radius:12px;background:#fff;padding:20px 18px;display:flex;flex-direction:column;gap:0}
 .vi-pct{font-size:40px;font-weight:850;color:var(--ink);line-height:1;margin-bottom:14px}
 .vi-ticks{display:flex;justify-content:space-between;align-items:stretch;height:36px;margin-bottom:12px}

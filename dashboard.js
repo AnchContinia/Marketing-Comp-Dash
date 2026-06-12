@@ -456,27 +456,24 @@ if(contentIdeasList){
   if(typeof window.YT_DATA==="undefined") return;
   var VI=window.YT_DATA.videoIdeas;
   if(!VI) return;
-  var TICKS=72;
-  function ticks(score){
-    var on=Math.round(Math.max(0,Math.min(100,score))/100*TICKS);
-    var out="";
-    for(var i=0;i<TICKS;i++){ out+='<i class="'+(i<on?"on":"")+'"></i>'; }
-    return out;
-  }
-  function render(arr,mountId){
+  function splitDesc(d){ d=String(d||""); var i=d.indexOf(". "); if(i>0&&i<d.length-2) return [d.slice(0,i+1), d.slice(i+2)]; return [d,""]; }
+  function render(arr,mountId,formLabel,defFmt){
     var m=document.getElementById(mountId);
     if(!m||!arr||!arr.length) return;
     m.innerHTML=arr.map(function(idea){
-      return '<article class="vi-card">'+
-        '<div class="vi-pct">'+idea.score+'%</div>'+
-        '<div class="vi-ticks">'+ticks(idea.score)+'</div>'+
-        '<h3 class="vi-title">'+idea.title+'</h3>'+
-        '<p class="vi-desc">'+idea.desc+'</p>'+
-      '</article>';
+      var p=splitDesc(idea.desc), tease=p[0], reason=p[1];
+      var fmt=idea.fmt||defFmt;
+      var fmtHtml='<span class="ci-fmt">'+fmt.map(function(f){return '<span class="ci-fmt-tag">'+f+'</span>';}).join('')+'</span>';
+      var inner='<span class="ci-type">'+formLabel+'</span>'+
+        '<span class="ci-copy"><span class="ci-title">'+idea.title+'</span><span class="ci-tease">'+tease+'</span>'+fmtHtml+'</span>'+
+        '<span class="ci-score">'+idea.score+'%</span>'+
+        (reason?'<span class="ci-arrow" aria-hidden="true">›</span>':'');
+      if(reason) return '<details class="ci-item"><summary class="ci-row">'+inner+'</summary><div class="ci-detail"><p class="ci-reason">'+reason+'</p></div></details>';
+      return '<div class="ci-item"><div class="ci-row ci-row-static">'+inner+'</div></div>';
     }).join("");
   }
-  render(VI.longForm,"vi-long-grid");
-  render(VI.shortForm,"vi-short-grid");
+  render(VI.longForm,"vi-long-grid","Long-form",["YouTube","Webinar","Demo"]);
+  render(VI.shortForm,"vi-short-grid","Short-form",["Shorts","LinkedIn","Social"]);
 })();
 
 /* ---- Image search: client-side search over Assets/Linkedin images ---- */
