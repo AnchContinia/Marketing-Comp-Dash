@@ -827,6 +827,126 @@ if(contentIdeasList){
   if(clearBtn) clearBtn.addEventListener("click",function(){ listEl.innerHTML=""; items=[]; actions.hidden=true; totalEl.textContent=""; });
 })();
 
+/* ---- SEO Scanner: fetch a URL via the seo-proxy Worker, run on-page checks ----
+   Rules-based, no AI. The Worker returns the page HTML server-side (CORS-safe);
+   all analysis happens here in the browser. Leave PROXY_SEO empty until the
+   Worker is deployed (see seo-proxy/README.md) — the module shows a config note. */
+(function(){
+  /* Paste the deployed seo-proxy Worker URL here once it's live. */
+  var PROXY_SEO = "";
+
+  var form=document.getElementById("seo-form");
+  if(!form) return;
+  var input=document.getElementById("seo-url");
+  var listEl=document.getElementById("seo-list");
+  var sumEl=document.getElementById("seo-summary");
+  var config=document.getElementById("seo-config");
+  function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function base(u){ try{ var p=new URL(u,"https://x/").pathname.split("/").filter(Boolean); return p.length?p[p.length-1]:u; }catch(e){ return u; } }
+
+  if(!PROXY_SEO && config){ config.innerHTML='⚙️ SEO backend not configured yet — deploy the proxy (see <b>seo-proxy/README.md</b>) and paste its URL into <b>PROXY_SEO</b>.'; config.classList.add("cmp-err"); }
+
+  form.addEventListener("submit",function(e){
+    e.preventDefault();
+    var url=(input.value||"").trim();
+    if(!url) return;
+    if(!/^https?:\/\//i.test(url)) url="https://"+url;
+    if(!PROXY_SEO){ sumEl.innerHTML='<span class="cmp-err">SEO backend not configured yet.</span>'; return; }
+    sumEl.innerHTML='<span class="cmp-spin"></span> Scanning '+esc(url)+'…';
+    listEl.innerHTML="";
+    fetch(PROXY_SEO,{ method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify({url:url}) })
+      .then(function(r){ if(!r.ok) return r.json().then(function(j){ throw new Error(j.error||("HTTP "+r.status)); },function(){ throw new Error("HTTP "+r.status); }); return r.json(); })
+      .then(function(data){ render(analyze(data)); })
+      .catch(function(err){ sumEl.innerHTML='<span class="cmp-err">Failed — '+esc(err.message||"error")+'</span>'; });
+  });
+
+  function analyze(data){
+    var doc=new DOMParser().parseFromString(data.html||"","text/html");
+    var F=[];
+    function add(sev,title,issue,fix){ F.push({sev:sev,title:title,issue:issue,fix:fix}); }
+
+    if(data.status&&data.status>=400) add("error","Page returned HTTP "+data.status,"The server returned an error status for this URL.","Check the URL is correct and the page is publicly reachable.");
+
+    var metaRobots=(doc.querySelector('meta[name="robots"]')||{}).content||"";
+    if(/noindex/i.test((data.robots||"")+" "+metaRobots)) add("error","Page is set to noindex","A robots directive tells search engines NOT to index this page, so it won’t appear in results.","Remove the noindex directive from the robots meta tag / X-Robots-Tag header if this page should rank.");
+
+    var titleEl=doc.querySelector("title");
+    var title=titleEl?titleEl.textContent.trim():"";
+    if(!title) add("error","Missing &lt;title&gt;","No title tag — the strongest on-page signal and the clickable headline in search results.","Add a unique, descriptive &lt;title&gt; of ~50–60 characters with the main keyword near the front.");
+    else if(title.length<30) add("warn","Title is short ("+title.length+" chars)","Short titles waste space in results and may describe the page poorly.","Aim for ~50–60 characters. Current: “"+esc(title)+"”.");
+    else if(title.length>60) add("warn","Title is long ("+title.length+" chars)","Titles over ~60 characters get cut off in search results.","Trim to ~50–60 characters. Current: “"+esc(title)+"”.");
+    else add("good","Title length is good ("+title.length+" chars)","","");
+
+    var md=((doc.querySelector('meta[name="description"]')||{}).content||"").trim();
+    if(!md) add("error","Missing meta description","Search engines auto-pick a snippet, which is usually less compelling than one you write.","Add a meta description of ~120–160 characters that summarises the page and invites the click.");
+    else if(md.length<120) add("warn","Meta description is short ("+md.length+" chars)","You’re not using the full snippet space.","Expand to ~120–160 characters.");
+    else if(md.length>160) add("warn","Meta description is long ("+md.length+" chars)","Descriptions over ~160 characters get truncated.","Trim to ~120–160 characters.");
+    else add("good","Meta description length is good ("+md.length+" chars)","","");
+
+    var h1s=doc.querySelectorAll("h1");
+    if(h1s.length===0) add("error","No &lt;h1&gt; heading","The H1 is the main on-page heading; users and search engines rely on it to grasp the topic.","Add exactly one clear &lt;h1&gt; describing the page.");
+    else if(h1s.length>1) add("warn",h1s.length+" &lt;h1&gt; headings","Multiple H1s dilute the main-topic signal.","Keep a single &lt;h1&gt; and demote the rest to &lt;h2&gt;/&lt;h3&gt;.");
+    else add("good","Exactly one &lt;h1&gt;","","");
+
+    var hs=doc.querySelectorAll("h1,h2,h3,h4,h5,h6"), prev=0, skip=false;
+    Array.prototype.forEach.call(hs,function(h){ var l=parseInt(h.tagName.slice(1),10); if(prev&&l>prev+1) skip=true; prev=l; });
+    if(skip) add("warn","Heading levels skip","The heading order jumps a level (e.g. an &lt;h2&gt; straight to an &lt;h4&gt;), breaking the document outline.","Keep headings in order — don’t skip levels.");
+
+    var imgs=doc.querySelectorAll("img"), noAlt=[], noDim=0;
+    Array.prototype.forEach.call(imgs,function(im){
+      var a=im.getAttribute("alt"); if(a===null||a.trim()==="") noAlt.push(im.getAttribute("src")||"");
+      if(!im.getAttribute("width")||!im.getAttribute("height")) noDim++;
+    });
+    if(imgs.length===0) add("info","No images found","Pages with relevant imagery tend to engage better.","Consider adding at least one relevant, optimised image.");
+    if(noAlt.length){
+      var sample=noAlt.slice(0,5).map(function(s){return base(s)||"(inline)";});
+      add("warn",noAlt.length+" of "+imgs.length+" images missing alt text","Alt text describes an image for screen readers and image search — missing it loses accessibility and image SEO.","Add descriptive alt text. Missing on e.g.: "+esc(sample.join(", "))+(noAlt.length>5?" …":"")+".");
+    } else if(imgs.length){ add("good","All images have alt text","",""); }
+    if(noDim) add("info",noDim+" image(s) without width/height","Images without explicit dimensions cause layout shift (poor CLS / Core Web Vitals).","Add width and height attributes (or CSS aspect-ratio) to reserve space.");
+
+    if(!doc.querySelector('meta[name="viewport"]')) add("error","No viewport meta tag","Without a viewport tag the page renders poorly on mobile — and mobile-friendliness is a ranking factor.","Add &lt;meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"&gt;.");
+    else add("good","Mobile viewport set","","");
+
+    var lang=doc.documentElement.getAttribute("lang");
+    if(!lang||!lang.trim()) add("warn","No lang attribute on &lt;html&gt;","The page language isn’t declared, affecting accessibility and international SEO.","Set &lt;html lang=\"en\"&gt; (or the correct language code).");
+
+    if(!doc.querySelector('link[rel="canonical"]')) add("info","No canonical link","A canonical tag prevents duplicate-content issues when a page is reachable via multiple URLs.","Add &lt;link rel=\"canonical\" href=\"…\"&gt; pointing to the preferred URL.");
+
+    var ogMissing=["og:title","og:description","og:image"].filter(function(p){ return !doc.querySelector('meta[property="'+p+'"]'); });
+    if(ogMissing.length) add("warn","Missing Open Graph tags ("+ogMissing.join(", ")+")","Open Graph tags control how the page looks when shared on LinkedIn/Facebook — missing them gives blank or ugly previews.","Add og:title, og:description and og:image for rich social previews.");
+    else add("good","Open Graph tags present","","");
+
+    if(!doc.querySelector('meta[name="twitter:card"]')) add("info","No Twitter/X card tag","Pages without a twitter:card get only a basic preview on X.","Add &lt;meta name=\"twitter:card\" content=\"summary_large_image\"&gt;.");
+
+    if(!doc.querySelector('script[type="application/ld+json"]')) add("info","No structured data (JSON-LD)","Schema.org data can earn rich results (stars, FAQs, breadcrumbs) in search.","Consider adding relevant JSON-LD (Organization, Article, Product, FAQ…).");
+    else add("good","Structured data present","","");
+
+    var words=0, b=doc.body?doc.body.cloneNode(true):null;
+    if(b){ Array.prototype.forEach.call(b.querySelectorAll("script,style,noscript"),function(n){n.parentNode&&n.parentNode.removeChild(n);}); var t=(b.textContent||"").trim(); words=t?t.split(/\s+/).length:0; }
+    if(words&&words<300) add("warn","Thin content (~"+words+" words)","Pages with very little text often struggle to rank for competitive terms.","Aim for richer, genuinely useful content (300+ words where it fits the page’s purpose).");
+    else if(words) add("good","Content length OK (~"+words+" words)","","");
+
+    return { findings:F, url:data.finalUrl||"", status:data.status };
+  }
+
+  function render(res){
+    var order={error:0,warn:1,info:2,good:3}, labels={error:"Error",warn:"Warning",info:"Tip",good:"Good"};
+    res.findings.sort(function(a,b){ return order[a.sev]-order[b.sev]; });
+    var nE=0,nW=0,nI=0;
+    res.findings.forEach(function(f){ if(f.sev==="error")nE++; else if(f.sev==="warn")nW++; else if(f.sev==="info")nI++; });
+    var score=Math.max(0,100-nE*15-nW*6-nI*2);
+    sumEl.innerHTML='<div class="seo-score"><b>'+score+'</b><span>/100</span></div>'+
+      '<div class="seo-counts"><span class="seo-c err">'+nE+' errors</span><span class="seo-c warn">'+nW+' warnings</span><span class="seo-c info">'+nI+' tips</span></div>'+
+      '<div class="seo-scanned">'+esc(res.url)+'</div>';
+    listEl.innerHTML=res.findings.map(function(f){
+      return '<div class="seo-item sev-'+f.sev+'"><span class="seo-sev">'+labels[f.sev]+'</span>'+
+        '<div class="seo-b"><div class="seo-t">'+f.title+'</div>'+
+        (f.issue?'<div class="seo-i">'+f.issue+'</div>':'')+
+        (f.fix?'<div class="seo-f"><b>Fix:</b> '+f.fix+'</div>':'')+'</div></div>';
+    }).join("");
+  }
+})();
+
 /* ---- Left sidebar: built from one source, injected on every page ----
    Index is the home page; Content and Video are sub-pages. Each group header
    links to its page; sub-items link to anchors on that page (same-page when you
@@ -847,6 +967,7 @@ if(contentIdeasList){
       {id:"linkedin-compare", icon:"fa-thumbs-up", label:"LinkedIn Engagement"},
       {id:"image-search", icon:"fa-images", label:"Linkedin image bank"},
       {id:"newsletter-bank", icon:"fa-envelope-open-text", label:"Newsletter image bank"},
+      {id:"seo-scan", icon:"fa-magnifying-glass-chart", label:"SEO Scanner"},
       {id:"compress", icon:"fa-compress", label:"Image & PDF compression"}
     ]},
     {page:"video.html", icon:"fa-clapperboard", label:"Video", items:[

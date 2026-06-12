@@ -1,0 +1,7 @@
+name = "seo-proxy"
+main = "worker.js"
+compatibility_date = "2024-11-01"
+
+# No secrets needed — this Worker only fetches a URL's HTML server-side.
+# Deploy manually with `wrangler deploy` from inside this folder (seo-proxy/).
+# Do NOT connect it to a Git build, or a repo build can overwrite it.

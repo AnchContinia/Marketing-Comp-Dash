@@ -182,3 +182,36 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 .li-pm{display:flex;gap:16px;white-space:nowrap;font-size:12px;color:var(--muted)}
 .li-pm b{color:var(--navy);font-weight:850}
 @media(max-width:760px){.li-post{grid-template-columns:22px minmax(0,1fr)}.li-pm{grid-column:2;gap:12px;margin-top:3px}}
+/* SEO scanner */
+.seo-wrap{padding:16px 18px}
+.seo-bar{display:flex;gap:10px}
+.seo-bar input{flex:1;min-width:0;height:42px;border:1px solid var(--line2);border-radius:8px;padding:0 14px;background:#fff;color:var(--ink);font-size:14px}
+.seo-bar input:focus{outline:2px solid rgba(37,99,235,.18);border-color:#93b7ff}
+.seo-bar .cmp-btn{height:42px;flex:none}
+.seo-note{font-size:12px;margin:8px 0 0}
+.seo-summary{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:12px 0 2px;font-size:13px;color:var(--muted)}
+.seo-summary:empty{display:none}
+.seo-score{display:flex;align-items:baseline;gap:3px}
+.seo-score b{font-size:30px;font-weight:850;color:var(--navy);line-height:1}
+.seo-score span{font-size:13px;color:var(--muted)}
+.seo-counts{display:flex;gap:12px;font-weight:750}
+.seo-c.err{color:var(--rose)}
+.seo-c.warn{color:var(--amber)}
+.seo-c.info{color:var(--blue)}
+.seo-scanned{font-size:12px;color:var(--muted);margin-left:auto;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:50%}
+.seo-list{display:grid;gap:8px;margin-top:10px}
+.seo-item{display:grid;grid-template-columns:72px minmax(0,1fr);gap:12px;border:1px solid var(--line);border-left:4px solid var(--line2);border-radius:8px;padding:12px 14px;background:#fff}
+.seo-item.sev-error{border-left-color:var(--rose);background:#fff7f8}
+.seo-item.sev-warn{border-left-color:var(--amber);background:#fffdf6}
+.seo-item.sev-info{border-left-color:var(--blue);background:#f8fbff}
+.seo-item.sev-good{border-left-color:var(--green);background:#f7fdf9}
+.seo-sev{font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.06em;padding-top:2px}
+.sev-error .seo-sev{color:var(--rose)}
+.sev-warn .seo-sev{color:var(--amber)}
+.sev-info .seo-sev{color:var(--blue)}
+.sev-good .seo-sev{color:var(--green)}
+.seo-t{font-size:14px;font-weight:800;color:var(--ink)}
+.seo-i{font-size:13px;color:var(--muted);margin-top:3px}
+.seo-f{font-size:13px;color:#334155;margin-top:5px}
+.seo-f b{color:var(--navy)}
+@media(max-width:760px){.seo-item{grid-template-columns:1fr;gap:4px}.seo-scanned{margin-left:0;max-width:100%;flex-basis:100%}}
