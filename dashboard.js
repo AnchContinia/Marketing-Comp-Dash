@@ -286,7 +286,7 @@ if(searchEl) searchEl.addEventListener('input',function(){q=searchEl.value.trim(
 
 const contentIdeasList=document.getElementById('contentIdeasList');
 if(contentIdeasList){
-  contentIdeasList.innerHTML=contentIdeas.map(function(idea,i){
+  contentIdeasList.innerHTML=contentIdeas.slice().sort(function(a,b){return (b.score||0)-(a.score||0);}).map(function(idea,i){
     const sources=idea.s.map(function(x){return '<a href="'+x[1]+'" target="_blank" rel="noopener">'+x[0]+' ↗</a>';}).join('');
     return '<details class="ci-item"'+(i===0?' open':'')+'>'+
       '<summary class="ci-row">'+
@@ -460,6 +460,7 @@ if(contentIdeasList){
   function render(arr,mountId,formLabel,defFmt){
     var m=document.getElementById(mountId);
     if(!m||!arr||!arr.length) return;
+    arr=arr.slice().sort(function(a,b){return (b.score||0)-(a.score||0);});
     m.innerHTML=arr.map(function(idea){
       var p=splitDesc(idea.desc), tease=p[0], reason=p[1];
       var fmt=idea.fmt||defFmt;
