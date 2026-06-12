@@ -846,6 +846,9 @@ if(contentIdeasList){
 
   if(!PROXY_SEO && config){ config.innerHTML='⚙️ SEO backend not configured yet — deploy the proxy (see <b>seo-proxy/README.md</b>) and paste its URL into <b>PROXY_SEO</b>.'; config.classList.add("cmp-err"); }
 
+  var clearBtn=document.getElementById("seo-clear");
+  if(clearBtn) clearBtn.addEventListener("click",function(){ input.value=""; sumEl.innerHTML=""; listEl.innerHTML=""; input.focus(); });
+
   form.addEventListener("submit",function(e){
     e.preventDefault();
     var url=(input.value||"").trim();
