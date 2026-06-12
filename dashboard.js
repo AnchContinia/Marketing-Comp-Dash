@@ -833,7 +833,7 @@ if(contentIdeasList){
    Worker is deployed (see seo-proxy/README.md) — the module shows a config note. */
 (function(){
   /* Paste the deployed seo-proxy Worker URL here once it's live. */
-  var PROXY_SEO = "";
+  var PROXY_SEO = "https://seo-proxy.anch-5c7.workers.dev";
 
   var form=document.getElementById("seo-form");
   if(!form) return;
