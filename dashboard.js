@@ -844,10 +844,74 @@ if(contentIdeasList){
   function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function base(u){ try{ var p=new URL(u,"https://x/").pathname.split("/").filter(Boolean); return p.length?p[p.length-1]:u; }catch(e){ return u; } }
 
+  var STOP=(function(){ var set=Object.create(null); ("the and for are but not you all any can had her was our out get has him his how man new now old see two way who did its let put say she too use with that this from they will would there theirs their what about which when your have more were been than then them these some into just over also such only other here each because very most much many like got make made onto upon per via your yours itself himself herself ourselves yourself does doing down off once nor not under until while whom both same own being above below after before again further "+
+    "og det til som på de med han af ikke der var mig sig men har om min havde ham hun over da fra sin dem man hans hvor eller hvad skal selv her alle vil blev kunne ind når være dog noget ville deres efter ned skulle denne end dette mit også under have dig anden hende mine alt meget sit sine mod disse hvis din nogle hos blive mange bliver hendes været jer sådan").split(/\s+/).forEach(function(w){ if(w) set[w]=1; }); return set; })();
+
+  function buildKeywords(bodyText, ctx){
+    var lower=(bodyText||"").toLowerCase();
+    var toks=lower.match(/[\p{L}\p{N}]+/gu)||[];
+    var total=toks.length||1;
+    var freq=Object.create(null), i;
+    for(i=0;i<toks.length;i++){ var w=toks[i]; if(w.length>=3 && !STOP[w] && !/^\d+$/.test(w)) freq[w]=(freq[w]||0)+1; }
+    var titleL=(ctx.title||"").toLowerCase(), metaL=(ctx.md||"").toLowerCase();
+    var h1L=Array.prototype.map.call(ctx.h1s,function(e){return e.textContent;}).join(" ").toLowerCase();
+    var urlL=(ctx.url||"").toLowerCase();
+    var altsL=Array.prototype.map.call(ctx.imgs,function(e){return e.getAttribute("alt")||"";}).join(" ").toLowerCase();
+    var top=Object.keys(freq).sort(function(a,b){return freq[b]-freq[a];}).slice(0,8).map(function(w){
+      return { term:w, count:freq[w], density:freq[w]/total*100,
+        inTitle:titleL.indexOf(w)>=0, inH1:h1L.indexOf(w)>=0, inMeta:metaL.indexOf(w)>=0, inUrl:urlL.indexOf(w)>=0, inAlt:altsL.indexOf(w)>=0 };
+    });
+    var grams=Object.create(null), n, j, k;
+    for(n=2;n<=3;n++){ for(j=0;j+n<=toks.length;j++){
+      var sl=toks.slice(j,j+n);
+      if(sl[0].length<3||sl[n-1].length<3||STOP[sl[0]]||STOP[sl[n-1]]) continue;
+      var bad=false; for(k=0;k<n;k++){ if(/^\d+$/.test(sl[k])){bad=true;break;} }
+      if(bad) continue;
+      var g=sl.join(" "); grams[g]=(grams[g]||0)+1;
+    }}
+    var phrases=Object.keys(grams).filter(function(g){return grams[g]>=2;}).sort(function(a,b){return grams[b]-grams[a];}).slice(0,6).map(function(g){return {term:g,count:grams[g]};});
+    return { top:top, phrases:phrases, totalWords:total, title:titleL, meta:metaL, h1:h1L, url:urlL, alts:altsL, text:lower, first100:toks.slice(0,100).join(" ") };
+  }
+
+  function renderKw(kw){
+    var box=document.getElementById("seo-kw");
+    if(!box) return;
+    if(!kw||!kw.top||!kw.top.length){ box.innerHTML=""; return; }
+    function bdg(ok,label){ return '<span class="kw-badge'+(ok?" on":"")+'">'+label+'</span>'; }
+    var rows=kw.top.map(function(k){
+      return '<tr><td class="kw-term">'+esc(k.term)+'</td><td class="num">'+k.count+'</td><td class="num">'+k.density.toFixed(1)+'%</td>'+
+        '<td class="kw-cov">'+bdg(k.inTitle,"Title")+bdg(k.inH1,"H1")+bdg(k.inMeta,"Meta")+bdg(k.inUrl,"URL")+bdg(k.inAlt,"Alt")+'</td></tr>';
+    }).join("");
+    var phrases=kw.phrases.map(function(p){ return '<span class="kw-phrase">'+esc(p.term)+' <b>'+p.count+'</b></span>'; }).join("");
+    box.innerHTML='<div class="seo-kw-h">Keyword analysis</div>'+
+      '<div class="kw-sub">Most-used terms on the page · density = share of all words · green = the term also appears there</div>'+
+      '<div class="youtube-wrap"><table class="kw-table"><thead><tr><th>Keyword</th><th class="num">Count</th><th class="num">Density</th><th>Appears in</th></tr></thead><tbody>'+rows+'</tbody></table></div>'+
+      (phrases?'<div class="kw-phrases"><div class="kw-sub">Top phrases</div>'+phrases+'</div>':'')+
+      '<div class="kw-focus"><div class="kw-sub">Focus keyword check — type a term you want this page to rank for</div>'+
+        '<div class="kw-focus-bar"><input id="kw-focus-input" type="text" placeholder="e.g. cash flow, payment automation…" autocomplete="off" spellcheck="false"></div>'+
+        '<div class="kw-focus-out" id="kw-focus-out"></div></div>';
+    var fi=document.getElementById("kw-focus-input"), fo=document.getElementById("kw-focus-out");
+    if(fi) fi.addEventListener("input",function(){ renderFocus(fi.value, kw, fo); });
+  }
+
+  function renderFocus(raw, kw, out){
+    if(!out) return;
+    var term=(raw||"").trim().toLowerCase();
+    if(!term){ out.innerHTML=""; return; }
+    function cnt(hay,t){ if(!hay) return 0; var n=0,i=0; while((i=hay.indexOf(t,i))>=0){ n++; i+=t.length; } return n; }
+    var nWords=term.split(/\s+/).length;
+    var occ=cnt(kw.text, term);
+    var density=kw.totalWords?(occ*nWords/kw.totalWords*100):0;
+    var checks=[["Title",kw.title.indexOf(term)>=0],["Meta description",kw.meta.indexOf(term)>=0],["H1",kw.h1.indexOf(term)>=0],["First 100 words",kw.first100.indexOf(term)>=0],["URL",kw.url.indexOf(term)>=0],["Image alt",kw.alts.indexOf(term)>=0]];
+    var note=occ===0?"not found in the page text":(density<0.5?"a bit low — consider using it a little more":(density>2.5?"a bit high — risk of keyword stuffing":"in the healthy 0.5–2.5% range"));
+    var chk=checks.map(function(c){ return '<div class="kw-chk '+(c[1]?"ok":"no")+'"><span>'+(c[1]?"✓":"✗")+'</span>'+c[0]+'</div>'; }).join("");
+    out.innerHTML='<div class="kw-focus-sum">“'+esc(term)+'” appears <b>'+occ+'×</b> · density <b>'+density.toFixed(1)+'%</b> — '+note+'</div><div class="kw-chks">'+chk+'</div>';
+  }
+
   if(!PROXY_SEO && config){ config.innerHTML='⚙️ SEO backend not configured yet — deploy the proxy (see <b>seo-proxy/README.md</b>) and paste its URL into <b>PROXY_SEO</b>.'; config.classList.add("cmp-err"); }
 
   var clearBtn=document.getElementById("seo-clear");
-  if(clearBtn) clearBtn.addEventListener("click",function(){ input.value=""; sumEl.innerHTML=""; listEl.innerHTML=""; input.focus(); });
+  if(clearBtn) clearBtn.addEventListener("click",function(){ input.value=""; sumEl.innerHTML=""; listEl.innerHTML=""; var kb=document.getElementById("seo-kw"); if(kb) kb.innerHTML=""; input.focus(); });
 
   form.addEventListener("submit",function(e){
     e.preventDefault();
@@ -856,7 +920,7 @@ if(contentIdeasList){
     if(!/^https?:\/\//i.test(url)) url="https://"+url;
     if(!PROXY_SEO){ sumEl.innerHTML='<span class="cmp-err">SEO backend not configured yet.</span>'; return; }
     sumEl.innerHTML='<span class="cmp-spin"></span> Scanning '+esc(url)+'…';
-    listEl.innerHTML="";
+    listEl.innerHTML=""; var kwBox=document.getElementById("seo-kw"); if(kwBox) kwBox.innerHTML="";
     fetch(PROXY_SEO,{ method:"POST", headers:{ "Content-Type":"application/json" }, body:JSON.stringify({url:url}) })
       .then(function(r){ if(!r.ok) return r.json().then(function(j){ throw new Error(j.error||("HTTP "+r.status)); },function(){ throw new Error("HTTP "+r.status); }); return r.json(); })
       .then(function(data){ render(analyze(data)); })
@@ -924,12 +988,14 @@ if(contentIdeasList){
     if(!doc.querySelector('script[type="application/ld+json"]')) add("info","No structured data (JSON-LD)","Schema.org data can earn rich results (stars, FAQs, breadcrumbs) in search.","Consider adding relevant JSON-LD (Organization, Article, Product, FAQ…).");
     else add("good","Structured data present","","");
 
-    var words=0, b=doc.body?doc.body.cloneNode(true):null;
-    if(b){ Array.prototype.forEach.call(b.querySelectorAll("script,style,noscript"),function(n){n.parentNode&&n.parentNode.removeChild(n);}); var t=(b.textContent||"").trim(); words=t?t.split(/\s+/).length:0; }
+    var words=0, b=doc.body?doc.body.cloneNode(true):null, bodyText="";
+    if(b){ Array.prototype.forEach.call(b.querySelectorAll("script,style,noscript"),function(n){n.parentNode&&n.parentNode.removeChild(n);}); bodyText=(b.textContent||"").replace(/\s+/g," ").trim(); words=bodyText?bodyText.split(" ").length:0; }
     if(words&&words<300) add("warn","Thin content (~"+words+" words)","Pages with very little text often struggle to rank for competitive terms.","Aim for richer, genuinely useful content (300+ words where it fits the page’s purpose).");
     else if(words) add("good","Content length OK (~"+words+" words)","","");
 
-    return { findings:F, url:data.finalUrl||"", status:data.status };
+    var kw=buildKeywords(bodyText, {title:title, md:md, h1s:h1s, imgs:imgs, url:data.finalUrl||""});
+
+    return { findings:F, url:data.finalUrl||"", status:data.status, kw:kw };
   }
 
   function render(res){
@@ -947,6 +1013,7 @@ if(contentIdeasList){
         (f.issue?'<div class="seo-i">'+f.issue+'</div>':'')+
         (f.fix?'<div class="seo-f"><b>Fix:</b> '+f.fix+'</div>':'')+'</div></div>';
     }).join("");
+    renderKw(res.kw);
   }
 })();
 
