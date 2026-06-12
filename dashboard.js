@@ -1036,8 +1036,7 @@ if(contentIdeasList){
       {id:"competitors", icon:"fa-people-group", label:"Competitors"}
     ]},
     {page:"content.html", icon:"fa-newspaper", label:"Content", items:[
-      {id:"insights", icon:"fa-lightbulb", label:"Strategic Insights"},
-      {id:"events", icon:"fa-calendar-days", label:"Key Events"},
+      {id:"insights", icon:"fa-lightbulb", label:"Insights & key events"},
       {id:"content-ideas", icon:"fa-pen-nib", label:"Content Ideas"},
       {id:"linkedin-compare", icon:"fa-thumbs-up", label:"LinkedIn Engagement"},
       {id:"image-search", icon:"fa-images", label:"Linkedin image bank"},
