@@ -1199,7 +1199,7 @@ if(contentIdeasList){
         var actions=ev.locked
           ? '<span class="cal-lock" title="Official schedule — locked"><i class="fa-light fa-lock"></i></span>'
           : '<button class="cal-row-btn" data-edit="'+ev.id+'" title="Edit" type="button"><i class="fa-light fa-pen"></i></button><button class="cal-row-btn" data-del="'+ev.id+'" title="Delete" type="button"><i class="fa-light fa-trash"></i></button>';
-        return '<div class="cal-li"><span class="cal-li-dot" style="background:'+ev.c+'"></span><span class="cal-li-date">'+esc(fmtRange(ev))+'</span><span class="cal-li-title">'+esc(ev.t)+(ev.locked?'':' <span class="cal-mine">yours</span>')+'</span><span class="cal-li-actions">'+actions+'</span></div>';
+        return '<div class="cal-li"><span class="cal-li-dot" style="background:'+ev.c+'"></span><span class="cal-li-date">'+esc(fmtRange(ev))+'</span><span class="cal-li-title">'+esc(ev.t)+'</span><span class="cal-li-actions">'+actions+'</span></div>';
       }).join("");
     }
   }
