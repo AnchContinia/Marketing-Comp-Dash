@@ -1222,8 +1222,26 @@ if(contentIdeasList){
     }
   });
 
+  /* One-time migration: events created before the shared backend existed lived
+     in localStorage under this key. Push any we find up to the Worker, then
+     clear the key so this never double-runs. No-op for browsers without it. */
+  function migrateLocal(){
+    var raw; try{ raw=localStorage.getItem("continia-cal-events-v1"); }catch(e){ return Promise.resolve(false); }
+    if(!raw) return Promise.resolve(false);
+    var old=null; try{ old=JSON.parse(raw); }catch(e){}
+    if(!Array.isArray(old)||!old.length){ try{ localStorage.removeItem("continia-cal-events-v1"); }catch(e){} return Promise.resolve(false); }
+    var chain=Promise.resolve();
+    old.forEach(function(ev){
+      if(!ev||!ev.t||!ev.start) return;
+      chain=chain.then(function(){ return api("POST",{t:ev.t, start:ev.start, end:ev.end||ev.start, c:ev.c||"#2563eb"}).catch(function(){}); });
+    });
+    return chain.then(function(){ try{ localStorage.removeItem("continia-cal-events-v1"); }catch(e){} return true; });
+  }
+
   render();
-  fetchShared().then(render);
+  fetchShared().then(render)
+    .then(migrateLocal)
+    .then(function(migrated){ if(migrated) return fetchShared().then(render); });
 })();
 
 (function(){
