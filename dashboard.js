@@ -1122,7 +1122,6 @@ if(contentIdeasList){
   }
   function closeForm(){ form.hidden=true; editingId=null; }
 
-  document.getElementById("cal-add").addEventListener("click", function(){ if(form.hidden) openForm({}); else closeForm(); });
   document.getElementById("cal-cancel").addEventListener("click", closeForm);
   document.getElementById("cal-prev").addEventListener("click", function(){ viewM--; if(viewM<0){viewM=11;viewY--;} render(); });
   document.getElementById("cal-next").addEventListener("click", function(){ viewM++; if(viewM>11){viewM=0;viewY++;} render(); });
