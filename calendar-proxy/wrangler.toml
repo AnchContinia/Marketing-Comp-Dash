@@ -1,0 +1,14 @@
+name = "calendar-proxy"
+main = "worker.js"
+compatibility_date = "2026-01-01"
+
+# Shared Event Calendar storage. Create a KV namespace and bind it as CAL_KV:
+#   wrangler kv namespace create CAL_KV
+# then paste the returned id below (and a preview_id for `wrangler dev`).
+[[kv_namespaces]]
+binding = "CAL_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+# Deploy MANUALLY from inside calendar-proxy/ with `wrangler deploy`.
+# Do NOT connect this Worker to Git — a Git build would deploy the repo-root
+# wrangler.toml (tinyjpg-proxy) over it. See README.md.
