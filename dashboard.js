@@ -1056,8 +1056,7 @@ if(contentIdeasList){
   var PALETTE=[
     {c:"#052975", label:"Continia"},
     {c:"#5f9e8d", label:"Industry"},
-    {c:"#983eae", label:"Deadline"},
-    {c:"#2563eb", label:"Other"}
+    {c:"#983eae", label:"Deadline"}
   ];
   var PROXY_CAL="https://calender.anch-5c7.workers.dev";
 
