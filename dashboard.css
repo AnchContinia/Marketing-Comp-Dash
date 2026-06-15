@@ -285,6 +285,7 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 .cal-cell.other{background:#f8fafc}
 .cal-cell.other .cal-daynum{color:#b0bccd}
 .cal-cell.today{border-color:#052975;box-shadow:inset 0 0 0 1px #052975}
+.cal-cell.selected{border-color:#052975;background:#eaf1ff;box-shadow:inset 0 0 0 2px #052975}
 .cal-daynum{font-size:12px;font-weight:800;color:#334155;align-self:flex-start}
 .cal-cell.today .cal-daynum{color:#052975}
 .cal-chip{font-size:11px;font-weight:750;border-radius:5px;padding:2px 6px;color:#fff;background:var(--cc,#052975);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;cursor:pointer}

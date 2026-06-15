@@ -1120,7 +1120,8 @@ if(contentIdeasList){
     form.hidden=false;
     fTitle.focus();
   }
-  function closeForm(){ form.hidden=true; editingId=null; }
+  function clearSel(){ var s=grid.querySelector(".cal-cell.selected"); if(s) s.classList.remove("selected"); }
+  function closeForm(){ form.hidden=true; editingId=null; clearSel(); }
 
   document.getElementById("cal-cancel").addEventListener("click", closeForm);
   document.getElementById("cal-prev").addEventListener("click", function(){ viewM--; if(viewM<0){viewM=11;viewY--;} render(); });
@@ -1204,13 +1205,14 @@ if(contentIdeasList){
   }
 
   grid.addEventListener("click", function(e){
+    var cell=e.target.closest(".cal-cell");
+    clearSel(); if(cell) cell.classList.add("selected");
     var chip=e.target.closest(".cal-chip");
     if(chip){
-      if(chip.getAttribute("data-locked")==="1") return;
+      if(chip.getAttribute("data-locked")==="1") return; /* locked seed: highlight only, no edit */
       editEvent(chip.getAttribute("data-id"));
       return;
     }
-    var cell=e.target.closest(".cal-cell");
     if(cell) openForm({ start: cell.getAttribute("data-date") });
   });
   list.addEventListener("click", function(e){
