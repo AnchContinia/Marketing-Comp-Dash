@@ -14,17 +14,14 @@
    Seed events (the official 2026 schedule) live baked into the site and are
    NOT stored here — this Worker only holds the events teammates add. */
 
-const ALLOWED_ORIGINS = [
-  "https://anchcontinia.github.io",
-  "http://localhost:8000",
-  "http://127.0.0.1:8000"
-];
 const KEY = "events";
 
+/* Permissive CORS: reflect whatever Origin the browser sends (live site, local
+   server on any port, file:// → "null"), or "*" when there is none. Safe here
+   because the calendar uses no cookies/credentials. */
 function cors(origin) {
-  const ok = ALLOWED_ORIGINS.includes(origin);
   return {
-    "Access-Control-Allow-Origin": ok ? origin : ALLOWED_ORIGINS[0],
+    "Access-Control-Allow-Origin": origin || "*",
     "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type",
     "Access-Control-Max-Age": "86400"
