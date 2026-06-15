@@ -276,6 +276,8 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 .cal-btn.ghost:hover{background:#f8fafc;border-color:#94a3b8}
 .cal-btn.danger{background:#fff;color:#b4231f;border-color:#f0c4c2;margin-left:auto}
 .cal-btn.danger:hover{background:#fef2f2;border-color:#e3a9a6}
+.cal-btn:disabled{opacity:.6;cursor:default}
+.cal-msg{font-size:12px;font-weight:700;color:#b4231f}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .cal-dow{font-size:11px;font-weight:850;letter-spacing:.05em;text-transform:uppercase;color:#64748b;text-align:center;padding:2px 0 4px}
 .cal-cell{min-height:94px;border:1px solid var(--line);border-radius:8px;padding:6px;background:#fff;cursor:pointer;display:flex;flex-direction:column;gap:3px;overflow:hidden;transition:.13s}

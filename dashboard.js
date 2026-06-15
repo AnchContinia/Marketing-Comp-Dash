@@ -1059,15 +1059,22 @@ if(contentIdeasList){
     {c:"#983eae", label:"Deadline"},
     {c:"#2563eb", label:"Other"}
   ];
-  var LS_KEY="continia-cal-events-v1";
+  var PROXY_CAL="https://calender.anch-5c7.workers.dev";
 
-  function loadUser(){ try{ var raw=localStorage.getItem(LS_KEY); return raw?JSON.parse(raw):[]; }catch(e){ return []; } }
-  function saveUser(arr){ try{ localStorage.setItem(LS_KEY, JSON.stringify(arr)); }catch(e){} }
-  var userEvents=loadUser();
+  var sharedEvents=[]; /* events the team adds — stored in the calendar-proxy Worker (KV), shared for everyone */
+  function fetchShared(){
+    return fetch(PROXY_CAL).then(function(r){ return r.json(); }).then(function(d){
+      sharedEvents = (d && Array.isArray(d.events)) ? d.events : [];
+    }).catch(function(){ /* offline / worker down → keep last known list */ });
+  }
+  function api(method, body){
+    return fetch(PROXY_CAL, { method:method, headers:{"Content-Type":"application/json"}, body:JSON.stringify(body) })
+      .then(function(r){ return r.json().then(function(d){ if(!r.ok) throw new Error((d&&d.error)||("HTTP "+r.status)); return d; }); });
+  }
 
   var seedEvents=SEED.map(function(e,i){ return {id:"seed-"+i, t:e.t, start:e.start, end:e.end||e.start, c:SEED_COLOR, locked:true}; });
   function allEvents(){
-    var ue=userEvents.map(function(e){ return {id:e.id, t:e.t, start:e.start, end:e.end||e.start, c:e.c||"#2563eb", locked:false}; });
+    var ue=sharedEvents.map(function(e){ return {id:e.id, t:e.t, start:e.start, end:e.end||e.start, c:e.c||"#2563eb", locked:false}; });
     return seedEvents.concat(ue);
   }
 
@@ -1122,26 +1129,36 @@ if(contentIdeasList){
   document.getElementById("cal-next").addEventListener("click", function(){ viewM++; if(viewM>11){viewM=0;viewY++;} render(); });
   document.getElementById("cal-today").addEventListener("click", function(){ viewY=today.getFullYear(); viewM=today.getMonth(); render(); });
 
+  var saveBtn=document.getElementById("cal-save");
+  var calMsg=document.createElement("span"); calMsg.className="cal-msg";
+  document.querySelector(".cal-form-actions").appendChild(calMsg);
+  function setBusy(b){ saveBtn.disabled=b; delBtn.disabled=b; saveBtn.textContent=b?"Saving…":"Save event"; }
+  function fail(msg){ calMsg.textContent=msg||"Couldn't reach the calendar server — try again."; }
+
   form.addEventListener("submit", function(e){
     e.preventDefault();
     var t=fTitle.value.trim(); if(!t) return;
     var start=fStart.value; if(!start) return;
     var end=fEnd.value||start;
     if(end<start){ var tmp=start; start=end; end=tmp; }
-    if(editingId){
-      for(var i=0;i<userEvents.length;i++){ if(userEvents[i].id===editingId){ userEvents[i].t=t; userEvents[i].start=start; userEvents[i].end=end; userEvents[i].c=pickedColor; break; } }
-    } else {
-      userEvents.push({id:"u-"+Date.now()+"-"+Math.round(Math.random()*1e5), t:t, start:start, end:end, c:pickedColor});
-    }
-    saveUser(userEvents); closeForm(); render();
+    calMsg.textContent=""; setBusy(true);
+    var p = editingId
+      ? api("PUT", {id:editingId, t:t, start:start, end:end, c:pickedColor})
+      : api("POST", {t:t, start:start, end:end, c:pickedColor});
+    p.then(function(){ return fetchShared(); })
+     .then(function(){ setBusy(false); closeForm(); render(); })
+     .catch(function(err){ setBusy(false); fail(err&&err.message); });
   });
   delBtn.addEventListener("click", function(){
     if(!editingId) return;
-    userEvents=userEvents.filter(function(e){ return e.id!==editingId; });
-    saveUser(userEvents); closeForm(); render();
+    calMsg.textContent=""; setBusy(true);
+    api("DELETE", {id:editingId})
+      .then(function(){ return fetchShared(); })
+      .then(function(){ setBusy(false); closeForm(); render(); })
+      .catch(function(err){ setBusy(false); fail(err&&err.message); });
   });
   function editEvent(id){
-    var ev=null; for(var i=0;i<userEvents.length;i++){ if(userEvents[i].id===id){ ev=userEvents[i]; break; } }
+    var ev=null; for(var i=0;i<sharedEvents.length;i++){ if(sharedEvents[i].id===id){ ev=sharedEvents[i]; break; } }
     if(!ev) return;
     openForm({id:ev.id, t:ev.t, start:ev.start, end:ev.end||ev.start, c:ev.c});
   }
@@ -1200,10 +1217,13 @@ if(contentIdeasList){
   });
   list.addEventListener("click", function(e){
     var ed=e.target.closest("[data-edit]"); if(ed){ editEvent(ed.getAttribute("data-edit")); return; }
-    var dl=e.target.closest("[data-del]"); if(dl){ var id=dl.getAttribute("data-del"); userEvents=userEvents.filter(function(x){return x.id!==id;}); saveUser(userEvents); if(editingId===id) closeForm(); render(); }
+    var dl=e.target.closest("[data-del]"); if(dl){ var id=dl.getAttribute("data-del");
+      api("DELETE", {id:id}).then(function(){ return fetchShared(); }).then(function(){ if(editingId===id) closeForm(); render(); }).catch(function(){});
+    }
   });
 
   render();
+  fetchShared().then(render);
 })();
 
 (function(){
