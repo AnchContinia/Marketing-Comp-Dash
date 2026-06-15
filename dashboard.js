@@ -1027,6 +1027,185 @@ if(contentIdeasList){
    links to its page; sub-items link to anchors on that page (same-page when you
    are already there, cross-page otherwise). The current page's group is marked
    active, and a scroll-spy highlights the section you're viewing. */
+/* ---- Event Calendar (Content page) -------------------------------------
+   Month grid seeded with Continia's 2026 event schedule (from the CSV in
+   Assets). The team can add their own events; user events persist in
+   localStorage and are personal to that browser. Seed events are locked. */
+(function(){
+  var grid=document.getElementById("cal-grid");
+  if(!grid) return;
+
+  var SEED=[
+    {t:"DOK UK", start:"2026-03-26", end:"2026-03-27"},
+    {t:"RT", start:"2026-04-07", end:"2026-04-07"},
+    {t:"RT Party", start:"2026-04-10", end:"2026-04-10"},
+    {t:"DOK Nordic", start:"2026-04-17", end:"2026-04-18"},
+    {t:"Elevate US / Directions NA", start:"2026-04-26", end:"2026-04-29"},
+    {t:"User Day", start:"2026-05-07", end:"2026-05-07"},
+    {t:"Dynamics Con", start:"2026-05-12", end:"2026-05-12"},
+    {t:"Directions Asia", start:"2026-05-13", end:"2026-05-15"},
+    {t:"DOK Central", start:"2026-05-21", end:"2026-05-22"},
+    {t:"Dynamics Minds", start:"2026-05-25", end:"2026-05-26"},
+    {t:"Elevate UK", start:"2026-06-03", end:"2026-06-03"},
+    {t:"BC TechDays", start:"2026-06-11", end:"2026-06-12"},
+    {t:"Aptean", start:"2026-10-05", end:"2026-10-08"},
+    {t:"Summit US", start:"2026-10-11", end:"2026-10-15"},
+    {t:"Directions EMEA", start:"2026-10-27", end:"2026-10-29"}
+  ];
+  var SEED_COLOR="#052975";
+  var PALETTE=[
+    {c:"#052975", label:"Continia"},
+    {c:"#5f9e8d", label:"Industry"},
+    {c:"#983eae", label:"Deadline"},
+    {c:"#2563eb", label:"Other"}
+  ];
+  var LS_KEY="continia-cal-events-v1";
+
+  function loadUser(){ try{ var raw=localStorage.getItem(LS_KEY); return raw?JSON.parse(raw):[]; }catch(e){ return []; } }
+  function saveUser(arr){ try{ localStorage.setItem(LS_KEY, JSON.stringify(arr)); }catch(e){} }
+  var userEvents=loadUser();
+
+  var seedEvents=SEED.map(function(e,i){ return {id:"seed-"+i, t:e.t, start:e.start, end:e.end||e.start, c:SEED_COLOR, locked:true}; });
+  function allEvents(){
+    var ue=userEvents.map(function(e){ return {id:e.id, t:e.t, start:e.start, end:e.end||e.start, c:e.c||"#2563eb", locked:false}; });
+    return seedEvents.concat(ue);
+  }
+
+  function parse(s){ var p=String(s).split("-"); return new Date(+p[0], +p[1]-1, +p[2]); }
+  function ymd(d){ var m=d.getMonth()+1, day=d.getDate(); return d.getFullYear()+"-"+(m<10?"0"+m:m)+"-"+(day<10?"0"+day:day); }
+  function covers(ev, ds){ return ds>=ev.start && ds<=ev.end; } /* ISO strings compare chronologically */
+  var MONTHS=["January","February","March","April","May","June","July","August","September","October","November","December"];
+  var DOW=["Mon","Tue","Wed","Thu","Fri","Sat","Sun"];
+
+  var today=new Date(); today=new Date(today.getFullYear(), today.getMonth(), today.getDate());
+  var todayStr=ymd(today);
+  var viewY=today.getFullYear(), viewM=today.getMonth();
+  var editingId=null, pickedColor=PALETTE[0].c;
+
+  var title=document.getElementById("cal-title");
+  var list=document.getElementById("cal-list");
+  var form=document.getElementById("cal-form");
+  var fTitle=document.getElementById("cal-f-title");
+  var fStart=document.getElementById("cal-f-start");
+  var fEnd=document.getElementById("cal-f-end");
+  var swatches=document.getElementById("cal-swatches");
+  var delBtn=document.getElementById("cal-delete");
+
+  swatches.innerHTML=PALETTE.map(function(p){ return '<button type="button" class="cal-sw" data-c="'+p.c+'" title="'+p.label+'" style="--cc:'+p.c+'"></button>'; }).join("");
+  function markSwatch(){ [].forEach.call(swatches.querySelectorAll(".cal-sw"), function(b){ b.classList.toggle("on", b.getAttribute("data-c")===pickedColor); }); }
+  swatches.addEventListener("click", function(e){ var b=e.target.closest(".cal-sw"); if(!b) return; pickedColor=b.getAttribute("data-c"); markSwatch(); });
+
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+  function fmtRange(ev){
+    var s=parse(ev.start), e=parse(ev.end);
+    if(ev.start===ev.end) return MONTHS[s.getMonth()].slice(0,3)+" "+s.getDate()+", "+s.getFullYear();
+    if(s.getMonth()===e.getMonth() && s.getFullYear()===e.getFullYear()) return MONTHS[s.getMonth()].slice(0,3)+" "+s.getDate()+"–"+e.getDate()+", "+s.getFullYear();
+    return MONTHS[s.getMonth()].slice(0,3)+" "+s.getDate()+" – "+MONTHS[e.getMonth()].slice(0,3)+" "+e.getDate()+", "+e.getFullYear();
+  }
+
+  function openForm(opts){
+    opts=opts||{};
+    editingId=opts.id||null;
+    fTitle.value=opts.t||"";
+    fStart.value=opts.start||ymd(new Date(viewY,viewM,1));
+    fEnd.value=(opts.end&&opts.end!==opts.start)?opts.end:"";
+    pickedColor=opts.c||PALETTE[0].c; markSwatch();
+    delBtn.hidden=!editingId;
+    form.hidden=false;
+    fTitle.focus();
+  }
+  function closeForm(){ form.hidden=true; editingId=null; }
+
+  document.getElementById("cal-add").addEventListener("click", function(){ if(form.hidden) openForm({}); else closeForm(); });
+  document.getElementById("cal-cancel").addEventListener("click", closeForm);
+  document.getElementById("cal-prev").addEventListener("click", function(){ viewM--; if(viewM<0){viewM=11;viewY--;} render(); });
+  document.getElementById("cal-next").addEventListener("click", function(){ viewM++; if(viewM>11){viewM=0;viewY++;} render(); });
+  document.getElementById("cal-today").addEventListener("click", function(){ viewY=today.getFullYear(); viewM=today.getMonth(); render(); });
+
+  form.addEventListener("submit", function(e){
+    e.preventDefault();
+    var t=fTitle.value.trim(); if(!t) return;
+    var start=fStart.value; if(!start) return;
+    var end=fEnd.value||start;
+    if(end<start){ var tmp=start; start=end; end=tmp; }
+    if(editingId){
+      for(var i=0;i<userEvents.length;i++){ if(userEvents[i].id===editingId){ userEvents[i].t=t; userEvents[i].start=start; userEvents[i].end=end; userEvents[i].c=pickedColor; break; } }
+    } else {
+      userEvents.push({id:"u-"+Date.now()+"-"+Math.round(Math.random()*1e5), t:t, start:start, end:end, c:pickedColor});
+    }
+    saveUser(userEvents); closeForm(); render();
+  });
+  delBtn.addEventListener("click", function(){
+    if(!editingId) return;
+    userEvents=userEvents.filter(function(e){ return e.id!==editingId; });
+    saveUser(userEvents); closeForm(); render();
+  });
+  function editEvent(id){
+    var ev=null; for(var i=0;i<userEvents.length;i++){ if(userEvents[i].id===id){ ev=userEvents[i]; break; } }
+    if(!ev) return;
+    openForm({id:ev.id, t:ev.t, start:ev.start, end:ev.end||ev.start, c:ev.c});
+  }
+
+  function render(){
+    title.textContent=MONTHS[viewM]+" "+viewY;
+    var evs=allEvents();
+    var first=new Date(viewY, viewM, 1);
+    var startWd=(first.getDay()+6)%7; /* 0=Mon */
+    var daysInMonth=new Date(viewY, viewM+1, 0).getDate();
+    var totalCells=Math.ceil((startWd+daysInMonth)/7)*7;
+
+    var html="";
+    DOW.forEach(function(d){ html+='<div class="cal-dow">'+d+'</div>'; });
+    for(var i=0;i<totalCells;i++){
+      var dayNum=i-startWd+1;
+      var cellDate=new Date(viewY, viewM, dayNum);
+      var ds=ymd(cellDate);
+      var other=(dayNum<1||dayNum>daysInMonth);
+      var isToday=(ds===todayStr);
+      var dayEvs=evs.filter(function(ev){ return covers(ev, ds); });
+      var chips="";
+      dayEvs.slice(0,3).forEach(function(ev){
+        chips+='<span class="cal-chip" data-id="'+ev.id+'" data-locked="'+(ev.locked?1:0)+'" style="--cc:'+ev.c+'" title="'+esc(ev.t)+' · '+esc(fmtRange(ev))+'">'+esc(ev.t)+'</span>';
+      });
+      if(dayEvs.length>3) chips+='<span class="cal-more">+'+(dayEvs.length-3)+' more</span>';
+      html+='<div class="cal-cell'+(other?' other':'')+(isToday?' today':'')+'" data-date="'+ds+'"><span class="cal-daynum">'+cellDate.getDate()+'</span>'+chips+'</div>';
+    }
+    grid.innerHTML=html;
+
+    var monthStart=ymd(new Date(viewY,viewM,1));
+    var monthEnd=ymd(new Date(viewY,viewM,daysInMonth));
+    var inMonth=evs.filter(function(ev){ return !(ev.end<monthStart || ev.start>monthEnd); })
+                   .sort(function(a,b){ return a.start<b.start?-1:(a.start>b.start?1:0); });
+    if(!inMonth.length){
+      list.innerHTML='<div class="cal-empty">No events this month. Click any day to add one.</div>';
+    } else {
+      list.innerHTML=inMonth.map(function(ev){
+        var actions=ev.locked
+          ? '<span class="cal-lock" title="Official schedule — locked"><i class="fa-light fa-lock"></i></span>'
+          : '<button class="cal-row-btn" data-edit="'+ev.id+'" title="Edit" type="button"><i class="fa-light fa-pen"></i></button><button class="cal-row-btn" data-del="'+ev.id+'" title="Delete" type="button"><i class="fa-light fa-trash"></i></button>';
+        return '<div class="cal-li"><span class="cal-li-dot" style="background:'+ev.c+'"></span><span class="cal-li-date">'+esc(fmtRange(ev))+'</span><span class="cal-li-title">'+esc(ev.t)+(ev.locked?'':' <span class="cal-mine">yours</span>')+'</span><span class="cal-li-actions">'+actions+'</span></div>';
+      }).join("");
+    }
+  }
+
+  grid.addEventListener("click", function(e){
+    var chip=e.target.closest(".cal-chip");
+    if(chip){
+      if(chip.getAttribute("data-locked")==="1") return;
+      editEvent(chip.getAttribute("data-id"));
+      return;
+    }
+    var cell=e.target.closest(".cal-cell");
+    if(cell) openForm({ start: cell.getAttribute("data-date") });
+  });
+  list.addEventListener("click", function(e){
+    var ed=e.target.closest("[data-edit]"); if(ed){ editEvent(ed.getAttribute("data-edit")); return; }
+    var dl=e.target.closest("[data-del]"); if(dl){ var id=dl.getAttribute("data-del"); userEvents=userEvents.filter(function(x){return x.id!==id;}); saveUser(userEvents); if(editingId===id) closeForm(); render(); }
+  });
+
+  render();
+})();
+
 (function(){
   var mount=document.getElementById("sidebar");
   if(!mount) return;
@@ -1037,6 +1216,7 @@ if(contentIdeasList){
     ]},
     {page:"content.html", icon:"fa-newspaper", label:"Content", items:[
       {id:"insights", icon:"fa-lightbulb", label:"Insights & key events"},
+      {id:"event-calendar", icon:"fa-calendar-day", label:"Event Calendar"},
       {id:"content-ideas", icon:"fa-pen-nib", label:"Content Ideas"},
       {id:"linkedin-compare", icon:"fa-thumbs-up", label:"LinkedIn Engagement"},
       {id:"image-search", icon:"fa-images", label:"Linkedin image bank"},
