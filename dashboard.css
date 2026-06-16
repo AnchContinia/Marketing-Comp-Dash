@@ -463,5 +463,5 @@ html[data-theme="dark"] .chip.active[data-type="stance"][data-val="cons"]{backgr
 html[data-theme="dark"] .chip.active[data-type="stance"][data-val="steady"]{background:var(--paper);color:#c79ae0}
 
 /* dark: category pill matches the cyan format tags; metric number -> inno-blue */
-html[data-theme="dark"] .ci-type{background:#16263f;color:#8ff8ff;border-color:#2b4a6b}
+html[data-theme="dark"] .ci-type{background:var(--panel);color:#cbd5e1;border-color:var(--line)}
 html[data-theme="dark"] .metric .num{color:#8ff8ff}
