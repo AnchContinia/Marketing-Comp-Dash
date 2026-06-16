@@ -316,3 +316,148 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
   .cal-li-title{grid-column:2;grid-row:2;white-space:normal}
   .cal-li-actions{grid-row:1/3}
 }
+
+/* ============================== DARK MODE ============================== */
+.theme-toggle{width:34px;height:34px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);border-radius:9px;cursor:pointer;display:grid;place-items:center;font-size:15px;transition:.15s;flex:none}
+.theme-toggle:hover{border-color:#94a3b8}
+
+html[data-theme="dark"]{--ink:#e6edf8;--muted:#9aa7be;--paper:#141c2e;--canvas:#0b1120;--panel:#1a2336;--line:#28324a;--line2:#3a465f;--navy:#6ea8ff;--shadow:0 18px 40px -30px rgba(0,0,0,.8)}
+html[data-theme="dark"] body{background:var(--canvas)}
+html[data-theme="dark"] .topbar{background:rgba(11,17,32,.86)}
+html[data-theme="dark"] .theme-toggle:hover{background:var(--panel);border-color:var(--line2)}
+html[data-theme="dark"] .brief,html[data-theme="dark"] .watch,html[data-theme="dark"] .metric,html[data-theme="dark"] .section{box-shadow:0 18px 40px -30px rgba(0,0,0,.8)}
+
+/* sidebar */
+html[data-theme="dark"] .sidebar{background:#0d1424}
+html[data-theme="dark"] .sb-head:hover,html[data-theme="dark"] .sb-sub a:hover{background:rgba(110,168,255,.10)}
+html[data-theme="dark"] .sb-head.active{background:rgba(110,168,255,.16)}
+html[data-theme="dark"] .sb-head.active,html[data-theme="dark"] .sb-head>i:first-child,html[data-theme="dark"] .sb-head>svg:first-child,html[data-theme="dark"] .sb-sub a.active,html[data-theme="dark"] .sb-sub a.active>i,html[data-theme="dark"] .sb-sub a:hover>i{color:#6ea8ff}
+
+/* primary surfaces -> paper */
+html[data-theme="dark"] .insight,
+html[data-theme="dark"] .toolbar,
+html[data-theme="dark"] .search,
+html[data-theme="dark"] .chip,
+html[data-theme="dark"] .card,
+html[data-theme="dark"] .chev,
+html[data-theme="dark"] .field,
+html[data-theme="dark"] .sources a,
+html[data-theme="dark"] .ci-sources a,
+html[data-theme="dark"] .ci-item,
+html[data-theme="dark"] .ci-arrow,
+html[data-theme="dark"] .vi-card,
+html[data-theme="dark"] .cal-nav,
+html[data-theme="dark"] .cal-today,
+html[data-theme="dark"] .cal-cell,
+html[data-theme="dark"] .cal-row-btn,
+html[data-theme="dark"] .cal-form input[type=text],
+html[data-theme="dark"] .cal-form input[type=date],
+html[data-theme="dark"] .seo-bar input,
+html[data-theme="dark"] .kw-focus-bar input,
+html[data-theme="dark"] .imgbank .is-search input,
+html[data-theme="dark"] #continia-uploads .cu-block,
+html[data-theme="dark"] #continia-uploads .cu-pd,
+html[data-theme="dark"] .cmp-row,
+html[data-theme="dark"] .cmp-thumb,
+html[data-theme="dark"] .kw-chk,
+html[data-theme="dark"] .kw-badge{background:var(--paper);color:var(--ink)}
+
+/* secondary surfaces -> panel */
+html[data-theme="dark"] .tag,
+html[data-theme="dark"] .badge,
+html[data-theme="dark"] .pill,
+html[data-theme="dark"] .footnote,
+html[data-theme="dark"] .yt-table th,
+html[data-theme="dark"] .cal-cell.other{background:var(--panel)}
+
+/* hovers / detail */
+html[data-theme="dark"] .card:hover,
+html[data-theme="dark"] .detail,
+html[data-theme="dark"] .chip:hover,
+html[data-theme="dark"] .sources a:hover,
+html[data-theme="dark"] .cal-nav:hover,
+html[data-theme="dark"] .cal-today:hover,
+html[data-theme="dark"] .cal-row-btn:hover,
+html[data-theme="dark"] .cmp-drop:hover,
+html[data-theme="dark"] #continia-uploads .cu-pd:hover{background:#1b2740}
+html[data-theme="dark"] .cal-cell:hover{background:#1b2740;border-color:#3a577f}
+html[data-theme="dark"] .cal-cell.selected{background:#16335a}
+html[data-theme="dark"] .cal-cell.today{border-color:#6ea8ff;box-shadow:inset 0 0 0 1px #6ea8ff}
+html[data-theme="dark"] .cal-form{background:#10182a}
+html[data-theme="dark"] .cmp-drop{background:var(--paper)}
+html[data-theme="dark"] .yt-table tr.ours{background:#10243a}
+html[data-theme="dark"] .insight.primary{background:linear-gradient(180deg,#17223c,#121a2c)}
+
+/* text-color fixes (hardcoded slate -> light) */
+html[data-theme="dark"] #continia-uploads .cu-legend,
+html[data-theme="dark"] .badge,
+html[data-theme="dark"] .cal-btn.ghost,
+html[data-theme="dark"] .cal-daynum,
+html[data-theme="dark"] .cal-nav,
+html[data-theme="dark"] .cal-today,
+html[data-theme="dark"] .chip,
+html[data-theme="dark"] .ci-sources a,
+html[data-theme="dark"] .ci-type,
+html[data-theme="dark"] .ev .what,
+html[data-theme="dark"] .headline,
+html[data-theme="dark"] .kw-focus-sum,
+html[data-theme="dark"] .kw-phrase,
+html[data-theme="dark"] .kw-table td,
+html[data-theme="dark"] .li-pt,
+html[data-theme="dark"] .pill,
+html[data-theme="dark"] .seo-f,
+html[data-theme="dark"] .sources a,
+html[data-theme="dark"] .tag,
+html[data-theme="dark"] .yt-table td{color:#cbd5e1}
+html[data-theme="dark"] #continia-uploads .cu-h,
+html[data-theme="dark"] .cal-fl,
+html[data-theme="dark"] .cal-row-btn,
+html[data-theme="dark"] .chev,
+html[data-theme="dark"] .field .ft,
+html[data-theme="dark"] .li-carrow,
+html[data-theme="dark"] .li-ty,
+html[data-theme="dark"] .metric .lbl{color:#9aa7be}
+
+/* stance badges */
+html[data-theme="dark"] .stance-ai .badge{color:#8ff8ff;border-color:#2b6f86;background:var(--paper)}
+html[data-theme="dark"] .stance-cons .badge{color:#9fd3c4;border-color:#3c6d60;background:var(--paper)}
+html[data-theme="dark"] .stance-steady .badge{color:#c79ae0;border-color:#6f4a86;background:var(--paper)}
+
+/* format tag + bars + outlier */
+html[data-theme="dark"] .ci-fmt-tag{background:#16263f;color:#8ff8ff;border-color:#2b4a6b}
+html[data-theme="dark"] .bar,html[data-theme="dark"] #continia-uploads .cu-bar{background:#26304a}
+html[data-theme="dark"] #continia-uploads .cu-bar i.sh{background:#3a465f}
+html[data-theme="dark"] #continia-uploads .cu-outlier{background:#241a30;color:#c79ae0;border-color:#4a3560}
+
+/* SEO severities */
+html[data-theme="dark"] .seo-item{background:var(--paper)}
+html[data-theme="dark"] .seo-item.sev-error{background:#221a2e}
+html[data-theme="dark"] .seo-item.sev-warn{background:#2a2412}
+html[data-theme="dark"] .seo-item.sev-info{background:#15233b}
+html[data-theme="dark"] .seo-item.sev-good{background:#162a24}
+html[data-theme="dark"] .sev-warn .seo-sev{color:#e3b94f}
+html[data-theme="dark"] .sev-info .seo-sev{color:#8fb6ff}
+html[data-theme="dark"] .seo-c.info{color:#8fb6ff}
+
+/* kw chips */
+html[data-theme="dark"] .kw-chk.ok{background:#162a24;border-color:#2f5f4d;color:#7fd3b3}
+html[data-theme="dark"] .kw-badge.on{background:#16263f;color:#8ff8ff;border-color:#2b4a6b}
+
+/* compress accents */
+html[data-theme="dark"] .cmp-drop .cmp-ico,html[data-theme="dark"] .cmp-drop:hover,html[data-theme="dark"] .cmp-drop.drag,html[data-theme="dark"] .cmp-btn.ghost,html[data-theme="dark"] .cmp-spin,html[data-theme="dark"] .imgbank .is-search input:focus{color:#6ea8ff}
+
+/* primary buttons -> brighter blue for contrast on dark */
+html[data-theme="dark"] .cal-btn,
+html[data-theme="dark"] .cmp-btn{background:#2f6df0;border-color:#2f6df0;color:#fff}
+html[data-theme="dark"] .cal-btn:hover,
+html[data-theme="dark"] .cmp-btn:hover{background:#3f7bff;border-color:#3f7bff}
+html[data-theme="dark"] .cal-btn.ghost,
+html[data-theme="dark"] .cmp-btn.ghost{background:var(--paper);border-color:var(--line2)}
+html[data-theme="dark"] .cal-btn.danger{background:var(--paper);color:#c79ae0;border-color:#6f4a86}
+html[data-theme="dark"] .chip.active,
+html[data-theme="dark"] #continia-uploads .cu-pd.active,
+html[data-theme="dark"] .chip.active[data-type="stance"][data-val="all"],
+html[data-theme="dark"] .chip.active[data-type="prox"]{background:#2f6df0;border-color:#2f6df0;color:#fff}
+html[data-theme="dark"] .chip.active[data-type="stance"][data-val="ai"]{background:var(--paper);color:#8ff8ff}
+html[data-theme="dark"] .chip.active[data-type="stance"][data-val="cons"]{background:var(--paper);color:#9fd3c4}
+html[data-theme="dark"] .chip.active[data-type="stance"][data-val="steady"]{background:var(--paper);color:#c79ae0}

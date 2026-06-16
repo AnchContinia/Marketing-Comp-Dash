@@ -1339,3 +1339,25 @@ if(contentIdeasList){
     v.addEventListener("playing", reveal);
   });
 })();
+
+/* ---- Dark / light mode toggle -------------------------------------------
+   Inserts a sun/moon button into the topbar (left of "Updated …"), persists
+   the choice in localStorage, and flips data-theme on <html>. A tiny inline
+   script in each page's <head> applies the saved theme before paint (no flash). */
+(function(){
+  var root=document.documentElement;
+  var status=document.querySelector(".topbar .status");
+  if(!status) return;
+  function isDark(){ return root.getAttribute("data-theme")==="dark"; }
+  function apply(dark){ if(dark) root.setAttribute("data-theme","dark"); else root.removeAttribute("data-theme"); }
+  var btn=document.createElement("button");
+  btn.className="theme-toggle"; btn.type="button"; btn.setAttribute("aria-label","Toggle dark mode");
+  function paint(){ btn.innerHTML = isDark() ? '<i class="fa-light fa-sun"></i>' : '<i class="fa-light fa-moon"></i>'; btn.title = isDark()?"Switch to light mode":"Switch to dark mode"; }
+  paint();
+  btn.addEventListener("click", function(){
+    var next=!isDark(); apply(next);
+    try{ localStorage.setItem("continia-theme", next?"dark":"light"); }catch(e){}
+    paint();
+  });
+  status.insertBefore(btn, status.firstChild);
+})();
