@@ -468,3 +468,5 @@ html[data-theme="dark"] .metric .num{color:#8ff8ff}
 html[data-theme="dark"] .ci-score{color:#8ff8ff}
 html[data-theme="dark"] #linkedin-compare .barline span{color:#8ff8ff}
 html[data-theme="dark"] #linkedin-compare .bar i{background:#8ff8ff}
+html[data-theme="dark"] .cal-cell.today .cal-daynum{color:#fff}
+html[data-theme="dark"] .cal-li-dot[style*="052975"]{background:#8ff8ff!important}
