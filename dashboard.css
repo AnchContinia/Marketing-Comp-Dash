@@ -466,3 +466,5 @@ html[data-theme="dark"] .chip.active[data-type="stance"][data-val="steady"]{back
 html[data-theme="dark"] .ci-type{background:var(--panel);color:#cbd5e1;border-color:var(--line)}
 html[data-theme="dark"] .metric .num{color:#8ff8ff}
 html[data-theme="dark"] .ci-score{color:#8ff8ff}
+html[data-theme="dark"] #linkedin-compare .barline span{color:#8ff8ff}
+html[data-theme="dark"] #linkedin-compare .bar i{background:#8ff8ff}
