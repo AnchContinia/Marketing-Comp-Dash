@@ -448,7 +448,7 @@ html[data-theme="dark"] .cmp-drop .cmp-ico,html[data-theme="dark"] .cmp-drop:hov
 
 /* primary buttons -> header-pill look (faint cyan fill, inno-blue text + stroke) */
 html[data-theme="dark"] .cal-btn,
-html[data-theme="dark"] .cmp-btn{background:rgba(143,248,255,.14);border-color:#8ff8ff;color:#8ff8ff}
+html[data-theme="dark"] .cmp-btn{background:transparent;border-color:#8ff8ff;color:#8ff8ff}
 html[data-theme="dark"] .cal-btn:hover,
 html[data-theme="dark"] .cmp-btn:hover{background:rgba(143,248,255,.24);border-color:#8ff8ff}
 html[data-theme="dark"] .cal-btn.ghost,
