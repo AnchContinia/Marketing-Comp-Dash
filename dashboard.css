@@ -472,4 +472,3 @@ html[data-theme="dark"] .cal-cell.today .cal-daynum{color:#fff}
 html[data-theme="dark"] .cal-li-dot[style*="052975"]{background:#8ff8ff!important}
 .brief .pill,.brief .pill b{color:#8ff8ff}
 .brief .pill{border-color:rgba(143,248,255,.6)}
-html[data-theme="dark"] .brief .pill{background:transparent}
