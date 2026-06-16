@@ -461,3 +461,7 @@ html[data-theme="dark"] .chip.active[data-type="prox"]{background:#2f6df0;border
 html[data-theme="dark"] .chip.active[data-type="stance"][data-val="ai"]{background:var(--paper);color:#8ff8ff}
 html[data-theme="dark"] .chip.active[data-type="stance"][data-val="cons"]{background:var(--paper);color:#9fd3c4}
 html[data-theme="dark"] .chip.active[data-type="stance"][data-val="steady"]{background:var(--paper);color:#c79ae0}
+
+/* dark: category pill matches the cyan format tags; metric number -> inno-blue */
+html[data-theme="dark"] .ci-type{background:#16263f;color:#8ff8ff;border-color:#2b4a6b}
+html[data-theme="dark"] .metric .num{color:#8ff8ff}
