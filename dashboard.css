@@ -448,16 +448,16 @@ html[data-theme="dark"] .cmp-drop .cmp-ico,html[data-theme="dark"] .cmp-drop:hov
 
 /* primary buttons -> brighter blue for contrast on dark */
 html[data-theme="dark"] .cal-btn,
-html[data-theme="dark"] .cmp-btn{background:#2f6df0;border-color:#2f6df0;color:#fff}
+html[data-theme="dark"] .cmp-btn{background:#C6FBFF;border-color:#C6FBFF;color:#052975}
 html[data-theme="dark"] .cal-btn:hover,
-html[data-theme="dark"] .cmp-btn:hover{background:#3f7bff;border-color:#3f7bff}
+html[data-theme="dark"] .cmp-btn:hover{background:#9fe9f2;border-color:#9fe9f2}
 html[data-theme="dark"] .cal-btn.ghost,
 html[data-theme="dark"] .cmp-btn.ghost{background:var(--paper);border-color:var(--line2)}
 html[data-theme="dark"] .cal-btn.danger{background:var(--paper);color:#c79ae0;border-color:#6f4a86}
 html[data-theme="dark"] .chip.active,
 html[data-theme="dark"] #continia-uploads .cu-pd.active,
 html[data-theme="dark"] .chip.active[data-type="stance"][data-val="all"],
-html[data-theme="dark"] .chip.active[data-type="prox"]{background:#2f6df0;border-color:#2f6df0;color:#fff}
+html[data-theme="dark"] .chip.active[data-type="prox"]{background:#C6FBFF;border-color:#C6FBFF;color:#052975}
 html[data-theme="dark"] .chip.active[data-type="stance"][data-val="ai"]{background:var(--paper);color:#8ff8ff}
 html[data-theme="dark"] .chip.active[data-type="stance"][data-val="cons"]{background:var(--paper);color:#9fd3c4}
 html[data-theme="dark"] .chip.active[data-type="stance"][data-val="steady"]{background:var(--paper);color:#c79ae0}
