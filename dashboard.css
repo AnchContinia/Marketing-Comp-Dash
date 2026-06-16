@@ -446,11 +446,11 @@ html[data-theme="dark"] .kw-badge.on{background:#16263f;color:#8ff8ff;border-col
 /* compress accents */
 html[data-theme="dark"] .cmp-drop .cmp-ico,html[data-theme="dark"] .cmp-drop:hover,html[data-theme="dark"] .cmp-drop.drag,html[data-theme="dark"] .cmp-btn.ghost,html[data-theme="dark"] .cmp-spin,html[data-theme="dark"] .imgbank .is-search input:focus{color:#6ea8ff}
 
-/* primary buttons -> brighter blue for contrast on dark */
+/* primary buttons -> header-pill look (faint cyan fill, inno-blue text + stroke) */
 html[data-theme="dark"] .cal-btn,
-html[data-theme="dark"] .cmp-btn{background:#C6FBFF;border-color:#C6FBFF;color:#052975}
+html[data-theme="dark"] .cmp-btn{background:rgba(143,248,255,.14);border-color:#8ff8ff;color:#8ff8ff}
 html[data-theme="dark"] .cal-btn:hover,
-html[data-theme="dark"] .cmp-btn:hover{background:#9fe9f2;border-color:#9fe9f2}
+html[data-theme="dark"] .cmp-btn:hover{background:rgba(143,248,255,.24);border-color:#8ff8ff}
 html[data-theme="dark"] .cal-btn.ghost,
 html[data-theme="dark"] .cmp-btn.ghost{background:var(--paper);border-color:var(--line2)}
 html[data-theme="dark"] .cal-btn.danger{background:var(--paper);color:#c79ae0;border-color:#6f4a86}
