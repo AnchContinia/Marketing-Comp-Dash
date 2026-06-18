@@ -476,6 +476,8 @@ html[data-theme="dark"] .li-row:hover{background:#1b2740}
 html[data-theme="dark"] .li-row.ours{background:#10243a}
 html[data-theme="dark"] .li-row.ours:hover{background:#16335a}
 html[data-theme="dark"] .li-pm b{color:#8ff8ff}
+/* dark: thumbnail-bank search focus -> white ring + light text (was navy/blue) */
+html[data-theme="dark"] .imgbank .is-search input:focus{border-color:#fff;outline-color:rgba(255,255,255,.3);color:var(--ink)}
 html[data-theme="dark"] #youtube .barline span{color:#8ff8ff}
 html[data-theme="dark"] #youtube .barline span.down{color:var(--rose)}
 html[data-theme="dark"] #youtube .bar i{background:#8ff8ff}

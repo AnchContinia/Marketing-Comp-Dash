@@ -1,0 +1,161 @@
+Company | Post_Number | Post_Age | Type | Type_Note | Reactions | Comments | Reposts
+Truvio | 1 | 9m | Image | | 1 | 0 | 1
+Truvio | 2 | 2h | Image | | 16 | 2 | 2
+Truvio | 3 | 2d | Image | | 9 | 0 | 3
+Truvio | 4 | 6d | Image | | 16 | 0 | 4
+Truvio | 5 | 1w | Image | | 16 | 0 | 1
+Truvio | 6 | 1w | Image | | 23 | 0 | 4
+Truvio | 7 | 1w | Image | | 34 | 0 | 5
+Truvio | 8 | 2w | Image | | | |
+Truvio | 9 | 2w | Image | | | |
+Truvio | 10 | 2w | Image | | | |
+Continia Software | 1 | 6d | Image | | | |
+Continia Software | 2 | 1w | Carousel | | 60 | 1 | 0
+Continia Software | 3 | 1w | Carousel | | 187 | 2 | 1
+Continia Software | 4 | 2w | Carousel | | 67 | 1 | 0
+Continia Software | 5 | 3w | Carousel | | 68 | 1 | 2
+Continia Software | 6 | 3w | Carousel | | | |
+Continia Software | 7 | 4w | Document (PDF) | | 39 | 0 | 0
+Continia Software | 8 | 1mo | Video | | 34 | 0 | 4
+Continia Software | 9 | 1mo | Video | | | |
+Continia Software | 10 | 1mo | Carousel | | | |
+Equisys | 1 | 1w | Image | | | | 1
+Equisys | 2 | 1w | Image | | 12 | 0 | 2
+Equisys | 3 | 3mo | Carousel | | 1 | 0 | 0
+Equisys | 4 | 6mo | Image | | 3 | 0 | 1
+Equisys | 5 | 1mo | Image | | | |
+Equisys | 6 | 3mo | Document (PDF) | | 2 | 0 | 2
+Equisys | 7 | 1mo | Image | | | |
+Equisys | 8 | 3mo | Document (PDF) | | | |
+Equisys | 9 | 6mo | Image | | | |
+Equisys | 10 | 1mo | Carousel | | | |
+Medius | 1 | 38m | Video | Read as image while player loaded; likely video | | |
+Medius | 2 | 2d | Image | | | |
+Medius | 3 | 2d | Image | | | |
+Medius | 4 | 2d | Image | | | |
+Medius | 5 | 6d | Image | | | |
+Medius | 6 | 1w | Image | | | |
+Medius | 7 | 1w | Image | | 2 | 1 | 1
+Medius | 8 | 2w | Image | | | |
+Medius | 9 | 1w | Carousel | | 69 | 7 | 0
+Medius | 10 | 2w | Document (PDF) | | 105 | 0 | 2
+Qvalia | 1 | 1w | Image | Possibly video loaded as poster frame | 3 | 0 | 0
+Qvalia | 2 | 1w | Image | Possibly video loaded as poster frame | | |
+Qvalia | 3 | 2w | Image | | 20 | 0 | 2
+Qvalia | 4 | 3w | Image | | 29 | 1 | 5
+Qvalia | 5 | 1mo | Image | | 4 | 0 | 0
+Qvalia | 6 | 8mo | Carousel | | 29 | 3 | 3
+Qvalia | 7 | 1mo | Image | | 6 | 0 | 0
+Qvalia | 8 | 9mo | Carousel | | 7 | 0 | 0
+Qvalia | 9 | 10mo | Document (PDF) | | 7 | 0 | 0
+Qvalia | 10 | 11mo | Document (PDF) | | | |
+AMC Banking | 1 | 3d | Article/Link | | | |
+AMC Banking | 2 | 2w | Carousel | | 12 | 0 | 3
+AMC Banking | 3 | 1mo | Text only | | | |
+AMC Banking | 4 | 2mo | Text only | | | |
+AMC Banking | 5 | 4mo | Document (PDF) | | | |
+AMC Banking | 6 | 6mo | Video | | 11 | 0 | 0
+AMC Banking | 7 | 4mo | Video | | | |
+AMC Banking | 8 | 4mo | Video | | | |
+AMC Banking | 9 | 1mo | Text only | | | |
+AMC Banking | 10 | 1mo | Article/Link | | 6 | 0 | 2
+B2BRouter | 1 | 1h | Carousel | | 7 | 0 | 1
+B2BRouter | 2 | recent | Image | Reshare | | |
+B2BRouter | 3 | 1d | Text only | | | |
+B2BRouter | 4 | 2d | Document (PDF) | | 8 | 2 | 1
+B2BRouter | 5 | 3d | Document (PDF) | | | |
+B2BRouter | 6 | 2w | Image | | | |
+B2BRouter | 7 | 2w | Image | | | |
+B2BRouter | 8 | 1w | Document (PDF) | | | |
+B2BRouter | 9 | recent | Image | Reshare | | |
+B2BRouter | 10 | 1w | Document (PDF) | | | |
+Dooap | 1 | 1w | Image | | | |
+Dooap | 2 | 1w | Image | | | |
+Dooap | 3 | 3w | Carousel | | | |
+Dooap | 4 | 2w | Image | | | |
+Dooap | 5 | 1w | Video | | | |
+Dooap | 6 | 1w | Video | | | |
+Dooap | 7 | 2w | Video | | | |
+Dooap | 8 | 3w | Video | | | |
+Dooap | 9 | 3w | Video | | | |
+Dooap | 10 | 3w | Image | | | |
+Yavrio | 1 | 21h | Image | Possibly video loaded as poster | 12 | 1 | 0
+Yavrio | 2 | 1d | Video | | | |
+Yavrio | 3 | 1w | Image | | 44 | 1 | 0
+Yavrio | 4 | 2w | Carousel | | 81 | 4 | 0
+Yavrio | 5 | 2w | Carousel | | | |
+Yavrio | 6 | 3w | Carousel | | | |
+Yavrio | 7 | 3w | Video | | 14 | 1 | 1
+Yavrio | 8 | 3w | Image | | | |
+Yavrio | 9 | 1mo | Carousel | | 68 | 1 | 1
+Yavrio | 10 | 1mo | Carousel | | | |
+Incedo | 1 | 2d | Image | | 52 | 0 | 0
+Incedo | 2 | 19h | Video | | | |
+Incedo | 3 | 6d | Document (PDF) | | | |
+Incedo | 4 | 2d | Video | | | |
+Incedo | 5 | recent | Carousel | Reshare | | |
+Incedo | 6 | 1w | Document (PDF) | | | |
+Incedo | 7 | 2w | Document (PDF) | | 24 | 0 | 3
+Incedo | 8 | 2w | Image | | | |
+Incedo | 9 | 3w | Document (PDF) | | | |
+Incedo | 10 | 3w | Document (PDF) | | | |
+Rillion | 1 | recent | Text only | Reshare | 28 | 19 | 4
+Rillion | 2 | 3h | Document (PDF) | | | |
+Rillion | 3 | 3d | Article/Link | | | |
+Rillion | 4 | 1d | Video | | | |
+Rillion | 5 | 1w | Image | | 17 | 1 | 2
+Rillion | 6 | recent | Image | Reshare | 16 | 0 | 0
+Rillion | 7 | 1w | Article/Link | | | |
+Rillion | 8 | 6d | Video | | 33 | 3 | 1
+Rillion | 9 | 1w | Carousel | | | |
+Rillion | 10 | recent | Image | Reshare | | |
+SignUp Software | 1 | 1mo | Image | Reshare | | |
+SignUp Software | 2 | 3w | Carousel | Reshare | | |
+SignUp Software | 3 | 2mo | Image | Reshare | | |
+SignUp Software | 4 | 2mo | Image | Reshare | | |
+SignUp Software | 5 | 1mo | Carousel | Reshare | | |
+SignUp Software | 6 | 3mo | Image | Reshare | 51 | 2 | 15
+SignUp Software | 7 | 5mo | Carousel | | | |
+SignUp Software | 8 | 4mo | Image | Reshare | 38 | 3 | 19
+SignUp Software | 9 | 7mo | Carousel | | 141 | 4 | 2
+SignUp Software | 10 | 7mo | Carousel | | 36 | 1 | 0
+Fidesic | 1 | 17h | Image | | 4 | 0 | 2
+Fidesic | 2 | 17h | Image | | | |
+Fidesic | 3 | 17h | Image | Reshare | | |
+Fidesic | 4 | 1d | Image | | | |
+Fidesic | 5 | 5d | Image | | | |
+Fidesic | 6 | 6d | Image | | | |
+Fidesic | 7 | 1w | Image | | | |
+Fidesic | 8 | 1w | Image | | | |
+Fidesic | 9 | 1w | Image | | | |
+Fidesic | 10 | 1d | Article/Link | | | |
+Tipalti | 1 | 19h | Image | | | |
+Tipalti | 2 | 2d | Image | | | |
+Tipalti | 3 | 2d | Image | | | |
+Tipalti | 4 | 2d | Image | | | |
+Tipalti | 5 | 5d | Image | | | |
+Tipalti | 6 | 5d | Image | | | |
+Tipalti | 7 | 6d | Image | | | |
+Tipalti | 8 | 1d | Text only | | | |
+Tipalti | 9 | 4d | Text only | | | |
+Tipalti | 10 | 1w | Image | | | |
+Stampli | 1 | 12h | Article/Link | | 4 | 0 | 3
+Stampli | 2 | 1d | Article/Link | | 18 | 1 | 3
+Stampli | 3 | 2w | Image | | 27 | 3 | 10
+Stampli | 4 | 5d | Video | | | |
+Stampli | 5 | 6d | Article/Link | | 8 | 0 | 2
+Stampli | 6 | 1w | Article/Link | | 16 | 3 | 7
+Stampli | 7 | 3w | Article/Link | | 25 | 0 | 11
+Stampli | 8 | recent | Image | Reshare | 80 | 8 | 23
+Stampli | 9 | 2mo | Carousel | | 43 | 1 | 5
+Stampli | 10 | recent | Article/Link | Reshare | 98 | 2 | 5
+Stripe | 1 | 6d | Image | | 180 | 29 | 24
+Stripe | 2 | 21h | Article/Link | | 102 | 7 | 6
+Stripe | 3 | recent | Article/Link | Reshare | 139 | 5 | 15
+Stripe | 4 | 6d | Article/Link | Reshare | 84 | 3 | 3
+Stripe | 5 | recent | Video | Reshare | 457 | 19 | 16
+Stripe | 6 | recent | Video | Reshare | 301 | 19 | 5
+Stripe | 7 | recent | Video | Reshare | 207 | 13 | 6
+Stripe | 8 | 1w | Video | Reshare | | |
+Stripe | 9 | recent | Article/Link | Reshare | | |
+Stripe | 10 | 2w | Document (PDF) | | | |
