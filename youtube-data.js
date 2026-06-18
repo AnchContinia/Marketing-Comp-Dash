@@ -34,7 +34,22 @@ window.YT_DATA = {
     { name: "Tipalti",            handle: "@tipaltivideos",      totalViews: "3.01M total views",  socialBlade: "https://socialblade.com/youtube/handle/tipaltivideos",      ours: false },
     { name: "Continia",           handle: "@continiasoftware",   totalViews: "513K total views",   socialBlade: "https://socialblade.com/youtube/handle/continiasoftware",   ours: true  },
     { name: "Equisys (Zetadocs)", handle: "@equisysplc",         totalViews: "42K total views",    socialBlade: "https://socialblade.com/youtube/handle/equisysplc",         ours: false },
-    { name: "Dooap",              handle: "@dooap",              totalViews: "146K total views",   socialBlade: "https://socialblade.com/youtube/handle/dooap",              ours: false }
+    { name: "Dooap",              handle: "@dooap",              totalViews: "146K total views",   socialBlade: "https://socialblade.com/youtube/handle/dooap",              ours: false },
+
+    /* Extended tracking (added Jun 2026): 10 more of the tracked competitor set.
+       Social Blade URLs use the verified /channel/<ID> form. totalViews are real
+       (read Jun 18); per-snapshot stats (subs/30d views/earnings) stay blank until
+       the first capture run fills them, so they render as "—" until then. */
+    { name: "AMC Banking",         handle: "AMCBanking",           totalViews: "25K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCg3bQAqsQSKHtMK02oxWN5Q", ours: false },
+    { name: "ExFlow (Truvio)",     handle: "SignUp Software",      totalViews: "143K total views",  socialBlade: "https://socialblade.com/youtube/channel/UCcRBDOXYUHYZ18mJzVwptYg", ours: false },
+    { name: "AvidXchange",         handle: "@avidxchange",         totalViews: "11M total views",   socialBlade: "https://socialblade.com/youtube/channel/UCyUdf0l5aenkbP6Rjbm1boA", ours: false },
+    { name: "Compleat",            handle: "@compleatp2p",         totalViews: "99K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCBHrVWn7hW3bimt1RIHVBJg", ours: false },
+    { name: "Tungsten Automation", handle: "@tungstenautomation",  totalViews: "893K total views",  socialBlade: "https://socialblade.com/youtube/channel/UCLXjytmoPLmzMT9-jRK9eMw", ours: false },
+    { name: "onPhase",             handle: "@onphase",             totalViews: "895 total views",   socialBlade: "https://socialblade.com/youtube/channel/UCfZ5vZy9s3WC0mcAhGy-6Pg", ours: false },
+    { name: "Dime Scheduler",      handle: "Dime Software",        totalViews: "25K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCYD4LGox7SJLL7r8gmjulNA", ours: false },
+    { name: "Qvalia",              handle: "Qvalia",               totalViews: "750 total views",   socialBlade: "https://socialblade.com/youtube/channel/UC1x8GlYfNAh4jjp3mquVAvw", ours: false },
+    { name: "Acubiz",              handle: "@acubiztv",            totalViews: "4.7K total views",  socialBlade: "https://socialblade.com/youtube/channel/UC69VeuWKBJRLmON3deGjwdw", ours: false },
+    { name: "B2Brouter",           handle: "@b2brouter",           totalViews: "1.1M total views",  socialBlade: "https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ", ours: false }
   ],
 
   snapshots: [

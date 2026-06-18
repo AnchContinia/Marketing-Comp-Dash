@@ -22,8 +22,15 @@ an updated `youtube-data.js` to commit.
 
 ## The channel list (read these, in this order)
 
-Direct Social Blade URLs — do **not** guess `/youtube/user/NAME`, these handles
-are verified. (Source of truth is the `channels` array in `youtube-data.js`.)
+Direct Social Blade URLs. (Source of truth is the `channels` array in
+`youtube-data.js`.) Channels 1–7 use verified `/handle/` URLs. Channels 8–17 were
+added Jun 2026 and use the `/channel/<ID>` form — the most stable address (handle
+and `/user/` forms often 404 on Social Blade even when the channel exists). On the
+**first run** these 10 have no per-snapshot stats yet, so capture their numbers and
+let the new snapshot populate them; `totalViews` is already filled. A few were
+brand-new to Social Blade's database on Jun 18 (ExFlow, onPhase, Dime, AMC, Qvalia)
+and showed no 30-day figure — note "no data" for those rather than guessing until
+SB builds history. Until captured they render as "—" in the live table.
 
 | # | Channel | Social Blade URL | Ours |
 |---|---------|------------------|------|
@@ -34,6 +41,21 @@ are verified. (Source of truth is the `channels` array in `youtube-data.js`.)
 | 5 | Continia | https://socialblade.com/youtube/handle/continiasoftware | ✅ |
 | 6 | Equisys (Zetadocs) | https://socialblade.com/youtube/handle/equisysplc | |
 | 7 | Dooap | https://socialblade.com/youtube/handle/dooap | |
+| 8 | AMC Banking | https://socialblade.com/youtube/channel/UCg3bQAqsQSKHtMK02oxWN5Q | |
+| 9 | ExFlow (Truvio) | https://socialblade.com/youtube/channel/UCcRBDOXYUHYZ18mJzVwptYg | |
+| 10 | AvidXchange | https://socialblade.com/youtube/channel/UCyUdf0l5aenkbP6Rjbm1boA | |
+| 11 | Compleat | https://socialblade.com/youtube/channel/UCBHrVWn7hW3bimt1RIHVBJg | |
+| 12 | Tungsten Automation | https://socialblade.com/youtube/channel/UCLXjytmoPLmzMT9-jRK9eMw | |
+| 13 | onPhase | https://socialblade.com/youtube/channel/UCfZ5vZy9s3WC0mcAhGy-6Pg | |
+| 14 | Dime Scheduler | https://socialblade.com/youtube/channel/UCYD4LGox7SJLL7r8gmjulNA | |
+| 15 | Qvalia | https://socialblade.com/youtube/channel/UC1x8GlYfNAh4jjp3mquVAvw | |
+| 16 | Acubiz | https://socialblade.com/youtube/channel/UC69VeuWKBJRLmON3deGjwdw | |
+| 17 | B2Brouter | https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ | |
+
+> **Not in the registry (by choice):** Lasernet, Pagero (its channel is now
+> "Thomson Reuters Europe" — no clean Pagero signal), MineralTree (no resolvable
+> active channel — likely dormant after the Global Payments acquisition), and
+> Microsoft Expense Agent (no standalone channel).
 
 ---
 
