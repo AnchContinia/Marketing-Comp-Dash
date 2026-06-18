@@ -177,6 +177,7 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 /* LinkedIn engagement: expandable per-company post list */
 .li-row{cursor:pointer}
 .li-row:hover{background:#f8fafc}
+.li-row.ours{background:#f0fdff}
 .li-row.ours:hover{background:#e8fbff}
 .li-carrow{display:inline-block;font-size:13px;color:#475569;transition:transform .22s;margin-left:4px;vertical-align:1px}
 .li-row.open .li-carrow{transform:rotate(90deg)}
@@ -472,7 +473,9 @@ html[data-theme="dark"] #linkedin-compare .bar i{background:#8ff8ff}
 html[data-theme="dark"] .li-detail>td{background:#10182a}
 html[data-theme="dark"] .li-ty{background:var(--panel);border-color:var(--line)}
 html[data-theme="dark"] .li-row:hover{background:#1b2740}
+html[data-theme="dark"] .li-row.ours{background:#10243a}
 html[data-theme="dark"] .li-row.ours:hover{background:#16335a}
+html[data-theme="dark"] .li-pm b{color:#8ff8ff}
 html[data-theme="dark"] #youtube .barline span{color:#8ff8ff}
 html[data-theme="dark"] #youtube .barline span.down{color:var(--rose)}
 html[data-theme="dark"] #youtube .bar i{background:#8ff8ff}
