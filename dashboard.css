@@ -131,13 +131,14 @@
 .cmp-thumb{width:44px;height:44px;border-radius:8px;object-fit:cover;background:#eef2f7}
 .cmp-name{font-size:13px;font-weight:750;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .cmp-meta{font-size:12px;color:var(--muted);margin-top:3px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
-.cmp-meta .save{color:#16a34a;font-weight:850}
+.cmp-meta .save{color:#983eae;font-weight:850}
+#pdf-compress .cmp-thumb{color:#052975}
 .cmp-meta b{color:var(--ink)}
 .cmp-right{display:flex;align-items:center;gap:10px;justify-self:end}
 .cmp-btn{border:1px solid #052975;background:#052975;color:#fff;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:850;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
 .cmp-btn:hover{background:#06317f}
 .cmp-btn.ghost{background:#fff;color:#052975}
-.cmp-btn.ghost:hover{background:rgba(5,41,117,.05);border-color:var(--line2);color:#052975}
+.cmp-btn.ghost:hover{background:#fff}
 .cmp-spin{width:14px;height:14px;border:2px solid #cbd5e1;border-top-color:#052975;border-radius:50%;animation:cmpspin .7s linear infinite;display:inline-block}
 @keyframes cmpspin{to{transform:rotate(360deg)}}
 .cmp-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -476,6 +477,7 @@ html[data-theme="dark"] .cal-li-dot[style*="052975"]{background:#8ff8ff!importan
 html[data-theme="dark"] .cal-form input:focus{outline:2px solid rgba(143,248,255,.35);border-color:#8ff8ff}
 html[data-theme="dark"] #cal-f-end{color:#8ff8ff}
 html[data-theme="dark"] .cmp-drop .cmp-ico{color:#8ff8ff}
+html[data-theme="dark"] #pdf-compress .cmp-thumb{color:#8ff8ff}
 /* drag-drop boxes: same hover as the buttons (gentle tint + inno-blue accent) */
 html[data-theme="dark"] .cmp-drop:hover,html[data-theme="dark"] .cmp-drop.drag{background:rgba(110,168,255,.10);color:#8ff8ff}
 /* Clear (ghost) buttons: white text + white-on-hover, gentle tint behind */
