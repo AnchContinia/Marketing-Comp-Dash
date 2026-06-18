@@ -465,8 +465,7 @@ if(contentIdeasList){
       var p=splitDesc(idea.desc), tease=p[0], reason=p[1];
       var fmt=idea.fmt||defFmt;
       var fmtHtml='<span class="ci-fmt">'+fmt.map(function(f){return '<span class="ci-fmt-tag">'+f+'</span>';}).join('')+'</span>';
-      var inner='<span class="ci-type">'+formLabel+'</span>'+
-        '<span class="ci-copy"><span class="ci-title">'+idea.title+'</span><span class="ci-tease">'+tease+'</span>'+fmtHtml+'</span>'+
+      var inner='<span class="ci-copy"><span class="ci-title">'+idea.title+'</span><span class="ci-tease">'+tease+'</span>'+fmtHtml+'</span>'+
         '<span class="ci-score">'+idea.score+'%</span>'+
         (reason?'<span class="ci-arrow" aria-hidden="true">›</span>':'');
       if(reason) return '<details class="ci-item"><summary class="ci-row">'+inner+'</summary><div class="ci-detail"><p class="ci-reason">'+reason+'</p></div></details>';

@@ -512,3 +512,8 @@ html[data-theme="dark"] #continia-uploads .cu-pd.active{background:transparent;b
 html[data-theme="dark"] #continia-uploads .cu-pd:not(.active){opacity:.5}
 html[data-theme="dark"] #continia-uploads .cu-pd.active{opacity:1}
 html[data-theme="dark"] .field .stat{color:#8ff8ff}
+/* video ideas: pill removed -> copy/score/arrow only, left-aligned */
+#video-ideas .ci-row{grid-template-columns:minmax(0,1fr) 82px 32px}
+/* dark: long-form upload bar + legend swatch -> inno-blue */
+html[data-theme="dark"] #continia-uploads .cu-bar i.lf{background:#8ff8ff}
+html[data-theme="dark"] #continia-uploads .cu-legend .sw.lf{background:#8ff8ff}
