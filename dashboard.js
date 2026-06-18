@@ -1097,8 +1097,14 @@ if(contentIdeasList){
   var swatches=document.getElementById("cal-swatches");
   var delBtn=document.getElementById("cal-delete");
 
-  swatches.innerHTML=PALETTE.map(function(p){ return '<button type="button" class="cal-sw" data-c="'+p.c+'" title="'+p.label+'" style="--cc:'+p.c+'"></button>'; }).join("");
+  function paletteHas(c){ for(var i=0;i<PALETTE.length;i++){ if(PALETTE[i].c===c) return true; } return false; }
+  function renderSwatches(){
+    var html=PALETTE.map(function(p){ return '<button type="button" class="cal-sw" data-c="'+p.c+'" title="'+p.label+'" style="--cc:'+p.c+'"></button>'; }).join("");
+    if(pickedColor && !paletteHas(pickedColor)) html+='<button type="button" class="cal-sw" data-c="'+pickedColor+'" title="Current colour" style="--cc:'+pickedColor+'"></button>';
+    swatches.innerHTML=html; markSwatch();
+  }
   function markSwatch(){ [].forEach.call(swatches.querySelectorAll(".cal-sw"), function(b){ b.classList.toggle("on", b.getAttribute("data-c")===pickedColor); }); }
+  renderSwatches();
   swatches.addEventListener("click", function(e){ var b=e.target.closest(".cal-sw"); if(!b) return; pickedColor=b.getAttribute("data-c"); markSwatch(); });
 
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
@@ -1115,12 +1121,14 @@ if(contentIdeasList){
     fTitle.value=opts.t||"";
     fStart.value=opts.start||ymd(new Date(viewY,viewM,1));
     fEnd.value=(opts.end&&opts.end!==opts.start)?opts.end:"";
-    pickedColor=opts.c||PALETTE[0].c; markSwatch();
+    pickedColor=opts.c||PALETTE[0].c; renderSwatches();
     delBtn.hidden=!editingId;
     form.hidden=false;
     fTitle.focus();
   }
-  function clearSel(){ var s=grid.querySelector(".cal-cell.selected"); if(s) s.classList.remove("selected"); }
+  var selDate=null;
+  function clearSel(){ selDate=null; var s=grid.querySelector(".cal-cell.selected"); if(s) s.classList.remove("selected"); }
+  function applySel(){ if(!selDate) return; var c=grid.querySelector('.cal-cell[data-date="'+selDate+'"]'); if(c) c.classList.add("selected"); }
   function closeForm(){ form.hidden=true; editingId=null; clearSel(); }
 
   document.getElementById("cal-cancel").addEventListener("click", closeForm);
@@ -1187,6 +1195,7 @@ if(contentIdeasList){
       html+='<div class="cal-cell'+(other?' other':'')+(isToday?' today':'')+'" data-date="'+ds+'"><span class="cal-daynum">'+cellDate.getDate()+'</span>'+chips+'</div>';
     }
     grid.innerHTML=html;
+    applySel();
 
     var monthStart=ymd(new Date(viewY,viewM,1));
     var monthEnd=ymd(new Date(viewY,viewM,daysInMonth));
@@ -1206,14 +1215,17 @@ if(contentIdeasList){
 
   grid.addEventListener("click", function(e){
     var cell=e.target.closest(".cal-cell");
-    clearSel(); if(cell) cell.classList.add("selected");
+    if(!cell) return;
+    var ds=cell.getAttribute("data-date");
+    clearSel(); selDate=ds; cell.classList.add("selected");
     var chip=e.target.closest(".cal-chip");
     if(chip){
       if(chip.getAttribute("data-locked")==="1") return; /* locked seed: highlight only, no edit */
       editEvent(chip.getAttribute("data-id"));
       return;
     }
-    if(cell) openForm({ start: cell.getAttribute("data-date") });
+    if(!form.hidden){ fStart.value=ds; if(fEnd.value && fEnd.value<ds) fEnd.value=""; } /* form already open: just set the date, keep in-progress edits */
+    else openForm({ start: ds });
   });
   list.addEventListener("click", function(e){
     var ed=e.target.closest("[data-edit]"); if(ed){ editEvent(ed.getAttribute("data-edit")); return; }
@@ -1229,13 +1241,15 @@ if(contentIdeasList){
     var raw; try{ raw=localStorage.getItem("continia-cal-events-v1"); }catch(e){ return Promise.resolve(false); }
     if(!raw) return Promise.resolve(false);
     var old=null; try{ old=JSON.parse(raw); }catch(e){}
-    if(!Array.isArray(old)||!old.length){ try{ localStorage.removeItem("continia-cal-events-v1"); }catch(e){} return Promise.resolve(false); }
+    /* claim immediately (before any async POST) so a second tab/load won't double-migrate the same events */
+    try{ localStorage.removeItem("continia-cal-events-v1"); }catch(e){}
+    if(!Array.isArray(old)||!old.length){ return Promise.resolve(false); }
     var chain=Promise.resolve();
     old.forEach(function(ev){
       if(!ev||!ev.t||!ev.start) return;
       chain=chain.then(function(){ return api("POST",{t:ev.t, start:ev.start, end:ev.end||ev.start, c:ev.c||"#052975"}).catch(function(){}); });
     });
-    return chain.then(function(){ try{ localStorage.removeItem("continia-cal-events-v1"); }catch(e){} return true; });
+    return chain.then(function(){ return true; });
   }
 
   render();
@@ -1360,4 +1374,6 @@ if(contentIdeasList){
     paint();
   });
   status.insertBefore(btn, status.firstChild);
+  /* keep tabs in sync: react when another tab toggles the theme */
+  window.addEventListener("storage", function(e){ if(e.key==="continia-theme"){ apply(e.newValue==="dark"); paint(); } });
 })();
