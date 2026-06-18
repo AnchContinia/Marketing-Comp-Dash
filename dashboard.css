@@ -493,10 +493,13 @@ html[data-theme="dark"] .brief .pill b{color:#8ff8ff}
 
 /* dark: competitor filter chips */
 /* group A — All (stance+prox) + prox High/Medium/Low: outline only, inno-blue */
+/* group A — All(20)/All/High/Medium/Low: styled like the white Clear button */
 html[data-theme="dark"] .chip[data-type="prox"],
-html[data-theme="dark"] .chip[data-type="stance"][data-val="all"],
+html[data-theme="dark"] .chip[data-type="stance"][data-val="all"]{background:var(--paper);border-color:var(--line2);color:#fff}
 html[data-theme="dark"] .chip.active[data-type="prox"],
-html[data-theme="dark"] .chip.active[data-type="stance"][data-val="all"]{background:transparent;border-color:#8ff8ff;color:#8ff8ff}
+html[data-theme="dark"] .chip.active[data-type="stance"][data-val="all"]{background:rgba(110,168,255,.10);border-color:var(--line2);color:#fff}
+html[data-theme="dark"] .chip[data-type="prox"]:hover,
+html[data-theme="dark"] .chip[data-type="stance"][data-val="all"]:hover{background:rgba(110,168,255,.10);border-color:var(--line2);color:#fff;opacity:1}
 /* group B — stance dot chips: always pressed-look, 50% opacity when not active */
 html[data-theme="dark"] .chip[data-type="stance"][data-val="ai"]{background:transparent;border-color:#8ff8ff;color:#8ff8ff}
 html[data-theme="dark"] .chip[data-type="stance"][data-val="cons"]{background:transparent;border-color:#5f9e8d;color:#9fd3c4}
