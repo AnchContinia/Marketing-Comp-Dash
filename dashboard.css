@@ -468,6 +468,11 @@ html[data-theme="dark"] .metric .num{color:#fff}
 html[data-theme="dark"] .ci-score{color:#8ff8ff}
 html[data-theme="dark"] #linkedin-compare .barline span{color:#8ff8ff}
 html[data-theme="dark"] #linkedin-compare .bar i{background:#8ff8ff}
+/* dark: LinkedIn engagement expand panel + type pill + row hovers (were stuck light) */
+html[data-theme="dark"] .li-detail>td{background:#10182a}
+html[data-theme="dark"] .li-ty{background:var(--panel);border-color:var(--line)}
+html[data-theme="dark"] .li-row:hover{background:#1b2740}
+html[data-theme="dark"] .li-row.ours:hover{background:#16335a}
 html[data-theme="dark"] #youtube .barline span{color:#8ff8ff}
 html[data-theme="dark"] #youtube .barline span.down{color:var(--rose)}
 html[data-theme="dark"] #youtube .bar i{background:#8ff8ff}
