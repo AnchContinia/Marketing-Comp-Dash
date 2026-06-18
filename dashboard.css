@@ -511,3 +511,4 @@ html[data-theme="dark"] #continia-uploads .cu-pd,
 html[data-theme="dark"] #continia-uploads .cu-pd.active{background:transparent;border-color:#8ff8ff;color:#8ff8ff}
 html[data-theme="dark"] #continia-uploads .cu-pd:not(.active){opacity:.5}
 html[data-theme="dark"] #continia-uploads .cu-pd.active{opacity:1}
+html[data-theme="dark"] .field .stat{color:#8ff8ff}
