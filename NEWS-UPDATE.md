@@ -50,6 +50,13 @@ There are **two kinds** of dates on the page; do not mix them up:
 
 ## Finish
 
+> **Archive first (the brain).** Before stamping, prepend a new dated snapshot of
+> the refreshed `events` + `data` to `window.DASH_ARCHIVE.snapshots` in
+> `archive.js` (newest first; never edit past snapshots). See **Step 6** of
+> [FULL-UPDATE.md](FULL-UPDATE.md) for the exact shape and the one-liner that
+> extracts it from the live files. This preserves the old news/competitor state
+> that this refresh would otherwise overwrite.
+
 1. Claude edits `events` / `data` in `index.html` with the new news.
 2. Claude sets `DASHBOARD_UPDATED` to **today's date**.
 3. Claude commits and pushes:

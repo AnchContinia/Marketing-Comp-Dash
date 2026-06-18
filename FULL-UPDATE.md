@@ -31,7 +31,9 @@ don't anymore.** Current locations:
 | Content ideas | `dashboard.js` | `const contentIdeas = [` |
 | "Updated" date stamp | `dashboard.js` | `var DASHBOARD_UPDATED = "YYYY-MM-DD"` |
 | YouTube snapshots + Continia uploads | `youtube-data.js` | `snapshots`, `continiaUploads` |
+| LinkedIn post engagement | `linkedin-data.js` | `window.LI_DATA` (`captured`, `companies`) |
 | Image-bank file lists | `linkedin-images.js`, `newsletter-images.js`, `youtube-images.js` | `window.*_IMAGES` |
+| **Historical archive ("the brain")** | `archive.js` | `window.DASH_ARCHIVE.snapshots` — append-only history; NOT read by the live site |
 
 ---
 
@@ -131,7 +133,47 @@ Then **`git add` the actual `Assets/<folder>` images too** — not just the inde
 JS — or new bank images render broken (the index lists files that aren't in the
 repo). If an index file is unchanged it just produces no diff; that's fine.
 
-## Step 6 — Stamp the dates, commit once, push once
+## Step 6 — Archive this month's snapshot (the brain)  (`archive.js`)
+
+Before stamping, **prepend one new snapshot** to `window.DASH_ARCHIVE.snapshots`
+in `archive.js` (newest first). This freezes the state you just refreshed so it
+can be compared month-over-month later. **Never edit or delete an existing
+snapshot** — each is a permanent dated layer.
+
+The snapshot mirrors the live data you just updated:
+
+```js
+{
+  date: "YYYY-MM-DD",          // same value you'll put in DASHBOARD_UPDATED (step 7)
+  linkedin: {                  // copy of window.LI_DATA from linkedin-data.js
+    source: "...", captured: "YYYY-MM-DD", windowLabel: "last 10 posts each",
+    companies: [ /* {name, ours, posts:[{t,ty,r,c,rp}]} … */ ]
+  },
+  news:        { events: [ /* the events[] array from dashboard.js */ ] },
+  competitors: [ /* the data[] array from dashboard.js */ ]
+}
+```
+
+Fastest reliable way to build it (no hand-copying — extract straight from the
+live files). From the repo root:
+
+```bash
+{ echo 'var window={};'; sed -n '1,228p' dashboard.js; cat linkedin-data.js; cat <<'JS'
+var out={ date:"YYYY-MM-DD",
+  linkedin:{source:window.LI_DATA.source,captured:window.LI_DATA.captured,windowLabel:window.LI_DATA.windowLabel,companies:window.LI_DATA.companies},
+  news:{events:events}, competitors:data };
+JSON.stringify(out);
+JS
+} > /tmp/gen.js
+osascript -l JavaScript /tmp/gen.js   # → paste this object as the new FIRST element of snapshots[]
+```
+
+(`sed -n '1,228p'` grabs the `const data` + `const events` definitions — re-check
+those line numbers if dashboard.js shifted; the slice must end before the DOM
+code starts.) YouTube history is **not** copied here — `youtube-data.js` already
+keeps its own `snapshots`.
+
+## Step 7 — Stamp the dates, commit once, push once
 
 1. Set `DASHBOARD_UPDATED` in `dashboard.js` to **today's date** (`YYYY-MM-DD`).
    Both the topbar "Updated …" and the footer read from it.
@@ -145,7 +187,7 @@ repo). If an index file is unchanged it just produces no diff; that's fine.
    copy. Same rule for any `*-images.js` you regenerated.
 4. Commit everything in one go and push:
    ```bash
-   git add -A && git commit -m "Opdater alt: news + competitor sweep + YouTube + vidIQ + image banks" && git push origin main
+   git add -A && git commit -m "Opdater alt: news + competitor sweep + YouTube + vidIQ + image banks + archive snapshot" && git push origin main
    ```
 5. GitHub Pages is live within ~1 min. Confirm with the new commit hash on
    `origin/main`.
