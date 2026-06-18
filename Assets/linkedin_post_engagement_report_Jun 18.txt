@@ -1,161 +1,199 @@
-Company | Post_Number | Post_Age | Type | Type_Note | Reactions | Comments | Reposts
-Truvio | 1 | 9m | Image | | 1 | 0 | 1
-Truvio | 2 | 2h | Image | | 16 | 2 | 2
-Truvio | 3 | 2d | Image | | 9 | 0 | 3
-Truvio | 4 | 6d | Image | | 16 | 0 | 4
-Truvio | 5 | 1w | Image | | 16 | 0 | 1
-Truvio | 6 | 1w | Image | | 23 | 0 | 4
-Truvio | 7 | 1w | Image | | 34 | 0 | 5
-Truvio | 8 | 2w | Image | | | |
-Truvio | 9 | 2w | Image | | | |
-Truvio | 10 | 2w | Image | | | |
-Continia Software | 1 | 6d | Image | | | |
-Continia Software | 2 | 1w | Carousel | | 60 | 1 | 0
-Continia Software | 3 | 1w | Carousel | | 187 | 2 | 1
-Continia Software | 4 | 2w | Carousel | | 67 | 1 | 0
-Continia Software | 5 | 3w | Carousel | | 68 | 1 | 2
-Continia Software | 6 | 3w | Carousel | | | |
-Continia Software | 7 | 4w | Document (PDF) | | 39 | 0 | 0
-Continia Software | 8 | 1mo | Video | | 34 | 0 | 4
-Continia Software | 9 | 1mo | Video | | | |
-Continia Software | 10 | 1mo | Carousel | | | |
-Equisys | 1 | 1w | Image | | | | 1
-Equisys | 2 | 1w | Image | | 12 | 0 | 2
-Equisys | 3 | 3mo | Carousel | | 1 | 0 | 0
-Equisys | 4 | 6mo | Image | | 3 | 0 | 1
-Equisys | 5 | 1mo | Image | | | |
-Equisys | 6 | 3mo | Document (PDF) | | 2 | 0 | 2
-Equisys | 7 | 1mo | Image | | | |
-Equisys | 8 | 3mo | Document (PDF) | | | |
-Equisys | 9 | 6mo | Image | | | |
-Equisys | 10 | 1mo | Carousel | | | |
-Medius | 1 | 38m | Video | Read as image while player loaded; likely video | | |
-Medius | 2 | 2d | Image | | | |
-Medius | 3 | 2d | Image | | | |
-Medius | 4 | 2d | Image | | | |
-Medius | 5 | 6d | Image | | | |
-Medius | 6 | 1w | Image | | | |
-Medius | 7 | 1w | Image | | 2 | 1 | 1
-Medius | 8 | 2w | Image | | | |
-Medius | 9 | 1w | Carousel | | 69 | 7 | 0
-Medius | 10 | 2w | Document (PDF) | | 105 | 0 | 2
-Qvalia | 1 | 1w | Image | Possibly video loaded as poster frame | 3 | 0 | 0
-Qvalia | 2 | 1w | Image | Possibly video loaded as poster frame | | |
-Qvalia | 3 | 2w | Image | | 20 | 0 | 2
-Qvalia | 4 | 3w | Image | | 29 | 1 | 5
-Qvalia | 5 | 1mo | Image | | 4 | 0 | 0
-Qvalia | 6 | 8mo | Carousel | | 29 | 3 | 3
-Qvalia | 7 | 1mo | Image | | 6 | 0 | 0
-Qvalia | 8 | 9mo | Carousel | | 7 | 0 | 0
-Qvalia | 9 | 10mo | Document (PDF) | | 7 | 0 | 0
-Qvalia | 10 | 11mo | Document (PDF) | | | |
-AMC Banking | 1 | 3d | Article/Link | | | |
-AMC Banking | 2 | 2w | Carousel | | 12 | 0 | 3
-AMC Banking | 3 | 1mo | Text only | | | |
-AMC Banking | 4 | 2mo | Text only | | | |
-AMC Banking | 5 | 4mo | Document (PDF) | | | |
-AMC Banking | 6 | 6mo | Video | | 11 | 0 | 0
-AMC Banking | 7 | 4mo | Video | | | |
-AMC Banking | 8 | 4mo | Video | | | |
-AMC Banking | 9 | 1mo | Text only | | | |
-AMC Banking | 10 | 1mo | Article/Link | | 6 | 0 | 2
-B2BRouter | 1 | 1h | Carousel | | 7 | 0 | 1
-B2BRouter | 2 | recent | Image | Reshare | | |
-B2BRouter | 3 | 1d | Text only | | | |
-B2BRouter | 4 | 2d | Document (PDF) | | 8 | 2 | 1
-B2BRouter | 5 | 3d | Document (PDF) | | | |
-B2BRouter | 6 | 2w | Image | | | |
-B2BRouter | 7 | 2w | Image | | | |
-B2BRouter | 8 | 1w | Document (PDF) | | | |
-B2BRouter | 9 | recent | Image | Reshare | | |
-B2BRouter | 10 | 1w | Document (PDF) | | | |
-Dooap | 1 | 1w | Image | | | |
-Dooap | 2 | 1w | Image | | | |
-Dooap | 3 | 3w | Carousel | | | |
-Dooap | 4 | 2w | Image | | | |
-Dooap | 5 | 1w | Video | | | |
-Dooap | 6 | 1w | Video | | | |
-Dooap | 7 | 2w | Video | | | |
-Dooap | 8 | 3w | Video | | | |
-Dooap | 9 | 3w | Video | | | |
-Dooap | 10 | 3w | Image | | | |
-Yavrio | 1 | 21h | Image | Possibly video loaded as poster | 12 | 1 | 0
-Yavrio | 2 | 1d | Video | | | |
-Yavrio | 3 | 1w | Image | | 44 | 1 | 0
-Yavrio | 4 | 2w | Carousel | | 81 | 4 | 0
-Yavrio | 5 | 2w | Carousel | | | |
-Yavrio | 6 | 3w | Carousel | | | |
-Yavrio | 7 | 3w | Video | | 14 | 1 | 1
-Yavrio | 8 | 3w | Image | | | |
-Yavrio | 9 | 1mo | Carousel | | 68 | 1 | 1
-Yavrio | 10 | 1mo | Carousel | | | |
-Incedo | 1 | 2d | Image | | 52 | 0 | 0
-Incedo | 2 | 19h | Video | | | |
-Incedo | 3 | 6d | Document (PDF) | | | |
-Incedo | 4 | 2d | Video | | | |
-Incedo | 5 | recent | Carousel | Reshare | | |
-Incedo | 6 | 1w | Document (PDF) | | | |
-Incedo | 7 | 2w | Document (PDF) | | 24 | 0 | 3
-Incedo | 8 | 2w | Image | | | |
-Incedo | 9 | 3w | Document (PDF) | | | |
-Incedo | 10 | 3w | Document (PDF) | | | |
-Rillion | 1 | recent | Text only | Reshare | 28 | 19 | 4
-Rillion | 2 | 3h | Document (PDF) | | | |
-Rillion | 3 | 3d | Article/Link | | | |
-Rillion | 4 | 1d | Video | | | |
-Rillion | 5 | 1w | Image | | 17 | 1 | 2
-Rillion | 6 | recent | Image | Reshare | 16 | 0 | 0
-Rillion | 7 | 1w | Article/Link | | | |
-Rillion | 8 | 6d | Video | | 33 | 3 | 1
-Rillion | 9 | 1w | Carousel | | | |
-Rillion | 10 | recent | Image | Reshare | | |
-SignUp Software | 1 | 1mo | Image | Reshare | | |
-SignUp Software | 2 | 3w | Carousel | Reshare | | |
-SignUp Software | 3 | 2mo | Image | Reshare | | |
-SignUp Software | 4 | 2mo | Image | Reshare | | |
-SignUp Software | 5 | 1mo | Carousel | Reshare | | |
-SignUp Software | 6 | 3mo | Image | Reshare | 51 | 2 | 15
-SignUp Software | 7 | 5mo | Carousel | | | |
-SignUp Software | 8 | 4mo | Image | Reshare | 38 | 3 | 19
-SignUp Software | 9 | 7mo | Carousel | | 141 | 4 | 2
-SignUp Software | 10 | 7mo | Carousel | | 36 | 1 | 0
-Fidesic | 1 | 17h | Image | | 4 | 0 | 2
-Fidesic | 2 | 17h | Image | | | |
-Fidesic | 3 | 17h | Image | Reshare | | |
-Fidesic | 4 | 1d | Image | | | |
-Fidesic | 5 | 5d | Image | | | |
-Fidesic | 6 | 6d | Image | | | |
-Fidesic | 7 | 1w | Image | | | |
-Fidesic | 8 | 1w | Image | | | |
-Fidesic | 9 | 1w | Image | | | |
-Fidesic | 10 | 1d | Article/Link | | | |
-Tipalti | 1 | 19h | Image | | | |
-Tipalti | 2 | 2d | Image | | | |
-Tipalti | 3 | 2d | Image | | | |
-Tipalti | 4 | 2d | Image | | | |
-Tipalti | 5 | 5d | Image | | | |
-Tipalti | 6 | 5d | Image | | | |
-Tipalti | 7 | 6d | Image | | | |
-Tipalti | 8 | 1d | Text only | | | |
-Tipalti | 9 | 4d | Text only | | | |
-Tipalti | 10 | 1w | Image | | | |
-Stampli | 1 | 12h | Article/Link | | 4 | 0 | 3
-Stampli | 2 | 1d | Article/Link | | 18 | 1 | 3
-Stampli | 3 | 2w | Image | | 27 | 3 | 10
-Stampli | 4 | 5d | Video | | | |
-Stampli | 5 | 6d | Article/Link | | 8 | 0 | 2
-Stampli | 6 | 1w | Article/Link | | 16 | 3 | 7
-Stampli | 7 | 3w | Article/Link | | 25 | 0 | 11
-Stampli | 8 | recent | Image | Reshare | 80 | 8 | 23
-Stampli | 9 | 2mo | Carousel | | 43 | 1 | 5
-Stampli | 10 | recent | Article/Link | Reshare | 98 | 2 | 5
-Stripe | 1 | 6d | Image | | 180 | 29 | 24
-Stripe | 2 | 21h | Article/Link | | 102 | 7 | 6
-Stripe | 3 | recent | Article/Link | Reshare | 139 | 5 | 15
-Stripe | 4 | 6d | Article/Link | Reshare | 84 | 3 | 3
-Stripe | 5 | recent | Video | Reshare | 457 | 19 | 16
-Stripe | 6 | recent | Video | Reshare | 301 | 19 | 5
-Stripe | 7 | recent | Video | Reshare | 207 | 13 | 6
-Stripe | 8 | 1w | Video | Reshare | | |
-Stripe | 9 | recent | Article/Link | Reshare | | |
-Stripe | 10 | 2w | Document (PDF) | | | |
+window.LI_DATA = {
+  source: "LinkedIn public engagement",
+  captured: "2026-06-18",
+  windowLabel: "last 10 posts each",
+  companies: [
+    { name: "Continia Software", ours: true, posts: [
+      { t: "Customer story: full-time AP person to automation in minutes", ty: "Image", r: 22, c: 0, rp: 3 },
+      { t: "The Elevate tour continues - this time in Poland", ty: "Carousel", r: 60, c: 1, rp: 0 },
+      { t: "We're ISO 27001 certified", ty: "Carousel", r: 187, c: 2, rp: 1 },
+      { t: "It's about time - we cycled to work in May", ty: "Carousel", r: 67, c: 1, rp: 0 },
+      { t: "250 Continia solutions a good reason for cake (Softvaerket)", ty: "Carousel", r: 68, c: 1, rp: 2 },
+      { t: "Thanks for a great time at DynamicsMinds", ty: "Carousel", r: 92, c: 2, rp: 0 },
+      { t: "Continia is growing - swipe to find your next role", ty: "Carousel", r: 42, c: 0, rp: 0 },
+      { t: "Kicking off Continia Elevate in the UK", ty: "Video", r: 49, c: 2, rp: 1 },
+      { t: "Your BC setup is almost there - upgrade for free", ty: "Video", r: 34, c: 0, rp: 4 },
+      { t: "That's a wrap on Directions ASIA", ty: "Carousel", r: 59, c: 0, rp: 0 }
+    ]},
+    { name: "Truvio", posts: [
+      { t: "Truvio at Forretning Online hos Novicell in Aarhus", ty: "Image", r: 5, c: 0, rp: 1 },
+      { t: "What does successful B2B eCommerce look like (report)", ty: "Document", r: 10, c: 0, rp: 3 },
+      { t: "Truvio is heading to Toronto for Dynamics Regional event", ty: "Image", r: 30, c: 0, rp: 2 },
+      { t: "ExFlow customer story - Sinclar Group", ty: "Image", r: 16, c: 0, rp: 4 },
+      { t: "AI is changing how customers discover products (event)", ty: "Event", r: 16, c: 2, rp: 2 },
+      { t: "Excited to attend Community Summit NA Roadshow Charlotte", ty: "Image", r: 16, c: 0, rp: 1 },
+      { t: "88% of manufacturers and wholesalers now sell online", ty: "Image", r: 23, c: 0, rp: 4 },
+      { t: "5 Years of Reliable AP Automation - recucare story", ty: "Image", r: 19, c: 0, rp: 3 },
+      { t: "What if managing commerce data started with a question", ty: "Image", r: 34, c: 0, rp: 5 },
+      { t: "The numbers don't lie - State of B2B eCommerce 2026", ty: "Image", r: 0, c: 0, rp: 0 }
+    ]},
+    { name: "Equisys", posts: [
+      { t: "Hours away from webinar - Best AP Automation for BC", ty: "Image", r: 2, c: 0, rp: 1 },
+      { t: "Less than 24 hours to register for AP automation webinar", ty: "Image", r: 2, c: 0, rp: 3 },
+      { t: "Great time sponsoring Directions North America 2026", ty: "Carousel", r: 12, c: 0, rp: 2 },
+      { t: "Smarter way to manage employee expenses (Zetadocs)", ty: "Image", r: 3, c: 0, rp: 3 },
+      { t: "Looking forward to AP Automation Comparison Showcase (shared)", ty: "Image", r: 1, c: 0, rp: 0 },
+      { t: "Celebrating 15 years of the Equisys blog", ty: "Document", r: 3, c: 0, rp: 1 },
+      { t: "Amazing first day at Directions North America (booth E-32)", ty: "Image", r: 14, c: 0, rp: 5 },
+      { t: "3 tips for implementing an AP automation solution", ty: "Document", r: 2, c: 0, rp: 2 },
+      { t: "We'll be in Orlando for Directions North America", ty: "Image", r: 5, c: 0, rp: 3 },
+      { t: "Team company-wide meet up in London on the Thames", ty: "Carousel", r: 5, c: 0, rp: 0 }
+    ]},
+    { name: "Medius", posts: [
+      { t: "Why your logistics growth is hurting your margins", ty: "Document", r: 2, c: 1, rp: 0 },
+      { t: "AP automation in construction - manage suppliers", ty: "Image", r: 14, c: 0, rp: 2 },
+      { t: "E-invoicing as compliance and strategic asset (event)", ty: "Event", r: 9, c: 0, rp: 3 },
+      { t: "Join us July 15 - SSON AI Agents webinar (shared)", ty: "Video", r: 19, c: 0, rp: 5 },
+      { t: "Garment manufacturing doesn't slow down for admin", ty: "Image", r: 14, c: 0, rp: 0 },
+      { t: "How is AI revolutionizing manufacturing AP processes", ty: "Image", r: 14, c: 0, rp: 2 },
+      { t: "Improve AP without disrupting your ERP", ty: "Image", r: 11, c: 0, rp: 2 },
+      { t: "Excited to work with Antaras on Infor LN webinar (shared)", ty: "Image", r: 2, c: 1, rp: 1 },
+      { t: "Speed used to be the whole AP conversation", ty: "Carousel", r: 58, c: 0, rp: 3 },
+      { t: "Got 30 minutes? Reasons to spend June with us (webinars)", ty: "Document", r: 12, c: 0, rp: 0 }
+    ]},
+    { name: "Qvalia", posts: [
+      { t: "E-invoicing mandates are infrastructure decisions (Slovakia)", ty: "Image", r: 3, c: 0, rp: 0 },
+      { t: "New Billentis report on global e-invoicing market", ty: "Image", r: 6, c: 1, rp: 0 },
+      { t: "Slovakia's eFaktura framework - structured e-invoicing", ty: "Image", r: 20, c: 0, rp: 2 },
+      { t: "Qvalia certified for Slovakia e-invoicing under eFaktura", ty: "Image", r: 29, c: 1, rp: 5 },
+      { t: "Business Continuity Management certified ISO 22301:2019", ty: "Image", r: 4, c: 0, rp: 0 },
+      { t: "Thank you for joining IDP webinar with Docupath", ty: "Carousel", r: 29, c: 3, rp: 3 },
+      { t: "Qvalia listed in Cloud Security Alliance STAR Registry", ty: "Image", r: 6, c: 1, rp: 0 },
+      { t: "AI in finance timeline - early credit scoring to GenAI", ty: "Carousel", r: 7, c: 0, rp: 0 },
+      { t: "Summer reading no 4: definitive guide to Peppol", ty: "Document", r: 7, c: 0, rp: 0 },
+      { t: "Summer reading no 3: Peppol e-orders how it works", ty: "Document", r: 11, c: 0, rp: 2 }
+    ]},
+    { name: "AMC Banking", posts: [
+      { t: "Your biggest compliance risk is an unquestioned process", ty: "Text/Link", r: 6, c: 0, rp: 2 },
+      { t: "Thanks for showing up at our new building reception", ty: "Carousel", r: 29, c: 1, rp: 0 },
+      { t: "AMC operates under Service Provider Agreements with banks", ty: "Text/Link", r: 9, c: 0, rp: 0 },
+      { t: "We're moving - join us for a reception (event)", ty: "Event", r: 12, c: 0, rp: 1 },
+      { t: "One bank is manageable, ten banks lose finance teams time", ty: "Document", r: 4, c: 0, rp: 0 },
+      { t: "Webinar - new AMC Banking app for D365 BC", ty: "Video", r: 6, c: 0, rp: 0 },
+      { t: "Bank integration: Myth vs reality", ty: "Video", r: 10, c: 0, rp: 3 },
+      { t: "AMC Banking webinar series - Simplifying Cash Management", ty: "Video", r: 10, c: 0, rp: 1 },
+      { t: "Still time to register for our reception (shared event)", ty: "Event", r: 0, c: 0, rp: 0 },
+      { t: "AMC is expanding - hiring a java developer", ty: "Text/Link", r: 12, c: 0, rp: 3 }
+    ]},
+    { name: "B2Brouter", posts: [
+      { t: "B2Brouter attended Peppol Conference Europe 2026 Brussels", ty: "Carousel", r: 5, c: 0, rp: 0 },
+      { t: "Oriol Bausa: Starting the Peppol Conference 2026 (repost)", ty: "Video", r: 52, c: 1, rp: 4 },
+      { t: "Receiving an e-invoice doesn't mean processing it (poll)", ty: "Text/Link", r: 0, c: 0, rp: 0 },
+      { t: "VeriFactu, Ley Crea y Crece - 5 pasos para autonomos", ty: "Document", r: 7, c: 0, rp: 1 },
+      { t: "Why Peppol is becoming the gold standard for B2B", ty: "Document", r: 5, c: 0, rp: 0 },
+      { t: "Germany's e-invoicing roadmap - Legacy EDI (shared)", ty: "Image", r: 0, c: 0, rp: 0 },
+      { t: "Tomorrow we discuss Ley Crea y Crece (Camara shared)", ty: "Image", r: 3, c: 0, rp: 0 },
+      { t: "Legal SaaS platforms in France must prepare for 2026", ty: "Document", r: 4, c: 0, rp: 0 },
+      { t: "B2Brouter at ERP Summit Espana with partners (repost)", ty: "Image", r: 40, c: 0, rp: 2 },
+      { t: "Germany's B2B e-invoicing roadmap is already moving", ty: "Document", r: 0, c: 0, rp: 0 }
+    ]},
+    { name: "Dooap", posts: [
+      { t: "Dynamics community coming to Toronto - DynamicsCon Regional", ty: "Image", r: 16, c: 0, rp: 1 },
+      { t: "Possibilities with Dooap Studio - invoice fraud cartoon (shared)", ty: "Image", r: 12, c: 0, rp: 1 },
+      { t: "That's a wrap on DynamicsMinds", ty: "Carousel", r: 69, c: 4, rp: 0 },
+      { t: "Clear shift across DynamicsCon and DynamicsMinds 2026", ty: "Image", r: 19, c: 0, rp: 0 },
+      { t: "Dooap Unleashed: Run With Us - Eftsure", ty: "Video", r: 39, c: 2, rp: 1 },
+      { t: "This is what agentic AP automation looks like (Dooap Studio)", ty: "Video", r: 17, c: 0, rp: 6 },
+      { t: "AP automation doesn't stop at the invoice", ty: "Video", r: 71, c: 10, rp: 3 },
+      { t: "The biggest problem in finance is nobody trusts the system", ty: "Video", r: 21, c: 3, rp: 1 },
+      { t: "Sam Bush live in Helsinki - DynamicsMinds status update", ty: "Video", r: 0, c: 0, rp: 0 },
+      { t: "Dooap at DynamicsMinds Slovenia recap", ty: "Carousel", r: 0, c: 0, rp: 0 }
+    ]},
+    { name: "Tipalti", posts: [
+      { t: "Cubic Games managed 180+ vendors - saving 20% bank fees", ty: "Image", r: 6, c: 0, rp: 0 },
+      { t: "Days out from World Finance Forum in Amsterdam", ty: "Image", r: 4, c: 0, rp: 0 },
+      { t: "Day 1 at IMA2026 in Tampa is in the books", ty: "Image", r: 15, c: 0, rp: 3 },
+      { t: "Economic uncertainty: what finance should prioritize now", ty: "Image", r: 4, c: 0, rp: 0 },
+      { t: "Thank you to everyone at BAASS Connect", ty: "Image", r: 37, c: 1, rp: 0 },
+      { t: "Experimentation becoming a core engineering principle", ty: "Image", r: 5, c: 0, rp: 0 },
+      { t: "Splice cut royalty payments from 8 weeks to under an hour", ty: "Image", r: 8, c: 0, rp: 0 },
+      { t: "Manual payment processes don't scale", ty: "Text/Link", r: 8, c: 0, rp: 0 },
+      { t: "'This is how we've always done it' is not a reason", ty: "Text/Link", r: 2, c: 0, rp: 0 },
+      { t: "Three-way matching by hand is tedious (PO Matching Agent)", ty: "Image", r: 20, c: 0, rp: 1 }
+    ]},
+    { name: "Stampli", posts: [
+      { t: "Stampli named a Leader in G2's Summer 2026 grids", ty: "Text/Link", r: 4, c: 0, rp: 3 },
+      { t: "Finance teams need practical ways to get answers (AI intelligence)", ty: "Text/Link", r: 18, c: 1, rp: 3 },
+      { t: "Integra Investments saved $20K-$30K with Deep Finance", ty: "Carousel", r: 27, c: 3, rp: 10 },
+      { t: "Market stories clearer in operational spend (CNN SpaceX, shared)", ty: "Video", r: 11, c: 1, rp: 4 },
+      { t: "NetSuite 3-way matching breaks on missing item receipt", ty: "Text/Link", r: 8, c: 0, rp: 2 },
+      { t: "ACH risks start earlier - Nacha Operating Rules", ty: "Text/Link", r: 16, c: 3, rp: 7 },
+      { t: "Built to scale - Billy, Stampli's AI Employee", ty: "Text/Link", r: 25, c: 0, rp: 11 },
+      { t: "Eyal Feldman: the death of the dashboard - Deep Finance (repost)", ty: "Image", r: 80, c: 8, rp: 23 },
+      { t: "Great time at the Nashville career fair", ty: "Carousel", r: 43, c: 1, rp: 5 },
+      { t: "Matthew E. on scaled GTM orgs (repost)", ty: "Text/Link", r: 0, c: 0, rp: 0 }
+    ]},
+    { name: "Rillion", posts: [
+      { t: "Frida Ahrenby: hunt for a US native CFO (repost)", ty: "Text/Link", r: 28, c: 19, rp: 4 },
+      { t: "We asked 250 CFOs - The Nordic Finance AI Report 2026", ty: "Video", r: 5, c: 0, rp: 0 },
+      { t: "The Marie Stierna interview - Nordic Finance AI Report", ty: "Image", r: 7, c: 0, rp: 0 },
+      { t: "Bringing Sweden and US colleagues together (Midsummer/4th)", ty: "Image", r: 16, c: 0, rp: 0 },
+      { t: "40% of CFOs see fraud detection as biggest AI opportunity", ty: "Event", r: 17, c: 1, rp: 2 },
+      { t: "Rosanna Ryrberg: back from two energizing days (repost)", ty: "Image", r: 50, c: 8, rp: 1 },
+      { t: "26% of CFOs say lack of AI competence is the barrier", ty: "Image", r: 18, c: 1, rp: 1 },
+      { t: "Rillion's summer celebration was one for the books", ty: "Video", r: 41, c: 4, rp: 0 },
+      { t: "Marketing team ran Blodomloppet for blood donation", ty: "Carousel", r: 33, c: 3, rp: 1 },
+      { t: "Johan Dovander: a higher salary isn't enough anymore (repost)", ty: "Image", r: 105, c: 2, rp: 1 }
+    ]},
+    { name: "SignUp Software", posts: [
+      { t: "One week to go - Truvio Partner Day Stockholm (shared)", ty: "Image", r: 32, c: 0, rp: 10 },
+      { t: "It's Partner Day in Sweden - Truvio (shared)", ty: "Carousel", r: 147, c: 2, rp: 9 },
+      { t: "The difference isn't your ERP - TruvioSense (shared)", ty: "Image", r: 51, c: 2, rp: 15 },
+      { t: "Live Webinar - Introducing TruvioSense (shared)", ty: "Image", r: 60, c: 1, rp: 28 },
+      { t: "We're live at DYNAfair in Dortmund - Truvio (shared)", ty: "Carousel", r: 62, c: 4, rp: 3 },
+      { t: "Get ready for Truvio Partner Day in Stockholm (shared)", ty: "Video", r: 63, c: 1, rp: 13 },
+      { t: "Convergence 2025 in Miami - leaders and partners", ty: "Carousel", r: 38, c: 0, rp: 0 },
+      { t: "Join SignUp Software at Cloud Wars AI/Copilot Summit (shared)", ty: "Image", r: 11, c: 0, rp: 2 },
+      { t: "Directions EMEA 2025 in Poznan - what a week", ty: "Carousel", r: 141, c: 4, rp: 2 },
+      { t: "Great few days at IOFM Fall 2025 in Las Vegas", ty: "Carousel", r: 39, c: 1, rp: 1 }
+    ]},
+    { name: "Fidesic", posts: [
+      { t: "Fidesic has officially joined Knights of GP", ty: "Image", r: 4, c: 0, rp: 2 },
+      { t: "Why accruals and deferrals matter for financial accuracy", ty: "Image", r: 0, c: 0, rp: 0 },
+      { t: "Why Fidesic - manage multi-location AP in GP or BC", ty: "Image", r: 2, c: 0, rp: 0 },
+      { t: "Scrambling on Friday? Automation makes it easier (#LoveFriday)", ty: "Image", r: 2, c: 0, rp: 0 },
+      { t: "DPO vs AP Turnover ratio explained", ty: "Image", r: 0, c: 0, rp: 0 },
+      { t: "Failure to manage payables - Deloitte (#WednesdayWisdom)", ty: "Image", r: 1, c: 0, rp: 0 },
+      { t: "Think paper checks are dead? 80% still cut paper checks", ty: "Image", r: 2, c: 0, rp: 1 },
+      { t: "Does native integration make AP easier for BC", ty: "Image", r: 2, c: 0, rp: 0 },
+      { t: "Budget pressure? How AP drives company-wide cost cuts", ty: "Text/Link", r: 0, c: 0, rp: 0 },
+      { t: "Doug Burgum bet the farm on Great Plains (#FunFactFriday)", ty: "Image", r: 7, c: 1, rp: 1 }
+    ]},
+    { name: "Yavrio", posts: [
+      { t: "Only 18% of finance teams close books in three days", ty: "Image", r: 12, c: 1, rp: 0 },
+      { t: "Still moving bank data by CSV? Time for an upgrade", ty: "Video", r: 19, c: 0, rp: 1 },
+      { t: "Phil Dawson expert spotlight - payment infrastructure", ty: "Image", r: 44, c: 1, rp: 0 },
+      { t: "What a 2026 Yavrio is having so far", ty: "Carousel", r: 102, c: 7, rp: 0 },
+      { t: "DynamicsMinds 2026 is done and what a week", ty: "Carousel", r: 105, c: 5, rp: 0 },
+      { t: "Day one of DynamicsMinds wrapped - what a start", ty: "Carousel", r: 81, c: 4, rp: 0 },
+      { t: "Finance teams BEFORE vs AFTER Yavrio", ty: "Video", r: 44, c: 4, rp: 0 },
+      { t: "Webinar with Western Computer - Banking automation D365", ty: "Image", r: 14, c: 1, rp: 1 },
+      { t: "DynamicsCon 2026 wrapped - what a few days", ty: "Carousel", r: 55, c: 2, rp: 0 },
+      { t: "Feet on the ground at Directions ASIA 2026 in Vietnam", ty: "Carousel", r: 68, c: 1, rp: 1 }
+    ]},
+    { name: "Incedo", posts: [
+      { t: "Incedo recognized with Honda 2026 Supplier Award", ty: "Image", r: 69, c: 1, rp: 3 },
+      { t: "Most expensive resource isn't compute or capital (THE REALITY)", ty: "Video", r: 18, c: 0, rp: 1 },
+      { t: "Data modernization programs stall - the data problem", ty: "Document", r: 21, c: 0, rp: 0 },
+      { t: "Nitin Seth interview on ONNJ Mornings with Ken Rosato", ty: "Video", r: 40, c: 0, rp: 3 },
+      { t: "Nitin Seth: Human Edge book launch at Harvard Club (repost)", ty: "Carousel", r: 312, c: 8, rp: 8 },
+      { t: "Welcome to Incedo - new team members", ty: "Carousel", r: 53, c: 0, rp: 0 },
+      { t: "From signal to action - Incedo Lighthouse", ty: "Document", r: 24, c: 0, rp: 3 },
+      { t: "Incedo at Make in Haryana 2026 industrial policy event", ty: "Carousel", r: 133, c: 0, rp: 1 },
+      { t: "Disconnected workflows - The Copilot Paradox", ty: "Image", r: 37, c: 0, rp: 1 },
+      { t: "The biggest enterprise challenge is translating strategy", ty: "Document", r: 42, c: 0, rp: 3 }
+    ]},
+    { name: "Stripe", posts: [
+      { t: "Agent traffic surpassed human traffic on the internet", ty: "Image", r: 180, c: 29, rp: 24 },
+      { t: "Frontier: $915M in new funding for carbon removal", ty: "Text/Link", r: 102, c: 7, rp: 6 },
+      { t: "Mikael Mello: how API changes flow into Stripe products (repost)", ty: "Text/Link", r: 139, c: 5, rp: 15 },
+      { t: "Rami Banna: Stripe Projects adds new agent integrations (repost)", ty: "Text/Link", r: 85, c: 3, rp: 3 },
+      { t: "William Gaybrick on stage at Stripe Tour Paris (repost)", ty: "Video", r: 457, c: 12, rp: 16 },
+      { t: "Tanya Khakbaz: new frontier in fraud, token theft (repost)", ty: "Video", r: 302, c: 19, rp: 5 },
+      { t: "Katie Dill: future of UX in AI-native commerce (repost)", ty: "Video", r: 207, c: 13, rp: 6 },
+      { t: "Conor McNamara: 1.5M UK businesses run on Stripe (repost)", ty: "Video", r: 411, c: 9, rp: 7 },
+      { t: "Jon Krauss: Visa DCAP change, $18.4M savings (repost)", ty: "Text/Link", r: 101, c: 9, rp: 7 },
+      { t: "Solo founding at all-time high - top founders earn 61x", ty: "Document", r: 111, c: 15, rp: 4 }
+    ]}
+  ]
+};

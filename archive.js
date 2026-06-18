@@ -28,78 +28,50 @@ window.DASH_ARCHIVE = {
       "date": "2026-06-18",
       "linkedin": {
         "source": "LinkedIn public engagement",
-        "captured": "2026-06-11",
-        "windowLabel": "last 10 posts each",
+        "captured": "2026-06-18",
+        "windowLabel": "recent posts · public engagement",
         "companies": [
           {
             "name": "Continia Software",
             "ours": true,
             "posts": [
               {
-                "t": "From a full-time AP person to automation (The Reserves Network)",
-                "ty": "Image",
-                "r": 11,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "Continia Elevate in Warsaw, Poland",
+                "t": "1w ago",
                 "ty": "Carousel",
-                "r": 56,
+                "r": 60,
                 "c": 1,
                 "rp": 0
               },
               {
-                "t": "Kicking off Continia Elevate in the UK (London)",
-                "ty": "Video",
-                "r": 46,
-                "c": 2,
-                "rp": 0
-              },
-              {
-                "t": "We are ISO 27001 certified",
+                "t": "1w ago",
                 "ty": "Carousel",
-                "r": 170,
+                "r": 187,
                 "c": 2,
                 "rp": 1
               },
               {
-                "t": "Bike to Work — we cycled to work in May",
-                "ty": "Image",
-                "r": 64,
+                "t": "2w ago",
+                "ty": "Carousel",
+                "r": 67,
                 "c": 1,
                 "rp": 0
               },
               {
-                "t": "250 Continia solutions celebrated with Softværket",
+                "t": "3w ago",
                 "ty": "Carousel",
-                "r": 62,
+                "r": 68,
                 "c": 1,
                 "rp": 2
               },
               {
-                "t": "Thanks for a great time at DynamicsMinds",
-                "ty": "Carousel",
-                "r": 88,
-                "c": 2,
-                "rp": 0
-              },
-              {
-                "t": "Continia is growing — swipe to find your next role",
+                "t": "4w ago",
                 "ty": "Document",
-                "r": 42,
+                "r": 39,
                 "c": 0,
                 "rp": 0
               },
               {
-                "t": "That's a wrap on Directions ASIA",
-                "ty": "Carousel",
-                "r": 59,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "Your BC setup is almost there — upgrade for free",
+                "t": "1mo ago",
                 "ty": "Video",
                 "r": 34,
                 "c": 0,
@@ -111,74 +83,53 @@ window.DASH_ARCHIVE = {
             "name": "Truvio",
             "posts": [
               {
-                "t": "Webinar July 2 — product data as the key to AI eCommerce",
-                "ty": "Carousel",
-                "r": 12,
-                "c": 2,
-                "rp": 1
-              },
-              {
-                "t": "Community Summit NA Roadshow in Charlotte, June 9",
-                "ty": "Carousel",
-                "r": 13,
+                "t": "9m ago",
+                "ty": "Image",
+                "r": 1,
                 "c": 0,
                 "rp": 1
               },
               {
-                "t": "88% of manufacturers/wholesalers now sell online",
-                "ty": "Carousel",
-                "r": 22,
+                "t": "2h ago",
+                "ty": "Image",
+                "r": 16,
+                "c": 2,
+                "rp": 2
+              },
+              {
+                "t": "2d ago",
+                "ty": "Image",
+                "r": 9,
+                "c": 0,
+                "rp": 3
+              },
+              {
+                "t": "6d ago",
+                "ty": "Image",
+                "r": 16,
                 "c": 0,
                 "rp": 4
               },
               {
-                "t": "5 years of reliable AP automation at recucare (ExFlow)",
-                "ty": "Carousel",
-                "r": 19,
+                "t": "1w ago",
+                "ty": "Image",
+                "r": 16,
                 "c": 0,
-                "rp": 3
+                "rp": 1
               },
               {
-                "t": "Last chance: Truvio Talks Podcast w/ Parkfield Collective",
-                "ty": "Video",
-                "r": 1,
+                "t": "1w ago",
+                "ty": "Image",
+                "r": 23,
                 "c": 0,
-                "rp": 0
+                "rp": 4
               },
               {
-                "t": "Agentic AI for Truvio Commerce Suite (Backend MCP Server)",
-                "ty": "Carousel",
+                "t": "1w ago",
+                "ty": "Image",
                 "r": 34,
                 "c": 0,
                 "rp": 5
-              },
-              {
-                "t": "More than half of B2B revenue now comes from online orders",
-                "ty": "Carousel",
-                "r": 23,
-                "c": 0,
-                "rp": 5
-              },
-              {
-                "t": "Fomaco webinar: self-service spare parts portal (D365 F&O)",
-                "ty": "Carousel",
-                "r": 26,
-                "c": 0,
-                "rp": 3
-              },
-              {
-                "t": "Three industries, similar commerce challenges (3 webinars)",
-                "ty": "Carousel",
-                "r": 14,
-                "c": 0,
-                "rp": 5
-              },
-              {
-                "t": "The State of B2B eCommerce 2026 (Truvio + Sapio Research)",
-                "ty": "Event",
-                "r": 13,
-                "c": 0,
-                "rp": 3
               }
             ]
           },
@@ -186,74 +137,39 @@ window.DASH_ARCHIVE = {
             "name": "Equisys",
             "posts": [
               {
-                "t": "Hours away from webinar: Best AP Automation for BC",
-                "ty": "Carousel",
+                "t": "1w ago",
+                "ty": "Image",
                 "r": 0,
                 "c": 0,
                 "rp": 1
               },
               {
-                "t": "Less than 24 hours to webinar (June 10)",
-                "ty": "Carousel",
-                "r": 2,
-                "c": 0,
-                "rp": 3
-              },
-              {
-                "t": "Thanks for stopping by at Directions North America 2026",
+                "t": "1w ago",
                 "ty": "Image",
                 "r": 12,
                 "c": 0,
                 "rp": 2
               },
               {
-                "t": "Book a demo of Zetadocs Expenses",
-                "ty": "Carousel",
-                "r": 3,
-                "c": 0,
-                "rp": 3
-              },
-              {
-                "t": "Looking forward to AP Automation Comparison Showcase",
+                "t": "3mo ago",
                 "ty": "Carousel",
                 "r": 1,
                 "c": 0,
                 "rp": 0
               },
               {
-                "t": "Celebrating 15 years of the Equisys blog",
-                "ty": "Document",
+                "t": "6mo ago",
+                "ty": "Image",
                 "r": 3,
                 "c": 0,
                 "rp": 1
               },
               {
-                "t": "Amazing first day at Directions North America (booth E-32)",
-                "ty": "Carousel",
-                "r": 14,
-                "c": 0,
-                "rp": 5
-              },
-              {
-                "t": "We'll be in Orlando for Directions — visit booth E-32",
-                "ty": "Carousel",
-                "r": 5,
-                "c": 0,
-                "rp": 3
-              },
-              {
-                "t": "Ready to streamline AP? Implementation tips",
+                "t": "3mo ago",
                 "ty": "Document",
                 "r": 2,
                 "c": 0,
                 "rp": 2
-              },
-              {
-                "t": "Team meet-up in London (HMS Wellington)",
-                "ty": "Image",
-                "r": 5,
-                "c": 0,
-                "rp": 0
               }
             ]
           },
@@ -261,74 +177,25 @@ window.DASH_ARCHIVE = {
             "name": "Medius",
             "posts": [
               {
-                "t": "Charterhouse Holdings: 10,000+ invoices a year (case)",
+                "t": "1w ago",
                 "ty": "Image",
-                "r": 7,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "How AI is revolutionizing manufacturing AP processes",
-                "ty": "Image",
-                "r": 9,
-                "c": 0,
-                "rp": 2
-              },
-              {
-                "t": "Improve AP without disrupting your ERP (guide)",
-                "ty": "Image",
-                "r": 8,
-                "c": 0,
-                "rp": 1
-              },
-              {
-                "t": "Daniel Ball on stage, Gartner Finance Symposium",
-                "ty": "Carousel",
-                "r": 55,
-                "c": 0,
-                "rp": 3
-              },
-              {
-                "t": "Webinar June 11 with Antaras: touchless AP in Infor LN",
-                "ty": "Carousel",
-                "r": 22,
-                "c": 0,
-                "rp": 4
-              },
-              {
-                "t": "Excited to work with Antaras on webinar (shared)",
-                "ty": "Carousel",
                 "r": 2,
                 "c": 1,
                 "rp": 1
               },
               {
-                "t": "Got 30 minutes? June webinars",
-                "ty": "Document",
-                "r": 11,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "Thanks for three days at DynamicsMinds 2026",
+                "t": "1w ago",
                 "ty": "Carousel",
-                "r": 63,
+                "r": 69,
                 "c": 7,
                 "rp": 0
               },
               {
-                "t": "Amazing day 1 at Gartner Finance Symposium/Xpo 2026",
-                "ty": "Carousel",
-                "r": 94,
+                "t": "2w ago",
+                "ty": "Document",
+                "r": 105,
                 "c": 0,
-                "rp": 5
-              },
-              {
-                "t": "Medius reached 30,000 LinkedIn followers",
-                "ty": "Carousel",
-                "r": 75,
-                "c": 0,
-                "rp": 0
+                "rp": 2
               }
             ]
           },
@@ -336,70 +203,56 @@ window.DASH_ARCHIVE = {
             "name": "Qvalia",
             "posts": [
               {
-                "t": "E-invoicing mandates becoming infrastructure decisions (SK)",
-                "ty": "Carousel",
-                "r": 0,
+                "t": "1w ago",
+                "ty": "Image",
+                "r": 3,
                 "c": 0,
                 "rp": 0
               },
               {
-                "t": "New Billentis report on the global e-invoicing market",
-                "ty": "Carousel",
-                "r": 4,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "Slovakia's eFaktura framework (Peppol BIS)",
-                "ty": "Carousel",
+                "t": "2w ago",
+                "ty": "Image",
                 "r": 20,
                 "c": 0,
-                "rp": 1
+                "rp": 2
               },
               {
-                "t": "Qvalia certified for Slovakia e-invoicing (eFaktura)",
-                "ty": "Carousel",
+                "t": "3w ago",
+                "ty": "Image",
                 "r": 29,
                 "c": 1,
                 "rp": 5
               },
               {
-                "t": "Qvalia ISO 22301:2019 certified",
-                "ty": "Carousel",
+                "t": "1mo ago",
+                "ty": "Image",
                 "r": 4,
                 "c": 0,
                 "rp": 0
               },
               {
-                "t": "Qvalia now listed in Cloud Security Alliance STAR Registry",
+                "t": "8mo ago",
                 "ty": "Carousel",
-                "r": 6,
-                "c": 1,
-                "rp": 0
-              },
-              {
-                "t": "Thanks for joining the IDP webinar",
-                "ty": "Image",
                 "r": 29,
                 "c": 3,
                 "rp": 3
               },
               {
-                "t": "AI in finance through the decades (1940s to today)",
+                "t": "1mo ago",
                 "ty": "Image",
+                "r": 6,
+                "c": 0,
+                "rp": 0
+              },
+              {
+                "t": "9mo ago",
+                "ty": "Carousel",
                 "r": 7,
                 "c": 0,
                 "rp": 0
               },
               {
-                "t": "Qvalia now available on iPhone and Android (app)",
-                "ty": "Carousel",
-                "r": 42,
-                "c": 5,
-                "rp": 5
-              },
-              {
-                "t": "Summer reading no 4: The definitive guide to Peppol",
+                "t": "10mo ago",
                 "ty": "Document",
                 "r": 7,
                 "c": 0,
@@ -411,74 +264,25 @@ window.DASH_ARCHIVE = {
             "name": "AMC Banking",
             "posts": [
               {
-                "t": "Thanks to everybody who showed up at the reception",
+                "t": "2w ago",
                 "ty": "Carousel",
-                "r": 28,
-                "c": 1,
-                "rp": 0
-              },
-              {
-                "t": "AMC operates under Service Provider Agreements with banks",
-                "ty": "Image",
-                "r": 9,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "We're moving — join us for a reception",
-                "ty": "Event",
-                "r": 12,
-                "c": 0,
-                "rp": 1
-              },
-              {
-                "t": "New app to simplify cash management in D365 BC",
-                "ty": "Document",
-                "r": 4,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "AMC webinar: new AMC Banking app for D365 BC",
-                "ty": "Video",
-                "r": 6,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "Bank integration: Myth vs reality",
-                "ty": "Video",
-                "r": 10,
-                "c": 0,
-                "rp": 3
-              },
-              {
-                "t": "AMC is expanding — looking for a Java developer",
-                "ty": "Text/Link",
                 "r": 12,
                 "c": 0,
                 "rp": 3
               },
               {
-                "t": "Still uploading payment files manually?",
-                "ty": "Text/Link",
-                "r": 6,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "AMC Banking webinar series: Simplifying Cash Management",
-                "ty": "Video",
-                "r": 10,
-                "c": 0,
-                "rp": 1
-              },
-              {
-                "t": "AMC Webinar: Intelligent cash sweeping",
+                "t": "6mo ago",
                 "ty": "Video",
                 "r": 11,
                 "c": 0,
                 "rp": 0
+              },
+              {
+                "t": "1mo ago",
+                "ty": "Article/Link",
+                "r": 6,
+                "c": 0,
+                "rp": 2
               }
             ]
           },
@@ -486,149 +290,171 @@ window.DASH_ARCHIVE = {
             "name": "B2Brouter",
             "posts": [
               {
-                "t": "Legal SaaS platforms in France: 2026 product deadline",
-                "ty": "Document",
-                "r": 2,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "B2Brouter at ERP Summit Spain (repost)",
+                "t": "1h ago",
                 "ty": "Carousel",
-                "r": 33,
+                "r": 7,
                 "c": 0,
-                "rp": 2
+                "rp": 1
               },
               {
-                "t": "Germany's B2B e-invoicing roadmap is already moving",
+                "t": "2d ago",
                 "ty": "Document",
-                "r": 7,
+                "r": 8,
                 "c": 2,
                 "rp": 1
+              }
+            ]
+          },
+          {
+            "name": "Yavrio",
+            "posts": [
+              {
+                "t": "21h ago",
+                "ty": "Image",
+                "r": 12,
+                "c": 1,
+                "rp": 0
               },
               {
-                "t": "Ley Crea y Crece vs VeriFactu — are they the same?",
-                "ty": "Document",
-                "r": 7,
-                "c": 0,
+                "t": "1w ago",
+                "ty": "Image",
+                "r": 44,
+                "c": 1,
+                "rp": 0
+              },
+              {
+                "t": "2w ago",
+                "ty": "Carousel",
+                "r": 81,
+                "c": 4,
+                "rp": 0
+              },
+              {
+                "t": "3w ago",
+                "ty": "Video",
+                "r": 14,
+                "c": 1,
                 "rp": 1
               },
               {
-                "t": "In 8 days: Peppol Conference Europe 2026 in Brussels",
-                "ty": "Text/Link",
-                "r": 5,
-                "c": 0,
+                "t": "1mo ago",
+                "ty": "Carousel",
+                "r": 68,
+                "c": 1,
+                "rp": 1
+              }
+            ]
+          },
+          {
+            "name": "Rillion",
+            "posts": [
+              {
+                "t": "recent",
+                "ty": "Text",
+                "r": 28,
+                "c": 19,
+                "rp": 4
+              },
+              {
+                "t": "1w ago",
+                "ty": "Image",
+                "r": 17,
+                "c": 1,
                 "rp": 2
               },
               {
-                "t": "Germany's e-invoicing roadmap (shared from Capde)",
-                "ty": "Carousel",
-                "r": 0,
+                "t": "recent",
+                "ty": "Image",
+                "r": 16,
                 "c": 0,
                 "rp": 0
               },
               {
-                "t": "Tomorrow: webinar on Ley Crea y Crece",
-                "ty": "Carousel",
-                "r": 3,
-                "c": 0,
-                "rp": 0
-              },
+                "t": "6d ago",
+                "ty": "Video",
+                "r": 33,
+                "c": 3,
+                "rp": 1
+              }
+            ]
+          },
+          {
+            "name": "Fidesic",
+            "posts": [
               {
-                "t": "Upcoming webinars June 2026 (API + Ley Crea y Crece, ES)",
-                "ty": "Carousel",
-                "r": 6,
-                "c": 0,
-                "rp": 2
-              },
-              {
-                "t": "Upcoming webinars June 2026 (B2Brouter API, EN)",
-                "ty": "Carousel",
-                "r": 6,
-                "c": 0,
-                "rp": 2
-              },
-              {
-                "t": "It's tomorrow! Webinar on VeriFactu, May 28",
-                "ty": "Carousel",
-                "r": 7,
+                "t": "17h ago",
+                "ty": "Image",
+                "r": 4,
                 "c": 0,
                 "rp": 2
               }
             ]
           },
           {
-            "name": "Dooap",
+            "name": "Stampli",
             "posts": [
               {
-                "t": "Dynamics community comes to Toronto (DUG Regional)",
-                "ty": "Carousel",
-                "r": 14,
+                "t": "12h ago",
+                "ty": "Article/Link",
+                "r": 4,
                 "c": 0,
-                "rp": 0
+                "rp": 3
               },
               {
-                "t": "Just think of the possibilities with Dooap Studio (shared)",
-                "ty": "Carousel",
-                "r": 9,
-                "c": 0,
-                "rp": 1
-              },
-              {
-                "t": "Dooap Unleashed: Run With Us — Eftsure",
-                "ty": "Video",
-                "r": 30,
-                "c": 2,
-                "rp": 1
-              },
-              {
-                "t": "Trends from DynamicsCon & DynamicsMinds 2026 (blog)",
-                "ty": "Carousel",
-                "r": 19,
-                "c": 0,
-                "rp": 0
-              },
-              {
-                "t": "This is what agentic AP automation looks like (Dooap Studio)",
-                "ty": "Video",
-                "r": 15,
-                "c": 0,
-                "rp": 5
-              },
-              {
-                "t": "That's a wrap on DynamicsMinds (Slovenia)",
-                "ty": "Carousel",
-                "r": 65,
-                "c": 4,
-                "rp": 0
-              },
-              {
-                "t": "Let Dooap help herd your AP with AI (booth 207)",
-                "ty": "Image",
-                "r": 57,
+                "t": "1d ago",
+                "ty": "Article/Link",
+                "r": 18,
                 "c": 1,
+                "rp": 3
+              },
+              {
+                "t": "2w ago",
+                "ty": "Image",
+                "r": 27,
+                "c": 3,
+                "rp": 10
+              },
+              {
+                "t": "6d ago",
+                "ty": "Article/Link",
+                "r": 8,
+                "c": 0,
                 "rp": 2
               },
               {
-                "t": "Set up and ready for \"Herd your AP with AI Agents\"",
-                "ty": "Carousel",
-                "r": 27,
-                "c": 2,
-                "rp": 3
+                "t": "1w ago",
+                "ty": "Article/Link",
+                "r": 16,
+                "c": 3,
+                "rp": 7
               },
               {
-                "t": "Run With Us on Dooap Unleashed — first up: Corpay",
-                "ty": "Video",
-                "r": 69,
-                "c": 10,
-                "rp": 3
-              },
-              {
-                "t": "Heading to DynamicsMinds 2026",
-                "ty": "Carousel",
-                "r": 30,
+                "t": "3w ago",
+                "ty": "Article/Link",
+                "r": 25,
                 "c": 0,
-                "rp": 1
+                "rp": 11
+              },
+              {
+                "t": "recent",
+                "ty": "Image",
+                "r": 80,
+                "c": 8,
+                "rp": 23
+              },
+              {
+                "t": "2mo ago",
+                "ty": "Carousel",
+                "r": 43,
+                "c": 1,
+                "rp": 5
+              },
+              {
+                "t": "recent",
+                "ty": "Article/Link",
+                "r": 98,
+                "c": 2,
+                "rp": 5
               }
             ]
           }
