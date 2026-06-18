@@ -286,8 +286,8 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 .cal-cell:hover{border-color:#93b7ff;background:#fbfdff}
 .cal-cell.other{background:#f8fafc}
 .cal-cell.other .cal-daynum{color:#b0bccd}
-.cal-cell.today{border-color:#052975;box-shadow:inset 0 0 0 1px #052975}
-.cal-cell.selected{background:#eaf1ff}
+.cal-cell.today{border-color:rgba(143,248,255,.5);box-shadow:inset 0 0 0 1px rgba(143,248,255,.5)}
+.cal-cell.selected{background:rgba(143,248,255,.5)}
 .cal-daynum{font-size:12px;font-weight:800;color:#334155;align-self:flex-start}
 .cal-cell.today .cal-daynum{color:#052975}
 .cal-chip{font-size:11px;font-weight:750;border-radius:5px;padding:2px 6px;color:#fff;background:var(--cc,#052975);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;cursor:pointer}
@@ -380,8 +380,8 @@ html[data-theme="dark"] .cal-row-btn:hover,
 html[data-theme="dark"] .cmp-drop:hover,
 html[data-theme="dark"] #continia-uploads .cu-pd:hover{background:#1b2740}
 html[data-theme="dark"] .cal-cell:hover{background:#1b2740;border-color:#3a577f}
-html[data-theme="dark"] .cal-cell.selected{background:#16335a}
-html[data-theme="dark"] .cal-cell.today{border-color:#6ea8ff;box-shadow:inset 0 0 0 1px #6ea8ff}
+html[data-theme="dark"] .cal-cell.selected{background:rgba(143,248,255,.5)}
+html[data-theme="dark"] .cal-cell.today{border-color:rgba(143,248,255,.5);box-shadow:inset 0 0 0 1px rgba(143,248,255,.5)}
 html[data-theme="dark"] .cal-form{background:#10182a}
 html[data-theme="dark"] .cmp-drop{background:var(--paper)}
 html[data-theme="dark"] .yt-table tr.ours{background:#10243a}
