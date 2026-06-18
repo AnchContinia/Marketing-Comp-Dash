@@ -506,3 +506,8 @@ html[data-theme="dark"] .sb-head:hover>svg:first-child,
 html[data-theme="dark"] .sb-sub a:hover,
 html[data-theme="dark"] .sb-sub a:hover>i,
 html[data-theme="dark"] .sb-sub a:hover>svg{color:#8ff8ff}
+/* dark: period buttons match competitor filter chips (outline, 50% dim when inactive) */
+html[data-theme="dark"] #continia-uploads .cu-pd,
+html[data-theme="dark"] #continia-uploads .cu-pd.active{background:transparent;border-color:#8ff8ff;color:#8ff8ff}
+html[data-theme="dark"] #continia-uploads .cu-pd:not(.active){opacity:.5}
+html[data-theme="dark"] #continia-uploads .cu-pd.active{opacity:1}
