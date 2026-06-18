@@ -6,6 +6,6 @@
 # The API key is NOT here — set it as an encrypted secret in the Cloudflare
 # dashboard (Settings → Variables and Secrets → add TINIFY_KEY).
 
-name = "tinyjpg-proxy"
+name = "seo-proxy"
 main = "tinyjpg-proxy/worker.js"
 compatibility_date = "2024-11-01"
