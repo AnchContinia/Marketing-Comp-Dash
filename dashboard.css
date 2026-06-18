@@ -36,7 +36,7 @@
 @keyframes heroPulse{0%{box-shadow:0 0 0 0 rgba(143,248,255,.46)}70%{box-shadow:0 0 0 9px rgba(143,248,255,0)}100%{box-shadow:0 0 0 0 rgba(143,248,255,0)}}
 #continia-uploads .cu-wrap{padding:16px 18px;display:grid;gap:18px}
 #continia-uploads .cu-periods{display:flex;gap:6px;flex-wrap:wrap}
-#continia-uploads .cu-pd{border:1px solid var(--line2);background:#fff;color:#334155;border-radius:8px;padding:6px 13px;font-size:12px;font-weight:850;cursor:pointer;transition:.15s}
+#continia-uploads .cu-pd{display:inline-flex;align-items:center;justify-content:center;text-align:center;line-height:1;border:1px solid var(--line2);background:#fff;color:#334155;border-radius:8px;padding:7px 13px;font-size:12px;font-weight:850;cursor:pointer;transition:.15s}
 #continia-uploads .cu-pd:hover{border-color:#94a3b8;background:#f8fafc}
 #continia-uploads .cu-pd.active{background:#052975;border-color:#052975;color:#fff}
 #continia-uploads .cu-split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
