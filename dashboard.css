@@ -475,6 +475,10 @@ html[data-theme="dark"] .cal-cell.today .cal-daynum{color:#fff}
 html[data-theme="dark"] .cal-li-dot[style*="052975"]{background:#8ff8ff!important}
 .brief .pill,.brief .pill b{color:#8ff8ff}
 .brief .pill{border-color:rgba(143,248,255,.6)}
+/* hero/brief is self-contained (navy bg) — force it identical in dark mode */
+html[data-theme="dark"] .brief{box-shadow:0 14px 34px -30px rgba(15,23,42,.22)}
+html[data-theme="dark"] .brief .pill{background:rgba(143,248,255,.14);border-color:rgba(143,248,255,.6);color:#8ff8ff}
+html[data-theme="dark"] .brief .pill b{color:#8ff8ff}
 
 /* dark: competitor filter chips */
 /* group A — All (stance+prox) + prox High/Medium/Low: outline only, inno-blue */
