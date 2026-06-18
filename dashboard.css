@@ -498,3 +498,5 @@ html[data-theme="dark"] .sb-head.active>svg:first-child{color:#8ff8ff}
 html[data-theme="dark"] .sb-sub a.active,
 html[data-theme="dark"] .sb-sub a.active>i,
 html[data-theme="dark"] .sb-sub a:hover>i{color:#8ff8ff}
+html[data-theme="dark"] .sb-sub a.active>svg,
+html[data-theme="dark"] .sb-sub a:hover>svg{color:#8ff8ff}
