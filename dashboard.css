@@ -331,7 +331,6 @@ html[data-theme="dark"] .brief,html[data-theme="dark"] .watch,html[data-theme="d
 html[data-theme="dark"] .sidebar{background:#0d1424}
 html[data-theme="dark"] .sb-head:hover,html[data-theme="dark"] .sb-sub a:hover{background:rgba(110,168,255,.10)}
 html[data-theme="dark"] .sb-head.active{background:rgba(110,168,255,.16)}
-html[data-theme="dark"] .sb-head.active,html[data-theme="dark"] .sb-head>i:first-child,html[data-theme="dark"] .sb-head>svg:first-child,html[data-theme="dark"] .sb-sub a.active,html[data-theme="dark"] .sb-sub a.active>i,html[data-theme="dark"] .sb-sub a:hover>i{color:#6ea8ff}
 
 /* primary surfaces -> paper */
 html[data-theme="dark"] .insight,
