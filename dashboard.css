@@ -500,3 +500,9 @@ html[data-theme="dark"] .sb-sub a:hover>i{color:#8ff8ff}
 html[data-theme="dark"] .sb-sub a.active>svg,
 html[data-theme="dark"] .sb-sub a:hover>svg{color:#8ff8ff}
 .cal-form[hidden]{display:none}
+html[data-theme="dark"] .sb-head:hover,
+html[data-theme="dark"] .sb-head:hover>i:first-child,
+html[data-theme="dark"] .sb-head:hover>svg:first-child,
+html[data-theme="dark"] .sb-sub a:hover,
+html[data-theme="dark"] .sb-sub a:hover>i,
+html[data-theme="dark"] .sb-sub a:hover>svg{color:#8ff8ff}
