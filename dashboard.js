@@ -198,7 +198,37 @@ const data = [
   pos:"Everything posted automatically in BC — no double entry.",
   ai:"AI-generated posting suggestions for incoming vendor invoices.",
   sc:"EN 16931 · Peppol BIS · Swedish vendor",
-  s:[["Qvalia for BC","https://qvalia.com/peppol-e-invoicing-for-business-central/"]]}
+  s:[["Qvalia for BC","https://qvalia.com/peppol-e-invoicing-for-business-central/"]]},
+
+ {n:"Rillion", o:"Rillion (formerly Palette) · Stockholm (Altor)", stance:"ai", sl:"AI-native capture", prox:"Medium",
+  cat:"AP automation · multi-ERP + BC connector",
+  head:"Nordic AP-automation veteran going AI-native — LLM invoice capture with no OCR templates.",
+  rel:"Rillion Capture (Mar 25, 2026) — first AI-native, multimodal-LLM invoice capture (no templates); Riley AI Assistant (Sept 2025) for invoice/supplier Q&A.",
+  str:"30+ years (ex-Palette/Centsoft), Altor PE-owned; shifting from template-OCR to AI-native capture and expanding in the US.",
+  pos:"Control, visibility and speed for mid-market/enterprise AP; native Business Central connector among 50+ ERPs.",
+  ai:"Riley AI assistant + Rillion Capture (multimodal LLM) for extraction, coding and approval routing.",
+  sc:"3,000+ customers · 50+ countries · Altor-owned",
+  s:[["Rillion AP","https://www.rillion.com/"],["Rillion Capture (Mar 2026)","https://www.rillion.com/blog/rillion-capture-announcement/"],["BC integration","https://www.rillion.com/integration/microsoft-dynamics-365-business-central/"]]},
+
+ {n:"Fidesic", o:"Fidesic (Enliven Software) · East Lansing, MI", stance:"ai", sl:"Built for Dynamics · AI capture", prox:"High",
+  cat:"AP automation · Dynamics GP + BC",
+  head:"AP automation purpose-built for Microsoft Dynamics GP & Business Central, with AI invoice capture.",
+  rel:"AI invoice capture (MagiCapture) for Business Central — no templates, near-touchless; multi-entity BC integration (2024–25).",
+  str:"Deepen the Dynamics ecosystem (GP heritage since 2008 + native BC AL app); raise AI-capture fidelity and multi-entity workflows.",
+  pos:"“Purpose-built for Dynamics” — native GP/BC AP with no coding or mapping.",
+  ai:"MagiCapture ML/AI invoice capture that learns per submission; high first-pass accuracy, no templates.",
+  sc:"East Lansing, MI · GP since 2008 · BC on AppSource",
+  s:[["Fidesic","https://www.fidesic.com/"],["BC integration","https://www.fidesic.com/product/dynamics-business-central-integration"],["MagiCapture","https://www.fidesic.com/product/magicapture"]]},
+
+ {n:"Yavrio", o:"Yavrio · London", stance:"steady", sl:"BC-native · open banking", prox:"High",
+  cat:"Bank connectivity & payments · BC + ERPs",
+  head:"Open-banking bank connectivity built inside Business Central — overlaps AMC Banking and Continia Banking & Payment Management.",
+  rel:"Connected the five largest US banks + embedded payments (early 2026); $2.4M seed (Fuel Ventures, Jan 2025); 14,000+ banks across 20 countries.",
+  str:"Expand bank coverage (10K→14K+ banks) and ERP scope beyond BC; positioned as a no-code alternative to CSV/file-based bank imports.",
+  pos:"“Built inside Business Central” — collect, settle and reconcile payments and bank feeds without external portals.",
+  ai:"Rules-based live bank feeds + automated reconciliation; minimal AI positioning.",
+  sc:"London · ~40 staff · 14,000+ banks · seed-stage",
+  s:[["Yavrio","https://www.yavr.io/"],["5 major US banks","https://www.openbankingexpo.com/news/open-banking-fintech-yavrio-connects-with-five-major-us-banks/"],["Yavrio on AppSource","https://appsource.microsoft.com/en-us/product/dynamics-365-business-central/pubid.yavrioltd1647526263468%7Caid.yavrio_open_banking%7Cpappid.3d686c04-e1b1-435e-bea4-862c2c203ca7"]]}
 ];
 
 const events = [

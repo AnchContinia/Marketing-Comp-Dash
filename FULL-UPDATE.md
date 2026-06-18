@@ -77,6 +77,32 @@ development), `str` (strategic move), `pos` (positioning), `ai` (AI angle), `sc`
 card's `s` array — `["label","https://url"]` pairs, like the existing cards.
 If nothing changed for a competitor, leave the card as-is.
 
+### Competitor LinkedIn roster (start the social sweep here)
+
+The competitor LinkedIn pages we actively track — check these first for the
+"LinkedIn first" bullet above. ✦ = added to the dashboard June 2026.
+
+| Dashboard card | LinkedIn |
+|---|---|
+| Continia (ours) | https://www.linkedin.com/company/continia-software-a-s/ |
+| ExFlow / Truvio | https://www.linkedin.com/company/truvio-official/ |
+| Zetadocs (Equisys) | https://www.linkedin.com/company/equisys/ |
+| Medius | https://www.linkedin.com/company/medius/ |
+| Qvalia | https://www.linkedin.com/company/qvalia/ |
+| AMC Banking | https://www.linkedin.com/company/amc-banking/ |
+| B2Brouter | https://www.linkedin.com/company/b2brouter/ |
+| Dooap | https://www.linkedin.com/company/dooap/ |
+| Tipalti | https://www.linkedin.com/company/tipalti/ |
+| Stampli | https://www.linkedin.com/company/stampli/ |
+| Rillion ✦ | https://www.linkedin.com/company/rillion/ |
+| Fidesic ✦ | https://www.linkedin.com/company/fidesic/ |
+| Yavrio ✦ | https://www.linkedin.com/company/yavrio/ |
+
+**On the tracking list but deliberately NOT cards:**
+- `signup-software` — SignUp Software is Truvio's former brand; already covered by the **ExFlow / Truvio** card (don't add a duplicate).
+- `incedo-inc` — a ~$975M digital-transformation **consulting firm** (IncedoPay is a generic enterprise payables platform, no Business Central integration). Not a BC-native AP competitor — watch, don't card.
+- `stripe` — payments platform / big-tech **benchmark**, no BC-native AP-automation product. Watch, don't card.
+
 ## Step 2 — Key Events timeline  (`events` in `dashboard.js`)
 
 Add genuinely new, dated events at the **top** of the `events` array (newest
