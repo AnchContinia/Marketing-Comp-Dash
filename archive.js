@@ -11,7 +11,9 @@
    HOW TO UPDATE (done automatically by “Opdater alt”):
      After refreshing the live data, PREPEND one new snapshot to
      “snapshots” (newest first). NEVER edit or delete an existing
-     snapshot — each one is a permanent dated layer.
+     snapshot — each one is a permanent dated layer. (If you refresh
+     twice on the SAME date, replace that date’s snapshot rather than
+     adding a duplicate.)
 
    Per snapshot:
      date         the DASHBOARD_UPDATED stamp for that refresh (YYYY-MM-DD)
@@ -645,6 +647,21 @@ window.DASH_ARCHIVE = {
             "t": "<b>UAE e-invoicing</b> rollout begins for large businesses (revenue ≥ AED 50M); <b>Pagero</b> is listed as a pre-approved accredited service provider."
           },
           {
+            "w": "Jun 30, 2026",
+            "c": "steady",
+            "t": "<b>Saudi Arabia (ZATCA)</b> Fatoora e-invoicing Wave 24 integration deadline — the first wave to reach businesses with VAT revenue above SAR 375K, pulling thousands of smaller firms into mandatory clearance."
+          },
+          {
+            "w": "June 16, 2026",
+            "c": "ai",
+            "t": "<b>Forrester</b> publishes <i>The Forrester Wave: AP Invoice Automation Software, Q2 2026</i> — agentic AI shifts AP from automation toward proactive, autonomous finance operations."
+          },
+          {
+            "w": "June 9, 2026",
+            "c": "cons",
+            "t": "<b>AvidXchange</b> launches Payment Automation for Workday on the Workday Marketplace — extending its 1.5M-supplier AvidPay network into Workday Financial Management."
+          },
+          {
             "w": "June 2, 2026",
             "c": "ai",
             "t": "<b>Microsoft Build 2026</b> reframes the PC as an agentic OS — Windows Agent Framework open-sourced, Office Agent Mode runs agents natively."
@@ -903,7 +920,7 @@ window.DASH_ARCHIVE = {
           "prox": "Low",
           "cat": "AP automation (invoice-centric) · 70+ ERPs",
           "head": "AI (“Billy the Bot”) at the core for nearly 10 years; raised capital from Blackstone.",
-          "rel": "Stampli Deep Finance (Mar 2026) turns invoice data into consultant-grade executive spend intelligence; Stampli Card / Direct Pay; $61M Blackstone Series D (~$148M total).",
+          "rel": "Stampli Deep Finance (Mar 2026) turns invoice data into consultant-grade executive spend intelligence; Stampli Card / Direct Pay; $61M Blackstone Series D (~$148M total); named a G2 Summer 2026 Leader for P2P + AP Automation (Jun 2026).",
           "str": "Invoice-centric communication + “AI employee”.",
           "pos": "Fast implementation (weeks, not months); approvers need no ERP access.",
           "ai": "Positions itself on “proven” AI for capture, coding, routing, duplicates and fraud.",
@@ -931,7 +948,7 @@ window.DASH_ARCHIVE = {
           "prox": "Low",
           "cat": "AP + payment automation · mid-market",
           "head": "Taken private by TPG + Corpay (~$2.2B, Oct 2025) — pointing toward payment rails.",
-          "rel": "First gen-AI “agents” Apr 2025; AI fraud/BEC detection in the AvidPay network.",
+          "rel": "Launched Payment Automation for Workday on the Workday Marketplace (Jun 2026); new COO Wade Fairey (Jun 2026); AI fraud/BEC detection in the AvidPay network.",
           "str": "Take-private; Corpay stake → focus on payment volume and interchange.",
           "pos": "Mid-market invoice-to-pay + AvidPay payment network.",
           "ai": "AI for fraud/anomaly detection; later on the AI curve than pure AI players.",
@@ -940,6 +957,10 @@ window.DASH_ARCHIVE = {
             [
               "TPG/Corpay close",
               "https://www.avidxchange.com/press-releases/tpg-corpay-complete-acquisition-of-avidxchange/"
+            ],
+            [
+              "Workday integration",
+              "https://www.globenewswire.com/news-release/2026/06/09/3309047/37161/en/AvidXchange-Completes-Workday-Integration.html"
             ],
             [
               "Payments Dive",
@@ -980,7 +1001,7 @@ window.DASH_ARCHIVE = {
           "cat": "IDP / RPA + AP (InvoiceAgility)",
           "head": "Rebranded from Kofax; betting hard on agentic AI to close the gap.",
           "rel": "TotalAgility now GA in three tiers (Standard/Advanced/Enterprise) with agentic AI, Quick AI Agents and multi-agent orchestration; quarterly releases from 2026; InvoiceAgility for AP.",
-          "str": "Jan 2026: new executives incl. first Chief AI Officer; “AI-first” repositioning.",
+          "str": "Jan 2026: new executives incl. first Chief AI Officer; “AI-first” repositioning. CEO signals a possible 2027 exit (PE or strategic sale) as the sector consolidates (Jun 2026).",
           "pos": "Broad intelligent automation (document/workflow) — large IDP revenue base.",
           "ai": "Agentic AI now shipping (multi-agent orchestration); analysts said it was 9–12 months behind — now closing the gap.",
           "sc": "~40 years of history · 70+ countries",
@@ -996,6 +1017,10 @@ window.DASH_ARCHIVE = {
             [
               "Deep Analysis",
               "https://www.deep-analysis.net/boring-ai-how-tungsten-plans-to-move-beyond-its-idp-roots/"
+            ],
+            [
+              "Exit signal (ION)",
+              "https://ionanalytics.com/insights/mergermarket/tungsten-automation-exit-possible-in-2027-as-buyer-appetite-builds-ceo/"
             ]
           ]
         },

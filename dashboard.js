@@ -63,7 +63,7 @@ const data = [
  {n:"Stampli", o:"Stampli · Mountain View", stance:"ai", sl:"AI veteran", prox:"Low",
   cat:"AP automation (invoice-centric) · 70+ ERPs",
   head:"AI (\u201cBilly the Bot\u201d) at the core for nearly 10 years; raised capital from Blackstone.",
-  rel:"Stampli Deep Finance (Mar 2026) turns invoice data into consultant-grade executive spend intelligence; Stampli Card / Direct Pay; $61M Blackstone Series D (~$148M total).",
+  rel:"Stampli Deep Finance (Mar 2026) turns invoice data into consultant-grade executive spend intelligence; Stampli Card / Direct Pay; $61M Blackstone Series D (~$148M total); named a G2 Summer 2026 Leader for P2P + AP Automation (Jun 2026).",
   str:"Invoice-centric communication + \u201cAI employee\u201d.",
   pos:"Fast implementation (weeks, not months); approvers need no ERP access.",
   ai:"Positions itself on \u201cproven\u201d AI for capture, coding, routing, duplicates and fraud.",
@@ -73,12 +73,12 @@ const data = [
  {n:"AvidXchange", o:"TPG + Corpay · Charlotte", stance:"cons", sl:"Acquired (payments)", prox:"Low",
   cat:"AP + payment automation · mid-market",
   head:"Taken private by TPG + Corpay (~$2.2B, Oct 2025) — pointing toward payment rails.",
-  rel:"First gen-AI \u201cagents\u201d Apr 2025; AI fraud/BEC detection in the AvidPay network.",
+  rel:"Launched Payment Automation for Workday on the Workday Marketplace (Jun 2026); new COO Wade Fairey (Jun 2026); AI fraud/BEC detection in the AvidPay network.",
   str:"Take-private; Corpay stake → focus on payment volume and interchange.",
   pos:"Mid-market invoice-to-pay + AvidPay payment network.",
   ai:"AI for fraud/anomaly detection; later on the AI curve than pure AI players.",
   sc:"~$450M revenue · 25+ years of history",
-  s:[["TPG/Corpay close","https://www.avidxchange.com/press-releases/tpg-corpay-complete-acquisition-of-avidxchange/"],["Payments Dive","https://www.paymentsdive.com/news/avidxchange-tpg-corpay-accounts-payable-payments/747520/"]]},
+  s:[["TPG/Corpay close","https://www.avidxchange.com/press-releases/tpg-corpay-complete-acquisition-of-avidxchange/"],["Workday integration","https://www.globenewswire.com/news-release/2026/06/09/3309047/37161/en/AvidXchange-Completes-Workday-Integration.html"],["Payments Dive","https://www.paymentsdive.com/news/avidxchange-tpg-corpay-accounts-payable-payments/747520/"]]},
 
  {n:"Compleat", o:"Compleat Software · UK", stance:"steady", sl:"SMB / price", prox:"Low",
   cat:"P2P / AP automation + online buying",
@@ -94,11 +94,11 @@ const data = [
   cat:"IDP / RPA + AP (InvoiceAgility)",
   head:"Rebranded from Kofax; betting hard on agentic AI to close the gap.",
   rel:"TotalAgility now GA in three tiers (Standard/Advanced/Enterprise) with agentic AI, Quick AI Agents and multi-agent orchestration; quarterly releases from 2026; InvoiceAgility for AP.",
-  str:"Jan 2026: new executives incl. first Chief AI Officer; \u201cAI-first\u201d repositioning.",
+  str:"Jan 2026: new executives incl. first Chief AI Officer; \u201cAI-first\u201d repositioning. CEO signals a possible 2027 exit (PE or strategic sale) as the sector consolidates (Jun 2026).",
   pos:"Broad intelligent automation (document/workflow) — large IDP revenue base.",
   ai:"Agentic AI now shipping (multi-agent orchestration); analysts said it was 9–12 months behind — now closing the gap.",
   sc:"~40 years of history · 70+ countries",
-  s:[["TotalAgility platform","https://www.tungstenautomation.com/products/totalagility/release-highlights"],["Agentic AI hires","https://www.tungstenautomation.com/about/press-releases/2026/tungsten-automation-invests-in-innovation-and-agentic-ai-with-key-executive-hires"],["Deep Analysis","https://www.deep-analysis.net/boring-ai-how-tungsten-plans-to-move-beyond-its-idp-roots/"]]},
+  s:[["TotalAgility platform","https://www.tungstenautomation.com/products/totalagility/release-highlights"],["Agentic AI hires","https://www.tungstenautomation.com/about/press-releases/2026/tungsten-automation-invests-in-innovation-and-agentic-ai-with-key-executive-hires"],["Deep Analysis","https://www.deep-analysis.net/boring-ai-how-tungsten-plans-to-move-beyond-its-idp-roots/"],["Exit signal (ION)","https://ionanalytics.com/insights/mergermarket/tungsten-automation-exit-possible-in-2027-as-buyer-appetite-builds-ceo/"]]},
 
  {n:"onPhase", o:"formerly DocuPhase · Tampa", stance:"cons", sl:"Acquisitive + rebrand", prox:"Low",
   cat:"AP + payments + document management",
@@ -204,6 +204,9 @@ const data = [
 const events = [
  {w:"Sept 2026 →", c:"steady", t:"<b>France B2B e-invoicing</b> mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027."},
  {w:"Jul 1, 2026", c:"steady", t:"<b>UAE e-invoicing</b> rollout begins for large businesses (revenue ≥ AED 50M); <b>Pagero</b> is listed as a pre-approved accredited service provider."},
+ {w:"Jun 30, 2026", c:"steady", t:"<b>Saudi Arabia (ZATCA)</b> Fatoora e-invoicing Wave 24 integration deadline — the first wave to reach businesses with VAT revenue above SAR 375K, pulling thousands of smaller firms into mandatory clearance."},
+ {w:"June 16, 2026", c:"ai", t:"<b>Forrester</b> publishes <i>The Forrester Wave: AP Invoice Automation Software, Q2 2026</i> — agentic AI shifts AP from automation toward proactive, autonomous finance operations."},
+ {w:"June 9, 2026", c:"cons", t:"<b>AvidXchange</b> launches Payment Automation for Workday on the Workday Marketplace — extending its 1.5M-supplier AvidPay network into Workday Financial Management."},
  {w:"June 2, 2026", c:"ai", t:"<b>Microsoft Build 2026</b> reframes the PC as an agentic OS — Windows Agent Framework open-sourced, Office Agent Mode runs agents natively."},
  {w:"June 2026", c:"ai", t:"<b>Truvio</b> (formerly SignUp Software/ExFlow) completes its rebrand and ships TruvioSense Coding & Approval — AI/LLM invoice-coding suggestions in D365 F&O."},
  {w:"May 11, 2026", c:"ai", t:"<b>Dooap</b> launches Dooap Studio — agentic AI platform."},
@@ -1331,7 +1334,7 @@ if(contentIdeasList){
    Both the topbar and the footer read from it, so they can never drift apart.
    The YouTube/News update routine sets this to today's date on every refresh. */
 (function(){
-  var DASHBOARD_UPDATED = "2026-06-11";
+  var DASHBOARD_UPDATED = "2026-06-18";
   var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var p=String(DASHBOARD_UPDATED).split("-");
   var pretty=m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];
