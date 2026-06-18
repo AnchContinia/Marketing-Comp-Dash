@@ -472,3 +472,17 @@ html[data-theme="dark"] .cal-cell.today .cal-daynum{color:#fff}
 html[data-theme="dark"] .cal-li-dot[style*="052975"]{background:#8ff8ff!important}
 .brief .pill,.brief .pill b{color:#8ff8ff}
 .brief .pill{border-color:rgba(143,248,255,.6)}
+
+/* dark: competitor filter chips */
+/* group A — All (stance+prox) + prox High/Medium/Low: outline only, inno-blue */
+html[data-theme="dark"] .chip[data-type="prox"],
+html[data-theme="dark"] .chip[data-type="stance"][data-val="all"],
+html[data-theme="dark"] .chip.active[data-type="prox"],
+html[data-theme="dark"] .chip.active[data-type="stance"][data-val="all"]{background:transparent;border-color:#8ff8ff;color:#8ff8ff}
+/* group B — stance dot chips: always pressed-look, 50% opacity when not active */
+html[data-theme="dark"] .chip[data-type="stance"][data-val="ai"]{background:transparent;border-color:#8ff8ff;color:#8ff8ff}
+html[data-theme="dark"] .chip[data-type="stance"][data-val="cons"]{background:transparent;border-color:#5f9e8d;color:#9fd3c4}
+html[data-theme="dark"] .chip[data-type="stance"][data-val="steady"]{background:transparent;border-color:#983eae;color:#c79ae0}
+html[data-theme="dark"] .chip[data-type="stance"][data-val="ai"]:not(.active),
+html[data-theme="dark"] .chip[data-type="stance"][data-val="cons"]:not(.active),
+html[data-theme="dark"] .chip[data-type="stance"][data-val="steady"]:not(.active){opacity:.5}
