@@ -1073,7 +1073,7 @@ if(contentIdeasList){
 
   var seedEvents=SEED.map(function(e,i){ return {id:"seed-"+i, t:e.t, start:e.start, end:e.end||e.start, c:SEED_COLOR, locked:true}; });
   function allEvents(){
-    var ue=sharedEvents.map(function(e){ return {id:e.id, t:e.t, start:e.start, end:e.end||e.start, c:e.c||"#2563eb", locked:false}; });
+    var ue=sharedEvents.map(function(e){ return {id:e.id, t:e.t, start:e.start, end:e.end||e.start, c:e.c||"#052975", locked:false}; });
     return seedEvents.concat(ue);
   }
 
@@ -1233,7 +1233,7 @@ if(contentIdeasList){
     var chain=Promise.resolve();
     old.forEach(function(ev){
       if(!ev||!ev.t||!ev.start) return;
-      chain=chain.then(function(){ return api("POST",{t:ev.t, start:ev.start, end:ev.end||ev.start, c:ev.c||"#2563eb"}).catch(function(){}); });
+      chain=chain.then(function(){ return api("POST",{t:ev.t, start:ev.start, end:ev.end||ev.start, c:ev.c||"#052975"}).catch(function(){}); });
     });
     return chain.then(function(){ try{ localStorage.removeItem("continia-cal-events-v1"); }catch(e){} return true; });
   }
