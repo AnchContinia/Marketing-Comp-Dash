@@ -360,7 +360,7 @@ if(contentIdeasList){
     var posts=r.posts.map(function(p,j){
       return '<div class="li-post">'+
         '<span class="li-pn">'+(j+1)+'</span>'+
-        '<div class="li-pt"><b>'+esc(p.t)+'</b><span class="li-ty">'+esc(p.ty||"—")+'</span></div>'+
+        '<div class="li-pt"><b>'+esc(p.t)+'</b>'+(p.ty?'<span class="li-ty">'+esc(p.ty)+'</span>':"")+'</div>'+
         '<div class="li-pm"><span><b>'+(p.r||0)+'</b> reactions</span><span><b>'+(p.c||0)+'</b> comments</span><span><b>'+(p.rp||0)+'</b> reposts</span></div>'+
       '</div>';
     }).join("");
