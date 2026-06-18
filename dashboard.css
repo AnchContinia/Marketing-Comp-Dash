@@ -267,7 +267,7 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 .cal-fl{font-size:11px;font-weight:850;letter-spacing:.06em;text-transform:uppercase;color:#475569;display:grid;gap:6px}
 .cal-opt{text-transform:none;letter-spacing:0;color:var(--muted);font-weight:650}
 .cal-form input[type=text],.cal-form input[type=date]{height:38px;border:1px solid var(--line2);border-radius:8px;padding:0 12px;background:#fff;color:var(--ink);font:inherit}
-.cal-form input:focus{outline:2px solid rgba(5,41,117,.16);border-color:#93b7ff}
+.cal-form input:focus{outline:2px solid rgba(143,248,255,.35);border-color:#8ff8ff}
 .cal-swatches{display:flex;gap:9px;align-items:center}
 .cal-sw{width:26px;height:26px;border-radius:50%;border:2px solid #fff;background:var(--cc);cursor:pointer;box-shadow:0 0 0 1px var(--line2);transition:.12s;padding:0}
 .cal-sw.on{box-shadow:0 0 0 2px var(--cc);transform:scale(1.08)}
@@ -283,11 +283,11 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
 .cal-dow{font-size:11px;font-weight:850;letter-spacing:.05em;text-transform:uppercase;color:#64748b;text-align:center;padding:2px 0 4px}
 .cal-cell{min-height:94px;border:1px solid var(--line);border-radius:8px;padding:6px;background:#fff;cursor:pointer;display:flex;flex-direction:column;gap:3px;overflow:hidden;transition:.13s}
-.cal-cell:hover{border-color:#93b7ff;background:#fbfdff}
+.cal-cell:hover{background:rgba(143,248,255,.25)}
 .cal-cell.other{background:#f8fafc}
 .cal-cell.other .cal-daynum{color:#b0bccd}
 .cal-cell.today{border-color:rgba(143,248,255,.5);box-shadow:inset 0 0 0 1px rgba(143,248,255,.5)}
-.cal-cell.selected{background:rgba(143,248,255,.5)}
+.cal-cell.selected{background:rgba(143,248,255,.25)}
 .cal-daynum{font-size:12px;font-weight:800;color:#334155;align-self:flex-start}
 .cal-cell.today .cal-daynum{color:#052975}
 .cal-chip{font-size:11px;font-weight:750;border-radius:5px;padding:2px 6px;color:#fff;background:var(--cc,#052975);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.35;cursor:pointer}
@@ -379,8 +379,8 @@ html[data-theme="dark"] .cal-today:hover,
 html[data-theme="dark"] .cal-row-btn:hover,
 html[data-theme="dark"] .cmp-drop:hover,
 html[data-theme="dark"] #continia-uploads .cu-pd:hover{background:#1b2740}
-html[data-theme="dark"] .cal-cell:hover{background:#1b2740;border-color:#3a577f}
-html[data-theme="dark"] .cal-cell.selected{background:rgba(143,248,255,.5)}
+html[data-theme="dark"] .cal-cell:hover{background:rgba(143,248,255,.25)}
+html[data-theme="dark"] .cal-cell.selected{background:rgba(143,248,255,.25)}
 html[data-theme="dark"] .cal-cell.today{border-color:rgba(143,248,255,.5);box-shadow:inset 0 0 0 1px rgba(143,248,255,.5)}
 html[data-theme="dark"] .cal-form{background:#10182a}
 html[data-theme="dark"] .cmp-drop{background:var(--paper)}
