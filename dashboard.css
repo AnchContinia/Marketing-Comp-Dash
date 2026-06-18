@@ -324,10 +324,9 @@ section[id],.metric[id],.watch[id]{scroll-margin-top:84px}
 .theme-toggle{width:34px;height:34px;border:1px solid var(--line2);background:var(--paper);color:var(--ink);border-radius:9px;cursor:pointer;display:grid;place-items:center;font-size:15px;transition:.15s;flex:none}
 .theme-toggle:hover{border-color:#94a3b8}
 
-html[data-theme="dark"]{--ink:#e6edf8;--muted:#9aa7be;--paper:#141c2e;--canvas:#0b1120;--panel:#1a2336;--line:#28324a;--line2:#3a465f;--navy:#6ea8ff;--shadow:0 18px 40px -30px rgba(0,0,0,.8)}
+html[data-theme="dark"]{--ink:#ffffff;--muted:#9aa7be;--paper:#141c2e;--canvas:#0b1120;--panel:#1a2336;--line:#28324a;--line2:#3a465f;--navy:#6ea8ff;--shadow:0 18px 40px -30px rgba(0,0,0,.8)}
 html[data-theme="dark"] body{background:var(--canvas)}
 html[data-theme="dark"] .topbar{background:rgba(11,17,32,.86)}
-html[data-theme="dark"] .crumb,html[data-theme="dark"] .crumb b{color:#fff}
 html[data-theme="dark"] .theme-toggle:hover{background:var(--panel);border-color:var(--line2)}
 html[data-theme="dark"] .brief,html[data-theme="dark"] .watch,html[data-theme="dark"] .metric,html[data-theme="dark"] .section{box-shadow:0 18px 40px -30px rgba(0,0,0,.8)}
 
