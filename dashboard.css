@@ -137,6 +137,7 @@
 .cmp-btn{border:1px solid #052975;background:#052975;color:#fff;border-radius:8px;padding:8px 14px;font-size:12px;font-weight:850;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
 .cmp-btn:hover{background:#06317f}
 .cmp-btn.ghost{background:#fff;color:#052975}
+.cmp-btn.ghost:hover{background:rgba(5,41,117,.05);border-color:var(--line2);color:#052975}
 .cmp-spin{width:14px;height:14px;border:2px solid #cbd5e1;border-top-color:#052975;border-radius:50%;animation:cmpspin .7s linear infinite;display:inline-block}
 @keyframes cmpspin{to{transform:rotate(360deg)}}
 .cmp-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
@@ -476,7 +477,9 @@ html[data-theme="dark"] .cal-li-dot[style*="052975"]{background:#8ff8ff!importan
 html[data-theme="dark"] .cal-form input:focus{outline:2px solid rgba(143,248,255,.35);border-color:#8ff8ff}
 html[data-theme="dark"] #cal-f-end{color:#8ff8ff}
 html[data-theme="dark"] .cmp-drop .cmp-ico{color:#8ff8ff}
-html[data-theme="dark"] #seo-clear{color:#fff}
+/* Clear (ghost) buttons: uniform + sidebar-style hover (gentle tint, inno-blue text) */
+html[data-theme="dark"] .cmp-btn.ghost{color:#8ff8ff}
+html[data-theme="dark"] .cmp-btn.ghost:hover{background:rgba(110,168,255,.10);border-color:var(--line2);color:#8ff8ff}
 .brief .pill,.brief .pill b{color:#8ff8ff}
 .brief .pill{border-color:rgba(143,248,255,.6)}
 /* hero/brief is self-contained (navy bg) — force it identical in dark mode */
