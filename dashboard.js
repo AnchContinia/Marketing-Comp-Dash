@@ -464,7 +464,7 @@ if(contentIdeasList){
     {kk:"Long-form video · 28d", v:String(long28), s:long28===0&&long3m>0?"stalled — "+long3m+" the prior quarter":long3m+" the prior quarter"},
     {kk:"Idea backlog ready", v:String(qLong+qShort), s:qLong+" long-form · "+qShort+" short-form queued"}
   ];
-  var tilesHTML=tiles.map(function(t){ return '<div class="cg-stat"><div class="k">'+esc(t.kk)+'</div><div class="v">'+esc(t.v)+'</div><div class="s">'+esc(t.s)+'</div></div>'; }).join("");
+  var tilesHTML=tiles.map(function(t){ return '<div class="metric cg-metric"><div class="num">'+esc(t.v)+'</div><div class="lbl">'+esc(t.kk)+'</div><div class="note">'+esc(t.s)+'</div></div>'; }).join("");
 
   /* ---------- format-mix rows (scaled bars + quiet/lead tags) ---------- */
   var maxShare=0; TYPES.forEach(function(t){ maxShare=Math.max(maxShare, ourMix[t], fieldMix[t]); }); maxShare=maxShare||1;
@@ -517,12 +517,12 @@ if(contentIdeasList){
 
   mount.innerHTML=
     '<p class="cg-intro">Where Continia is <b>quiet while the field is loud</b> — computed live from LinkedIn formats &amp; engagement, YouTube reach &amp; upload cadence, the news themes and the idea backlog.</p>'+
-    '<div class="cg-stats">'+tilesHTML+'</div>'+
+    '<div class="metrics cg-metrics">'+tilesHTML+'</div>'+
     '<div class="cg-cols">'+
-      '<div class="cg-card"><div class="cg-h">LinkedIn format mix <span>you vs field avg · share of posts</span></div>'+mixHTML+'</div>'+
-      '<div class="cg-card"><div class="cg-h">Video output <span>YouTube + LinkedIn</span></div><div class="cg-vid">'+vidHTML+'</div></div>'+
+      '<section class="cg-card"><div class="cg-card-h"><h3>LinkedIn format mix</h3><span>you vs field avg · share of posts</span></div><div class="cg-card-b">'+mixHTML+'</div></section>'+
+      '<section class="cg-card"><div class="cg-card-h"><h3>Video output</h3><span>YouTube + LinkedIn</span></div><div class="cg-card-b cg-vid">'+vidHTML+'</div></section>'+
     '</div>'+
-    (movesHTML?'<div class="cg-moves"><div class="cg-h">Recommended moves</div><ol>'+movesHTML+'</ol></div>':"");
+    (movesHTML?'<section class="cg-card cg-moves"><div class="cg-card-h"><h3>Recommended moves</h3></div><div class="cg-card-b"><ol>'+movesHTML+'</ol></div></section>':"");
 })();
 
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
@@ -1437,7 +1437,8 @@ if(contentIdeasList){
   var NAV=[
     {page:"index.html", icon:"fa-house", label:"Home", items:[
       {id:"overview", icon:"fa-binoculars", label:"Public competitor insights"},
-      {id:"competitors", icon:"fa-people-group", label:"Competitors"}
+      {id:"competitors", icon:"fa-people-group", label:"Competitors"},
+      {id:"content-gap", icon:"fa-chart-simple", label:"Content-Gap Analysis"}
     ]},
     {page:"content.html", icon:"fa-newspaper", label:"Content", items:[
       {id:"insights", icon:"fa-lightbulb", label:"Insights & key events"},
