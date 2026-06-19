@@ -583,7 +583,7 @@ html[data-theme="dark"] #continia-uploads .cu-legend .sw.lf{background:#8ff8ff}
 .cg-mcard .sub{font-size:12px;margin-top:8px;color:var(--muted);line-height:1.35}
 .cg-mcard .sub b{font-weight:850;color:var(--ink)}
 .cg-mcard .sub.ahead b{color:#983eae}
-.cg-mcard .sub.behind b{color:#0e8ba1}
+.cg-mcard .sub.behind b{color:#052975}
 
 /* --- chart --- */
 .cg-chart{padding:14px 26px 6px}
@@ -608,7 +608,7 @@ html[data-theme="dark"] #continia-uploads .cu-legend .sw.lf{background:#8ff8ff}
 .cg-gaps h3{font-size:11px;font-weight:850;letter-spacing:.08em;text-transform:uppercase;color:#64748b;margin:0 0 11px}
 .cg-gap{display:flex;align-items:center;gap:16px;padding:13px 15px;border:1px solid var(--line);border-radius:11px;background:#fff;margin-bottom:9px}
 .cg-gap:last-child{margin-bottom:0}
-.cg-gnum{font-size:27px;font-weight:850;color:#0e8ba1;line-height:1;min-width:30px;text-align:center;font-variant-numeric:tabular-nums}
+.cg-gnum{font-size:27px;font-weight:850;color:#052975;line-height:1;min-width:30px;text-align:center;font-variant-numeric:tabular-nums}
 .cg-gmain{flex:1;min-width:0}
 .cg-gt{font-size:14px;font-weight:800;color:var(--ink)}
 .cg-gs{font-size:12.5px;color:var(--muted);margin-top:3px}
