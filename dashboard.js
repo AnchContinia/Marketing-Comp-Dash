@@ -429,6 +429,8 @@ if(contentIdeasList){
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function kfmt(n){ n=Number(n)||0; return n>=1000?(n/1000).toFixed(n>=10000?0:1)+"K":String(n); }
   function fmtDate(s){var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var p=String(s).split("-");return p.length<3?String(s):m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];}
+  function cap(s){ s=String(s); return s.charAt(0).toUpperCase()+s.slice(1); }
+  function humanList(a){ return a.length<=1?(a[0]||""):a.slice(0,-1).join(", ")+" and "+a[a.length-1]; }
 
   /* ---------- theme keyword map (first match wins; null = Other, excluded) ---------- */
   var THEMES=[
@@ -450,13 +452,18 @@ if(contentIdeasList){
   }
   function counts(c){ var m={}; LABELS.forEach(function(l){m[l]=0;}); (c.posts||[]).forEach(function(p){ var th=themeOf(p.t); if(th) m[th]++; }); return m; }
 
-  /* ---------- split ours vs field, tag everything ---------- */
+  /* ---------- split ours vs field, tag everything ----------
+     Comparison uses the field's TOTAL volume per theme (not a per-competitor
+     average) so a "15 posts vs 0" chasm reads as a chasm, not a rounded "-1".
+     Bar length = total posts on the theme; the navy/purple split = share of voice. */
   var ours=null, field=[];
   LI.companies.forEach(function(c){ if(c.ours) ours=c; else field.push(c); });
   if(!ours||!field.length) return;
   var youCounts=counts(ours);
   var perComp={}; field.forEach(function(c){ perComp[c.name]=counts(c); });
-  var fieldAvg={}; LABELS.forEach(function(l){ var s=0; field.forEach(function(c){ s+=perComp[c.name][l]; }); fieldAvg[l]=s/field.length; });
+  var fieldTotal={}; LABELS.forEach(function(l){ var s=0; field.forEach(function(c){ s+=perComp[c.name][l]; }); fieldTotal[l]=s; });
+  var youTagged=LABELS.reduce(function(s,l){return s+youCounts[l];},0);
+  var offTheme=(ours.posts.length||0)-youTagged;
   function eng(c){ var s=0; (c.posts||[]).forEach(function(p){ s+=(p.r||0)+(p.c||0)+(p.rp||0); }); return s; }
   var youEng=eng(ours)/(ours.posts.length||1);
   var compEng={}; field.forEach(function(c){ compEng[c.name]=eng(c)/(c.posts.length||1); });
@@ -468,73 +475,114 @@ if(contentIdeasList){
   var ytRank=0, ytViews=0, ytLeader=yv[0]||null;
   yv.forEach(function(r,i){ if(/continia/i.test(r.n)){ ytRank=i+1; ytViews=r.mv; } });
   var ytMult=(ytLeader&&ytViews)?(ytLeader.mv/ytViews):0;
+  var ytLeaderName=ytLeader?ytLeader.n.replace(/\s*\(.*\)/,""):"";
 
   /* ---------- static shell ---------- */
-  var opts='<option value="field">Field average</option>'+field.map(function(c){ return '<option value="'+esc(c.name)+'">'+esc(c.name)+'</option>'; }).join("");
+  var opts='<option value="field">The field ('+field.length+')</option>'+
+    field.map(function(c){ return '<option value="'+esc(c.name)+'">'+esc(c.name)+'</option>'; }).join("");
   mount.innerHTML=
-    '<div class="cg-controls">'+
-      '<div class="cg-cmp"><label for="cg-cmp">Compare against</label>'+
-        '<select id="cg-cmp">'+opts+'</select></div>'+
-      '<span class="cg-captured">LinkedIn capture · '+esc(fmtDate(LI.captured))+'</span>'+
+    '<div class="cg-hero">'+
+      '<div class="cg-hero-main">'+
+        '<div class="cg-eyebrow">Share of the category conversation</div>'+
+        '<div class="cg-sov"><span id="cg-sov">0</span><i>%</i></div>'+
+        '<p class="cg-verdict" id="cg-verdict"></p>'+
+      '</div>'+
+      '<div class="cg-hero-side">'+
+        '<label for="cg-cmp">Compare against</label>'+
+        '<select id="cg-cmp">'+opts+'</select>'+
+        '<span class="cg-captured">LinkedIn &middot; '+esc(fmtDate(LI.captured))+'</span>'+
+      '</div>'+
     '</div>'+
     '<div class="cg-cards" id="cg-cards"></div>'+
-    '<div class="cg-legend"><span><i class="you-s"></i>Continia</span><span><i class="fld-s"></i><span id="cg-cmp-leg">field avg</span></span><span class="cg-scale">posts by theme · recent capture</span></div>'+
-    '<div class="cg-rows" id="cg-rows"></div>'+
+    '<div class="cg-chart">'+
+      '<div class="cg-legend"><span><i class="sw-you"></i>Continia&rsquo;s voice</span>'+
+        '<span><i class="sw-gap"></i><span id="cg-leg-gap">the field</span>&rsquo;s &mdash; the gap</span>'+
+        '<span class="cg-scale">bar = posts on the theme &middot; sorted by gap</span></div>'+
+      '<div class="cg-rows" id="cg-rows"></div>'+
+    '</div>'+
     '<div class="cg-gaps"><h3>Gaps to close</h3><div id="cg-gaplist"></div></div>';
 
-  function metricCard(lbl,val,sub,cls,small){
+  var sel=document.getElementById("cg-cmp"),
+      sovEl=document.getElementById("cg-sov"),
+      verdictEl=document.getElementById("cg-verdict"),
+      legGapEl=document.getElementById("cg-leg-gap"),
+      cardsEl=document.getElementById("cg-cards"),
+      rowsEl=document.getElementById("cg-rows"),
+      gapEl=document.getElementById("cg-gaplist");
+
+  function mcard(lbl,val,sub,cls){
     return '<div class="cg-mcard"><div class="lbl">'+esc(lbl)+'</div>'+
-      '<div class="val'+(small?" sm":"")+'">'+val+'</div>'+
+      '<div class="val">'+val+'</div>'+
       '<div class="sub '+(cls||"")+'">'+sub+'</div></div>';
   }
-  function sign(n){ return n>0?"+"+n:String(n); }
 
   function draw(){
-    var cmp=document.getElementById("cg-cmp").value;
-    var isField=cmp==="field";
-    var tgt=isField?fieldAvg:perComp[cmp];
-    var cmpName=isField?"field avg":cmp;
-    document.getElementById("cg-cmp-leg").textContent=cmpName;
+    var cmp=sel.value, isField=cmp==="field";
+    var them=isField?fieldTotal:perComp[cmp];
+    var cmpName=isField?"the field":cmp;
+    var cmpShort=isField?"field":cmp;
+    var cmpEng=isField?fieldEng:compEng[cmp];
+    legGapEl.textContent=cmpName;
 
-    var rows=LABELS.map(function(l){ return {label:l, you:youCounts[l], tgt:tgt[l]}; });
-    var max=Math.max.apply(null,rows.map(function(r){return Math.max(r.you,r.tgt);}))||1;
+    /* rank themes by gap (their lead over us), biggest first -> the purple cascade */
+    var rows=LABELS.map(function(l){ return {label:l, you:youCounts[l], them:them[l]}; })
+      .sort(function(a,b){ return (b.them-b.you)-(a.them-a.you) || (b.them-a.them); });
+    var maxTotal=Math.max.apply(null,rows.map(function(r){return r.you+r.them;}))||1;
 
-    /* bullet-bar rows */
-    document.getElementById("cg-rows").innerHTML=rows.map(function(r){
-      var d=r.you-Math.round(r.tgt);
-      var cls=d>0?"ahead":(d<0?"behind":"par");
-      var txt=d>0?"+"+d:(d<0?String(d):"on par");
-      return '<div class="cg-row"><div class="cg-theme">'+esc(r.label)+'</div>'+
-        '<div class="cg-track"><div class="cg-fld" style="width:'+(r.tgt/max*100).toFixed(1)+'%"></div>'+
-        '<div class="cg-you" style="width:'+(r.you/max*100).toFixed(1)+'%"></div></div>'+
-        '<div class="cg-delta '+cls+'">'+txt+'</div></div>';
+    /* hero: overall share of voice + a verdict naming the loudest gaps */
+    var sumYou=rows.reduce(function(s,r){return s+r.you;},0);
+    var sumThem=rows.reduce(function(s,r){return s+r.them;},0);
+    var sov=(sumYou+sumThem)?Math.round(sumYou/(sumYou+sumThem)*100):0;
+    sovEl.textContent=sov;
+    var gapLabels=rows.filter(function(r){return r.them>r.you;}).map(function(r){return r.label;});
+    var listTxt=humanList(gapLabels.slice(0,3));
+    if(!gapLabels.length){
+      verdictEl.innerHTML="Continia matches or leads <b>"+esc(cmpName)+"</b> across every tracked theme &mdash; rare air.";
+    } else if(isField){
+      verdictEl.innerHTML="Continia is in <b>"+sov+"%</b> of the tracked category conversation &mdash; quiet on "+esc(listTxt)+" while the field publishes freely.";
+    } else {
+      verdictEl.innerHTML="Continia holds <b>"+sov+"%</b> of the conversation against "+esc(cmp)+", trailing on "+esc(listTxt)+".";
+    }
+
+    /* bullet-bars: navy = your voice, purple = the field's posts you're absent from */
+    rowsEl.innerHTML=rows.map(function(r,i){
+      var total=r.you+r.them;
+      var youW=(r.you/maxTotal*100), gapW=(r.them/maxTotal*100);
+      var sovT=total?Math.round(r.you/total*100):0;
+      var cls=sovT>=50?"ahead":"behind";
+      var isTop=(i===0 && r.them>r.you);
+      return '<div class="cg-row">'+
+        '<div class="cg-theme"><b>'+esc(r.label)+'</b>'+
+          (isTop?'<span class="cg-flag">Biggest gap</span>':'')+
+          '<span class="cg-rsub">you '+r.you+' &middot; '+esc(cmpShort)+' '+r.them+'</span></div>'+
+        '<div class="cg-track" role="img" aria-label="'+esc(r.label)+': you '+r.you+', '+esc(cmpShort)+' '+r.them+'">'+
+          '<i class="cg-you" style="width:'+youW.toFixed(1)+'%"></i>'+
+          '<i class="cg-them" style="left:'+youW.toFixed(1)+'%;width:'+gapW.toFixed(1)+'%"></i>'+
+        '</div>'+
+        '<div class="cg-pct '+cls+'">'+sovT+'%</div></div>';
     }).join("");
 
-    /* metric cards */
-    var sumYou=rows.reduce(function(s,r){return s+r.you;},0);
-    var sumTgt=rows.reduce(function(s,r){return s+r.tgt;},0);
-    var sov=(sumYou+sumTgt)?Math.round(sumYou/(sumYou+sumTgt)*100):0;
-    var worst=rows.slice().sort(function(a,b){ return (a.you-a.tgt)-(b.you-b.tgt); })[0];
-    var worstD=Math.round(worst.you-worst.tgt);
-    var tgtEng=isField?fieldEng:compEng[cmp];
-    var engDiff=Math.round(youEng-tgtEng);
-    document.getElementById("cg-cards").innerHTML=
-      metricCard("Share of voice", sov+"%", "of "+esc(cmpName)+" themed output", sov>=50?"ahead":"behind")+
-      metricCard("LinkedIn engagement", Math.round(youEng)+"/post", esc(cmpName)+" "+Math.round(tgtEng)+" · "+sign(engDiff), engDiff>=0?"ahead":"behind")+
-      metricCard("YouTube reach · 30d", "#"+ytRank+" / "+yv.length, kfmt(ytViews)+" views"+(ytLeader&&ytMult>=2?" · "+esc(ytLeader.n.replace(/\s*\(.*\)/,""))+" ~"+ytMult.toFixed(1)+"x":""), ytRank<=Math.ceil(yv.length/2)?"ahead":"behind")+
-      metricCard("Biggest gap", esc(worst.label), (worstD<0?worstD:"on par")+" vs "+esc(cmpName), worstD<0?"behind":"", true);
+    /* context cards */
+    var engDiff=Math.round(youEng-cmpEng);
+    cardsEl.innerHTML=
+      mcard("On-theme posts", youTagged+'<small>/'+(ours.posts.length||0)+'</small>',
+        "<b>"+offTheme+"</b> recent posts were off the tracked themes", offTheme>youTagged?"behind":"")+
+      mcard("Engagement / post", Math.round(youEng),
+        "<b>"+(engDiff>=0?"+":"")+engDiff+"</b> vs "+esc(cmpName)+" ("+Math.round(cmpEng)+")", engDiff>=0?"ahead":"behind")+
+      mcard("YouTube reach · 30d", "#"+ytRank+'<small>/'+yv.length+'</small>',
+        kfmt(ytViews)+" est. views"+(ytLeader&&ytMult>=2?" &middot; "+esc(ytLeaderName)+" ~"+ytMult.toFixed(1)+"x":""),
+        ytRank&&ytRank<=Math.ceil(yv.length/2)?"ahead":"behind");
 
-    /* gaps to close */
-    var gaps=rows.filter(function(r){ return r.you-Math.round(r.tgt)<=-1; })
-      .sort(function(a,b){ return (a.you-a.tgt)-(b.you-b.tgt); }).slice(0,3);
-    document.getElementById("cg-gaplist").innerHTML=gaps.length?gaps.map(function(r){
-      var behind=Math.round(r.tgt)-r.you;
-      return '<div class="cg-gap"><div class="cg-g-main"><div class="cg-g-t">Behind '+esc(cmpName)+' on '+esc(r.label.toLowerCase())+'</div>'+
-        '<div class="cg-g-s">you '+r.you+' vs '+(isField?r.tgt.toFixed(1):r.tgt)+' — '+behind+' post'+(behind===1?"":"s")+' of headroom in the recent capture</div></div>'+
+    /* gaps to close = the top purple rows */
+    var gaps=rows.filter(function(r){return r.them>r.you;}).slice(0,3);
+    gapEl.innerHTML=gaps.length?gaps.map(function(r){
+      return '<div class="cg-gap"><span class="cg-gnum">'+r.them+'</span>'+
+        '<div class="cg-gmain"><div class="cg-gt">'+esc(r.label)+'</div>'+
+        '<div class="cg-gs">'+esc(cap(cmpName))+' published '+r.them+' post'+(r.them===1?"":"s")+' here &mdash; you published '+r.you+'.</div></div>'+
         '<a class="cg-plan" href="content.html#content-ideas">Plan it &#8599;</a></div>';
-    }).join(""):'<div class="cg-g-s cg-none">No theme is behind '+esc(cmpName)+' in the latest capture.</div>';
+    }).join(""):'<div class="cg-none">Continia matches or leads '+esc(cmpName)+' on every tracked theme in this capture.</div>';
   }
-  document.getElementById("cg-cmp").addEventListener("change",draw);
+  sel.addEventListener("change",draw);
   draw();
 })();
 
