@@ -482,6 +482,10 @@ if(contentIdeasList){
     field.map(function(c){ return '<option value="'+esc(c.name)+'">'+esc(c.name)+'</option>'; }).join("");
   mount.innerHTML=
     '<div class="cg-hero">'+
+      '<video class="cg-hero-bg brief-bg" autoplay muted loop playsinline poster="./Dashboard_images_export.jpg">'+
+        '<source src="./Assets/Video for claude banner - Rezied - 200_WEB.mp4" type="video/mp4">'+
+        '<source src="./Assets/Video for claude banner - Rezied - 200_WEB.webm" type="video/webm">'+
+      '</video>'+
       '<div class="cg-hero-main">'+
         '<div class="cg-eyebrow">Share of the category conversation</div>'+
         '<div class="cg-sov"><span id="cg-sov">0</span><i>%</i></div>'+
@@ -579,7 +583,7 @@ if(contentIdeasList){
       return '<div class="cg-gap"><span class="cg-gnum">'+r.them+'</span>'+
         '<div class="cg-gmain"><div class="cg-gt">'+esc(r.label)+'</div>'+
         '<div class="cg-gs">'+esc(cap(cmpName))+' published '+r.them+' post'+(r.them===1?"":"s")+' here &mdash; you published '+r.you+'.</div></div>'+
-        '<a class="cg-plan" href="content.html#content-ideas">Plan it &#8599;</a></div>';
+        '<a class="cmp-btn" href="content.html#event-calendar">Plan it &#8599;</a></div>';
     }).join(""):'<div class="cg-none">Continia matches or leads '+esc(cmpName)+' on every tracked theme in this capture.</div>';
   }
   sel.addEventListener("change",draw);
