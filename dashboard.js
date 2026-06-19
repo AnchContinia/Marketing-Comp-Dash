@@ -414,115 +414,128 @@ if(contentIdeasList){
   });
 })();
 
-/* ---- Content-gap analysis (home): Continia vs the field, computed from the
-   whole database — LinkedIn formats + engagement, YouTube reach + upload
-   cadence, the news themes and the content/video idea backlog. ---- */
+/* ---- Content-gap analysis (home): theme coverage, Continia vs the field.
+   Signature view = a navy "you" bullet bar over a gray "field/competitor" bar
+   per content theme — the gap is where gray runs long and navy stays short.
+   Every number is derived live: posts in window.LI_DATA are theme-tagged with a
+   keyword map (first match wins; no match -> excluded), counted per company, and
+   compared against the field average or a single selected competitor. YouTube
+   reach + LinkedIn engagement come from window.YT_DATA / LI_DATA. ---- */
 (function(){
   if(typeof window.LI_DATA==="undefined"||typeof window.YT_DATA==="undefined") return;
   var mount=document.getElementById("cg-body");
   if(!mount) return;
   var LI=window.LI_DATA, YT=window.YT_DATA;
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
-  function k(n){ n=Number(n)||0; return n>=1000?(n/1000).toFixed(n>=10000?0:1)+"K":String(n); }
+  function kfmt(n){ n=Number(n)||0; return n>=1000?(n/1000).toFixed(n>=10000?0:1)+"K":String(n); }
+  function fmtDate(s){var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var p=String(s).split("-");return p.length<3?String(s):m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];}
 
-  /* ---------- LinkedIn: format mix + engagement standing ---------- */
+  /* ---------- theme keyword map (first match wins; null = Other, excluded) ---------- */
+  var THEMES=[
+    {label:"AI / agentic AP",      kw:["ai","agent","agentic","autonomous","copilot","llm"]},
+    {label:"E-invoicing mandates", kw:["ksef","peppol","vida","mandate","e-invoic","b2b reform","e-rechnung","verifactu","efaktura","factura","facturacion"]},
+    {label:"Product demos",        kw:["demo","walkthrough","what's new","release","feature","upgrade","studio"]},
+    {label:"Customer stories",     kw:["case study","customer","testimonial","success story","savings"]},
+    {label:"Banking & payments",   kw:["bank","payment","reconcil","iso 20022","swift","cash management"]},
+    {label:"Expense management",   kw:["expense","mileage","receipt","reimburse"]}
+  ];
+  var LABELS=THEMES.map(function(t){return t.label;});
+  function themeOf(title){
+    var t=String(title).toLowerCase();
+    for(var i=0;i<THEMES.length;i++){ var ks=THEMES[i].kw;
+      for(var j=0;j<ks.length;j++){ var k=ks[j];
+        var hit=(k==="ai")?/\bai\b/.test(t):(t.indexOf(k)>=0);
+        if(hit) return THEMES[i].label; } }
+    return null;
+  }
+  function counts(c){ var m={}; LABELS.forEach(function(l){m[l]=0;}); (c.posts||[]).forEach(function(p){ var th=themeOf(p.t); if(th) m[th]++; }); return m; }
+
+  /* ---------- split ours vs field, tag everything ---------- */
   var ours=null, field=[];
   LI.companies.forEach(function(c){ if(c.ours) ours=c; else field.push(c); });
-  if(!ours) return;
-  var TYPES=["Image","Video","Carousel","Document","Text","Poll","Event","Article/Link"];
-  function mix(posts){ var m={}, r={}; posts.forEach(function(p){ m[p.ty]=(m[p.ty]||0)+1; });
-    TYPES.forEach(function(t){ r[t]=posts.length?((m[t]||0)/posts.length*100):0; }); return r; }
-  var ourMix=mix(ours.posts), fieldMix={};
-  TYPES.forEach(function(t){ var s=0; field.forEach(function(c){ s+=mix(c.posts)[t]; }); fieldMix[t]=field.length?s/field.length:0; });
-  function eng(c){ var s=0; c.posts.forEach(function(p){ s+=(p.r||0)+(p.c||0)+(p.rp||0); }); return s; }
-  var engRows=LI.companies.map(function(c){ return {ours:!!c.ours, avg:eng(c)/(c.posts.length||1)}; }).sort(function(a,b){ return b.avg-a.avg; });
-  var ourEngRank=0, ourEngAvg=0; engRows.forEach(function(r,i){ if(r.ours){ ourEngRank=i+1; ourEngAvg=r.avg; } });
+  if(!ours||!field.length) return;
+  var youCounts=counts(ours);
+  var perComp={}; field.forEach(function(c){ perComp[c.name]=counts(c); });
+  var fieldAvg={}; LABELS.forEach(function(l){ var s=0; field.forEach(function(c){ s+=perComp[c.name][l]; }); fieldAvg[l]=s/field.length; });
+  function eng(c){ var s=0; (c.posts||[]).forEach(function(p){ s+=(p.r||0)+(p.c||0)+(p.rp||0); }); return s; }
+  var youEng=eng(ours)/(ours.posts.length||1);
+  var compEng={}; field.forEach(function(c){ compEng[c.name]=eng(c)/(c.posts.length||1); });
+  var fieldEng=field.reduce(function(s,c){return s+compEng[c.name];},0)/field.length;
 
-  /* ---------- YouTube: reach standing + upload cadence ---------- */
+  /* ---------- YouTube reach standing (static context card) ---------- */
   var snap=YT.snapshots[YT.snapshots.length-1];
   var yv=Object.keys(snap.stats||{}).map(function(n){ return {n:n, mv:(snap.stats[n].monthlyViews||0)}; }).sort(function(a,b){ return b.mv-a.mv; });
   var ytRank=0, ytViews=0, ytLeader=yv[0]||null;
   yv.forEach(function(r,i){ if(/continia/i.test(r.n)){ ytRank=i+1; ytViews=r.mv; } });
   var ytMult=(ytLeader&&ytViews)?(ytLeader.mv/ytViews):0;
-  var cu=(YT.continiaUploads&&YT.continiaUploads.snapshots&&YT.continiaUploads.snapshots.length)?YT.continiaUploads.snapshots[YT.continiaUploads.snapshots.length-1]:null;
-  var P=(cu&&cu.periods)?cu.periods:{};
-  function up(period,kind){ return (P[period]&&P[period][kind])?(P[period][kind].uploads||0):0; }
-  var long28=up("28D","longForm"), short28=up("28D","shorts"), long3m=up("3M","longForm"), short3m=up("3M","shorts");
-  var vi=YT.videoIdeas||{}, qLong=(vi.longForm||[]).length, qShort=(vi.shortForm||[]).length;
 
-  /* ---------- News themes (events[] from this file) ---------- */
-  var stanceLabel={ai:"AI & agentic automation", cons:"consolidation / M&A", steady:"e-invoicing & compliance"};
-  var th={}; if(typeof events!=="undefined") events.forEach(function(e){ if(e.c) th[e.c]=(th[e.c]||0)+1; });
-  var topStance=Object.keys(th).sort(function(a,b){ return th[b]-th[a]; })[0];
-  var topStanceN=topStance?th[topStance]:0, evN=(typeof events!=="undefined")?events.length:0;
-  var ideaN=(typeof contentIdeas!=="undefined")?contentIdeas.length:0;
-
-  /* ---------- standing tiles ---------- */
-  var tiles=[
-    {kk:"LinkedIn engagement", v:"#"+ourEngRank+" / "+engRows.length, s:Math.round(ourEngAvg)+" per post — loudest in the field"},
-    {kk:"YouTube reach · 30d", v:"#"+ytRank+" / "+yv.length, s:k(ytViews)+" views"+(ytLeader&&ytMult>=2?" — "+esc(ytLeader.n.replace(/\s*\(.*\)/,""))+" leads ~"+ytMult.toFixed(1)+"x":"")},
-    {kk:"Long-form video · 28d", v:String(long28), s:long28===0&&long3m>0?"stalled — "+long3m+" the prior quarter":long3m+" the prior quarter"},
-    {kk:"Idea backlog ready", v:String(qLong+qShort), s:qLong+" long-form · "+qShort+" short-form queued"}
-  ];
-  var tilesHTML=tiles.map(function(t){ return '<div class="metric cg-metric"><div class="num">'+esc(t.v)+'</div><div class="lbl">'+esc(t.kk)+'</div><div class="note">'+esc(t.s)+'</div></div>'; }).join("");
-
-  /* ---------- format-mix rows (scaled bars + quiet/lead tags) ---------- */
-  var maxShare=0; TYPES.forEach(function(t){ maxShare=Math.max(maxShare, ourMix[t], fieldMix[t]); }); maxShare=maxShare||1;
-  var rows=TYPES.map(function(t){ return {t:t, you:ourMix[t], fld:fieldMix[t], gap:fieldMix[t]-ourMix[t]}; })
-    .sort(function(a,b){ return b.gap-a.gap; });
-  var mixHTML=rows.map(function(r){
-    var cls=r.gap>=8?"quiet":(r.gap<=-8?"lead":"even");
-    var tag=cls==="quiet"?"Quiet":(cls==="lead"?"Loud":"Even");
-    return '<div class="cg-row '+cls+'">'+
-      '<span class="cg-lbl">'+esc(r.t)+'</span>'+
-      '<div class="cg-bars">'+
-        '<div class="cg-bar you"><i style="width:'+(r.you/maxShare*100).toFixed(1)+'%"></i></div>'+
-        '<div class="cg-bar field"><i style="width:'+(r.fld/maxShare*100).toFixed(1)+'%"></i></div>'+
-      '</div>'+
-      '<span class="cg-nums">'+Math.round(r.you)+'% / '+Math.round(r.fld)+'%</span>'+
-      '<span class="cg-tag '+cls+'">'+tag+'</span>'+
-    '</div>';
-  }).join("");
-
-  /* ---------- video-output lines ---------- */
-  var ytBarYou=ytLeader&&ytLeader.mv?Math.max(ytViews/ytLeader.mv*100,2):0;
-  var vidHTML=
-    '<div class="cg-vline"><span>YouTube monthly views</span><b>#'+ytRank+' of '+yv.length+'</b></div>'+
-    '<div class="cg-vline"><span>You vs '+esc((ytLeader?ytLeader.n.replace(/\s*\(.*\)/,""):"leader"))+'</span><span class="cg-mini"><i style="width:'+ytBarYou.toFixed(0)+'%"></i></span></div>'+
-    '<div class="cg-vline"><span>Uploads · last 28 days</span><b>'+long28+' long · '+short28+' short</b></div>'+
-    '<div class="cg-vline"><span>Uploads · prior 3 months</span><b>'+long3m+' long · '+short3m+' short</b></div>'+
-    '<div class="cg-vline"><span>LinkedIn video share</span><b>'+Math.round(ourMix["Video"])+'% vs '+Math.round(fieldMix["Video"])+'% field</b></div>'+
-    '<div class="cg-vline"><span>Video ideas queued</span><b>'+qLong+' long · '+qShort+' short</b></div>';
-
-  /* ---------- recommended moves (derived from the gaps) ---------- */
-  var moves=[];
-  if(long28===0 && long3m>0){
-    moves.push({p:"now", t:"Resume long-form video — <b>0</b> uploads in the last 28 days vs <b>"+long3m+"</b> the prior quarter, with <b>"+qLong+"</b> long-form ideas already queued. The channel's reach is built on long-form how-tos."});
-  }
-  var quiet=rows.filter(function(r){ return r.gap>=8; });
-  if(quiet.length){
-    var names=quiet.slice(0,2).map(function(r){ return esc(r.t)+" (<b>"+Math.round(r.you)+"%</b> vs <b>"+Math.round(r.fld)+"%</b> field)"; }).join(" and ");
-    moves.push({p:"next", t:"Widen your LinkedIn format mix — you're quiet on "+names+". You're <b>#"+ourEngRank+"</b> in engagement per post, so you can test these formats without losing ground."});
-  }
-  if((ourMix["Carousel"]-fieldMix["Carousel"])>25){
-    moves.push({p:"watch", t:"<b>"+Math.round(ourMix["Carousel"])+"%</b> of your posts are carousels (field avg <b>"+Math.round(fieldMix["Carousel"])+"%</b>) — a winning format, but the concentration is a single point of failure if the feed shifts."});
-  }
-  if(ytRank>1 && ytMult>=2 && ytLeader){
-    moves.push({p:"next", t:"Close the YouTube reach gap — <b>#"+ytRank+" of "+yv.length+"</b> on 30-day views, with "+esc(ytLeader.n.replace(/\s*\(.*\)/,""))+" pulling roughly <b>"+ytMult.toFixed(1)+"x</b> your reach. The "+(qLong+qShort)+" queued ideas map onto "+(topStance?esc(stanceLabel[topStance]||topStance):"the")+", which leads the news cycle ("+topStanceN+" of "+evN+" events)."});
-  }
-  var movesHTML=moves.map(function(m){
-    var lab=m.p==="now"?"Now":(m.p==="watch"?"Watch":"Next");
-    return '<li><span class="cg-pri '+m.p+'">'+lab+'</span><span>'+m.t+'</span></li>';
-  }).join("");
-
+  /* ---------- static shell ---------- */
+  var opts='<option value="field">Field average</option>'+field.map(function(c){ return '<option value="'+esc(c.name)+'">'+esc(c.name)+'</option>'; }).join("");
   mount.innerHTML=
-    '<p class="cg-intro">Where Continia is <b>quiet while the field is loud</b> — computed live from LinkedIn formats &amp; engagement, YouTube reach &amp; upload cadence, the news themes and the idea backlog.</p>'+
-    '<div class="metrics cg-metrics">'+tilesHTML+'</div>'+
-    '<div class="cg-cols">'+
-      '<section class="cg-card"><div class="cg-card-h"><h3>LinkedIn format mix</h3><span>you vs field avg · share of posts</span></div><div class="cg-card-b">'+mixHTML+'</div></section>'+
-      '<section class="cg-card"><div class="cg-card-h"><h3>Video output</h3><span>YouTube + LinkedIn</span></div><div class="cg-card-b cg-vid">'+vidHTML+'</div></section>'+
+    '<div class="cg-controls">'+
+      '<div class="cg-cmp"><label for="cg-cmp">Compare against</label>'+
+        '<select id="cg-cmp">'+opts+'</select></div>'+
+      '<span class="cg-captured">LinkedIn capture · '+esc(fmtDate(LI.captured))+'</span>'+
     '</div>'+
-    (movesHTML?'<section class="cg-card cg-moves"><div class="cg-card-h"><h3>Recommended moves</h3></div><div class="cg-card-b"><ol>'+movesHTML+'</ol></div></section>':"");
+    '<div class="cg-cards" id="cg-cards"></div>'+
+    '<div class="cg-legend"><span><i class="you-s"></i>Continia</span><span><i class="fld-s"></i><span id="cg-cmp-leg">field avg</span></span><span class="cg-scale">posts by theme · recent capture</span></div>'+
+    '<div class="cg-rows" id="cg-rows"></div>'+
+    '<div class="cg-gaps"><h3>Gaps to close</h3><div id="cg-gaplist"></div></div>';
+
+  function metricCard(lbl,val,sub,cls,small){
+    return '<div class="cg-mcard"><div class="lbl">'+esc(lbl)+'</div>'+
+      '<div class="val'+(small?" sm":"")+'">'+val+'</div>'+
+      '<div class="sub '+(cls||"")+'">'+sub+'</div></div>';
+  }
+  function sign(n){ return n>0?"+"+n:String(n); }
+
+  function draw(){
+    var cmp=document.getElementById("cg-cmp").value;
+    var isField=cmp==="field";
+    var tgt=isField?fieldAvg:perComp[cmp];
+    var cmpName=isField?"field avg":cmp;
+    document.getElementById("cg-cmp-leg").textContent=cmpName;
+
+    var rows=LABELS.map(function(l){ return {label:l, you:youCounts[l], tgt:tgt[l]}; });
+    var max=Math.max.apply(null,rows.map(function(r){return Math.max(r.you,r.tgt);}))||1;
+
+    /* bullet-bar rows */
+    document.getElementById("cg-rows").innerHTML=rows.map(function(r){
+      var d=r.you-Math.round(r.tgt);
+      var cls=d>0?"ahead":(d<0?"behind":"par");
+      var txt=d>0?"+"+d:(d<0?String(d):"on par");
+      return '<div class="cg-row"><div class="cg-theme">'+esc(r.label)+'</div>'+
+        '<div class="cg-track"><div class="cg-fld" style="width:'+(r.tgt/max*100).toFixed(1)+'%"></div>'+
+        '<div class="cg-you" style="width:'+(r.you/max*100).toFixed(1)+'%"></div></div>'+
+        '<div class="cg-delta '+cls+'">'+txt+'</div></div>';
+    }).join("");
+
+    /* metric cards */
+    var sumYou=rows.reduce(function(s,r){return s+r.you;},0);
+    var sumTgt=rows.reduce(function(s,r){return s+r.tgt;},0);
+    var sov=(sumYou+sumTgt)?Math.round(sumYou/(sumYou+sumTgt)*100):0;
+    var worst=rows.slice().sort(function(a,b){ return (a.you-a.tgt)-(b.you-b.tgt); })[0];
+    var worstD=Math.round(worst.you-worst.tgt);
+    var tgtEng=isField?fieldEng:compEng[cmp];
+    var engDiff=Math.round(youEng-tgtEng);
+    document.getElementById("cg-cards").innerHTML=
+      metricCard("Share of voice", sov+"%", "of "+esc(cmpName)+" themed output", sov>=50?"ahead":"behind")+
+      metricCard("LinkedIn engagement", Math.round(youEng)+"/post", esc(cmpName)+" "+Math.round(tgtEng)+" · "+sign(engDiff), engDiff>=0?"ahead":"behind")+
+      metricCard("YouTube reach · 30d", "#"+ytRank+" / "+yv.length, kfmt(ytViews)+" views"+(ytLeader&&ytMult>=2?" · "+esc(ytLeader.n.replace(/\s*\(.*\)/,""))+" ~"+ytMult.toFixed(1)+"x":""), ytRank<=Math.ceil(yv.length/2)?"ahead":"behind")+
+      metricCard("Biggest gap", esc(worst.label), (worstD<0?worstD:"on par")+" vs "+esc(cmpName), worstD<0?"behind":"", true);
+
+    /* gaps to close */
+    var gaps=rows.filter(function(r){ return r.you-Math.round(r.tgt)<=-1; })
+      .sort(function(a,b){ return (a.you-a.tgt)-(b.you-b.tgt); }).slice(0,3);
+    document.getElementById("cg-gaplist").innerHTML=gaps.length?gaps.map(function(r){
+      var behind=Math.round(r.tgt)-r.you;
+      return '<div class="cg-gap"><div class="cg-g-main"><div class="cg-g-t">Behind '+esc(cmpName)+' on '+esc(r.label.toLowerCase())+'</div>'+
+        '<div class="cg-g-s">you '+r.you+' vs '+(isField?r.tgt.toFixed(1):r.tgt)+' — '+behind+' post'+(behind===1?"":"s")+' of headroom in the recent capture</div></div>'+
+        '<a class="cg-plan" href="content.html#content-ideas">Plan it &#8599;</a></div>';
+    }).join(""):'<div class="cg-g-s cg-none">No theme is behind '+esc(cmpName)+' in the latest capture.</div>';
+  }
+  document.getElementById("cg-cmp").addEventListener("change",draw);
+  draw();
 })();
 
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
