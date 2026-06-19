@@ -1394,7 +1394,7 @@ if(contentIdeasList){
    Both the topbar and the footer read from it, so they can never drift apart.
    The YouTube/News update routine sets this to today's date on every refresh. */
 (function(){
-  var DASHBOARD_UPDATED = "2026-06-18";
+  var DASHBOARD_UPDATED = "2026-06-19";
   var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var p=String(DASHBOARD_UPDATED).split("-");
   var pretty=m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];

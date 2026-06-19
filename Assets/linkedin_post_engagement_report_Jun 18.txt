@@ -1,199 +1,1223 @@
-window.LI_DATA = {
-  source: "LinkedIn public engagement",
-  captured: "2026-06-18",
-  windowLabel: "last 10 posts each",
-  companies: [
-    { name: "Continia Software", ours: true, posts: [
-      { t: "Customer story: full-time AP person to automation in minutes", ty: "Image", r: 22, c: 0, rp: 3 },
-      { t: "The Elevate tour continues - this time in Poland", ty: "Carousel", r: 60, c: 1, rp: 0 },
-      { t: "We're ISO 27001 certified", ty: "Carousel", r: 187, c: 2, rp: 1 },
-      { t: "It's about time - we cycled to work in May", ty: "Carousel", r: 67, c: 1, rp: 0 },
-      { t: "250 Continia solutions a good reason for cake (Softvaerket)", ty: "Carousel", r: 68, c: 1, rp: 2 },
-      { t: "Thanks for a great time at DynamicsMinds", ty: "Carousel", r: 92, c: 2, rp: 0 },
-      { t: "Continia is growing - swipe to find your next role", ty: "Carousel", r: 42, c: 0, rp: 0 },
-      { t: "Kicking off Continia Elevate in the UK", ty: "Video", r: 49, c: 2, rp: 1 },
-      { t: "Your BC setup is almost there - upgrade for free", ty: "Video", r: 34, c: 0, rp: 4 },
-      { t: "That's a wrap on Directions ASIA", ty: "Carousel", r: 59, c: 0, rp: 0 }
-    ]},
-    { name: "Truvio", posts: [
-      { t: "Truvio at Forretning Online hos Novicell in Aarhus", ty: "Image", r: 5, c: 0, rp: 1 },
-      { t: "What does successful B2B eCommerce look like (report)", ty: "Document", r: 10, c: 0, rp: 3 },
-      { t: "Truvio is heading to Toronto for Dynamics Regional event", ty: "Image", r: 30, c: 0, rp: 2 },
-      { t: "ExFlow customer story - Sinclar Group", ty: "Image", r: 16, c: 0, rp: 4 },
-      { t: "AI is changing how customers discover products (event)", ty: "Event", r: 16, c: 2, rp: 2 },
-      { t: "Excited to attend Community Summit NA Roadshow Charlotte", ty: "Image", r: 16, c: 0, rp: 1 },
-      { t: "88% of manufacturers and wholesalers now sell online", ty: "Image", r: 23, c: 0, rp: 4 },
-      { t: "5 Years of Reliable AP Automation - recucare story", ty: "Image", r: 19, c: 0, rp: 3 },
-      { t: "What if managing commerce data started with a question", ty: "Image", r: 34, c: 0, rp: 5 },
-      { t: "The numbers don't lie - State of B2B eCommerce 2026", ty: "Image", r: 0, c: 0, rp: 0 }
-    ]},
-    { name: "Equisys", posts: [
-      { t: "Hours away from webinar - Best AP Automation for BC", ty: "Image", r: 2, c: 0, rp: 1 },
-      { t: "Less than 24 hours to register for AP automation webinar", ty: "Image", r: 2, c: 0, rp: 3 },
-      { t: "Great time sponsoring Directions North America 2026", ty: "Carousel", r: 12, c: 0, rp: 2 },
-      { t: "Smarter way to manage employee expenses (Zetadocs)", ty: "Image", r: 3, c: 0, rp: 3 },
-      { t: "Looking forward to AP Automation Comparison Showcase (shared)", ty: "Image", r: 1, c: 0, rp: 0 },
-      { t: "Celebrating 15 years of the Equisys blog", ty: "Document", r: 3, c: 0, rp: 1 },
-      { t: "Amazing first day at Directions North America (booth E-32)", ty: "Image", r: 14, c: 0, rp: 5 },
-      { t: "3 tips for implementing an AP automation solution", ty: "Document", r: 2, c: 0, rp: 2 },
-      { t: "We'll be in Orlando for Directions North America", ty: "Image", r: 5, c: 0, rp: 3 },
-      { t: "Team company-wide meet up in London on the Thames", ty: "Carousel", r: 5, c: 0, rp: 0 }
-    ]},
-    { name: "Medius", posts: [
-      { t: "Why your logistics growth is hurting your margins", ty: "Document", r: 2, c: 1, rp: 0 },
-      { t: "AP automation in construction - manage suppliers", ty: "Image", r: 14, c: 0, rp: 2 },
-      { t: "E-invoicing as compliance and strategic asset (event)", ty: "Event", r: 9, c: 0, rp: 3 },
-      { t: "Join us July 15 - SSON AI Agents webinar (shared)", ty: "Video", r: 19, c: 0, rp: 5 },
-      { t: "Garment manufacturing doesn't slow down for admin", ty: "Image", r: 14, c: 0, rp: 0 },
-      { t: "How is AI revolutionizing manufacturing AP processes", ty: "Image", r: 14, c: 0, rp: 2 },
-      { t: "Improve AP without disrupting your ERP", ty: "Image", r: 11, c: 0, rp: 2 },
-      { t: "Excited to work with Antaras on Infor LN webinar (shared)", ty: "Image", r: 2, c: 1, rp: 1 },
-      { t: "Speed used to be the whole AP conversation", ty: "Carousel", r: 58, c: 0, rp: 3 },
-      { t: "Got 30 minutes? Reasons to spend June with us (webinars)", ty: "Document", r: 12, c: 0, rp: 0 }
-    ]},
-    { name: "Qvalia", posts: [
-      { t: "E-invoicing mandates are infrastructure decisions (Slovakia)", ty: "Image", r: 3, c: 0, rp: 0 },
-      { t: "New Billentis report on global e-invoicing market", ty: "Image", r: 6, c: 1, rp: 0 },
-      { t: "Slovakia's eFaktura framework - structured e-invoicing", ty: "Image", r: 20, c: 0, rp: 2 },
-      { t: "Qvalia certified for Slovakia e-invoicing under eFaktura", ty: "Image", r: 29, c: 1, rp: 5 },
-      { t: "Business Continuity Management certified ISO 22301:2019", ty: "Image", r: 4, c: 0, rp: 0 },
-      { t: "Thank you for joining IDP webinar with Docupath", ty: "Carousel", r: 29, c: 3, rp: 3 },
-      { t: "Qvalia listed in Cloud Security Alliance STAR Registry", ty: "Image", r: 6, c: 1, rp: 0 },
-      { t: "AI in finance timeline - early credit scoring to GenAI", ty: "Carousel", r: 7, c: 0, rp: 0 },
-      { t: "Summer reading no 4: definitive guide to Peppol", ty: "Document", r: 7, c: 0, rp: 0 },
-      { t: "Summer reading no 3: Peppol e-orders how it works", ty: "Document", r: 11, c: 0, rp: 2 }
-    ]},
-    { name: "AMC Banking", posts: [
-      { t: "Your biggest compliance risk is an unquestioned process", ty: "Text/Link", r: 6, c: 0, rp: 2 },
-      { t: "Thanks for showing up at our new building reception", ty: "Carousel", r: 29, c: 1, rp: 0 },
-      { t: "AMC operates under Service Provider Agreements with banks", ty: "Text/Link", r: 9, c: 0, rp: 0 },
-      { t: "We're moving - join us for a reception (event)", ty: "Event", r: 12, c: 0, rp: 1 },
-      { t: "One bank is manageable, ten banks lose finance teams time", ty: "Document", r: 4, c: 0, rp: 0 },
-      { t: "Webinar - new AMC Banking app for D365 BC", ty: "Video", r: 6, c: 0, rp: 0 },
-      { t: "Bank integration: Myth vs reality", ty: "Video", r: 10, c: 0, rp: 3 },
-      { t: "AMC Banking webinar series - Simplifying Cash Management", ty: "Video", r: 10, c: 0, rp: 1 },
-      { t: "Still time to register for our reception (shared event)", ty: "Event", r: 0, c: 0, rp: 0 },
-      { t: "AMC is expanding - hiring a java developer", ty: "Text/Link", r: 12, c: 0, rp: 3 }
-    ]},
-    { name: "B2Brouter", posts: [
-      { t: "B2Brouter attended Peppol Conference Europe 2026 Brussels", ty: "Carousel", r: 5, c: 0, rp: 0 },
-      { t: "Oriol Bausa: Starting the Peppol Conference 2026 (repost)", ty: "Video", r: 52, c: 1, rp: 4 },
-      { t: "Receiving an e-invoice doesn't mean processing it (poll)", ty: "Text/Link", r: 0, c: 0, rp: 0 },
-      { t: "VeriFactu, Ley Crea y Crece - 5 pasos para autonomos", ty: "Document", r: 7, c: 0, rp: 1 },
-      { t: "Why Peppol is becoming the gold standard for B2B", ty: "Document", r: 5, c: 0, rp: 0 },
-      { t: "Germany's e-invoicing roadmap - Legacy EDI (shared)", ty: "Image", r: 0, c: 0, rp: 0 },
-      { t: "Tomorrow we discuss Ley Crea y Crece (Camara shared)", ty: "Image", r: 3, c: 0, rp: 0 },
-      { t: "Legal SaaS platforms in France must prepare for 2026", ty: "Document", r: 4, c: 0, rp: 0 },
-      { t: "B2Brouter at ERP Summit Espana with partners (repost)", ty: "Image", r: 40, c: 0, rp: 2 },
-      { t: "Germany's B2B e-invoicing roadmap is already moving", ty: "Document", r: 0, c: 0, rp: 0 }
-    ]},
-    { name: "Dooap", posts: [
-      { t: "Dynamics community coming to Toronto - DynamicsCon Regional", ty: "Image", r: 16, c: 0, rp: 1 },
-      { t: "Possibilities with Dooap Studio - invoice fraud cartoon (shared)", ty: "Image", r: 12, c: 0, rp: 1 },
-      { t: "That's a wrap on DynamicsMinds", ty: "Carousel", r: 69, c: 4, rp: 0 },
-      { t: "Clear shift across DynamicsCon and DynamicsMinds 2026", ty: "Image", r: 19, c: 0, rp: 0 },
-      { t: "Dooap Unleashed: Run With Us - Eftsure", ty: "Video", r: 39, c: 2, rp: 1 },
-      { t: "This is what agentic AP automation looks like (Dooap Studio)", ty: "Video", r: 17, c: 0, rp: 6 },
-      { t: "AP automation doesn't stop at the invoice", ty: "Video", r: 71, c: 10, rp: 3 },
-      { t: "The biggest problem in finance is nobody trusts the system", ty: "Video", r: 21, c: 3, rp: 1 },
-      { t: "Sam Bush live in Helsinki - DynamicsMinds status update", ty: "Video", r: 0, c: 0, rp: 0 },
-      { t: "Dooap at DynamicsMinds Slovenia recap", ty: "Carousel", r: 0, c: 0, rp: 0 }
-    ]},
-    { name: "Tipalti", posts: [
-      { t: "Cubic Games managed 180+ vendors - saving 20% bank fees", ty: "Image", r: 6, c: 0, rp: 0 },
-      { t: "Days out from World Finance Forum in Amsterdam", ty: "Image", r: 4, c: 0, rp: 0 },
-      { t: "Day 1 at IMA2026 in Tampa is in the books", ty: "Image", r: 15, c: 0, rp: 3 },
-      { t: "Economic uncertainty: what finance should prioritize now", ty: "Image", r: 4, c: 0, rp: 0 },
-      { t: "Thank you to everyone at BAASS Connect", ty: "Image", r: 37, c: 1, rp: 0 },
-      { t: "Experimentation becoming a core engineering principle", ty: "Image", r: 5, c: 0, rp: 0 },
-      { t: "Splice cut royalty payments from 8 weeks to under an hour", ty: "Image", r: 8, c: 0, rp: 0 },
-      { t: "Manual payment processes don't scale", ty: "Text/Link", r: 8, c: 0, rp: 0 },
-      { t: "'This is how we've always done it' is not a reason", ty: "Text/Link", r: 2, c: 0, rp: 0 },
-      { t: "Three-way matching by hand is tedious (PO Matching Agent)", ty: "Image", r: 20, c: 0, rp: 1 }
-    ]},
-    { name: "Stampli", posts: [
-      { t: "Stampli named a Leader in G2's Summer 2026 grids", ty: "Text/Link", r: 4, c: 0, rp: 3 },
-      { t: "Finance teams need practical ways to get answers (AI intelligence)", ty: "Text/Link", r: 18, c: 1, rp: 3 },
-      { t: "Integra Investments saved $20K-$30K with Deep Finance", ty: "Carousel", r: 27, c: 3, rp: 10 },
-      { t: "Market stories clearer in operational spend (CNN SpaceX, shared)", ty: "Video", r: 11, c: 1, rp: 4 },
-      { t: "NetSuite 3-way matching breaks on missing item receipt", ty: "Text/Link", r: 8, c: 0, rp: 2 },
-      { t: "ACH risks start earlier - Nacha Operating Rules", ty: "Text/Link", r: 16, c: 3, rp: 7 },
-      { t: "Built to scale - Billy, Stampli's AI Employee", ty: "Text/Link", r: 25, c: 0, rp: 11 },
-      { t: "Eyal Feldman: the death of the dashboard - Deep Finance (repost)", ty: "Image", r: 80, c: 8, rp: 23 },
-      { t: "Great time at the Nashville career fair", ty: "Carousel", r: 43, c: 1, rp: 5 },
-      { t: "Matthew E. on scaled GTM orgs (repost)", ty: "Text/Link", r: 0, c: 0, rp: 0 }
-    ]},
-    { name: "Rillion", posts: [
-      { t: "Frida Ahrenby: hunt for a US native CFO (repost)", ty: "Text/Link", r: 28, c: 19, rp: 4 },
-      { t: "We asked 250 CFOs - The Nordic Finance AI Report 2026", ty: "Video", r: 5, c: 0, rp: 0 },
-      { t: "The Marie Stierna interview - Nordic Finance AI Report", ty: "Image", r: 7, c: 0, rp: 0 },
-      { t: "Bringing Sweden and US colleagues together (Midsummer/4th)", ty: "Image", r: 16, c: 0, rp: 0 },
-      { t: "40% of CFOs see fraud detection as biggest AI opportunity", ty: "Event", r: 17, c: 1, rp: 2 },
-      { t: "Rosanna Ryrberg: back from two energizing days (repost)", ty: "Image", r: 50, c: 8, rp: 1 },
-      { t: "26% of CFOs say lack of AI competence is the barrier", ty: "Image", r: 18, c: 1, rp: 1 },
-      { t: "Rillion's summer celebration was one for the books", ty: "Video", r: 41, c: 4, rp: 0 },
-      { t: "Marketing team ran Blodomloppet for blood donation", ty: "Carousel", r: 33, c: 3, rp: 1 },
-      { t: "Johan Dovander: a higher salary isn't enough anymore (repost)", ty: "Image", r: 105, c: 2, rp: 1 }
-    ]},
-    { name: "SignUp Software", posts: [
-      { t: "One week to go - Truvio Partner Day Stockholm (shared)", ty: "Image", r: 32, c: 0, rp: 10 },
-      { t: "It's Partner Day in Sweden - Truvio (shared)", ty: "Carousel", r: 147, c: 2, rp: 9 },
-      { t: "The difference isn't your ERP - TruvioSense (shared)", ty: "Image", r: 51, c: 2, rp: 15 },
-      { t: "Live Webinar - Introducing TruvioSense (shared)", ty: "Image", r: 60, c: 1, rp: 28 },
-      { t: "We're live at DYNAfair in Dortmund - Truvio (shared)", ty: "Carousel", r: 62, c: 4, rp: 3 },
-      { t: "Get ready for Truvio Partner Day in Stockholm (shared)", ty: "Video", r: 63, c: 1, rp: 13 },
-      { t: "Convergence 2025 in Miami - leaders and partners", ty: "Carousel", r: 38, c: 0, rp: 0 },
-      { t: "Join SignUp Software at Cloud Wars AI/Copilot Summit (shared)", ty: "Image", r: 11, c: 0, rp: 2 },
-      { t: "Directions EMEA 2025 in Poznan - what a week", ty: "Carousel", r: 141, c: 4, rp: 2 },
-      { t: "Great few days at IOFM Fall 2025 in Las Vegas", ty: "Carousel", r: 39, c: 1, rp: 1 }
-    ]},
-    { name: "Fidesic", posts: [
-      { t: "Fidesic has officially joined Knights of GP", ty: "Image", r: 4, c: 0, rp: 2 },
-      { t: "Why accruals and deferrals matter for financial accuracy", ty: "Image", r: 0, c: 0, rp: 0 },
-      { t: "Why Fidesic - manage multi-location AP in GP or BC", ty: "Image", r: 2, c: 0, rp: 0 },
-      { t: "Scrambling on Friday? Automation makes it easier (#LoveFriday)", ty: "Image", r: 2, c: 0, rp: 0 },
-      { t: "DPO vs AP Turnover ratio explained", ty: "Image", r: 0, c: 0, rp: 0 },
-      { t: "Failure to manage payables - Deloitte (#WednesdayWisdom)", ty: "Image", r: 1, c: 0, rp: 0 },
-      { t: "Think paper checks are dead? 80% still cut paper checks", ty: "Image", r: 2, c: 0, rp: 1 },
-      { t: "Does native integration make AP easier for BC", ty: "Image", r: 2, c: 0, rp: 0 },
-      { t: "Budget pressure? How AP drives company-wide cost cuts", ty: "Text/Link", r: 0, c: 0, rp: 0 },
-      { t: "Doug Burgum bet the farm on Great Plains (#FunFactFriday)", ty: "Image", r: 7, c: 1, rp: 1 }
-    ]},
-    { name: "Yavrio", posts: [
-      { t: "Only 18% of finance teams close books in three days", ty: "Image", r: 12, c: 1, rp: 0 },
-      { t: "Still moving bank data by CSV? Time for an upgrade", ty: "Video", r: 19, c: 0, rp: 1 },
-      { t: "Phil Dawson expert spotlight - payment infrastructure", ty: "Image", r: 44, c: 1, rp: 0 },
-      { t: "What a 2026 Yavrio is having so far", ty: "Carousel", r: 102, c: 7, rp: 0 },
-      { t: "DynamicsMinds 2026 is done and what a week", ty: "Carousel", r: 105, c: 5, rp: 0 },
-      { t: "Day one of DynamicsMinds wrapped - what a start", ty: "Carousel", r: 81, c: 4, rp: 0 },
-      { t: "Finance teams BEFORE vs AFTER Yavrio", ty: "Video", r: 44, c: 4, rp: 0 },
-      { t: "Webinar with Western Computer - Banking automation D365", ty: "Image", r: 14, c: 1, rp: 1 },
-      { t: "DynamicsCon 2026 wrapped - what a few days", ty: "Carousel", r: 55, c: 2, rp: 0 },
-      { t: "Feet on the ground at Directions ASIA 2026 in Vietnam", ty: "Carousel", r: 68, c: 1, rp: 1 }
-    ]},
-    { name: "Incedo", posts: [
-      { t: "Incedo recognized with Honda 2026 Supplier Award", ty: "Image", r: 69, c: 1, rp: 3 },
-      { t: "Most expensive resource isn't compute or capital (THE REALITY)", ty: "Video", r: 18, c: 0, rp: 1 },
-      { t: "Data modernization programs stall - the data problem", ty: "Document", r: 21, c: 0, rp: 0 },
-      { t: "Nitin Seth interview on ONNJ Mornings with Ken Rosato", ty: "Video", r: 40, c: 0, rp: 3 },
-      { t: "Nitin Seth: Human Edge book launch at Harvard Club (repost)", ty: "Carousel", r: 312, c: 8, rp: 8 },
-      { t: "Welcome to Incedo - new team members", ty: "Carousel", r: 53, c: 0, rp: 0 },
-      { t: "From signal to action - Incedo Lighthouse", ty: "Document", r: 24, c: 0, rp: 3 },
-      { t: "Incedo at Make in Haryana 2026 industrial policy event", ty: "Carousel", r: 133, c: 0, rp: 1 },
-      { t: "Disconnected workflows - The Copilot Paradox", ty: "Image", r: 37, c: 0, rp: 1 },
-      { t: "The biggest enterprise challenge is translating strategy", ty: "Document", r: 42, c: 0, rp: 3 }
-    ]},
-    { name: "Stripe", posts: [
-      { t: "Agent traffic surpassed human traffic on the internet", ty: "Image", r: 180, c: 29, rp: 24 },
-      { t: "Frontier: $915M in new funding for carbon removal", ty: "Text/Link", r: 102, c: 7, rp: 6 },
-      { t: "Mikael Mello: how API changes flow into Stripe products (repost)", ty: "Text/Link", r: 139, c: 5, rp: 15 },
-      { t: "Rami Banna: Stripe Projects adds new agent integrations (repost)", ty: "Text/Link", r: 85, c: 3, rp: 3 },
-      { t: "William Gaybrick on stage at Stripe Tour Paris (repost)", ty: "Video", r: 457, c: 12, rp: 16 },
-      { t: "Tanya Khakbaz: new frontier in fraud, token theft (repost)", ty: "Video", r: 302, c: 19, rp: 5 },
-      { t: "Katie Dill: future of UX in AI-native commerce (repost)", ty: "Video", r: 207, c: 13, rp: 6 },
-      { t: "Conor McNamara: 1.5M UK businesses run on Stripe (repost)", ty: "Video", r: 411, c: 9, rp: 7 },
-      { t: "Jon Krauss: Visa DCAP change, $18.4M savings (repost)", ty: "Text/Link", r: 101, c: 9, rp: 7 },
-      { t: "Solo founding at all-time high - top founders earn 61x", ty: "Document", r: 111, c: 15, rp: 4 }
-    ]}
-  ]
-};
+============================================================
+  LINKEDIN COMPANY POSTS - OVERSIGT (10 SENESTE PR. SIDE)
+  Genereret: 19.6.2026, 08.57.27
+  Bemaerk: Tallene afspejler tidspunktet for indsamling.
+  Tag = indholdstype (Image, Video, Carousel, Document, Text, Poll, Event, Article/Link)
+============================================================
+
+############################################################
+# 1. TRUVIO
+# https://www.linkedin.com/company/truvio-official/
+############################################################
+
+Post 1
+  Titel:     I dag er Truvio med til Forretning Online hos Novicell i Aarhus 🙌
+  Type:      Image
+  Reactions: 34
+  Comments:  1
+  Reposts:   1
+
+Post 2
+  Titel:     What does successful B2B eCommerce look like today? 💡
+  Type:      Image
+  Reactions: 16
+  Comments:  0
+  Reposts:   5
+
+Post 3
+  Titel:     Fraud risk is hiding in everyday finance workflows - emailed invoices, manual entry, spreadsheet approvals, local bank files, and unverified vendor banking changes.
+  Type:      Event
+  Reactions: 10
+  Comments:  0
+  Reposts:   0
+
+Post 4
+  Titel:     Truvio is heading to Toronto 🇨🇦
+  Type:      Image
+  Reactions: 31
+  Comments:  0
+  Reposts:   2
+
+Post 5
+  Titel:     Driving Scalable AP Automation Across a Multi-Entity Forestry Business​
+  Type:      Image
+  Reactions: 16
+  Comments:  0
+  Reposts:   4
+
+Post 6
+  Titel:     AI is changing the way customers discover products.
+  Type:      Image
+  Reactions: 17
+  Comments:  2
+  Reposts:   3
+
+Post 7
+  Titel:     We are excited to attend the Community Summit NA Roadshow in Charlotte today, June 9, 2026! ✨
+  Type:      Image
+  Reactions: 17
+  Comments:  0
+  Reposts:   1
+
+Post 8
+  Titel:     88% of surveyed manufacturers and wholesalers now sell online. 👷‍♀️
+  Type:      Image
+  Reactions: 24
+  Comments:  0
+  Reposts:   4
+
+Post 9
+  Titel:     5 Years of Reliable AP Automation​!
+  Type:      Image
+  Reactions: 19
+  Comments:  0
+  Reposts:   3
+
+Post 10
+  Titel:     The numbers don't lie - B2B eCommerce is reshaping how manufacturers, distributors, and wholesalers grow. New research from Truvio and Sapio Research reveals that 88% of B2B companies now offer online
+  Type:      Event
+  Reactions: 16
+  Comments:  0
+  Reposts:   6
+
+
+############################################################
+# 2. CONTINIA SOFTWARE
+# https://www.linkedin.com/company/continia-software-a-s/
+############################################################
+
+Post 1
+  Titel:     𝗙𝗿𝗼𝗺 𝗮 𝗳𝘂𝗹𝗹-𝘁𝗶𝗺𝗲 𝗔𝗣 𝗽𝗲𝗿𝘀𝗼𝗻 𝘁𝗼 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻 𝗶𝗻 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 🎯
+  Type:      Image
+  Reactions: 22
+  Comments:  0
+  Reposts:   3
+
+Post 2
+  Titel:     𝗧𝗵𝗲 𝗘𝗹𝗲𝘃𝗮𝘁𝗲 𝘁𝗼𝘂𝗿 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲𝘀 — 𝘁𝗵𝗶𝘀 𝘁𝗶𝗺𝗲 𝗶𝗻 𝗣𝗼𝗹𝗮𝗻𝗱! 🙌
+  Type:      Carousel (multi-image)
+  Reactions: 61
+  Comments:  1
+  Reposts:   0
+
+Post 3
+  Titel:     𝐖𝐞'𝐫𝐞 𝐈𝐒𝐎 𝟐𝟕𝟎𝟎𝟏 𝐜𝐞𝐫𝐭𝐢𝐟𝐢𝐞𝐝 🎉
+  Type:      Carousel (multi-image)
+  Reactions: 187
+  Comments:  2
+  Reposts:   1
+
+Post 4
+  Titel:     𝐈𝐭'𝐬 𝐚𝐛𝐨𝐮𝐭 𝐭𝐢𝐦𝐞 … 𝐰𝐞 𝐜𝐲𝐜𝐥𝐞𝐝 𝐭𝐨 𝐰𝐨𝐫𝐤 🚴‍♂️💨
+  Type:      Carousel (multi-image)
+  Reactions: 67
+  Comments:  1
+  Reposts:   0
+
+Post 5
+  Titel:     𝟮𝟱𝟬 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮-𝗹ø𝘀𝗻𝗶𝗻𝗴𝗲𝗿 𝗲𝗿 𝗲𝗻 𝗴𝗼𝗱 𝗴𝗿𝘂𝗻𝗱 𝘁𝗶𝗹 𝗸𝗮𝗴𝗲 🎂
+  Type:      Carousel (multi-image)
+  Reactions: 68
+  Comments:  1
+  Reposts:   2
+
+Post 6
+  Titel:     𝗧𝗵𝗮𝗻𝗸𝘀 𝗳𝗼𝗿 𝗮 𝗴𝗿𝗲𝗮𝘁 𝘁𝗶𝗺𝗲 𝗮𝘁 𝗗𝘆𝗻𝗮𝗺𝗶𝗰𝘀𝗠𝗶𝗻𝗱𝘀! ☀️
+  Type:      Carousel (multi-image)
+  Reactions: 92
+  Comments:  2
+  Reposts:   0
+
+Post 7
+  Titel:     𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮 𝗶𝘀 𝗴𝗿𝗼𝘄𝗶𝗻𝗴 — 𝘀𝘄𝗶𝗽𝗲 𝘁𝗼 𝗳𝗶𝗻𝗱 𝘆𝗼𝘂𝗿 𝗻𝗲𝘅𝘁 𝗿𝗼𝗹𝗲 👇
+  Type:      Document (PDF carousel)
+  Reactions: 42
+  Comments:  0
+  Reposts:   0
+
+Post 8
+  Titel:     𝗞𝗶𝗰𝗸𝗶𝗻𝗴 𝗼𝗳𝗳 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮 𝗘𝗹𝗲𝘃𝗮𝘁𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗨𝗞 🎉
+  Type:      Video
+  Reactions: 49
+  Comments:  2
+  Reposts:   1
+
+Post 9
+  Titel:     𝗬𝗼𝘂𝗿 𝗕𝗖 𝘀𝗲𝘁𝘂𝗽 𝗶𝘀 𝗮𝗹𝗺𝗼𝘀𝘁 𝘁𝗵𝗲𝗿𝗲. 𝗪𝗵𝘆 𝗻𝗼𝘁 𝘂𝗽𝗴𝗿𝗮𝗱𝗲 𝗶𝘁 𝗳𝗼𝗿 𝗳𝗿𝗲𝗲? 🚀
+  Type:      Video
+  Reactions: 34
+  Comments:  0
+  Reposts:   4
+
+Post 10
+  Titel:     𝗧𝗵𝗮𝘁’𝘀 𝗮 𝘄𝗿𝗮𝗽 𝗼𝗻 𝗗𝗶𝗿𝗲𝗰𝘁𝗶𝗼𝗻𝘀 𝗔𝗦𝗜𝗔 👋
+  Type:      Carousel (multi-image)
+  Reactions: 59
+  Comments:  0
+  Reposts:   0
+
+
+############################################################
+# 3. EQUISYS
+# https://www.linkedin.com/company/equisys/
+############################################################
+
+Post 1
+  Titel:     We're just a few hours away from our webinar, 'Discover THE BEST AP Automation Solution for Business Central'!
+  Type:      Image
+  Reactions: 1
+  Comments:  0
+  Reposts:   1
+
+Post 2
+  Titel:     There's less than 24 hours left to register for our webinar - 'Discover THE BEST AP Automation solution for Business Central'
+  Type:      Image
+  Reactions: 2
+  Comments:  0
+  Reposts:   3
+
+Post 3
+  Titel:     Last week, we had a great time sponsoring Directions North America 2026! Thank you to all that stopped by to chat about Zetadocs and those who entered our competition (the winner will be notified soon
+  Type:      Carousel (multi-image)
+  Reactions: 12
+  Comments:  0
+  Reposts:   2
+
+Post 4
+  Titel:     Looking for a smarter way to manage employee expenses and ensure compliant claims? Book a demo of Zetadocs Expenses today:
+  Type:      Image
+  Reactions: 3
+  Comments:  0
+  Reposts:   3
+
+Post 5
+  Titel:     Looking forward to being part of this great event!
+  Type:      Image
+  Reactions: 1
+  Comments:  0
+  Reposts:   0
+
+Post 6
+  Titel:     This month we're celebrating 15 years of the Equisys blog! Here’s some of the highlights from along the way...
+  Type:      Document (PDF carousel)
+  Reactions: 3
+  Comments:  0
+  Reposts:   1
+
+Post 7
+  Titel:     We had an amazing first day at Directions North America and can’t wait to see what day two brings! Be sure to stop by our booth (E-32) to say hello and enter our giveaway for a Meta Quest 3S.
+  Type:      Image
+  Reactions: 14
+  Comments:  0
+  Reposts:   5
+
+Post 8
+  Titel:     Ready to streamline AP? Discover practical tips for implementation here ⬇️
+  Type:      Document (PDF carousel)
+  Reactions: 2
+  Comments:  0
+  Reposts:   2
+
+Post 9
+  Titel:     Recently, the team got together in London for our company-wide meet up! We enjoyed some very sunny views of the Thames and learned to tie knots like a sailor onboard the HMS Wellington ⛵. Here are som
+  Type:      Carousel (multi-image)
+  Reactions: 5
+  Comments:  0
+  Reposts:   0
+
+Post 10
+  Titel:     We’ll be in Orlando, Florida next week for Directions North America, and we’d love to say hello. Drop by booth E-32 to meet the team, ask questions, and see what’s new. Plus, we’re giving away a Meta 
+  Type:      Image
+  Reactions: 5
+  Comments:  0
+  Reposts:   3
+
+
+############################################################
+# 4. MEDIUS
+# https://www.linkedin.com/company/medius/
+############################################################
+
+Post 1
+  Titel:     Rapid growth in logistics often masks a dangerous reality: operational complexity is eroding your margins. When shipment volumes spike, the "manual tax" on invoice processing scales with them.
+  Type:      Document (PDF carousel)
+  Reactions: 6
+  Comments:  1
+  Reposts:   1
+
+Post 2
+  Titel:     Accounts Payable teams in construction manage hundreds, sometimes thousands, of suppliers. That means a constant flow of payment status inquiries, follow-ups, and manual checks, all draining time and 
+  Type:      Image
+  Reactions: 14
+  Comments:  0
+  Reposts:   2
+
+Post 3
+  Titel:     E-invoicing is no longer just a compliance checkbox — it's becoming a competitive edge.
+  Type:      Image
+  Reactions: 9
+  Comments:  0
+  Reposts:   3
+
+Post 4
+  Titel:     Looking forward to this. Hope to see you join us on July 15.
+  Type:      Image
+  Reactions: 20
+  Comments:  0
+  Reposts:   5
+
+Post 5
+  Titel:     In 2026, why is it that most of the AI that AP teams are shipping won’t pass a serious external audit? And what does a governable AI architecture actually look like?
+  Type:      Article/Link
+  Reactions: 3
+  Comments:  0
+  Reposts:   1
+
+Post 6
+  Titel:     Garment manufacturing doesn't slow down for admin.
+  Type:      Image
+  Reactions: 14
+  Comments:  0
+  Reposts:   0
+
+Post 7
+  Titel:     🏭 How is AI revolutionizing manufacturing AP processes?
+  Type:      Image
+  Reactions: 14
+  Comments:  0
+  Reposts:   2
+
+Post 8
+  Titel:     "How do I improve AP without disrupting our ERP?"
+  Type:      Image
+  Reactions: 11
+  Comments:  0
+  Reposts:   2
+
+Post 9
+  Titel:     Excited to work with Antaras for our webinar on June 11 where finance teams using Infor LN can reduce manual work and increase efficiency with AI-driven Accounts Payable automation.
+  Type:      Image
+  Reactions: 2
+  Comments:  1
+  Reposts:   1
+
+Post 10
+  Titel:     Speed used to be the whole AP conversation. Process faster, close faster, repeat.
+  Type:      Carousel (multi-image)
+  Reactions: 59
+  Comments:  0
+  Reposts:   3
+
+
+############################################################
+# 5. QVALIA
+# https://www.linkedin.com/company/qvalia/
+############################################################
+
+Post 1
+  Titel:     E-invoicing mandates are becoming infrastructure decisions.
+  Type:      Image
+  Reactions: 3
+  Comments:  0
+  Reposts:   0
+
+Post 2
+  Titel:     The new Billentis report on the global e-invoicing market is here. 🌐
+  Type:      Image
+  Reactions: 6
+  Comments:  1
+  Reposts:   0
+
+Post 3
+  Titel:     Slovakia’s eFaktúra framework is another important step in Europe’s transition toward structured electronic invoicing.
+  Type:      Image
+  Reactions: 20
+  Comments:  0
+  Reposts:   2
+
+Post 4
+  Titel:     Qvalia is now certified for Slovakia e-invoicing under the eFaktúra framework.
+  Type:      Image
+  Reactions: 29
+  Comments:  1
+  Reposts:   5
+
+Post 5
+  Titel:     🔃 Qvalia's Business Continuity Management System has now been certified against ISO 22301:2019, the international standard for business continuity planning and organizational resilience.
+  Type:      Image
+  Reactions: 4
+  Comments:  0
+  Reposts:   0
+
+Post 6
+  Titel:     Thank you to everyone who joined today’s webinar with Julius Nilsson from Docupath and Henri Taipale on
+  Type:      Carousel (multi-image)
+  Reactions: 29
+  Comments:  3
+  Reposts:   3
+
+Post 7
+  Titel:     🔒 Qvalia is now listed in the Cloud Security Alliance STAR Registry.
+  Type:      Image
+  Reactions: 6
+  Comments:  1
+  Reposts:   0
+
+Post 8
+  Titel:     📊 1940s–1980s: Early experiments in credit scoring and fraud detection
+  Type:      Carousel (multi-image)
+  Reactions: 7
+  Comments:  0
+  Reposts:   0
+
+Post 9
+  Titel:     📘 Summer reading no 4: The definitive guide to Peppol
+  Type:      Document (PDF carousel)
+  Reactions: 7
+  Comments:  0
+  Reposts:   0
+
+Post 10
+  Titel:     📘 Summer reading no 3: Peppol e-orders: How it works & how to get started
+  Type:      Document (PDF carousel)
+  Reactions: 11
+  Comments:  0
+  Reposts:   2
+
+
+############################################################
+# 6. AMC BANKING
+# https://www.linkedin.com/company/amc-banking/
+############################################################
+
+Post 1
+  Titel:     Thanks to everybody who showed up for the reception in our new building! We are looking forward to show it once we are done renovating it.
+  Type:      Carousel (multi-image)
+  Reactions: 29
+  Comments:  1
+  Reposts:   0
+
+Post 2
+  Titel:     Your biggest compliance risk might be a process nobody questions anymore
+  Type:      Article/Link
+  Reactions: 6
+  Comments:  0
+  Reposts:   2
+
+Post 3
+  Titel:     AMC Banking operates under Service Provider Agreements with selected banks, providing a more structured framework for bank integration and onboarding.
+  Type:      Text
+  Reactions: 9
+  Comments:  0
+  Reposts:   0
+
+Post 4
+  Titel:     We’re moving and we’d love to celebrate with you.
+  Type:      Event
+  Reactions: 12
+  Comments:  0
+  Reposts:   1
+
+Post 5
+  Titel:     4
+  Type:      Document (PDF carousel)
+  Reactions: 4
+  Comments:  0
+  Reposts:   0
+
+Post 6
+  Titel:     Discover our new app designed to simplify and automate cash management directly inside Microsoft Dynamics 365 Business Central. AMC Banking 365 BC centralizes your banking activities, offering intelli
+  Type:      Video
+  Reactions: 6
+  Comments:  0
+  Reposts:   0
+
+Post 7
+  Titel:     Bank integration: Myth vs reality
+  Type:      Video
+  Reactions: 10
+  Comments:  0
+  Reposts:   3
+
+Post 8
+  Titel:     The AMC Banking webinar series offers: demos, new features, use cases and Q&A, focused on simplifying cash management in Dynamics 365.
+  Type:      Video
+  Reactions: 10
+  Comments:  0
+  Reposts:   1
+
+Post 9
+  Titel:     You can still register for our reception next week if you would like to swing by and say hi.
+  Type:      Event
+  Reactions: 0
+  Comments:  0
+  Reposts:   0
+
+Post 10
+  Titel:     AMC is expanding and we are currently looking for a java developer.
+  Type:      Article/Link
+  Reactions: 12
+  Comments:  0
+  Reposts:   3
+
+
+############################################################
+# 7. B2BROUTER
+# https://www.linkedin.com/company/b2brouter/
+############################################################
+
+Post 1
+  Titel:     A few days ago, B2Brouter attended Peppol Conference Europe 2026 in Brussels. 🇧🇪
+  Type:      Carousel (multi-image)
+  Reactions: 8
+  Comments:  0
+  Reposts:   2
+
+Post 2
+  Titel:     Starting the Peppol Conference 2026!
+  Type:      Image
+  Reactions: 54
+  Comments:  1
+  Reposts:   5
+
+Post 3
+  Titel:     📩 Eine E-Rechnung zu empfangen bedeutet nicht zwangsläufig, sie auch zu verarbeiten.
+  Type:      Poll
+  Reactions: 0
+  Comments:  0
+  Reposts:   0
+
+Post 4
+  Titel:     VeriFactu, Ley Crea y Crece, factura electrónica B2B… demasiados conceptos y una misma realidad: la forma de facturar en España está cambiando. ⚡
+  Type:      Document (PDF carousel)
+  Reactions: 8
+  Comments:  0
+  Reposts:   1
+
+Post 5
+  Titel:     🌍 Peppol is becoming one of the most reliable ways to exchange B2B invoices globally, but… why?
+  Type:      Document (PDF carousel)
+  Reactions: 6
+  Comments:  0
+  Reposts:   0
+
+Post 6
+  Titel:     Germany’s e-invoicing roadmap is moving fast, and legacy EDI will not be enough on its own to stay compliant. 🇩🇪
+  Type:      Image
+  Reactions: 0
+  Comments:  0
+  Reposts:   0
+
+Post 7
+  Titel:     Mañana hablaremos sobre la Ley Crea y Crece y las claves de la nueva facturación electrónica. 📌
+  Type:      Image
+  Reactions: 3
+  Comments:  0
+  Reposts:   0
+
+Post 8
+  Titel:     Plateformes SaaS juridiques en France : 2026 n’est pas seulement une échéance de conformité, c’est une échéance produit. ⚖️
+  Type:      Document (PDF carousel)
+  Reactions: 4
+  Comments:  0
+  Reposts:   0
+
+Post 9
+  Titel:     B2Brouter comparte hoy jornada con partners en el ERP Summit España con Aleix Gasset Channel Partner Manager.
+  Type:      Image
+  Reactions: 40
+  Comments:  0
+  Reposts:   2
+
+Post 10
+  Titel:     🇩🇪 Germany’s B2B e-invoicing roadmap is already moving.
+  Type:      Document (PDF carousel)
+  Reactions: 8
+  Comments:  2
+  Reposts:   1
+
+
+############################################################
+# 8. DOOAP
+# https://www.linkedin.com/company/dooap/
+############################################################
+
+Post 1
+  Titel:     Somewhere right now, an AP manager is refreshing their inbox hoping an approval magically appeared.
+  Type:      Image
+  Reactions: 8
+  Comments:  0
+  Reposts:   1
+
+Post 2
+  Titel:     We are here and you can find the team and table next to registration. Come chat with us about Agentic AP!
+  Type:      Video
+  Reactions: 10
+  Comments:  2
+  Reposts:   0
+
+Post 3
+  Titel:     The Dynamics community is coming to Toronto — and so are we.
+  Type:      Image
+  Reactions: 16
+  Comments:  0
+  Reposts:   1
+
+Post 4
+  Titel:     Just think of the possibilities with Dooap Studio! Here's one for you.
+  Type:      Image
+  Reactions: 13
+  Comments:  0
+  Reposts:   1
+
+Post 5
+  Titel:     Well, that’s a wrap on DynamicsMinds. The Dooap team is heading back through time and space.
+  Type:      Carousel (multi-image)
+  Reactions: 69
+  Comments:  4
+  Reposts:   0
+
+Post 6
+  Titel:     We saw a clear shift across
+  Type:      Image
+  Reactions: 19
+  Comments:  0
+  Reposts:   0
+
+Post 7
+  Titel:     Excited to introduce our latest Dooap Unleashed: Run With Us — Eftsure!
+  Type:      Video
+  Reactions: 39
+  Comments:  2
+  Reposts:   1
+
+Post 8
+  Titel:     This is what agentic AP automation looks like.
+  Type:      Video
+  Reactions: 17
+  Comments:  0
+  Reposts:   6
+
+Post 9
+  Titel:     AP automation doesn't stop at the invoice. So why should your tech stack?
+  Type:      Video
+  Reactions: 71
+  Comments:  10
+  Reposts:   3
+
+Post 10
+  Titel:     The biggest problem in finance isn't the system. It's that nobody trusts it.
+  Type:      Video
+  Reactions: 21
+  Comments:  3
+  Reposts:   1
+
+
+############################################################
+# 9. YAVRIO
+# https://www.linkedin.com/company/yavrio/
+############################################################
+
+Post 1
+  Titel:     Only 18% of finance teams close their books in three days or less. The rest are still downloading bank statements by hand.
+  Type:      Image
+  Reactions: 14
+  Comments:  1
+  Reposts:   0
+
+Post 2
+  Titel:     Still moving bank data into your finance system one CSV at a time? It may be time for an upgrade. With Yavrio, your team gains access to live bank feeds, automatic reconciliation, and payments, all in
+  Type:      Video
+  Reactions: 21
+  Comments:  0
+  Reposts:   1
+
+Post 3
+  Titel:     The payment is accepted. But is the finance work actually done?
+  Type:      Image
+  Reactions: 44
+  Comments:  1
+  Reposts:   0
+
+Post 4
+  Titel:     What a 2026 Yavrio is having so far!
+  Type:      Carousel (multi-image)
+  Reactions: 102
+  Comments:  7
+  Reposts:   0
+
+Post 5
+  Titel:     DynamicsMinds 2026 is done and what a week it's been ❤️
+  Type:      Carousel (multi-image)
+  Reactions: 106
+  Comments:  5
+  Reposts:   0
+
+Post 6
+  Titel:     Day one of DynamicsMinds wrapped and what a start its been 🚀
+  Type:      Carousel (multi-image)
+  Reactions: 81
+  Comments:  4
+  Reposts:   0
+
+Post 7
+  Titel:     Finance teams BEFORE vs AFTER Yavrio 👀
+  Type:      Video
+  Reactions: 44
+  Comments:  4
+  Reposts:   0
+
+Post 8
+  Titel:     Next month, in a webinar with Western Computer, we’re breaking down what happens when banking and payments are fully embedded inside Dynamics 365 Business Central 💡
+  Type:      Image
+  Reactions: 18
+  Comments:  2
+  Reposts:   1
+
+Post 9
+  Titel:     DynamicsCon 2026 wrapped and what a few days it was!
+  Type:      Carousel (multi-image)
+  Reactions: 55
+  Comments:  2
+  Reposts:   0
+
+Post 10
+  Titel:     We’re excited to have our feet on the ground at Directions ASIA 2026 in Vietnam​!
+  Type:      Carousel (multi-image)
+  Reactions: 68
+  Comments:  1
+  Reposts:   1
+
+
+############################################################
+# 10. INCEDO
+# https://www.linkedin.com/company/incedo-inc/
+############################################################
+
+Post 1
+  Titel:     On June 4, 2026, leaders from across industries gathered at Harvard Hall, Harvard Club of New York City, for the U.S. launch of 𝗛𝘂𝗺𝗮𝗻 𝗘𝗱𝗴𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗔𝗜 𝗔𝗴𝗲 by our Co-Founder & CEO, Nit
+  Type:      Carousel (multi-image)
+  Reactions: 53
+  Comments:  0
+  Reposts:   1
+
+Post 2
+  Titel:     We are proud to share that Incedo has been recognized with Honda's 2026 Indirect Procurement Supplier Award in the 𝗡𝗲𝘄 𝗦𝘂𝗽𝗽𝗹𝗶𝗲𝗿 category.
+  Type:      Image
+  Reactions: 71
+  Comments:  1
+  Reposts:   3
+
+Post 3
+  Titel:     The most expensive resource in your organization isn't compute. It isn't capital.
+  Type:      Video
+  Reactions: 20
+  Comments:  0
+  Reposts:   1
+
+Post 4
+  Titel:     In a recent interview on ONNJ’s (On New Jersey) Mornings with Ken Rosato, our Co-Founder & CEO and bestselling author, Nitin Seth, shared why AI is far more than the next wave of technology innovation
+  Type:      Video
+  Reactions: 41
+  Comments:  0
+  Reposts:   3
+
+Post 5
+  Titel:     Most data modernization programs succeed at moving data.
+  Type:      Document (PDF carousel)
+  Reactions: 21
+  Comments:  0
+  Reposts:   0
+
+Post 6
+  Titel:     𝙏𝙝𝙚 𝙡𝙖𝙪𝙣𝙘𝙝 𝙤𝙛 𝙃𝙪𝙢𝙖𝙣 𝙀𝙙𝙜𝙚 𝙞𝙣 𝙩𝙝𝙚 𝘼𝙄 𝘼𝙜𝙚 𝙖𝙩 𝙃𝙖𝙧𝙫𝙖𝙧𝙙 𝙃𝙖𝙡𝙡, 𝙃𝙖𝙧𝙫𝙖𝙧𝙙 𝘾𝙡𝙪𝙗 𝙤𝙛 𝙉𝙚𝙬 𝙔𝙤𝙧𝙠 𝘾𝙞𝙩𝙮 𝙤𝙣 𝙅𝙪𝙣𝙚 𝟰 𝙬𝙖𝙨 𝙖 𝙜𝙧𝙚𝙖𝙩 𝙬𝙖𝙮 𝙩
+  Type:      Carousel (multi-image)
+  Reactions: 318
+  Comments:  8
+  Reposts:   9
+
+Post 7
+  Titel:     𝗪𝗲𝗹𝗰𝗼𝗺𝗲 𝘁𝗼 𝗜𝗻𝗰𝗲𝗱𝗼!
+  Type:      Document (PDF carousel)
+  Reactions: 53
+  Comments:  0
+  Reposts:   0
+
+Post 8
+  Titel:     Most enterprise platforms stop at insight.
+  Type:      Document (PDF carousel)
+  Reactions: 24
+  Comments:  0
+  Reposts:   3
+
+Post 9
+  Titel:     Incedo was proud to participate in the recently held 𝗠𝗮𝗸𝗲 𝗶𝗻 𝗛𝗮𝗿𝘆𝗮𝗻𝗮 𝟮𝟬𝟮𝟲, the flagship industrial policy event, that outlined the roadmap for Haryana's next phase of economic growth.
+  Type:      Image
+  Reactions: 133
+  Comments:  0
+  Reposts:   1
+
+Post 10
+  Titel:     Disconnected workflows are the real problem in AI-powered development.
+  Type:      Document (PDF carousel)
+  Reactions: 37
+  Comments:  0
+  Reposts:   1
+
+
+############################################################
+# 11. RILLION
+# https://www.linkedin.com/company/rillion/
+############################################################
+
+Post 1
+  Titel:     We asked 250 CFOs across the Nordics about AI in finance. Then put our own CFO Johan Dovander and CMO Frida Ahrenby to work breaking down what the findings actually mean in practice 🗞️
+  Type:      Document (PDF carousel)
+  Reactions: 7
+  Comments:  0
+  Reposts:   0
+
+Post 2
+  Titel:     [searching... 👀]
+  Type:      Text
+  Reactions: 30
+  Comments:  20
+  Reposts:   4
+
+Post 3
+  Titel:     The Nordic AI Finance Report had zero shortage of "mic-drop" quotes but this one from Marie Stierna, Head of Group Accounting at Hemnet, definitely stood out.
+  Type:      Text
+  Reactions: 7
+  Comments:  0
+  Reposts:   0
+
+Post 4
+  Titel:     Something fun happens when you bring colleagues together from Sweden and the US: you stop picking sides between Midsummer and the 4th of July and just celebrate both instead 😎
+  Type:      Video
+  Reactions: 17
+  Comments:  4
+  Reposts:   0
+
+Post 5
+  Titel:     40% of CFOs see fraud and anomaly detection as the biggest AI opportunity in finance. So how do you get there in practice?
+  Type:      Image
+  Reactions: 17
+  Comments:  1
+  Reposts:   2
+
+Post 6
+  Titel:     Just got back from two of the most energizing days I've had in a long time!
+  Type:      Image
+  Reactions: 50
+  Comments:  8
+  Reposts:   1
+
+Post 7
+  Titel:     26% of CFOs say lack of AI competence is the single biggest barrier to broader adoption. Shervin Razani sees it every day in recruitment - and says the problem is even bigger than the number suggests.
+  Type:      Text
+  Reactions: 18
+  Comments:  1
+  Reposts:   1
+
+Post 8
+  Titel:     Rillion’s summer celebration was one for the books! ☀️🍹
+  Type:      Video
+  Reactions: 41
+  Comments:  4
+  Reposts:   0
+
+Post 9
+  Titel:     Our marketing team swapped their laptops for race bibs yesterday – running Blodomloppet Sverige to raise awareness for blood donation! 🏃‍♀️🩸
+  Type:      Carousel (multi-image)
+  Reactions: 33
+  Comments:  3
+  Reposts:   1
+
+Post 10
+  Titel:     En högre lön räcker inte längre.
+  Type:      Image
+  Reactions: 105
+  Comments:  2
+  Reposts:   1
+
+
+############################################################
+# 12. SIGNUP SOFTWARE
+# https://www.linkedin.com/company/signup-software/
+############################################################
+
+Post 1
+  Titel:     One week to go! If you haven't secured your spot for Truvio Partner Day Stockholm yet, now's the time! 👇
+  Type:      Image
+  Reactions: 32
+  Comments:  0
+  Reposts:   10
+
+Post 2
+  Titel:     It's Partner Day in Sweden! 🎉
+  Type:      Carousel (multi-image)
+  Reactions: 147
+  Comments:  2
+  Reposts:   9
+
+Post 3
+  Titel:     The difference isn’t your ERP.
+  Type:      Image
+  Reactions: 51
+  Comments:  2
+  Reposts:   15
+
+Post 4
+  Titel:     Live Webinar | Close the ERP Intelligence Gap with TruvioSense™
+  Type:      Image
+  Reactions: 60
+  Comments:  1
+  Reposts:   28
+
+Post 5
+  Titel:     We're live at DYNAfair in Dortmund, Germany! 🎉
+  Type:      Carousel (multi-image)
+  Reactions: 62
+  Comments:  4
+  Reposts:   3
+
+Post 6
+  Titel:     Get ready for our Truvio Partner Day in Stockholm!
+  Type:      Image
+  Reactions: 63
+  Comments:  1
+  Reposts:   13
+
+Post 7
+  Titel:     Last month, Convergence 2025 in
+  Type:      Carousel (multi-image)
+  Reactions: 38
+  Comments:  2
+  Reposts:   0
+
+Post 8
+  Titel:     Join SignUp Software in the foyer at Dynamic Communities and Cloud Wars
+  Type:      Image
+  Reactions: 11
+  Comments:  0
+  Reposts:   2
+
+Post 9
+  Titel:     ✨ Directions EMEA 2025 – what a week!
+  Type:      Carousel (multi-image)
+  Reactions: 141
+  Comments:  4
+  Reposts:   2
+
+Post 10
+  Titel:     What a great few days at
+  Type:      Carousel (multi-image)
+  Reactions: 39
+  Comments:  1
+  Reposts:   1
+
+
+############################################################
+# 13. FIDESIC
+# https://www.linkedin.com/company/fidesic/
+############################################################
+
+Post 1
+  Titel:     Fidesic has officially joined Knights of GP, and we could not be more excited about it. Fidesic started as a GP shop. Even as we expand our reach, the GP community will always be at out core. 👉https:
+  Type:      Image
+  Reactions: 5
+  Comments:  0
+  Reposts:   2
+
+Post 2
+  Titel:     🤓 Why Accruals and Deferrals Matter for Financial Accuracy. Mishandling accruals and deferrals is one of the most common sources of misstated financials in businesses of all sizes. The consequences s
+  Type:      Image
+  Reactions: 0
+  Comments:  0
+  Reposts:   0
+
+Post 3
+  Titel:     😎 If your team uses Microsoft Dynamics GP or Business Central to manage multiple locations, your AP process should be easy to manage from headquarters with the right solution in place...
+  Type:      Image
+  Reactions: 2
+  Comments:  0
+  Reposts:   0
+
+Post 4
+  Titel:     Feel like you're the only person scrambling at work on Friday? Struggling to get your invoices processed on time? Automation makes it easier to love Fridays like everyone else.
+  Type:      Image
+  Reactions: 2
+  Comments:  0
+  Reposts:   0
+
+Post 5
+  Titel:     DPO vs. AP Turnover 🤔 The AP Turnover Ratio gives you frequency of vendor payments. DPO gives you duration of how long it takes to pay vendors. Learn More: https://lnkd.in/gDVYTP53
+  Type:      Image
+  Reactions: 0
+  Comments:  0
+  Reposts:   0
+
+Post 6
+  Titel:     “Failure to accurately manage payables makes it harder to forecast and manage cash flows and anticipate short-term liquidity needs, putting many businesses on an unnecessary cash flow tightrope.” --De
+  Type:      Image
+  Reactions: 1
+  Comments:  0
+  Reposts:   0
+
+Post 7
+  Titel:     Think paper checks are dead? 🤔 Think again... About 80% of small businesses in the US are still cutting paper checks. Are you using positive pay to secure check payments to vendors?
+  Type:      Image
+  Reactions: 2
+  Comments:  0
+  Reposts:   1
+
+Post 8
+  Titel:     🔔 Does Native Integration make AP Automation easier to implement for BC? When an AP tool is built natively inside Business Central, the implementation process looks very different than a traditional 
+  Type:      Image
+  Reactions: 2
+  Comments:  0
+  Reposts:   0
+
+Post 9
+  Titel:     Budget pressure? It's AP's time to shine. Be the driver of serious cost reductions. 5 Key Strategies to Get Results Fast! NO FORM 👉 https://lnkd.in/gKWuv2y4
+  Type:      Article/Link
+  Reactions: 0
+  Comments:  0
+  Reposts:   0
+
+Post 10
+  Titel:     Did you know... Doug Burgum, an early leader of Great Plains Software, mortgaged $250,000 of his family farmland to fund the company. After taking the helm as President, he grew it into a public compa
+  Type:      Image
+  Reactions: 7
+  Comments:  1
+  Reposts:   1
+
+
+############################################################
+# 14. TIPALTI
+# https://www.linkedin.com/company/tipalti/
+############################################################
+
+Post 1
+  Titel:     The next chapter of digital commerce is being executed by AI acting on behalf of consumers, not by the consumers themselves.
+  Type:      Image
+  Reactions: 3
+  Comments:  0
+  Reposts:   1
+
+Post 2
+  Titel:     Cubic Games was managing over 180 vendors across global markets.
+  Type:      Image
+  Reactions: 6
+  Comments:  0
+  Reposts:   0
+
+Post 3
+  Titel:     Just a few days out from World Finance Forum in Amsterdam and the Tipalti team is ready.
+  Type:      Image
+  Reactions: 5
+  Comments:  0
+  Reposts:   0
+
+Post 4
+  Titel:     Day 1 at
+  Type:      Image
+  Reactions: 15
+  Comments:  0
+  Reposts:   3
+
+Post 5
+  Titel:     "In periods of economic uncertainty, finance teams play a critical role in shaping how organizations respond.
+  Type:      Image
+  Reactions: 4
+  Comments:  0
+  Reposts:   0
+
+Post 6
+  Titel:     A massive thank you to everyone at BAASS Business Solutions'
+  Type:      Image
+  Reactions: 37
+  Comments:  1
+  Reposts:   0
+
+Post 7
+  Titel:     Engineering teams are entering a fundamentally different operating model.
+  Type:      Image
+  Reactions: 5
+  Comments:  0
+  Reposts:   0
+
+Post 8
+  Titel:     Manual payment processes don't scale. They just create more manual payments.
+  Type:      Text
+  Reactions: 8
+  Comments:  0
+  Reposts:   0
+
+Post 9
+  Titel:     At some point, 'this is how we've always done it' stops being a reason and starts being an excuse.
+  Type:      Text
+  Reactions: 2
+  Comments:  0
+  Reposts:   0
+
+Post 10
+  Titel:     At the end of every quarter, Splice's finance team would spend two weeks doing nothing but processing royalty payments. Hundreds of them; manually, across PayPal, ACH, and foreign currencies. Eight we
+  Type:      Image
+  Reactions: 8
+  Comments:  0
+  Reposts:   0
+
+
+############################################################
+# 15. STAMPLI
+# https://www.linkedin.com/company/stampli/
+############################################################
+
+Post 1
+  Titel:     Finance teams don't run out of useful questions. They run out of practical ways to get answers.
+  Type:      Article/Link
+  Reactions: 19
+  Comments:  1
+  Reposts:   4
+
+Post 2
+  Titel:     Strong customer feedback on real value for finance teams to create one connected P2P story.
+  Type:      Article/Link
+  Reactions: 25
+  Comments:  1
+  Reposts:   13
+
+Post 3
+  Titel:     Meaningful savings can hide in everyday finance data. For Integra Investments, Deep Finance surfaced insights they estimated could save $20K-$30K a year.
+  Type:      Image
+  Reactions: 27
+  Comments:  3
+  Reposts:   10
+
+Post 4
+  Titel:     Market stories become clearer when they show up in operational spend. Josh Constine's CNN segment adds timely context on SpaceX's IPO, including Stampli data on how this broader technology story is ap
+  Type:      Video
+  Reactions: 11
+  Comments:  1
+  Reposts:   4
+
+Post 5
+  Titel:     NetSuite 3-way matching often breaks on one missing piece: the item receipt.
+  Type:      Article/Link
+  Reactions: 8
+  Comments:  0
+  Reposts:   2
+
+Post 6
+  Titel:     ACH risks don't start at the bank portal. They often start earlier.
+  Type:      Article/Link
+  Reactions: 16
+  Comments:  3
+  Reposts:   7
+
+Post 7
+  Titel:     Built to scale your business, not your headcount.
+  Type:      Article/Link
+  Reactions: 24
+  Comments:  0
+  Reposts:   11
+
+Post 8
+  Titel:     We’re about to see the death of the dashboard. Here's why they'll get replaced by interactive AI visualizations that explain themselves and you can talk to. It starts with the end of intelligence scar
+  Type:      Image
+  Reactions: 81
+  Comments:  8
+  Reposts:   23
+
+Post 9
+  Titel:     We had a great time at the Nashville career fair meeting people excited about the future of finance operations across sales, CS, engineering, and every team in between.
+  Type:      Carousel (multi-image)
+  Reactions: 43
+  Comments:  1
+  Reposts:   5
+
+Post 10
+  Titel:     Big things are happening at Stampli. 🚀
+  Type:      Article/Link
+  Reactions: 98
+  Comments:  2
+  Reposts:   5
+
+
+############################################################
+# 16. STRIPE
+# https://www.linkedin.com/company/stripe/
+############################################################
+
+Post 1
+  Titel:     I recently wrote about what I've been working on the past two years, and others have built over the past decade: the infrastructure that keeps Stripe's entire developer ecosystem in sync with every AP
+  Type:      Article/Link
+  Reactions: 142
+  Comments:  5
+  Reposts:   15
+
+Post 2
+  Titel:     Last week, agent traffic surpassed human traffic on the internet for the first time. Agents browsing webpages account for some of that traffic, but our data points to a more significant reason for thi
+  Type:      Image
+  Reactions: 185
+  Comments:  33
+  Reposts:   25
+
+Post 3
+  Titel:     I just got off stage in Paris at Stripe Tour, talking about how French businesses are becoming more international. One in three customers of French businesses on Stripe now comes from outside France. 
+  Type:      Video
+  Reactions: 498
+  Comments:  13
+  Reposts:   20
+
+Post 4
+  Titel:     I was just at Stripe Tour Paris talking about a new frontier in fraud: token theft. Fraudsters have moved beyond stealing money and credentials — now they're stealing compute. Every prompt, every API 
+  Type:      Video
+  Reactions: 328
+  Comments:  21
+  Reposts:   5
+
+Post 5
+  Titel:     It's a wild time to be building infrastructure.
+  Type:      Article/Link
+  Reactions: 85
+  Comments:  4
+  Reposts:   3
+
+Post 6
+  Titel:     I've been thinking a lot about the future of user experience and what it looks like when commerce becomes AI-native. Had a great "cheeky chat" with Jonathan Arena from New Generation about exactly tha
+  Type:      Video
+  Reactions: 215
+  Comments:  13
+  Reposts:   6
+
+Post 7
+  Titel:     In 2022, we launched Frontier to send a signal to scientists and entrepreneurs: build carbon removal technology, and we will buy it.
+  Type:      Article/Link
+  Reactions: 114
+  Comments:  7
+  Reposts:   7
+
+Post 8
+  Titel:     Visa made a major change in April with the Digital Commerce Authentication Program (DCAP), offering interchange savings for businesses that share richer transaction data during authentication. We move
+  Type:      Article/Link
+  Reactions: 104
+  Comments:  9
+  Reposts:   7
+
+Post 9
+  Titel:     Solo founding is at an all-time high. Top-decile solo founders earned 61x the revenue of median founders in their first six months. Four years ago, that multiplier was 34x.
+  Type:      Document (PDF carousel)
+  Reactions: 112
+  Comments:  15
+  Reposts:   4
+
+Post 10
+  Titel:     Stripe Atlas now forms a new company every 12 minutes. (This is one of those down is good charts.)
+  Type:      Image
+  Reactions: 610
+  Comments:  23
+  Reposts:   18
+
+
