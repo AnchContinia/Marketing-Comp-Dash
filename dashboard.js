@@ -414,6 +414,117 @@ if(contentIdeasList){
   });
 })();
 
+/* ---- Content-gap analysis (home): Continia vs the field, computed from the
+   whole database — LinkedIn formats + engagement, YouTube reach + upload
+   cadence, the news themes and the content/video idea backlog. ---- */
+(function(){
+  if(typeof window.LI_DATA==="undefined"||typeof window.YT_DATA==="undefined") return;
+  var mount=document.getElementById("cg-body");
+  if(!mount) return;
+  var LI=window.LI_DATA, YT=window.YT_DATA;
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function k(n){ n=Number(n)||0; return n>=1000?(n/1000).toFixed(n>=10000?0:1)+"K":String(n); }
+
+  /* ---------- LinkedIn: format mix + engagement standing ---------- */
+  var ours=null, field=[];
+  LI.companies.forEach(function(c){ if(c.ours) ours=c; else field.push(c); });
+  if(!ours) return;
+  var TYPES=["Image","Video","Carousel","Document","Text","Poll","Event","Article/Link"];
+  function mix(posts){ var m={}, r={}; posts.forEach(function(p){ m[p.ty]=(m[p.ty]||0)+1; });
+    TYPES.forEach(function(t){ r[t]=posts.length?((m[t]||0)/posts.length*100):0; }); return r; }
+  var ourMix=mix(ours.posts), fieldMix={};
+  TYPES.forEach(function(t){ var s=0; field.forEach(function(c){ s+=mix(c.posts)[t]; }); fieldMix[t]=field.length?s/field.length:0; });
+  function eng(c){ var s=0; c.posts.forEach(function(p){ s+=(p.r||0)+(p.c||0)+(p.rp||0); }); return s; }
+  var engRows=LI.companies.map(function(c){ return {ours:!!c.ours, avg:eng(c)/(c.posts.length||1)}; }).sort(function(a,b){ return b.avg-a.avg; });
+  var ourEngRank=0, ourEngAvg=0; engRows.forEach(function(r,i){ if(r.ours){ ourEngRank=i+1; ourEngAvg=r.avg; } });
+
+  /* ---------- YouTube: reach standing + upload cadence ---------- */
+  var snap=YT.snapshots[YT.snapshots.length-1];
+  var yv=Object.keys(snap.stats||{}).map(function(n){ return {n:n, mv:(snap.stats[n].monthlyViews||0)}; }).sort(function(a,b){ return b.mv-a.mv; });
+  var ytRank=0, ytViews=0, ytLeader=yv[0]||null;
+  yv.forEach(function(r,i){ if(/continia/i.test(r.n)){ ytRank=i+1; ytViews=r.mv; } });
+  var ytMult=(ytLeader&&ytViews)?(ytLeader.mv/ytViews):0;
+  var cu=(YT.continiaUploads&&YT.continiaUploads.snapshots&&YT.continiaUploads.snapshots.length)?YT.continiaUploads.snapshots[YT.continiaUploads.snapshots.length-1]:null;
+  var P=(cu&&cu.periods)?cu.periods:{};
+  function up(period,kind){ return (P[period]&&P[period][kind])?(P[period][kind].uploads||0):0; }
+  var long28=up("28D","longForm"), short28=up("28D","shorts"), long3m=up("3M","longForm"), short3m=up("3M","shorts");
+  var vi=YT.videoIdeas||{}, qLong=(vi.longForm||[]).length, qShort=(vi.shortForm||[]).length;
+
+  /* ---------- News themes (events[] from this file) ---------- */
+  var stanceLabel={ai:"AI & agentic automation", cons:"consolidation / M&A", steady:"e-invoicing & compliance"};
+  var th={}; if(typeof events!=="undefined") events.forEach(function(e){ if(e.c) th[e.c]=(th[e.c]||0)+1; });
+  var topStance=Object.keys(th).sort(function(a,b){ return th[b]-th[a]; })[0];
+  var topStanceN=topStance?th[topStance]:0, evN=(typeof events!=="undefined")?events.length:0;
+  var ideaN=(typeof contentIdeas!=="undefined")?contentIdeas.length:0;
+
+  /* ---------- standing tiles ---------- */
+  var tiles=[
+    {kk:"LinkedIn engagement", v:"#"+ourEngRank+" / "+engRows.length, s:Math.round(ourEngAvg)+" per post — loudest in the field"},
+    {kk:"YouTube reach · 30d", v:"#"+ytRank+" / "+yv.length, s:k(ytViews)+" views"+(ytLeader&&ytMult>=2?" — "+esc(ytLeader.n.replace(/\s*\(.*\)/,""))+" leads ~"+ytMult.toFixed(1)+"x":"")},
+    {kk:"Long-form video · 28d", v:String(long28), s:long28===0&&long3m>0?"stalled — "+long3m+" the prior quarter":long3m+" the prior quarter"},
+    {kk:"Idea backlog ready", v:String(qLong+qShort), s:qLong+" long-form · "+qShort+" short-form queued"}
+  ];
+  var tilesHTML=tiles.map(function(t){ return '<div class="cg-stat"><div class="k">'+esc(t.kk)+'</div><div class="v">'+esc(t.v)+'</div><div class="s">'+esc(t.s)+'</div></div>'; }).join("");
+
+  /* ---------- format-mix rows (scaled bars + quiet/lead tags) ---------- */
+  var maxShare=0; TYPES.forEach(function(t){ maxShare=Math.max(maxShare, ourMix[t], fieldMix[t]); }); maxShare=maxShare||1;
+  var rows=TYPES.map(function(t){ return {t:t, you:ourMix[t], fld:fieldMix[t], gap:fieldMix[t]-ourMix[t]}; })
+    .sort(function(a,b){ return b.gap-a.gap; });
+  var mixHTML=rows.map(function(r){
+    var cls=r.gap>=8?"quiet":(r.gap<=-8?"lead":"even");
+    var tag=cls==="quiet"?"Quiet":(cls==="lead"?"Loud":"Even");
+    return '<div class="cg-row '+cls+'">'+
+      '<span class="cg-lbl">'+esc(r.t)+'</span>'+
+      '<div class="cg-bars">'+
+        '<div class="cg-bar you"><i style="width:'+(r.you/maxShare*100).toFixed(1)+'%"></i></div>'+
+        '<div class="cg-bar field"><i style="width:'+(r.fld/maxShare*100).toFixed(1)+'%"></i></div>'+
+      '</div>'+
+      '<span class="cg-nums">'+Math.round(r.you)+'% / '+Math.round(r.fld)+'%</span>'+
+      '<span class="cg-tag '+cls+'">'+tag+'</span>'+
+    '</div>';
+  }).join("");
+
+  /* ---------- video-output lines ---------- */
+  var ytBarYou=ytLeader&&ytLeader.mv?Math.max(ytViews/ytLeader.mv*100,2):0;
+  var vidHTML=
+    '<div class="cg-vline"><span>YouTube monthly views</span><b>#'+ytRank+' of '+yv.length+'</b></div>'+
+    '<div class="cg-vline"><span>You vs '+esc((ytLeader?ytLeader.n.replace(/\s*\(.*\)/,""):"leader"))+'</span><span class="cg-mini"><i style="width:'+ytBarYou.toFixed(0)+'%"></i></span></div>'+
+    '<div class="cg-vline"><span>Uploads · last 28 days</span><b>'+long28+' long · '+short28+' short</b></div>'+
+    '<div class="cg-vline"><span>Uploads · prior 3 months</span><b>'+long3m+' long · '+short3m+' short</b></div>'+
+    '<div class="cg-vline"><span>LinkedIn video share</span><b>'+Math.round(ourMix["Video"])+'% vs '+Math.round(fieldMix["Video"])+'% field</b></div>'+
+    '<div class="cg-vline"><span>Video ideas queued</span><b>'+qLong+' long · '+qShort+' short</b></div>';
+
+  /* ---------- recommended moves (derived from the gaps) ---------- */
+  var moves=[];
+  if(long28===0 && long3m>0){
+    moves.push({p:"now", t:"Resume long-form video — <b>0</b> uploads in the last 28 days vs <b>"+long3m+"</b> the prior quarter, with <b>"+qLong+"</b> long-form ideas already queued. The channel's reach is built on long-form how-tos."});
+  }
+  var quiet=rows.filter(function(r){ return r.gap>=8; });
+  if(quiet.length){
+    var names=quiet.slice(0,2).map(function(r){ return esc(r.t)+" (<b>"+Math.round(r.you)+"%</b> vs <b>"+Math.round(r.fld)+"%</b> field)"; }).join(" and ");
+    moves.push({p:"next", t:"Widen your LinkedIn format mix — you're quiet on "+names+". You're <b>#"+ourEngRank+"</b> in engagement per post, so you can test these formats without losing ground."});
+  }
+  if((ourMix["Carousel"]-fieldMix["Carousel"])>25){
+    moves.push({p:"watch", t:"<b>"+Math.round(ourMix["Carousel"])+"%</b> of your posts are carousels (field avg <b>"+Math.round(fieldMix["Carousel"])+"%</b>) — a winning format, but the concentration is a single point of failure if the feed shifts."});
+  }
+  if(ytRank>1 && ytMult>=2 && ytLeader){
+    moves.push({p:"next", t:"Close the YouTube reach gap — <b>#"+ytRank+" of "+yv.length+"</b> on 30-day views, with "+esc(ytLeader.n.replace(/\s*\(.*\)/,""))+" pulling roughly <b>"+ytMult.toFixed(1)+"x</b> your reach. The "+(qLong+qShort)+" queued ideas map onto "+(topStance?esc(stanceLabel[topStance]||topStance):"the")+", which leads the news cycle ("+topStanceN+" of "+evN+" events)."});
+  }
+  var movesHTML=moves.map(function(m){
+    var lab=m.p==="now"?"Now":(m.p==="watch"?"Watch":"Next");
+    return '<li><span class="cg-pri '+m.p+'">'+lab+'</span><span>'+m.t+'</span></li>';
+  }).join("");
+
+  mount.innerHTML=
+    '<p class="cg-intro">Where Continia is <b>quiet while the field is loud</b> — computed live from LinkedIn formats &amp; engagement, YouTube reach &amp; upload cadence, the news themes and the idea backlog.</p>'+
+    '<div class="cg-stats">'+tilesHTML+'</div>'+
+    '<div class="cg-cols">'+
+      '<div class="cg-card"><div class="cg-h">LinkedIn format mix <span>you vs field avg · share of posts</span></div>'+mixHTML+'</div>'+
+      '<div class="cg-card"><div class="cg-h">Video output <span>YouTube + LinkedIn</span></div><div class="cg-vid">'+vidHTML+'</div></div>'+
+    '</div>'+
+    (movesHTML?'<div class="cg-moves"><div class="cg-h">Recommended moves</div><ol>'+movesHTML+'</ol></div>':"");
+})();
+
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
 (function(){
   if(typeof window.YT_DATA==="undefined") return;
