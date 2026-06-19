@@ -555,7 +555,6 @@ html[data-theme="dark"] #continia-uploads .cu-legend .sw.lf{background:#8ff8ff}
    navy = Continia's voice · purple #983eae = the gap (conversation without us)
    cyan = the brand spark / hero figure · green = where we lead */
 #content-gap{--cg-gap:#983eae;--cg-lead:#3f7d6c}
-#content-gap .section-head{border-bottom:2px solid var(--cyan)}
 #content-gap .cg-wrap{padding:0}
 
 /* --- hero band: the thesis --- */
