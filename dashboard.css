@@ -340,6 +340,7 @@ html[data-theme="dark"] .brief,html[data-theme="dark"] .watch,html[data-theme="d
 html[data-theme="dark"] .sidebar{background:#0d1424}
 html[data-theme="dark"] .sb-head:hover,html[data-theme="dark"] .sb-sub a:hover{background:rgba(110,168,255,.10)}
 html[data-theme="dark"] .sb-head.active{background:rgba(110,168,255,.16)}
+html[data-theme="dark"] .sb-brand:hover b{color:var(--ink)}
 html[data-theme="dark"] .sb-logout{color:#9aa7be}
 html[data-theme="dark"] .sb-logout>i,html[data-theme="dark"] .sb-logout>svg{color:#9aa7be}
 html[data-theme="dark"] .sb-logout:hover{color:#fca5a5}
