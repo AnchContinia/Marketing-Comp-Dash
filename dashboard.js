@@ -1544,7 +1544,7 @@ if(contentIdeasList){
     html+='</div></div>';
   });
   html+='</nav>';
-  html+='<button class="sb-logout" id="sbLogout" type="button"><i class="fa-light fa-right-from-bracket"></i><span>Log out</span></button>';
+  html+='<button class="sb-logout" id="sbLogout" type="button"><i class="fa-light fa-right-from-bracket"></i><span>Sign out</span></button>';
   mount.innerHTML=html;
 
   /* Log out: clear the curtain auth flag (both stores) and return to login. */
