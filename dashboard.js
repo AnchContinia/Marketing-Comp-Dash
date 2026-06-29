@@ -30,15 +30,15 @@ const data = [
   sc:"3 product lines (Delivery · Capture · Expenses)",
   s:[["May 2026 update","https://www.equisys.com/blog/whats-new-in-zetadocs-expenses-may-2026-update"],["Equisys blog","https://www.equisys.com/blog"]]},
 
- {n:"Medius", o:"Medius", stance:"ai", sl:"AI leader", prox:"Medium",
+ {n:"Medius", o:"Medius", stance:"ai", sl:"Gartner MQ Leader", prox:"Medium",
   cat:"AP automation + spend/payments · multi-ERP",
-  head:"Named AI leader by analysts; deep, autonomous AI across the full AP lifecycle.",
-  rel:"Ardent Partners 2026: Market Leader + Elite Performer for AI Innovation.",
+  head:"Analyst-anointed AP leader — 2026 Gartner Magic Quadrant Leader + Ardent Elite Performer for AI Innovation; deep, autonomous AI across the full AP lifecycle.",
+  rel:"Named a Leader in the 2026 Gartner Magic Quadrant for Accounts Payable Applications (Jun 23, 2026); also Ardent Partners 2026 Market Leader + Elite Performer for AI Innovation.",
   str:"SmartFlow (proprietary CNN), Medius Copilot, Supplier Conversations (autonomous email handling), \u201cAI workmate\u201d.",
   pos:"\u201cAutonomous AP\u201d — the finance team stays in control; own models rather than expensive LLMs for core work.",
   ai:"Claims to have the most of the AP/payments lifecycle automated with AI.",
   sc:"4,000+ customers · 102 countries · $200B spend/year",
-  s:[["Medius AI advantage","https://www.medius.com/ai-innovation/medius-ai-advantage/"],["Ardent 2026","https://www.medius.com/resources/guides-reports/2026-ap-automation-payments-technology-advisor/"]]},
+  s:[["Gartner MQ 2026 (Medius)","https://www.prnewswire.com/news-releases/medius-placed-in-2026-gartner-magic-quadrant-for-accounts-payable-applications-302807993.html"],["Medius AI advantage","https://www.medius.com/ai-innovation/medius-ai-advantage/"],["Ardent 2026","https://www.medius.com/resources/guides-reports/2026-ap-automation-payments-technology-advisor/"]]},
 
  {n:"Tipalti", o:"Tipalti · Foster City", stance:"ai", sl:"AI + capital", prox:"Low",
   cat:"Payables + global payments + procurement + expenses",
@@ -133,22 +133,22 @@ const data = [
  {n:"Microsoft Expense Agent", o:"Microsoft · native in BC", stance:"ai", sl:"Platform owner · AI", prox:"High",
   cat:"AI expense capture · native in Business Central",
   head:"The platform owner itself moving into the expense space with an AI agent — the most important BC-native development to watch.",
-  rel:"Expense Agent introduced in D365 Business Central (Apr 2026) — AI-driven expense capture, submission and compliance.",
+  rel:"Expense Agent introduced in D365 BC (Apr 2026); BC 2026 Wave 1 adds (Jun 19, 2026) an AI approval step that validates expense reports against company policies written in plain language and guides approvers — public preview Jul 2026.",
   str:"Microsoft building AI functionality directly into BC, overlapping with third-party expense solutions.",
   pos:"Native to the platform — no extra vendor, comes with Business Central.",
-  ai:"AI agent for employee expenses embedded in the ERP itself.",
+  ai:"AI expense agent embedded in the ERP — now also checks reports against natural-language policies at line, report and cross-line level, while leaving the final call to the approver.",
   sc:"Built into Microsoft Dynamics 365 Business Central",
-  s:[["Microsoft blog","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"]]},
+  s:[["Microsoft blog","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"],["Approval process (BC 2026 W1)","https://www.azurecurve.co.uk/2026/06/new-functionality-in-microsoft-dynamics-365-business-central-2026-wave-1-expense-agent-supports-approval-process/"]]},
 
- {n:"Lasernet", o:"Lasernet Group · DK/UK", stance:"steady", sl:"BC-native · output", prox:"High",
+ {n:"Lasernet", o:"Lasernet Group · DK/UK", stance:"cons", sl:"Takeover bid · BC output", prox:"High",
   cat:"Document output & e-invoicing · BC + F&O",
-  head:"Now independent (split from Formpipe, renamed Lasernet Group in 2026) — BC-native output engine competing with Continia Document Output.",
-  rel:"Lasernet for BC live on AppSource (20+ report types, Azure AI mapping); new BC product offering planned Q4 2026; named Temenos Exchange Partner of the Year 2026; joined the IFS partner network.",
-  str:"De-merged from Formpipe into a standalone, listed Lasernet Group focused solely on the Lasernet platform; doubling down on BC/Dynamics.",
+  head:"BC-native output engine (rival to Continia Document Output) — now itself a take-private target under a recommended SEK 30/share cash offer.",
+  rel:"Under a recommended public cash takeover — Tabellae BidCo (Valedo Partners + Mission Trail + Grenspecialisten) bids SEK 30/share (~SEK 879M, +53.8% premium); the board recommends it, acceptance runs 22 Jun–22 Jul 2026. Lasernet for BC stays live on AppSource (20+ report types, Azure AI mapping); Temenos Exchange Partner of the Year 2026; joined the IFS partner network.",
+  str:"Formpipe Software AB renamed itself Lasernet Group AB (Nasdaq Stockholm ticker LASER, trading from Jun 9, 2026), focused solely on the Lasernet platform — now being taken private by a PE-led consortium.",
   pos:"Embedded in BC — design, send and archive documents without leaving the ERP.",
   ai:"Azure AI for data mapping; primarily strong on output/compliance rather than AI marketing.",
   sc:"20+ years of document expertise · global",
-  s:[["Lasernet Group","https://www.lasernetgroup.com/news-blogs/bc-connector-now-on-appsource"],["Formpipe/Lasernet split","https://www.formpipe.com/news-formpipe-lasernet-split"]]},
+  s:[["Lasernet Group","https://www.lasernetgroup.com/news-blogs/bc-connector-now-on-appsource"],["Takeover offer (advisor)","https://www.abgsc.com/abgsc-is-acting-as-exclusive-financial-advisor-to-formpipe-software-ab-in-connection-with-the-public-cash-offer-from-tabellae-bidco-aps/"],["Renamed → Lasernet Group (LASER)","https://www.marketscreener.com/news/formpipe-software-begins-trading-on-nasdaq-stockholm-under-new-name-lasernet-group-ce7f5dd3dc81f32d"]]},
 
  {n:"AMC Banking", o:"AMC-Consult · Denmark", stance:"steady", sl:"BC-native · banking", prox:"High",
   cat:"Bank integration & payments · BC + F&O",
@@ -235,8 +235,11 @@ const events = [
  {w:"Sept 2026 →", c:"steady", t:"<b>France B2B e-invoicing</b> mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027."},
  {w:"Jul 1, 2026", c:"steady", t:"<b>UAE e-invoicing</b> rollout begins for large businesses (revenue ≥ AED 50M); <b>Pagero</b> is listed as a pre-approved accredited service provider."},
  {w:"Jun 30, 2026", c:"steady", t:"<b>Saudi Arabia (ZATCA)</b> Fatoora e-invoicing Wave 24 integration deadline — the first wave to reach businesses with VAT revenue above SAR 375K, pulling thousands of smaller firms into mandatory clearance."},
+ {w:"June 23, 2026", c:"ai", t:"<b>Gartner</b> publishes its 2026 Magic Quadrant for Accounts Payable Applications — <b>Medius</b> is named a Leader (alongside Basware, Coupa and Esker)."},
+ {w:"June 19, 2026", c:"ai", t:"<b>Microsoft</b> extends the BC Expense Agent (2026 Wave 1) with an AI approval step — it validates expense reports against plain-language policies and guides approvers (public preview Jul 2026)."},
  {w:"June 16, 2026", c:"ai", t:"<b>Forrester</b> publishes <i>The Forrester Wave: AP Invoice Automation Software, Q2 2026</i> — agentic AI shifts AP from automation toward proactive, autonomous finance operations."},
  {w:"June 9, 2026", c:"cons", t:"<b>AvidXchange</b> launches Payment Automation for Workday on the Workday Marketplace — extending its 1.5M-supplier AvidPay network into Workday Financial Management."},
+ {w:"June 4, 2026", c:"cons", t:"<b>Lasernet Group</b> (formerly Formpipe Software) receives a recommended SEK 30/share public cash takeover from a PE-led Tabellae BidCo consortium (~SEK 879M, +53.8%); the board backs it, acceptance 22 Jun–22 Jul 2026."},
  {w:"June 2, 2026", c:"ai", t:"<b>Microsoft Build 2026</b> reframes the PC as an agentic OS — Windows Agent Framework open-sourced, Office Agent Mode runs agents natively."},
  {w:"June 2026", c:"ai", t:"<b>Truvio</b> (formerly SignUp Software/ExFlow) completes its rebrand and ships TruvioSense Coding & Approval — AI/LLM invoice-coding suggestions in D365 F&O."},
  {w:"May 11, 2026", c:"ai", t:"<b>Dooap</b> launches Dooap Studio — agentic AI platform."},
@@ -1571,7 +1574,7 @@ if(contentIdeasList){
    Both the topbar and the footer read from it, so they can never drift apart.
    The YouTube/News update routine sets this to today's date on every refresh. */
 (function(){
-  var DASHBOARD_UPDATED = "2026-06-19";
+  var DASHBOARD_UPDATED = "2026-06-29";
   var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var p=String(DASHBOARD_UPDATED).split("-");
   var pretty=m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];
