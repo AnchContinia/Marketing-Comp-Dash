@@ -153,6 +153,12 @@ history for trend charts later. Example shape:
 }
 ```
 
+**Ranking is automatic.** The live YouTube table sorts itself by the newest
+snapshot's `monthlyViews` (highest first) at render time, so the channel that
+"ran away" with views floats to the top on its own. Don't manually reorder the
+`channels` array to chase the ranking — just drop in the new snapshot and the
+table re-ranks. (Channels with no stats yet sort to the bottom at 0.)
+
 ---
 
 ## Finish

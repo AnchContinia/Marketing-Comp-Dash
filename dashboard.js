@@ -602,7 +602,10 @@ if(contentIdeasList){
   function fmtDate(s){var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var p=String(s).split("-");return m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];}
   var asof=document.getElementById("yt-asof");
   if(asof) asof.textContent=(D.source||"Social Blade estimates")+" \u00b7 "+fmtDate(snap.date);
-  var rows=D.channels.map(function(ch){return {ch:ch, st:(snap.stats&&snap.stats[ch.name])||{}};});
+  /* Rank the table by the newest snapshot's monthly views, highest first — auto
+     re-sorts every time new data lands, so no manual reordering of channels[]. */
+  var rows=D.channels.map(function(ch){return {ch:ch, st:(snap.stats&&snap.stats[ch.name])||{}};})
+    .sort(function(a,b){ return (b.st.monthlyViews||0)-(a.st.monthlyViews||0); });
   /* Scale bars on real performance only \u2014 exclude flagged one-off corrections. */
   var scale=Math.max.apply(null, rows.filter(function(r){return !r.st.flag;}).map(function(r){return Math.abs(r.st.monthlyViews||0);}))||1;
   var hasFlag=false;
