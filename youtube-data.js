@@ -29,11 +29,11 @@ window.YT_DATA = {
 
   channels: [
     { name: "Medius",             handle: "@mediusapautomation", totalViews: "5.07M total views",  socialBlade: "https://socialblade.com/youtube/handle/mediusapautomation", ours: false },
-    { name: "Stampli",            handle: "@stampli",            totalViews: "851K total views",   socialBlade: "https://socialblade.com/youtube/handle/stampli",            ours: false },
-    { name: "Yooz",               handle: "@why_yooz",           totalViews: "142K total views",   socialBlade: "https://socialblade.com/youtube/handle/why_yooz",           ours: false },
+    { name: "Stampli",            handle: "@stampli",            totalViews: "873K total views",   socialBlade: "https://socialblade.com/youtube/handle/stampli",            ours: false },
+    { name: "Yooz",               handle: "@why_yooz",           totalViews: "143K total views",   socialBlade: "https://socialblade.com/youtube/handle/why_yooz",           ours: false },
     { name: "Tipalti",            handle: "@tipaltivideos",      totalViews: "3.01M total views",  socialBlade: "https://socialblade.com/youtube/handle/tipaltivideos",      ours: false },
-    { name: "Continia",           handle: "@continiasoftware",   totalViews: "513K total views",   socialBlade: "https://socialblade.com/youtube/handle/continiasoftware",   ours: true  },
-    { name: "Equisys (Zetadocs)", handle: "@equisysplc",         totalViews: "42K total views",    socialBlade: "https://socialblade.com/youtube/handle/equisysplc",         ours: false },
+    { name: "Continia",           handle: "@continiasoftware",   totalViews: "516K total views",   socialBlade: "https://socialblade.com/youtube/handle/continiasoftware",   ours: true  },
+    { name: "Equisys (Zetadocs)", handle: "@equisysplc",         totalViews: "43K total views",    socialBlade: "https://socialblade.com/youtube/handle/equisysplc",         ours: false },
     { name: "Dooap",              handle: "@dooap",              totalViews: "146K total views",   socialBlade: "https://socialblade.com/youtube/handle/dooap",              ours: false },
 
     /* Extended tracking (added Jun 2026): 10 more of the tracked competitor set.
@@ -42,14 +42,14 @@ window.YT_DATA = {
        the first capture run fills them, so they render as "—" until then. */
     { name: "AMC Banking",         handle: "AMCBanking",           totalViews: "25K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCg3bQAqsQSKHtMK02oxWN5Q", ours: false },
     { name: "ExFlow (Truvio)",     handle: "SignUp Software",      totalViews: "143K total views",  socialBlade: "https://socialblade.com/youtube/channel/UCcRBDOXYUHYZ18mJzVwptYg", ours: false },
-    { name: "AvidXchange",         handle: "@avidxchange",         totalViews: "11M total views",   socialBlade: "https://socialblade.com/youtube/channel/UCyUdf0l5aenkbP6Rjbm1boA", ours: false },
+    { name: "AvidXchange",         handle: "@avidxchange",         totalViews: "10.8M total views",   socialBlade: "https://socialblade.com/youtube/channel/UCyUdf0l5aenkbP6Rjbm1boA", ours: false },
     { name: "Compleat",            handle: "@compleatp2p",         totalViews: "99K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCBHrVWn7hW3bimt1RIHVBJg", ours: false },
-    { name: "Tungsten Automation", handle: "@tungstenautomation",  totalViews: "893K total views",  socialBlade: "https://socialblade.com/youtube/channel/UCLXjytmoPLmzMT9-jRK9eMw", ours: false },
-    { name: "onPhase",             handle: "@onphase",             totalViews: "895 total views",   socialBlade: "https://socialblade.com/youtube/channel/UCfZ5vZy9s3WC0mcAhGy-6Pg", ours: false },
+    { name: "Tungsten Automation", handle: "@tungstenautomation",  totalViews: "896K total views",  socialBlade: "https://socialblade.com/youtube/channel/UCLXjytmoPLmzMT9-jRK9eMw", ours: false },
+    { name: "onPhase",             handle: "@onphase",             totalViews: "904 total views",   socialBlade: "https://socialblade.com/youtube/channel/UCfZ5vZy9s3WC0mcAhGy-6Pg", ours: false },
     { name: "Dime Scheduler",      handle: "Dime Software",        totalViews: "25K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCYD4LGox7SJLL7r8gmjulNA", ours: false },
-    { name: "Qvalia",              handle: "Qvalia",               totalViews: "750 total views",   socialBlade: "https://socialblade.com/youtube/channel/UC1x8GlYfNAh4jjp3mquVAvw", ours: false },
+    { name: "Qvalia",              handle: "Qvalia",               totalViews: "754 total views",   socialBlade: "https://socialblade.com/youtube/channel/UC1x8GlYfNAh4jjp3mquVAvw", ours: false },
     { name: "Acubiz",              handle: "@acubiztv",            totalViews: "4.7K total views",  socialBlade: "https://socialblade.com/youtube/channel/UC69VeuWKBJRLmON3deGjwdw", ours: false },
-    { name: "B2Brouter",           handle: "@b2brouter",           totalViews: "1.1M total views",  socialBlade: "https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ", ours: false }
+    { name: "B2Brouter",           handle: "@b2brouter",           totalViews: "1.19M total views",  socialBlade: "https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ", ours: false }
   ],
 
   snapshots: [
@@ -99,6 +99,28 @@ window.YT_DATA = {
         "Continia":           { subs: "1.46K", monthlyViews:  8427,   monthlyViewsLabel: "+8.4K", monthlySubs: "+20", earnings: "$2-$34" },
         "Equisys (Zetadocs)": { subs: "128",  monthlyViews:  258,    monthlyViewsLabel: "+258",  monthlySubs: "0",   earnings: "$0-$1" },
         "Dooap":              { subs: "60",   monthlyViews:  82,     monthlyViewsLabel: "+82",   monthlySubs: "0",   earnings: "$0" }
+      }
+    },
+    {
+      date: "2026-06-29",
+      stats: {
+        "Medius":             { subs: "340",  monthlyViews:  13185,  monthlyViewsLabel: "+13K",  monthlySubs: "+15", earnings: "$3-$53" },
+        "Stampli":            { subs: "1.78K", monthlyViews:  62817,  monthlyViewsLabel: "+63K",  monthlySubs: "0",   earnings: "$16-$251" },
+        "Yooz":               { subs: "202",  monthlyViews:  8913,   monthlyViewsLabel: "+8.9K", monthlySubs: "+4",  earnings: "$2-$36" },
+        "Tipalti":            { subs: "3.25K", monthlyViews:  2293,   monthlyViewsLabel: "+2.3K", monthlySubs: "+10", earnings: "$1-$9" },
+        "Continia":           { subs: "1.47K", monthlyViews:  7910,   monthlyViewsLabel: "+7.9K", monthlySubs: "+20", earnings: "$2-$32" },
+        "Equisys (Zetadocs)": { subs: "129",  monthlyViews:  227,    monthlyViewsLabel: "+227",  monthlySubs: "+1",  earnings: "$0-$1" },
+        "Dooap":              { subs: "60",   monthlyViews:  105,    monthlyViewsLabel: "+105",  monthlySubs: "0",   earnings: "$0" },
+        "AMC Banking":        { subs: "131",  monthlyViews:  74,     monthlyViewsLabel: "+74",   monthlySubs: "0",   earnings: "$0" },
+        "ExFlow (Truvio)":    { subs: "1.52K", monthlyViews:  246,    monthlyViewsLabel: "+246",  monthlySubs: "0",   earnings: "$0-$1" },
+        "AvidXchange":        { subs: "3.49K", monthlyViews:  147,    monthlyViewsLabel: "+147",  monthlySubs: "-10", earnings: "$0-$1" },
+        "Compleat":           { subs: "175",  monthlyViews:  320,    monthlyViewsLabel: "+320",  monthlySubs: "+2",  earnings: "$0-$1" },
+        "Tungsten Automation":{ subs: "3.58K", monthlyViews:  6899,   monthlyViewsLabel: "+6.9K", monthlySubs: "0",   earnings: "$2-$28" },
+        "onPhase":            { subs: "10",   monthlyViews:  9,      monthlyViewsLabel: "+9",    monthlySubs: "0",   earnings: "$0" },
+        "Dime Scheduler":     { subs: "83",   monthlyViews:  56,     monthlyViewsLabel: "+56",   monthlySubs: "0",   earnings: "$0" },
+        "Qvalia":             { subs: "18",   monthlyViews:  4,      monthlyViewsLabel: "+4",    monthlySubs: "0",   earnings: "$0" },
+        "Acubiz":             { subs: "66",   monthlyViews:  55,     monthlyViewsLabel: "+55",   monthlySubs: "-1",  earnings: "$0" },
+        "B2Brouter":          { subs: "1.47K", monthlyViews:  143080, monthlyViewsLabel: "+143K", monthlySubs: "+50", earnings: "$36-$572" }
       }
     }
   ],
