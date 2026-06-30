@@ -609,7 +609,7 @@ html[data-theme="dark"] #continia-uploads .cu-legend .sw.lf{background:#8ff8ff}
 .cg-row:first-child{border-top:0}
 .cg-theme b{display:block;font-size:13.5px;font-weight:750;color:var(--ink);line-height:1.2}
 .cg-rsub{display:block;font-size:11.5px;color:#94a3b6;margin-top:3px;font-variant-numeric:tabular-nums}
-.cg-flag{display:inline-block;margin:4px 0 1px;font-size:9.5px;font-weight:850;letter-spacing:.05em;text-transform:uppercase;color:#0e8ba1}
+.cg-flag{display:inline-block;margin:4px 0 1px;font-size:9.5px;font-weight:850;letter-spacing:.05em;text-transform:uppercase;color:#052975}
 .cg-track{position:relative;height:26px;background:#e2e8f0;border-radius:8px;overflow:hidden}
 .cg-track i{position:absolute;top:0;height:100%;transition:width .45s cubic-bezier(.4,0,.2,1),left .45s cubic-bezier(.4,0,.2,1)}
 .cg-track .cg-you{left:0;background:#8ff8ff}
