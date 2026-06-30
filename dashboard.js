@@ -809,7 +809,7 @@ if(contentIdeasList){
   var now=new Date(), ny=now.getFullYear(), nm=now.getMonth()+1, N=MANDATES.length;
   el.innerHTML='<div class="tl-row">'+MANDATES.map(function(m,i){
     var done=(m.y<ny)||(m.y===ny&&m.m<=nm);
-    var p=(N>1)?(1+i*(78/(N-1))):1;   /* evenly spaced 1%..79% — first hugs the left, equal gaps */
+    var p=(N>1)?(10+i*(69/(N-1))):50;   /* evenly spaced 10%..79% — centered band, ~10% margin each side (last card fills to ~90%) */
     return '<div class="tl-item '+(i%2===0?"tl-up":"tl-down")+'" style="left:'+p.toFixed(2)+'%">'+
       '<div class="tl-card"><span class="tl-date">'+esc(m.date)+'</span>'+
         '<div class="tl-text"><b>'+esc(m.c)+'</b><span>'+m.d+'</span></div></div>'+
