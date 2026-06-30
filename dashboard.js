@@ -806,10 +806,11 @@ if(contentIdeasList){
     {date:"Jan 2027", y:2027, m:1, c:"Germany",       d:"Issuing mandatory for companies above &#8364;800k turnover."},
     {date:"Sep 2027", y:2027, m:9, c:"France",        d:"SMEs and micro-enterprises must issue."}
   ];
-  var now=new Date(), ny=now.getFullYear(), nm=now.getMonth()+1;
+  var now=new Date(), ny=now.getFullYear(), nm=now.getMonth()+1, N=MANDATES.length;
   el.innerHTML='<div class="tl-row">'+MANDATES.map(function(m,i){
     var done=(m.y<ny)||(m.y===ny&&m.m<=nm);
-    return '<div class="tl-col '+(i%2===0?"tl-up":"tl-down")+'">'+
+    var p=(N>1)?(1+i*(78/(N-1))):1;   /* evenly spaced 1%..79% — first hugs the left, equal gaps */
+    return '<div class="tl-item '+(i%2===0?"tl-up":"tl-down")+'" style="left:'+p.toFixed(2)+'%">'+
       '<div class="tl-card"><span class="tl-date">'+esc(m.date)+'</span>'+
         '<div class="tl-text"><b>'+esc(m.c)+'</b><span>'+m.d+'</span></div></div>'+
       '<span class="tl-stem"></span><span class="tl-node'+(done?" done":"")+'"></span>'+
