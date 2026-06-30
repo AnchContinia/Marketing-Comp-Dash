@@ -658,6 +658,122 @@ if(contentIdeasList){
   draw();
 })();
 
+/* ---- Market map (home): world SVG highlighting Continia's live markets;
+   click a country for a popup with Continia + the tracked competitors live there.
+   The map is fetched from Assets/world-states.svg (country groups keyed by ISO
+   3166-1 alpha-2; country names read from the map's own labels). ---- */
+(function(){
+  var mapEl=document.getElementById("mm-map");
+  if(!mapEl) return;
+
+  /* EDIT ME — markets keyed by ISO 3166-1 alpha-2 code (UPPERCASE).
+     continia:true highlights the country as a Continia market on the map.
+     competitors[] = tracked rivals also live there. SEED DATA: competitors were
+     seeded from each competitor card's HQ country (real, from data[] at the top
+     of this file) — reassign them to real go-to-market presence as needed, and
+     add/remove Continia markets here. Country names come from the SVG labels, so
+     you only ever edit the two-letter codes and the competitor lists. */
+  var MARKETS={
+    DK:{continia:true, competitors:["AMC Banking","Acubiz","Lasernet"]},
+    SE:{continia:true, competitors:["Truvio (ExFlow)","Medius","Pagero","Qvalia","Rillion"]},
+    NO:{continia:true, competitors:[]},
+    FI:{continia:true, competitors:[]},
+    IS:{continia:true, competitors:[]},
+    GB:{continia:true, competitors:["Zetadocs (Equisys)","Compleat","Yavrio","Lasernet"]},
+    IE:{continia:true, competitors:[]},
+    DE:{continia:true, competitors:[]},
+    AT:{continia:true, competitors:[]},
+    CH:{continia:true, competitors:[]},
+    NL:{continia:true, competitors:[]},
+    BE:{continia:true, competitors:["Dime Scheduler"]},
+    FR:{continia:true, competitors:[]},
+    ES:{continia:true, competitors:["B2Brouter"]},
+    IT:{continia:true, competitors:[]},
+    PL:{continia:true, competitors:[]},
+    US:{continia:true, competitors:["Dooap","Tipalti","Yooz","Stampli","AvidXchange","Tungsten Automation","onPhase","MineralTree","Microsoft Expense Agent","Fidesic"]},
+    CA:{continia:true, competitors:[]},
+    AU:{continia:true, competitors:[]}
+  };
+
+  var card=document.getElementById("mm-card"),
+      countEl=document.getElementById("mm-count"),
+      chipsEl=document.getElementById("mm-chips");
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+  fetch("./Assets/world-states.svg").then(function(r){return r.text();}).then(function(txt){
+    var i=txt.indexOf("<svg");
+    mapEl.innerHTML = i>=0 ? txt.slice(i) : txt;
+    var svg=mapEl.querySelector("svg");
+    if(!svg){ mapEl.textContent="Map unavailable."; return; }
+    svg.removeAttribute("width"); svg.removeAttribute("height");
+    svg.setAttribute("class","mm-svg");
+    svg.setAttribute("preserveAspectRatio","xMidYMid meet");
+
+    /* country names straight from the map's own <text id="XX-label"> labels */
+    var NAMES={};
+    Array.prototype.forEach.call(svg.querySelectorAll('text[id$="-label"]'),function(t){
+      NAMES[t.id.replace(/-label$/,"").toUpperCase()]=(t.textContent||"").trim();
+    });
+
+    var liveCodes=[];
+    Object.keys(MARKETS).forEach(function(code){
+      var g=svg.getElementById(code); if(!g) return;
+      g.setAttribute("class",((g.getAttribute("class")||"")+" mm-c").trim());
+      if(MARKETS[code].continia){ g.setAttribute("class",g.getAttribute("class")+" mm-live"); liveCodes.push(code); }
+    });
+    if(countEl) countEl.textContent="Continia live in "+liveCodes.length+" markets";
+
+    if(chipsEl){
+      chipsEl.innerHTML=liveCodes.map(function(c){return NAMES[c]||c;}).sort().map(function(name){
+        return '<button class="mm-chip" type="button" data-name="'+esc(name)+'">'+esc(name)+'</button>';
+      }).join("");
+    }
+    function codeOf(name){ for(var k in MARKETS){ if((NAMES[k]||k)===name) return k; } return null; }
+
+    function clearSel(){ Array.prototype.forEach.call(svg.querySelectorAll(".mm-sel"),function(e){ e.setAttribute("class",e.getAttribute("class").replace(/\s*mm-sel/,"")); }); }
+    function closeCard(){ card.hidden=true; clearSel(); }
+
+    function openCard(code, clientX, clientY){
+      var m=MARKETS[code], name=NAMES[code]||code;
+      var html='<button class="mm-x" type="button" aria-label="Close">&times;</button><div class="mm-title">'+esc(name)+'</div>';
+      if(m && m.continia){
+        html+='<div class="mm-row continia"><span class="mm-dot live"></span><b>Continia</b><span class="mm-badge">Live</span></div>';
+        html+=(m.competitors&&m.competitors.length)
+          ? '<div class="mm-sub">Also live here</div>'+m.competitors.map(function(c){return '<div class="mm-row"><span class="mm-dot"></span>'+esc(c)+'</div>';}).join("")
+          : '<div class="mm-none">No tracked competitor live here yet.</div>';
+      } else if(m){
+        html+='<div class="mm-row"><span class="mm-dot off"></span>Continia not live here</div>';
+        if(m.competitors&&m.competitors.length) html+='<div class="mm-sub">Tracked rivals</div>'+m.competitors.map(function(c){return '<div class="mm-row"><span class="mm-dot"></span>'+esc(c)+'</div>';}).join("");
+      } else {
+        html+='<div class="mm-none">Not a tracked Continia market.</div>';
+      }
+      card.innerHTML=html; card.hidden=false;
+      var stage=card.parentElement, sb=stage.getBoundingClientRect();
+      var cw=card.offsetWidth, ch=card.offsetHeight;
+      var x=Math.max(8, Math.min((clientX-sb.left)+12, sb.width-cw-8));
+      var y=Math.max(8, Math.min((clientY-sb.top)+12, sb.height-ch-8));
+      card.style.left=x+"px"; card.style.top=y+"px";
+      clearSel();
+      var g=svg.getElementById(code); if(g) g.setAttribute("class",(g.getAttribute("class")||"")+" mm-sel");
+    }
+
+    svg.addEventListener("click",function(e){
+      var n=e.target;
+      while(n && n!==svg && !(n.id && /^[A-Z]{2}$/.test(n.id))) n=n.parentNode;
+      if(!n || n===svg) return;
+      openCard(n.id, e.clientX, e.clientY);
+    });
+    card.addEventListener("click",function(e){ if(e.target.classList&&e.target.classList.contains("mm-x")) closeCard(); });
+    if(chipsEl) chipsEl.addEventListener("click",function(e){
+      var b=e.target&&e.target.closest?e.target.closest(".mm-chip"):null; if(!b) return;
+      var code=codeOf(b.getAttribute("data-name")); if(!code) return;
+      var g=svg.getElementById(code), r=g?g.getBoundingClientRect():null;
+      openCard(code, r?r.left+r.width/2:0, r?r.top+r.height/2:0);
+    });
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape") closeCard(); });
+  }).catch(function(){ mapEl.textContent="Map unavailable (could not load world-states.svg)."; });
+})();
+
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
 (function(){
   if(typeof window.YT_DATA==="undefined") return;
