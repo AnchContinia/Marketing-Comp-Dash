@@ -708,12 +708,18 @@ if(contentIdeasList){
     MARKETS[code].competitors.push(c.name);
   }); });
 
+  /* display names for tracked markets (the flat map has no embedded labels) */
+  var NAMES={DK:"Denmark",SE:"Sweden",NO:"Norway",FI:"Finland",IS:"Iceland",DE:"Germany",
+    NL:"Netherlands",BE:"Belgium",FR:"France",ES:"Spain",PT:"Portugal",GB:"United Kingdom",
+    IE:"Ireland",AT:"Austria",CH:"Switzerland",CZ:"Czechia",PL:"Poland",US:"United States",
+    CA:"Canada",AU:"Australia",NZ:"New Zealand",IT:"Italy"};
+
   var card=document.getElementById("mm-card"),
       countEl=document.getElementById("mm-count"),
       chipsEl=document.getElementById("mm-chips");
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
-  fetch("./Assets/world-states.svg").then(function(r){return r.text();}).then(function(txt){
+  fetch("./Assets/world-flat.svg").then(function(r){return r.text();}).then(function(txt){
     var i=txt.indexOf("<svg");
     mapEl.innerHTML = i>=0 ? txt.slice(i) : txt;
     var svg=mapEl.querySelector("svg");
@@ -721,12 +727,6 @@ if(contentIdeasList){
     svg.removeAttribute("width"); svg.removeAttribute("height");
     svg.setAttribute("class","mm-svg");
     svg.setAttribute("preserveAspectRatio","xMidYMid meet");
-
-    /* country names straight from the map's own <text id="XX-label"> labels */
-    var NAMES={};
-    Array.prototype.forEach.call(svg.querySelectorAll('text[id$="-label"]'),function(t){
-      NAMES[t.id.replace(/-label$/,"").toUpperCase()]=(t.textContent||"").trim();
-    });
 
     var liveCodes=[];
     Object.keys(MARKETS).forEach(function(code){

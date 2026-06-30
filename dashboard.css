@@ -656,15 +656,12 @@ html[data-theme="dark"] .cg-none{border-color:var(--line2)}
 .mm-stage{position:relative;border:1px solid var(--line);border-radius:10px;background:var(--canvas);overflow:hidden}
 .mm-map{display:block;min-height:160px;color:var(--muted);font-size:13px;padding:0}
 .mm-map .mm-svg{display:block;width:100%;height:auto}
-.mm-svg text{display:none}
-.mm-svg #World,.mm-svg #Ocean{fill:transparent;stroke:none}
-.mm-svg #AQ{display:none}
-.mm-svg path{fill:#ccd3dd;stroke:var(--canvas);stroke-width:.4;transition:fill .15s}
+.mm-svg path{fill:#ccd3dd;stroke:var(--canvas);stroke-width:.6;transition:fill .15s}
 .mm-svg .mm-c{cursor:pointer}
-.mm-svg .mm-live path{fill:var(--navy)}
-.mm-svg .mm-c:hover path{fill:#2f5fe0}
-.mm-svg .mm-live.mm-c:hover path{fill:#1746b8}
-.mm-svg .mm-sel path{fill:#1746b8;stroke:#8ff8ff;stroke-width:.9}
+.mm-svg .mm-live{fill:var(--navy)}
+.mm-svg .mm-c:hover{fill:#2f5fe0}
+.mm-svg .mm-live.mm-c:hover{fill:#1746b8}
+.mm-svg .mm-sel{fill:#1746b8;stroke:#8ff8ff;stroke-width:1.2}
 .mm-card{position:absolute;z-index:6;min-width:208px;max-width:268px;background:#fff;border:1px solid var(--line);border-radius:12px;box-shadow:0 26px 64px -24px rgba(15,23,42,.55);padding:14px 14px 12px}
 .mm-card[hidden]{display:none}
 .mm-x{position:absolute;top:5px;right:7px;border:0;background:none;font-size:20px;line-height:1;color:var(--muted);cursor:pointer;padding:2px 6px;border-radius:6px}
@@ -673,6 +670,7 @@ html[data-theme="dark"] .cg-none{border-color:var(--line2)}
 .mm-sub{font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:11px 0 5px}
 .mm-row{display:flex;align-items:center;gap:8px;font-size:13px;color:#334155;padding:3px 0}
 .mm-row.continia{font-size:14px;color:var(--ink)}
+.mm-row.continia .mm-dot{position:relative;top:1px}
 .mm-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;flex:none}
 .mm-dot.live{background:var(--navy)}
 .mm-dot.off{background:var(--rose)}
@@ -687,17 +685,17 @@ html[data-theme="dark"] .cg-none{border-color:var(--line2)}
 .mm-chip{border:1px solid var(--line2);background:#fff;color:#334155;border-radius:999px;padding:5px 10px;font-size:11.5px;font-weight:700;cursor:pointer;transition:.15s}
 .mm-chip:hover{border-color:var(--navy);color:var(--navy)}
 html[data-theme="dark"] .mm-svg path{fill:#2b3855}
-html[data-theme="dark"] .mm-svg .mm-live path{fill:#6ea8ff}
-html[data-theme="dark"] .mm-svg .mm-c:hover path{fill:#8ff8ff}
-html[data-theme="dark"] .mm-svg .mm-live.mm-c:hover path{fill:#bfe6ff}
-html[data-theme="dark"] .mm-svg .mm-sel path{fill:#8ff8ff;stroke:#fff}
+html[data-theme="dark"] .mm-svg .mm-live{fill:rgba(143,248,255,.25)}
+html[data-theme="dark"] .mm-svg .mm-c:hover{fill:rgba(143,248,255,.55)}
+html[data-theme="dark"] .mm-svg .mm-live.mm-c:hover{fill:rgba(143,248,255,.55)}
+html[data-theme="dark"] .mm-svg .mm-sel{fill:#8ff8ff;stroke:#fff}
 html[data-theme="dark"] .mm-card{background:var(--panel);border-color:var(--line2)}
 html[data-theme="dark"] .mm-x:hover{background:rgba(255,255,255,.08)}
 html[data-theme="dark"] .mm-row{color:#cbd5e1}
 html[data-theme="dark"] .mm-dot{background:#64748b}
 html[data-theme="dark"] .mm-dot.live{background:#6ea8ff}
-html[data-theme="dark"] .mm-badge{background:#6ea8ff;color:#0b1120}
-html[data-theme="dark"] .mm-sw.live{background:#6ea8ff}
+html[data-theme="dark"] .mm-badge{background:#8ff8ff;color:#fff}
+html[data-theme="dark"] .mm-sw.live{background:#8ff8ff}
 html[data-theme="dark"] .mm-sw.idle{background:#2b3855}
 html[data-theme="dark"] .mm-chip{background:var(--panel);border-color:var(--line2);color:#cbd5e1}
 html[data-theme="dark"] .mm-chip:hover{border-color:#6ea8ff;color:#6ea8ff}
