@@ -685,9 +685,9 @@ html[data-theme="dark"] .cg-none{border-color:var(--line2)}
 .mm-chip{border:1px solid var(--line2);background:#fff;color:#334155;border-radius:999px;padding:5px 10px;font-size:11.5px;font-weight:700;cursor:pointer;transition:.15s}
 .mm-chip:hover{border-color:var(--navy);color:var(--navy)}
 html[data-theme="dark"] .mm-svg path{fill:#2b3855}
-html[data-theme="dark"] .mm-svg .mm-live{fill:rgba(143,248,255,.25)}
-html[data-theme="dark"] .mm-svg .mm-c:hover{fill:rgba(143,248,255,.55)}
-html[data-theme="dark"] .mm-svg .mm-live.mm-c:hover{fill:rgba(143,248,255,.55)}
+html[data-theme="dark"] .mm-svg .mm-live{fill:rgba(143,248,255,.5)}
+html[data-theme="dark"] .mm-svg .mm-c:hover{fill:rgba(143,248,255,.75)}
+html[data-theme="dark"] .mm-svg .mm-live.mm-c:hover{fill:rgba(143,248,255,.75)}
 html[data-theme="dark"] .mm-svg .mm-sel{fill:#8ff8ff;stroke:#fff}
 html[data-theme="dark"] .mm-card{background:var(--panel);border-color:var(--line2)}
 html[data-theme="dark"] .mm-x:hover{background:rgba(255,255,255,.08)}
