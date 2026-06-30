@@ -735,3 +735,4 @@ html[data-theme="dark"] .mm-chip:hover{border-color:#6ea8ff;color:#6ea8ff}
 .tl-text span{font-size:12px;color:var(--muted);line-height:1.4;text-wrap:balance}
 html[data-theme="dark"] .tl-node{background:var(--paper)}
 html[data-theme="dark"] .tl-node.done{background:#8ff8ff;border-color:#8ff8ff}
+html[data-theme="dark"] .tl-date{background:var(--panel);border-color:var(--line2);color:#8ff8ff;font-weight:700}
