@@ -672,6 +672,7 @@ html[data-theme="dark"] .cg-none{border-color:var(--line2)}
 .mm-sub{font-size:10px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:11px 0 5px}
 .mm-row{display:flex;align-items:center;gap:8px;font-size:13px;color:#334155;padding:3px 0}
 .mm-row.continia{font-size:14px;color:var(--ink)}
+.mm-row.continia b{position:relative;top:1px}
 .mm-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;flex:none}
 .mm-dot.live{background:#8ff8ff}
 .mm-dot.off{background:var(--rose)}
@@ -695,7 +696,7 @@ html[data-theme="dark"] .mm-x:hover{background:rgba(255,255,255,.08)}
 html[data-theme="dark"] .mm-row{color:#cbd5e1}
 html[data-theme="dark"] .mm-dot{background:#64748b}
 html[data-theme="dark"] .mm-dot.live{background:#8ff8ff}
-html[data-theme="dark"] .mm-badge{background:#8ff8ff;color:#fff}
+html[data-theme="dark"] .mm-badge{background:#8ff8ff;color:#052975}
 html[data-theme="dark"] .mm-sw.live{background:#8ff8ff}
 html[data-theme="dark"] .mm-sw.idle{background:#2b3855}
 html[data-theme="dark"] .mm-chip{background:var(--panel);border-color:var(--line2);color:#cbd5e1}
