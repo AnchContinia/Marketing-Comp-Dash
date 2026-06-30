@@ -676,7 +676,7 @@ html[data-theme="dark"] .cg-none{border-color:var(--line2)}
 .mm-dot{width:8px;height:8px;border-radius:50%;background:#94a3b8;flex:none}
 .mm-dot.live{background:#8ff8ff}
 .mm-dot.off{background:var(--rose)}
-.mm-badge{margin-left:auto;font-size:10px;font-weight:850;letter-spacing:.05em;text-transform:uppercase;background:var(--navy);color:#fff;border-radius:999px;padding:3px 8px}
+.mm-badge{margin-left:auto;font-size:10px;font-weight:850;letter-spacing:.05em;text-transform:uppercase;background:var(--navy);color:#fff;border-radius:999px;padding:4px 8px 2px}
 .mm-none{font-size:12.5px;color:var(--muted);margin-top:6px}
 .mm-legend{display:flex;align-items:center;flex-wrap:wrap;gap:14px;padding:12px 2px 2px}
 .mm-leg{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--muted);font-weight:650}
