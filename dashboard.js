@@ -231,6 +231,18 @@ const data = [
   s:[["Yavrio","https://www.yavr.io/"],["5 major US banks","https://www.openbankingexpo.com/news/open-banking-fintech-yavrio-connects-with-five-major-us-banks/"],["Yavrio on AppSource","https://appsource.microsoft.com/en-us/product/dynamics-365-business-central/pubid.yavrioltd1647526263468%7Caid.yavrio_open_banking%7Cpappid.3d686c04-e1b1-435e-bea4-862c2c203ca7"]]}
 ];
 
+/* ---- Derived headline figures (single source = the data above) -----------
+   Competitors / tracked stakeholders are derived from data.length so the hero
+   pill, the "All (N)" filter chip and the metrics tile never drift when the
+   register grows. BC-native and M&A are curated cross-cutting counts — there is
+   no clean per-card flag for them in the current shape (M&A spans funding rounds
+   on AI-stance cards, BC-native is a judgement call vs. "connector"), so they
+   live here as named constants, maintained in this one place instead of being
+   hardcoded across two HTML files. Update them here when the register changes. */
+const STAKEHOLDER_COUNT = data.length;
+const BC_NATIVE_COUNT   = 11;   // BC-native players (incl. Microsoft's Expense Agent)
+const MNA_COUNT         = 8;    // M&A / capital moves 2025-26 (acquisitions + funding)
+
 const events = [
  {w:"Sept 2026 →", c:"steady", t:"<b>France B2B e-invoicing</b> mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027."},
  {w:"Jul 1, 2026", c:"steady", t:"<b>UAE e-invoicing</b> rollout begins for large businesses (revenue ≥ AED 50M); <b>Pagero</b> is listed as a pre-approved accredited service provider."},
@@ -345,6 +357,18 @@ if(cardsEl) data.forEach(function(d){
 });
 const evEl=document.getElementById('eventsList');
 if(evEl) events.forEach(function(e){const row=document.createElement('div');row.className='ev';row.style.setProperty('--c',C[e.c]);row.innerHTML='<div class="when"><span class="d"></span>'+e.w+'</div><div class="what">'+e.t+'</div>';evEl.appendChild(row);});
+
+/* stamp the derived counts into whatever slots this page actually has
+   (index: hero pill + "All (N)" chip + Stakeholders/BC-native/M&A tiles;
+   content: hero pill only) — each set is guarded so a missing slot is a no-op. */
+(function(){
+  function setText(el,txt){ if(el) el.textContent=txt; }
+  Array.prototype.forEach.call(document.querySelectorAll('.js-competitor-count'),function(el){ el.textContent=STAKEHOLDER_COUNT; });
+  setText(document.querySelector('#m-stakeholders .num'), STAKEHOLDER_COUNT);
+  setText(document.querySelector('#m-bcnative .num'),     BC_NATIVE_COUNT);
+  setText(document.querySelector('#m-mna .num'),          MNA_COUNT);
+  setText(document.querySelector('.chip[data-type="stance"][data-val="all"]'), 'All ('+STAKEHOLDER_COUNT+')');
+})();
 let fStance='all', fProx='all', q='';
 function applyFilter(){let visible=0;document.querySelectorAll('.card').forEach(function(c){const ok=(fStance==='all'||c.dataset.stance===fStance)&&(fProx==='all'||c.dataset.prox===fProx)&&(!q||c.dataset.search.includes(q));c.classList.toggle('hide',!ok);if(ok)visible++;});document.getElementById('noresult').style.display=visible?'none':'block';countLabel.textContent=visible+' visible';}
 document.querySelectorAll('.chip').forEach(function(ch){ch.addEventListener('click',function(){const type=ch.dataset.type;document.querySelectorAll('.chip[data-type="'+type+'"]').forEach(function(x){x.classList.remove('active');});ch.classList.add('active');if(type==='stance')fStance=ch.dataset.val;else fProx=ch.dataset.val;applyFilter();});});
@@ -376,6 +400,8 @@ if(contentIdeasList){
   function fmtDate(s){var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var p=String(s).split("-");return m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];}
   var asof=document.getElementById("li-asof");
   if(asof) asof.textContent=(D.source||"LinkedIn")+" · "+(D.windowLabel||"last 10 posts")+" · "+fmtDate(D.captured);
+  /* footnote carries the same capture date so it follows the data, not a hardcode */
+  var capEl=document.getElementById("li-captured"); if(capEl) capEl.textContent=fmtDate(D.captured);
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   var rows=D.companies.map(function(co){
     var posts=co.posts||[], n=posts.length, R=0,C=0,P=0;
@@ -383,11 +409,15 @@ if(contentIdeasList){
     var total=R+C+P;
     return {name:co.name, ours:!!co.ours, posts:posts, n:n, R:R, C:C, P:P, total:total, avg:n?total/n:0};
   });
-  rows.sort(function(a,b){return b.total-a.total;});
-  var scale=Math.max.apply(null, rows.map(function(r){return r.total;}))||1;
+  /* rank + size the bar on engagement PER POST (avg), not the summed total —
+     companies have unequal post counts (3..10 captured), so total just rewards
+     whoever happened to have 10 posts in the export. Raw total + N stay visible
+     in the handle line and the reactions/comments/reposts columns. */
+  rows.sort(function(a,b){return b.avg-a.avg;});
+  var scale=Math.max.apply(null, rows.map(function(r){return r.avg;}))||1;
   tb.innerHTML=rows.map(function(r,i){
-    var w=r.total===0?0:Math.min(Math.max(r.total/scale*100,0.2),100);
-    var barCls=r.total===scale?"hot":"";
+    var w=r.avg===0?0:Math.min(Math.max(r.avg/scale*100,0.2),100);
+    var barCls=r.avg===scale?"hot":"";
     var ours=r.ours?' <span class="ours-badge">Ours</span>':"";
     var trCls="li-row"+(r.ours?" ours":"");
     var posts=r.posts.map(function(p,j){
@@ -399,8 +429,8 @@ if(contentIdeasList){
     }).join("");
     return '<tr class="'+trCls+'" data-li="'+i+'">'+
       '<td>'+(i+1)+'</td>'+
-      '<td><div class="channel">'+esc(r.name)+ours+' <span class="li-carrow">›</span></div><div class="handle">Ø '+r.avg.toFixed(1)+'/post · '+r.n+' posts · tap to see them</div></td>'+
-      '<td><div class="barline"><div class="bar"><i class="'+barCls+'" style="--w:'+w.toFixed(1)+'%"></i></div><span>'+r.total+'</span></div></td>'+
+      '<td><div class="channel">'+esc(r.name)+ours+' <span class="li-carrow">›</span></div><div class="handle">Ø '+r.avg.toFixed(1)+'/post · '+r.n+' posts · '+r.total+' total'+(r.n<5?' · low sample':'')+' · tap to see them</div></td>'+
+      '<td><div class="barline"><div class="bar"><i class="'+barCls+'" style="--w:'+w.toFixed(1)+'%"></i></div><span>'+Math.round(r.avg)+'</span></div></td>'+
       '<td class="num"><b>'+r.R+'</b></td>'+
       '<td class="num">'+r.C+'</td>'+
       '<td class="num">'+r.P+'</td>'+
@@ -1635,7 +1665,10 @@ if(contentIdeasList){
 (function(){
   var vids=document.querySelectorAll(".brief-bg");
   if(!vids.length) return;
+  var reduce=false;
+  try{ reduce=window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
   vids.forEach(function(v){
+    if(reduce){ try{ v.removeAttribute("autoplay"); v.pause(); }catch(e){} return; } // leave the poster jpg showing, save bandwidth
     function reveal(){ v.classList.add("is-playing"); }
     if(!v.paused && !v.ended && v.readyState>2) reveal();   // already playing before JS ran
     v.addEventListener("playing", reveal);

@@ -91,6 +91,8 @@
 </main>
 
 <script>
+  /* respect reduced-motion: don't autoplay the looping background video */
+  try{ if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches){ var _bg=document.querySelector("video.bg"); if(_bg){ _bg.removeAttribute("autoplay"); _bg.pause(); } } }catch(e){}
   var HASH="f92e6f2482383f92e501cddd0e6786cc7a10b7d3cc327ff2d2421e74db39d9c6";
   /* Authorized sign-in emails — add more @continia.com addresses here, one per
      line (case-insensitive). The shared password is still required as well. */
