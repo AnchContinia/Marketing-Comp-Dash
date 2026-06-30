@@ -965,6 +965,8 @@ if(contentIdeasList){
   grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(fig&&fig.dataset.file){ var i=current.indexOf(fig.dataset.file); if(i>-1) openLB(i); } });
   if(lb) lb.addEventListener("click",function(e){ if(e.target===lb) closeLB(); });
   if(lbClose) lbClose.addEventListener("click",closeLB);
+  var lbDl=lb&&lb.querySelector(".is-lb-dl");
+  if(lbDl) lbDl.addEventListener("click",function(){ var f=current[lbIndex]; if(!f) return; var a=document.createElement("a"); a.href=src(f); a.download=f; document.body.appendChild(a); a.click(); a.remove(); });
   if(lbPrev) lbPrev.addEventListener("click",function(){navLB(-1);});
   if(lbNext) lbNext.addEventListener("click",function(){navLB(1);});
   document.addEventListener("keydown",function(e){
@@ -1026,6 +1028,8 @@ if(contentIdeasList){
   grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(fig&&fig.dataset.file){ var i=current.indexOf(fig.dataset.file); if(i>-1) openLB(i); } });
   if(lb) lb.addEventListener("click",function(e){ if(e.target===lb) closeLB(); });
   if(lbClose) lbClose.addEventListener("click",closeLB);
+  var lbDl=lb&&lb.querySelector(".is-lb-dl");
+  if(lbDl) lbDl.addEventListener("click",function(){ var f=current[lbIndex]; if(!f) return; var a=document.createElement("a"); a.href=src(f); a.download=f; document.body.appendChild(a); a.click(); a.remove(); });
   if(lbPrev) lbPrev.addEventListener("click",function(){navLB(-1);});
   if(lbNext) lbNext.addEventListener("click",function(){navLB(1);});
   document.addEventListener("keydown",function(e){
@@ -1087,6 +1091,8 @@ if(contentIdeasList){
   grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(fig&&fig.dataset.file){ var i=current.indexOf(fig.dataset.file); if(i>-1) openLB(i); } });
   if(lb) lb.addEventListener("click",function(e){ if(e.target===lb) closeLB(); });
   if(lbClose) lbClose.addEventListener("click",closeLB);
+  var lbDl=lb&&lb.querySelector(".is-lb-dl");
+  if(lbDl) lbDl.addEventListener("click",function(){ var f=current[lbIndex]; if(!f) return; var a=document.createElement("a"); a.href=src(f); a.download=f; document.body.appendChild(a); a.click(); a.remove(); });
   if(lbPrev) lbPrev.addEventListener("click",function(){navLB(-1);});
   if(lbNext) lbNext.addEventListener("click",function(){navLB(1);});
   document.addEventListener("keydown",function(e){

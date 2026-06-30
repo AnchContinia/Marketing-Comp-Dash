@@ -699,3 +699,17 @@ html[data-theme="dark"] .mm-sw.live{background:#8ff8ff}
 html[data-theme="dark"] .mm-sw.idle{background:#2b3855}
 html[data-theme="dark"] .mm-chip{background:var(--panel);border-color:var(--line2);color:#cbd5e1}
 html[data-theme="dark"] .mm-chip:hover{border-color:#6ea8ff;color:#6ea8ff}
+
+/* ---- Lightbox download button (mirrors the close ×, sits to its left) ---- */
+.is-lb-dl{position:fixed;top:18px;right:76px;width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.is-lb-dl:hover{background:rgba(255,255,255,.24)}
+.is-lb-dl svg{width:20px;height:20px;display:block}
+
+/* ---- Methodology dropdown + optically-centered bullet dots ---- */
+.method>summary{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;list-style:none}
+.method>summary::-webkit-details-marker{display:none}
+.method>summary h2{margin:0}
+.method-chev{font-size:22px;line-height:1;color:var(--cyan);transition:transform .2s;flex:none}
+.method[open] .method-chev{transform:rotate(90deg)}
+.method[open] ul{margin-top:14px}
+.method li:before{top:5px}
