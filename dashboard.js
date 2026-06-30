@@ -787,6 +787,36 @@ if(contentIdeasList){
   }).catch(function(){ mapEl.textContent="Map unavailable (could not load world-states.svg)."; });
 })();
 
+/* ---- E-invoicing mandate timeline (home): an alternating horizontal timeline
+   of key EU/global e-invoicing mandate dates, to plan campaigns around. A filled
+   node = live or already passed (computed from today); a hollow node = upcoming.
+   Edit the MANDATES list below. ---- */
+(function(){
+  var el=document.getElementById("tl-body");
+  if(!el) return;
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  /* EDIT ME — chronological mandates. y/m = start year/month (orders the items and
+     marks a node live-vs-upcoming); date = the display label; c = country; d = the
+     one-line description (raw HTML, so &amp;/&#8364; entities are fine). */
+  var MANDATES=[
+    {date:"Jan 2025", y:2025, m:1, c:"Germany",       d:"B2B e-invoice receiving becomes mandatory nationwide."},
+    {date:"Jan 2026", y:2026, m:1, c:"Belgium",       d:"Structured B2B e-invoicing (Peppol) goes mandatory."},
+    {date:"Feb-Apr 2026", y:2026, m:2, c:"Poland (KSeF)", d:"Large taxpayers from Feb 1, all other businesses from Apr 1."},
+    {date:"Sep 2026", y:2026, m:9, c:"France",        d:"All must receive; large &amp; mid-sized must issue."},
+    {date:"Jan 2027", y:2027, m:1, c:"Germany",       d:"Issuing mandatory for companies above &#8364;800k turnover."},
+    {date:"Sep 2027", y:2027, m:9, c:"France",        d:"SMEs and micro-enterprises must issue."}
+  ];
+  var now=new Date(), ny=now.getFullYear(), nm=now.getMonth()+1;
+  el.innerHTML='<div class="tl-row">'+MANDATES.map(function(m,i){
+    var done=(m.y<ny)||(m.y===ny&&m.m<=nm);
+    return '<div class="tl-col '+(i%2===0?"tl-up":"tl-down")+'">'+
+      '<div class="tl-card"><span class="tl-date">'+esc(m.date)+'</span>'+
+        '<div class="tl-text"><b>'+esc(m.c)+'</b><span>'+m.d+'</span></div></div>'+
+      '<span class="tl-stem"></span><span class="tl-node'+(done?" done":"")+'"></span>'+
+    '</div>';
+  }).join("")+'</div>';
+})();
+
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
 (function(){
   if(typeof window.YT_DATA==="undefined") return;
@@ -1710,7 +1740,8 @@ if(contentIdeasList){
       {id:"overview", icon:"fa-binoculars", label:"Public competitor insights"},
       {id:"competitors", icon:"fa-people-group", label:"Competitors"},
       {id:"content-gap", icon:"fa-chart-simple", label:"Content-Gap Analysis"},
-      {id:"markets-map", icon:"fa-earth-americas", label:"Market Map"}
+      {id:"markets-map", icon:"fa-earth-americas", label:"Market Map"},
+      {id:"timeline", icon:"fa-timeline", label:"E-invoicing Timeline"}
     ]},
     {page:"content.html", icon:"fa-newspaper", label:"Content", items:[
       {id:"insights", icon:"fa-lightbulb", label:"Insights & key events"},
