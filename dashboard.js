@@ -666,34 +666,47 @@ if(contentIdeasList){
   var mapEl=document.getElementById("mm-map");
   if(!mapEl) return;
 
-  /* EDIT ME — markets keyed by ISO 3166-1 alpha-2 code (UPPERCASE).
-     continia:true highlights the country as a Continia market on the map.
-     competitors[] = tracked rivals also live there. SEED DATA: competitors were
-     seeded from each competitor card's HQ country (real, from data[] at the top
-     of this file) — reassign them to real go-to-market presence as needed, and
-     add/remove Continia markets here. Country names come from the SVG labels, so
-     you only ever edit the two-letter codes and the competitor lists. */
-  var MARKETS={
-    DK:{continia:true, competitors:["AMC Banking","Acubiz","Lasernet"]},
-    SE:{continia:true, competitors:["Truvio (ExFlow)","Medius","Pagero","Qvalia","Rillion"]},
-    NO:{continia:true, competitors:[]},
-    FI:{continia:true, competitors:[]},
-    IS:{continia:true, competitors:[]},
-    GB:{continia:true, competitors:["Zetadocs (Equisys)","Compleat","Yavrio","Lasernet"]},
-    IE:{continia:true, competitors:[]},
-    DE:{continia:true, competitors:[]},
-    AT:{continia:true, competitors:[]},
-    CH:{continia:true, competitors:[]},
-    NL:{continia:true, competitors:[]},
-    BE:{continia:true, competitors:["Dime Scheduler"]},
-    FR:{continia:true, competitors:[]},
-    ES:{continia:true, competitors:["B2Brouter"]},
-    IT:{continia:true, competitors:[]},
-    PL:{continia:true, competitors:[]},
-    US:{continia:true, competitors:["Dooap","Tipalti","Yooz","Stampli","AvidXchange","Tungsten Automation","onPhase","MineralTree","Microsoft Expense Agent","Fidesic"]},
-    CA:{continia:true, competitors:[]},
-    AU:{continia:true, competitors:[]}
-  };
+  /* EDIT ME — mirrors Fixes/markets-and-hq-MAP.md.
+     CONTINIA = ISO 3166-1 alpha-2 codes where Continia is localized / officially
+     supported (dedicated e-invoicing formats, language, local rules). COMPETITORS
+     = each tracked rival and the markets it's live in; global players are mapped
+     to their primary regions, and the brief's "~" rows are best-effort (verify
+     before external use). The per-country MARKETS lookup is DERIVED from these two
+     lists, so you only ever maintain these. Country names come from the SVG's own
+     labels, so you only edit two-letter codes. */
+  var CONTINIA=["DK","SE","NO","FI","IS","DE","NL","BE","FR","ES","PT","GB","IE","AT","CH","CZ","PL","US","CA","AU","NZ"];
+  var COMPETITORS=[
+    {name:"Medius",                  markets:["SE","DK","NO","FI","DE","NL","BE","FR","ES","GB","US","CA","AU"]},
+    {name:"Tipalti",                 markets:["US","GB","CA","DE","FR","NL"]},
+    {name:"Stampli",                 markets:["US","CA"]},
+    {name:"Pagero",                  markets:["SE","DK","NO","FI","DE","NL","BE","FR","ES","PT","GB","IE","IT","PL","US"]},
+    {name:"B2Brouter",               markets:["ES","FR","IT","PT","DE","NL","BE"]},
+    {name:"Qvalia",                  markets:["SE","DK","NO","FI","DE","NL","BE"]},
+    {name:"Truvio (ExFlow)",         markets:["SE","DK","NO","FI","DE","NL","BE","GB"]},
+    {name:"Dooap",                   markets:["US","FI","SE","DK","NO"]},
+    {name:"Zetadocs (Equisys)",      markets:["GB","US"]},
+    {name:"Yooz",                    markets:["FR","US","DE","NL","BE","ES","GB"]},
+    {name:"AvidXchange",             markets:["US"]},
+    {name:"Compleat",                markets:["GB","US"]},
+    {name:"Tungsten Automation",     markets:["US","GB","DE","FR","AU"]},
+    {name:"onPhase",                 markets:["US"]},
+    {name:"MineralTree",             markets:["US"]},
+    {name:"Dime Scheduler",          markets:["BE","NL","DE","GB","US"]},
+    {name:"Microsoft Expense Agent", markets:CONTINIA.slice()},
+    {name:"Lasernet",                markets:["DK","SE","NO","FI","DE","NL","BE","GB","US"]},
+    {name:"AMC Banking",             markets:["DK","SE","NO","FI","DE","NL","BE"]},
+    {name:"Acubiz",                  markets:["DK","SE","NO","FI"]},
+    {name:"Rillion",                 markets:["SE","DK","NO","FI","GB","DE","US"]},
+    {name:"Fidesic",                 markets:["US"]},
+    {name:"Yavrio",                  markets:["GB"]}
+  ];
+  /* derive {code:{continia, competitors[]}} from the two lists above */
+  var MARKETS={};
+  CONTINIA.forEach(function(code){ MARKETS[code]={continia:true, competitors:[]}; });
+  COMPETITORS.forEach(function(c){ c.markets.forEach(function(code){
+    if(!MARKETS[code]) MARKETS[code]={continia:false, competitors:[]};
+    MARKETS[code].competitors.push(c.name);
+  }); });
 
   var card=document.getElementById("mm-card"),
       countEl=document.getElementById("mm-count"),
@@ -1690,7 +1703,8 @@ if(contentIdeasList){
     {page:"index.html", icon:"fa-house", label:"Home", items:[
       {id:"overview", icon:"fa-binoculars", label:"Public competitor insights"},
       {id:"competitors", icon:"fa-people-group", label:"Competitors"},
-      {id:"content-gap", icon:"fa-chart-simple", label:"Content-Gap Analysis"}
+      {id:"content-gap", icon:"fa-chart-simple", label:"Content-Gap Analysis"},
+      {id:"markets-map", icon:"fa-earth-americas", label:"Market Map"}
     ]},
     {page:"content.html", icon:"fa-newspaper", label:"Content", items:[
       {id:"insights", icon:"fa-lightbulb", label:"Insights & key events"},

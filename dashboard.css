@@ -658,6 +658,7 @@ html[data-theme="dark"] .cg-none{border-color:var(--line2)}
 .mm-map .mm-svg{display:block;width:100%;height:auto}
 .mm-svg text{display:none}
 .mm-svg #World,.mm-svg #Ocean{fill:transparent;stroke:none}
+.mm-svg #AQ{display:none}
 .mm-svg path{fill:#ccd3dd;stroke:var(--canvas);stroke-width:.4;transition:fill .15s}
 .mm-svg .mm-c{cursor:pointer}
 .mm-svg .mm-live path{fill:var(--navy)}
