@@ -435,14 +435,21 @@ if(contentIdeasList){
   function cap(s){ s=String(s); return s.charAt(0).toUpperCase()+s.slice(1); }
   function humanList(a){ return a.length<=1?(a[0]||""):a.slice(0,-1).join(", ")+" and "+a[a.length-1]; }
 
-  /* ---------- theme keyword map (first match wins; null = Other, excluded) ---------- */
+  /* ---------- theme keyword map (first match wins; null = Other, excluded).
+     This is the ONLY place classification happens — keep the lists here, grouped
+     and commented, so the monthly data refresh never needs code changes. Order =
+     priority: earlier themes win a tie (an "AI-driven e-invoicing" post tags as
+     AI). "Company culture / brand" sits last so it only catches posts no product,
+     AI or story theme already claimed. Note: "ai" matches on a word boundary
+     (\bai\b), so "automation" is listed separately or it would never hit. ---------- */
   var THEMES=[
-    {label:"AI / agentic AP",      kw:["ai","agent","agentic","autonomous","copilot","llm"]},
+    {label:"AI / agentic AP",      kw:["ai","agent","agentic","autonomous","copilot","llm","automation","automate"]},
     {label:"E-invoicing mandates", kw:["ksef","peppol","vida","mandate","e-invoic","b2b reform","e-rechnung","verifactu","efaktura","factura","facturacion"]},
     {label:"Product demos",        kw:["demo","walkthrough","what's new","release","feature","upgrade","studio"]},
-    {label:"Customer stories",     kw:["case study","customer","testimonial","success story","savings"]},
+    {label:"Customer stories",     kw:["case study","customer","testimonial","success story","savings","full-time","in minutes"]},
     {label:"Banking & payments",   kw:["bank","payment","reconcil","iso 20022","swift","cash management"]},
-    {label:"Expense management",   kw:["expense","mileage","receipt","reimburse"]}
+    {label:"Expense management",   kw:["expense","mileage","receipt","reimburse"]},
+    {label:"Company culture / brand", kw:["meetup","team","elevate","iso 27001","certified","commute","anniversary","losninger","softvaerket","cake","kage"]}
   ];
   var LABELS=THEMES.map(function(t){return t.label;});
   function themeOf(title){
@@ -465,8 +472,22 @@ if(contentIdeasList){
   var youCounts=counts(ours);
   var perComp={}; field.forEach(function(c){ perComp[c.name]=counts(c); });
   var fieldTotal={}; LABELS.forEach(function(l){ var s=0; field.forEach(function(c){ s+=perComp[c.name][l]; }); fieldTotal[l]=s; });
-  var youTagged=LABELS.reduce(function(s,l){return s+youCounts[l];},0);
+  /* field AVERAGE per theme (one typical competitor) — lets the comparison answer
+     "are we above or below a normal rival?" with a meaningful 50% midpoint, where
+     the field SUM only ever answers "what slice of all 12 are we". */
+  var fieldAvg={}; LABELS.forEach(function(l){ fieldAvg[l]=fieldTotal[l]/field.length; });
+  function taggedTotal(m){ return LABELS.reduce(function(s,l){return s+m[l];},0); }
+  var youTagged=taggedTotal(youCounts);
   var offTheme=(ours.posts.length||0)-youTagged;
+  /* generic export titles ("Carousel post" etc.) can never be tagged — surface
+     them as "untitled" so a low on-theme count reads as data quality, not silence. */
+  function isUntitled(t){ return /^(carousel|multi-image|image|text|video|article|link)\s+post$/i.test(String(t).trim()); }
+  var youUntitled=(ours.posts||[]).filter(function(p){return isUntitled(p.t);}).length;
+  /* off-theme on the comparison side too, so the metric is visible for both. */
+  var compPostsLen={}, compOff={};
+  field.forEach(function(c){ compPostsLen[c.name]=(c.posts.length||0); compOff[c.name]=compPostsLen[c.name]-taggedTotal(perComp[c.name]); });
+  var fieldPosts=field.reduce(function(s,c){return s+compPostsLen[c.name];},0);
+  var fieldOff=field.reduce(function(s,c){return s+compOff[c.name];},0);
   function eng(c){ var s=0; (c.posts||[]).forEach(function(p){ s+=(p.r||0)+(p.c||0)+(p.rp||0); }); return s; }
   var youEng=eng(ours)/(ours.posts.length||1);
   var compEng={}; field.forEach(function(c){ compEng[c.name]=eng(c)/(c.posts.length||1); });
@@ -482,6 +503,7 @@ if(contentIdeasList){
 
   /* ---------- static shell ---------- */
   var opts='<option value="field">The field ('+field.length+')</option>'+
+    '<option value="avg">Typical competitor (avg)</option>'+
     field.map(function(c){ return '<option value="'+esc(c.name)+'">'+esc(c.name)+'</option>'; }).join("");
   mount.innerHTML=
     '<div class="cg-hero">'+
@@ -524,12 +546,18 @@ if(contentIdeasList){
   }
 
   function draw(){
-    var cmp=sel.value, isField=cmp==="field";
-    var them=isField?fieldTotal:perComp[cmp];
-    var cmpName=isField?"the field":cmp;
-    var cmpShort=isField?"field":cmp;
-    var cmpEng=isField?fieldEng:compEng[cmp];
+    var cmp=sel.value, isField=cmp==="field", isAvg=cmp==="avg";
+    var them=isAvg?fieldAvg:(isField?fieldTotal:perComp[cmp]);
+    var cmpName=isAvg?"a typical competitor":(isField?"the field":cmp);
+    var cmpShort=isAvg?"avg":(isField?"field":cmp);
+    var cmpEng=(isField||isAvg)?fieldEng:compEng[cmp];
     legGapEl.textContent=cmpName;
+
+    /* parity = the share that counts as keeping pace. One-to-one (a typical or a
+       single competitor) it's 50%; against the field SUM, fair share is 1/(n+1) —
+       so green is reachable instead of demanding Continia out-post all 12 at once. */
+    var parity=isField?(100/(field.length+1)):50;
+    var dec=function(n){ return isAvg?(Math.round(n*10)/10):n; };
 
     /* rank themes by gap (their lead over us), biggest first -> the purple cascade */
     var rows=LABELS.map(function(l){ return {label:l, you:youCounts[l], them:them[l]}; })
@@ -545,35 +573,41 @@ if(contentIdeasList){
     var listTxt=humanList(gapLabels.slice(0,3));
     if(!gapLabels.length){
       verdictEl.innerHTML="Continia matches or leads <b>"+esc(cmpName)+"</b> across every tracked theme &mdash; rare air.";
+    } else if(isAvg){
+      verdictEl.innerHTML="Against <b>a typical competitor</b>, Continia holds <b>"+sov+"%</b> of the conversation &mdash; quiet on "+esc(listTxt)+".";
     } else if(isField){
       verdictEl.innerHTML="Continia is in <b>"+sov+"%</b> of the tracked category conversation &mdash; quiet on "+esc(listTxt)+" while the field publishes freely.";
     } else {
       verdictEl.innerHTML="Continia holds <b>"+sov+"%</b> of the conversation against "+esc(cmp)+", trailing on "+esc(listTxt)+".";
     }
 
-    /* bullet-bars: navy = your voice, purple = the field's posts you're absent from */
+    /* bullet-bars: navy = your voice, purple = the comparison's posts you're absent from */
     rowsEl.innerHTML=rows.map(function(r,i){
       var total=r.you+r.them;
       var youW=(r.you/maxTotal*100), gapW=(r.them/maxTotal*100);
       var sovT=total?Math.round(r.you/total*100):0;
-      var cls=sovT>=50?"ahead":"behind";
+      var cls=sovT>=parity?"ahead":"behind";
       var isTop=(i===0 && r.them>r.you);
+      var themLbl=dec(r.them);
       return '<div class="cg-row">'+
         '<div class="cg-theme"><b>'+esc(r.label)+'</b>'+
           (isTop?'<span class="cg-flag">Biggest gap</span>':'')+
-          '<span class="cg-rsub">you '+r.you+' &middot; '+esc(cmpShort)+' '+r.them+'</span></div>'+
-        '<div class="cg-track" role="img" aria-label="'+esc(r.label)+': you '+r.you+', '+esc(cmpShort)+' '+r.them+'">'+
+          '<span class="cg-rsub">you '+r.you+' &middot; '+esc(cmpShort)+' '+themLbl+'</span></div>'+
+        '<div class="cg-track" role="img" aria-label="'+esc(r.label)+': you '+r.you+', '+esc(cmpShort)+' '+themLbl+'">'+
           '<i class="cg-you" style="width:'+youW.toFixed(1)+'%"></i>'+
           '<i class="cg-them" style="left:'+youW.toFixed(1)+'%;width:'+gapW.toFixed(1)+'%"></i>'+
         '</div>'+
         '<div class="cg-pct '+cls+'">'+sovT+'%</div></div>';
     }).join("");
 
-    /* context cards */
+    /* context cards — on-theme count carries the off-theme rate for BOTH sides */
     var engDiff=Math.round(youEng-cmpEng);
+    var cmpOffN=isField?fieldOff:(isAvg?(fieldOff/field.length):compOff[cmp]);
+    var cmpPostsN=isField?fieldPosts:(isAvg?(fieldPosts/field.length):compPostsLen[cmp]);
     cardsEl.innerHTML=
       mcard("On-theme posts", youTagged+'<small>/'+(ours.posts.length||0)+'</small>',
-        "<b>"+offTheme+"</b> recent posts were off the tracked themes", offTheme>youTagged?"behind":"")+
+        "<b>"+offTheme+"</b> off-theme"+(youUntitled?" ("+youUntitled+" untitled)":"")+" &middot; "+esc(cap(cmpName))+" "+Math.round(cmpOffN)+"/"+Math.round(cmpPostsN)+" off",
+        offTheme>youTagged?"behind":"")+
       mcard("Engagement / post", Math.round(youEng),
         "<b>"+(engDiff>=0?"+":"")+engDiff+"</b> vs "+esc(cmpName)+" ("+Math.round(cmpEng)+")", engDiff>=0?"ahead":"behind")+
       mcard("YouTube reach · 30d", "#"+ytRank+'<small>/'+yv.length+'</small>',
@@ -583,9 +617,10 @@ if(contentIdeasList){
     /* gaps to close = the top purple rows */
     var gaps=rows.filter(function(r){return r.them>r.you;}).slice(0,3);
     gapEl.innerHTML=gaps.length?gaps.map(function(r){
-      return '<div class="cg-gap"><span class="cg-gnum">'+r.them+'</span>'+
+      var n=dec(r.them);
+      return '<div class="cg-gap"><span class="cg-gnum">'+n+'</span>'+
         '<div class="cg-gmain"><div class="cg-gt">'+esc(r.label)+'</div>'+
-        '<div class="cg-gs">'+esc(cap(cmpName))+' published '+r.them+' post'+(r.them===1?"":"s")+' here &mdash; you published '+r.you+'.</div></div>'+
+        '<div class="cg-gs">'+esc(cap(cmpName))+' published '+n+' post'+(n===1?"":"s")+' here &mdash; you published '+r.you+'.</div></div>'+
         '<a class="cmp-btn" href="content.html#event-calendar">Plan it &#8599;</a></div>';
     }).join(""):'<div class="cg-none">Continia matches or leads '+esc(cmpName)+' on every tracked theme in this capture.</div>';
   }
