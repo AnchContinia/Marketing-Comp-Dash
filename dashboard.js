@@ -1892,6 +1892,21 @@ if(contentIdeasList){
   html+='<button class="sb-logout" id="sbLogout" type="button"><i class="fa-light fa-right-from-bracket"></i><span>Sign out</span></button>';
   mount.innerHTML=html;
 
+  /* Mirror each nav item's icon onto its module heading: prepend the same
+     fa-light icon in front of the section's <h2>. Data-driven from NAV, so a
+     new section picks up its icon automatically. Only .section-head > h2 is
+     targeted (skips the hero, which has no module heading). */
+  NAV.forEach(function(g){ g.items.forEach(function(it){
+    var sec=document.getElementById(it.id); if(!sec) return;
+    var heads=sec.querySelectorAll(".section-head > h2");
+    [].forEach.call(heads,function(h2){
+      if(h2.querySelector(".h2-ico")) return;
+      var ic=document.createElement("i");
+      ic.className="fa-light "+it.icon+" h2-ico";
+      h2.insertBefore(ic, h2.firstChild);
+    });
+  }); });
+
   /* Log out: clear the curtain auth flag (both stores) and return to login. */
   var sbLogout=document.getElementById("sbLogout");
   if(sbLogout) sbLogout.addEventListener("click",function(){

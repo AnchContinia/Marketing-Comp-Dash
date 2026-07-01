@@ -805,3 +805,8 @@ html[data-theme="dark"] .as-ag-k{color:#fff}
 html[data-theme="dark"] .as-ag-tag{background:#8ff8ff;color:#052975}
 html[data-theme="dark"] .as-ag-row.own .as-ag-n,html[data-theme="dark"] .as-ag-row.own .as-ag-r{color:#8ff8ff}
 @media(max-width:760px){.as-stats{grid-template-columns:repeat(2,1fr)}.as-ag-row{grid-template-columns:150px 46px 1fr auto;gap:8px}}
+
+/* ---- module heading icon (mirrors the sidebar nav icon) ---- */
+.section-head h2{display:inline-flex;align-items:center;gap:10px}
+.h2-ico{color:var(--navy);font-size:18px;flex:none;transform:translateY(1px)}
+html[data-theme="dark"] .h2-ico{color:#8ff8ff}
