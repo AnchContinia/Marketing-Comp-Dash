@@ -85,7 +85,7 @@
 .ci-fmt{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
 .ci-fmt-tag{font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:#052975;background:#def5ff;border:1px solid #bfe7fb;border-radius:999px;padding:2px 8px}
 .ci-score{text-align:right;font-size:22px;font-weight:850;color:var(--navy);line-height:1}
-#contentIdeasList .ci-score{font-size:30px}
+#contentIdeasList .ci-score,#video-ideas .ci-score{font-size:30px}
 .ci-arrow{width:30px;height:30px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:#fff;color:var(--navy);font-weight:850;transition:transform .18s}
 .ci-item[open] .ci-arrow{transform:rotate(90deg)}
 .ci-detail{border-top:1px solid var(--line);padding:14px 16px}
