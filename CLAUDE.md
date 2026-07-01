@@ -74,6 +74,13 @@ This is why one shared script can power three different pages without errors. Ke
 paths (macOS NFD filenames otherwise 404 on Pages). When you add bank images, **push the actual
 `Assets/<folder>` files too — not just the index JS** — or the bank renders broken thumbnails.
 
+## Box styling rule (no left-accent bars)
+
+**Never style a box/panel with a colored left-accent bar** (`border-left:4px solid …` or
+similar). Boxes stay clean: a uniform `1px solid var(--line)` border all the way around, like
+every other card/panel on the page. If a box needs emphasis, use the heading colour or
+background — not a coloured edge stripe. (Standing instruction from the user.)
+
 ## The two-kinds-of-dates rule
 
 There are two distinct date types on the page; never confuse them:
