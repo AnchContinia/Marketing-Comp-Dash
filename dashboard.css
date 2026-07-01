@@ -702,7 +702,7 @@ html[data-theme="dark"] .mm-badge{background:#8ff8ff;color:#052975}
 html[data-theme="dark"] .mm-sw.live{background:#8ff8ff}
 html[data-theme="dark"] .mm-sw.idle{background:#2b3855}
 html[data-theme="dark"] .mm-chip{background:var(--panel);border-color:var(--line2);color:#cbd5e1}
-html[data-theme="dark"] .mm-chip:hover{border-color:#6ea8ff;color:#6ea8ff}
+html[data-theme="dark"] .mm-chip:hover{border-color:#8ff8ff;color:#8ff8ff}
 
 /* ---- Lightbox download button (mirrors the close ×, sits to its left) ---- */
 .is-lb-dl{position:fixed;top:18px;right:76px;width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.12);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
