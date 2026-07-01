@@ -1858,7 +1858,7 @@ if(contentIdeasList){
     ]},
     {page:"content.html", icon:"fa-newspaper", label:"Content", items:[
       {id:"insights", icon:"fa-lightbulb", label:"Insights & key events"},
-      {id:"event-calendar", icon:"fa-calendar-day", label:"Event Calendar"},
+      {id:"event-calendar", icon:"fa-calendar-days", label:"Event Calendar"},
       {id:"content-ideas", icon:"fa-pen-nib", label:"Content Ideas"},
       {id:"linkedin-compare", icon:"fa-thumbs-up", label:"LinkedIn Engagement"},
       {id:"image-search", icon:"fa-images", label:"Linkedin image bank"},

@@ -808,5 +808,5 @@ html[data-theme="dark"] .as-ag-row.own .as-ag-n,html[data-theme="dark"] .as-ag-r
 
 /* ---- module heading icon (mirrors the sidebar nav icon) ---- */
 .section-head h2{display:inline-flex;align-items:center;gap:10px;line-height:1}
-.h2-ico{color:var(--navy);font-size:18px;line-height:1;flex:none}
+.h2-ico{color:var(--navy);font-size:18px;line-height:1;flex:none;transform:translateY(-1px)}
 html[data-theme="dark"] .h2-ico{color:#8ff8ff}
