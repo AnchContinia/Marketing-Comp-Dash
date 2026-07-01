@@ -1019,9 +1019,10 @@ if(contentIdeasList){
   var opts=ROSTER.map(function(c){return '<option value="'+esc(c.n)+'">'+esc(c.n)+(c.prox?" · "+esc(c.prox):"")+'</option>';}).join("");
   var html='<div class="bc-cmp"><div class="bc-cmp-top"><span class="bc-vs-us">Continia</span><span class="bc-vs-x">vs</span><select id="bc-vs" class="bc-select">'+opts+'</select></div><div class="bc-cmp-panel" id="bc-cmp-panel"></div></div>';
 
-  /* ----- battlecards ----- */
-  html+='<div class="bc-grid">';
-  ROSTER.forEach(function(c){
+  /* ----- battlecards ----- two independent flex columns (by index parity) so
+     expanding a card only pushes cards in its OWN column, never the other side ----- */
+  var colA="", colB="";
+  ROSTER.forEach(function(c,i){
     var st=STANCE[c.stance]||{l:c.stance,c:"steady"};
     var t=tacticalFor(c);
     var body='<div class="bc-sec"><h5>Their play</h5><p>'+esc(c.pos||c.head||"")+'</p>'+(c.str?'<p class="bc-sub">'+esc(c.str)+'</p>':'')+'</div>';
@@ -1029,9 +1030,10 @@ if(contentIdeasList){
     if(t&&t.watch) body+='<div class="bc-sec sec-watch"><h5>Watch-outs</h5><ul>'+t.watch.map(function(w){return '<li>'+esc(w)+'</li>';}).join("")+'</ul></div>';
     if(t&&t.obj) body+='<div class="bc-sec"><h5>Objection handling</h5>'+t.obj.map(function(o){return '<div class="bc-obj"><span class="bc-q">'+esc(o[0])+'</span><span class="bc-a">'+esc(o[1])+'</span></div>';}).join("")+'</div>';
     if(!t) body+='<div class="bc-empty">Tactical layer not written yet — add this competitor to <b>BATTLE</b> in dashboard.js.</div>';
-    html+='<details class="bc-card"><summary class="bc-cardhead"><span class="dot '+st.c+'"></span><b>'+esc(c.n)+'</b><span class="bc-cat">'+esc(c.cat||"")+'</span><span class="bc-prox bc-p-'+esc(c.prox||"")+'">'+esc(c.prox||"")+'</span><span class="bc-chev">&rsaquo;</span></summary><div class="bc-cardbody">'+body+'</div></details>';
+    var card='<details class="bc-card"><summary class="bc-cardhead"><span class="dot '+st.c+'"></span><b>'+esc(c.n)+'</b><span class="bc-cat">'+esc(c.cat||"")+'</span><span class="bc-prox bc-p-'+esc(c.prox||"")+'">'+esc(c.prox||"")+'</span><span class="bc-chev">&rsaquo;</span></summary><div class="bc-cardbody">'+body+'</div></details>';
+    if(i%2===0) colA+=card; else colB+=card;
   });
-  html+='</div>';
+  html+='<div class="bc-grid"><div class="bc-col">'+colA+'</div><div class="bc-col">'+colB+'</div></div>';
 
   mount.innerHTML=html;
   var sel=document.getElementById("bc-vs");

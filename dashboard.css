@@ -830,7 +830,8 @@ html[data-theme="dark"] .h2-ico{color:#8ff8ff}
 .bc-win h5{margin:0 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--navy);font-weight:850}
 .bc-win ul{margin:0;padding-left:18px;display:grid;gap:5px}
 .bc-win li{font-size:13px;color:var(--ink);line-height:1.45}
-.bc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.bc-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:start}
+.bc-col{display:flex;flex-direction:column;gap:12px;min-width:0}
 .bc-card{border:1px solid var(--line);border-radius:10px;background:var(--paper);overflow:hidden;height:max-content}
 .bc-card[open]{border-color:var(--line2)}
 .bc-cardhead{list-style:none;display:flex;align-items:center;gap:10px;padding:13px 14px;cursor:pointer}
