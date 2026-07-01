@@ -857,15 +857,22 @@ if(contentIdeasList){
     {n:"B2Brouter",                 c:"E-invoicing / Peppol",      r:null,k:0,  d:null,        t:"Two listings, no ratings."},
     {n:"Qvalia",                    c:"E-invoicing",               r:null,k:0,  d:null,        t:"Confirmed no BC app."}
   ];
+  /* G2 review standing — live from g2.com (snapshot Jul 1, 2026). Covers the
+     whole field (incl. BC-listed rivals), a lens distinct from AppSource above.
+     own=Continia's own G2 page; flag adds a small caveat chip. */
   var AG=[
     {n:"Stampli",              g2:4.6, k:1946, note:"Capterra 4.8 (463)"},
-    {n:"Tipalti",              g2:4.5, k:415,  note:"from $99/mo"},
-    {n:"Yooz",                 g2:4.4, k:351},
-    {n:"AvidXchange",          g2:4.4, k:327,  note:"8,000+ customers"},
+    {n:"Tipalti",              g2:4.5, k:415},
+    {n:"Yooz",                 g2:4.4, k:351,  note:"+4 since last snapshot"},
+    {n:"AvidXchange",          g2:4.4, k:327},
+    {n:"Tungsten (ex-Kofax)",  g2:4.2, k:245,  flag:"vendor profile — aggregated, not one product"},
     {n:"MineralTree",          g2:4.5, k:160},
-    {n:"onPhase (ex-DocuPhase)",g2:4.4,k:89},
-    {n:"Tungsten (ex-Kofax)",  g2:4.3, k:55,   note:"TotalAgility"},
-    {n:"Compleat Software",    g2:4.5, k:31}
+    {n:"Rillion (ex-Palette)", g2:4.2, k:129},
+    {n:"onPhase (ex-DocuPhase)",g2:4.4,k:89,   note:"+1 since last snapshot"},
+    {n:"Medius",               g2:4.3, k:82},
+    {n:"Compleat Software",    g2:4.5, k:31},
+    {n:"Fidesic",              g2:4.8, k:12,   flag:"highest G2 rating in field"},
+    {n:"Continia Expense Mgmt",g2:4.3, k:2,    own:true, flag:"Continia's only G2 product page"}
   ];
 
   var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
@@ -912,9 +919,9 @@ if(contentIdeasList){
   sortP(BC).forEach(function(p){ html+=row(p,false); });
   html+='</tbody></table></div>';
 
-  html+='<div class="as-ag-head"><b>ERP-agnostic players</b><span>No Business Central listing — but far heavier review mass elsewhere (G2 counts shown)</span></div><div class="as-ag">';
-  html+=AG.map(function(a){ var w=(a.k/maxAG*100).toFixed(1);
-    return '<div class="as-ag-row"><span class="as-ag-n">'+esc(a.n)+'</span><span class="as-ag-r">G2 '+a.g2.toFixed(1)+'</span><span class="as-ag-bar"><i style="width:'+w+'%"></i></span><span class="as-ag-k">'+nf(a.k)+(a.note?'<span class="as-ag-note"> · '+esc(a.note)+'</span>':'')+'</span></div>';
+  html+='<div class="as-ag-head"><b>G2 review standing</b><span>Live from g2.com &middot; snapshot Jul 1, 2026 — review mass across the field. Continia has minimal G2 presence (strength lives on AppSource).</span></div><div class="as-ag">';
+  html+=AG.slice().sort(function(a,b){return b.k-a.k;}).map(function(a){ var w=(a.k/maxAG*100).toFixed(1); var nt=a.note||a.flag;
+    return '<div class="as-ag-row'+(a.own?' own':'')+'"><span class="as-ag-n">'+esc(a.n)+(a.own?'<span class="as-ag-tag">Continia</span>':'')+'</span><span class="as-ag-r">G2 '+a.g2.toFixed(1)+'</span><span class="as-ag-bar"><i style="width:'+w+'%"></i></span><span class="as-ag-k"><b>'+nf(a.k)+'</b>'+(nt?'<span class="as-ag-note"> · '+esc(nt)+'</span>':'')+'</span></div>';
   }).join("")+'</div>';
 
   mount.innerHTML=html;

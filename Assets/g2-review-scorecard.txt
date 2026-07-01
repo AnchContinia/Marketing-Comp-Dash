@@ -1,0 +1,142 @@
+========================================================================
+G2 REVIEW-SCORECARD — Continia vs. konkurrenter (LIVE-HENTET)
+Snapshot: 1. juli 2026   ·   Kilde: g2.com (aflæst pr. produktside)
+========================================================================
+
+OM DENNE FIL
+------------------------------------------------------------------------
+Tal herunder er hentet live fra G2-produktsiderne med Claude-in-Chrome.
+Sentiment er PARAFRASERET — ingen ordrette brugercitater gengivet.
+source pr. tal = "g2".
+
+========================================================================
+CONTINIA — EGNE LOESNINGER (baseline)
+========================================================================
+
+[1] Continia Document Capture
+    G2: g2.com/products/continia-document-capture/reviews
+    Rating: — (0/5)   Antal: 0   [source: g2]
+    Status: "Not reviewed yet" (Claimed profil)
+
+[2] Continia Expense Management
+    G2: g2.com/products/continia-expense-management/reviews
+    Rating: 4,3/5   Antal: 2   [source: g2]
+    Seneste aktivitet: ~2 mdr. siden (rating opdateret 3/6/2025)
+    Temaer (parafraseret): ros for realtids-udgiftsstyring og at slippe
+    for manuelt Excel/kvitteringer.
+
+[3] Continia Document Output
+    G2: g2.com/products/continia-document-output/reviews
+    Rating: — (0/5)   Antal: 0   [source: g2]
+    Status: "Not reviewed yet" (Claimed profil)
+
+[4] Continia Payment Management
+    Ingen dedikeret G2-side. Primaer kilde: AppSource.
+
+[5] Continia Banking
+    Ingen dedikeret G2-side. Primaer kilde: AppSource.
+
+[6] Continia Collection Management
+    Ingen dedikeret G2-side. Primaer kilde: AppSource.
+
+========================================================================
+KONKURRENTER — MED G2-TILSTEDEVAERELSE
+========================================================================
+
+[7] Medius
+    G2: g2.com/products/medius/reviews
+    Rating: 4,3/5   Antal: 82   [source: g2]
+    Note: Time-to-implement ~5 mdr.
+
+[8] Rillion (tidl. Palette)
+    G2: g2.com/products/rillion/reviews
+    Rating: 4,2/5   Antal: 129   [source: g2]
+    Note: Time-to-implement ~2 mdr.
+
+[9] ExFlow AP (SignUp Software)
+    G2: g2.com/products/exflow-ap/reviews
+    Rating: — (0/5)   Antal: 0   [source: g2]
+    Status: "Not reviewed yet" — bekraefter at AppSource er primaer kilde.
+
+[10] Fidesic
+    G2: g2.com/products/fidesic/reviews
+    Rating: 4,8/5   Antal: 12   [source: g2]
+    Seneste review: ~2 mdr. siden. Hoejeste rating i feltet.
+    Temaer (parafraseret): ros for brugervenlighed og AP-automatisering.
+
+[11] Tipalti
+    G2: g2.com/products/tipalti/reviews
+    Rating: 4,5/5   Antal: 415   [source: g2]
+
+[12] Stampli
+    G2: g2.com/products/stampli/reviews
+    Rating: 4,6/5   Antal: 1.946   [source: g2]
+    (Bekraefter scorecardets verificerede 4,6.)
+
+[13] AvidXchange
+    G2: g2.com/products/avidxchange/reviews
+    Rating: 4,4/5   Antal: 327   [source: g2]
+
+[14] MineralTree
+    G2: g2.com/products/mineraltree/reviews
+    Rating: 4,5/5   Antal: 160   [source: g2]
+    Seneste review: ~2 mdr. siden.
+
+[15] onPhase (tidl. DocuPhase)
+    G2: g2.com/products/onphase/reviews
+    Rating: 4,4/5   Antal: 89   [source: g2]
+    Note: Scorecard havde 88 -> nu 89 (review-velocity: +1).
+
+[16] Compleat Software
+    G2: g2.com/products/compleat-software/reviews
+    Rating: 4,5/5   Antal: 31   [source: g2]
+    Seneste review: ~2 mdr. siden. (Bekraefter verificeret antal 31.)
+
+[17] Yooz
+    G2: g2.com/products/yooz/reviews
+    Rating: 4,4/5   Antal: 351   [source: g2]
+    Note: Scorecard havde 347 -> nu 351 (review-velocity: +4).
+
+[18] Tungsten Automation (tidl. Kofax)
+    G2: g2.com/products/tungsten-automation (seller/vendor-profil)
+    Rating: 4,2/5   Antal: 245   [source: g2]
+    VIGTIGT: Dette er en VENDOR-profil (aggregeret), ikke ét enkeltprodukt.
+    Delprodukter:
+      - Tungsten TotalAgility: 4,27/5 (42 reviews)
+      - Tungsten AP Agility:   —/5 (0 reviews)
+    Markér i modulet saa den ikke 1:1-sammenlignes med enkeltprodukt-ratings.
+
+========================================================================
+KONKURRENTER — INGEN / MINIMAL G2-TILSTEDEVAERELSE
+========================================================================
+Ingen dedikeret G2-produktside. Trackes primaert via AppSource.
+(Soege-sider ikke scrapet — kun stoej.)
+
+[19] Zetadocs (Equisys)
+[20] Dooap
+[21] Pagero
+[22] Lasernet (Formpipe)
+[23] Yavrio
+[24] Dime Scheduler
+[25] AMC Banking
+[26] Acubiz
+[27] B2Brouter
+[28] Qvalia
+[29] Microsoft Expense Agent (Microsofts egen; ingen G2-produktside)
+
+========================================================================
+AENDRINGER SIDEN SIDSTE SNAPSHOT
+========================================================================
+- onPhase: 88 -> 89 reviews
+- Yooz:    347 -> 351 reviews
+- Tungsten Automation: korrekt slug er /tungsten-automation (vendor),
+  ikke det gaettede slug i det oprindelige scorecard.
+
+========================================================================
+SAMMENFATTENDE COVERAGE
+========================================================================
+Hoejeste rating (G2):        Fidesic 4,8/5
+Flest reviews (G2):          Stampli 1.946
+Flest reviews (enkeltprod.): Tipalti 415 (efter Stampli)
+Continia paa G2:             lav tilstedevaerelse (kun Expense Mgmt m. 2)
+========================================================================

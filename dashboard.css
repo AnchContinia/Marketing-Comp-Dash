@@ -771,11 +771,14 @@ html[data-theme="dark"] .tl-date{background:var(--panel);border-color:var(--line
 .as-ag-head b{font-size:13.5px;color:var(--ink)}
 .as-ag-head span{font-size:11.5px;color:var(--muted)}
 .as-ag{display:grid;gap:8px}
-.as-ag-row{display:grid;grid-template-columns:172px 58px minmax(70px,1fr) auto;align-items:center;gap:12px}
+.as-ag-row{display:grid;grid-template-columns:206px 58px minmax(70px,1fr) auto;align-items:center;gap:12px}
 .as-ag-n{font-weight:750;color:var(--ink);font-size:12.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.as-ag-tag{display:inline-block;margin-left:7px;font-size:9px;font-weight:850;letter-spacing:.04em;text-transform:uppercase;background:var(--navy);color:#fff;border-radius:999px;padding:2px 6px;vertical-align:1px}
+.as-ag-row.own .as-ag-n{color:var(--navy);font-weight:850;overflow:visible}
+.as-ag-row.own .as-ag-r{color:var(--navy)}
 .as-ag-r{font-size:11.5px;font-weight:800;color:var(--navy)}
 .as-ag-bar{height:8px;background:#eaf0f7;border-radius:999px;overflow:hidden}
-.as-ag-bar i{display:block;height:100%;background:var(--navy);border-radius:999px}
+.as-ag-bar i{display:block;height:100%;min-width:5px;background:var(--navy);border-radius:999px}
 .as-ag-k{font-size:12px;font-weight:800;color:var(--ink);text-align:right;white-space:nowrap}
 .as-ag-note{font-weight:600;color:var(--muted)}
 html[data-theme="dark"] .as-stat{background:var(--panel);border-color:var(--line2)}
@@ -798,4 +801,6 @@ html[data-theme="dark"] .as-ag-r{color:#8ff8ff}
 html[data-theme="dark"] .as-ag-bar{background:rgba(255,255,255,.08)}
 html[data-theme="dark"] .as-ag-bar i{background:#8ff8ff}
 html[data-theme="dark"] .as-ag-k{color:#fff}
-@media(max-width:760px){.as-stats{grid-template-columns:repeat(2,1fr)}.as-ag-row{grid-template-columns:120px 46px 1fr auto;gap:8px}}
+html[data-theme="dark"] .as-ag-tag{background:#8ff8ff;color:#052975}
+html[data-theme="dark"] .as-ag-row.own .as-ag-n,html[data-theme="dark"] .as-ag-row.own .as-ag-r{color:#8ff8ff}
+@media(max-width:760px){.as-stats{grid-template-columns:repeat(2,1fr)}.as-ag-row{grid-template-columns:150px 46px 1fr auto;gap:8px}}
