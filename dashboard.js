@@ -818,6 +818,110 @@ if(contentIdeasList){
   }).join("")+'</div>';
 })();
 
+/* ---- AppSource Intelligence: review-standing scorecard (Home).
+   Source of truth is Assets/Appsource-data.rtf (snapshot below). Three editable
+   lists: OWN (Continia's own listings), BC (competitors with a BC AppSource
+   presence) and AG (ERP-agnostic players with no BC listing). Freshness is
+   derived from the review date vs the snapshot, so "Fresh/Aging/Stale" ages
+   forward on its own each refresh — just update the numbers + snapshot. ---- */
+(function(){
+  var mount=document.getElementById("as-body");
+  if(!mount) return;
+  function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+  function nf(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,",");}
+
+  var SNAP_Y=2026, SNAP_M=7;   /* snapshot: Jul 2026 — bump on each refresh */
+
+  /* r=AppSource rating, k=# ratings, w=# written reviews, d=latest review (YYYY-MM-DD), t=paraphrased themes */
+  var OWN=[
+    {n:"Document Capture",         c:"AP automation",             r:4.9, k:68, w:35, d:"2026-06-11", t:"Built inside BC (no separate portal); high OCR accuracy; three-way matching; experienced vendor."},
+    {n:"Expense Management",       c:"Expense management",        r:4.7, k:23, w:11, d:"2026-02-17", t:"Mobile app / receipt scan; mileage; VAT handling. One 2★ (Jul 2025) flags instability + support."},
+    {n:"Document Output",          c:"Document distribution",     r:5.0, k:8,  w:5,  d:"2025-11-27", t:"Automatic document distribution; per-customer language & layout; open invoices on reminders."},
+    {n:"Payment Management (DK)",  c:"Vendor payments / bank rec.",r:5.0,k:7,  w:2,  d:"2022-05-25", t:"Scandinavian bank integration; country variants (SE/NO/FI/NL/US). Reviews aging."},
+    {n:"Banking (DK)",             c:"Payments / banking",        r:null,k:0,        d:null,        t:"No reviews yet (newer module, many country variants)."},
+    {n:"Collection Management (DK)",c:"Collections (DK)",         r:null,k:0,        d:null,        t:"No reviews yet."}
+  ];
+  var BC=[
+    {n:"Zetadocs (Equisys)",        c:"Expenses",                  r:4.9, k:28, d:"2023-06-30", t:"Verified; reviews aging (2022–23), low velocity."},
+    {n:"Yavrio",                    c:"Banking integration",       r:5.0, k:15, w:10, d:"2025-06-18", t:"Active with strong velocity. Bank feeds + domestic/cross-border payments in BC."},
+    {n:"Fidesic",                   c:"AP automation",             r:4.8, k:13, d:null,        t:"AI invoice capture; approval routing; vendor portal."},
+    {n:"ExFlow (SignUp Software)",  c:"AP automation",             r:4.8, k:9,  w:4, d:"2022-07-12", t:"Flexible automation; PO matching. Stale (2020–22)."},
+    {n:"Dime.Scheduler",            c:"Resource scheduling",       r:5.0, k:5,  w:1, d:"2020-09-19", t:"Low volume."},
+    {n:"AMC Banking",               c:"Bank / payment formats",    r:3.5, k:4,  d:null,        t:"Cash management in BC; best variant 3.5★ (4). Newest BC listing has 0 ratings."},
+    {n:"Pagero",                    c:"E-invoicing",               r:5.0, k:3,  d:"2023-10-05", t:"'Plug and play'; global network; Peppol / Nemhandel."},
+    {n:"Medius",                    c:"AP automation",             r:5.0, k:1,  d:"2019-11-19", g2:{r:4.3,k:82},  t:"AppSource effectively empty; strength lives on G2 (82)."},
+    {n:"Rillion (ex-Palette)",      c:"AP automation",             r:5.0, k:1,  d:"2023-09-20", g2:{r:4.2,k:129}, t:"Easy workflow; PaletteArena EOL 2026-09-30 (migration risk)."},
+    {n:"Dooap",                     c:"AP automation (D365 F&O)",  r:5.0, k:1,  d:"2022-02-04", t:"F&O listing, thin. Fast support response."},
+    {n:"Lasernet (Formpipe)",       c:"Document output",           r:null,k:0,  d:null,        t:"No reviews. From $625/mo."},
+    {n:"Acubiz",                    c:"Expense management",        r:null,k:0,  d:null,        t:"No own BC listing (only 3rd-party 'VisionExpense')."},
+    {n:"B2Brouter",                 c:"E-invoicing / Peppol",      r:null,k:0,  d:null,        t:"Two listings, no ratings."},
+    {n:"Qvalia",                    c:"E-invoicing",               r:null,k:0,  d:null,        t:"Confirmed no BC app."}
+  ];
+  var AG=[
+    {n:"Stampli",              g2:4.6, k:1946, note:"Capterra 4.8 (463)"},
+    {n:"Tipalti",              g2:4.5, k:415,  note:"from $99/mo"},
+    {n:"Yooz",                 g2:4.4, k:351},
+    {n:"AvidXchange",          g2:4.4, k:327,  note:"8,000+ customers"},
+    {n:"MineralTree",          g2:4.5, k:160},
+    {n:"onPhase (ex-DocuPhase)",g2:4.4,k:89},
+    {n:"Tungsten (ex-Kofax)",  g2:4.3, k:55,   note:"TotalAgility"},
+    {n:"Compleat Software",    g2:4.5, k:31}
+  ];
+
+  var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  function ym(s){var p=String(s).split("-");return {y:+p[0],m:+p[1]};}
+  function monthsAgo(d){var a=ym(d);return (SNAP_Y-a.y)*12+(SNAP_M-a.m);}
+  function fmtMon(d){ if(!d) return "—"; var a=ym(d); return MON[a.m-1]+" "+a.y; }
+  function fresh(d){ if(!d) return null; var m=monthsAgo(d); if(m<=12) return {l:"Fresh",c:"fresh"}; if(m<=30) return {l:"Aging",c:"aging"}; return {l:"Stale",c:"stale"}; }
+  function stars(r){ if(r==null) return '<span class="as-nostar">No ratings</span>'; var pct=(r/5*100).toFixed(1);
+    return '<span class="as-rate"><span class="as-stars"><span class="as-stars-f" style="width:'+pct+'%">★★★★★</span>★★★★★</span><b>'+r.toFixed(1)+'</b></span>'; }
+  function sortP(arr){ return arr.slice().sort(function(a,b){ var ak=a.k||0,bk=b.k||0; if((ak>0)!==(bk>0)) return (bk>0)-(ak>0); return bk-ak; }); }
+
+  function row(p,ours){
+    var f=fresh(p.d), g2=p.g2?('G2 '+p.g2.r.toFixed(1)+' ('+nf(p.g2.k)+')'):'';
+    return '<tr'+(ours?' class="ours"':'')+'>'+
+      '<td><div class="as-name">'+esc(p.n)+(ours?'<span class="as-tag">Continia</span>':'')+'</div><div class="as-cat">'+esc(p.c)+'</div></td>'+
+      '<td>'+stars(p.r)+'</td>'+
+      '<td class="num">'+(p.k?'<b>'+nf(p.k)+'</b>'+(p.w?'<span class="as-w"> · '+p.w+' written</span>':''):'<span class="as-w">—</span>')+'</td>'+
+      '<td>'+(p.d?('<span class="as-when">'+fmtMon(p.d)+'</span>'+(f?' <span class="as-badge '+f.c+'">'+f.l+'</span>':'')):'<span class="as-when">—</span>')+'</td>'+
+      '<td class="as-theme">'+esc(p.t)+(g2?'<span class="as-also">'+g2+'</span>':'')+'</td>'+
+    '</tr>';
+  }
+
+  /* headline stats derived from OWN (weighted avg, totals) */
+  var rated=OWN.filter(function(p){return p.r!=null;});
+  var sumK=0,sumW=0,wsum=0; rated.forEach(function(p){ sumK+=p.k; sumW+=(p.w||0); wsum+=p.r*p.k; });
+  var avg=(wsum/sumK);
+  var stats=[
+    {v:avg.toFixed(1)+'★', l:"Continia AppSource avg", s:rated.length+" rated apps · "+sumK+" ratings · "+sumW+" written"},
+    {v:"Jun 2026",             l:"Freshest Continia review", s:"Document Capture — highest review velocity on BC"},
+    {v:"Yavrio",               l:"Only BC rival still active", s:"every other rival's newest review is 2019–2023"},
+    {v:"1,900+",               l:"Stampli reviews on G2", s:"ERP-agnostic giants dwarf all BC-native review mass"}
+  ];
+
+  var maxAG=Math.max.apply(null,AG.map(function(a){return a.k;}));
+
+  var html='<div class="as-stats">'+stats.map(function(s){
+      return '<div class="as-stat"><div class="as-v">'+s.v+'</div><div class="as-l">'+esc(s.l)+'</div><div class="as-s">'+esc(s.s)+'</div></div>';
+    }).join("")+'</div>';
+
+  html+='<div class="youtube-wrap"><table class="as-table"><thead><tr><th>Product / competitor</th><th>AppSource rating</th><th class="num">Ratings</th><th>Latest review</th><th>Themes &amp; notes</th></tr></thead><tbody>';
+  html+='<tr class="as-grp"><td colspan="5">Continia — own listings</td></tr>';
+  sortP(OWN).forEach(function(p){ html+=row(p,true); });
+  html+='<tr class="as-grp"><td colspan="5">Competitors on BC AppSource</td></tr>';
+  sortP(BC).forEach(function(p){ html+=row(p,false); });
+  html+='</tbody></table></div>';
+
+  html+='<div class="as-ag-head"><b>ERP-agnostic players</b><span>No Business Central listing — but far heavier review mass elsewhere (G2 counts shown)</span></div><div class="as-ag">';
+  html+=AG.map(function(a){ var w=(a.k/maxAG*100).toFixed(1);
+    return '<div class="as-ag-row"><span class="as-ag-n">'+esc(a.n)+'</span><span class="as-ag-r">G2 '+a.g2.toFixed(1)+'</span><span class="as-ag-bar"><i style="width:'+w+'%"></i></span><span class="as-ag-k">'+nf(a.k)+(a.note?'<span class="as-ag-note"> · '+esc(a.note)+'</span>':'')+'</span></div>';
+  }).join("")+'</div>';
+
+  mount.innerHTML=html;
+  var asof=document.getElementById("as-asof");
+  if(asof) asof.textContent="Microsoft AppSource · snapshot Jul 1, 2026";
+})();
+
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
 (function(){
   if(typeof window.YT_DATA==="undefined") return;
@@ -1741,6 +1845,7 @@ if(contentIdeasList){
       {id:"overview", icon:"fa-binoculars", label:"Public competitor insights"},
       {id:"competitors", icon:"fa-people-group", label:"Competitors"},
       {id:"content-gap", icon:"fa-chart-simple", label:"Content-Gap Analysis"},
+      {id:"appsource", icon:"fa-store", label:"AppSource Intelligence"},
       {id:"markets-map", icon:"fa-earth-americas", label:"Market Map"},
       {id:"timeline", icon:"fa-timeline", label:"E-invoicing Timeline"}
     ]},
