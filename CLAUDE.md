@@ -81,6 +81,13 @@ similar). Boxes stay clean: a uniform `1px solid var(--line)` border all the way
 every other card/panel on the page. If a box needs emphasis, use the heading colour or
 background — not a coloured edge stripe. (Standing instruction from the user.)
 
+## Brand-colour rule (no off-palette tints)
+
+Stick to the Continia palette. In particular, **never use `#9adcc9` or `#e0a54a`** (off-palette
+lightened tints) — use **Smart Green `#5f9e8d`** and **Performance Purple `#983eae`** instead.
+Full palette: Tech Blue `#052975`, Innovation Blue/cyan `#8ff8ff`, Smart Green `#5f9e8d`,
+Performance Purple `#983eae`. (Standing instruction from the user.)
+
 ## The two-kinds-of-dates rule
 
 There are two distinct date types on the page; never confuse them:
