@@ -865,5 +865,23 @@ html[data-theme="dark"] .bc-sec.sec-win h5{color:#5f9e8d}
 html[data-theme="dark"] .bc-sec.sec-win li::marker{color:#5f9e8d}
 html[data-theme="dark"] .bc-sec.sec-watch h5{color:#983eae}
 html[data-theme="dark"] .bc-sec.sec-watch li::marker{color:#983eae}
+.bc-cmp-tac{margin-top:12px;border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:12px 14px;display:grid;gap:13px}
+.bc-toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.bc-chips{display:flex;gap:6px;flex-wrap:wrap}
+.bc-chip{border:1px solid var(--line2);background:var(--paper);color:var(--muted);border-radius:8px;padding:6px 11px;font:inherit;font-size:12px;font-weight:750;cursor:pointer;transition:.15s}
+.bc-chip:hover{border-color:var(--navy);color:var(--navy)}
+.bc-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.bc-search{flex:1;min-width:180px;height:36px;border:1px solid var(--line2);border-radius:8px;padding:0 12px;background:var(--paper);color:var(--ink);font:inherit;font-size:13px}
+.bc-count{font-size:12px;color:var(--muted);font-weight:700;white-space:nowrap}
+.bc-noresult{grid-column:1/-1;padding:24px;text-align:center;color:var(--muted);font-size:13px}
+.bc-reviewed{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted);font-weight:650}
+.bc-rev-dot{width:7px;height:7px;border-radius:50%;background:#5f9e8d;flex:none}
+.bc-reviewed.stale .bc-rev-dot{background:var(--amber)}
+.bc-copy{align-self:start;display:inline-flex;align-items:center;gap:7px;border:1px solid var(--line2);background:var(--paper);color:var(--navy);border-radius:8px;padding:7px 12px;font:inherit;font-size:12px;font-weight:750;cursor:pointer;width:max-content;transition:.15s}
+.bc-copy:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
+html[data-theme="dark"] .bc-chip:hover{border-color:#8ff8ff;color:#8ff8ff}
+html[data-theme="dark"] .bc-chip.active{background:#8ff8ff;color:#052975;border-color:#8ff8ff}
+html[data-theme="dark"] .bc-copy{color:#8ff8ff}
+html[data-theme="dark"] .bc-copy:hover{background:#8ff8ff;color:#052975;border-color:#8ff8ff}
 @media(max-width:900px){.bc-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.bc-cmp-grid{grid-template-columns:1fr;gap:0}.bc-cmp-grid>div{border-bottom:1px solid var(--line)}}

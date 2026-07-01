@@ -941,48 +941,83 @@ if(contentIdeasList){
   function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   var STANCE={ai:{l:"AI-offensive",c:"ai"},cons:{l:"Consolidation / M&A",c:"cons"},steady:{l:"Stable / niche",c:"steady"}};
   var PROXRANK={High:0,Medium:1,Low:2};
+  var REV_Y=2026, REV_M=7;   /* snapshot for tactical-note freshness; bump on refresh */
 
-  /* Continia's own profile — the fixed left side of every head-to-head. */
+  /* Continia's own profile — the fixed left side of every head-to-head. Scale row
+     carries the real AppSource numbers so "we win on review velocity" has a figure. */
   var CONTINIA={
     pos:"BC-native suite — AP capture, expense, e-invoicing, banking, document output — embedded, no separate portal.",
     prox:"Native · built for Business Central",
     ai:"AI in the flow: OCR capture + invoice matching, tuned for production accuracy.",
-    scale:"20+ yrs in the Dynamics channel · freshest AppSource review stream",
+    scale:"4.9★ across 106 AppSource ratings · freshest review Jun 2026 · 20+ yrs in the Dynamics channel",
     edge:"Neutral (not payment-owned) · deepest BC embedding · one vendor for the whole finance-automation flow."
   };
 
   /* Editable tactical seed, keyed by competitor name (n). win = where Continia
      wins, watch = landmines to handle, obj = [objection, suggested response]. */
   var BATTLE={
-    "ExFlow":{win:["Truvio is D365 F&O-first — Continia is purpose-built for Business Central, not ported down from F&O.","One BC-native stack (AP + expense + e-invoicing + banking) vs. a stitched-together multi-brand suite."],
+    "ExFlow":{reviewed:"2026-06",win:["Truvio is D365 F&O-first — Continia is purpose-built for Business Central, not ported down from F&O.","One BC-native stack (AP + expense + e-invoicing + banking) vs. a stitched-together multi-brand suite."],
       watch:["Their TruvioSense AI story is strong — match it with in-flow AI and a longer BC track record."],
       obj:[["“They're fully Microsoft-native too.”","True on F&O. On Business Central, Continia is deeper and has the longer BC-specific history."]]},
-    "Dooap":{win:["Dooap is F&O + mobile-first; most BC buyers want automation inside BC — Continia's home turf.","Design-your-own agents add governance overhead; Continia ships working AP automation out of the box."],
+    "Dooap":{reviewed:"2026-06",win:["Dooap is F&O + mobile-first; most BC buyers want automation inside BC — Continia's home turf.","Design-your-own agents add governance overhead; Continia ships working AP automation out of the box."],
       watch:["Strongest AI narrative in the field — lead with production accuracy, not agent demos."],
       obj:[["“Dooap has real agents; you just have AI features.”","Continia automates the AP flow proven in production. Autonomy without controls is a risk finance teams flag (Forrester, Apr 2026)."]]},
-    "Medius":{win:["Medius is multi-ERP, enterprise-scale — for a BC-centric mid-market, Continia is lighter, native and faster to value.","No separate platform to run alongside BC."],
+    "Medius":{reviewed:"2026-06",win:["Medius is multi-ERP, enterprise-scale — for a BC-centric mid-market, Continia is lighter, native and faster to value.","No separate platform to run alongside BC."],
       watch:["Analyst-anointed (2026 Gartner MQ Leader) — don't fight the badge; reframe on BC-native fit and total cost."],
       obj:[["“Medius is a Gartner Leader.”","For multi-ERP enterprises, yes. In a BC shop a native solution beats a bolt-on platform on speed, cost and adoption."]]},
-    "Zetadocs":{win:["Closest BC-native profile — win on breadth (banking + e-invoicing + expense), review velocity and depth of matching."],
+    "Zetadocs":{reviewed:"2026-06",win:["Closest BC-native profile — win on breadth (banking + e-invoicing + expense), review velocity and depth of matching."],
       watch:["Also an 'everything inside BC' story — differentiate on scope and momentum, not just 'native'."],
       obj:[["“Zetadocs is also fully inside BC.”","Yes — compare on scope (Continia spans AP, expense, e-invoicing, banking) and current review activity."]]},
-    "Microsoft Expense Agent":{win:["Microsoft's agent is expense-only and brand-new — Continia is a complete, proven AP/expense/e-invoicing/banking suite with years of BC depth."],
+    "Microsoft Expense Agent":{reviewed:"2026-06",win:["Microsoft's agent is expense-only and brand-new — Continia is a complete, proven AP/expense/e-invoicing/banking suite with years of BC depth."],
       watch:["Platform owner — position as complementary and deeper, never head-on 'vs Microsoft'."],
       obj:[["“Why pay an ISV when Microsoft ships it?”","Microsoft covers a slice (an expense agent). Continia covers the full finance-automation flow with configurable depth BC's built-ins don't reach."]]},
-    "Pagero":{win:["Pagero is a network / e-invoicing play; Continia delivers compliant e-invoicing inside the BC document flow — no separate portal."],
+    "Pagero":{reviewed:"2026-06",win:["Pagero is a network / e-invoicing play; Continia delivers compliant e-invoicing inside the BC document flow — no separate portal."],
+      watch:["Global network + Thomson Reuters backing is real reach — win on embedded BC workflow and lower integration overhead, not on network size."],
       obj:[["“Pagero has the global network.”","For BC customers, Continia embeds e-invoicing in the workflow they already use — far less integration overhead."]]},
-    "Rillion":{win:["PaletteArena reaches end-of-life 2026-09-30 — a live migration window. Continia is the BC-native landing spot."],
-      watch:["Time outreach to their EOL migration deadline."]},
-    "Fidesic":{win:["Fidesic is US-centric AP; Continia brings European + global e-invoicing compliance and a broader BC suite."]},
-    "Yavrio":{win:["Yavrio is banking-integration-focused; Continia's banking sits inside a full AP / expense / e-invoicing suite."]}
+    "Rillion":{reviewed:"2026-06",win:["PaletteArena reaches end-of-life 2026-09-30 — a live migration window. Continia is the BC-native landing spot."],
+      watch:["Time outreach to their EOL migration deadline (2026-09-30)."]},
+    "Fidesic":{reviewed:"2026-06",win:["Fidesic is US-centric AP; Continia brings European + global e-invoicing compliance and a broader BC suite."],
+      watch:["AI invoice-capture story with a vendor portal — win on EU mandate coverage and full BC-suite breadth, not capture alone."],
+      obj:[["“Fidesic already does AI invoice capture.”","So does Continia — inside BC, and with the European e-invoicing compliance Fidesic doesn't cover."]]},
+    "Yavrio":{reviewed:"2026-06",win:["Yavrio is banking-integration-focused; Continia's banking sits inside a full AP / expense / e-invoicing suite."],
+      watch:["Fresh review velocity in BC banking — win on the full finance suite around banking, not on connectivity alone."],
+      obj:[["“Yavrio handles our bank connectivity.”","Continia does banking too — inside one suite that also covers AP capture, expense and e-invoicing, so it's one vendor end-to-end."]]},
+    "Dime Scheduler":{reviewed:"2026-06",win:["Adjacent, not head-on: Dime Scheduler is visual resource/project scheduling — Continia is the finance-automation suite. They rarely displace each other; more often they coexist in the same BC tenant.","When a BC customer needs AP/expense/e-invoicing, Dime Scheduler doesn't play there — Continia owns that flow."],
+      watch:["Not a real finance-automation competitor — treat as an adjacent coexisting app, not a threat."]},
+    "Lasernet":{reviewed:"2026-06",win:["Lasernet (Formpipe) is a document-output specialist; Continia Document Output sits inside a full BC finance suite (AP capture + expense + e-invoicing + banking) — one vendor for the whole flow.","E-invoicing is embedded in the BC document flow, not a separate output engine to configure and maintain."],
+      watch:["Deep, established output/formatting engine across BC + F&O — don't fight on raw output flexibility; win on suite breadth and BC-native embedding."],
+      obj:[["“Lasernet handles all our document output already.”","For pure output, it's strong. But Continia covers capture-to-payment plus output in one embedded BC stack — fewer moving parts and vendors."]]},
+    "AMC Banking":{reviewed:"2026-06",win:["AMC Banking is a bank-format/payments specialist; Continia Banking + Payment Management sit inside the full AP/expense/e-invoicing suite — the payment step isn't a bolt-on.","One BC-native vendor for capture, approval, payment and reconciliation instead of a format layer alongside a separate AP tool."],
+      watch:["130+ country bank formats is a genuine depth story — win on the integrated end-to-end flow, not on format count."],
+      obj:[["“AMC has more bank formats.”","True on breadth of formats. In a BC shop the value is the connected flow — invoice to approval to payment to reconciliation — which Continia delivers natively without stitching tools together."]]},
+    "Acubiz":{reviewed:"2026-06",win:["Acubiz is a certified BC integration — an external expense platform connected to BC. Continia Expense Management is built INSIDE Business Central: no separate portal, no sync layer.","Expense is one module in Continia's full finance-automation suite; with Acubiz it's a standalone platform to run and integrate."],
+      watch:["Nordic-established in expense management — differentiate on native embedding and suite breadth, not on 'we do expense too'."],
+      obj:[["“Acubiz is a dedicated expense specialist.”","And Continia's expense is embedded in BC and part of one suite — same finance data, same UI, no separate platform to maintain or reconcile."]]},
+    "B2Brouter":{reviewed:"2026-06",win:["B2Brouter is an e-invoicing access point / Peppol connector; Continia delivers compliant e-invoicing inside the BC document flow — no separate portal or network account to manage.","One BC-native stack covers AP capture, e-invoicing and banking; B2Brouter covers the network hop only."],
+      watch:["Strong on Peppol reach and Spain/France mandate coverage — for BC customers, win on embedded workflow and lower integration overhead."],
+      obj:[["“B2Brouter already connects us to Peppol.”","For BC customers Continia embeds compliant e-invoicing in the workflow they already use — the network is handled without bolting on a separate access point."]]},
+    "Qvalia":{reviewed:"2026-06",win:["Qvalia focuses on e-invoicing + line-item/spend data; Continia embeds e-invoicing in the full AP/finance flow inside BC — capture, approval, payment and compliance in one place.","No separate platform alongside BC to run for the network + analytics layer."],
+      watch:["Line-item data automation is their distinctive angle — win on suite breadth and BC-native embedding rather than pure e-invoicing feature-by-feature."],
+      obj:[["“Qvalia gives us e-invoicing plus spend analytics.”","Continia embeds e-invoicing in the full BC AP flow; the transaction data lives next to the workflow instead of in a separate platform."]]}
   };
-  var AGNOSTIC_WIN="ERP-agnostic and not BC-listed — win on native Business Central embedding and no bolt-on integration.";
+  /* ERP-agnostic players — each gets a tailored one-liner (fallback keeps the generic). */
+  var AGNOSTIC_WIN={
+    "Tipalti":"Tipalti leads on global mass-payments (196 countries) — but it's ERP-agnostic and not BC-native. Win on embedded BC AP + the full finance flow, not just payouts.",
+    "Stampli":"Stampli is collaboration-first, US mid-market, ERP-agnostic. Win on native BC embedding and European/global e-invoicing compliance it doesn't own.",
+    "AvidXchange":"AvidXchange is payments-first and now Corpay/TPG-owned — a fair roadmap-risk angle. It's not BC-native; win on embedded BC AP and vendor neutrality.",
+    "MineralTree":"MineralTree (Global Payments-owned) is US AP+payments, ERP-agnostic. Win on BC-native embedding and one-vendor finance flow.",
+    "onPhase":"onPhase (ex-DocuPhase) is AP + document management, ERP-agnostic. Win on native BC embedding vs. a bolt-on connected to BC.",
+    "Yooz":"Yooz is multi-ERP AP with 250+ integrations — broad but shallow per ERP. Win on purpose-built BC depth, not a generic connector.",
+    "Compleat":"Compleat is P2P + online buying, UK-centric, ERP-agnostic. Win on native BC embedding and the full finance-automation scope.",
+    "Tungsten Automation":"Tungsten (ex-Kofax) is IDP/RPA + AP — heavy platform, not BC-native. Win on lightweight, embedded BC automation with faster time-to-value."
+  };
+  var AGNOSTIC_FALLBACK="ERP-agnostic and not BC-listed — win on native Business Central embedding and no bolt-on integration.";
   var AGNOSTIC=["Tipalti","Stampli","AvidXchange","Tungsten Automation","onPhase","MineralTree","Yooz","Compleat"];
 
   function tacticalFor(c){
     var b=BATTLE[c.n];
     if(b) return b;
-    if(AGNOSTIC.indexOf(c.n)>=0) return {win:[AGNOSTIC_WIN]};
+    if(AGNOSTIC.indexOf(c.n)>=0) return {win:[AGNOSTIC_WIN[c.n]||AGNOSTIC_FALLBACK]};
     return null;
   }
 
@@ -991,6 +1026,37 @@ if(contentIdeasList){
     var pr=(PROXRANK[a.prox]==null?9:PROXRANK[a.prox])-(PROXRANK[b.prox]==null?9:PROXRANK[b.prox]);
     return pr!==0?pr:(a.n<b.n?-1:1);
   });
+
+  /* ----- shared helpers ----- */
+  function byName(n){ return data.filter(function(x){return x.n===n;})[0]; }
+  function li(w){ return '<li>'+esc(w)+'</li>'; }
+  var MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  function reviewedInfo(t){ if(!t||!t.reviewed) return null; var p=String(t.reviewed).split("-"), y=+p[0], m=+p[1];
+    var age=(REV_Y-y)*12+(REV_M-m); return {label:(MON[m-1]||"?")+" "+y, stale:age>4}; }
+
+  /* tactical layer (win / watch / objection / reviewed) — shared by the cards AND
+     the comparator so the two never diverge (M2). Empty state is sales-facing (M1). */
+  function tacticalSections(c){
+    var t=tacticalFor(c), h="";
+    if(t&&t.win)   h+='<div class="bc-sec sec-win"><h5>Where we win</h5><ul>'+t.win.map(li).join("")+'</ul></div>';
+    if(t&&t.watch) h+='<div class="bc-sec sec-watch"><h5>Watch-outs</h5><ul>'+t.watch.map(li).join("")+'</ul></div>';
+    if(t&&t.obj)   h+='<div class="bc-sec"><h5>Objection handling</h5>'+t.obj.map(function(o){return '<div class="bc-obj"><span class="bc-q">'+esc(o[0])+'</span><span class="bc-a">'+esc(o[1])+'</span></div>';}).join("")+'</div>';
+    if(!t)         h+='<div class="bc-empty">Tactical notes coming soon — refined with sales.</div>';
+    var ri=reviewedInfo(t);
+    if(ri) h+='<div class="bc-reviewed'+(ri.stale?" stale":"")+'"><span class="bc-rev-dot"></span>Reviewed '+esc(ri.label)+(ri.stale?" · refresh due":"")+'</div>';
+    return h;
+  }
+
+  /* plain-text export for the copy button (M3) */
+  function plainText(c){
+    var t=tacticalFor(c), out=["BATTLECARD — Continia vs. "+c.n, (c.cat||"")+" · "+(c.prox||"")+" proximity", "", "THEIR PLAY: "+(c.pos||c.head||"")];
+    if(c.str) out.push("  "+c.str);
+    if(t&&t.win){ out.push("","WHERE WE WIN:"); t.win.forEach(function(w){ out.push("  • "+w); }); }
+    if(t&&t.watch){ out.push("","WATCH-OUTS:"); t.watch.forEach(function(w){ out.push("  • "+w); }); }
+    if(t&&t.obj){ out.push("","OBJECTION HANDLING:"); t.obj.forEach(function(o){ out.push("  Q: "+o[0], "  A: "+o[1]); }); }
+    var ri=reviewedInfo(t); if(ri) out.push("","(Tactical notes reviewed "+ri.label+" — draft, refine with sales.)");
+    return out.join("\n");
+  }
 
   /* ----- head-to-head comparator ----- */
   function dimRows(c){
@@ -1002,42 +1068,67 @@ if(contentIdeasList){
       return '<div class="bc-rowlbl">'+esc(r[0])+'</div><div class="bc-cell us">'+esc(r[1])+'</div><div class="bc-cell them">'+esc(r[2])+'</div>';
     }).join("");
   }
-  function winList(c){
-    var t=tacticalFor(c); var ws=(t&&t.win)?t.win:[CONTINIA.edge];
-    return '<ul>'+ws.map(function(w){return '<li>'+esc(w)+'</li>';}).join("")+'</ul>';
-  }
   function renderCmp(name){
-    var c=data.filter(function(x){return x.n===name;})[0]; if(!c) return;
+    var c=byName(name); if(!c) return;
     var st=STANCE[c.stance]||{l:c.stance,c:"steady"};
-    var html='<div class="bc-cmp-grid">'+
-      '<div class="bc-rowlbl"></div><div class="bc-head us">Continia</div><div class="bc-head them"><span class="dot '+st.c+'"></span>'+esc(c.n)+'</div>'+
-      dimRows(c)+'</div>'+
-      '<div class="bc-win"><h5>Where Continia wins</h5>'+winList(c)+'</div>';
-    document.getElementById("bc-cmp-panel").innerHTML=html;
+    document.getElementById("bc-cmp-panel").innerHTML=
+      '<div class="bc-cmp-grid"><div class="bc-rowlbl"></div><div class="bc-head us">Continia</div><div class="bc-head them"><span class="dot '+st.c+'"></span>'+esc(c.n)+'</div>'+dimRows(c)+'</div>'+
+      '<div class="bc-cmp-tac">'+tacticalSections(c)+'<button class="bc-copy" type="button" data-name="'+esc(c.n)+'"><i class="fa-light fa-copy"></i> Copy card</button></div>';
   }
 
-  var opts=ROSTER.map(function(c){return '<option value="'+esc(c.n)+'">'+esc(c.n)+(c.prox?" · "+esc(c.prox):"")+'</option>';}).join("");
-  var html='<div class="bc-cmp"><div class="bc-cmp-top"><span class="bc-vs-us">Continia</span><span class="bc-vs-x">vs</span><select id="bc-vs" class="bc-select">'+opts+'</select></div><div class="bc-cmp-panel" id="bc-cmp-panel"></div></div>';
-
-  /* ----- battlecards ----- two independent flex columns (by index parity) so
-     expanding a card only pushes cards in its OWN column, never the other side ----- */
-  var colA="", colB="";
-  ROSTER.forEach(function(c,i){
+  /* ----- one battlecard ----- */
+  function cardHtml(c){
     var st=STANCE[c.stance]||{l:c.stance,c:"steady"};
-    var t=tacticalFor(c);
-    var body='<div class="bc-sec"><h5>Their play</h5><p>'+esc(c.pos||c.head||"")+'</p>'+(c.str?'<p class="bc-sub">'+esc(c.str)+'</p>':'')+'</div>';
-    if(t&&t.win) body+='<div class="bc-sec sec-win"><h5>Where we win</h5><ul>'+t.win.map(function(w){return '<li>'+esc(w)+'</li>';}).join("")+'</ul></div>';
-    if(t&&t.watch) body+='<div class="bc-sec sec-watch"><h5>Watch-outs</h5><ul>'+t.watch.map(function(w){return '<li>'+esc(w)+'</li>';}).join("")+'</ul></div>';
-    if(t&&t.obj) body+='<div class="bc-sec"><h5>Objection handling</h5>'+t.obj.map(function(o){return '<div class="bc-obj"><span class="bc-q">'+esc(o[0])+'</span><span class="bc-a">'+esc(o[1])+'</span></div>';}).join("")+'</div>';
-    if(!t) body+='<div class="bc-empty">Tactical layer not written yet — add this competitor to <b>BATTLE</b> in dashboard.js.</div>';
-    var card='<details class="bc-card"><summary class="bc-cardhead"><span class="dot '+st.c+'"></span><b>'+esc(c.n)+'</b><span class="bc-cat">'+esc(c.cat||"")+'</span><span class="bc-prox bc-p-'+esc(c.prox||"")+'">'+esc(c.prox||"")+'</span><span class="bc-chev">&rsaquo;</span></summary><div class="bc-cardbody">'+body+'</div></details>';
-    if(i%2===0) colA+=card; else colB+=card;
-  });
-  html+='<div class="bc-grid"><div class="bc-col">'+colA+'</div><div class="bc-col">'+colB+'</div></div>';
+    var body='<div class="bc-sec"><h5>Their play</h5><p>'+esc(c.pos||c.head||"")+'</p>'+(c.str?'<p class="bc-sub">'+esc(c.str)+'</p>':'')+'</div>'+
+      tacticalSections(c)+
+      '<button class="bc-copy" type="button" data-name="'+esc(c.n)+'"><i class="fa-light fa-copy"></i> Copy card</button>';
+    return '<details class="bc-card"><summary class="bc-cardhead"><span class="dot '+st.c+'"></span><b>'+esc(c.n)+'</b><span class="bc-cat">'+esc(c.cat||"")+'</span><span class="bc-prox bc-p-'+esc(c.prox||"")+'">'+esc(c.prox||"")+'</span><span class="bc-chev">&rsaquo;</span></summary><div class="bc-cardbody">'+body+'</div></details>';
+  }
 
-  mount.innerHTML=html;
+  /* ----- filterable grid, two independent columns (M4) ----- */
+  var fProx="High", fQ="";
+  function renderGrid(){
+    var q=fQ.trim().toLowerCase();
+    var list=ROSTER.filter(function(c){
+      if(fProx!=="all" && c.prox!==fProx) return false;
+      if(q){ var hay=((c.n||"")+" "+(c.cat||"")+" "+(c.pos||"")+" "+(c.o||"")).toLowerCase(); if(hay.indexOf(q)<0) return false; }
+      return true;
+    });
+    var grid=document.getElementById("bc-grid");
+    if(!list.length){ grid.innerHTML='<div class="bc-noresult">No competitors match — clear the filter or search.</div>'; }
+    else { var colA="",colB=""; list.forEach(function(c,i){ if(i%2===0) colA+=cardHtml(c); else colB+=cardHtml(c); });
+      grid.innerHTML='<div class="bc-col">'+colA+'</div><div class="bc-col">'+colB+'</div>'; }
+    var cnt=document.getElementById("bc-count"); if(cnt) cnt.textContent="Showing "+list.length+" of "+ROSTER.length;
+  }
+
+  /* ----- build shell ----- */
+  var opts=ROSTER.map(function(c){return '<option value="'+esc(c.n)+'">'+esc(c.n)+(c.prox?" · "+esc(c.prox):"")+'</option>';}).join("");
+  var PROX=[["High","High"],["Medium","Medium"],["Low","Low"],["all","All"]];
+  var chips=PROX.map(function(p){return '<button class="bc-chip'+(p[0]===fProx?" active":"")+'" data-prox="'+p[0]+'" type="button">'+esc(p[1])+'</button>';}).join("");
+  mount.innerHTML=
+    '<div class="bc-cmp"><div class="bc-cmp-top"><span class="bc-vs-us">Continia</span><span class="bc-vs-x">vs</span><select id="bc-vs" class="bc-select">'+opts+'</select></div><div class="bc-cmp-panel" id="bc-cmp-panel"></div></div>'+
+    '<div class="bc-toolbar"><div class="bc-chips">'+chips+'</div><input class="bc-search" id="bc-search" type="search" placeholder="Search competitor, category, positioning…" autocomplete="off"><span class="bc-count" id="bc-count"></span></div>'+
+    '<div class="bc-grid" id="bc-grid"></div>';
+
+  renderGrid();
   var sel=document.getElementById("bc-vs");
   if(sel){ sel.addEventListener("change",function(){ renderCmp(sel.value); }); renderCmp(ROSTER[0].n); }
+  var srch=document.getElementById("bc-search");
+  if(srch) srch.addEventListener("input",function(){ fQ=srch.value; renderGrid(); });
+
+  mount.addEventListener("click",function(e){
+    var chip=e.target.closest?e.target.closest(".bc-chip"):null;
+    if(chip){ fProx=chip.getAttribute("data-prox"); [].forEach.call(mount.querySelectorAll(".bc-chip"),function(x){ x.classList.toggle("active", x===chip); }); renderGrid(); return; }
+    var cp=e.target.closest?e.target.closest(".bc-copy"):null;
+    if(cp){ e.preventDefault(); var c=byName(cp.getAttribute("data-name")); if(c) copyText(plainText(c),cp); }
+  });
+  function copyText(txt,btn){
+    var old=btn.innerHTML;
+    function done(){ btn.innerHTML='<i class="fa-light fa-check"></i> Copied'; setTimeout(function(){ btn.innerHTML=old; },1400); }
+    if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,function(){ fbCopy(txt); done(); }); }
+    else { fbCopy(txt); done(); }
+  }
+  function fbCopy(txt){ var ta=document.createElement("textarea"); ta.value=txt; ta.style.position="fixed"; ta.style.top="-9999px"; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(e){} ta.remove(); }
 })();
 
 /* ---- YouTube table: rendered from youtube-data.js (newest snapshot) ---- */
