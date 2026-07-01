@@ -538,19 +538,19 @@ html[data-theme="dark"] .sb-head{color:#fff}
 html[data-theme="dark"] .sb-head>i:first-child,html[data-theme="dark"] .sb-head>svg:first-child{color:#fff}
 html[data-theme="dark"] .sb-head.active,
 html[data-theme="dark"] .sb-head.active>i:first-child,
-html[data-theme="dark"] .sb-head.active>svg:first-child{color:#8ff8ff}
+html[data-theme="dark"] .sb-head.active>svg:first-child{color:#fff}
 html[data-theme="dark"] .sb-sub a.active,
 html[data-theme="dark"] .sb-sub a.active>i,
-html[data-theme="dark"] .sb-sub a:hover>i{color:#8ff8ff}
+html[data-theme="dark"] .sb-sub a:hover>i{color:#fff}
 html[data-theme="dark"] .sb-sub a.active>svg,
-html[data-theme="dark"] .sb-sub a:hover>svg{color:#8ff8ff}
+html[data-theme="dark"] .sb-sub a:hover>svg{color:#fff}
 .cal-form[hidden]{display:none}
 html[data-theme="dark"] .sb-head:hover,
 html[data-theme="dark"] .sb-head:hover>i:first-child,
 html[data-theme="dark"] .sb-head:hover>svg:first-child,
 html[data-theme="dark"] .sb-sub a:hover,
 html[data-theme="dark"] .sb-sub a:hover>i,
-html[data-theme="dark"] .sb-sub a:hover>svg{color:#8ff8ff}
+html[data-theme="dark"] .sb-sub a:hover>svg{color:#fff}
 /* dark: period buttons match competitor filter chips (outline, 50% dim when inactive) */
 html[data-theme="dark"] #continia-uploads .cu-pd,
 html[data-theme="dark"] #continia-uploads .cu-pd.active{background:transparent;border-color:#fff;color:#fff}
