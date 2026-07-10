@@ -406,7 +406,7 @@ if(contentIdeasList){
   if(!tb) return;
   function fmtDate(s){var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];var p=String(s).split("-");return m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];}
   var asof=document.getElementById("li-asof");
-  if(asof) asof.textContent=(D.source||"LinkedIn")+" · "+(D.windowLabel||"last 10 posts")+" · "+fmtDate(D.captured);
+  if(asof) asof.textContent=(D.source||"LinkedIn")+" · "+(D.windowLabel||"recent posts")+" · "+fmtDate(D.captured);
   /* footnote carries the same capture date so it follows the data, not a hardcode */
   var capEl=document.getElementById("li-captured"); if(capEl) capEl.textContent=fmtDate(D.captured);
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
