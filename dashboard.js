@@ -23,12 +23,12 @@ const data = [
  {n:"Zetadocs", o:"Equisys", stance:"steady", sl:"Stable cadence", prox:"High",
   cat:"Delivery · Capture · Expenses · BC",
   head:"Consistent monthly release cadence; AI embedded in the core rather than big announcements.",
-  rel:"Delivery & Capture updated Jan, Mar and May 2026; Expenses May 2026 (cloud, browser, iOS, Android).",
+  rel:"Delivery & Capture updated Jan, Mar, May and Jul 2026 (Jul: captures extra vendor-invoice fields + smarter line-to-account learning); Expenses May 2026 (cloud, browser, iOS, Android).",
   str:"Three product lines kept in sync at a high release cadence.",
   pos:"Everything happens inside Business Central — one environment, less friction.",
   ai:"AI-driven data entry + automatic order/invoice matching.",
   sc:"3 product lines (Delivery · Capture · Expenses)",
-  s:[["May 2026 update","https://www.equisys.com/blog/whats-new-in-zetadocs-expenses-may-2026-update"],["Equisys blog","https://www.equisys.com/blog"]]},
+  s:[["Jul 2026 update","https://www.equisys.com/blog/whats-new-in-zetadocs-delivery-and-zetadocs-capture-june-2026-update"],["May 2026 update","https://www.equisys.com/blog/whats-new-in-zetadocs-expenses-may-2026-update"],["Equisys blog","https://www.equisys.com/blog"]]},
 
  {n:"Medius", o:"Medius", stance:"ai", sl:"Gartner MQ Leader", prox:"Medium",
   cat:"AP automation + spend/payments · multi-ERP",
@@ -44,11 +44,11 @@ const data = [
   cat:"Payables + global payments + procurement + expenses",
   head:"Raised $200M for AI; rolling out agents across the entire finance flow.",
   rel:"AI Assistant + AI agents (Invoice Capture, Bill Approvers, reporting, tax, purchase request); tariff-refund AI (Apr 2026).",
-  str:"$200M round (Hercules, autumn 2025) earmarked for AI; agentic focus.",
+  str:"$200M round (Hercules, autumn 2025) earmarked for AI; agentic focus. Jun 2026: signalled a public offering as its most likely path (over acquisition), targeting sustained profitability by early 2027.",
   pos:"End-to-end payables + global payments in 200+ countries.",
   ai:"Conversational assistant + autonomous agents embedded across the entire platform.",
-  sc:"~$75B payments/year",
-  s:[["Tipalti AI agents","https://tipalti.com/accounts-payable-software/finance-ai/"],["American Banker","https://www.americanbanker.com/payments/news/tipalti-enhances-ai-tech-to-improve-tariff-refund-processing"]]},
+  sc:"~$90B payments/year · 6,500 customers",
+  s:[["Tipalti AI agents","https://tipalti.com/accounts-payable-software/finance-ai/"],["American Banker","https://www.americanbanker.com/payments/news/tipalti-enhances-ai-tech-to-improve-tariff-refund-processing"],["IPO signal (Payments Dive)","https://www.paymentsdive.com/news/tipalti-counts-on-future-ipo-ai-finance-automation-software/823594/"]]},
 
  {n:"Yooz", o:"Yooz · Dallas", stance:"ai", sl:"AI + fraud", prox:"Medium",
   cat:"AP / P2P automation · multi-ERP",
@@ -94,16 +94,16 @@ const data = [
   cat:"IDP / RPA + AP (InvoiceAgility)",
   head:"Rebranded from Kofax; betting hard on agentic AI to close the gap.",
   rel:"TotalAgility now GA in three tiers (Standard/Advanced/Enterprise) with agentic AI, Quick AI Agents and multi-agent orchestration; quarterly releases from 2026; InvoiceAgility for AP.",
-  str:"Jan 2026: new executives incl. first Chief AI Officer; \u201cAI-first\u201d repositioning. CEO signals a possible 2027 exit (PE or strategic sale) as the sector consolidates (Jun 2026).",
+  str:"Jan 2026: new executives incl. first Chief AI Officer; \u201cAI-first\u201d repositioning. CEO signals a possible 2027 exit (PE or strategic sale) as the sector consolidates (Jun 2026); Jul 2026: lenders signed a cooperation pact to negotiate a possible debt restructuring ahead of ~$150M maturities (Clearlake/TA-backed).",
   pos:"Broad intelligent automation (document/workflow) — large IDP revenue base.",
   ai:"Agentic AI now shipping (multi-agent orchestration); analysts said it was 9–12 months behind — now closing the gap.",
   sc:"~40 years of history · 70+ countries",
-  s:[["TotalAgility platform","https://www.tungstenautomation.com/products/totalagility/release-highlights"],["Agentic AI hires","https://www.tungstenautomation.com/about/press-releases/2026/tungsten-automation-invests-in-innovation-and-agentic-ai-with-key-executive-hires"],["Deep Analysis","https://www.deep-analysis.net/boring-ai-how-tungsten-plans-to-move-beyond-its-idp-roots/"],["Exit signal (ION)","https://ionanalytics.com/insights/mergermarket/tungsten-automation-exit-possible-in-2027-as-buyer-appetite-builds-ceo/"]]},
+  s:[["TotalAgility platform","https://www.tungstenautomation.com/products/totalagility/release-highlights"],["Agentic AI hires","https://www.tungstenautomation.com/about/press-releases/2026/tungsten-automation-invests-in-innovation-and-agentic-ai-with-key-executive-hires"],["Deep Analysis","https://www.deep-analysis.net/boring-ai-how-tungsten-plans-to-move-beyond-its-idp-roots/"],["Exit signal (ION)","https://ionanalytics.com/insights/mergermarket/tungsten-automation-exit-possible-in-2027-as-buyer-appetite-builds-ceo/"],["Lenders' pact (Bloomberg)","https://www.bloomberg.com/news/articles/2026-07-01/lenders-to-clearlake-backed-tungsten-sign-pact-after-debt-slides"]]},
 
  {n:"onPhase", o:"formerly DocuPhase · Tampa", stance:"cons", sl:"Acquisitive + rebrand", prox:"Low",
   cat:"AP + payments + document management",
   head:"Rebranded from DocuPhase; growing through acquisitions and embedded payments.",
-  rel:"Acquisition of iPayables (Jan 2026) + Clearwater Payments; Bottomline Paymode network embedded.",
+  rel:"Acquisition of iPayables (Jan 2026) + Clearwater Payments; Bottomline Paymode network embedded; TransferMate partnership (Jun 2026) for embedded cross-border payments.",
   str:"AI-driven AP + embedded payments; 173% 3-year growth (Inc. 5000).",
   pos:"Unified finance automation for SMB → enterprise.",
   ai:"AI-driven capture/automation combined with payments.",
@@ -133,12 +133,12 @@ const data = [
  {n:"Microsoft Expense Agent", o:"Microsoft · native in BC", stance:"ai", sl:"Platform owner · AI", prox:"High",
   cat:"AI expense capture · native in Business Central",
   head:"The platform owner itself moving into the expense space with an AI agent — the most important BC-native development to watch.",
-  rel:"Expense Agent introduced in D365 BC (Apr 2026); BC 2026 Wave 1 adds (Jun 19, 2026) an AI approval step that validates expense reports against company policies written in plain language and guides approvers — public preview Jul 2026.",
+  rel:"Expense Agent introduced in D365 BC (Apr 2026); BC 2026 Wave 1 adds (Jun 19, 2026) an AI approval step that validates expense reports against company policies written in plain language and guides approvers — public preview Jul 2026. Preview expands beyond the US to the UK, Australia and New Zealand from Jul 2026.",
   str:"Microsoft building AI functionality directly into BC, overlapping with third-party expense solutions.",
   pos:"Native to the platform — no extra vendor, comes with Business Central.",
   ai:"AI expense agent embedded in the ERP — now also checks reports against natural-language policies at line, report and cross-line level, while leaving the final call to the approver.",
   sc:"Built into Microsoft Dynamics 365 Business Central",
-  s:[["Microsoft blog","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"],["Approval process (BC 2026 W1)","https://www.azurecurve.co.uk/2026/06/new-functionality-in-microsoft-dynamics-365-business-central-2026-wave-1-expense-agent-supports-approval-process/"]]},
+  s:[["Microsoft blog","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"],["Approval process (BC 2026 W1)","https://www.azurecurve.co.uk/2026/06/new-functionality-in-microsoft-dynamics-365-business-central-2026-wave-1-expense-agent-supports-approval-process/"],["Markets (MS Learn)","https://learn.microsoft.com/en-us/dynamics365/release-plan/2026wave1/smb/dynamics365-business-central/manage-expenses-business-central-using-expense-agent"]]},
 
  {n:"Lasernet", o:"Lasernet Group · DK/UK", stance:"cons", sl:"Takeover bid · BC output", prox:"High",
   cat:"Document output & e-invoicing · BC + F&O",
@@ -183,12 +183,12 @@ const data = [
  {n:"B2Brouter", o:"B2Brouter Global · ES", stance:"steady", sl:"Peppol · BC connector", prox:"High",
   cat:"Peppol / e-invoicing access point · BC connector",
   head:"Certified Peppol access point with native BC connector — one of BC's built-in E-Document APIs.",
-  rel:"BC connector on AppSource; supports Peppol BIS 3.0, UBL, XRechnung, FatturaPA, Chorus Pro, FACe and SDI.",
+  rel:"BC connector on AppSource; supports Peppol BIS 3.0, UBL, XRechnung, FatturaPA, Chorus Pro, FACe and SDI; launched a developer sandbox (Jun 2026) for API/invoice testing ahead of France's Sep 2026 receive deadline.",
   str:"One connection to the entire Peppol network; automatic format conversion and compliance.",
   pos:"Native in Dynamics — send and receive e-invoices without external portals.",
   ai:"No significant AI profile; strength is compliance breadth across countries.",
   sc:"30+ countries · ISO 27001 · EESPA member",
-  s:[["B2Brouter for Dynamics","https://www.b2brouter.net/global/e-invoicing-microsoft-dynamics/"],["Microsoft Learn (E-Docs)","https://learn.microsoft.com/en-us/dynamics365/business-central/faq-electronic-invoicing"]]},
+  s:[["B2Brouter for Dynamics","https://www.b2brouter.net/global/e-invoicing-microsoft-dynamics/"],["Developer sandbox (Jun 2026)","https://www.b2brouter.net/global/b2brouter-sandbox/"],["Microsoft Learn (E-Docs)","https://learn.microsoft.com/en-us/dynamics365/business-central/faq-electronic-invoicing"]]},
 
  {n:"Qvalia", o:"Qvalia · SE", stance:"steady", sl:"Peppol · BC app", prox:"High",
   cat:"Peppol e-invoicing & order management · BC app",
@@ -203,12 +203,12 @@ const data = [
  {n:"Rillion", o:"Rillion (formerly Palette) · Stockholm (Altor)", stance:"ai", sl:"AI-native capture", prox:"Medium",
   cat:"AP automation · multi-ERP + BC connector",
   head:"Nordic AP-automation veteran going AI-native — LLM invoice capture with no OCR templates.",
-  rel:"Rillion Capture (Mar 25, 2026) — first AI-native, multimodal-LLM invoice capture (no templates); Riley AI Assistant (Sept 2025) for invoice/supplier Q&A.",
+  rel:"Rillion Capture (Mar 25, 2026) — first AI-native, multimodal-LLM invoice capture (no templates); Riley AI Assistant (Sept 2025) for invoice/supplier Q&A; Jul 2026: strengthened UK partnership with Stratas to accelerate AI-driven AP.",
   str:"30+ years (ex-Palette/Centsoft), Altor PE-owned; shifting from template-OCR to AI-native capture and expanding in the US.",
   pos:"Control, visibility and speed for mid-market/enterprise AP; native Business Central connector among 50+ ERPs.",
   ai:"Riley AI assistant + Rillion Capture (multimodal LLM) for extraction, coding and approval routing.",
   sc:"3,000+ customers · 50+ countries · Altor-owned",
-  s:[["Rillion AP","https://www.rillion.com/"],["Rillion Capture (Mar 2026)","https://www.rillion.com/blog/rillion-capture-announcement/"],["BC integration","https://www.rillion.com/integration/microsoft-dynamics-365-business-central/"]]},
+  s:[["Rillion AP","https://www.rillion.com/"],["Rillion Capture (Mar 2026)","https://www.rillion.com/blog/rillion-capture-announcement/"],["Rillion + Stratas (Jul 2026)","https://www.rillion.com/blog/rillion-and-stratas-strengthen-partnership-to-accelerate-ai-driven-ap-automation-in-the-uk/"],["BC integration","https://www.rillion.com/integration/microsoft-dynamics-365-business-central/"]]},
 
  {n:"Fidesic", o:"Fidesic (Enliven Software) · East Lansing, MI", stance:"ai", sl:"Built for Dynamics · AI capture", prox:"High",
   cat:"AP automation · Dynamics GP + BC",
@@ -245,8 +245,15 @@ const MNA_COUNT         = 8;    // M&A / capital moves 2025-26 (acquisitions + f
 
 const events = [
  {w:"Sept 2026 →", c:"steady", t:"<b>France B2B e-invoicing</b> mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027."},
+ {w:"Jul 3, 2026", c:"ai", t:"<b>Rillion</b> strengthens its UK partnership with Stratas to accelerate AI-native AP automation (AI capture, Riley assistant) in a strategic growth market."},
+ {w:"Jul 2026", c:"ai", t:"<b>Microsoft</b> expands the BC Expense Agent preview beyond the US to the UK, Australia and New Zealand, with more languages and markets to follow."},
  {w:"Jul 1, 2026", c:"steady", t:"<b>UAE e-invoicing</b> rollout begins for large businesses (revenue ≥ AED 50M); <b>Pagero</b> is listed as a pre-approved accredited service provider."},
+ {w:"Jul 1, 2026", c:"cons", t:"<b>Tungsten Automation</b> (ex-Kofax) lenders sign a cooperation pact to negotiate a possible debt restructuring ahead of ~$150M maturities — a distress signal for the Clearlake/TA-backed IDP + AP vendor."},
  {w:"Jun 30, 2026", c:"steady", t:"<b>Saudi Arabia (ZATCA)</b> Fatoora e-invoicing Wave 24 integration deadline — the first wave to reach businesses with VAT revenue above SAR 375K, pulling thousands of smaller firms into mandatory clearance."},
+ {w:"Jun 30, 2026", c:"cons", t:"<b>onPhase</b> (ex-DocuPhase) partners with <b>TransferMate</b> to add embedded cross-border / international payments to its finance-automation platform."},
+ {w:"Jun 24, 2026", c:"cons", t:"<b>Tipalti</b> signals a public offering is its most likely path (not acquisition), targeting sustained profitability by early 2027 — ~6,500 customers and ~$90B annual payment volume."},
+ {w:"Jun 24, 2026", c:"steady", t:"<b>France (DGFiP)</b> confirms the B2B e-invoicing mandate stays on schedule for Sept 1, 2026 while signalling an informal grace period — no automatic sanctions for good-faith filers at launch."},
+ {w:"Jun 23, 2026", c:"steady", t:"<b>UK (HMRC)</b> names Peppol as the core interoperability network for e-invoicing in its Tax Update 2026 paper — a first formal endorsement ahead of an expected April 2029 mandate."},
  {w:"June 23, 2026", c:"ai", t:"<b>Gartner</b> publishes its 2026 Magic Quadrant for Accounts Payable Applications — <b>Medius</b> is named a Leader (alongside Basware, Coupa and Esker)."},
  {w:"June 19, 2026", c:"ai", t:"<b>Microsoft</b> extends the BC Expense Agent (2026 Wave 1) with an AI approval step — it validates expense reports against plain-language policies and guides approvers (public preview Jul 2026)."},
  {w:"June 16, 2026", c:"ai", t:"<b>Forrester</b> publishes <i>The Forrester Wave: AP Invoice Automation Software, Q2 2026</i> — agentic AI shifts AP from automation toward proactive, autonomous finance operations."},
@@ -2148,7 +2155,7 @@ if(contentIdeasList){
    Both the topbar and the footer read from it, so they can never drift apart.
    The YouTube/News update routine sets this to today's date on every refresh. */
 (function(){
-  var DASHBOARD_UPDATED = "2026-06-29";
+  var DASHBOARD_UPDATED = "2026-07-10";
   var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var p=String(DASHBOARD_UPDATED).split("-");
   var pretty=m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];
