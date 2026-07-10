@@ -290,56 +290,56 @@ window.YT_DATA = {
   videoIdeas: {
     longForm: [
       {
+        score: 84,
+        title: "Continia Expense Management, end to end: capture, approve, reimburse",
+        desc: "Build on the channel's strongest theme - 'Mobile App - Expense Management' (6,071 views), 'Why Expense Management?' (5,488) and 'Create expenses' (5,441) are all top-five all-time. A definitive expense walkthrough plays straight to proven demand."
+      },
+      {
         score: 82,
         title: "End-to-end AP automation in Business Central",
-        desc: "Follow one invoice from PDF capture and OCR through coding, the approval portal and payment — the full flow in a single demo. Matches the channel's top-performing how-tos."
+        desc: "Follow one invoice from PDF capture and OCR through coding, the approval portal and payment - the full flow in a single demo. Matches the channel's top-performing how-tos."
       },
       {
-        score: 74,
-        title: "e-Invoicing & Peppol before the 2026 mandates",
-        desc: "A step-by-step compliance walkthrough tied to the France and Belgium 2026 mandates, showing how to get a Business Central setup Peppol-ready. High, recurring EU search demand."
-      },
-      {
-        score: 63,
-        title: "Continia vs native BC AI agents (2026 Wave 1)",
-        desc: "A comparison of what Continia automates versus BC's new GA AI agents, helping AP teams decide what to hand to which tool. Rides the AI theme but is more niche and dates faster."
-      },
-      {
-        score: 78,
+        score: 79,
         title: "Document Capture deep-dive: OCR templates that actually stick",
-        desc: "A hands-on build of capture templates for messy real-world invoices — multi-line, multi-currency, recurring vendors. Plays directly to the channel's proven product-demo strength."
+        desc: "A hands-on build of capture templates for messy real-world invoices - multi-line, multi-currency, recurring vendors. Plays to the channel's proven product-demo strength (the Document Capture full demo is a top-five all-time video)."
       },
       {
-        score: 70,
-        title: "Building your approval workflow from scratch",
-        desc: "A practical setup tour of the Continia approval portal — routing rules, delegation, mobile sign-off and the audit trail behind each step. Evergreen onboarding content with steady search demand."
+        score: 77,
+        title: "Document Output done right: automated, compliant distribution from BC",
+        desc: "Refresh the channel's #2 all-time video ('Document Output - Solution demo intro', 5,604 views) into a 2026 walkthrough - per-customer layouts, protected PDFs, eIDAS sealing and Peppol delivery, all inside Business Central."
       },
       {
-        score: 67,
-        title: "Why BC-native beats a bolt-on AP tool",
-        desc: "A grounded explainer on what 'embedded in Business Central' really buys finance teams versus payment-owned rivals — no data sync, one ledger, one audit trail. Reinforces the neutral, focused positioning."
+        score: 76,
+        title: "e-Invoicing & Peppol before the 2026 mandates",
+        desc: "A step-by-step compliance walkthrough tied to the France (Sep 2026), UAE (Jul 2026) and Belgium (Jan 2026) mandates, showing how to get a Business Central setup Peppol-ready. High, recurring EU search demand."
+      },
+      {
+        score: 71,
+        title: "AI agents vs your audit trail: what to automate in AP (and what not to)",
+        desc: "With Stampli, Dooap and Tipalti all launching 'ask-anything' finance agents, a grounded explainer on what to hand to AI versus what stays in a governed BC approval flow. Rides the dominant AI theme on an evergreen governance spine."
       }
     ],
     shortForm: [
       {
-        score: 79,
-        title: "One invoice, three approvals, zero chasing",
-        desc: "A 30-second before/after cut showing an invoice stuck in email versus the same approval moving cleanly through Continia. Strong visual hook for finance teams."
-      },
-      {
-        score: 71,
-        title: "Peppol readiness in 20 seconds",
-        desc: "Turn the 2026 e-invoicing deadline into a quick checklist: receive, validate, approve and archive inside Business Central. Timely, practical and easy to repurpose."
-      },
-      {
-        score: 66,
-        title: "AI is helpful, but your AP flow still matters",
-        desc: "A fast myth-vs-reality clip: AI can suggest and extract, but clean approval rules and audit trails are what make AP automation production-ready."
-      },
-      {
-        score: 75,
+        score: 80,
         title: "Approve an invoice from your phone in 10 seconds",
-        desc: "A single-take mobile screen-grab of a manager approving on the go — no laptop, no VPN, no chasing. Punchy proof point that demos the value instantly."
+        desc: "A single-take mobile screen-grab of a manager approving on the go - no laptop, no VPN, no chasing. Mirrors the channel's #1 all-time video (the Expense Management mobile app) in a punchy cut."
+      },
+      {
+        score: 78,
+        title: "One invoice, three approvals, zero chasing",
+        desc: "A 30-second before/after showing an invoice stuck in email versus the same approval moving cleanly through Continia. Borrows the punchy comparison format outperforming for BC-native rivals like Yavrio."
+      },
+      {
+        score: 74,
+        title: "'Ask anything' is cool. Who approved it?",
+        desc: "A fast myth-vs-reality clip riffing on the trending 'ask-anything finance agent' launches - AI can answer, but an audit trail says who approved and why. Rides a hot hook and lands on Continia's governance edge."
+      },
+      {
+        score: 72,
+        title: "Peppol readiness in 20 seconds",
+        desc: "Turn the 2026 e-invoicing deadlines into a quick checklist: receive, validate, approve and archive inside Business Central. Timely, practical and easy to repurpose."
       },
       {
         score: 69,
@@ -347,7 +347,7 @@ window.YT_DATA = {
         desc: "A quick tip clip pointing at vendor, amount and due date being captured automatically instead of keyed by hand. Educational, repurposable and easy to series."
       },
       {
-        score: 64,
+        score: 66,
         title: "The hidden cost of one lost invoice",
         desc: "A snappy stat-led hook on duplicate payments and late fees, landing on Continia's audit trail as the fix. Pattern-interrupt opener built for the LinkedIn feed."
       }
