@@ -2099,7 +2099,8 @@ if(contentIdeasList){
       {id:"youtube", icon:"fa-chart-line", label:"YouTube Analysis"},
       {id:"continia-uploads", icon:"fa-magnifying-glass-chart", label:"In-depth Continia"},
       {id:"video-ideas", icon:"fa-film", label:"Long- & short form ideas"},
-      {id:"youtube-bank", icon:"fa-photo-film", label:"Youtube thumbnails bank"}
+      {id:"youtube-bank", icon:"fa-photo-film", label:"Youtube thumbnails bank"},
+      {id:"video-assets", icon:"fa-layer-group", label:"Video asset library"}
     ]}
   ];
   var path=(location.pathname.split("/").pop()||"index.html");
