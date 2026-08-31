@@ -905,13 +905,18 @@ html.reveal-on .workspace>.rv-in{opacity:1;transform:none}
    label. Dark mode: inverted (Innovation Blue box, Tech Blue icon) so the tile
    pops on the dark canvas. Both hex hardcoded to stay on-brand. */
 .va-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px;padding:16px}
-.va-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;aspect-ratio:1/1;background:#052975;border:0;border-radius:14px;text-decoration:none;padding:10px;text-align:center;transition:transform .16s,box-shadow .16s;box-shadow:0 10px 24px -18px rgba(5,41,117,.5)}
-.va-tile:hover{transform:translateY(-3px);box-shadow:0 16px 32px -18px rgba(5,41,117,.6)}
+.va-tile{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:11px;aspect-ratio:1/1;border:0;border-radius:18px;text-decoration:none;padding:10px;text-align:center;background:linear-gradient(155deg,#1747a8 0%,#0a3488 45%,#052975 100%);box-shadow:0 14px 30px -16px rgba(5,41,117,.6),inset 0 1px 0 rgba(255,255,255,.28),inset 0 -10px 22px -14px rgba(0,0,0,.4);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:transform .2s ease,box-shadow .2s ease}
+.va-tile::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;background:radial-gradient(130% 90% at 22% 0%,rgba(255,255,255,.32),rgba(255,255,255,0) 55%)}
+.va-tile::after{content:"";position:absolute;z-index:-1;left:-25%;bottom:-45%;width:90%;height:90%;border-radius:50%;background:radial-gradient(circle,rgba(143,248,255,.24),rgba(143,248,255,0) 70%);filter:blur(6px)}
+.va-tile:hover{transform:translateY(-4px);box-shadow:0 20px 42px -16px rgba(5,41,117,.7),inset 0 1px 0 rgba(255,255,255,.42),inset 0 -10px 22px -14px rgba(0,0,0,.4)}
 .va-tile:focus-visible{outline:3px solid #8ff8ff;outline-offset:2px}
-.va-ic{font-size:32px;line-height:1;color:#8ff8ff}
-.va-lbl{font-size:12px;font-weight:800;line-height:1.2;letter-spacing:.01em;color:#8ff8ff}
-html[data-theme="dark"] .va-tile{background:#8ff8ff}
+.va-ic{position:relative;z-index:1;font-size:32px;line-height:1;color:#8ff8ff;filter:drop-shadow(0 1px 2px rgba(0,0,0,.28))}
+.va-lbl{position:relative;z-index:1;font-size:12px;font-weight:800;line-height:1.2;letter-spacing:.01em;color:#8ff8ff}
+html[data-theme="dark"] .va-tile{background:linear-gradient(155deg,#c4fdff 0%,#9bf9ff 45%,#6fe9f2 100%);box-shadow:0 14px 30px -16px rgba(0,0,0,.55),inset 0 1px 0 rgba(255,255,255,.7),inset 0 -10px 22px -14px rgba(5,41,117,.25)}
+html[data-theme="dark"] .va-tile::before{background:radial-gradient(130% 90% at 22% 0%,rgba(255,255,255,.6),rgba(255,255,255,0) 55%)}
+html[data-theme="dark"] .va-tile::after{background:radial-gradient(circle,rgba(5,41,117,.16),rgba(5,41,117,0) 70%)}
 html[data-theme="dark"] .va-tile:focus-visible{outline-color:#052975}
 html[data-theme="dark"] .va-ic,html[data-theme="dark"] .va-lbl{color:#052975}
+html[data-theme="dark"] .va-ic{filter:drop-shadow(0 1px 2px rgba(255,255,255,.35))}
 @media(max-width:820px){.va-grid{grid-template-columns:repeat(3,1fr)}.va-ic{font-size:36px}.va-lbl{font-size:13px}}
 @media(max-width:480px){.va-grid{grid-template-columns:repeat(2,1fr)}}
