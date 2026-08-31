@@ -52,6 +52,13 @@ SB builds history. Until captured they render as "—" in the live table.
 | 16 | Acubiz | https://socialblade.com/youtube/channel/UC69VeuWKBJRLmON3deGjwdw | |
 | 17 | B2Brouter | https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ | |
 
+> **Channel 9 renamed.** The channel at `UCcRBDOXYUHYZ18mJzVwptYg` now presents
+> itself as **Truvio** on YouTube and Social Blade (it was ExFlow / SignUp
+> Software). The `/channel/<ID>` URL is unaffected, and the registry key stays
+> `"ExFlow (Truvio)"` so the snapshot history keeps lining up — do not rename it.
+> The same rebrand is why SignUp Software and Truvio now post identical content
+> on LinkedIn.
+
 > **Not in the registry (by choice):** Lasernet, Pagero (its channel is now
 > "Thomson Reuters Europe" — no clean Pagero signal), MineralTree (no resolvable
 > active channel — likely dormant after the Global Payments acquisition), and
@@ -65,7 +72,7 @@ From each Social Blade channel page, capture:
 
 | Read this on Social Blade | Goes into `youtube-data.js` field | Format |
 |---|---|---|
-| Subscribers (total) | `subs` | string as shown, e.g. `"1.78K"` |
+| Subscribers (total) | `subs` | string as shown, e.g. `"1.78K"` — take it from the **Daily Channel Metrics** table, not the header (see gotchas) |
 | Monthly Gained Subscribers | `monthlySubs` | string with sign, e.g. `"+10"`, `"0"` |
 | Monthly Gained Views | `monthlyViews` | **number**, e.g. `147000`, `-7300` |
 | Monthly Gained Views (label) | `monthlyViewsLabel` | pretty label, e.g. `"+147K"` |
@@ -87,9 +94,28 @@ text shown next to the bar.
   the autocomplete runs over WebSockets — interact with the box directly (type +
   click), and in the dropdown pick the **"RESULTS"** entry (Social Blade's own
   database), never **"RESULT FROM YOUTUBE."**
-- **Where the numbers are:** Monthly Gained Subscribers / Views sit in the stat
-  band near the top, roughly the region `[495, 360, 1000, 405]` on a zoomed
-  screenshot of the channel page.
+- **Where the numbers are (site redesign, Aug 2026):** the four figures sit in
+  tiles under "CREATOR STATISTICS" and are **lazy-loaded** — they show a spinner
+  for several seconds after the page settles. Poll until they resolve rather than
+  reading immediately. In the DOM the label is an `h4` for the two 30-day tiles
+  and an `h3` for the two earnings tiles; the value is the sibling `h2` in the
+  same parent. A working read:
+
+  ```js
+  const want = {'Subscribers for the last 30 days':'sub30',
+                'Views for the last 30 days':'views30',
+                'Monthly Estimated Earnings':'earnings'};
+  [...document.querySelectorAll('h3,h4')].forEach(h => {
+    const key = want[h.innerText.trim()];
+    if (key) console.log(key, h.parentElement.querySelector('h2').innerText.trim());
+  });
+  ```
+- **The header rounds subscriber counts.** Since the redesign the top band shows
+  `1.5K` where the channel actually has ~1,480 — two significant figures, which
+  destroys the month-over-month delta. The **Daily Channel Metrics** table at the
+  bottom still carries three (`1.78K`, `3.28K`, `1.49K`); its last row is today.
+  Read `subs` from there. Columns are: date, sub delta, **sub total**, view delta,
+  view total, video delta, video total, earnings.
 - **30-day granularity** sometimes requires being logged in to Social Blade. The
   public estimates are enough for this dashboard; if a channel won't show the
   30-day figure, note it (e.g. "no activity last 30 days") rather than guessing.
@@ -116,8 +142,14 @@ Blade — so it needs the vidIQ channel page open.
 - `recent[]` = **Latest videos** (newest first): `title`, `views`, `outlier`
   (string like `"1.61x"`, or `null`). `top[]` = **Top videos**: `title`,
   `views`, `vph` (string), `outlier`.
-- ALWAYS show the parsed numbers to the user for a quick confirm before pushing
-  data — they are pixel-read from a screenshot and easy to get wrong.
+- ALWAYS show the parsed numbers to the user for a quick confirm before pushing.
+  (When they come from the embedded JSON below they are exact; when they are read
+  off a screenshot they are easy to get wrong. Either way, show them.)
+- **All-zero periods are a real answer, not a failure.** `longShortStats` counts
+  uploads *published inside* the window and their views, so a channel that has
+  not uploaded returns `0/0`. On 2026-08-31 Continia showed `0` across 7D, 28D
+  **and** 3M — no uploads since 22 May 2026. Cross-check `latestVideos[0]`'s
+  `published_at` before assuming the read broke.
 - **Default: Claude reads vidIQ itself via Claude in Chrome — no screenshots
   needed from you.** vidIQ is JS-rendered, so a plain fetch won't work; Claude
   navigates to the channel URL in the browser, sets the toggle to `28D`, reads
@@ -165,21 +197,34 @@ table re-ranks. (Channels with no stats yet sort to the bottom at 0.)
 
 The local folder `~/Desktop/Claude-Marketing-dashboard` is a git working copy of
 `AnchContinia/Marketing-Comp-Dash` (HTTPS remote, token in the macOS keychain).
-So Claude finishes the update directly — no manual GitHub upload anymore:
+Claude writes and commits; **you run the push** (see step 4 for why).
 
 1. Claude writes the new snapshot into `youtube-data.js`.
-2. **Stamp the date.** Set `DASHBOARD_UPDATED` in `index.html` (the single
-   source of truth near the bottom, `var DASHBOARD_UPDATED = "YYYY-MM-DD";`) to
-   **today's date**. Both the topbar "Updated …" and the footer read from it, so
-   this one change keeps every date stamp on the page consistent. Do this on
-   **every** refresh — YouTube *and* News.
-3. Claude commits the changed files and pushes to `origin/main`:
-   `git add youtube-data.js index.html && git commit -m "..." && git push origin main`.
+2. **Stamp the date.** Set `DASHBOARD_UPDATED` in **`dashboard.js`** (near the
+   bottom, `var DASHBOARD_UPDATED = "YYYY-MM-DD";`) to **today's date**. Both the
+   topbar "Updated …" and the footer read from it, so this one change keeps every
+   date stamp on the page consistent. Do this on **every** refresh — YouTube *and*
+   News. (It used to live in `index.html`; it does not any more.) If another
+   refresh already ran today, it is already correct — leave it alone.
+3. Claude commits the changed files:
+   `git add youtube-data.js dashboard.js && git commit -m "..."`.
    (The `.gitignore` keeps local-only files — the `.indd`, images, MCP links,
-   backups — out of the push automatically.)
-4. GitHub Pages updates the live dashboard within a minute. Claude confirms with
-   the new commit hash on `origin/main`.
+   backups — out of the commit automatically.)
+4. **You push.** Claude's shell on this Mac runs in an isolated Linux sandbox that
+   has no `credential-osxkeychain`, so the GitHub token in the macOS keychain is
+   out of reach and `git push` fails with
+   `could not read Username for 'https://github.com'`. Run it yourself:
 
-If a push ever fails with an auth error, the keychain token has expired — make a
-new fine-grained PAT (Contents: read/write on the repo) and re-store it with:
+   ```
+   cd ~/Desktop/Claude-Marketing-dashboard && git push origin main
+   ```
+
+   GitHub Pages updates the live dashboard within a minute.
+5. **If git then complains about `index.lock` / `HEAD.lock`:** a failed push from
+   the sandbox can leave lock files behind that it is not allowed to delete.
+   `rm -f .git/index.lock .git/HEAD.lock .git/objects/maintenance.lock` clears them.
+
+If the push fails with a genuine **auth** error (not the username error above),
+the keychain token has expired — make a new fine-grained PAT (Contents:
+read/write on the repo) and re-store it with:
 `printf "protocol=https\nhost=github.com\nusername=AnchContinia\npassword=NEW_TOKEN\n" | git credential-osxkeychain store`
