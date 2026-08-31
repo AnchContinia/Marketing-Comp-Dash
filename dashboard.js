@@ -2077,6 +2077,7 @@ if(contentIdeasList){
   var NAV=[
     {page:"index.html", icon:"fa-house", label:"Home", items:[
       {id:"overview", icon:"fa-binoculars", label:"Public competitor insights"},
+      {id:"news", icon:"fa-newspaper", label:"Latest News"},
       {id:"competitors", icon:"fa-people-group", label:"Competitors"},
       {id:"content-gap", icon:"fa-chart-simple", label:"Content-Gap Analysis"},
       {id:"battlecards", icon:"fa-chess-knight", label:"Battlecards"},
