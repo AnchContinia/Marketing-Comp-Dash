@@ -1,0 +1,974 @@
+======================================================================================================================================================
+LINKEDIN POST-ANALYSE - 16 virksomheder
+Udtraekt: 31. august 2026 | Sortering: 'Recent' (nyeste foerst) | Op til 50 poster pr. side
+
+Kolonner:  #  |  Alder  |  Reactions  |  Comments  |  Reposts  |  Type  |  Titel (foerste ~150 tegn af posten)
+Typer:     Billede, Carousel (billeder), Dokument/Carousel (PDF-swipe), Video, Link/Artikel, Tekst, Poll
+           '(repost: Navn)' = virksomheden har delt en andens post
+======================================================================================================================================================
+
+
+######################################################################################################################################################
+TRUVIO   (50 poster)
+https://www.linkedin.com/company/truvio-official/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  1174 reactions  |  23 comments  |  164 reposts
+Snit:   23.5 reactions  |  0.5 comments  |  3.3 reposts pr. post
+Typer:  Billede: 38 | Tekst: 8 | Video: 4
+Bedste: #21 (124 reactions) - This year I started working for Truvio, currently focusing on the ExFlow AP modu
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    3d          16      0       2  Video                              4 minutes versus 17 minutes per invoice. / That was the difference measured between Truvio AP Automation with OCR and standard F&O with OCR.
+2    3d          10      2       0  Billede                            B2B-kunder begynder ikke nødvendigvis deres købsrejse på jeres webshop. / De søger efter information, sammenligner muligheder og bruger i stigende gra…
+3    4d          33      2       5  Billede                            Invoice capture is only one part of accounts payable automation. What happens when customers also need greater control over approvals, matching…
+4    5d           2      0       0  Tekst                              ☀️ One last episode. One last chance to enter! / We’re wrapping up our Truvio Talks: Work Like You’re on Vacation Summer Series tomorrow.
+5    6d          25      0       2  Billede                            A keynote worth joining us in Aarhus for. / On September 11, Truvio Commerce Partner Days will feature perspectives from Microsoft and Lovable.
+6    6d          20      1       2  Billede                            Truvio is heading to Columbus for DynamicsCon Regional: Ohio Valley! / On August 25–26, the Dynamics community comes together for two days of sessions…
+7    6d          27      3       1  Billede                            We're proud to sponsor the 4PS Customer Day 2026! 🏗️ / On 15 September, our partner 4PS brings together customers, partners and experts.
+8    1w          78      0       1  Billede                            Running, walking and cheering each other on 🏃‍♀️👏 / This week, colleagues from our Aarhus and Aalborg offices joined forces for DHL Stafetten.
+9    1w          14      0       3  Billede                            🌴 One last conversation before we officially close out summer.
+10   1w          14      0       1  Billede                            AI er allerede ved at ændre den måde, B2B-kunder finder, sammenligner og vælger produkter på.
+11   1w          15      0       4  Billede                            The Commerce Product Brief is already next week 👀
+12   1w          23      0       3  Tekst                              Remember when waiting was just part of the process? / Waiting for invoice approvals. Waiting for someone to track down a status.
+13   1w          15      0       3  Billede                            Nine steps. Zero manual touchpoints. ✅ / That’s what an automated payment lifecycle in Dynamics 365 can look like.
+14   1w          19      0       4  Billede                            A little sneak peek at what’s coming next to Truvio Talks… ⏪📼
+15   1w           3      0       0  Tekst                              Only 2 more days until the next episode of Truvio Talks! ☀️🎙️
+16   1w          18      0       0  Billede                            When you're in the middle of a complex ERP transformation, a smooth implementation can make a real difference. That was the experience at Blackwoods.
+17   1w          22      0       1  Billede                            Vi glæder os til at være med, når Computerworld Events sætter fokus på vejen videre fra Dynamics AX den 25. august i Køge.
+18   1w          27      0       2  Billede                            Hylke Britstra is taking the stage at Directions for Enterprise 2026 in Copenhagen. His session, “F&O is just a tool”.
+19   2w          15      0       5  Billede                            ☀️ Summer isn’t over yet, and neither is your chance to win!
+20   2w          19      0       3  Billede                            We’re excited to share that Truvio is a Gold Sponsor at Days of Knowledge - ANZ 2026, taking place on 3–4 September in Melbourne.
+21   3w         124      6      11  Billede (repost)                   This year I started working for Truvio, currently focusing on the ExFlow AP module in D365FO.
+22   2w          25      0       5  Billede                            Manual payments cost more than money. / Every file upload, spreadsheet update, and manual approval adds time to the process.
+23   2w          23      0       2  Billede                            Less than one month to go until Truvio Commerce Partner Days 2026! / On September 10–11, our Commerce partner community will meet in Aarhus.
+24   2w          16      0       7  Billede                            Tomorrow, new EU packaging rules begin to apply. / From 12th of August, 2026, the Packaging and Packaging Waste Regulation (PPWR) introduces new requi…
+25   3w          14      0       3  Billede                            This week, we’re hosting two APJ Partner Training sessions for D365 F&O partners.
+26   3w          52      2       2  Billede                            Truvio is heading to Directions for Enterprise 2026 in Copenhagen! / From 23–25 September.
+27   3w           8      0       2  Billede                            ☀️ Summer may be winding down, but there's still time to make your finance operations more resilient. 🌴
+28   3w          28      0       8  Billede                            A 4.65/5 score is one thing. Understanding what drives enterprise fit is another. Avanade evaluated Truvio AP Automation.
+29   3w          10      0       0  Billede                            Every quarter brings new improvements across Truvio Commerce.
+30   3w          11      0       4  Tekst                              Ready to shorten your order-to-cash cycle? / Join us on August 13th to see how the Truvio Payment Portal for Microsoft Dynamics 365 works.
+31   3w          20      0       2  Billede                            We are excited to be attending the Dynamics 365 ERP/CE & AI Summit NA Roadshow in Minneapolis on August 6!
+32   3w          26      0       8  Video                              When customers need a spare part, finding the right one should be simple - even when the product catalogue contains more than 500,000 SKUs.
+33   4w          26      0       1  Billede                            This September, we’re bringing the Truvio Commerce partner community together in Aarhus for three days.
+34   4w          19      1       2  Billede                            Where are the untapped opportunities within your customers’ Dynamics 365 finance processes? Join Seer 365, Truvio and Xe.com for an EDGE event.
+35   1mo         45      3       4  Billede                            What a way to close out the educational sessions at the AI Business Solutions Partner Executive Summit. 🚀
+36   1mo         20      0       9  Tekst                              Finance teams shouldn't have to spend their day chasing information. 🏃
+37   1mo         28      0       1  Billede                            We’re heading to Minneapolis! 👋 / Truvio will be exhibiting at the Dynamics 365 ERP/CE, Power Platform & AI Summit NA Roadshow on August 6.
+38   1mo          3      0       0  Tekst                              Happening today! ⏰ / Join Truvio and Nacha payments expert Mark Dixon for a practical look at recent and upcoming Nacha rule changes.
+39   1mo         23      0       5  Billede                            Where is that invoice? 🤔 / For Beijer Ref Group, answering that question used to mean checking emails and following up with approvers.
+40   1mo         39      0       8  Billede                            The final session of Day 1 at the Partner Executive Summit didn't end with a keynote—it ended with one of the most valuable conversations.
+41   1mo         25      2       4  Billede                            Vendor statement reconciliation is easier when discrepancies can be identified early and financial records remain accurate.
+42   1mo         22      0       6  Tekst                              Ready for a vacation... but worried your finance operations might not be? 🌴
+43   1mo         22      0       4  Billede                            Want to hear what's new in Truvio Commerce directly from the people building it?
+44   1mo         10      0       0  Video                              🎙️ This clip is just a glimpse into tomorrow's conversation. / Join Chris Robbins from Caf2Code LLC and Josh Torres from Truvio.
+45   1mo         24      1      11  Billede                            How much time could AP automation actually save your finance team? / Independent research from Avanade found…
+46   1mo         17      0       2  Billede                            What if AI could help your finance team decide how invoices should be coded, and which ones require closer attention?
+47   1mo         23      0       4  Billede                            🔒 🎙️ 'Out of Office' Should Mean Out of Office
+48   1mo         38      0       6  Video                              ☀️ Work Like You're on Vacation... and you might just win the ultimate summer prize pack! 🎉
+49   1mo         17      0       1  Billede                            A lot of B2B commerce still happens through emails, spreadsheets, and manual follow-ups.
+50   1mo          1      0       0  Tekst                              ⏳ Just 1 day to go! / Tomorrow, we kick off the Truvio Talks Summer Series with our first episode: 🎙️ Your ERP Shouldn't Need a Babysitter
+
+
+######################################################################################################################################################
+CONTINIA SOFTWARE   (50 poster)
+https://www.linkedin.com/company/continia-software-a-s/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  3151 reactions  |  77 comments  |  105 reposts
+Snit:   63.0 reactions  |  1.5 comments  |  2.1 reposts pr. post
+Typer:  Billede: 39 | Dokument/Carousel: 8 | Video: 3
+Bedste: #17 (243 reactions) - 𝗢𝘂𝗿 𝗯𝗶𝗴𝗴𝗲𝘀𝘁 𝘁𝗲𝗮𝗺 𝗺𝗲𝗲𝘁𝘂𝗽 𝘆𝗲𝘁 ☀️ / Last week, we brought our entire global team to
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    3d          85      0       0  Billede                            𝗜𝘁'𝘀 𝗮𝗯𝗼𝘂𝘁 𝘁𝗶𝗺𝗲... 𝘄𝗲 𝗳𝗼𝘂𝗻𝗱 𝗼𝘂𝘁 𝘄𝗵𝗼'𝘀 𝗳𝗮𝘀𝘁𝗲𝗿🏃‍♀️ / This week, a number of our Danish employees lined up for the 202…
+2    1w          80      2       0  Billede                            𝗖𝗼𝗹𝗹𝗲𝗮𝗴𝘂𝗲𝘀, 𝘃𝗶𝗻𝗲𝘆𝗮𝗿𝗱𝘀, 𝗮𝗻𝗱 𝗮 𝗴𝗹𝗮𝘀𝘀 (𝗼𝗿 𝘁𝘄𝗼) 𝗼𝗳 𝘄𝗶𝗻𝗲 🍷 / Yesterday, a group of colleagues from our Aalborg offi…
+3    1w          33      2       1  Dokument/Carousel                  𝗜𝘁'𝘀 𝗮𝗯𝗼𝘂𝘁 𝘁𝗶𝗺𝗲 𝘆𝗼𝘂 𝘀𝘁𝗼𝗽𝗽𝗲𝗱 𝗱𝗼𝗶𝗻𝗴 𝘁𝗵𝗲𝘀𝗲 𝟱 𝘁𝗵𝗶𝗻𝗴𝘀 ⏳ / Some tasks stick around in your finance workflow simply be…
+4    2w          39      0       5  Dokument/Carousel                  𝟭𝟮 𝗳𝗿𝗲𝗲 𝗳𝗲𝗮𝘁𝘂𝗿𝗲𝘀 𝘆𝗼𝘂𝗿 𝗕𝘂𝘀𝗶𝗻𝗲𝘀𝘀 𝗖𝗲𝗻𝘁𝗿𝗮𝗹 𝘀𝗲𝘁𝘂𝗽 𝗶𝘀 𝗺𝗶𝘀𝘀𝗶𝗻𝗴 👀 / Most finance teams don't realise how much …
+5    3w          33      0       4  Dokument/Carousel                  𝗪𝗲'𝘃𝗲 𝗴𝗼𝘁 𝗿𝗼𝗼𝗺 𝗹𝗲𝗳𝘁 𝗼𝗻 𝘁𝗵𝗲 𝘁𝗲𝗮𝗺! 👩‍💼 / If the summer break left you thinking about a change, now's a good time to look. Righ…
+6    3w          27      0       3  Billede                            𝗬𝗼𝘂𝗿 𝗲-𝗶𝗻𝘃𝗼𝗶𝗰𝗶𝗻𝗴 𝗱𝗮𝘁𝗮 𝗶𝘀 𝗼𝗻𝗹𝘆 𝗮𝘀 𝘀𝗮𝗳𝗲 𝗮𝘀 𝘆𝗼𝘂𝗿 𝘃𝗲𝗻𝗱𝗼𝗿 / Efficiency matters when choosing an e-invoicing solut…
+7    1mo         21      0       2  Billede                            𝗘𝘃𝗲𝗿𝘆 𝗔𝗣 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻 𝗽𝗶𝘁𝗰𝗵 𝘁𝗵𝗶𝘀 𝘆𝗲𝗮𝗿 𝘀𝗼𝘂𝗻𝗱𝘀 𝘁𝗵𝗲 𝘀𝗮𝗺𝗲... 👀 / Point AI at a pile of invoices and it'll read t…
+8    1mo         63      2       2  Billede                            𝗪𝗲'𝗿𝗲 𝗯𝗮𝗰𝗸 𝗳𝗿𝗼𝗺 𝗮 𝗴𝗿𝗲𝗮𝘁 𝗗𝘆𝗻𝗮𝗺𝗶𝗰𝘀𝗖𝗼𝗻 𝗶𝗻 𝗚𝗵𝗮𝗻𝗮 🌍 / Wherever the Business Central community gathers, we want to be…
+9    1mo         30      0       1  Billede                            𝗦𝗮𝗺𝗲 𝗠𝗼𝗻𝗱𝗮𝘆, 𝘁𝘄𝗼 𝘃𝗲𝗿𝘆 𝗱𝗶𝗳𝗳𝗲𝗿𝗲𝗻𝘁 𝘄𝗼𝗿𝗸𝗱𝗮𝘆𝘀 📅 / It's the beginning of a new week! Ask a bookkeeper what's waiting fo…
+10   1mo         23      0       0  Billede                            𝗧𝗵𝗲 𝗼𝗳𝗳𝗶𝗰𝗲 𝗶𝘀 𝗾𝘂𝗶𝗲𝘁. 𝗪𝗵𝘆 𝗻𝗼𝘁 𝘀𝗽𝗲𝗻𝗱 𝘁𝗵𝗲 𝘀𝘂𝗺𝗺𝗲𝗿 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴? / It's that time of the year again. Client meeting…
+11   1mo         33      1       5  Billede                            𝗦𝗲𝗽𝗮𝗿𝗮𝘁𝗲 𝗮𝗰𝗰𝗼𝘂𝗻𝘁𝘀—𝗯𝘂𝘁 𝗶𝘁’𝘀 𝗼𝗻𝗲 𝗿𝗲𝗹𝗮𝘁𝗶𝗼𝗻𝘀𝗵𝗶𝗽 🔗 / Ever handled a company that’s both a customer and a vendor? Or t…
+12   1mo        119      1       8  Billede                            𝗠𝗼𝗿𝗲 𝘁𝗵𝗮𝗻 𝟭,𝟬𝟬𝟬 𝗮𝗰𝘁𝗶𝘃𝗲 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮 𝘀𝗼𝗹𝘂𝘁𝗶𝗼𝗻𝘀 🏆 / Our long-standing partner COSMO CONSULT is the first in our partner …
+13   1mo         37      5       8  Dokument/Carousel                  𝗦𝘂𝗯𝗺𝗶𝘁𝘁𝗶𝗻𝗴 𝗲𝘅𝗽𝗲𝗻𝘀𝗲𝘀 𝗷𝘂𝘀𝘁 𝗴𝗼𝘁 𝗲𝘃𝗲𝗻 𝗲𝗮𝘀𝗶𝗲𝗿! / These days, more and more receipts never touch paper at all. They land …
+14   1mo         36      1       4  Billede                            𝗦𝗲𝗲 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮 𝗶𝗻 𝗮𝗰𝘁𝗶𝗼𝗻, 𝗮𝘁 𝘆𝗼𝘂𝗿 𝗼𝘄𝗻 𝗽𝗮𝗰𝗲💡 / Curious how our solutions work inside Business Central, but not ready to …
+15   1mo         70      1       0  Billede                            𝗜𝘁'𝘀 𝗮𝗯𝗼𝘂𝘁 𝘁𝗶𝗺𝗲... 𝗳𝗼𝗿 𝗮𝗻 𝗶𝗰𝗲-𝗰𝗿𝗲𝗮𝗺 𝗯𝗿𝗲𝗮𝗸! 🍧 / It's been a warm and sunny few weeks in Denmark, so today's visit from…
+16   2mo         23      0       3  Billede                            𝗙𝗮𝗸𝗲 𝗶𝗻𝘃𝗼𝗶𝗰𝗲𝘀 𝗱𝗼𝗻'𝘁 𝗮𝗹𝘄𝗮𝘆𝘀 𝗹𝗼𝗼𝗸 𝗳𝗮𝗸𝗲 💡 / They might have familiar branding, come from a trusted vendor, and look just…
+17   2mo        243      4       6  Billede                            𝗢𝘂𝗿 𝗯𝗶𝗴𝗴𝗲𝘀𝘁 𝘁𝗲𝗮𝗺 𝗺𝗲𝗲𝘁𝘂𝗽 𝘆𝗲𝘁 ☀️ / Last week, we brought our entire global team together for four days in Cascais, Portugal.
+18   2mo         23      0       3  Billede                            𝗙𝗿𝗼𝗺 𝗮 𝗳𝘂𝗹𝗹-𝘁𝗶𝗺𝗲 𝗔𝗣 𝗽𝗲𝗿𝘀𝗼𝗻 𝘁𝗼 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻 𝗶𝗻 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 🎯 / When your AP team spends more time entering invoi…
+19   2mo         71      1       0  Billede                            𝗧𝗵𝗲 𝗘𝗹𝗲𝘃𝗮𝘁𝗲 𝘁𝗼𝘂𝗿 𝗰𝗼𝗻𝘁𝗶𝗻𝘂𝗲𝘀 — 𝘁𝗵𝗶𝘀 𝘁𝗶𝗺𝗲 𝗶𝗻 𝗣𝗼𝗹𝗮𝗻𝗱! 🙌 / Yesterday, we had the pleasure of welcoming our Polish…
+20   2mo         53      2       1  Video                              𝗞𝗶𝗰𝗸𝗶𝗻𝗴 𝗼𝗳𝗳 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮 𝗘𝗹𝗲𝘃𝗮𝘁𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗨𝗞 🎉 / Last week, we welcomed a dedicated group of partners to the very first U…
+21   2mo        195      2       1  Billede                            𝐖𝐞'𝐫𝐞 𝐈𝐒𝐎 𝟐𝟕𝟎𝟎𝟏 𝐜𝐞𝐫𝐭𝐢𝐟𝐢𝐞𝐝 🎉 / After months of hard work and a three-day audit, Continia Delivery Network is now officially ISO 2…
+22   2mo         69      1       0  Billede                            𝐈𝐭'𝐬 𝐚𝐛𝐨𝐮𝐭 𝐭𝐢𝐦𝐞 … 𝐰𝐞 𝐜𝐲𝐜𝐥𝐞𝐝 𝐭𝐨 𝐰𝐨𝐫𝐤 🚴‍♂️💨 / In May, the usual commute looked a little different for our colleagues in Cope…
+23   3mo         70      1       2  Billede                            𝟮𝟱𝟬 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮-𝗹ø𝘀𝗻𝗶𝗻𝗴𝗲𝗿 𝗲𝗿 𝗲𝗻 𝗴𝗼𝗱 𝗴𝗿𝘂𝗻𝗱 𝘁𝗶𝗹 𝗸𝗮𝗴𝗲 🎂 / I går tog vi turen til Softværket for at fejre en stor mi…
+24   3mo         93      2       0  Billede                            𝗧𝗵𝗮𝗻𝗸𝘀 𝗳𝗼𝗿 𝗮 𝗴𝗿𝗲𝗮𝘁 𝘁𝗶𝗺𝗲 𝗮𝘁 𝗗𝘆𝗻𝗮𝗺𝗶𝗰𝘀𝗠𝗶𝗻𝗱𝘀! ☀️ / It's the final day of DynamicsMinds, and what an amazing few days i…
+25   3mo         42      0       0  Dokument/Carousel                  𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮 𝗶𝘀 𝗴𝗿𝗼𝘄𝗶𝗻𝗴 — 𝘀𝘄𝗶𝗽𝗲 𝘁𝗼 𝗳𝗶𝗻𝗱 𝘆𝗼𝘂𝗿 𝗻𝗲𝘅𝘁 𝗿𝗼𝗹𝗲 👇 / Great things are happening at Continia right now, and …
+26   3mo         34      0       4  Video                              𝗬𝗼𝘂𝗿 𝗕𝗖 𝘀𝗲𝘁𝘂𝗽 𝗶𝘀 𝗮𝗹𝗺𝗼𝘀𝘁 𝘁𝗵𝗲𝗿𝗲. 𝗪𝗵𝘆 𝗻𝗼𝘁 𝘂𝗽𝗴𝗿𝗮𝗱𝗲 𝗶𝘁 𝗳𝗼𝗿 𝗳𝗿𝗲𝗲? 🚀 / Standard Business Central gets you fa…
+27   3mo         47      4       2  Billede                            𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮 𝗘𝗹𝗲𝘃𝗮𝘁𝗲 𝗰𝗼𝗺𝗲𝘀 𝘁𝗼 𝗪𝗮𝗿𝘀𝗮𝘄! 🎉 / Elevate Poland is open for registration — and if you're a Continia partner, you d…
+28   3mo         59      0       0  Billede                            𝗧𝗵𝗮𝘁’𝘀 𝗮 𝘄𝗿𝗮𝗽 𝗼𝗻 𝗗𝗶𝗿𝗲𝗰𝘁𝗶𝗼𝗻𝘀 𝗔𝗦𝗜𝗔 👋 / A big thank you to everyone who stopped by the Continia booth, joined our ISV session,…
+29   3mo         69      0       2  Billede                            𝗧𝗵𝗲 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮 𝗘𝘅𝗽𝗲𝗻𝘀𝗲 𝗔𝗽𝗽 𝗻𝗼𝘄 𝘀𝘂𝗽𝗽𝗼𝗿𝘁𝘀 𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁 𝗜𝗻𝘁𝘂𝗻𝗲 🔐 / The Expense App makes expense reporting e…
+30   3mo         39      0       0  Dokument/Carousel                  𝗜𝘀 𝘆𝗼𝘂𝗿 𝗔𝗰𝗰𝗼𝘂𝗻𝘁𝘀 𝗥𝗲𝗰𝗲𝗶𝘃𝗮𝗯𝗹𝗲 𝘀𝗲𝘁𝘂𝗽 𝗮𝘀 𝗲𝗳𝗳𝗶𝗰𝗶𝗲𝗻𝘁 𝗮𝘀 𝗶𝘁 𝗰𝗼𝘂𝗹𝗱 𝗯𝗲? 📄 / For many businesses, Accounts R…
+31   3mo        217     17       1  Billede                            𝗖𝗲𝗹𝗲𝗯𝗿𝗮𝘁𝗶𝗻𝗴 𝗼𝘂𝗿 𝘃𝗲𝗿𝘆 𝗼𝘄𝗻 𝗠𝗶𝗰𝗿𝗼𝘀𝗼𝗳𝘁 𝗠𝗩𝗣 🎉 / Last week brought exciting news: our Senior Software Engineer, Torben L…
+32   3mo         27      0       2  Billede                            𝐂𝐚𝐭𝐜𝐡 𝐮𝐩 𝐨𝐧 𝟐𝟎𝟐𝟔 𝐑𝟏 𝐚𝐧𝐝 𝐬𝐡𝐨𝐰𝐜𝐚𝐬𝐞 𝐲𝐨𝐮𝐫 𝐞𝐱𝐩𝐞𝐫𝐭𝐢𝐬𝐞🎓 / Looking for an easy way to stay up to date on 2026 R1 and s…
+33   4mo         66      1       1  Billede                            𝗟𝗲𝘁'𝘀 𝗰𝗮𝘁𝗰𝗵 𝘂𝗽 𝗮𝘁 𝗗𝘆𝗻𝗮𝗺𝗶𝗰𝘀𝗠𝗶𝗻𝗱𝘀! 🚀 / From May 25–27, you’ll find the Continia team in beautiful Portorož, reconnecting wi…
+34   4mo         32      0       1  Billede                            𝗦𝗽𝗲𝗻𝗱 𝟯𝟬 𝗺𝗶𝗻𝘂𝘁𝗲𝘀 𝗹𝗲𝗮𝗿𝗻𝗶𝗻𝗴 𝗮𝗻𝗱 𝘀𝗮𝘃𝗲 𝗵𝗼𝘂𝗿𝘀 𝗲𝘃𝗲𝗿𝘆 𝗺𝗼𝗻𝘁𝗵 🚀 / We're excited to be back with another round of…
+35   4mo         31      0       1  Billede                            𝗗𝗶𝗱 𝘆𝗼𝘂 𝗺𝗶𝘀𝘀 𝗼𝘂𝗿 𝟮𝟬𝟮𝟲 𝗥𝟭 "𝗪𝗵𝗮𝘁'𝘀 𝗡𝗲𝘄" 𝘄𝗲𝗯𝗶𝗻𝗮𝗿𝘀? 🎬 / Now's your chance to catch up on the latest updates across Con…
+36   4mo         75      2       2  Billede                            𝟮𝟱 å𝗿𝘀 𝘀𝗮𝗺𝗮𝗿𝗯𝗲𝗷𝗱𝗲 𝗼𝗴 +𝟱𝟬𝟬 𝗮𝗸𝘁𝗶𝘃𝗲 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮-𝗹ø𝘀𝗻𝗶𝗻𝗴𝗲𝗿 🏆 / I dag har vi været på besøg hos Abakion A/S for at…
+37   4mo         80      0       1  Billede                            𝗖𝗲𝗹𝗲𝗯𝗿𝗮𝘁𝗶𝗻𝗴 𝘁𝗵𝗲 𝗳𝗶𝗿𝘀𝘁 𝗿𝗲𝗹𝗲𝗮𝘀𝗲 𝗼𝗳 𝟮𝟬𝟮𝟲 🎊 / 2026 R1 is live — and across Continia, that called for celebration! / Every…
+38   4mo         84      2       6  Video                              𝟮𝟬𝟮𝟲 𝗥𝟭: 𝗔 𝗯𝗶𝗴 𝘀𝘁𝗲𝗽 𝗳𝗼𝗿𝘄𝗮𝗿𝗱 𝗳𝗼𝗿 𝗔𝗥 𝗮𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗼𝗻🎉 / Continia’s first release of the year is packed with new featur…
+39   4mo         61      0       2  Billede                            𝗛𝗼𝗽𝗽𝗶𝗻𝗴 𝗶𝗻𝘁𝗼 𝗘𝗮𝘀𝘁𝗲𝗿… 🐰🍫 / This week, a little Easter surprise made its way to Continia desks across our offices 🌷✨ / Luckily for u…
+40   5mo         27      0       1  Billede                            𝗛𝗮𝗻𝗱𝗹𝗶𝗻𝗴 𝟭𝟱,𝟬𝟬𝟬 𝗶𝗻𝘃𝗼𝗶𝗰𝗲𝘀 𝗲𝘃𝗲𝗿𝘆 𝗺𝗼𝗻𝘁𝗵 𝗶𝘀 𝗻𝗼 𝘀𝗺𝗮𝗹𝗹 𝘁𝗮𝘀𝗸 📄 / For MANCON, LLC, a logistics company supporting…
+41   5mo         33      0       1  Billede                            𝗝𝗼𝗶𝗻 𝘂𝘀 𝗮𝘁 𝗗𝗮𝘆𝘀 𝗼𝗳 𝗞𝗻𝗼𝘄𝗹𝗲𝗱𝗴𝗲 𝗡𝗼𝗿𝗱𝗶𝗰💡 / In just a few weeks, Continia will be in Odense for Days of Knowledge Nordic.
+42   5mo        208     20       0  Billede                            𝗛𝗮𝗽𝗽𝘆 𝗯𝗶𝗿𝘁𝗵𝗱𝗮𝘆 𝘁𝗼 𝗼𝘂𝗿 𝗖𝗘𝗢! 🎉 / Last week, we celebrated a special milestone at Continia as our CEO, Henrik Lærke, turned 60 🥳
+43   5mo         31      0       3  Dokument/Carousel                  𝗚𝗲𝘁 𝗮 𝗳𝗶𝗿𝘀𝘁 𝗹𝗼𝗼𝗸 𝗮𝘁 𝟮𝟬𝟮𝟲 𝗥𝟭! 🚀 / Continia’s first release of the year is on its way, bringing new features that make it easier…
+44   5mo         67      2       0  Billede                            𝗙𝗼𝗼𝘁𝗯𝗮𝗹𝗹 𝘀𝗵𝗶𝗿𝘁𝘀 𝗳𝗼𝗿 𝗮 𝗴𝗼𝗼𝗱 𝗰𝗮𝘂𝘀𝗲 ⚽ / Last week, we celebrated hashtag #FodboldtrøjeFredag and swapped out our usual off…
+45   5mo         77      0       3  Billede                            𝗩𝗶 𝗳𝗲𝗷𝗿𝗲𝗿 +𝟱𝟬𝟬 𝗶𝗺𝗽𝗹𝗲𝗺𝗲𝗻𝘁𝗲𝗿𝗲𝗱𝗲 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮-𝗹ø𝘀𝗻𝗶𝗻𝗴𝗲𝗿 𝗵𝗼𝘀 𝗧𝘄𝗼𝗱𝗮𝘆 🏆 / I dag havde vi fornøjelsen af at …
+46   5mo         34      0       3  Dokument/Carousel                  📍𝗪𝗵𝗲𝗿𝗲 𝘁𝗼 𝗺𝗲𝗲𝘁 𝗖𝗼𝗻𝘁𝗶𝗻𝗶𝗮 𝘁𝗵𝗶𝘀 𝘀𝗽𝗿𝗶𝗻𝗴 𝗮𝗻𝗱 𝘀𝘂𝗺𝗺𝗲𝗿 / Event season is quickly approaching, and we look forward to co…
+47   5mo         53      0       1  Billede                            𝗟𝗮𝗽 𝘁𝗶𝗺𝗲𝘀 (𝗮𝗹𝗺𝗼𝘀𝘁) 𝗮𝘀 𝗾𝘂𝗶𝗰𝗸 𝗮𝘀 𝗼𝘂𝗿 𝗶𝗻𝘃𝗼𝗶𝗰𝗲 𝗽𝗿𝗼𝗰𝗲𝘀𝘀𝗶𝗻𝗴! 🚀 / At Continia, it’s all about time. Usually, th…
+48   6mo         27      0       3  Billede                            𝗩𝗶 𝗶𝗻𝘃𝗶𝘁𝗲𝗿𝗲𝗿 𝘁𝗶𝗹 𝗱𝗮𝗻𝘀𝗸𝗲 𝘄𝗲𝗯𝗶𝗻𝗮𝗿𝗲𝗿 👩‍💻 / Vil du arbejde mere effektivt i Business Central - og bruge mindre tid på manue…
+49   6mo         36      1       5  Billede                            𝗛𝗼𝘄 𝗶𝘃𝗪𝗮𝘁𝗰𝗵 𝗿𝗲𝗱𝘂𝗰𝗲𝗱 𝗲𝘅𝗽𝗲𝗻𝘀𝗲 𝗺𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 𝗰𝗼𝘀𝘁𝘀 𝗯𝘆 𝟰𝟬% 💰 / ivWatch, LLC helps hospitals and clinics protect…
+50   6mo         26      0       1  Billede                            𝗦𝗶𝗺𝗽𝗹𝗶𝗳𝘆 𝘆𝗼𝘂𝗿 𝗰𝗿𝗲𝗱𝗶𝘁 𝗰𝗮𝗿𝗱 𝗳𝗲𝗲 𝗵𝗮𝗻𝗱𝗹𝗶𝗻𝗴 💳 / Do credit card fees get mixed in with your employees’ regular expenses?
+
+
+######################################################################################################################################################
+EQUISYS (ZETADOCS)   (41 poster)
+https://www.linkedin.com/company/equisys/posts/?feedView=all
+OBS: Kun 41 poster tilgaengelige - feedet sluttede der.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  185 reactions  |  1 comments  |  85 reposts
+Snit:   4.5 reactions  |  0.0 comments  |  2.1 reposts pr. post
+Typer:  Billede: 34 | Link/Artikel: 5 | Video: 1 | Dokument/Carousel: 1
+Bedste: #33 (23 reactions) - We're delighted to be at Directions #EMEA2025 in Poznan! Be sure to come and vis
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    2w           3      0       3  Billede                            Our Implementation Services help Business Central partners deliver faster, smoother Zetadocs projects for their customers with less risk and more pred…
+2    1mo          3      0       4  Billede                            Manage your documents more effectively, rather than just storing them in a repository. Discover why Business Central customers choose Zetadocs Capture…
+3    1mo          4      0       2  Billede                            Cut costs without compromising control 💼 / Discover how AP automation reduces invoice processing costs while increasing operational value in this whi…
+4    1mo          4      1       2  Billede                            With Zetadocs, you can drag and drop supporting documents against a journal entry in Business Central. This provides context or justification for a tr…
+5    2mo          5      0       2  Video                              Missed our recent webinar? Catch up now! / Discover the best AP automation solution today to help speed up invoice processing, reduce human error and …
+6    2mo          1      0       1  Billede                            We're just a few hours away from our webinar, 'Discover THE BEST AP Automation Solution for Business Central'! / Join us to see how Zetadocs automat…
+7    2mo          2      0       3  Billede                            There's less than 24 hours left to register for our webinar - 'Discover THE BEST AP Automation solution for Business Central' / See how Zetadocs hel…
+8    3mo          3      0       3  Billede                            Looking for a smarter way to manage employee expenses and ensure compliant claims? Book a demo of Zetadocs Expenses today: / https://lnkd.in/dzYdmDt
+9    3mo         12      0       2  Billede                            Last week, we had a great time sponsoring Directions North America 2026! Thank you to all that stopped by to chat about Zetadocs and those who entered…
+10   4mo         15      0       5  Billede                            We had an amazing first day at Directions North America and can’t wait to see what day two brings! Be sure to stop by our booth (E-32) to say hello an…
+11   4mo          5      0       3  Billede                            We’ll be in Orlando, Florida next week for Directions North America, and we’d love to say hello. Drop by booth E-32 to meet the team, ask questions, a…
+12   4mo          6      0       4  Billede                            We're headed to Directions in Orlando, Florida in 2 weeks✈️ / We'll be at Booth E-32 and will be hosting a giveaway of a Meta Quest 3S! Make sure you …
+13   4mo          2      0       0  Billede                            Deliver smarter, not harder! / Customize how your documents reach the right people, every time with Zetadocs Delivery. / https://lnkd.in/gr8TnxT
+14   5mo          3      0       1  Billede                            We're delighted to be part of this exciting event that takes an in-depth look at AP Automation options for Microsoft Dynamics 365 Business Central.
+15   5mo          4      0       1  Billede                            Zetadocs Expenses offers a smooth expense workflow right out-of-the-box, with minimal training required for both finance teams and the submitters.
+16   5mo          3      0       5  Billede                            It's not too late to reserve your space on today's Lunch & Learn event! / This event will last around 15 minutes and is designed to give existing us…
+17   5mo          3      0       2  Billede                            It's not too late - join a Lunch & Learn event this week to learn how to get even more out of your Zetadocs investment. Book your place now via the li…
+18   5mo          1      0       1  Billede                            Our Lunch & Learn series starts next week! Are you registered yet? Each session will last around 15 minutes and is designed to demonstrate tricks and …
+19   5mo          1      0       0  Billede                            Looking forward to being part of this great event!
+20   6mo          7      0       2  Billede                            Looking for an expense management solution built for Business Central, ready to go straight away? Look no further than Zetadocs Expenses. / Book a dem…
+21   7mo          7      0       4  Billede                            Even the most well-written expense policies can prove difficult to enforce across a company. This whitepaper discusses the hurdles finance teams face …
+22   7mo          6      0       4  Billede                            See how Zetadocs can transform the way you work. Book a demo today to explore any of our AP automation, document management or expense management solu…
+23   7mo          2      0       0  Link/Artikel                       The future of accounts payable is automated. Explore expert perspectives on how AI and accounting technology will drive efficiency, accuracy and bette…
+24   7mo          3      0       2  Billede                            Zetadocs Delivery helps finance teams spend less time on admin and more time on what really matters. Learn more about how it could help save your team…
+25   7mo          1      0       1  Billede                            Learn how to build a clear travel and entertainment expenses policy that's easy to consistently enforce in this blog post: / https://lnkd.in/eZbQ9J5K
+26   7mo          0      0       0  Link/Artikel                       Still chasing approvals and fixing errors? AP automation removes bottlenecks, speeds up approvals and helps teams scale without the stress.
+27   8mo          1      0       1  Billede                            Many employees feel unsure about what they can expense, even if upper management think they have a clear expense policy. Solutions like Zetadocs Expen…
+28   8mo          3      0       2  Link/Artikel                       AI in ERP is accelerating fast, and ISVs are leading the way with practical, real-world innovations. Read this article to find out why AI-driven ISV s…
+29   9mo          3      0       1  Dokument/Carousel                  This month we're celebrating 15 years of the Equisys blog! Here’s some of the highlights from along the way...
+30   9mo          1      0       0  Link/Artikel                       Accounting teams in the manufacturing industry (and beyond) are facing challenges with manual AP workflows. Check out this article on why automating A…
+31   9mo         11      0       2  Billede                            Thank you to all who stopped by our booth at Directions #EMEA2025! Our team have had a great few days in Poznan, and loved chatting with e…
+32   9mo          1      0       0  Billede                            Our team is really enjoying the informative sessions and great conversations happening at Directions #EMEA2025. Come say hello at booth B-…
+33   9mo         23      0       5  Billede                            We're delighted to be at Directions #EMEA2025 in Poznan! Be sure to come and visit our team at booth B-13 to discover the latest news abou…
+34   10mo        14      0       7  Billede                            We're excited to be heading to Directions EMEA next week! If you're attending, we'd love to connect and show you how Zetadocs can simplify AP automati…
+35   10mo         3      0       2  Billede                            It's almost time for Demo Week! From October 20–24, we're offering live, personalized demos of our expense management solution. This is a great opport…
+36   11mo         1      0       1  Link/Artikel                       Join us for our webinar! / On Tuesday 30 September, we will host a webinar: "Seamless expense management for Business Central: What you should know".
+37   11mo         0      0       0  Billede                            We're delighted to partner with Z9Works Inc. and look forward to helping your customers!
+38   11mo         5      0       1  Billede                            We're excited to take part in the Expense Reporting Comparison Showcase for Business Central on Tuesday, September 23rd. Join us for a demo of Zetadoc…
+39   11mo         7      0       1  Billede                            Our customers love how easy it is to attach documents to the right Business Central record using the Zetadocs Capture FactBox. This user-friendly syst…
+40   11mo         3      0       2  Billede                            Zetadocs Expenses provides a powerful solution that's simple to manage. Learn more about how it integrates with Business Central here: https://lnkd.in…
+41   11mo         3      0       3  Billede                            Zetadocs Delivery helps businesses to reduce document delivery costs and streamline processes by automating time-consuming, day-to-day jobs.
+
+
+######################################################################################################################################################
+MEDIUS   (50 poster)
+https://www.linkedin.com/company/medius/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  1152 reactions  |  9 comments  |  154 reposts
+Snit:   23.0 reactions  |  0.2 comments  |  3.1 reposts pr. post
+Typer:  Billede: 34 | Link/Artikel: 8 | Dokument/Carousel: 6 | Video: 1 | Tekst: 1
+Bedste: #31 (137 reactions) - Finance and diplomacy have more in common than you'd think. / Both run on trust,
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    1h           4      0       0  Dokument/Carousel                  September is a good month to sort out AP. / We have a full webinar lineup covering payments, automation, expense management, and more. / Live sessions…
+2    3d           7      0       1  Billede                            Not sure which AP automation features actually matter, and which are just on the checklist for show? / This blog covers what each feature does, why it…
+3    5d          34      0      10  Dokument/Carousel                  Medius’ Financial Census 2026 is officially here. / Across 2,386 senior finance professionals surveyed, the same pattern kept showing up: high confide…
+4    6d          10      1       0  Billede                            Join the Medius team at the upcoming inPOWER User Conference, taking place September 14-17 in Pewaukee, Wisconsin. / We are proud to sponsor this year…
+5    1w           8      0       2  Dokument/Carousel                  What better way to close out the week than with a new edition of MediusExplains? Today, we're discussing the 5 signs your AP process is costing you sp…
+6    1w          11      0       4  Billede                            Mark your calendars! Our Top Tips in Action live interactive webinar is coming up on September 9, 10:00 - 10:30 AM ET. / This quarter's session is hos…
+7    1w          21      0       6  Billede                            Invoices processed in one day. / 99%+ touchless capture. / Approval routing that learns as you go. / That's what best-in-class AP looks like in 2026.
+8    1w           6      0       0  Link/Artikel                       What are the most common causes of late payments in B2B? / Invoice errors, approval gaps, and manual steps with no clear owner. The latest data shows …
+9    1w          14      0       0  Billede                            Medius will be at JDE INFOCUS 2026, taking place September 21-23 in Denver, Colorado. This three-day event will join the JD Edwards community for hand…
+10   2w           7      0       2  Link/Artikel                       A failed invoice match in manufacturing isn't just an AP problem. / It delays supplier payments. It pulls procurement teams into discrepancy reviews.
+11   2w          11      0       1  Billede                            58% of AP teams are already using or piloting AI. The other 42% are watching the gap widen. / Ardent Partners' 2026 State of AP report is out, and the…
+12   2w          66      0       5  Billede                            Join us on August 26 for our Explore Medius: Compliance & E-invoicing live webinar. / Hear from Medius’ Global Head of E-Invoicing & Compliance, Selin…
+13   2w           6      0       0  Link/Artikel                       Duplicate payments in retail don't usually look like duplicates. / Same invoice, slightly different number. Same supplier, two vendor records. Same PO…
+14   3w          34      2       4  Billede                            Join us on August 20 for our Medius Momentum: Q3 2026 Product Update, a live webinar featuring our own Graeme Chard, SVP, Product Marketing, as he pro…
+15   3w           4      1       0  Billede                            Most enterprise finance teams aren't waiting on budget to modernize AP. They're waiting on IT. And IT is waiting on the ERP. / It's one of the most co…
+16   3w          32      0      10  Billede                            ⚙️Great Northern Equipment: small team, big efficiency gains / As a leading wholesale distributor of top-quality power equipment, including Honda engi…
+17   4w          63      0       1  Billede                            We had a great time this week at the Microsoft AI Business Solutions Partner Executive Summit. / We connected with ISVs, SIs and members of the Micros…
+18   1mo          6      0       0  Link/Artikel                       AP fraud doesn't announce itself. It hides in duplicate invoices and last-minute bank account changes. / If you didn't catch our live session on this …
+19   1mo         13      0       3  Link/Artikel                       The accounts payable process covers a lot of ground: purchase orders, invoice capture, three-way matching, approvals, payment scheduling, and record-k…
+20   1mo         11      0       4  Billede                            Still chasing invoice approvals and manually keying payments? There's a live demo for that. / Join us at IOFM on August 6th to see Medius handle the…
+21   1mo         17      0       3  Billede                            🏗️ Innovation meets efficiency: Marshalls plc’s AP automation journey / For over 130 years, Marshalls plc has been a cornerstone of the UK’s hard lan…
+22   1mo         20      0       1  Video                              We’re excited to return with a new edition of our MediusAsks series. This series invites our team of experts at Medius to share their insights on the …
+23   1mo         11      0       1  Link/Artikel                       The industry average for invoice cycle time is 8.2 days. / That gap isn't just a speed difference. It shows up in late payment fees, missed early-pay …
+24   1mo          7      0       0  Billede                            In the food and beverage industry, fast-moving operations require real-time invoicing and tight delivery schedules. / F&B AP has specific challenges t…
+25   1mo         34      0       6  Billede                            Choosing AP solutions can be as complex and confusing as managing AP itself, but we think analysis like this from Gartner® can help clarify which solu…
+26   1mo         44      0       6  Billede                            You're already running AP on Medius. Invoices are moving, approvals are flowing, payments are going out. / But there's a layer of AI capability sittin…
+27   1mo         15      0       1  Billede                            🔧 Say goodbye to AP exceptions with intelligent automation / Exception handling slows down manufacturing AP teams, creating inefficiencies, disruptin…
+28   1mo         10      0       0  Billede                            The most significant financial leaks in transportation rarely appear on the invoice header. They are buried in the line items—fuel surcharges, demurra…
+29   1mo         15      0       2  Billede                            Late payments affect most businesses, even those using e-invoicing. / Exceptions, approvals and reconciliation still create delays. This guide include…
+30   1mo         13      0       2  Billede                            Is your payment mix actually working for you — or against you? / Most AP and finance teams default to a mix of cards, ACH, checks, and supplier terms …
+31   1mo        137      1       7  Billede                            Finance and diplomacy have more in common than you'd think. / Both run on trust, relationships, and getting the details right. / It was an honor to we…
+32   1mo         16      0       1  Billede                            Nobody goes into a finance role thinking "I can't wait to spend my week managing late payments." And yet for 52% of European companies, that's the rea…
+33   1mo         29      0       4  Billede                            💡Thorlux Lighting’s journey to AP excellence / From manual bottlenecks to streamlined efficiency, Thorlux Lighting has transformed its accounts payab…
+34   2mo         26      1       2  Billede                            Manual exception handling. Fragmented workflows. Decisions made after the fact. If that sounds familiar, you're not alone. / Join us on July 15 at 11a…
+35   2mo         10      0       1  Dokument/Carousel                  If July gives you a little breathing room, why not use it to learn something new about AP? / We have three webinars coming up this month, covering eve…
+36   2mo         23      0       2  Billede                            Many legacy AP systems simply weren't built for the complexity of freight charges. The result is often a manual workaround that sacrifices both accura…
+37   2mo         12      0       1  Dokument/Carousel                  A new edition of MediusExplains? Don’t mind if we do! Today, we’re discussing how AP automation is enabling improved productivity and faster finance.
+38   2mo          9      0       3  Tekst                              In a recent webinar, Yvonne Gockel-Jans our Director of Global Partners joined Antaras to walk through how Infor LN users can get to touchless AP.
+39   2mo          7      0       0  Link/Artikel                       Your working capital strategy is only as strong as your invoice execution. / Treasury models the targets. Procurement negotiates the terms. Controller…
+40   2mo        128      2      31  Billede                            We’re proud to announce that we’ve been named a Leader in the 2026 Gartner® Magic Quadrant™ for Accounts Payable Applications. / Learn more by getting…
+41   2mo         10      0       2  Link/Artikel                       In 2026, why is it that most of the AI that AP teams are shipping won’t pass a serious external audit? And what does a governable AI architecture actu…
+42   2mo          7      1       1  Dokument/Carousel                  Rapid growth in logistics often masks a dangerous reality: operational complexity is eroding your margins. When shipment volumes spike, the "manual ta…
+43   2mo         18      0       2  Billede                            Accounts Payable teams in construction manage hundreds, sometimes thousands, of suppliers. That means a constant flow of payment status inquiries, fol…
+44   2mo         12      0       6  Billede                            E-invoicing is no longer just a compliance checkbox — it's becoming a competitive edge. / On June 23, Medius and Thomson Reuters are hosting a live vi…
+45   2mo         25      0       5  Billede                            Looking forward to this. Hope to see you join us on July 15.
+46   2mo         15      0       0  Billede                            Garment manufacturing doesn't slow down for admin. / Multiple brands, complex orders, different currencies and supplier terms... the last thing a fina…
+47   2mo         14      0       2  Billede                            🏭 How is AI revolutionizing manufacturing AP processes? / The manufacturing industry thrives on precision and efficiency, and your accounts payable (…
+48   2mo         11      0       2  Billede                            "How do I improve AP without disrupting our ERP?" / Forward-thinking enterprises are modernizing AP outside the ERP while keeping core systems intact.
+49   2mo         65      0       3  Billede                            Speed used to be the whole AP conversation. Process faster, close faster, repeat. / Daniel Ball reframed it on stage at Gartner Finance Symposium/Xpo™…
+50   2mo         24      0       4  Billede                            Still manually chasing invoice approvals in Infor LN? There's a better way. / Join us on June 11 for a webinar with Medius and partner Antaras, where …
+
+
+######################################################################################################################################################
+QVALIA   (16 poster)
+https://www.linkedin.com/company/qvalia/posts/?feedView=all
+OBS: Kun 16 poster tilgaengelige - feedet sluttede der.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  330 reactions  |  18 comments  |  39 reposts
+Snit:   20.6 reactions  |  1.1 comments  |  2.4 reposts pr. post
+Typer:  Billede: 14 | Link/Artikel: 1 | Video: 1
+Bedste: #14 (81 reactions) - Great day at Qvalia together with our friends from Amazon Web Services (AWS). / 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    2mo          5      0       1  Billede                            E-invoicing mandates are becoming infrastructure decisions. / As Slovakia prepares for its eFaktúra framework, companies, platforms, and service provi…
+2    2mo          8      2       0  Billede                            The new Billentis report on the global e-invoicing market is here. 🌐 / Highlights include: / > 29% of global B2B invoices are currently electronic — …
+3    2mo         27      0       2  Billede                            Slovakia’s eFaktúra framework is another important step in Europe’s transition toward structured electronic invoicing. / From 2027, affected businesse…
+4    3mo         32      1       6  Billede                            Qvalia is now certified for Slovakia e-invoicing under the eFaktúra framework. / We are accredited by the Financial Administration of the Slovak Repub…
+5    3mo          6      0       1  Billede                            🔃 Qvalia's Business Continuity Management System has now been certified against ISO 22301:2019, the international standard for business continuity pl…
+6    4mo          8      1       0  Billede                            🔒 Qvalia is now listed in the Cloud Security Alliance STAR Registry. / It's an industry standard for evaluating cloud provider security, covering 283…
+7    4mo         42      5       5  Billede                            📲 Qvalia is now available on iPhone and Android. / Approve invoices in seconds. From anywhere. Faster approvals mean organizational efficiency, short…
+8    8mo         13      1       2  Billede                            In 2025, we expanded Qvalia’s platform across nearly all fronts. Fredrik Forsell highlights the year’s product updates — from new APIs to AI capabilit…
+9    8mo          9      0       1  Billede                            🌐 [Peppol for developers] How to get started with Peppol API. / Learn how to: / ▪️ Set up a Peppol-ready API integration / ▪️ Send and receive invoic…
+10   9mo          9      0       1  Billede                            👉 Belgium mandates #Peppol e-invoicing for most B2B transactions on January 1, 2026. Our guide covers all you need to know and how to com…
+11   9mo         14      0       0  Billede                            🌐 The 2026 Peppol country guide — full list, status, and coverage map. Learn where #Peppol is available, national connectivity, and more …
+12   10mo        29      3       3  Billede                            Thank you to everyone who joined today’s webinar with Julius Nilsson from Docupath and Henri Taipale on #IDP — Intelligent Document Proces…
+13   10mo        25      0       7  Billede                            [Upcoming webinar] AI-ready finance with Intelligent Document Processing / AI is reshaping financial ops, AP & AR. But manual routines, fragmented too…
+14   11mo        81      3       8  Billede                            Great day at Qvalia together with our friends from Amazon Web Services (AWS). / We hosted a joint #GenAI workshop — an inspiring exchange …
+15   11mo         4      1       0  Link/Artikel                       Connect is more than digital invoicing. It’s your gateway to automation, compliance, and smarter financial management. / Most companies have gone from…
+16   11mo        18      1       2  Video                              Introducing Qvalia Connect 🌐 / Digital business transactions are now easier, faster, and more cost-efficient for every business.
+
+
+######################################################################################################################################################
+AMC BANKING   (23 poster)
+https://www.linkedin.com/company/amc-banking/posts/?feedView=all
+OBS: Kun 23 poster tilgaengelige - feedet sluttede der.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  297 reactions  |  12 comments  |  18 reposts
+Snit:   12.9 reactions  |  0.5 comments  |  0.8 reposts pr. post
+Typer:  Billede: 7 | Link/Artikel: 7 | Tekst: 4 | Video: 4 | Dokument/Carousel: 1
+Bedste: #11 (56 reactions) - The torch has officially been passed 🔥🔑 / We’re excited to move into Københavns 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    5d          16      1       1  Billede                            What do you learn from 30+ years of working with bank integration? / Probably this: / No two banks are quite the same. / Standards have improved, tech…
+2    2w          12      1       0  Link/Artikel                       How many systems does your finance team touch just to make a payment? 👇 / The ERP. / A bank portal. / Maybe a spreadsheet. / Then back to the ERP to …
+3    2mo         13      2       2  Billede                            Before summer kicks off, we wanted to share a small milestone from AMC Banking. / We have now been assigned our own SWIFT BIC. / Why does that matter?…
+4    2mo          6      0       2  Link/Artikel                       Your biggest compliance risk might be a process nobody questions anymore / Not every risk comes from cybercriminals. / Sometimes it comes from a proce…
+5    2mo         29      1       0  Billede                            Thanks to everybody who showed up for the reception in our new building! We are looking forward to show it once we are done renovating it.
+6    3mo          0      0       0  Tekst                              You can still register for our reception next week if you would like to swing by and say hi.
+7    3mo          9      0       0  Tekst                              AMC Banking operates under Service Provider Agreements with selected banks, providing a more structured framework for bank integration and onboarding.
+8    4mo         12      0       3  Link/Artikel                       AMC is expanding and we are currently looking for a java developer. / If you could see youself in the role, do not hesitate to send an application.
+9    4mo          6      0       0  Link/Artikel                       Still uploading payment files manually? / At some point, it stops scaling. / More banks. More transactions. More errors. / Less control. / Direct bank…
+10   4mo         12      0       1  Tekst                              We’re moving and we’d love to celebrate with you. / Join us for a reception where you can experience our new surroundings before the renovation begins…
+11   4mo         56      4       1  Billede                            The torch has officially been passed 🔥🔑 / We’re excited to move into Københavns Frikirke and continue the AMC Banking journey from here.
+12   6mo          7      0       0  Billede                            Enterprise treasury demands structure, visibility, and control. / For large organizations operating across multiple entities, banks, and jurisdictions…
+13   6mo         11      0       3  Video                              Bank integration: Myth vs reality / Many finance teams treat bank connectivity like a one-time setup. In reality, banking evolves, formats change, sec…
+14   6mo         10      0       1  Video                              The AMC Banking webinar series offers: demos, new features, use cases and Q&A, focused on simplifying cash management in Dynamics 365.
+15   7mo          4      0       0  Dokument/Carousel                  (ingen tekst)
+16   7mo         24      0       0  Billede                            ERP bank integration is rarely ‘plug-and-play’. / That’s why AMC Banking’s Consultancy team exists. / We don’t just set up the solution, we help finan…
+17   8mo         30      3       2  Link/Artikel                       We bought The White House... at Frederiksberg. / We are looking forward to moving into our new location in 2026. A building with a rich and remarkable…
+18   9mo          6      0       0  Video                              Discover our new app designed to simplify and automate cash management directly inside Microsoft Dynamics 365 Business Central. AMC Banking 365 BC cen…
+19   8mo          4      0       0  Link/Artikel                       You can still sign up for our webinar tomorrow where we take a deep dive into the capabilities of our brand new Business Central app.
+20   10mo        11      0       0  Video                              In this webinar, we’ll take you through how AMC Banking’s intelligent cash sweeping for Microsoft Dynamics 365 Finance helps you optimize liquidity.
+21   10mo         5      0       0  Link/Artikel                       📣 In case you have not yet signed up for our treasury extension webinar about cash sweeping, you can still make it. / Dont miss out on this deep dive…
+22   11mo         6      0       2  Billede                            We’re excited to team up with Columbus to show how liquidity management can be automated inside Dynamics 365 Finance. / In this webinar we will take y…
+23   11mo         8      0       0  Tekst                              Convenience is the key word for our AMC Banking app - giving you the ability to access and approve payments wherever you are from your phone.
+
+
+######################################################################################################################################################
+B2BROUTER   (50 poster)
+https://www.linkedin.com/company/b2brouter/posts/
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  417 reactions  |  34 comments  |  87 reposts
+Snit:   8.3 reactions  |  0.7 comments  |  1.7 reposts pr. post
+Typer:  Dokument/Carousel: 16 | Billede: 14 | Link/Artikel: 12 | Tekst: 7 | Poll: 1
+Bedste: #31 (47 reactions) - ERP & E-Invoicing Integration Partners→ Monthly Ranking Status | July 2026 / The
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    3d           3      0       1  Tekst                              ⚙️ J-5 : une facture conforme peut malgré tout échouer si vos données clients sont incorrectes. / À quelques jours du lancement de la réforme français…
+2    5d          11      2       4  Billede                            ⏳ J-7 en France : attendre de voir ce qui se passe n’est plus une stratégie. / Dans une semaine, toutes les entreprises devront être capables de recev…
+3    1w           3      2       1  Dokument/Carousel                  🔍 La facturation électronique n’est que la moitié de la réforme. Avez-vous préparé votre e-reporting ? / De nombreuses entreprises ont concentré leur…
+4    1w          12      7       2  Billede                            ⚠️ J-14 avant la réforme : pour les éditeurs de logiciels, le dernier moment est déjà là. / Le 1er septembre 2026, toutes les entreprises concernées d…
+5    1w           5      0       0  Link/Artikel                       Electronic invoicing is accelerating across Europe, and B2Brouter is growing with it. 🌍 / We now support more than 250,000 users across 30+ markets, …
+6    2w          19      1       2  Link/Artikel (repost: Oriol Bausà) Ja no hi ha excuses per adoptar la facturació electrònica, queden molt pocs dies i els que segueixen esperant potser no seran a temps de complir amb l…
+7    2w           9      0       1  Billede                            La réforme française de la facturation électronique ne concerne pas seulement la France. Elle a aussi un impact sur les flux internationaux. 🌍
+8    2w           0      0       0  Tekst                              🇫🇷 Si la réforme française paraît simple en septembre, ce ne sera pas parce qu’elle l’est. / Derrière chaque facture électronique échangée se cache …
+9    2w           3      0       0  Link/Artikel                       El otro día Aleix Gasset se atrevió a explicarnos en un vídeo de dos minutos qué es FACe y cómo funciona.
+10   3w          10      2       3  Billede (repost: e-Invoice.app)    📣 𝗣𝗮𝗿𝘁𝗻𝗲𝗿 𝗔𝗻𝗻𝗼𝘂𝗻𝗰𝗲𝗺𝗲𝗻𝘁: 𝗕𝟮𝗕𝗿𝗼𝘂𝘁𝗲𝗿 / We're thrilled to announce that B2Brouter has extended their partnership with e-Invoi…
+11   3w           7      1       2  Link/Artikel (repost: Oriol Bausà) Le permier Septembre est prochajn!
+12   3w           2      0       0  Dokument/Carousel                  🇩🇪 Die E-Rechnung in Deutschland ist bereits Realität – trotzdem halten sich noch einige Missverständnisse. / Eines der häufigsten: Eine per E-Mail …
+13   3w          38      0       4  Billede                            🏆 B2Brouter talent stands out in London! / After one week of learning and just three hours to build a new solution, our developers Nikita Kishkevich …
+14   3w           6      0       1  Dokument/Carousel                  🇫🇷 Comment bien choisir sa Plateforme Agréée avant l’entrée en vigueur de la réforme de la facturation électronique ?
+15   1mo         13      2       1  Link/Artikel (repost: Oriol Bausà) Verifactu como el primer paso hacia el despliegue de ViDA, creo que es imprescindible impulsar Verifactu para estar listos para la iniciativa europea.
+16   1mo          6      0       2  Link/Artikel                       SCI, LMNP et facturation électronique : êtes-vous vraiment concerné ? 🏠 / La réponse dépend de votre situation.
+17   1mo          8      0       1  Tekst                              Germany’s e-invoicing rollout is not just a national compliance update. It is part of a much bigger European shift.
+18   1mo          8      0       2  Dokument/Carousel                  Tu ERP puede emitir facturas, pero… ¿puede cumplir con las nuevas obligaciones de la Ley Crea y Crece? 👀
+19   1mo         10      1       2  Dokument/Carousel                  Belgium’s B2B e-invoicing mandate is already in force. 🇧🇪 / Since 1 January 2026, companies established in Belgium must issue and receive structured…
+20   1mo          1      0       0  Tekst                              La factura electrónica B2B en España ya no es un proyecto de futuro: el momento de prepararse es ahora. ⭐
+21   1mo         13      4       4  Billede                            Plateforme Agréée ou Solution Compatible ? 🚀 / C’est une décision clé pour les ISVs, ERPs et plateformes SaaS qui veulent s’adapter à la réforme fran…
+22   1mo          5      0       2  Billede                            Can your software support both XRechnung and ZUGFeRD? 🇩🇪 / Germany’s B2B e-invoicing mandate is already underway, and for software providers, format…
+23   1mo          0      0       0  Billede                            VeriFactu no es el único gran cambio que viene en España 👀 / La Ley Crea y Crece también transformará la forma en la que empresas y profesionales ges…
+24   1mo          5      0       2  Dokument/Carousel                  🤔 ¿Tienes que enviar todas tus facturas a la AEAT? / La respuesta rápida es: no exactamente.
+25   1mo          9      4       1  Link/Artikel                       ¿Cómo puede un ERP incorporar la facturación electrónica sin asumir toda la complejidad técnica y normativa? 🤔 / Paprika Software España, software de…
+26   1mo          3      0       0  Tekst                              In his latest article, Henrik Möller asks a simple question: if we could rebuild the e-invoicing market from scratch today, what would we do different…
+27   1mo         14      0       4  Dokument/Carousel                  La réforme fiscale française ne se limite pas à “envoyer des factures électroniques”. 🏛️
+28   1mo          9      0       3  Dokument/Carousel                  Meet our Sales Team 👋 / They are the people who connect businesses with the right e-invoicing and tax compliance solutions, helping companies underst…
+29   1mo          2      0       1  Dokument/Carousel                  La factura electrónica no va solo de enviar una factura en formato digital. / Con la Ley Crea y Crece, las empresas deberán trabajar con sistemas que …
+30   1mo          2      0       2  Poll                               🚦 2026 e-invoicing reality check: is your business ready? / Across Europe, APAC and beyond, e-invoicing mandates are moving fast.
+31   1mo         47      3       8  Billede (repost: taxtech500)       ERP & E-Invoicing Integration Partners→ Monthly Ranking Status | July 2026 / The number #1 position is B2Brouter.
+32   1mo          8      0       4  Link/Artikel                       La réforme de la facturation électronique en France ne se limite pas à choisir une Plateforme Agréée.
+33   1mo          7      0       2  Dokument/Carousel                  Do you have clients, suppliers or subsidiaries in Germany? 🇩🇪 / Then Germany’s B2B e-invoicing mandate is not something to leave for 2028.
+34   1mo          8      0       4  Link/Artikel                       La réforme de la facturation électronique en France ne se limite pas à choisir une Plateforme Agréée. (dublet af #32)
+35   1mo          7      0       2  Dokument/Carousel                  Do you have clients, suppliers or subsidiaries in Germany? 🇩🇪 (dublet af #33)
+36   1mo          9      1       0  Dokument/Carousel                  ✍️ La solución pública de facturación electrónica de la AEAT será una pieza importante del nuevo sistema B2B en España.
+37   1mo          3      0       2  Billede                            Capde — says it exactly right: France’s e-invoicing reform is not just about sending invoices differently, it’s about making sure the data is ready.
+38   1mo          7      0       2  Link/Artikel                       📸 La facturation électronique arrive en France. / Mais pour les photographes, la conformité ne devrait pas devenir une charge administrative de plus.
+39   1mo          2      0       1  Billede                            📣 Próximos webinars | Julio 2026 / Este junio te esperamos en dos sesiones en español para ayudarte a avanzar con la facturación electrónica y resolv…
+40   1mo          3      0       1  Billede                            🚀 Upcoming webinars | July 2026 / Want to integrate e-invoicing into your product or workflows with B2Brouter’s API?
+41   1mo          4      0       0  Dokument/Carousel                  Empfangen ist nicht gleich Verarbeiten. / Genau darüber haben wir vor zwei Wochen eine Frage gestellt.
+42   2mo         11      0       3  Billede                            🛒 Tu tienda online no puede permitirse facturar “a mano”. / Pedidos, reembolsos, datos fiscales, numeración, cumplimiento normativo…
+43   2mo         29      2       7  Dokument/Carousel (repost: SAP @ N 🤝 We're excited to announce our partnership with B2Brouter. / As e-invoicing requirements continue to evolve, organizations need solutions that combi…
+44   2mo          6      0       0  Billede                            When people hear about Poland's mandatory KSeF, they often assume it only affects Polish companies. / That's not the case.
+45   2mo          2      0       0  Tekst                              Global e-invoicing interoperability sounds simple… until every country brings its own local dance to the floor. 🕺
+46   2mo          6      0       2  Dokument/Carousel                  Vous facturez déjà des administrations, hôpitaux, collectivités ou organismes publics en France via Chorus Pro ?
+47   2mo          6      0       0  Link/Artikel                       📢 ¿Tu empresa está preparada para la factura electrónica B2B obligatoria? / El próximo 2 de julio a las 10:00h, participaremos en un webinar online…
+48   2mo          1      0       0  Tekst                              Interoperability is no longer a future objective. It is becoming the infrastructure behind e-invoicing mandates worldwide.
+49   2mo         10      2       1  Dokument/Carousel                  ¿La factura electrónica es una herramienta para que Hacienda lo vea todo? 👀
+50   2mo          5      0       0  Link/Artikel                       La factura electrónica obligatoria ya tiene marco regulatorio, pero todavía quedan cuestiones jurídicas importantes por resolver.
+
+
+######################################################################################################################################################
+DOOAP   (50 poster)
+https://www.linkedin.com/company/dooap/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  1142 reactions  |  92 comments  |  95 reposts
+Snit:   22.8 reactions  |  1.8 comments  |  1.9 reposts pr. post
+Typer:  Billede: 27 | Video: 16 | Link/Artikel: 5 | Dokument/Carousel: 2
+Bedste: #18 (71 reactions) - AP automation doesn't stop at the invoice. So why should your tech stack? / Here
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    1w           8      1       6  Billede                            Dooap Studio has a new home: https://dooapstudio.ai/ / It's our agentic AI automation environment for Microsoft Dynamics 365 Finance — giving AP teams…
+2    3w           9      1       1  Billede                            We're sponsoring Dynamics User Group (DUG) DynamicsCon Regional: Ohio Valley on August 25–26 in Dublin, OH — and our team will be at the Dooap booth t…
+3    3w           6      1       1  Billede                            Everyone is talking about AI in finance. Very few are talking about what's actually working. / AI is changing accounts payable, but adoption isn't as …
+4    1mo         26      2       4  Video                              Sharing our story of Dooap Studio live from Dynamic Communities AI Business Applications Partner Executive Summit this morning.
+5    1mo         19      0       0  Video                              Looking forward to sharing more about Dooap Studio this week at AI Business Solutions Partner Executive Summit. / We have a table in the expo area…
+6    1mo         10      0       1  Billede                            We're heading to Copenhagen! / Join the Dooap team at Directions for Partners for Enterprise 2026, September 23–25 in Copenhagen — the global gatherin…
+7    1mo         18      1       0  Billede                            Five years in, and she still says it feels new every day. / In this episode of Dooap Unleashed, host Sam Bush sits down with Upasna Dadabhai, Technica…
+8    1mo         30      4       1  Billede                            Who is attending Dynamic Communities's AI Business Solutions Partner Executive Summit? Our CEO, Mikko Hytonen, will be chatting with John Siefert abou…
+9    1mo         19      1       4  Billede                            Every D365 vendor is racing to say "agentic" right now. Most are still figuring out what that means in practice.
+10   1mo         11      0       3  Link/Artikel                       Every AP Manager knows this feeling: you spot the fix, but IT has a three-week queue. / Dooap Studio changes that.
+11   1mo         25      0       3  Billede                            Last time we said "something new is coming," we introduced Dooap Studio — agentic AP automation for D365 Finance. / Next week, we're back.
+12   2mo         18      0       2  Billede                            Somewhere right now, an AP manager is refreshing their inbox hoping an approval magically appeared. / It didn't.
+13   2mo         24      2       0  Video                              We are here and you can find the team and table next to registration. Come chat with us about Agentic AP!
+14   2mo         16      0       1  Billede                            The Dynamics community is coming to Toronto — and so are we. / Dynamics User Group (DUG) Regional Toronto (June 18–19, 2026) brings together D365 prof…
+15   2mo         39      2       1  Video                              Excited to introduce our latest Dooap Unleashed: Run With Us — Eftsure! / Scott Schlegel and Gabe Garcia sat down during Dynamics User Group (DUG) Dyn…
+16   2mo         17      0       6  Video                              This is what agentic AP automation looks like. / Dooap Studio gives AP teams the power to design, tune, and govern AI workflows.
+17   2mo         14      0       1  Billede                            Just think of the possibilities with Dooap Studio! Here's one for you.
+18   2mo         71     10       3  Video                              AP automation doesn't stop at the invoice. So why should your tech stack? / Here we are launching "Run With Us" on Dooap Unleashed.
+19   2mo         21      0       0  Billede                            We saw a clear shift across #DynamicsCon2026 and #DynamicsMinds2026 this year. The conversation is moving from features to how…
+20   3mo         70      4       0  Billede                            Well, that’s a wrap on DynamicsMinds. The Dooap team is heading back through time and space.
+21   3mo          9      1       0  Video                              Great conversations. Great community.
+22   3mo         28      2       3  Billede                            Set up and ready for “Herd your AP with AI Agents”, in Sunset on level 11. Come join us to see agents at work collecting, herding, and making AP happe…
+23   3mo         30      0       1  Billede                            We’re heading to #DynamicsMinds2026 and looking forward to being back with the community. / On Monday, 25 May at 11:15, we’ll be hosting o…
+24   3mo         21      3       1  Video                              The biggest problem in finance isn't the system. It's that nobody trusts it. / That's the premise behind Dooap Unleashed Episode 2.
+25   3mo         15      0       0  Link/Artikel                       Transform your AP process with automation built for Dynamics 365 Finance. Capture invoices, automate approvals, and match POs seamlessly.
+26   3mo         66      4       0  Video                              Sam Bush live here in Helsinki. The Dooap team is gearing up for DynamicsMinds next week and we have a status update.
+27   3mo         10      0       1  Link/Artikel                       What does AI literacy actually look like for a Dynamics 365 Finance team in 2026? / Our CPO Anna Tujunen breaks it down.
+28   3mo          9      0       2  Video                              Love spending time with our partners all year around. At Dynamics User Group (DUG) with so many!
+29   3mo         57      1       2  Billede                            With AP you have a lot of balls in the air at all times, let Dooap help you herd them with AI! / Stop by booth 207 to learn more about Dooap Studio.
+30   3mo         46      6       8  Video                              Run AP with AI agents. Not manual work. / Today we're launching Dooap Studio — Agentic AP Automation built specifically for Accounts Payable.
+31   3mo         21      6       2  Billede                            The AP world is about to change. / 5 days. #AccountsPayable #D365Finance
+32   3mo         24      1       3  Billede                            We’re heading to #DynamicsCon in Las Vegas next week! / If you’re attending, be sure to stop by Booth 207 to connect with our team.
+33   4mo         15      2       2  Video                              Welcome to Dooap Unleashed. / A video series coming to your LinkedIn life all about making Accounts Payable actually work the way it should.
+34   4mo         40     15       1  Video                              What message would you send to the future? 🚀 / We took DynamicsMinds' “Message to the Future” challenge and turned it into something a little, well, …
+35   4mo         32      0       2  Billede                            🐑 Still herding invoices manually? What if your AP process could herd itself? / Join us at DynamicsMinds for a live session.
+36   4mo         20      1       4  Billede                            Something new is coming. Stay tuned. #dooapunleashed
+37   5mo         16      0       3  Billede                            Join us at the Dynamic Communities Summit NA Roadshow in Vancouver. / Built specifically for Microsoft Dynamics 365 Finance, Dooap is the AP automatio…
+38   5mo         10      1       3  Link/Artikel                       Approving invoices shouldn’t keep you tied to your desk. / With the Dooap AP Automation Mobile App, invoice approvals can happen anytime, anywhere.
+39   6mo         49      3       0  Billede                            We are here and ready to talk about AI and AP for Dynamics 365 Finance in Tampa for the Dynamic Communities roadshow!
+40   6mo         14      3       2  Billede                            AI is changing Accounts Payable. / But control still matters. / At the Dynamic Communities Summit Roadshow in Tampa next week…
+41   7mo         42     12       4  Billede                            Sam Bush joins Dooap as Chief Marketing Officer, starting February 1, 2026. She brings in-depth experience in demand generation, partner marketing…
+42   7mo         10      1       2  Dokument/Carousel                  AI is no longer “coming” to AP. It’s redefining how finance teams lead, work, and make decisions.
+43   7mo          9      1       1  Billede                            Happy 2026 🚀, we're looking forward to meeting y'all in Dallas on Thursday! Scott Schlegel and Mikko Hytonen will be there.
+44   7mo         10      0       2  Video                              Invoice approvals shouldn’t be a treasure hunt. With Dooap, your workflows adapt to your business, not the other way around.
+45   8mo         13      0       1  Video                              PO matching is one of those tasks you can’t ignore, but you definitely don’t want to babysit. With Dooap, you don’t have to.
+46   8mo          4      0       0  Dokument/Carousel                  Our #APautomation solution is designed for Microsoft #D365FO, and a widespread and easy-to-reach presence in the ecosystem is …
+47   8mo         16      0       1  Video                              Great AP automation happens before you even know it. Dooap handles it quietly in the background so your invoices keep moving.
+48   9mo          6      0       0  Billede                            Thank you, Ellipse Solutions, for the highlight. We're proud of our collaboration, the results of which are shown in our joint customer story!
+49   10mo         9      0       2  Link/Artikel                       Considering AP Automation for D365 Finance or BC? Maybe you did not have a chance to go to the Community Summit this week to see all the options.
+50   10mo        20      0       4  Billede                            We’re all set, including Dooap the Puppy 🐶at booth 1431 at #mysummitna and waiting to meet you all at the welcome party tonight at 6pm!!
+
+
+######################################################################################################################################################
+YAVRIO   (50 poster)
+https://www.linkedin.com/company/yavrio/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  2826 reactions  |  243 comments  |  47 reposts
+Snit:   56.5 reactions  |  4.9 comments  |  0.9 reposts pr. post
+Typer:  Billede: 43 | Video: 3 | Dokument/Carousel: 3 | Tekst: 1
+Bedste: #17 (176 reactions) - Meet our Head of UK Sales, Charlotte Huang! / Charlotte has led our UK sales tea
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    4d          24      0       0  Billede                            The Yavrio team is already counting down the days till Directions for Enterprise 2026! 🇩🇰 / This September we're heading to Copenhagen as a Gold Spo…
+2    6d          27      4       0  Billede                            Our team just touched down in Ohio and we can't wait to meet with our partners and clients at the Dynamics User Group (DUG) DynamicsCon Regional event…
+3    1w          29      2       1  Billede                            This week we've been celebrating the return of Samantha Felling to our USA partner team!
+4    1w          31      2       2  Billede                            More than 5 billion Direct Debit payments run through the UK's Bacs network every year. / It's one of the most trusted ways to get paid in this coun…
+5    2w          35      2       2  Video                              What does success actually look like when banking is fully integrated into the ERP? / Our NA Sales Director, Joshua Wilkinson caught up with Director…
+6    2w          21      2       0  Billede                            Yavrio x Wenalyze🤝 / We’re building smarter fraud prevention into Yavrio - helping finance teams identify unusual transactions, suspicious merchant…
+7    2w          77     11       1  Billede                            What a day 🥳 / The whole UK team got together in Paddington to celebrate the launch of Yavrio Direct Debit and Card Payments.
+8    3w          64      8       0  Billede                            Meet Phillip Dawson, our VP Sales & Partnerships! / Phil has been at the heart of Yavrio for the last few years.
+9    3w          40      5       0  Billede                            Microsoft's Tier 1 ERP now has modern bank connectivity, embedded payments and treasury available! / Which is why we're delighted to announce this par…
+10   3w         104     26       6  Billede                            Four years ago, we launched Yavrio Banking and set out on a mission to create a way for businesses to connect their banks to their ERP and automate re…
+11   1mo         72      7       3  Billede                            A brilliant afternoon at Fortnum & Mason, bringing together senior retail leaders for an exclusive roundtable with Microsoft.
+12   1mo         49      8       5  Billede                            This summer we're opening up our London Paddington office for the first ever Yavrio Open House event!
+13   1mo         49      9       1  Billede                            We're excited to welcome Samuel Price as a Sales Consultant as we continue expanding our team in North America!
+14   1mo         32      3       0  Billede                            We're excited to be hosting an exclusive roundtable with Microsoft and iLink Digital, designed for retail leaders.
+15   1mo         76      3       0  Billede                            We have loved having summer interns at Yavrio this year! ☀️ / Josh and Noemi joined us this summer and have been involved in the launch of thre…
+16   1mo         13      1       1  Dokument/Carousel                  8–10 days. That's the average close when statements are still pulled manually. / 3 ways live bank feeds fix that in your ERP. Swipe 👇
+17   1mo        176      5       0  Billede                            Meet our Head of UK Sales, Charlotte Huang! / Charlotte has led our UK sales team through a period of real growth for Yavrio.
+18   1mo         84      1       0  Billede                            A big couple of weeks for the Yavrio team 🙌 / Across North America and the UK, we’ve been back-to-back. Here’s a quick look.
+19   1mo         49     11       2  Billede                            Cards on the Table. ♠️♦️ / The launch of Yavrio Cards called for a proper celebration, so we’ve once again partnered with the legendary team at Diisti…
+20   1mo         35      6       0  Billede                            We're delighted to announce our partnership with Sabre Limited as adoption of modern bank connectivity and ERP-embedded payments continues to grow.
+21   2mo         17      1       1  Billede                            260+ hours a year. That's what manual bank reconciliation costs you per person before Dynamics 365 even starts matching.
+22   2mo         15      0       1  Dokument/Carousel                  For finance teams still importing bank statements by CSV into Microsoft Dynamics 365 Business Central, here are 5 things that tend to go wrong.
+23   2mo          9      0       0  Tekst                              We are live now with Western Computer for our joint session on banking in Microsoft Dynamics 365 Business Central.
+24   2mo         61      6       1  Billede                            Meet our amazing North America Sales Director, Joshua Wilkinson!!
+25   2mo         17      1       1  Billede                            Only 18% of finance teams close their books in three days or less. The rest are still downloading bank statements by hand.
+26   2mo         27      0       1  Video                              Still moving bank data into your finance system one CSV at a time? It may be time for an upgrade.
+27   2mo         48      1       0  Billede                            The payment is accepted. But is the finance work actually done? / For teams working inside an ERP, the real work often starts after acceptance.
+28   2mo        110      9       0  Billede                            What a 2026 Yavrio is having so far! / It's hard to believe we're nearly halfway through 2026 already.
+29   3mo        108      5       0  Billede                            DynamicsMinds 2026 is done and what a week it's been ❤️
+30   3mo         48      5       0  Video                              Finance teams BEFORE vs AFTER Yavrio 👀 / Before Yavrio: manual bank files, disconnected payments, and reconciliation that takes longer than it should…
+31   3mo         25      2       1  Billede                            Next month, in a webinar with Western Computer, we’re breaking down what happens when banking and payments are fully embedded inside Dynamics 365 BC.
+32   3mo         82      4       0  Billede                            Day one of DynamicsMinds wrapped and what a start its been 🚀
+33   3mo         32      3       1  Billede                            We’re very excited to announce a new partnership between Yavrio and Custom Systems 🤝
+34   3mo         61      5       2  Billede                            DynamicsMinds 2026... we’re coming 👀 / This year, Yavrio is teaming up with Xe.com and Lewis Parson.
+35   3mo         55      2       0  Billede                            DynamicsCon 2026 wrapped and what a few days it was! / A hot week in Vegas as sponsors of #DynamicsCon.
+36   3mo         68      1       1  Billede                            We’re excited to have our feet on the ground at Directions ASIA 2026 in Vietnam!
+37   3mo         99     10       1  Billede (repost: Matilda Sjöberg)  Hello from a roasting Las Vegas 👋🔥 / I’m at #DynamicsCon2026 this week where we’ve already been having a great time!
+38   3mo         65      2       0  Billede                            Another amazing event. 🎉 / Yavrio had an incredible time at this year’s Node4 Annual Customer Day 2026.
+39   3mo         20      1       0  Dokument/Carousel                  Most #ERP banking workflows are still far too manual. / Swyft decided to change that.
+40   3mo         41      3       2  Billede                            Next stop: DynamicsCon 👀 / We’re excited to be heading to DynamicsCon 2026 as sponsors of the event!
+41   3mo         79     14       2  Billede                            One of our favourite partner events of the year is back 👀 / Looking back at last year’s NAV | 365 People User Day with Node4.
+42   3mo         64      7       0  Billede                            “That’s a wrap on Directions North America 2026👏” / It’s been a great few days in Orlando for the Yavrio team.
+43   4mo         86      2       0  Billede                            A full day in for the Yavrio team and it's already been a strong start at Directions North America 🚀
+44   4mo         62      4       1  Billede                            We're excited to be sponsoring and attending Directions North America in Orlando today with 1,400+ other innovators.
+45   4mo        160     22       1  Billede                            🚀 We’re proud to share that Yavrio is a WINNER of the Scaleup category at Innovate Finance Pitch360 2026 🚀
+46   4mo         25      3       1  Billede                            Every card payment sets off a chain of events most people never see 💳
+47   4mo         65      3       3  Billede                            Directions North America is nearly here and the Yavrio team is ready for Orlando ✈️
+48   4mo        104      9       0  Billede                            We're excited to welcome Matilda Sjöberg to Yavrio as our new Partner Success Manager 👏
+49   4mo         63      2       2  Billede                            We’re excited to announce our partnership with delaware United Kingdom & Ireland 🎉
+50   4mo         23      0       0  Billede                            We’re live at Directions Spanish BC Day 🇪🇸 and what a fantastic day it’s been so far!
+
+
+######################################################################################################################################################
+INCEDO INC.   (50 poster)
+https://www.linkedin.com/company/incedo-inc/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  4668 reactions  |  127 comments  |  79 reposts
+Snit:   93.4 reactions  |  2.5 comments  |  1.6 reposts pr. post
+Typer:  Billede: 25 | Dokument/Carousel: 16 | Video: 9
+Bedste: #31 (1147 reactions) - We are drowning in data, yet starving for insight. That is the paradox at the ce
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    3d          18      0       0  Billede                            𝗣𝗮𝘁𝗶𝗲𝗻𝘁-𝗰𝗲𝗻𝘁𝗿𝗶𝗰 𝗽𝗵𝗮𝗿𝗺𝗮 𝗵𝗮𝘀 𝗿𝗲𝗮𝗰𝗵𝗲𝗱 𝗮𝗻 𝗶𝗻𝗳𝗹𝗲𝗰𝘁𝗶𝗼𝗻 𝗽𝗼𝗶𝗻𝘁. / Despite significant investments in patient su…
+2    4d          88      0       0  Billede                            What does it take to lead through constant change? / In a recent conversation with Adam Mendler, Nitin Seth, Co-Founder & CEO, Incedo Inc., shares som…
+3    5d          17      0       0  Dokument/Carousel                  The metric is not the decision. / The value appears when a team can move from KPI movement to root cause, corrective action and impact monitoring…
+4    6d          19      0       0  Dokument/Carousel                  Deploying AI agents is one thing. Transforming an operation is another. / Incedo Navigator combines an agentic operations platform with managed operat…
+5    1w          91      1       2  Billede                            𝗣𝗿𝗼𝘂𝗱 𝘁𝗼 𝗯𝗲 𝗽𝗮𝗿𝘁 𝗼𝗳 𝘁𝗵𝗲 𝟮𝟬𝟮𝟲 𝗜𝗻𝗰. 𝟱𝟬𝟬𝟬. / Incedo has been recognized among America’s fastest-growing private companies…
+6    1w          71      1       2  Video                              AI isn’t magic. It’s an interaction. / At ONNJ, Nitin Seth, Co-Founder and CEO, Incedo Inc. shared an important perspective on AI effectiveness.
+7    1w          12      1       0  Billede                            Can performance testing keep pace with the complexity of modern network devices? / As network infrastructure evolves across 5G, software-defined netwo…
+8    1w          20      0       0  Dokument/Carousel                  A dashboard can make a metric visible. / The harder job is to explain what is driving it early enough to act.
+9    1w          14      0       1  Dokument/Carousel                  Complex operations need more than disconnected AI tools. They need coordinated execution, operational knowledge, and governance built into every step.
+10   2w          96      1       2  Billede                            At Incedo, we believe India’s next chapter will be shaped by bold ideas, human ingenuity, and the power of technology.
+11   2w          11      1       0  Dokument/Carousel                  Your AI strategy is only as strong as your data foundation. / Many organizations have invested in AI models—but their data modernization programs are …
+12   2w         107      2       2  Billede                            Cyber risk is moving at machine speed. Banking defense must catch up.
+13   2w          21      1       0  Dokument/Carousel                  Most AI tools can answer questions. / But enterprise decisions need more than answers. / They need context. / They need traceability.
+14   3w          30      0       0  Billede                            Data Modernization should not break what already works. / With Incedo DataXel, enterprises can modernize legacy data environments while preserving cri…
+15   3w          58      2       1  Video                              AI is becoming more capable every day. / But as it grows more powerful, one truth is becoming even clearer: AI is only as effective…
+16   3w          18      0       0  Billede                            Business signals lose value when action comes too late. / A revenue shift. / A spike in churn risk. / A marketing ROI drop.
+17   4w         569     31       8  Billede (repost: Nitin Seth)       𝗢𝗻𝗲 𝘆𝗲𝗮𝗿 𝗮𝗴𝗼, 𝗛𝘂𝗺𝗮𝗻 𝗘𝗱𝗴𝗲 𝗶𝗻 𝘁𝗵𝗲 𝗔𝗜 𝗔𝗴𝗲 𝘄𝗮𝘀 𝗹𝗮𝘂𝗻𝗰𝗵𝗲𝗱 𝗶𝗻 𝗜𝗻𝗱𝗶𝗮…
+18   4w          13      0       1  Dokument/Carousel                  One of the biggest barriers to scaling enterprise AI isn't the capability of the models—it's the lack of enterprise context.
+19   1mo         83      0       1  Billede                            AI is everywhere. But where does real business value actually come from? / In the latest feature with Informa Connect, our Co-Founder & CEO, Nitin Set…
+20   1mo         29      0       1  Billede                            Modernizing legacy data should not mean losing the business logic that makes your enterprise run.
+21   1mo         27      0       0  Dokument/Carousel                  In Life Sciences, timing matters. / The earlier teams can detect patient drop-offs, launch gaps, field deviations, and access barriers, the faster…
+22   1mo         38      0       0  Billede                            As AI becomes deeply embedded in how we work and lead, success will depend on more than adopting new technology.
+23   1mo         23      0       0  Billede                            Legacy data modernization does not need to be slow, complex, or cost-heavy.
+24   1mo         26      0       0  Billede                            Every industry has its own signals. / In telecom, it could be churn risk or ARPU erosion.
+25   1mo         33      0       0  Billede                            Tune in Live with Nitin Seth! / Nitin will be featured on On New Jersey Mornings with Ken Rosato for a live interview.
+26   1mo        116      4       1  Billede                            Big news! / Three new courses based on our Co-Founder & CEO, Nitin Seth's, bestselling books, are now LIVE on Udemy.
+27   1mo         53      0       1  Dokument/Carousel                  𝗪𝗲𝗹𝗰𝗼𝗺𝗶𝗻𝗴 𝗼𝘂𝗿 𝗻𝗲𝘄𝗲𝘀𝘁 𝗰𝗼𝗹𝗹𝗲𝗮𝗴𝘂𝗲𝘀! / As AI becomes increasingly capable of execution…
+28   1mo         31      2       0  Video                              AI is only as powerful as the data that powers it. / Yet, many enterprises are still held back by legacy systems, fragmented data.
+29   1mo         15      0       1  Dokument/Carousel                  Business problems rarely appear overnight. / Revenue leakage starts as a small KPI drift.
+30   1mo         40      0       2  Dokument/Carousel                  Incedo BrainSpark is our enterprise AI platform built to help organizations achieve measurable business outcomes across the product development lifecy…
+31   1mo       1147     56       5  Billede (repost: Nitin Seth)       We are drowning in data, yet starving for insight. That is the paradox at the center of the AI age.
+32   1mo         83      1       2  Video                              𝗪𝗵𝗮𝘁 𝗶𝘀 𝘁𝗵𝗲 𝗿𝗼𝗹𝗲 𝗼𝗳 𝗵𝘂𝗺𝗮𝗻𝘀 𝗶𝗻 𝗮𝗻 𝗔𝗜-𝗳𝗶𝗿𝘀𝘁 𝘄𝗼𝗿𝗹𝗱?
+33   1mo         35      2       4  Dokument/Carousel                  Your AI strategy is only as strong as the data it runs on. / Most enterprises have the ambition. Few have the foundation.
+34   1mo         18      0       0  Dokument/Carousel                  Your business is sending signals every day — shifts in revenue, risk, and customer behavior that most leaders only catch once they've become problems.
+35   1mo         46      1       2  Billede                            AI is reshaping software engineering, but enterprise transformation requires more than isolated copilots.
+36   1mo         56      0       3  Billede                            Today, we join our colleagues, clients, and partners across the United States in celebrating Independence Day.
+37   1mo         81      2       1  Billede                            Today, we're celebrating a milestone that belongs to every member of the Incedo community. / 𝟱𝟱𝟬,𝟬𝟬𝟬 𝗳𝗼𝗹𝗹𝗼𝘄𝗲𝗿𝘀 𝗼𝗻 𝗟𝗶𝗻𝗸𝗲𝗱𝗜𝗻.
+38   1mo         28      0       5  Dokument/Carousel                  What separates a 100X Executive from the rest? / Not more dashboards. / Not more reports.
+39   1mo         22      0       2  Video                              𝗬𝗼𝘂𝗿 𝗔𝗜 𝗶𝘀 𝗼𝗻𝗹𝘆 𝗮𝘀 𝗴𝗼𝗼𝗱 𝗮𝘀 𝘁𝗵𝗲 𝗱𝗮𝘁𝗮 𝗯𝗲𝗵𝗶𝗻𝗱 𝗶𝘁.
+40   2mo        606      8       6  Billede (repost: Nitin Seth)       Just wrapped up a super intense week at our Gurgaon office, and I'm leaving super energized.
+41   2mo         73      1       3  Video                              The conversations may have concluded, but the ideas continue to inspire. / Watch the highlights from the U.S. launch, New York chapter.
+42   2mo        278      6       6  Billede                            𝗘𝗻𝗲𝗿𝗴𝘆, 𝗽𝘂𝗿𝗽𝗼𝘀𝗲, 𝗮𝗻𝗱 𝗮 𝗯𝗼𝗹𝗱 𝘃𝗶𝘀𝗶𝗼𝗻 𝗳𝗼𝗿 𝘁𝗵𝗲 𝗳𝘂𝘁𝘂𝗿𝗲 — June 2026 CEO Townhall.
+43   2mo         23      0       0  Dokument/Carousel                  Your AI strategy is only as strong as your data foundation. (gentagelse af #11)
+44   2mo         25      0       0  Video                              𝗘𝗻𝘁𝗲𝗿𝗽𝗿𝗶𝘀𝗲𝘀 𝗱𝗶𝗱 𝗻𝗼𝘁 𝗻𝗲𝗲𝗱 𝗳𝗮𝘀𝘁𝗲𝗿 𝗰𝗼𝗱𝗶𝗻𝗴 𝗮𝗹𝗼𝗻𝗲.
+45   2mo         19      0       1  Dokument/Carousel                  For Telecom leaders, revenue leakage rarely starts as a major problem. It starts as a signal that goes unnoticed.
+46   2mo         61      0       3  Billede                            𝗪𝗲’𝗿𝗲 𝗽𝗿𝗼𝘂𝗱 𝘁𝗼 𝘀𝗵𝗮𝗿𝗲 𝘁𝗵𝗮𝘁 𝗜𝗻𝗰𝗲𝗱𝗼 𝗵𝗮𝘀 𝗯𝗲𝗲𝗻 𝗻𝗮𝗺𝗲𝗱 𝘁𝗼 𝘁𝗵𝗲 𝗖𝗥𝗡 𝗦𝗼𝗹𝘂𝘁𝗶𝗼𝗻 𝗣𝗿𝗼𝘃𝗶𝗱𝗲𝗿 𝟱𝟬𝟬…
+47   2mo        121      2       1  Billede                            On June 4, 2026, leaders from across industries gathered at Harvard Hall, Harvard Club of New York City, for the U.S. launch of Human Edge.
+48   2mo         25      0       2  Video                              The most expensive resource in your organization isn't compute. It isn't capital.
+49   2mo         81      1       3  Billede                            We are proud to share that Incedo has been recognized with Honda's 2026 Indirect Procurement Supplier Award in the New Supplier category.
+50   2mo         53      0       4  Video                              In a recent interview on ONNJ’s (On New Jersey) Mornings with Ken Rosato, our Co-Founder & CEO Nitin Seth shared why AI is fa…
+
+
+######################################################################################################################################################
+RILLION   (50 poster)
+https://www.linkedin.com/company/rillion/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  1219 reactions  |  111 comments  |  106 reposts
+Snit:   24.4 reactions  |  2.2 comments  |  2.1 reposts pr. post
+Typer:  Billede: 16 | Video: 16 | Tekst: 10 | Dokument/Carousel: 7 | Poll: 1
+Bedste: #49 (126 reactions) - En högre lön räcker inte längre. / Var tredje ekonom är redo att byta arbetsgiva
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    2d          23      1       2  Billede (repost: CFO Alliance)     68% of finance teams use AI every day. / 39% of CFOs trust it to act on its own. 📊 / Rillion's new 2026 AI in Finance Report.
+2    2d          14      1       0  Billede                            Don’t miss the LinkedIn Live we’re hosting today 🎥 / AI adoption in finance is moving fast. But is trust keeping up?
+3    3d          24      6       1  Billede                            Launch day 🗞️✨ / We just published the US edition of Rillion's 2026 AI in Finance Report! / ➤ 68% of US finance teams already use AI …
+4    5d          12      2       0  Video                              2029. / How many tasks in finance will still be done by humans? / Finance leaders expect AI to significantly change the finance function.
+5    5d          25      1       3  Video                              Are you a finance bro? Sorry, we meant pro! / We asked 250 US CFOs and finance leaders…
+6    6d          14      0       4  Billede                            250 U.S. CFOs told us what they really think about AI. Now we’re bringing the debate into the studio.
+7    1w          29      3       6  Video                              Dry run mode: ON 🎥 / The studio is getting ready. The slides are getting their final checks.
+8    1w          24      3       4  Video                              Is there a gap between how ready finance leaders think they are for AI and what the operational reality actually shows?
+9    1w          24      3       8  Billede                            The Finance AI Illusion... / What is it? And is your finance team caught in it?
+10   1w          19      2      10  Dokument/Carousel                  250 US finance leaders told us how they’re using AI. / And the numbers don’t tell the story you might expect...
+11   1w          14      3       4  Billede                            Have you seen the latest OnlyCFO newsletter? / We're excited to see OnlyCFO giving a shoutout to the launch of Rillion's 2026 Finance AI Report.
+12   2w          35      4       7  Video                              Another G2 badge drop we’re extremely proud to be part of.
+13   2w          21      0       2  Video                              "I love my Excel sheets." / Sean Milmoe, CFO & Co-Founder at 360 Energy, isn’t alone.
+14   2w          29      5       1  Video (repost: Frida Ahrenby)      This is me and Rosanna asking uncomfortable questions to finance leaders across the US and EMEA during the spring!
+15   3w          16      1       1  Video                              Finance teams aren't slow to adopt AI, we just don't have the luxury of experimenting like other departments.
+16   3w          11      0       2  Video                              The ERP you choose today can either accelerate your next 10 years... or slow them down tremendously 🫠
+17   4w          12      1       1  Video                              If your finance team only talks to finance, you're leaving value on the table.
+18   4w           6      0       3  Poll                               If AI is already part of your team's daily workflow... this poll probably isn't for you.
+19   1mo          8      0       1  Dokument/Carousel                  AP teams, here's your mid-vacation reminder 🌴
+20   1mo          8      1       0  Video                              Nail your ERP and CRM and you're 90% there – that used to be the rule for finance leaders... not so much anymore 🙂‍↔️
+21   1mo         50      0       3  Billede                            Happy Stockholm Pride 🌈! / We believe diversity makes us stronger.
+22   1mo         13      2       0  Tekst                              Many finance leaders worry AI will make mistakes they can't track. Rasmus Areskoug, CEO and co-founder of Paraglide AI, says that fear is a misconception.
+23   1mo         14      2       1  Video                              What's the best place to start with AI in finance? The small yes/no decisions you're already making every day 🎙️
+24   1mo          6      0       0  Tekst                              Denmark leads AI adoption in the Nordics. Sweden lags behind. But Olli Saksa, CFO at Sievo, thinks we're asking the wrong question.
+25   1mo          8      3       1  Tekst                              80% of finance leaders use AI daily, but only 1 in 5 trust it for strategic decisions.
+26   1mo         15      1       3  Dokument/Carousel                  OCR vs AI invoice capture: what's the actual difference for AP automation?
+27   1mo         45      3       4  Billede (repost: Rasmus Areskoug)  What's possible today wasn't possible 6 months ago. For finance leaders to succeed with AI implementations…
+28   1mo         36      1       2  Tekst                              72% of finance teams still struggle with manual corrections despite investing in AI.
+29   1mo         31      3       5  Video                              AI transformation in finance is more about getting your people onboard than it is about the tech.
+30   1mo         19      0       0  Billede                            If you'd told us our favourite team events would be the ones you can track on Strava… we'd probably believe you 😂
+31   1mo          8      0       0  Tekst                              48% of finance leaders say they want to be strategic advisors. So why do investments keep ending up in transaction-heavy processes?
+32   1mo         23      2       2  Video                              Rillion + Stratas: taking AP automation in the UK to the next level 🇬🇧
+33   1mo         36      0       1  Billede                            Spotted on top of the Empire State Building: Rillion. Apparently, the best AP & payment automation platform deserves the best view 🏙️
+34   1mo         10      0       0  Dokument/Carousel                  If you're not optimizing your vacation as much as your AP processes... we need to talk 👀
+35   2mo         58      8       0  Tekst                              While most finance leaders are still figuring out where AI fits, Peter Egehoved, CFO at Dreamdata, already closed a quarter in a single day.
+36   2mo          8      0       0  Dokument/Carousel                  If you recognise yourself in any of these, you're not alone. / We spoke to 250 Nordic CFOs.
+37   2mo         53      1      11  Billede                            Big news! Rillion is partnering with Pinewood.AI 🤝
+38   2mo         12      1       0  Tekst                              While everyone's drowning in opinions on where AI belongs in finance, Monika Pers, CFO at Alfvén & Didrikson, put into words what everyone is thinking.
+39   2mo         35      1       3  Billede (repost: Frida Ahrenby)    The Nordics agree on many things. Great coffee. Flat hierarchies. Long meetings about short topics. But AI? Not so much..
+40   2mo          9      0       0  Dokument/Carousel                  We asked 250 CFOs across the Nordics about AI in finance.
+41   2mo         33     22       4  Tekst (repost: Frida Ahrenby)      [searching... 👀] / I'm on the hunt for a US native CFO or financial executive based in the Nordics.
+42   2mo         22      4       1  Video                              Something fun happens when you bring colleagues together from Sweden and the US.
+43   2mo          7      0       0  Tekst                              The Nordic AI Finance Report had zero shortage of "mic-drop" quotes but this one from Marie Stierna, Head of Group Accounting at Hemnet, stood out.
+44   2mo         42      4       0  Video                              Rillion’s summer celebration was one for the books! ☀️🍹
+45   2mo         52      8       1  Billede (repost: Rosanna Ryrberg)  Just got back from two of the most energizing days I've had in a long time!
+46   2mo         18      1       1  Tekst                              26% of CFOs say lack of AI competence is the single biggest barrier to broader adoption.
+47   2mo         17      1       1  Billede                            40% of CFOs see fraud and anomaly detection as the biggest AI opportunity in finance.
+48   2mo         35      3       1  Billede                            Our marketing team swapped their laptops for race bibs yesterday – running Blodomloppet Sverige 🏃‍♀️
+49   2mo        126      2       1  Billede (repost: Johan Dovander)   En högre lön räcker inte längre. / Var tredje ekonom är redo att byta arbetsgivare.
+50   2mo         10      1       0  Dokument/Carousel                  The Nordic Finance AI Report 2026 has been making the rounds this week! 🗞️
+
+
+######################################################################################################################################################
+SIGNUP SOFTWARE (NU TRUVIO)   (50 poster)
+https://www.linkedin.com/company/signup-software/posts/?feedView=all
+OBS: Siden er rebrandet til Truvio - nyeste poster er identiske med Truvio-siden.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  2373 reactions  |  64 comments  |  330 reposts
+Snit:   47.5 reactions  |  1.3 comments  |  6.6 reposts pr. post
+Typer:  Billede: 39 | Video: 4 | Tekst: 4 | Link/Artikel: 2 | Dokument/Carousel: 1
+Bedste: #13 (192 reactions) - One Solution. One Partner. Truvio. / Truvio is the new unified brand name for ou
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    2w          25      0       5  Billede                            [Truvio] Manual payments cost more than money. / Every file upload, spreadsheet update, and manual approval adds time to the process…
+2    3mo        147      2       9  Billede                            [Truvio] It's Partner Day in Sweden! 🎉 / We're live at Filmstaden Scandinavia in Stockholm with our D365 F&O and BC partners.
+3    3mo         62      4       3  Billede                            [Truvio] We're live at DYNAfair in Dortmund, Germany! 🎉
+4    3mo         34      0      10  Billede                            [Truvio] One week to go! If you haven't secured your spot for Truvio Partner Day Stockholm yet, now's the time! 👇
+5    4mo         41      3      19  Dokument/Carousel                  [Truvio] Your ERP already has the data. / So why are teams still working manually to figure out what to do next?
+6    4mo         51      2      15  Billede                            [Truvio] The difference isn’t your ERP. / It’s what you can do with it. / TruvioSense adds intelligence where it matters.
+7    5mo         61      1      28  Billede                            [Truvio] Live Webinar | Close the ERP Intelligence Gap with TruvioSense™
+8    5mo         63      1      13  Billede                            [Truvio] Get ready for our Truvio Partner Day in Stockholm! / On May 21, we are excited to welcome our D365 F&O and BC partners.
+9    6mo         69      0      13  Video                              [Truvio] In a new episode of the Office of the CFO Podcast, our CEO Joakim Alm and SVP North America Aynsley Keller share the thinking behind Truvio.
+10   6mo         17      1       3  Video (repost: Cloud Wars)         In the latest Office of the CFO Podcast, John Siefert sits down with Joakim Alm, CEO.
+11   6mo         57      0      20  Video                              [Truvio] ERP systems provide a powerful foundation, but every business is different.
+12   7mo          8      0       4  Tekst (repost: MSDynamicsWorld)    🖥️ New on MSDW / Finance teams didn’t sign up for a lifetime subscription to manual work, but here we are. ☕💊
+13   7mo        192      1      50  Billede                            One Solution. One Partner. Truvio. / Truvio is the new unified brand name for our solutions - including SignUp (ExFlow, Axtension), SKsoft and Dynamic…
+14   7mo         11      0       2  Billede (repost: Cloud Wars)       Join SignUp Software in the foyer at Dynamic Communities and Cloud Wars #aiacsummit from 3/17-3/19 at Torrey Pines.
+15   7mo         38      2       0  Billede                            Last month, Convergence AI+D365 2025 in #Miami brought together leaders, partners, and innovators.
+16   7mo         10      0       2  Tekst (repost: MSDynamicsWorld)    🖥️ New on MSDW! / Finance teams are moving from measuring cash flow to actively optimizing it.
+17   8mo          5      0       4  Billede (repost: MSDynamicsWorld)  🎙️ New MSDW Podcast Episode! / We explore how e-invoicing is gaining momentum.
+18   8mo         48      5       4  Billede (repost: Adam Berezin)     Happy to share the winners of the 2025 MSDW Marketing Impact Awards!
+19   8mo         66      1       2  Billede (repost: DynamicWeb)       Convergence 2025 in Miami brought together leaders, partners, and innovators.
+20   8mo         20      0       2  Billede                            Attending Convergence 2025 in Miami? / Visit SignUp Software at Booth #206.
+21   8mo         34      1       2  Billede                            AI is changing how finance teams handle Accounts Payable.
+22   9mo         90      2       2  Billede (repost: Ari Liukko)       Awesome energy at ANZ Partner Days today!
+23   9mo         90      3       1  Billede                            🇦🇺 We’re live at Days of Knowledge - ANZ 2025!
+24   9mo         21      0       4  Billede                            𝐔𝐩𝐜𝐨𝐦𝐢𝐧𝐠 𝐆𝐞𝐫𝐦𝐚𝐧 𝐖𝐞𝐛𝐢𝐧𝐚𝐫 🇩🇪! / Join SignUp Software on 16 December 2025 at 11:00 (CET).
+25   9mo         27      0       5  Billede                            Tomorrow we are hosting a 30-minute live session on how to automate your AP process in D365 Business Central with ExFlow AP.
+26   9mo         11      0       1  Billede                            🇦🇺🇳🇿 Less than a week to go! Meet us at ANZ BC Day 2025!
+27   9mo         51      0       4  Billede (repost: Dynamic Communiti 🎙️ New Office of the CFO Podcast Episode!
+28   9mo        115      1      12  Billede                            Big News! SignUp Software featured in Microsoft’s announcement of the new Model Context Protocol (MCP).
+29   9mo        124      8       3  Billede (repost: Koen Cuypers)     This year's Microsoft Ignite is particularly special for us, and to me!
+30   9mo         27     11       2  Link/Artikel (repost: John Siefert Tune in folks, this is next level -- LOVE seeing the #microsoft AI partner ecosystem innovation.
+31   10mo         7      0       4  Tekst (repost: MSDynamicsWorld)    🆕 Unveiling the 2025 Dynamics 365 AP Automation Report for Finance Leaders.
+32   9mo         35      0       5  Billede                            𝗦𝘁𝗼𝗽 𝗖𝗹𝗶𝗰𝗸𝗶𝗻𝗴 𝗮𝗻𝗱 𝗦𝘁𝗮𝗿𝘁 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗶𝗻𝗴 𝗬𝗼𝘂𝗿 𝗔𝗣 𝗣𝗿𝗼𝗰𝗲𝘀𝘀 𝗶𝗻 𝗕𝘂𝘀𝗶𝗻𝗲𝘀𝘀 𝗖𝗲𝗻𝘁𝗿𝗮𝗹!
+33   9mo         25      1       4  Billede                            AP automation isn’t just about efficiency - it’s about unlocking strategic value. 🔓
+34   9mo         27      0       3  Video                              A great chat with our partner COSMO CONSULT during Directions EMEA 2025!
+35   9mo         85      0       1  Billede (repost: DynamicWeb)       What a week at Directions EMEA 2025! ✨
+36   9mo        141      4       2  Billede                            ✨ Directions EMEA 2025 – what a week! / The atmosphere in Poznań was incredible.
+37   9mo         39      1       1  Billede                            What a great few days at #IOFM Fall 2025 in Las Vegas!
+38   9mo         24      0       5  Billede (repost: Bob Monio)        If you live in the world of the CFO and his teams, then you know you need to stay on your game.
+39   9mo         53      1       5  Billede                            Cześć z Poznania! 🇵🇱 / We’re live at Directions EMEA 2025.
+40   10mo         7      0       4  Tekst (repost: MSDynamicsWorld)    🆕 Unveiling the 2025 Dynamics 365 AP Automation Report for Finance Leaders. (dublet af #31)
+41   9mo         13      0       1  Billede                            The SignUp Software NA team will be attending the IOFM Fall Conference in Las Vegas, November 4-6.
+42   10mo        22      1       2  Billede                            💡 How confident are you in your Accounts Payable forecasts?
+43   10mo        23      1       2  Billede                            Think your AP process is automated? Your team might disagree. / Our latest study, The AP Inflection Point.
+44   10mo        48      2      10  Billede                            ✈️ Heading to Directions EMEA next week? / Don’t miss our session “The Good, the Bad, and the Automated.” 🤠
+45   10mo        63      1       7  Billede                            Knowledge-sharing is what Community Summit NA is all about.
+46   10mo        17      0       5  Link/Artikel (repost: SKsoft)      🎬 Live from #MySummitNA / It is day 2 here in Orlando.
+47   10mo        33      3       6  Billede                            𝐒𝐭𝐫𝐞𝐧𝐠𝐭𝐡𝐞𝐧𝐢𝐧𝐠 𝐟𝐢𝐧𝐚𝐧𝐜𝐢𝐚𝐥 𝐦𝐚𝐧𝐚𝐠𝐞𝐦𝐞𝐧𝐭 𝐢𝐧 𝐭𝐡𝐞 𝐜𝐨𝐧𝐬𝐭𝐫𝐮𝐜𝐭𝐢𝐨𝐧 𝐢𝐧𝐝𝐮𝐬𝐭𝐫𝐲 🏗️
+48   10mo        35      0       8  Billede                            📣 Danish Webinar alert! / Join us on 23 October 2025 at 10:00 (CET).
+49   10mo        33      0       8  Billede                            𝐉𝐨𝐢𝐧 𝐒𝐢𝐠𝐧𝐔𝐩 𝐒𝐨𝐟𝐭𝐰𝐚𝐫𝐞 𝐚𝐭 𝐃𝐢𝐫𝐞𝐜𝐭𝐢𝐨𝐧𝐬 𝐄𝐌𝐄𝐀 𝟐𝟎𝟐𝟓 𝐢𝐧 𝐏𝐨𝐳𝐧𝐚ń!
+50   10mo        28      0       3  Billede                            Ready to golf till you drop after a full day at the Summit? SignUp Software is sponsoring the Summit Par-Tee at Eagles Edge on October 21.
+
+
+######################################################################################################################################################
+FIDESIC AP   (50 poster)
+https://www.linkedin.com/company/fidesic/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  105 reactions  |  16 comments  |  11 reposts
+Snit:   2.1 reactions  |  0.3 comments  |  0.2 reposts pr. post
+Typer:  Billede: 25 | Link/Artikel: 20 | Video: 4 | Tekst: 1
+Bedste: #31 (17 reactions) - Kevin Pritchard talks about why we're pumped to be part of Knights of GP and wha
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    2d           2      0       0  Link/Artikel                       Like any large financial data migration, you can expect a migration from Dynamics GP to Business Central to create some workflow disruption…
+2    2d           0      0       0  Billede                            #LoveFriday #LoveAutomation / Love Friday with Automation.
+3    3d           0      0       0  Billede                            #MySummitNA
+4    3d           1      0       0  Billede                            How to Spot AP Bottlenecks Before Growth Stalls. Warning signs your AP process won't scale.
+5    4d           1      0       0  Link/Artikel                       Payment behavior directly affects cash flow, supplier relationships, and access to credit. About 55% of all B2B invoiced sales in the U.S. are overdue…
+6    4d           1      0       0  Billede                            💡Cash flow is a fact. Profit is an opinion. #WednesdayWisdom #AccountsPayable
+7    5d           2      0       0  Link/Artikel                       Thousands of businesses will be moving from Dynamics GP in the coming years. Begin planning your migration now.
+8    1w           1      0       0  Billede                            🤔 Did you know 8 days is how long the median finance team spends closing the books each month, according to an APQC benchmarking survey.
+9    1w           2      0       0  Link/Artikel                       This post removes some of the fear around GP end of support and offers practical ways to maximize performance of your GP system.
+10   1w           2      0       1  Billede                            Ready to rock 'n' roll in Nashville for Dynamic Communities Summit NA 2026? We're giving away a pair of AirPods Pro.
+11   2w           0      0       0  Billede                            #LoveFriday #LoveAutomation
+12   2w           1      0       0  Link/Artikel                       Fidesic has been recognized as a High Performer on G2.
+13   2w           0      0       0  Billede                            "Discipline in accounts payable is discipline in cash flow." #WednesdayWisdom #APTeam
+14   2w           0      0       0  Link/Artikel                       This post covers what BC handles natively for PO matching and AP automation, where the native tools fall short.
+15   2w           3      0       0  Link/Artikel                       Is running accounts payable out of Business Central missing something? AP getting in the way of month-end close?
+16   2w           6      2       1  Billede                            It's comin' up quick! Looking forward to seeing everyone in Nashville for #MySummitNA.
+17   2w           3      0       0  Link/Artikel                       When you need to update your AP processes, it makes logical sense to test drive a handful of accounts payable solutions before committing to one.
+18   3w           7      0       1  Link/Artikel                       Fidesic has been named Best Of AP Automation Tools for Dynamics ERP in 2026 by ERP Software Blog.
+19   3w           0      0       0  Billede                            Remittance vs. Bank Transfer: Key Differences.
+20   3w           7      0       1  Link/Artikel                       Fidesic has been named Best Of AP Automation Tools for Dynamics ERP in 2026 by ERP Software Blog. (dublet af #18)
+21   3w           0      0       0  Billede                            "Every invoice tells a story. Make sure yours check out." #WednesdayWisdom #AP
+22   3w           9      0       1  Billede                            Is a migration off of Dynamics GP impossible for you right now? Here's a list of things you can do to maximize GP performance.
+23   3w           0      0       0  Link/Artikel                       Fidesic is the strongest AP automation choice for organizations running Microsoft Dynamics GP or D365 Business Central.
+24   1mo          0      0       0  Link/Artikel                       In this post we are going to assume that you know the pain points of manual paper processes.
+25   1mo          2      0       0  Link/Artikel                       The right AP automation software enables small accounting departments to manage multi-location businesses.
+26   1mo          7      3       0  Video                              Still on Dynamics GP? Fidesic has deployable AI agents for your Accounts Payable process.
+27   1mo          1      0       0  Billede                            💡What separates a successful agentic accounting project from one that fails to deliver value is a vendor who can offer human-to-human service.
+28   1mo          1      0       0  Billede                            #FunFactFriday ACH is the largest single B2B payment method by transaction value and the fastest-growing.
+29   1mo          0      0       0  Billede                            Some strategies sit firmly within AP's direct control: capturing early payment discounts, eliminating late payment penalties…
+30   1mo          1      0       0  Billede                            A vendor discount captured is margin for which nobody had to sell anything to earn. #WednesdayWisdom
+31   1mo         17      8       2  Video                              Kevin Pritchard talks about why we're pumped to be part of Knights of GP and what that means for #DynamicsGP users and partners.
+32   1mo          2      1       0  Billede                            Not so #FunFactFriday Still writing checks? You're not alone. But checks remain the payment method most frequently impacted by fraud 😮
+33   1mo          1      0       0  Tekst                              Fidesic is continually renewing focus on building trust in the Dynamics Community.
+34   1mo          0      0       0  Billede                            For two decades accounts payable was where invoices got matched and paid. In 2026 it sets cash flow timing, catches payment fraud…
+35   1mo          0      0       0  Billede                            When you don't need 3-way matching...
+36   1mo          6      1       1  Video                              Fidesic delivers value beyond AP automation.
+37   1mo          0      0       0  Link/Artikel                       Trust isn't something you can claim. It's something you have to earn, over and over.
+38   1mo          2      0       0  Billede                            Did you know... 🤖 The first mobile robot that could think through its own actions was built in the late 1960s. They named it Shakey.
+39   1mo          1      0       0  Link/Artikel                       If you are wondering how to set up your purchase order matching, keep in mind, most businesses don't need to pick one type of matching.
+40   1mo          0      0       0  Billede                            “AI and human ingenuity are powering a bold new operating model that is fundamentally reimagining the finance function.” KPMG #WednesdayWisdom
+41   1mo          0      0       0  Link/Artikel                       Modern AI-based invoice capture uses machine learning models trained on millions of invoice variations.
+42   1mo          1      0       0  Billede                            Unsurprisingly, not all AI projects are a success. At Fidesic, we mitigate your risk.
+43   1mo          1      0       0  Link/Artikel                       Fidesic is the strongest AP automation choice for organizations running Microsoft Dynamics GP or D365 Business Central. (dublet af #23)
+44   1mo          9      1       2  Video                              📊Ninety-five percent (95%) of enterprise generative AI pilots fail to deliver any measurable financial return, according to MIT's 2025 NANDA research.
+45   1mo          1      0       0  Billede                            🦉 "Financial close is evolving from a manual, time-consuming task to an automated, continuous cycle." Deloitte #WednesdayWisdom
+46   2mo          2      0       0  Link/Artikel                       Ninety-five percent (95%) of enterprise generative AI pilots fail to deliver any measurable financial return.
+47   2mo          0      0       0  Link/Artikel                       Let's talk about something that's been hiding in plain sight in Dynamics GP that could make your life a whole lot easier.
+48   2mo          1      0       1  Billede                            Did you know... 🤖The first chatbot was a virtual therapist named ELIZA, built in 1966.
+49   2mo          1      0       0  Billede                            💡The Reconcile to GL tool is one of Dynamics GP's most valuable yet underutilized features.
+50   2mo          0      0       0  Link/Artikel                       Wire Transfer vs ACH? 🤔Wire transfers are immediate and can be used for overseas payments.
+
+
+######################################################################################################################################################
+TIPALTI   (50 poster)
+https://www.linkedin.com/company/tipalti/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  1165 reactions  |  47 comments  |  51 reposts
+Snit:   23.3 reactions  |  0.9 comments  |  1.0 reposts pr. post
+Typer:  Billede: 26 | Video: 15 | Dokument/Carousel: 4 | Tekst: 3 | Link/Artikel: 2
+Bedste: #20 (186 reactions) - Tipalti has officially been named to the Inc. 5000 list for nine consecutive yea
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    2d           2      2       0  Video                              The trouble with global growth begins when you add country number 2. / Now you have to contend with new subsidiaries, currencies, tax jurisdictions…
+2    3d           4      0       0  Tekst                              Tipalti Expenses automates approvals, reconciliation, and reimbursements to simplify workflows and control business costs.
+3    4d          12      0       1  Billede                            Who enjoys PO matching? It's arduous, leads to bottlenecks, and any matching errors can cascade into serious problems.
+4    5d           3      1       0  Billede                            🚨 New Playbook 🚨 / As E-commerce grows, AP complexity often grows with it.
+5    5d          34      3       0  Billede                            Before he was a product manager, Yacov Gorovoy was a lawyer. He never coded.
+6    6d           3      1       1  Dokument/Carousel                  League One Volleyball (LOVB) felt stuck with their legacy system.
+7    1w          97      8       3  Billede                            Do you know what a sunny Summer day in Vancouver calls for? A team picnic on the beach!
+8    1w           3      2       1  Billede                            A company needs to pay a supplier in Germany, a creator in Brazil, and a contractor in the Philippines.
+9    1w           4      1       1  Billede                            Great engineering leadership isn’t just about technical expertise; it’s about creating environments where people can do their best work.
+10   1w          11      0       0  Link/Artikel                       Most finance teams using AI today are using it as a faster way to do things they already knew how to do.
+11   1w          11      1       0  Video                              When Prodege's partner network grew, so did the operational complexity behind every payment.
+12   1w          11      0       0  Billede                            AI is no longer a "someday" conversation in finance. It's a "now" conversation.
+13   1w           7      0       1  Dokument/Carousel                  20 weeks of AP work, eliminated. Every year. / Centerfield Media automated accounts payable across 28 countries.
+14   2w           0      0       0  Link/Artikel                       In his latest for the Forbes Tech Council, Tipalti CPTO Roby Baruch discusses how AI is transforming product and engineering organizations.
+15   2w          25      4       0  Billede                            New from the Tipalti Team 👇 / Not many DevOps careers start with a philosophy degree.
+16   2w         101      5       0  Billede                            New from the Tipalti Product Team 👇 / Most product teams assume you need an engineering background to build with AI.
+17   2w           7      0       0  Billede                            What does it actually take to build financial infrastructure for a company scaling globally?
+18   2w           9      0       0  Billede                            David Fractor, CFO at ImaginAb, has spent seven years building a finance function inside a biotech company.
+19   2w           7      0       0  Billede                            Technology alone won't make finance more scalable.
+20   2w         186      4       3  Billede (repost: Chen Amit)        Tipalti has officially been named to the Inc. 5000 list for nine consecutive years.
+21   2w          46      1       9  Billede                            We are thrilled to share that Tipalti has been named to the Inc. 5000 list for the ninth consecutive year.
+22   2w           9      0       0  Video                              Hear directly from finance leaders at AG1, Lantern Community Services, and Lendable on how Tipalti AI agents transform their AP operations.
+23   3w           2      2       0  Billede                            The best finance leaders often bring perspectives that can't be learned from a textbook.
+24   3w           8      0       1  Video                              Adding a new country doesn't add one new problem. It adds several at once.
+25   3w           7      0       1  Video                              81% of organizations say their external partner networks are vital to business success.
+26   3w           8      1       1  Video                              Even the best partner programs lose talent when payments are slow, complicated, or hard to manage.
+27   3w           6      0       0  Video                              The Tipalti team is heading to Minneapolis for the Dynamics Community Summit Roadshow, and we're proud to be a sponsor!
+28   4w           6      1       0  Billede                            There's a lot of noise around agentic AI right now, but what we're hearing from finance teams is far more practical.
+29   4w         127      3       2  Billede                            The Tipalti C-Suite were in Vancouver last week for their executive QBR.
+30   1mo         40      0       1  Video                              The finance function is being asked to operate at a higher level. The problem is the day-to-day workload hasn't changed to match.
+31   1mo         23      0       3  Video                              NEW RESEARCH: The payout infrastructure gap is costing businesses their top partners. / Tipalti is unveiling the Friction-Free Frontier.
+32   1mo         22      0       2  Tekst                              Tipalti Mass Payments manages the full payout lifecycle in one platform.
+33   1mo          9      0       0  Video                              We're on the floor at Affiliate Summit East in New York today and tomorrow.
+34   1mo          9      0       0  Billede                            Tonight is Powerhouse Heroes HQ at Hard Rock Cafe in New York City. Doors open at 7 PM.
+35   1mo          3      0       0  Billede                            For Mail Shark, managing a growing volume of vendor payments manually was creating a bottleneck.
+36   1mo          9      0       1  Billede                            61% of finance professionals can now clearly quantify AI ROI. 95% of organizations using AI report measurable cost savings.
+37   1mo         51      2       6  Billede (repost: Darren Upson)     I’m excited to share that Tipalti has been named on CNBC's World's Top FinTech Companies of 2026 for the fourth consecutive year.
+38   1mo         74      2       7  Billede                            Tipalti has been named to CNBC's World's Top FinTech Companies list for the fourth consecutive year.
+39   1mo          8      0       0  Billede                            More than a third (35%) of finance professionals we surveyed for The Global Finance Outlook said their business priorities are becoming global.
+40   1mo          7      0       1  Video                              Tipalti is heading to Affiliate Summit East in New York, July 27-28.
+41   1mo          7      0       0  Tekst                              Tipalti Accounts Payable connects the full AP lifecycle in one system.
+42   1mo          3      3       0  Billede                            Governments aren't just setting the rules anymore. They're enforcing them inside your finance systems in real time.
+43   1mo          9      0       2  Dokument/Carousel                  We're hiring! Swipe through to see our open roles.
+44   1mo         42      0       1  Video                              G2's Summer 2026 report is out, and Tipalti earned three recognitions.
+45   1mo         17      0       0  Video                              Is your finance team spending more time on manual data entry than actual analysis?
+46   1mo         13      0       1  Billede                            Have you noticed a shift in how finance leaders are talking about AI over the past year?
+47   1mo         12      0       0  Dokument/Carousel                  Skillshare has 5 million members and a global network of instructors and influencers to pay.
+48   1mo          6      0       0  Video                              98% of finance professionals say AI saves them time. / 97% say it improves their decisions.
+49   1mo         21      0       0  Billede                            Mechanical, performance, sync, master recording. / Every type of music royalty comes with its own tax considerations.
+50   1mo         24      0       1  Video                              Before Tipalti, Thematic's finance team was manually managing international payments to hundreds of thousands of music creators.
+
+
+######################################################################################################################################################
+STAMPLI   (50 poster)
+https://www.linkedin.com/company/stampli/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  1530 reactions  |  55 comments  |  396 reposts
+Snit:   30.6 reactions  |  1.1 comments  |  7.9 reposts pr. post
+Typer:  Link/Artikel: 30 | Billede: 10 | Video: 9 | Dokument/Carousel: 1
+Bedste: #38 (148 reactions) - We're launching something big: an agentic financial analyst you can ask anything
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    2d          38      4       5  Video (repost: Eyal Feldman)       Business leaders always have questions. They just don’t ask all of them because answering each one can take weeks of work.
+2    4d          43      7      10  Video                              Answering a good finance question shouldn’t require a costly project. / Stampli Deep Finance investigates your organization's finance data.
+3    6d          16      2       3  Link/Artikel (repost: Melad Zahedi OpenAI published a story last week about how our team at Stampli used ChatGPT for Work and Codex to launch Deep Finance.
+4    6d          26      2      13  Link/Artikel                       Anyone who’s launched a product knows the hard part isn’t just one thing.
+5    1w          17      0       7  Billede                            Month-end problems rarely begin at month-end 💭 / For Advance Financial, the pressure came from managing invoices, card activity…
+6    2w           3      0       0  Link/Artikel                       An invoice in manufacturing is rarely just that. There's usually a PO, a receipt, a plant, a cost center, and someone who needs to make a call.
+7    2w          25      0       7  Billede                            At Quincy Recycle, connecting Procurement and AP brought clarity to daily work and more team capacity.
+8    3w          12      0       4  Link/Artikel                       Every vendor relationship carries a set of important commitments.
+9    3w          18      0       8  Link/Artikel                       From 10 locations to more than 50, America's Group built a finance operation designed to scale with its growth.
+10   3w          11      0       1  Link/Artikel                       71 locations. 1,000+ monthly invoices. A two-person AP team.
+11   1mo         35      1      15  Billede                            New software shouldn’t take years to deliver value. / Stampli has the fastest estimated ROI payback period in G2’s Summer 2026 Procure-to-Pay report.
+12   1mo         11      0       5  Link/Artikel                       Procure-to-pay breaks down fast when teams work across disconnected tools 🫣
+13   1mo          6      0       1  Link/Artikel                       Finance leaders do not need a lesson in prompting. They need better data to prompt from.
+14   1mo          0      0       0  Video (repost: OpenAI for Business “It’s allowed basically a one-person team to do the work of a team of four or five.”
+15   1mo         63      3       5  Video (repost: Melad Zahedi)       I spent ten years as an accountant before I ever touched marketing.
+16   1mo         13      0       1  Link/Artikel                       What changes when finance teams can analyze data in ways that used to be slow, manual, or expensive to explore?
+17   2mo         32      0      12  Dokument/Carousel                  Finance teams don't run out of good questions. They run out of practical ways to get answers.
+18   2mo         18      0       6  Link/Artikel                       Accounts Payable is where Procure-to-Pay either works or breaks. / In G2’s Summer 2026 AP Automation report, Stampli earned a 99 Satisfaction score.
+19   2mo         12      1       4  Link/Artikel                       Vendor renewal coming up? A lot can change since the last contract.
+20   2mo         37      1      16  Link/Artikel                       Strong customer feedback on real value for finance teams to create one connected P2P story. / Named a Leader in G2's Summer 2026 Grid Report.
+21   2mo         22      1       6  Link/Artikel                       Finance teams don't run out of useful questions. They run out of practical ways to get answers.
+22   2mo         37      1      16  Link/Artikel                       Strong customer feedback on real value for finance teams to create one connected P2P story. (dublet af #20)
+23   2mo         22      1       6  Link/Artikel                       Finance teams don't run out of useful questions. (dublet af #21)
+24   2mo         11      1       4  Video                              Market stories become clearer when they show up in operational spend. Josh Constine's CNN segment adds context on SpaceX's IPO.
+25   2mo          9      0       2  Link/Artikel                       NetSuite 3-way matching often breaks on one missing piece: the item receipt.
+26   2mo         17      3       7  Link/Artikel                       ACH risks don't start at the bank portal. They often start earlier.
+27   2mo         32      3      10  Billede                            Meaningful savings can hide in everyday finance data. For Integra Investments, Deep Finance surfaced insights worth $20K-$30K a year.
+28   3mo         25      0      11  Link/Artikel                       Built to scale your business, not your headcount. / Stampli’s AI performs an average of 87% of finance work across 2,700+ unique fields.
+29   3mo         11      0       1  Link/Artikel                       Vendor concentration risk is hiding in your AP data.
+30   4mo         42      1       1  Billede                            Day 2 at #SageFuture and the energy is still going strong! Visit us at booth 126.
+31   4mo         91      1       5  Billede (repost: Nathan Hansel)    Day 1 of #SageFuture in the books. Partner day was fantastic.
+32   4mo         83      8      23  Billede (repost: Eyal Feldman)     We’re about to see the death of the dashboard. Here's why they'll get replaced by interactive AI visualizations.
+33   4mo          7      0       2  Link/Artikel                       Budget variance usually doesn't start with one big decision. It builds quietly across everyday work. 🗓️
+34   4mo         18      2       4  Link/Artikel                       Cash flow opportunities often hide in Accounts Payable.
+35   4mo        101      2       5  Link/Artikel (repost: Matthew E.)  Big things are happening at Stampli. 🚀 / My first full quarter is in the books.
+36   4mo         25      1       6  Link/Artikel                       The data moving through finance systems holds a story that teams never see.
+37   4mo         52      2       6  Video (repost: SignalFire)         The most valuable signals in finance are buried in places traditional BI can’t reach.
+38   4mo        148      3      21  Video (repost: Eyal Feldman)       We're launching something big: an agentic financial analyst you can ask anything.
+39   4mo         39      0      22  Video                              Ask your agentic financial analyst anything. Get consultant-grade intelligence about your business. 🔍
+40   4mo         44      1       5  Billede                            We had a great time at the Nashville career fair.
+41   4mo         46      2      29  Link/Artikel                       Stampli Deep Finance™ transforms raw finance data into executive spend intelligence.
+42   5mo         14      0       6  Link/Artikel                       Instead of hiring more AP staff with every acquisition, America's Group automated workflows with Stampli.
+43   5mo         17      0       9  Link/Artikel                       No matter your ERP, Stampli fits right in. / For America’s Auto Auction, that’s Dynamics 365 — 32K+ invoices a month across 50+ locations.
+44   5mo         17      0       5  Link/Artikel                       Corporate cards don’t have to mean losing control of spend.
+45   5mo          9      0       0  Billede                            Your team is addicted to corporate card swipes and free trials they forget to cancel.
+46   5mo         11      0       3  Billede                            Finance professionals paired with the right platform turn complexity into a scalable advantage.
+47   5mo         65      0      35  Link/Artikel                       We’re grateful for all our customers. Even more grateful for those who share their wins on G2 🩵
+48   5mo         25      0      10  Video                              “Those little clicks add up. When you're doing that a thousand times a day, it matters.”
+49   6mo         14      1       6  Link/Artikel                       For years we've been simplifying the complexities of finance.
+50   6mo         40      0       7  Link/Artikel                       As finance teams look toward 2026, AI is everywhere, but real impact is uneven.
+
+
+######################################################################################################################################################
+STRIPE   (50 poster)
+https://www.linkedin.com/company/stripe/posts/?feedView=all
+------------------------------------------------------------------------------------------------------------------------------------------------------
+I alt:  16403 reactions  |  1298 comments  |  813 reposts
+Snit:   328.1 reactions  |  26.0 comments  |  16.3 reposts pr. post
+Typer:  Video: 26 | Billede: 12 | Link/Artikel: 8 | Tekst: 3 | Dokument/Carousel: 1
+Bedste: #29 (3155 reactions) - After seven extraordinary years building Stripe's go-to-market engine, I'm stepp
+------------------------------------------------------------------------------------------------------------------------------------------------------
+#    Alder    React   Komm  Repost  Type                               Titel
+------------------------------------------------------------------------------------------------------------------------------------------------------
+1    2d         139     21      13  Billede                            Give your Grok Bot a card with Link. Bots can now buy from any business on the internet. Available in the US.
+2    2d          45      9       9  Video                              Payments with Instinct are now powered by Link.
+3    3d          34      1       1  Tekst                              Agents are reshaping how people discover and buy products and services. / We are expanding agentic commerce capabilities across Europe.
+4    4d         643     40      39  Link/Artikel                       Revolut is rolling out EURR, its first euro-denominated stablecoin, built with Bridge.
+5    5d         120     15       2  Video                              New: analyze your Stripe data with agents. / Connect to the Stripe MCP to build custom reports.
+6    5d         169     27       5  Billede (repost: Stephanie Friedma Today, I’m excited to announce my book, Built to Grow: A Handbook for High-Performance Sales Teams, is available for pre-order with Stripe Press!
+7    6d         258     20      11  Video                              John Collison sits down with Canva cofounder and COO Cliff Obrecht to discuss Canva's journey.
+8    1w         110      7      10  Video                              Kraken is launching Krak Cards in the US, powered by Stripe Issuing.
+9    1w        1016     55      78  Billede                            Tokens are the central currency for companies building with AI. We've agreed to acquire OpenRouter.
+10   1w         112      8      15  Video                              Amazon Bedrock AgentCore payments now supports Machine Payments Protocol (MPP).
+11   1w         206     11      16  Billede                            Gartner has named Stripe a Leader in the 2026 Gartner® Magic Quadrant™ for Recurring Billing Applications for the third consecutive year.
+12   1w         209     24      14  Billede                            New currency capabilities to help cut FX costs.
+13   1w         316     23      25  Video                              "We think of Stripe as having inverted its value proposition."
+14   2w         196      9      18  Link/Artikel (repost: Abhinav Tiwa AI companies are now global by default.
+15   3w         201     52      10  Video                              Connect Stripe to Perplexity Computer for Builders.
+16   3w         748     41      35  Tekst (repost: Aakash Sahney)      Something wild is happening with Stripe Connect right now.
+17   1mo        320     29      33  Link/Artikel (repost: Sharadh Kris Earlier this year, Anupam Upadhyay and I set ourselves a new goal: 10x every Stripe.
+18   1mo        594     56      27  Billede (repost: Scott Woody)      There comes a time in every acquisition where you ask yourself 'was this worth it?'
+19   1mo         25      2       4  Video (repost: Miles Matthias)     We’ve rolled out improvements to Stripe Directory.
+20   1mo        109     17       7  Billede (repost: Kai Strubel)      Businesses often tell me they believe the best way to fight a “product not received” dispute is to submit more evidence.
+21   1mo        221     43      37  Video                              New providers on Stripe Projects are available now.
+22   1mo        126     20      17  Video                              New: templates for Stripe Projects.
+23   1mo        311     30      20  Video                              "More people will become entrepreneurs with AI."
+24   1mo        192     11       8  Video (repost: Katie Dill)         Most of us judge a book by its cover before we've read a single page.
+25   2mo        210     29       7  Video                              Conor McNamara sits down with investor and tech analyst Philipp Klöckner to discuss the impact of AI on the global economy.
+26   2mo         70      6       7  Video                              We’re making Open USD the default for businesses using stablecoins on Stripe. Coming soon.
+27   2mo        129     21      17  Billede (repost: Jesse Carey)      Shutdowns among new startups continue to decline.
+28   2mo        219     19      34  Billede (repost: Intercept)        Today, we treat respiratory infections like the cold and flu as a minor nuisance. The evidence increasingly suggests otherwise.
+29   2mo       3155    349      15  Link/Artikel (repost: Eileen O'Mar After seven extraordinary years building Stripe's go-to-market engine, I'm stepping into a new role: Vice Chair of Stripe.
+30   2mo        174     18      25  Video                              Introducing Stripe Directory, a new way for you (and your agents) to search for businesses on the Stripe network.
+31   2mo        144     13       9  Link/Artikel                       In 2022, we launched Frontier to send a signal to scientists and entrepreneurs: build carbon removal technology, and we will buy it.
+32   2mo        619     23      22  Video (repost: William Gaybrick)   I just got off stage in Paris at Stripe Tour, talking about how French businesses are becoming more international.
+33   2mo        437     35       7  Video (repost: Tanya Khakbaz)      I was just at Stripe Tour Paris talking about a new frontier in fraud: token theft.
+34   2mo        175      6      16  Link/Artikel (repost: Mikael Mello I recently wrote about what I've been working on the past two years: the infrastructure that keeps Stripe running.
+35   2mo        267     18       7  Video (repost: Katie Dill)         I've been thinking a lot about the future of user experience and what it looks like when commerce becomes AI-native.
+36   2mo        216     37      28  Billede                            Last week, agent traffic surpassed human traffic on the internet for the first time.
+37   2mo         95      7       4  Link/Artikel (repost: Rami Banna)  It's a wild time to be building infrastructure. / Today we shipped another update to Stripe Projects.
+38   2mo        448     11       8  Video (repost: Conor McNamara)     More than 1.5 million UK businesses and solopreneurs run on Stripe.
+39   2mo        316      8       6  Video (repost: Neetika Bansal)     I was just at Stripe Tour London talking about the new Stripe Treasury.
+40   2mo        275     13      17  Video                              John Collison sits down with Barney Hussey-Yeo, the founder and CEO of AI financial assistant Cleo.
+41   2mo        183      6       3  Video (repost: Maia Josebachvili)  UK AI companies raised £6 billion in Q1, that's more than all of continental Europe combined 🚀
+42   2mo        229     24      36  Video                              New providers now available on Stripe Projects.
+43   2mo        779      7      25  Video (repost: Eileen O'Mara)      Today at Stripe Tour London, I sat down with David Thomasson, Managing Director of Lloyds Banking Group.
+44   2mo        289      6       2  Video (repost: Kevin Miller)       I'm at Stripe Tour London with the UK's most ambitious founders and business leaders.
+45   2mo        277      7      16  Tekst (repost: Emily Sands)        Over the last six months, agents have become a new kind of actor on the internet.
+46   2mo        110     10       8  Link/Artikel (repost: Jon Krauss)  Visa made a major change in April with the Digital Commerce Authentication Program (DCAP).
+47   3mo        117     16       5  Dokument/Carousel                  Solo founding is at an all-time high. Top-decile solo founders earned 61x the revenue of median founders in their first six months.
+48   3mo        617     23      19  Billede (repost: Jeff Weinstein)   Stripe Atlas now forms a new company every 12 minutes.
+49   3mo        110      2       6  Billede (repost: Samuel Bakouch)   Across the Stripe network, over 1 in 6 sign-ups at AI companies are linked to multi-account abuse.
+50   3mo        323     13      10  Video (repost: Tanya Khakbaz)      Some of the best conversations at Stripe Sessions weren't happening on stage.
+
+
+======================================================================================================================================================
+OVERBLIK - rangeret efter gennemsnitlige reactions pr. post
+======================================================================================================================================================
+Virksomhed                      Poster  Reactions  Comments   Reposts  Snit react.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+Stripe                              50      16403      1298       813        328.1
+Incedo Inc.                         50       4668       127        79         93.4
+Continia Software                   50       3151        77       105         63.0
+Yavrio                              50       2826       243        47         56.5
+SignUp Software (nu Truvio)         50       2373        64       330         47.5
+Stampli                             50       1530        55       396         30.6
+Rillion                             50       1219       111       106         24.4
+Truvio                              50       1174        23       164         23.5
+Tipalti                             50       1165        47        51         23.3
+Medius                              50       1152         9       154         23.0
+Dooap                               50       1142        92        95         22.8
+Qvalia                              16        330        18        39         20.6
+AMC Banking                         23        297        12        18         12.9
+B2Brouter                           50        417        34        87          8.3
+Equisys (Zetadocs)                  41        185         1        85          4.5
+Fidesic AP                          50        105        16        11          2.1
+======================================================================================================================================================
