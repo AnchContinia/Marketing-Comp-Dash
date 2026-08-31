@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "arial",
+        "createdAt": "2026-08-31T14:26:43.106Z",
+        "reason": "neutral system fallback font, not a display face; brand face is Alliance"
+      }
+    ]
+  }
+}
