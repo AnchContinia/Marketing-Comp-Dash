@@ -6,7 +6,8 @@
 <title>Marketing Hub · Content</title>
 <script>try{if(!sessionStorage.getItem("continia-auth")&&!localStorage.getItem("continia-auth"))location.replace("login.html")}catch(e){}</script>
 <script>try{if(localStorage.getItem("continia-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
-<link rel="stylesheet" href="./dashboard.css?v=20260831a">
+<script>try{if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("reveal-on")}catch(e){}</script>
+<link rel="stylesheet" href="./dashboard.css?v=20260831b">
 <script src="https://kit.fontawesome.com/43865117a9.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -31,5 +32,6 @@
 <script src="./linkedin-images.js?v=20260702-images"></script>
 <script src="./newsletter-images.js?v=20260702-images"></script>
 <script src="./dashboard.js?v=20260831b"></script>
+<script>(function(){if(!document.documentElement.classList.contains("reveal-on"))return;var m=document.querySelectorAll(".workspace>*");if(!m.length)return;var vh=innerHeight,li=0;m.forEach(function(el){if(el.getBoundingClientRect().top<vh*0.92){el.style.transitionDelay=Math.min(li*70,350)+"ms";li++;}});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("rv-in");io.unobserve(e.target);}});},{threshold:0.08,rootMargin:"0px 0px -5% 0px"});m.forEach(function(el){io.observe(el);});})();</script>
 </body>
 </html>
