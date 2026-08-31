@@ -1,0 +1,162 @@
+snapshot_date,event_date,category,text
+2026-08-31,Sept 2026 →,steady,France B2B e-invoicing mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027.
+2026-08-31,"Aug 27, 2026",steady,"Rillion releases its 2026 AI in Finance Report (the “Finance AI Illusion”) — 68% of US finance teams use AI, but only 39% of CFOs trust it to run independently."
+2026-08-31,"Aug 26, 2026",cons,Basware signs a binding agreement to acquire payment-fraud-prevention vendor Trustpair — extending invoice lifecycle management into end-to-end invoice-to-payment assurance (close expected later in 2026).
+2026-08-31,"Aug 20, 2026",ai,"Coupa ships its largest-ever release (250+ updates) for autonomous spend — new Navi AI agents, Model Context Protocol (MCP) support for external AI, and a “Spend Pulse” market-intelligence feed."
+2026-08-31,"Aug 19, 2026",steady,"Saudi Arabia (ZATCA) publishes the Wave 25 selection criteria — firms with VAT-subject revenue above SAR 187,500 must integrate with the Fatoora platform by Feb 1, 2027."
+2026-08-31,"Aug 18, 2026",ai,"Dooap launches dooapstudio.ai — a standalone agentic-AP site for D365 Finance that itself runs on Dooap Studio, auto-publishing release notes with human approval."
+2026-08-31,"Aug 13, 2026",ai,"Microsoft (BC 2026 Wave 1, v28.4) adds “Known Senders” to the Payables Agent — AP teams define trusted senders the agent can process automatically (Ask / Approve / Reject policies)."
+2026-08-31,"Aug 11, 2026",cons,Lasernet Group (formerly Formpipe) announces its Nasdaq Stockholm delisting (last trading day Aug 24) after Tabellae / Mission Trail took it private at ~92% acceptance.
+2026-08-31,"Aug 6, 2026",steady,"France (DGFiP) confirms the Sept 1, 2026 B2B e-invoicing go-live with no further postponement — the voluntary pilot runs through Aug 31; from launch all firms must be able to receive and large/mid firms must issue, under a good-faith soft-landing."
+2026-08-31,"Aug 1, 2026",steady,"Poland (KSeF) — the obligation to include the KSeF number in bank transfers (incl. split-payment) takes effect; the broader KSeF penalty grace period runs to Jan 1, 2027."
+2026-08-31,"Jul 29, 2026",steady,"Pagero (Thomson Reuters) — France's DGFiP approves its Partner Dematerialization Platform (PDP), certifying it for e-invoicing/e-reporting ahead of the Sept 1 mandate."
+2026-08-31,"Jul 18, 2026",steady,"Belgium approves a draft law mandating 5-corner (Peppol) near-real-time B2B e-reporting from Jan 1, 2028 — building on its B2B e-invoicing mandate live since Jan 2026."
+2026-08-31,Jul 2026,ai,Dooap Studio (agentic AP automation) goes live on Microsoft Marketplace — discoverable and deployable directly for D365 Finance customers.
+2026-08-31,"Jul 1, 2026",steady,"Spain (VeriFactu) becomes mandatory for self-employed / freelancers (corporates since Jan); the Crea y Crece B2B e-invoicing order is expected to take effect Oct 1, 2026."
+2026-08-31,"Jul 3, 2026",ai,"Rillion strengthens its UK partnership with Stratas to accelerate AI-native AP automation (AI capture, Riley assistant) in a strategic growth market."
+2026-08-31,Jul 2026,ai,"Microsoft expands the BC Expense Agent preview beyond the US to the UK, Australia and New Zealand, with more languages and markets to follow."
+2026-08-31,"Jul 1, 2026",steady,UAE e-invoicing rollout begins for large businesses (revenue ≥ AED 50M); Pagero is listed as a pre-approved accredited service provider.
+2026-08-31,"Jul 1, 2026",cons,Tungsten Automation (ex-Kofax) lenders sign a cooperation pact to negotiate a possible debt restructuring ahead of ~$150M maturities — a distress signal for the Clearlake/TA-backed IDP + AP vendor.
+2026-08-31,"Jun 30, 2026",steady,"Saudi Arabia (ZATCA) Fatoora e-invoicing Wave 24 integration deadline — the first wave to reach businesses with VAT revenue above SAR 375K, pulling thousands of smaller firms into mandatory clearance."
+2026-08-31,"Jun 30, 2026",cons,onPhase (ex-DocuPhase) partners with TransferMate to add embedded cross-border / international payments to its finance-automation platform.
+2026-08-31,"Jun 24, 2026",cons,"Tipalti signals a public offering is its most likely path (not acquisition), targeting sustained profitability by early 2027 — ~6,500 customers and ~$90B annual payment volume."
+2026-08-31,"Jun 24, 2026",steady,"France (DGFiP) confirms the B2B e-invoicing mandate stays on schedule for Sept 1, 2026 while signalling an informal grace period — no automatic sanctions for good-faith filers at launch."
+2026-08-31,"Jun 23, 2026",steady,UK (HMRC) names Peppol as the core interoperability network for e-invoicing in its Tax Update 2026 paper — a first formal endorsement ahead of an expected April 2029 mandate.
+2026-08-31,"June 23, 2026",ai,"Gartner publishes its 2026 Magic Quadrant for Accounts Payable Applications — Medius is named a Leader (alongside Basware, Coupa and Esker)."
+2026-08-31,"June 19, 2026",ai,Microsoft extends the BC Expense Agent (2026 Wave 1) with an AI approval step — it validates expense reports against plain-language policies and guides approvers (public preview Jul 2026).
+2026-08-31,"June 16, 2026",ai,"Forrester publishes The Forrester Wave: AP Invoice Automation Software, Q2 2026 — agentic AI shifts AP from automation toward proactive, autonomous finance operations."
+2026-08-31,"June 9, 2026",cons,AvidXchange launches Payment Automation for Workday on the Workday Marketplace — extending its 1.5M-supplier AvidPay network into Workday Financial Management.
+2026-08-31,"June 4, 2026",cons,"Lasernet Group (formerly Formpipe Software) receives a recommended SEK 30/share public cash takeover from a PE-led Tabellae BidCo consortium (~SEK 879M, +53.8%); the board backs it, acceptance 22 Jun–22 Jul 2026."
+2026-08-31,"June 2, 2026",ai,"Microsoft Build 2026 reframes the PC as an agentic OS — Windows Agent Framework open-sourced, Office Agent Mode runs agents natively."
+2026-08-31,June 2026,ai,Truvio (formerly SignUp Software/ExFlow) completes its rebrand and ships TruvioSense Coding & Approval — AI/LLM invoice-coding suggestions in D365 F&O.
+2026-08-31,"May 11, 2026",ai,Dooap launches Dooap Studio — agentic AI platform.
+2026-08-31,"May 13, 2026",steady,"Zetadocs Expenses May update (cloud, browser, iOS, Android)."
+2026-08-31,"Apr 30, 2026",ai,BC 2026 Wave 1 ships two GA AI agents and MCP Server support — custom AL agents can now be built natively inside Business Central.
+2026-08-31,"Apr 28, 2026",ai,Tungsten previews TotalAgility 2026.2 with agentic AI features (London Summit).
+2026-08-31,"Apr 28, 2026",ai,Microsoft introduces Expense Agent native to Business Central — AI-expense from the platform owner itself.
+2026-08-31,"Apr 14, 2026",ai,Forrester publishes Top Agentic AI Use Cases for AP 2026 — warns that agentic branding is widespread but real autonomy is rare; evaluators should prioritise production metrics over demos.
+2026-08-31,Apr 2026,ai,Tipalti expands agentic AI to include tariff-refund processing.
+2026-08-31,"Mar 31, 2026",ai,Stampli launches Deep Finance — turning invoice data into consultant-grade executive spend intelligence.
+2026-08-31,Early 2026,ai,Medius named Market Leader + Elite Performer for AI Innovation (Ardent Partners 2026).
+2026-08-31,"Jan 22, 2026",cons,Pagero (Thomson Reuters) and Deloitte launch global e-invoicing alliance.
+2026-08-31,"Jan 21, 2026",cons,onPhase (DocuPhase) acquires enterprise AP player iPayables.
+2026-08-31,"Jan 20, 2026",ai,Tungsten hires new executives including its first Chief AI Officer.
+2026-08-31,Jan 2026,cons,ExFlow/SignUp new F&O version; SignUp acquires DynamicWeb (e-commerce/PIM).
+2026-08-31,"Jan 1, 2026",steady,E-invoicing mandate in Belgium takes effect — structured invoice via Peppol required.
+2026-08-31,"Oct 15, 2025",cons,AvidXchange taken private by TPG + Corpay for ~$2.2B.
+2026-08-31,Autumn 2025,ai,Tipalti raises $200M (Hercules Capital) earmarked for AI.
+2026-08-31,2025,steady,Lasernet (Formpipe) launches new BC connector with 20+ report types.
+2026-08-31,Sep 2025,ai,Dooap achieves Microsoft Certified Software designation.
+2026-07-10,Sept 2026 →,steady,France B2B e-invoicing mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027.
+2026-07-10,"Jul 3, 2026",ai,"Rillion strengthens its UK partnership with Stratas to accelerate AI-native AP automation (AI capture, Riley assistant) in a strategic growth market."
+2026-07-10,Jul 2026,ai,"Microsoft expands the BC Expense Agent preview beyond the US to the UK, Australia and New Zealand, with more languages and markets to follow."
+2026-07-10,"Jul 1, 2026",steady,UAE e-invoicing rollout begins for large businesses (revenue ≥ AED 50M); Pagero is listed as a pre-approved accredited service provider.
+2026-07-10,"Jul 1, 2026",cons,Tungsten Automation (ex-Kofax) lenders sign a cooperation pact to negotiate a possible debt restructuring ahead of ~$150M maturities — a distress signal for the Clearlake/TA-backed IDP + AP vendor.
+2026-07-10,"Jun 30, 2026",steady,"Saudi Arabia (ZATCA) Fatoora e-invoicing Wave 24 integration deadline — the first wave to reach businesses with VAT revenue above SAR 375K, pulling thousands of smaller firms into mandatory clearance."
+2026-07-10,"Jun 30, 2026",cons,onPhase (ex-DocuPhase) partners with TransferMate to add embedded cross-border / international payments to its finance-automation platform.
+2026-07-10,"Jun 24, 2026",cons,"Tipalti signals a public offering is its most likely path (not acquisition), targeting sustained profitability by early 2027 — ~6,500 customers and ~$90B annual payment volume."
+2026-07-10,"Jun 24, 2026",steady,"France (DGFiP) confirms the B2B e-invoicing mandate stays on schedule for Sept 1, 2026 while signalling an informal grace period — no automatic sanctions for good-faith filers at launch."
+2026-07-10,"Jun 23, 2026",steady,UK (HMRC) names Peppol as the core interoperability network for e-invoicing in its Tax Update 2026 paper — a first formal endorsement ahead of an expected April 2029 mandate.
+2026-07-10,"June 23, 2026",ai,"Gartner publishes its 2026 Magic Quadrant for Accounts Payable Applications — Medius is named a Leader (alongside Basware, Coupa and Esker)."
+2026-07-10,"June 19, 2026",ai,Microsoft extends the BC Expense Agent (2026 Wave 1) with an AI approval step — it validates expense reports against plain-language policies and guides approvers (public preview Jul 2026).
+2026-07-10,"June 16, 2026",ai,"Forrester publishes The Forrester Wave: AP Invoice Automation Software, Q2 2026 — agentic AI shifts AP from automation toward proactive, autonomous finance operations."
+2026-07-10,"June 9, 2026",cons,AvidXchange launches Payment Automation for Workday on the Workday Marketplace — extending its 1.5M-supplier AvidPay network into Workday Financial Management.
+2026-07-10,"June 4, 2026",cons,"Lasernet Group (formerly Formpipe Software) receives a recommended SEK 30/share public cash takeover from a PE-led Tabellae BidCo consortium (~SEK 879M, +53.8%); the board backs it, acceptance 22 Jun–22 Jul 2026."
+2026-07-10,"June 2, 2026",ai,"Microsoft Build 2026 reframes the PC as an agentic OS — Windows Agent Framework open-sourced, Office Agent Mode runs agents natively."
+2026-07-10,June 2026,ai,Truvio (formerly SignUp Software/ExFlow) completes its rebrand and ships TruvioSense Coding & Approval — AI/LLM invoice-coding suggestions in D365 F&O.
+2026-07-10,"May 11, 2026",ai,Dooap launches Dooap Studio — agentic AI platform.
+2026-07-10,"May 13, 2026",steady,"Zetadocs Expenses May update (cloud, browser, iOS, Android)."
+2026-07-10,"Apr 30, 2026",ai,BC 2026 Wave 1 ships two GA AI agents and MCP Server support — custom AL agents can now be built natively inside Business Central.
+2026-07-10,"Apr 28, 2026",ai,Tungsten previews TotalAgility 2026.2 with agentic AI features (London Summit).
+2026-07-10,"Apr 28, 2026",ai,Microsoft introduces Expense Agent native to Business Central — AI-expense from the platform owner itself.
+2026-07-10,"Apr 14, 2026",ai,Forrester publishes Top Agentic AI Use Cases for AP 2026 — warns that agentic branding is widespread but real autonomy is rare; evaluators should prioritise production metrics over demos.
+2026-07-10,Apr 2026,ai,Tipalti expands agentic AI to include tariff-refund processing.
+2026-07-10,"Mar 31, 2026",ai,Stampli launches Deep Finance — turning invoice data into consultant-grade executive spend intelligence.
+2026-07-10,Early 2026,ai,Medius named Market Leader + Elite Performer for AI Innovation (Ardent Partners 2026).
+2026-07-10,"Jan 22, 2026",cons,Pagero (Thomson Reuters) and Deloitte launch global e-invoicing alliance.
+2026-07-10,"Jan 21, 2026",cons,onPhase (DocuPhase) acquires enterprise AP player iPayables.
+2026-07-10,"Jan 20, 2026",ai,Tungsten hires new executives including its first Chief AI Officer.
+2026-07-10,Jan 2026,cons,ExFlow/SignUp new F&O version; SignUp acquires DynamicWeb (e-commerce/PIM).
+2026-07-10,"Jan 1, 2026",steady,E-invoicing mandate in Belgium takes effect — structured invoice via Peppol required.
+2026-07-10,"Oct 15, 2025",cons,AvidXchange taken private by TPG + Corpay for ~$2.2B.
+2026-07-10,Autumn 2025,ai,Tipalti raises $200M (Hercules Capital) earmarked for AI.
+2026-07-10,2025,steady,Lasernet (Formpipe) launches new BC connector with 20+ report types.
+2026-07-10,Sep 2025,ai,Dooap achieves Microsoft Certified Software designation.
+2026-06-29,Sept 2026 →,steady,France B2B e-invoicing mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027.
+2026-06-29,"Jul 1, 2026",steady,UAE e-invoicing rollout begins for large businesses (revenue ≥ AED 50M); Pagero is listed as a pre-approved accredited service provider.
+2026-06-29,"Jun 30, 2026",steady,"Saudi Arabia (ZATCA) Fatoora e-invoicing Wave 24 integration deadline — the first wave to reach businesses with VAT revenue above SAR 375K, pulling thousands of smaller firms into mandatory clearance."
+2026-06-29,"June 23, 2026",ai,"Gartner publishes its 2026 Magic Quadrant for Accounts Payable Applications — Medius is named a Leader (alongside Basware, Coupa and Esker)."
+2026-06-29,"June 19, 2026",ai,Microsoft extends the BC Expense Agent (2026 Wave 1) with an AI approval step — it validates expense reports against plain-language policies and guides approvers (public preview Jul 2026).
+2026-06-29,"June 16, 2026",ai,"Forrester publishes The Forrester Wave: AP Invoice Automation Software, Q2 2026 — agentic AI shifts AP from automation toward proactive, autonomous finance operations."
+2026-06-29,"June 9, 2026",cons,AvidXchange launches Payment Automation for Workday on the Workday Marketplace — extending its 1.5M-supplier AvidPay network into Workday Financial Management.
+2026-06-29,"June 4, 2026",cons,"Lasernet Group (formerly Formpipe Software) receives a recommended SEK 30/share public cash takeover from a PE-led Tabellae BidCo consortium (~SEK 879M, +53.8%); the board backs it, acceptance 22 Jun–22 Jul 2026."
+2026-06-29,"June 2, 2026",ai,"Microsoft Build 2026 reframes the PC as an agentic OS — Windows Agent Framework open-sourced, Office Agent Mode runs agents natively."
+2026-06-29,June 2026,ai,Truvio (formerly SignUp Software/ExFlow) completes its rebrand and ships TruvioSense Coding & Approval — AI/LLM invoice-coding suggestions in D365 F&O.
+2026-06-29,"May 11, 2026",ai,Dooap launches Dooap Studio — agentic AI platform.
+2026-06-29,"May 13, 2026",steady,"Zetadocs Expenses May update (cloud, browser, iOS, Android)."
+2026-06-29,"Apr 30, 2026",ai,BC 2026 Wave 1 ships two GA AI agents and MCP Server support — custom AL agents can now be built natively inside Business Central.
+2026-06-29,"Apr 28, 2026",ai,Tungsten previews TotalAgility 2026.2 with agentic AI features (London Summit).
+2026-06-29,"Apr 28, 2026",ai,Microsoft introduces Expense Agent native to Business Central — AI-expense from the platform owner itself.
+2026-06-29,"Apr 14, 2026",ai,Forrester publishes Top Agentic AI Use Cases for AP 2026 — warns that agentic branding is widespread but real autonomy is rare; evaluators should prioritise production metrics over demos.
+2026-06-29,Apr 2026,ai,Tipalti expands agentic AI to include tariff-refund processing.
+2026-06-29,"Mar 31, 2026",ai,Stampli launches Deep Finance — turning invoice data into consultant-grade executive spend intelligence.
+2026-06-29,Early 2026,ai,Medius named Market Leader + Elite Performer for AI Innovation (Ardent Partners 2026).
+2026-06-29,"Jan 22, 2026",cons,Pagero (Thomson Reuters) and Deloitte launch global e-invoicing alliance.
+2026-06-29,"Jan 21, 2026",cons,onPhase (DocuPhase) acquires enterprise AP player iPayables.
+2026-06-29,"Jan 20, 2026",ai,Tungsten hires new executives including its first Chief AI Officer.
+2026-06-29,Jan 2026,cons,ExFlow/SignUp new F&O version; SignUp acquires DynamicWeb (e-commerce/PIM).
+2026-06-29,"Jan 1, 2026",steady,E-invoicing mandate in Belgium takes effect — structured invoice via Peppol required.
+2026-06-29,"Oct 15, 2025",cons,AvidXchange taken private by TPG + Corpay for ~$2.2B.
+2026-06-29,Autumn 2025,ai,Tipalti raises $200M (Hercules Capital) earmarked for AI.
+2026-06-29,2025,steady,Lasernet (Formpipe) launches new BC connector with 20+ report types.
+2026-06-29,Sep 2025,ai,Dooap achieves Microsoft Certified Software designation.
+2026-06-19,Sept 2026 →,steady,France B2B e-invoicing mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027.
+2026-06-19,"Jul 1, 2026",steady,UAE e-invoicing rollout begins for large businesses (revenue ≥ AED 50M); Pagero is listed as a pre-approved accredited service provider.
+2026-06-19,"Jun 30, 2026",steady,"Saudi Arabia (ZATCA) Fatoora e-invoicing Wave 24 integration deadline — the first wave to reach businesses with VAT revenue above SAR 375K, pulling thousands of smaller firms into mandatory clearance."
+2026-06-19,"June 16, 2026",ai,"Forrester publishes The Forrester Wave: AP Invoice Automation Software, Q2 2026 — agentic AI shifts AP from automation toward proactive, autonomous finance operations."
+2026-06-19,"June 9, 2026",cons,AvidXchange launches Payment Automation for Workday on the Workday Marketplace — extending its 1.5M-supplier AvidPay network into Workday Financial Management.
+2026-06-19,"June 2, 2026",ai,"Microsoft Build 2026 reframes the PC as an agentic OS — Windows Agent Framework open-sourced, Office Agent Mode runs agents natively."
+2026-06-19,June 2026,ai,Truvio (formerly SignUp Software/ExFlow) completes its rebrand and ships TruvioSense Coding & Approval — AI/LLM invoice-coding suggestions in D365 F&O.
+2026-06-19,"May 11, 2026",ai,Dooap launches Dooap Studio — agentic AI platform.
+2026-06-19,"May 13, 2026",steady,"Zetadocs Expenses May update (cloud, browser, iOS, Android)."
+2026-06-19,"Apr 30, 2026",ai,BC 2026 Wave 1 ships two GA AI agents and MCP Server support — custom AL agents can now be built natively inside Business Central.
+2026-06-19,"Apr 28, 2026",ai,Tungsten previews TotalAgility 2026.2 with agentic AI features (London Summit).
+2026-06-19,"Apr 28, 2026",ai,Microsoft introduces Expense Agent native to Business Central — AI-expense from the platform owner itself.
+2026-06-19,"Apr 14, 2026",ai,Forrester publishes Top Agentic AI Use Cases for AP 2026 — warns that agentic branding is widespread but real autonomy is rare; evaluators should prioritise production metrics over demos.
+2026-06-19,Apr 2026,ai,Tipalti expands agentic AI to include tariff-refund processing.
+2026-06-19,"Mar 31, 2026",ai,Stampli launches Deep Finance — turning invoice data into consultant-grade executive spend intelligence.
+2026-06-19,Early 2026,ai,Medius named Market Leader + Elite Performer for AI Innovation (Ardent Partners 2026).
+2026-06-19,"Jan 22, 2026",cons,Pagero (Thomson Reuters) and Deloitte launch global e-invoicing alliance.
+2026-06-19,"Jan 21, 2026",cons,onPhase (DocuPhase) acquires enterprise AP player iPayables.
+2026-06-19,"Jan 20, 2026",ai,Tungsten hires new executives including its first Chief AI Officer.
+2026-06-19,Jan 2026,cons,ExFlow/SignUp new F&O version; SignUp acquires DynamicWeb (e-commerce/PIM).
+2026-06-19,"Jan 1, 2026",steady,E-invoicing mandate in Belgium takes effect — structured invoice via Peppol required.
+2026-06-19,"Oct 15, 2025",cons,AvidXchange taken private by TPG + Corpay for ~$2.2B.
+2026-06-19,Autumn 2025,ai,Tipalti raises $200M (Hercules Capital) earmarked for AI.
+2026-06-19,2025,steady,Lasernet (Formpipe) launches new BC connector with 20+ report types.
+2026-06-19,Sep 2025,ai,Dooap achieves Microsoft Certified Software designation.
+2026-06-18,Sept 2026 →,steady,France B2B e-invoicing mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027.
+2026-06-18,"Jul 1, 2026",steady,UAE e-invoicing rollout begins for large businesses (revenue ≥ AED 50M); Pagero is listed as a pre-approved accredited service provider.
+2026-06-18,"Jun 30, 2026",steady,"Saudi Arabia (ZATCA) Fatoora e-invoicing Wave 24 integration deadline — the first wave to reach businesses with VAT revenue above SAR 375K, pulling thousands of smaller firms into mandatory clearance."
+2026-06-18,"June 16, 2026",ai,"Forrester publishes The Forrester Wave: AP Invoice Automation Software, Q2 2026 — agentic AI shifts AP from automation toward proactive, autonomous finance operations."
+2026-06-18,"June 9, 2026",cons,AvidXchange launches Payment Automation for Workday on the Workday Marketplace — extending its 1.5M-supplier AvidPay network into Workday Financial Management.
+2026-06-18,"June 2, 2026",ai,"Microsoft Build 2026 reframes the PC as an agentic OS — Windows Agent Framework open-sourced, Office Agent Mode runs agents natively."
+2026-06-18,June 2026,ai,Truvio (formerly SignUp Software/ExFlow) completes its rebrand and ships TruvioSense Coding & Approval — AI/LLM invoice-coding suggestions in D365 F&O.
+2026-06-18,"May 11, 2026",ai,Dooap launches Dooap Studio — agentic AI platform.
+2026-06-18,"May 13, 2026",steady,"Zetadocs Expenses May update (cloud, browser, iOS, Android)."
+2026-06-18,"Apr 30, 2026",ai,BC 2026 Wave 1 ships two GA AI agents and MCP Server support — custom AL agents can now be built natively inside Business Central.
+2026-06-18,"Apr 28, 2026",ai,Tungsten previews TotalAgility 2026.2 with agentic AI features (London Summit).
+2026-06-18,"Apr 28, 2026",ai,Microsoft introduces Expense Agent native to Business Central — AI-expense from the platform owner itself.
+2026-06-18,"Apr 14, 2026",ai,Forrester publishes Top Agentic AI Use Cases for AP 2026 — warns that agentic branding is widespread but real autonomy is rare; evaluators should prioritise production metrics over demos.
+2026-06-18,Apr 2026,ai,Tipalti expands agentic AI to include tariff-refund processing.
+2026-06-18,"Mar 31, 2026",ai,Stampli launches Deep Finance — turning invoice data into consultant-grade executive spend intelligence.
+2026-06-18,Early 2026,ai,Medius named Market Leader + Elite Performer for AI Innovation (Ardent Partners 2026).
+2026-06-18,"Jan 22, 2026",cons,Pagero (Thomson Reuters) and Deloitte launch global e-invoicing alliance.
+2026-06-18,"Jan 21, 2026",cons,onPhase (DocuPhase) acquires enterprise AP player iPayables.
+2026-06-18,"Jan 20, 2026",ai,Tungsten hires new executives including its first Chief AI Officer.
+2026-06-18,Jan 2026,cons,ExFlow/SignUp new F&O version; SignUp acquires DynamicWeb (e-commerce/PIM).
+2026-06-18,"Jan 1, 2026",steady,E-invoicing mandate in Belgium takes effect — structured invoice via Peppol required.
+2026-06-18,"Oct 15, 2025",cons,AvidXchange taken private by TPG + Corpay for ~$2.2B.
+2026-06-18,Autumn 2025,ai,Tipalti raises $200M (Hercules Capital) earmarked for AI.
+2026-06-18,2025,steady,Lasernet (Formpipe) launches new BC connector with 20+ report types.
+2026-06-18,Sep 2025,ai,Dooap achieves Microsoft Certified Software designation.

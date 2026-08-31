@@ -13,12 +13,12 @@ const data = [
  {n:"Dooap", o:"Dooap · Austin (Pagero)", stance:"ai", sl:"AI-aggressive", prox:"High",
   cat:"AP automation · D365 Finance (F&O)",
   head:"Launched a dedicated agentic AI product — the most offensive AI move in the space.",
-  rel:"Dooap Studio, May 11 2026 — AP teams design and govern their own AI agents without IT.",
+  rel:"Dooap Studio, May 11 2026 — AP teams design and govern their own AI agents without IT. Jul 2026: went live on Microsoft Marketplace (deployable directly for D365 Finance customers); Aug 18 2026: launched dooapstudio.ai, a standalone agentic-AP site that auto-publishes its own release notes with human approval.",
   str:"Agents for GL coding, PO matching, fraud and routing — with rationale, confidence score and audit trail.",
   pos:"Mobile-first, cloud-native — message: \u201cAI you control.\u201d",
   ai:"A standalone agent product, not just AI features.",
-  sc:"Microsoft Certified Software (Sep 2025)",
-  s:[["Dooap Studio (PR)","https://www.prnewswire.com/news-releases/dooap-inc-launches-dooap-studio-putting-agentic-ap-automation-directly-in-the-hands-of-finance-teams-302768534.html"],["YouTube","https://www.youtube.com/@dooap"]]},
+  sc:"Microsoft Certified Software (Sep 2025) · on Microsoft Marketplace",
+  s:[["Dooap Studio (PR)","https://www.prnewswire.com/news-releases/dooap-inc-launches-dooap-studio-putting-agentic-ap-automation-directly-in-the-hands-of-finance-teams-302768534.html"],["Studio on Marketplace","https://www.dooap.com/blog/dooap-studio-is-now-live-in-microsoft-marketplace"],["dooapstudio.ai","https://www.dooap.com/blog/dooap-launches-dooapstudio.ai-for-agentic-ap-on-microsoft-d365"]]},
 
  {n:"Zetadocs", o:"Equisys", stance:"steady", sl:"Stable cadence", prox:"High",
   cat:"Delivery · Capture · Expenses · BC",
@@ -140,15 +140,15 @@ const data = [
   sc:"Built into Microsoft Dynamics 365 Business Central",
   s:[["Microsoft blog","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"],["Approval process (BC 2026 W1)","https://www.azurecurve.co.uk/2026/06/new-functionality-in-microsoft-dynamics-365-business-central-2026-wave-1-expense-agent-supports-approval-process/"],["Markets (MS Learn)","https://learn.microsoft.com/en-us/dynamics365/release-plan/2026wave1/smb/dynamics365-business-central/manage-expenses-business-central-using-expense-agent"]]},
 
- {n:"Lasernet", o:"Lasernet Group · DK/UK", stance:"cons", sl:"Takeover bid · BC output", prox:"High",
+ {n:"Lasernet", o:"Lasernet Group · DK/UK", stance:"cons", sl:"Taken private · BC output", prox:"High",
   cat:"Document output & e-invoicing · BC + F&O",
-  head:"BC-native output engine (rival to Continia Document Output) — now itself a take-private target under a recommended SEK 30/share cash offer.",
-  rel:"Under a recommended public cash takeover — Tabellae BidCo (Valedo Partners + Mission Trail + Grenspecialisten) bids SEK 30/share (~SEK 879M, +53.8% premium); the board recommends it, acceptance runs 22 Jun–22 Jul 2026. Lasernet for BC stays live on AppSource (20+ report types, Azure AI mapping); Temenos Exchange Partner of the Year 2026; joined the IFS partner network.",
-  str:"Formpipe Software AB renamed itself Lasernet Group AB (Nasdaq Stockholm ticker LASER, trading from Jun 9, 2026), focused solely on the Lasernet platform — now being taken private by a PE-led consortium.",
+  head:"BC-native output engine (rival to Continia Document Output) — now taken private and delisted after a completed SEK 30/share cash takeover.",
+  rel:"Take-private complete — Tabellae BidCo (Mission Trail Partners) declared its recommended SEK 30/share cash offer (~SEK 879M, +53.8% premium) unconditional on Jul 23, 2026 at ~92% acceptance and moved to compulsory redemption; Lasernet Group delisted from Nasdaq Stockholm with last trading day Aug 24, 2026. Lasernet for BC stays live on AppSource (20+ report types, Azure AI mapping); Temenos Exchange Partner of the Year 2026; joined the IFS partner network.",
+  str:"Formpipe Software AB renamed itself Lasernet Group AB (briefly Nasdaq Stockholm ticker LASER from Jun 9, 2026), focused solely on the Lasernet platform — now owned outright by the PE-led Tabellae/Mission Trail consortium.",
   pos:"Embedded in BC — design, send and archive documents without leaving the ERP.",
   ai:"Azure AI for data mapping; primarily strong on output/compliance rather than AI marketing.",
   sc:"20+ years of document expertise · global",
-  s:[["Lasernet Group","https://www.lasernetgroup.com/news-blogs/bc-connector-now-on-appsource"],["Takeover offer (advisor)","https://www.abgsc.com/abgsc-is-acting-as-exclusive-financial-advisor-to-formpipe-software-ab-in-connection-with-the-public-cash-offer-from-tabellae-bidco-aps/"],["Renamed → Lasernet Group (LASER)","https://www.marketscreener.com/news/formpipe-software-begins-trading-on-nasdaq-stockholm-under-new-name-lasernet-group-ce7f5dd3dc81f32d"]]},
+  s:[["Lasernet Group","https://www.lasernetgroup.com/news-blogs/bc-connector-now-on-appsource"],["Offer completed (~92%)","https://mfn.se/all/a/tabellaebidco/tabellae-bidco-completes-the-recommended-offer-to-the-shareholders-of-lasernet-at-92-0-percent-and-extends-the-acceptance-period"],["Delisting / IR","https://ir.lasernetgroup.com/"]]},
 
  {n:"AMC Banking", o:"AMC-Consult · Denmark", stance:"steady", sl:"BC-native · banking", prox:"High",
   cat:"Bank integration & payments · BC + F&O",
@@ -173,12 +173,12 @@ const data = [
  {n:"Pagero", o:"Thomson Reuters", stance:"cons", sl:"TR-owned · e-invoicing", prox:"High",
   cat:"E-invoicing network & compliance · BC connector",
   head:"Global e-invoicing network, now owned by Thomson Reuters — one of BC's built-in E-Document connectors.",
-  rel:"ONESOURCE Pagero (e-invoicing + tax); embedded e-invoicing for Oracle Fusion (2026); Deloitte global alliance (Jan 2026); pre-approved ASP for the UAE mandate (from Jul 2026); passed the EU ViDA Peppol 5-corner pilot.",
+  rel:"ONESOURCE Pagero (e-invoicing + tax); embedded e-invoicing for Oracle Fusion (2026); Deloitte global alliance (Jan 2026); pre-approved ASP for the UAE mandate (from Jul 2026); passed the EU ViDA Peppol 5-corner pilot. Jul 29, 2026: France's DGFiP approved Pagero's Partner Dematerialization Platform (PDP), certifying it ahead of the Sept 1, 2026 mandate.",
   str:"Acquired by Thomson Reuters (2024) and merged with ONESOURCE tax; \u201ctwo-step\u201d format conversion globally.",
   pos:"Open, ERP-agnostic network; BC extension sends e-/PDF/print invoice via one connection.",
   ai:"Focus on compliance/CTC mandates rather than AI marketing.",
   sc:"14M+ businesses · 100+ networks · IDC leader",
-  s:[["Pagero for BC","https://europe.thomsonreuters.com/pagero-network/system-connectivity/microsoft"],["UAE ASP","https://europe.thomsonreuters.com/newsroom/pagero-part-of-thomson-reuters-listed-as-pre-approved-e-invoicing-service-provider-in-the-uae"],["Deloitte-alliance","https://www.thomsonreuters.com/en/press-releases/2026/january/deloitte-and-thomson-reuters-launch-a-strategic-alliance-to-support-end-to-end-global-e-invoicing-and-e-reporting-for-organizations"]]},
+  s:[["Pagero for BC","https://europe.thomsonreuters.com/pagero-network/system-connectivity/microsoft"],["France PDP approved (Jul 2026)","https://www.pagero.com/newsroom/pageros-pdp-application-approved-by-french-authorities"],["UAE ASP","https://europe.thomsonreuters.com/newsroom/pagero-part-of-thomson-reuters-listed-as-pre-approved-e-invoicing-service-provider-in-the-uae"],["Deloitte-alliance","https://www.thomsonreuters.com/en/press-releases/2026/january/deloitte-and-thomson-reuters-launch-a-strategic-alliance-to-support-end-to-end-global-e-invoicing-and-e-reporting-for-organizations"]]},
 
  {n:"B2Brouter", o:"B2Brouter Global · ES", stance:"steady", sl:"Peppol · BC connector", prox:"High",
   cat:"Peppol / e-invoicing access point · BC connector",
@@ -203,12 +203,12 @@ const data = [
  {n:"Rillion", o:"Rillion (formerly Palette) · Stockholm (Altor)", stance:"ai", sl:"AI-native capture", prox:"Medium",
   cat:"AP automation · multi-ERP + BC connector",
   head:"Nordic AP-automation veteran going AI-native — LLM invoice capture with no OCR templates.",
-  rel:"Rillion Capture (Mar 25, 2026) — first AI-native, multimodal-LLM invoice capture (no templates); Riley AI Assistant (Sept 2025) for invoice/supplier Q&A; Jul 2026: strengthened UK partnership with Stratas to accelerate AI-driven AP.",
+  rel:"Rillion Capture (Mar 25, 2026) — first AI-native, multimodal-LLM invoice capture (no templates); Riley AI Assistant (Sept 2025) for invoice/supplier Q&A; Jul 2026: strengthened UK partnership with Stratas to accelerate AI-driven AP; Aug 27, 2026: released its 2026 AI in Finance Report (the “Finance AI Illusion”) — 68% of US finance teams use AI but only 39% of CFOs trust it to run independently.",
   str:"30+ years (ex-Palette/Centsoft), Altor PE-owned; shifting from template-OCR to AI-native capture and expanding in the US.",
   pos:"Control, visibility and speed for mid-market/enterprise AP; native Business Central connector among 50+ ERPs.",
   ai:"Riley AI assistant + Rillion Capture (multimodal LLM) for extraction, coding and approval routing.",
   sc:"3,000+ customers · 50+ countries · Altor-owned",
-  s:[["Rillion AP","https://www.rillion.com/"],["Rillion Capture (Mar 2026)","https://www.rillion.com/blog/rillion-capture-announcement/"],["Rillion + Stratas (Jul 2026)","https://www.rillion.com/blog/rillion-and-stratas-strengthen-partnership-to-accelerate-ai-driven-ap-automation-in-the-uk/"],["BC integration","https://www.rillion.com/integration/microsoft-dynamics-365-business-central/"]]},
+  s:[["Rillion AP","https://www.rillion.com/"],["Rillion Capture (Mar 2026)","https://www.rillion.com/blog/rillion-capture-announcement/"],["Rillion + Stratas (Jul 2026)","https://www.rillion.com/blog/rillion-and-stratas-strengthen-partnership-to-accelerate-ai-driven-ap-automation-in-the-uk/"],["2026 AI in Finance Report","https://www.prnewswire.com/news-releases/new-report-from-rillion-reveals-the-finance-ai-illusion-across-us-finance-functions-302861937.html"],["BC integration","https://www.rillion.com/integration/microsoft-dynamics-365-business-central/"]]},
 
  {n:"Fidesic", o:"Fidesic (Enliven Software) · East Lansing, MI", stance:"ai", sl:"Built for Dynamics · AI capture", prox:"High",
   cat:"AP automation · Dynamics GP + BC",
@@ -245,6 +245,19 @@ const MNA_COUNT         = 8;    // M&A / capital moves 2025-26 (acquisitions + f
 
 const events = [
  {w:"Sept 2026 →", c:"steady", t:"<b>France B2B e-invoicing</b> mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027."},
+ {w:"Aug 27, 2026", c:"steady", t:"<b>Rillion</b> releases its 2026 AI in Finance Report (the “Finance AI Illusion”) — 68% of US finance teams use AI, but only 39% of CFOs trust it to run independently."},
+ {w:"Aug 26, 2026", c:"cons", t:"<b>Basware</b> signs a binding agreement to acquire payment-fraud-prevention vendor <b>Trustpair</b> — extending invoice lifecycle management into end-to-end invoice-to-payment assurance (close expected later in 2026)."},
+ {w:"Aug 20, 2026", c:"ai", t:"<b>Coupa</b> ships its largest-ever release (250+ updates) for autonomous spend — new Navi AI agents, Model Context Protocol (MCP) support for external AI, and a “Spend Pulse” market-intelligence feed."},
+ {w:"Aug 19, 2026", c:"steady", t:"<b>Saudi Arabia (ZATCA)</b> publishes the Wave 25 selection criteria — firms with VAT-subject revenue above SAR 187,500 must integrate with the Fatoora platform by Feb 1, 2027."},
+ {w:"Aug 18, 2026", c:"ai", t:"<b>Dooap</b> launches dooapstudio.ai — a standalone agentic-AP site for D365 Finance that itself runs on Dooap Studio, auto-publishing release notes with human approval."},
+ {w:"Aug 13, 2026", c:"ai", t:"<b>Microsoft</b> (BC 2026 Wave 1, v28.4) adds “Known Senders” to the Payables Agent — AP teams define trusted senders the agent can process automatically (Ask / Approve / Reject policies)."},
+ {w:"Aug 11, 2026", c:"cons", t:"<b>Lasernet Group</b> (formerly Formpipe) announces its Nasdaq Stockholm delisting (last trading day Aug 24) after Tabellae / Mission Trail took it private at ~92% acceptance."},
+ {w:"Aug 6, 2026", c:"steady", t:"<b>France (DGFiP)</b> confirms the Sept 1, 2026 B2B e-invoicing go-live with no further postponement — the voluntary pilot runs through Aug 31; from launch all firms must be able to receive and large/mid firms must issue, under a good-faith soft-landing."},
+ {w:"Aug 1, 2026", c:"steady", t:"<b>Poland (KSeF)</b> — the obligation to include the KSeF number in bank transfers (incl. split-payment) takes effect; the broader KSeF penalty grace period runs to Jan 1, 2027."},
+ {w:"Jul 29, 2026", c:"steady", t:"<b>Pagero</b> (Thomson Reuters) — France's DGFiP approves its Partner Dematerialization Platform (PDP), certifying it for e-invoicing/e-reporting ahead of the Sept 1 mandate."},
+ {w:"Jul 18, 2026", c:"steady", t:"<b>Belgium</b> approves a draft law mandating 5-corner (Peppol) near-real-time B2B e-reporting from Jan 1, 2028 — building on its B2B e-invoicing mandate live since Jan 2026."},
+ {w:"Jul 2026", c:"ai", t:"<b>Dooap Studio</b> (agentic AP automation) goes live on Microsoft Marketplace — discoverable and deployable directly for D365 Finance customers."},
+ {w:"Jul 1, 2026", c:"steady", t:"<b>Spain (VeriFactu)</b> becomes mandatory for self-employed / freelancers (corporates since Jan); the Crea y Crece B2B e-invoicing order is expected to take effect Oct 1, 2026."},
  {w:"Jul 3, 2026", c:"ai", t:"<b>Rillion</b> strengthens its UK partnership with Stratas to accelerate AI-native AP automation (AI capture, Riley assistant) in a strategic growth market."},
  {w:"Jul 2026", c:"ai", t:"<b>Microsoft</b> expands the BC Expense Agent preview beyond the US to the UK, Australia and New Zealand, with more languages and markets to follow."},
  {w:"Jul 1, 2026", c:"steady", t:"<b>UAE e-invoicing</b> rollout begins for large businesses (revenue ≥ AED 50M); <b>Pagero</b> is listed as a pre-approved accredited service provider."},
@@ -2160,7 +2173,7 @@ if(contentIdeasList){
    Both the topbar and the footer read from it, so they can never drift apart.
    The YouTube/News update routine sets this to today's date on every refresh. */
 (function(){
-  var DASHBOARD_UPDATED = "2026-07-10";
+  var DASHBOARD_UPDATED = "2026-08-31";
   var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var p=String(DASHBOARD_UPDATED).split("-");
   var pretty=m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];
