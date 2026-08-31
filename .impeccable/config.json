@@ -8,6 +8,15 @@
         "value": "arial",
         "createdAt": "2026-08-31T14:26:43.106Z",
         "reason": "neutral system fallback font, not a display face; brand face is Alliance"
+      },
+      {
+        "rule": "layout-transition",
+        "value": "*",
+        "files": [
+          "dashboard.css"
+        ],
+        "createdAt": "2026-08-31T14:30:22.802Z",
+        "reason": "intentional domain-appropriate motion: accordion expand (.detail max-height) + content-gap chart bar fill (.cg-track i width); pre-existing, works as designed"
       }
     ]
   }
