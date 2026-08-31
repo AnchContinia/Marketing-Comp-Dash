@@ -901,13 +901,17 @@ html.reveal-on .workspace>*{opacity:0;transform:translateY(18px);transition:opac
 html.reveal-on .workspace>.rv-in{opacity:1;transform:none}
 
 /* Video asset library (video page) — 4 tiles linking to SharePoint folders.
-   Filled Innovation Blue #8ff8ff with a Tech Blue #052975 icon + label; both
-   hex hardcoded so the tile stays on-brand and identical in light/dark. */
+   Light mode: filled Tech Blue #052975 box with Innovation Blue #8ff8ff icon +
+   label. Dark mode: inverted (Innovation Blue box, Tech Blue icon) so the tile
+   pops on the dark canvas. Both hex hardcoded to stay on-brand. */
 .va-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;padding:16px}
-.va-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;aspect-ratio:1/1;background:#8ff8ff;border:1px solid var(--line);border-radius:16px;text-decoration:none;padding:18px;text-align:center;transition:transform .16s,box-shadow .16s;box-shadow:0 10px 24px -18px rgba(5,41,117,.5)}
+.va-tile{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;aspect-ratio:1/1;background:#052975;border:1px solid var(--line);border-radius:16px;text-decoration:none;padding:18px;text-align:center;transition:transform .16s,box-shadow .16s;box-shadow:0 10px 24px -18px rgba(5,41,117,.5)}
 .va-tile:hover{transform:translateY(-3px);box-shadow:0 16px 32px -18px rgba(5,41,117,.6)}
-.va-tile:focus-visible{outline:3px solid #052975;outline-offset:2px}
-.va-ic{font-size:46px;line-height:1;color:#052975}
-.va-lbl{font-size:14px;font-weight:850;letter-spacing:.01em;color:#052975}
+.va-tile:focus-visible{outline:3px solid #8ff8ff;outline-offset:2px}
+.va-ic{font-size:46px;line-height:1;color:#8ff8ff}
+.va-lbl{font-size:14px;font-weight:850;letter-spacing:.01em;color:#8ff8ff}
+html[data-theme="dark"] .va-tile{background:#8ff8ff}
+html[data-theme="dark"] .va-tile:focus-visible{outline-color:#052975}
+html[data-theme="dark"] .va-ic,html[data-theme="dark"] .va-lbl{color:#052975}
 @media(max-width:900px){.va-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.va-grid{grid-template-columns:1fr}.va-tile{aspect-ratio:auto;flex-direction:row;justify-content:flex-start;gap:14px;min-height:78px}.va-ic{font-size:34px}}
