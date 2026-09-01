@@ -900,20 +900,15 @@ html[data-theme="dark"] .bc-copy:hover{background:#8ff8ff;color:#052975;border-c
 html.reveal-on .workspace>*{opacity:0;transform:translateY(18px);transition:opacity 640ms cubic-bezier(.16,1,.3,1),transform 640ms cubic-bezier(.16,1,.3,1);will-change:opacity,transform}
 html.reveal-on .workspace>.rv-in{opacity:1;transform:none}
 
-/* Video asset library (video page) — premium "liquid glass" showcase.
-   The whole module sits on a deep Tech Blue -> Innovation cyan gradient (same in
-   both themes) so the tiles read as real translucent frosted glass: backdrop
-   blur + saturate, a bright glass rim, a specular top sheen, a diagonal glint
-   and a soft under-shadow. Icons/labels are light for contrast on the glass. */
+/* Video asset library (video page) — tiles styled after the hero pills:
+   a deep navy fill with a soft Innovation-cyan wash, a 1px translucent cyan rim
+   and cyan icon/label (rgba(143,248,255,...) like .brief .pill). Kept as
+   rounded-square boxes, not full pills. Same look in both themes. */
 .va-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px;padding:22px}
-.va-tile{position:relative;overflow:hidden;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;aspect-ratio:1/1;border:1px solid rgba(255,255,255,.22);border-radius:22px;text-decoration:none;padding:12px;text-align:center;background:linear-gradient(150deg,rgba(47,116,214,.5) 0%,rgba(14,63,149,.5) 46%,rgba(5,41,117,.5) 100%);backdrop-filter:blur(12px) saturate(140%);-webkit-backdrop-filter:blur(12px) saturate(140%);box-shadow:0 16px 34px -16px rgba(5,25,80,.5),0 2px 6px -2px rgba(0,0,0,.18),inset 0 1px 0 rgba(255,255,255,.45),inset 0 -18px 30px -24px rgba(0,0,0,.3);transition:transform .25s cubic-bezier(.16,1,.3,1),box-shadow .25s ease,border-color .25s ease}
-.va-tile::before{content:"";position:absolute;inset:0;z-index:-1;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 82% at 20% -8%,rgba(255,255,255,.55),rgba(255,255,255,0) 52%)}
-.va-tile::after{content:"";position:absolute;z-index:-1;top:-60%;left:-30%;width:80%;height:180%;transform:rotate(18deg);pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.22) 45%,rgba(255,255,255,0));filter:blur(4px)}
-.va-tile:hover{transform:translateY(-5px) scale(1.015);border-color:rgba(255,255,255,.4);box-shadow:0 26px 52px -18px rgba(2,12,40,.75),0 2px 6px -2px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.65),inset 0 -18px 30px -24px rgba(0,0,0,.35)}
+.va-tile{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px;aspect-ratio:1/1;border:1px solid rgba(143,248,255,.5);border-radius:20px;text-decoration:none;padding:12px;text-align:center;background:linear-gradient(160deg,rgba(143,248,255,.18) 0%,rgba(143,248,255,.05) 55%,rgba(143,248,255,.02) 100%),#07214f;box-shadow:0 12px 26px -16px rgba(5,20,70,.55),inset 0 1px 0 rgba(143,248,255,.22);transition:transform .22s cubic-bezier(.16,1,.3,1),box-shadow .22s ease,border-color .22s ease,background .22s ease}
+.va-tile:hover{transform:translateY(-4px);border-color:rgba(143,248,255,.9);background:linear-gradient(160deg,rgba(143,248,255,.26) 0%,rgba(143,248,255,.08) 55%,rgba(143,248,255,.03) 100%),#082a63;box-shadow:0 18px 34px -16px rgba(5,20,70,.65),0 0 0 1px rgba(143,248,255,.15),inset 0 1px 0 rgba(143,248,255,.3)}
 .va-tile:focus-visible{outline:3px solid #8ff8ff;outline-offset:3px}
-.va-ic{position:relative;z-index:1;font-size:33px;line-height:1;color:#052975;filter:drop-shadow(0 1px 1px rgba(255,255,255,.45))}
-.va-lbl{position:relative;z-index:1;font-size:12.5px;font-weight:850;line-height:1.2;letter-spacing:.01em;color:#052975;text-shadow:0 1px 2px rgba(255,255,255,.4)}
-html[data-theme="dark"] .va-ic{color:#eafdff;filter:drop-shadow(0 2px 6px rgba(0,10,40,.5))}
-html[data-theme="dark"] .va-lbl{color:#f3fdff;text-shadow:0 1px 4px rgba(0,12,45,.45)}
+.va-ic{font-size:33px;line-height:1;color:#8ff8ff;filter:drop-shadow(0 1px 2px rgba(0,10,40,.4))}
+.va-lbl{font-size:12.5px;font-weight:850;line-height:1.2;letter-spacing:.01em;color:#8ff8ff}
 @media(max-width:820px){.va-grid{grid-template-columns:repeat(3,1fr);padding:18px}.va-ic{font-size:38px}.va-lbl{font-size:13px}}
 @media(max-width:480px){.va-grid{grid-template-columns:repeat(2,1fr)}}
