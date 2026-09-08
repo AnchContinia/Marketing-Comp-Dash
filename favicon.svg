@@ -1,9 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Marketing Hub">
-  <rect width="64" height="64" rx="14" fill="#052975"/>
-  <g fill="#ffffff">
-    <path d="M17 12h30v5.5H17z"/>
-    <path d="M20 17h24L32 31.5z"/>
-    <path d="M32 32.5 44 47H20z"/>
-    <path d="M17 46.5h30V52H17z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Continia Marketing Hub">
+  <rect width="64" height="64" rx="16" fill="#052975"/>
+  <g transform="translate(15.1 16.4) scale(0.08937)" fill="#fff">
+    <path d="M189.09,174.61v174.51H0c0-96.4,78.11-174.51,174.51-174.51h14.58Z"/>
+    <path d="M189.09,174.61V0h189.09c0,96.4-78.11,174.51-174.51,174.51h-14.58v.1Z"/>
   </g>
 </svg>
