@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Marketing Hub">
+  <rect width="64" height="64" rx="14" fill="#052975"/>
+  <g fill="#ffffff">
+    <path d="M17 12h30v5.5H17z"/>
+    <path d="M20 17h24L32 31.5z"/>
+    <path d="M32 32.5 44 47H20z"/>
+    <path d="M17 46.5h30V52H17z"/>
+  </g>
+</svg>
