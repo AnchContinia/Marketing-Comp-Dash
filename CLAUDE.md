@@ -19,6 +19,10 @@ relative paths need a real origin):
 python3 -m http.server 8000   # then open http://localhost:8000
 ```
 
+Session state — what was last worked on, which design directions the user has already
+rejected, and the headless-verification gotchas — lives in [HANDOFF.md](HANDOFF.md).
+Read it when picking the repo up in a fresh chat.
+
 ## Deploy / workflow
 
 - Commit + push to `origin/main` → live in ~1 min. Confirm by checking the new commit hash on
