@@ -99,6 +99,23 @@ lightened tints) — use **Smart Green `#5f9e8d`** and **Performance Purple `#98
 Full palette: Tech Blue `#052975`, Innovation Blue/cyan `#8ff8ff`, Smart Green `#5f9e8d`,
 Performance Purple `#983eae`. (Standing instruction from the user.)
 
+## Archive rule (never overwrite data without saving it)
+
+**Every data refresh — news, YouTube or LinkedIn — must save the outgoing data before it is
+replaced.** The dashboard is the only record of these captures, so a replaced snapshot is gone
+for good unless it is archived. Two steps:
+
+1. **Prepend a snapshot to [archive.js](archive.js)** (`window.DASH_ARCHIVE.snapshots`, newest
+   first) holding the outgoing LinkedIn data, `events` and competitor `data`. The archive is
+   **append-only** — never edit or delete an existing snapshot. The live site never reads it;
+   it exists purely as history (and feeds the archive-derived CSVs).
+2. **Keep the outgoing file itself under a dated name in `Assets/`** — the repo's own
+   convention: `Assets/youtube-data_Jul 10.js`, `Assets/linkedin-data_Aug 31.js`. Commit the
+   source report too (`Assets/linkedin_post_engagement_report_<date>.txt`).
+
+Only then regenerate, bump the `?v=` on every page that loads the file, and stamp
+`DASHBOARD_UPDATED`. (Standing instruction from the user.)
+
 ## The two-kinds-of-dates rule
 
 There are two distinct date types on the page; never confuse them:
