@@ -6,7 +6,7 @@ the standing rules. This file is only what a new chat can't reconstruct from the
 code: where things stand, and which design directions have already been tried
 and rejected.
 
-Last updated: **September 9, 2026** · live at `af39947` on `origin/main`.
+Last updated: **September 9, 2026** · live at `dd195c9` on `origin/main`.
 
 ---
 
@@ -35,7 +35,7 @@ Last updated: **September 9, 2026** · live at `af39947` on `origin/main`.
 
 | Asset | Version | Loaded by |
 |---|---|---|
-| `dashboard.css` | `20260909a` | index, content, video |
+| `dashboard.css` | `20260909b` | index, content, video |
 | `dashboard.js` | `20260831e` | index, content, video |
 | `favicon.svg` | `2` | all four pages incl. login |
 | `linkedin-data.js` | `20260831d-li` | index, content |
@@ -74,22 +74,28 @@ FontAwesome kit: **`c11880975e`** (Pro, v7.3.1 — `fa-light` resolves).
 
 ## Video asset tile design: where it landed
 
-**Current, approved** (`.va-*` in `dashboard.css`, set at `af39947`) — built 1:1
-off a reference image the user supplied (a glowing glass squircle app icon),
-translated to Continia colours:
+**Current, approved** (`.va-*` in `dashboard.css`, set at `dd195c9`):
 
-- **Squircle**, `border-radius:28%`.
-- **Dark glass core**: `#052975` under a top-to-bottom black wash (`.40 → .58`
-  light, `.56 → .74` dark), so it reads as dark glass rather than a blue tile.
-- **Light seeping in from the bottom edge**: a cyan radial at `50% 116%`.
-- **Cyan rim**: `inset 0 0 0 1.5px rgba(143,248,255,…)` plus a white top
-  hairline, and two inner cyan edge-glows.
-- **Wide outer bloom**: two cyan `box-shadow`s. Light mode keeps the tight one
-  pushed *inward* (`-10px` spread) so the rim still reads against the white
-  card; dark mode widens it to ~110px.
-- Hover: `translateY(-7px)` with a brighter rim and halo.
-- Icons and labels were explicitly **out of scope** — `.va-ic` / `.va-lbl` are
-  untouched (white, cyan icon drop-shadow).
+- **`border-radius:20px`** — the same corner radius as the original tiles. A
+  28%-radius squircle was tried at `af39947` and pulled back; keep 20px.
+- **Pure Tech Blue ground `#052975`, no black wash**, lifted by a flat cyan
+  layer (`.14` light / `.10` dark). Keeping the core saturated and letting the
+  *glow* do the brightening is the trick — raising the whole fill uniformly
+  (tried at `.28`) turns it steel-grey, because cyan's red channel lifts too.
+- **Strong cyan bloom rising from the bottom edge** — radial at `50% 120%`,
+  `.72` light / `.62` dark — plus a cyan sheen fading out across the top 58%.
+  The luminance variation is what makes the tile read as alive.
+- **2px near-full cyan rim** (`inset 0 0 0 2px rgba(143,248,255,.85)`) with a
+  white top hairline, an inner cyan edge-glow, and two outer cyan blooms.
+- Hover: `translateY(-7px)` with the fill, rim and halo all brightened.
+- Icons and labels are **out of scope** — `.va-ic` / `.va-lbl` untouched
+  (white, cyan icon drop-shadow).
+
+Both reference images the user supplied were glowing app icons on a dark
+ground. The colour always gets translated to Innovation cyan over Tech Blue:
+Smart Green `#5f9e8d` is too muted to bloom, and there is no vivid mid-blue in
+the palette, so brightness has to come from cyan glow rather than a brighter
+base hex.
 
 **Already tried and rejected — don't re-propose these:**
 
@@ -99,19 +105,15 @@ translated to Continia colours:
 | 50%-translucent glass tiles | rejected |
 | Hero-pill styling (navy fill, cyan rim + cyan label) | rejected |
 | Dark-mode tiles filled cyan at 50% | "det ser ikke godt ud" |
-| Diagonal cyan glow entering top-left (the `474dcaf` design) | superseded by the bloom squircle |
-| App-tile layout: frosted icon chip top-left, label bottom-left | rejected at `474dcaf` — the *layout* stays centred |
-
-Note the nuance: **translucent** glass was rejected, but an **opaque dark core
-that reads as glass** (this design) was approved. Keep the tile opaque.
+| App-tile layout: frosted icon chip top-left, label bottom-left | rejected at `474dcaf` — the layout stays centred |
+| Diagonal cyan glow entering top-left (`474dcaf`) | superseded |
+| 28% squircle with a dark, black-washed glass core (`af39947`) | too dark and the corners were too round |
 
 Two lessons worth keeping:
 
 - **A colored left-accent bar and off-palette blues both got caught.** Every
   glow must be built from `rgba(143,248,255,…)` and `rgba(5,41,117,…)`, not from
-  generic electric blues. The reference image was green; green got translated to
-  Innovation cyan because Smart Green `#5f9e8d` is too muted to bloom and would
-  fight the cyan icon drop-shadow.
+  generic electric blues.
 - **When you brighten the base, brighten the hover too.** Raising base
   luminosity once left hover *darker* than its neighbours, so hovering made a
   tile look worse.
@@ -161,6 +163,6 @@ Gotchas that cost time this session:
 
 ## Open threads
 
-Nothing in flight. The tile design is settled at `af39947` and the working tree
+Nothing in flight. The tile design is settled at `dd195c9` and the working tree
 is clean apart from the pre-existing `Assets/Continia primary - white.svg`
 modification, which is not ours to commit.
