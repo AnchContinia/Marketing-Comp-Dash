@@ -85,6 +85,13 @@ similar). Boxes stay clean: a uniform `1px solid var(--line)` border all the way
 every other card/panel on the page. If a box needs emphasis, use the heading colour or
 background — not a coloured edge stripe. (Standing instruction from the user.)
 
+## Corner-radius rule (tiles are 15px)
+
+**App-style tiles get `border-radius:15px` — never 20px, never a percentage.** This covers
+the Video-asset tiles (`.va-tile`) and any new tile of that kind. 20px was tried and the user
+disliked it; a `%` radius (the squircle look) was rejected too. The ordinary cards and panels
+keep their existing 8px — this rule is about the tiles. (Standing instruction from the user.)
+
 ## Brand-colour rule (no off-palette tints)
 
 Stick to the Continia palette. In particular, **never use `#9adcc9` or `#e0a54a`** (off-palette
