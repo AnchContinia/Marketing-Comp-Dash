@@ -52,13 +52,13 @@ const data = [
 
  {n:"Yooz", o:"Yooz · Dallas", stance:"ai", sl:"AI + fraud", prox:"Medium",
   cat:"AP / P2P automation · multi-ERP",
-  head:"AI/Deep Learning P2P with a strong fraud focus; active in the BC and GP ecosystem.",
-  rel:"YoozProtect (fraud, NA launch Jan 2026); Line-Level Matching (2025); Yooz 2026 AI in Finance report.",
-  str:"AI + RPA + Big Data; fraud prevention as spearhead.",
+  head:"AI/Deep Learning P2P with a strong fraud focus; active in the BC and GP ecosystem — and now past 7,000 customers on record platform volume.",
+  rel:"Sept 2, 2026: passes 7,000 customers / 600,000 users (300M+ documents, 50+ countries) after a record-volume June; the same update adds line-level PO matching, vendor-statement automation, an automatic invoice fetcher and intelligent GL allocations. Earlier: YoozProtect (fraud, NA launch Jan 2026); Yooz 2026 AI in Finance report.",
+  str:"AI + RPA + Big Data; fraud prevention as spearhead, now pushing “explainable” automation and growth in transaction-heavy verticals (automotive, trucking, construction, manufacturing, hospitality) via CDK and Epicor integrations.",
   pos:"Simple, fast, secure cloud P2P; unlimited users.",
-  ai:"Smart data extraction, routing and fraud detection.",
-  sc:"5,000+ customers · 300,000 users",
-  s:[["YoozProtect","https://www.getyooz.com/blog/yooz-protect-launch"],["Yooz + BC/GP","https://msdynamicsworld.com/blog/two-days-two-erps-how-yooz-powering-ap-automation-gp-and-business-central"]]},
+  ai:"Smart data extraction, routing and fraud detection; line-level PO matching and GL allocation suggestions.",
+  sc:"7,000+ customers · 600,000 users · 50+ countries",
+  s:[["7,000 customers (Sept 2, 2026)","https://www.globenewswire.com/news-release/2026/09/02/3355285/0/en/yooz-surpasses-7-000-customers-worldwide-as-platform-usage-hits-record-high.html"],["YoozProtect","https://www.getyooz.com/blog/yooz-protect-launch"],["Yooz + BC/GP","https://msdynamicsworld.com/blog/two-days-two-erps-how-yooz-powering-ap-automation-gp-and-business-central"]]},
 
  {n:"Stampli", o:"Stampli · Mountain View", stance:"ai", sl:"AI veteran", prox:"Low",
   cat:"AP automation (invoice-centric) · 70+ ERPs",
@@ -133,12 +133,12 @@ const data = [
  {n:"Microsoft Expense Agent", o:"Microsoft · native in BC", stance:"ai", sl:"Platform owner · AI", prox:"High",
   cat:"AI expense capture · native in Business Central",
   head:"The platform owner itself moving into the expense space with an AI agent — the most important BC-native development to watch.",
-  rel:"Expense Agent introduced in D365 BC (Apr 2026); BC 2026 Wave 1 adds (Jun 19, 2026) an AI approval step that validates expense reports against company policies written in plain language and guides approvers — public preview Jul 2026. Preview expands beyond the US to the UK, Australia and New Zealand from Jul 2026.",
+  rel:"Expense Agent introduced in D365 BC (Apr 2026); BC 2026 Wave 1 adds (Jun 19, 2026) an AI approval step that validates expense reports against company policies written in plain language and guides approvers — public preview Jul 2026. Preview expands beyond the US to the UK, Australia and New Zealand from Jul 2026. Sept 2026: Microsoft stops publishing Release Plans — further agent capabilities are disclosed on the “AI at Work roadmap” instead, with BC 29 (2026 wave 2) landing from October.",
   str:"Microsoft building AI functionality directly into BC, overlapping with third-party expense solutions.",
   pos:"Native to the platform — no extra vendor, comes with Business Central.",
   ai:"AI expense agent embedded in the ERP — now also checks reports against natural-language policies at line, report and cross-line level, while leaving the final call to the approver.",
   sc:"Built into Microsoft Dynamics 365 Business Central",
-  s:[["Microsoft blog","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"],["Approval process (BC 2026 W1)","https://www.azurecurve.co.uk/2026/06/new-functionality-in-microsoft-dynamics-365-business-central-2026-wave-1-expense-agent-supports-approval-process/"],["Markets (MS Learn)","https://learn.microsoft.com/en-us/dynamics365/release-plan/2026wave1/smb/dynamics365-business-central/manage-expenses-business-central-using-expense-agent"]]},
+  s:[["Microsoft blog","https://www.microsoft.com/en-us/dynamics-365/blog/it-professional/2026/04/27/expense-agent-dynamics-365-business-central/"],["Approval process (BC 2026 W1)","https://www.azurecurve.co.uk/2026/06/new-functionality-in-microsoft-dynamics-365-business-central-2026-wave-1-expense-agent-supports-approval-process/"],["Markets (MS Learn)","https://learn.microsoft.com/en-us/dynamics365/release-plan/2026wave1/smb/dynamics365-business-central/manage-expenses-business-central-using-expense-agent"],["Release Plans retired (MS Learn)","https://learn.microsoft.com/en-us/dynamics365/release-plan/2026wave1/smb/dynamics365-business-central/"],["AI at Work roadmap","https://aka.ms/AIatWorkRoadmap"]]},
 
  {n:"Lasernet", o:"Lasernet Group · DK/UK", stance:"cons", sl:"Taken private · BC output", prox:"High",
   cat:"Document output & e-invoicing · BC + F&O",
@@ -244,7 +244,10 @@ const BC_NATIVE_COUNT   = 11;   // BC-native players (incl. Microsoft's Expense 
 const MNA_COUNT         = 8;    // M&A / capital moves 2025-26 (acquisitions + funding)
 
 const events = [
- {w:"Sept 2026 →", c:"steady", t:"<b>France B2B e-invoicing</b> mandate takes effect — large and mid-size companies must send and receive structured e-invoices. SMEs follow September 2027."},
+ {w:"Sept 30, 2026", c:"steady", t:"<b>Poland (KSeF)</b> — the transitional window closes: the smallest businesses may issue paper or unstructured e-invoices only until Sept 30, after which they too clear through KSeF."},
+ {w:"Sept 2026", c:"ai", t:"<b>Microsoft</b> stops publishing Dynamics 365 Release Plans — from September, new Dynamics 365, Power Platform and Dataverse capabilities are disclosed on the “AI at Work roadmap” instead; existing release plans stay up for historical reference only."},
+ {w:"Sept 2, 2026", c:"ai", t:"<b>Yooz</b> passes <b>7,000 customers</b> and 600,000 users (300M+ documents processed, 50+ countries) and ships line-level PO matching, vendor-statement automation and intelligent GL allocations."},
+ {w:"Sept 1, 2026", c:"steady", t:"<b>France B2B e-invoicing goes live</b> — every business must now be able to <i>receive</i> structured invoices and large/mid-size firms must <i>issue</i> them. 4M+ companies have registered a receiving address and two thirds of the core target group have picked a platform partner; no penalties apply during 2026. SMEs must issue from September 2027."},
  {w:"Aug 27, 2026", c:"steady", t:"<b>Rillion</b> releases its 2026 AI in Finance Report (the “Finance AI Illusion”) — 68% of US finance teams use AI, but only 39% of CFOs trust it to run independently."},
  {w:"Aug 26, 2026", c:"cons", t:"<b>Basware</b> signs a binding agreement to acquire payment-fraud-prevention vendor <b>Trustpair</b> — extending invoice lifecycle management into end-to-end invoice-to-payment assurance (close expected later in 2026)."},
  {w:"Aug 20, 2026", c:"ai", t:"<b>Coupa</b> ships its largest-ever release (250+ updates) for autonomous spend — new Navi AI agents, Model Context Protocol (MCP) support for external AI, and a “Spend Pulse” market-intelligence feed."},
@@ -2175,7 +2178,7 @@ if(contentIdeasList){
    Both the topbar and the footer read from it, so they can never drift apart.
    The YouTube/News update routine sets this to today's date on every refresh. */
 (function(){
-  var DASHBOARD_UPDATED = "2026-08-31";
+  var DASHBOARD_UPDATED = "2026-09-09";
   var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var p=String(DASHBOARD_UPDATED).split("-");
   var pretty=m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];
