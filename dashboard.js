@@ -532,9 +532,20 @@ if(contentIdeasList){
   /* footnote carries the same capture date so it follows the data, not a hardcode */
   var capEl=document.getElementById("li-captured"); if(capEl) capEl.textContent=fmtDate(D.captured);
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+
+  /* Momentum window: the 30 days up to the capture date, not "today", so the
+     column keeps meaning after the data has sat for a while. */
+  var capMs=new Date(D.captured).getTime();
+  var M30=capMs-30*86400000;
+
   var rows=D.companies.map(function(co){
-    var posts=co.posts||[], n=posts.length, R=0,C=0,P=0;
-    posts.forEach(function(p){R+=p.r||0;C+=p.c||0;P+=p.rp||0;});
+    var posts=co.posts||[], n=posts.length, R=0,C=0,P=0, m30=0, m30n=0;
+    var types={};
+    posts.forEach(function(p){
+      R+=p.r||0;C+=p.c||0;P+=p.rp||0;
+      if(p.ty) types[p.ty]=(types[p.ty]||0)+1;
+      if(p.d && new Date(p.d).getTime()>=M30){ m30+=(p.r||0)+(p.c||0)+(p.rp||0); m30n++; }
+    });
     var total=R+C+P;
     /* Cadence is derived from the post dates, never stored: n posts over the window
        they actually cover. 50 posts stretching back eight months is not the same
@@ -545,51 +556,103 @@ if(contentIdeasList){
       days=Math.round((new Date(last)-new Date(first))/86400000);
       ppw=days>0?(n/(days/7)):0;
     }
-    return {name:co.name, ours:!!co.ours, url:co.url||"", posts:posts, n:n, R:R, C:C, P:P,
-            total:total, avg:n?total/n:0, first:first, last:last, days:days, ppw:ppw};
+    /* top post = most engagement in the captured window; index so the row can
+       be marked in the expanded list rather than repeated as a separate block. */
+    var topI=-1, topV=-1;
+    posts.forEach(function(p,j){ var v=(p.r||0)+(p.c||0)+(p.rp||0); if(v>topV){topV=v;topI=j;} });
+    var mix=Object.keys(types).sort(function(a,b){return types[b]-types[a];})
+      .map(function(k){ return {ty:k, n:types[k], pct:n?Math.round(types[k]/n*100):0}; });
+    return {name:co.name, ours:!!co.ours, bench:!!co.bench, url:co.url||"", posts:posts, n:n,
+            R:R, C:C, P:P, total:total, avg:n?total/n:0, m30:m30, m30n:m30n,
+            first:first, last:last, days:days, ppw:ppw, topI:topI, mix:mix};
   });
-  /* rank + size the bar on engagement PER POST (avg), not the summed total —
-     companies have unequal post counts (3..10 captured), so total just rewards
-     whoever happened to have 10 posts in the export. Raw total + N stay visible
-     in the handle line and the reactions/comments/reposts columns. */
-  rows.sort(function(a,b){return b.avg-a.avg;});
-  var scale=Math.max.apply(null, rows.map(function(r){return r.avg;}))||1;
-  tb.innerHTML=rows.map(function(r,i){
-    var w=r.avg===0?0:Math.min(Math.max(r.avg/scale*100,0.2),100);
-    var barCls=r.avg===scale?"hot":"";
-    var ours=r.ours?' <span class="ours-badge">Ours</span>':"";
-    var trCls="li-row"+(r.ours?" ours":"");
-    /* Post rows live inside the .li-detail row and the expand/collapse handler is
-       bound to .li-row only, so the link arrow needs no stopPropagation. */
-    var posts=r.posts.map(function(p,j){
-      var link=p.u?'<a class="li-plink" href="'+esc(p.u)+'" target="_blank" rel="noopener" title="Open this post on LinkedIn" aria-label="Open post '+(j+1)+' on LinkedIn">\u2197</a>':'';
-      return '<div class="li-post">'+
-        '<span class="li-pn">'+(j+1)+'</span>'+
-        '<div class="li-pt"><b>'+esc(p.t)+'</b>'+(p.ty?'<span class="li-ty">'+esc(p.ty)+'</span>':"")+'</div>'+
-        '<div class="li-pm">'+(p.d?'<span class="li-pd">'+fmtDate(p.d)+'</span>':'')+'<span><b>'+(p.r||0)+'</b> reactions</span><span><b>'+(p.c||0)+'</b> comments</span><span><b>'+(p.rp||0)+'</b> reposts</span></div>'+
-        link+
-      '</div>';
+
+  /* Sorting. Default stays engagement PER POST (avg), not the summed total —
+     companies have unequal post counts and unequal windows, so total just
+     rewards whoever the trawl caught mid-campaign. The other three views are
+     there because each answers a different question: who wins per post, who
+     wins overall, who publishes most often, who is loud right now. */
+  var SORTS=[
+    {key:"avg",   label:"Engagement / post", get:function(r){return r.avg;}},
+    {key:"total", label:"Total engagement",  get:function(r){return r.total;}},
+    {key:"ppw",   label:"Posts / week",      get:function(r){return r.ppw;}},
+    {key:"m30",   label:"Last 30 days",      get:function(r){return r.m30;}}
+  ];
+  var sortKey="avg";
+
+  var sortBox=document.getElementById("li-sort");
+  if(sortBox){
+    sortBox.innerHTML='<span class="flabel">Sort by</span>'+SORTS.map(function(s){
+      return '<button class="chip'+(s.key===sortKey?" active":"")+'" data-li-sort="'+s.key+'">'+s.label+'</button>';
     }).join("");
-    /* Window + cadence header for the expanded list, plus the company page link. */
-    var head=(r.first&&r.last)?'<div class="li-cohead"><span>Newest first \u00b7 '+fmtDate(r.first)+' \u2192 '+fmtDate(r.last)+' \u00b7 '+r.days+' days'+(r.ppw?' \u00b7 '+r.ppw.toFixed(1)+' posts/week':'')+'</span>'+(r.url?'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">Company page \u2197</a>':'')+'</div>':'';
-    return '<tr class="'+trCls+'" data-li="'+i+'">'+
-      '<td>'+(i+1)+'</td>'+
-      '<td><div class="channel">'+esc(r.name)+ours+' <span class="li-carrow">›</span></div><div class="handle">Ø '+r.avg.toFixed(1)+'/post · '+r.n+' posts · '+r.total+' total'+(r.ppw?' · '+r.ppw.toFixed(1)+'/week':'')+(r.n<5?' · low sample':'')+' · tap to see them</div></td>'+
-      '<td><div class="barline"><div class="bar"><i class="'+barCls+'" style="--w:'+w.toFixed(1)+'%"></i></div><span>'+Math.round(r.avg)+'</span></div></td>'+
-      '<td class="num"><b>'+r.R+'</b></td>'+
-      '<td class="num">'+r.C+'</td>'+
-      '<td class="num">'+r.P+'</td>'+
-    '</tr>'+
-    '<tr class="li-detail" data-li-detail="'+i+'"><td colspan="6">'+head+'<div class="li-posts">'+posts+'</div></td></tr>';
-  }).join("");
-  Array.prototype.forEach.call(tb.querySelectorAll(".li-row"),function(row){
-    row.addEventListener("click",function(){
-      var i=row.getAttribute("data-li");
-      var det=tb.querySelector('.li-detail[data-li-detail="'+i+'"]');
-      var open=row.classList.toggle("open");
-      if(det) det.classList.toggle("open",open);
+    sortBox.addEventListener("click",function(e){
+      var b=e.target.closest?e.target.closest("[data-li-sort]"):null;
+      if(!b) return;
+      sortKey=b.getAttribute("data-li-sort");
+      Array.prototype.forEach.call(sortBox.querySelectorAll(".chip"),function(c){
+        c.classList.toggle("active",c.getAttribute("data-li-sort")===sortKey);
+      });
+      draw();
     });
-  });
+  }
+
+  var metricHead=document.getElementById("li-metric-head");
+
+  function draw(){
+    var S=SORTS.filter(function(s){return s.key===sortKey;})[0]||SORTS[0];
+    /* the metric column shows whatever is being sorted on, so the header has to
+       follow it - otherwise the numbers read as engagement/post in every view */
+    if(metricHead) metricHead.textContent=S.label;
+    var list=rows.slice().sort(function(a,b){return S.get(b)-S.get(a);});
+    /* Benchmarks (Stripe, Incedo) are reference points, not competitors: they are
+       left out of the bar's scale and get no bar at all, so one huge outsider
+       can't flatten every competitor bar into a sliver. */
+    var scale=Math.max.apply(null,list.filter(function(r){return !r.bench;})
+      .map(function(r){return S.get(r);}))||1;
+    tb.innerHTML=list.map(function(r,i){
+      var v=S.get(r);
+      var w=(v<=0)?0:Math.min(Math.max(v/scale*100,0.2),100);
+      var barCls=(!r.bench&&v===scale)?"hot":"";
+      var tag=r.ours?' <span class="ours-badge">Ours</span>'
+             :(r.bench?' <span class="ours-badge bench">Benchmark</span>':"");
+      var trCls="li-row"+(r.ours?" ours":"")+(r.bench?" bench":"");
+      var shown=(S.key==="ppw")?r.ppw.toFixed(1):(S.key==="avg"?Math.round(r.avg):v);
+      var posts=r.posts.map(function(p,j){
+        var link=p.u?'<a class="li-plink" href="'+esc(p.u)+'" target="_blank" rel="noopener" title="Open this post on LinkedIn" aria-label="Open post '+(j+1)+' on LinkedIn">↗</a>':'';
+        return '<div class="li-post'+(j===r.topI?" top":"")+'">'+
+          '<span class="li-pn">'+(j+1)+'</span>'+
+          '<div class="li-pt"><b>'+esc(p.t)+'</b>'+(p.ty?'<span class="li-ty">'+esc(p.ty)+'</span>':"")+(j===r.topI?'<span class="li-top">Top post</span>':"")+'</div>'+
+          '<div class="li-pm">'+(p.d?'<span class="li-pd">'+fmtDate(p.d)+'</span>':'')+'<span><b>'+(p.r||0)+'</b> reactions</span><span><b>'+(p.c||0)+'</b> comments</span><span><b>'+(p.rp||0)+'</b> reposts</span></div>'+
+          link+
+        '</div>';
+      }).join("");
+      /* Window, cadence, format mix and the company page, above the post list. */
+      var mix=r.mix.slice(0,4).map(function(m){return esc(m.ty)+' '+m.pct+'%';}).join(" · ");
+      var head='<div class="li-cohead"><span>'+
+        (r.first&&r.last?'Newest first · '+fmtDate(r.first)+' → '+fmtDate(r.last)+' · '+r.days+' days'+(r.ppw?' · '+r.ppw.toFixed(1)+' posts/week':''):'Newest first')+
+        (mix?' <span class="li-mix">Format mix: '+mix+'</span>':'')+
+        '</span>'+(r.url?'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">Company page ↗</a>':'')+'</div>';
+      return '<tr class="'+trCls+'" data-li="'+i+'">'+
+        '<td>'+(i+1)+'</td>'+
+        '<td><div class="channel">'+esc(r.name)+tag+' <span class="li-carrow">›</span></div><div class="handle">Ø '+r.avg.toFixed(1)+'/post · '+r.n+' posts · '+r.total+' total'+(r.ppw?' · '+r.ppw.toFixed(1)+'/week':'')+(r.n<5?' · low sample':'')+' · tap to see them</div></td>'+
+        '<td><div class="barline"><div class="bar">'+(r.bench?'':'<i class="'+barCls+'" style="--w:'+w.toFixed(1)+'%"></i>')+'</div><span'+(r.bench?' class="li-off"':'')+'>'+shown+'</span></div></td>'+
+        '<td class="num">'+(r.m30n?'<b>'+r.m30+'</b><span class="li-sub">'+r.m30n+' posts</span>':'<span class="li-sub">none</span>')+'</td>'+
+        '<td class="num"><b>'+r.R+'</b></td>'+
+        '<td class="num">'+r.C+'</td>'+
+        '<td class="num">'+r.P+'</td>'+
+      '</tr>'+
+      '<tr class="li-detail" data-li-detail="'+i+'"><td colspan="7">'+head+'<div class="li-posts">'+posts+'</div></td></tr>';
+    }).join("");
+    Array.prototype.forEach.call(tb.querySelectorAll(".li-row"),function(row){
+      row.addEventListener("click",function(){
+        var i=row.getAttribute("data-li");
+        var det=tb.querySelector('.li-detail[data-li-detail="'+i+'"]');
+        var open=row.classList.toggle("open");
+        if(det) det.classList.toggle("open",open);
+      });
+    });
+  }
+  draw();
 })();
 
 /* ---- Content-gap analysis (home): theme coverage, Continia vs the field.
@@ -618,21 +681,53 @@ if(contentIdeasList){
      AI or story theme already claimed. Note: "ai" matches on a word boundary
      (\bai\b), so "automation" is listed separately or it would never hit. ---------- */
   var THEMES=[
-    {label:"AI / agentic AP",      kw:["ai","agent","agentic","autonomous","copilot","llm","automation","automate"]},
-    {label:"E-invoicing mandates", kw:["ksef","peppol","vida","mandate","e-invoic","b2b reform","e-rechnung","verifactu","efaktura","factura","facturacion"]},
-    {label:"Product demos",        kw:["demo","walkthrough","what's new","release","feature","upgrade","studio"]},
-    {label:"Customer stories",     kw:["case study","customer","testimonial","success story","savings","full-time","in minutes"]},
-    {label:"Banking & payments",   kw:["bank","payment","reconcil","iso 20022","swift","cash management"]},
-    {label:"Expense management",   kw:["expense","mileage","receipt","reimburse"]},
-    {label:"Company culture / brand", kw:["meetup","team","elevate","iso 27001","certified","commute","anniversary","losninger","softvaerket","cake","kage"]}
+    {label:"E-invoicing mandates", word:["pdp","ksef","vida","sdi","ubl","zatca","dgfip"],
+     kw:["peppol","e-invoic","einvoic","e-rechnung","xrechnung","b2b reform","mandate","fatoora","verifactu","e-faktura","efaktura","factura","facturacion","facturation","facture","reforme","réforme","plateforme agr","conforme","empfangen","viDA","1er septembre","e-reporting","tax compliance","ehf","e-document"]},
+    {label:"Fraud, risk & compliance", word:["bec","soc"],
+     kw:["fraud","duplicate invoice","phishing","scam","iso 27001","iso 22301","cloud security","star registry","compliance risk","audit trail","internal control","risk","packaging rules","regulation","gdpr"]},
+    {label:"AI / agentic AP", word:["ai","llm","mcp"],
+     kw:["agent","agentic","autonom","copilot","machine learning","automation","automate","touchless","chatgpt","claude","gen ai","robot"]},
+    {label:"Banking & payments", word:["fx"],
+     kw:["bank","payment","payout","reconcil","iso 20022","swift","cash management","cash flow","working capital","treasury","check","cheque","settle","currency","open banking"]},
+    {label:"Expense & spend management",
+     kw:["expense","mileage","receipt","reimburse","spend management","corporate card","company card","per diem","travel","budget"]},
+    {label:"Document handling & output",
+     kw:["document capture","document output","documents","drag and drop","archiv","attachment","print","pdf","e-mail delivery","email delivery","ocr","scan","dms","paperwork","filing"]},
+    {label:"Commerce & order management",
+     kw:["webshop","e-commerce","ecommerce","commerce","pim","product data","order management","spare part","catalog","katalog","kobsrejse","købsrejse","b2b-kunder"]},
+    {label:"Invoice, AP & AR process", word:["ap","ar","p2p","po","gp","erp"],
+     kw:["invoice","accounts payable","purchase order","3-way match","matching","approval","approver","month-end","financial close","order-to-cash","procure-to-pay","procurement","vendor","supplier","credit note","statement","w-9","tax form","invoice cycle","bottleneck","manual entry","data entry","accounts receivable","collections","dunning","payment reminder","cash application"]},
+    {label:"Product demos & releases",
+     kw:["demo","walkthrough","what's new","whats new","release","feature","upgrade","studio","product update","sneak peek","now available","appsource","roadmap","product brief","launch","new in ","2026 r1","2026 r2","wave 1","wave 2","showcase"]},
+    {label:"Customer stories",
+     kw:["case study","customer story","testimonial","success story","savings","saved","full-time","in minutes","went live","story behind"]},
+    {label:"Webinars & thought leadership",
+     kw:["webinar","lunch & learn","episode","podcast","series","playbook","newsletter","report","research","census","guide","on-demand","deep dive","masterclass","register","sign up","signed up","top tips","survey","whitepaper","white paper","e-book","ebook","blog","ask","explains","insight","join us on","new edition","30 minutes","learn something","q&a"]},
+    {label:"Events & community",
+     kw:["directions","dynamicscon","dynamicsminds","days of knowledge","summit","booth","sponsor","expo","conference","roadshow","user group","keynote","symposium","meet us","see you in","heading to","we'll be in","we are hitting the road","stand ","fair","reception","partner days","community","event","will be at","we'll be at","join us in","panel"]},
+    {label:"Awards & recognition",
+     kw:["g2 ","g2's","award","winner","inc. 5000","recogni","magic quadrant","badge","mvp","top 100","cnbc","forrester wave","leader in the","elite performer","scaleup category","certified"]},
+    {label:"Partnerships & channel",
+     kw:["partnership","partnered","partner announcement","alliance","reseller","isv","distributor","joining forces","teamed up","collaborat","partner with","extended their","training","enablement","implementation service","onboarding","partner community"]},
+    {label:"Hiring, people & culture",
+     kw:["hiring","looking for a","we are expanding","open role","joins","welcome","meet our","meet ","career","intern","appointed","new cmo","new cfo","team","colleague","anniversary","meetup","elevate","commute","losninger","løsninger","softvaerket","softværket","cake","kage","pride","birthday","celebrat","charity","good cause","office","we're moving","we bought","it's about time","its about time","fejrer","samarbejde","tak for","glaeder os","glæder os","summer","vacation","easter","christmas","jul ","swipe"]}
   ];
   var LABELS=THEMES.map(function(t){return t.label;});
+  /* First match wins, so the order above is the classification policy: the
+     specific regulatory and product themes are tested before the generic
+     process ones, and the format/company themes (webinars, events, awards,
+     partnerships, hiring) come last so a webinar ABOUT e-invoicing is filed
+     under e-invoicing. "word" entries match on word boundaries - "ai", "ap",
+     "po" and friends would otherwise fire inside "said", "apply" or "point".
+     Tuned Sep 10, 2026 against the 882-post trawl: untagged fell from 58% to
+     23% of the field and from 72% to 12% of Continia's own posts. */
   function themeOf(title){
     var t=String(title).toLowerCase();
-    for(var i=0;i<THEMES.length;i++){ var ks=THEMES[i].kw;
-      for(var j=0;j<ks.length;j++){ var k=ks[j];
-        var hit=(k==="ai")?/\bai\b/.test(t):(t.indexOf(k)>=0);
-        if(hit) return THEMES[i].label; } }
+    for(var i=0;i<THEMES.length;i++){
+      var th=THEMES[i], ws=th.word||[], ks=th.kw||[];
+      for(var a=0;a<ws.length;a++){ if(new RegExp("\\b"+ws[a]+"\\b").test(t)) return th.label; }
+      for(var b=0;b<ks.length;b++){ if(t.indexOf(ks[b])>=0) return th.label; }
+    }
     return null;
   }
   function counts(c){ var m={}; LABELS.forEach(function(l){m[l]=0;}); (c.posts||[]).forEach(function(p){ var th=themeOf(p.t); if(th) m[th]++; }); return m; }
@@ -642,16 +737,19 @@ if(contentIdeasList){
      average) so a "15 posts vs 0" chasm reads as a chasm, not a rounded "-1".
      Bar length = total posts on the theme; the navy/purple split = share of voice. */
   var ours=null, field=[];
-  LI.companies.forEach(function(c){ if(c.ours) ours=c; else field.push(c); });
+  /* bench:true rows (Stripe, Incedo) are reference points, not competitors -
+     they stay out of the field, the totals and the share-of-voice maths. */
+  LI.companies.forEach(function(c){ if(c.bench) return; if(c.ours) ours=c; else field.push(c); });
   if(!ours||!field.length) return;
-  /* the footnote's company count follows the data, so it can't go stale */
-  Array.prototype.forEach.call(document.querySelectorAll('.js-li-count'),function(el){ el.textContent=LI.companies.length; });
+  /* the footnote's company count follows the data (ours + the field, benchmarks
+     excluded, since those are not part of this maths), so it can't go stale */
+  Array.prototype.forEach.call(document.querySelectorAll('.js-li-count'),function(el){ el.textContent=field.length+1; });
   var youCounts=counts(ours);
   var perComp={}; field.forEach(function(c){ perComp[c.name]=counts(c); });
   var fieldTotal={}; LABELS.forEach(function(l){ var s=0; field.forEach(function(c){ s+=perComp[c.name][l]; }); fieldTotal[l]=s; });
   /* field AVERAGE per theme (one typical competitor) — lets the comparison answer
      "are we above or below a normal rival?" with a meaningful 50% midpoint, where
-     the field SUM only ever answers "what slice of all 12 are we". */
+     the field SUM only ever answers "what slice of the whole field are we". */
   var fieldAvg={}; LABELS.forEach(function(l){ fieldAvg[l]=fieldTotal[l]/field.length; });
   function taggedTotal(m){ return LABELS.reduce(function(s,l){return s+m[l];},0); }
   var youTagged=taggedTotal(youCounts);
@@ -732,7 +830,7 @@ if(contentIdeasList){
 
     /* parity = the share that counts as keeping pace. One-to-one (a typical or a
        single competitor) it's 50%; against the field SUM, fair share is 1/(n+1) —
-       so green is reachable instead of demanding Continia out-post all 12 at once. */
+       so green is reachable instead of demanding Continia out-post the whole field at once. */
     var parity=isField?(100/(field.length+1)):50;
     var dec=function(n){ return isAvg?(Math.round(n*10)/10):n; };
 

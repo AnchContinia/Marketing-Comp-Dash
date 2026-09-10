@@ -28,8 +28,13 @@ KEEP = collections.OrderedDict([
     ("Expensify",             "Expensify"),
     ("Zoho Expense",          "Zoho Expense"),
     ("DocuWare",              "DocuWare"),
+    # Benchmarks: not competitors. They render with a Benchmark badge, stay out
+    # of the engagement bar's scale and are excluded from content-gap / SOV.
+    ("Stripe",                "Stripe"),
+    ("Incedo Inc",            "Incedo"),
 ])
-OURS = {"Continia Software"}
+OURS  = {"Continia Software"}
+BENCH = {"Stripe", "Incedo"}
 
 # Pill vocabulary kept identical to every earlier capture so type-mix
 # comparisons across archive snapshots stay meaningful.
@@ -68,9 +73,9 @@ for csv_name, name in KEEP.items():
     posts = sorted(by[csv_name], key=lambda r: int(r["post_no"]))
     if not posts:
         sys.exit("no rows for %r" % csv_name)
+    flag = ' ours: true,' if name in OURS else (' bench: true,' if name in BENCH else '')
     head = '    { name: %s,%s url: %s, posts: [' % (
-        json.dumps(name, ensure_ascii=False),
-        ' ours: true,' if name in OURS else '',
+        json.dumps(name, ensure_ascii=False), flag,
         json.dumps(posts[0]["company_url"], ensure_ascii=False))
     lines = [head]
     for p in posts:
@@ -107,9 +112,11 @@ header = '''/* =================================================================
    "Multi-image" renders as Image and "Carousel" as Document/carousel, so type
    mixes stay comparable with the archive snapshots.
 
-   On the tracking list but deliberately excluded (watch, not card - see
-   FULL-UPDATE.md): incedo-inc (consulting firm), signup-software (Truvio's
-   former brand, already covered by the Truvio row), stripe (payments benchmark).
+   Two rows carry bench:true - Stripe (payments benchmark) and Incedo (consulting
+   firm). They are not competitors: they render with a Benchmark badge, are left
+   out of the engagement bar's scale, and are excluded from the content-gap /
+   share-of-voice maths. signup-software stays out entirely (Truvio's former
+   brand, already covered by the Truvio row).
    ========================================================================= */
 
 window.LI_DATA = {

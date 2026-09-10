@@ -19,9 +19,11 @@
    "Multi-image" renders as Image and "Carousel" as Document/carousel, so type
    mixes stay comparable with the archive snapshots.
 
-   On the tracking list but deliberately excluded (watch, not card - see
-   FULL-UPDATE.md): incedo-inc (consulting firm), signup-software (Truvio's
-   former brand, already covered by the Truvio row), stripe (payments benchmark).
+   Two rows carry bench:true - Stripe (payments benchmark) and Incedo (consulting
+   firm). They are not competitors: they render with a Benchmark badge, are left
+   out of the engagement bar's scale, and are excluded from the content-gap /
+   share-of-voice maths. signup-software stays out entirely (Truvio's former
+   brand, already covered by the Truvio row).
    ========================================================================= */
 
 window.LI_DATA = {
@@ -966,6 +968,112 @@ window.LI_DATA = {
       {t:"Earlier this month, our EMEA colleagues gathered for our yearly fieldtrip, a", ty:"Video", r:92, c:2, rp:9, d:"2026-07-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7485721489405669376/"},
       {t:"Businesses are collecting more quality data than ever. Few are making the", ty:"Video", r:23, c:2, rp:7, d:"2026-07-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7485344388404109313/"},
       {t:"You don't want to waste your time working with a maze-like file system. So,", ty:"Document/carousel", r:13, c:1, rp:1, d:"2026-07-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484992803706511360/"}
+    ]},
+
+    { name: "Stripe", bench: true, url: "https://www.linkedin.com/company/stripe/posts/", posts: [
+      {t:"We're livestreaming the Lenny & Friends Summit, featuring talks on what's", ty:"Document/carousel", r:88, c:15, rp:8, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503482743364751360/"},
+      {t:"Connect Link's wallet for agents to Muse, a new app from Meta that lets you", ty:"Video", r:92, c:26, rp:13, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503176710318854144/"},
+      {t:"As the parent company behind Shopee, Garena and Monee, Sea is one of", ty:"Video", r:154, c:21, rp:4, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501256832003231744/"},
+      {t:"Shopify is now available in projects.dev", ty:"Text", r:49, c:1, rp:4, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500655543502630912/"},
+      {t:"We just partnered with Stripe Projects, so you can add Shopify to your app", ty:"Video", r:251, c:23, rp:21, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500633670400212992/"},
+      {t:"We just partnered with Stripe Projects, so you can add Shopify to your app", ty:"Video", r:251, c:23, rp:21, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500606795791351808/"},
+      {t:"Give your Grok Bot a card with Link. Bots can now buy from any business on", ty:"Image", r:190, c:37, rp:15, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499191937820889089/"},
+      {t:"Payments with Instinct are now powered by Link. Use Instinct to buy from any", ty:"Video", r:66, c:14, rp:12, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499158551211368448/"},
+      {t:"Agents are reshaping how people discover and buy products and services. We", ty:"Text", r:42, c:2, rp:2, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498712735929708545/"},
+      {t:"Revolut is rolling out EURR, its first euro-denominated stablecoin, built", ty:"Article/Link", r:690, c:41, rp:45, d:"2026-08-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498304681723674624/"},
+      {t:"New: analyze your Stripe data with agents. Connect to the Stripe MCP to build", ty:"Video", r:127, c:16, rp:3, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498129042144014337/"},
+      {t:"Today, I'm excited to announce my book, Built to Grow: A Handbook for", ty:"Image", r:194, c:34, rp:6, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498080511349678080/"},
+      {t:"John Collison sits down with Canva cofounder and COO Cliff Obrecht to discuss", ty:"Video", r:278, c:20, rp:12, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497854118158299136/"},
+      {t:"Kraken is launching Krak Cards in the US, powered by Stripe Issuing. Spend", ty:"Text", r:116, c:7, rp:10, d:"2026-08-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496332962540589056/"},
+      {t:"Tokens are the central currency for companies building with AI. We've agreed", ty:"Image", r:1033, c:56, rp:81, d:"2026-08-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495899832687984640/"},
+      {t:"Amazon Bedrock AgentCore payments now supports Machine Payments Protocol", ty:"Text", r:118, c:9, rp:16, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495600518073962498/"},
+      {t:"AgentCore payments is now generally available, as part of Amazon Bedrock", ty:"Video", r:169, c:2, rp:31, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495592781269159936/"},
+      {t:"Krak Card has landed in the U.S. Most cards force a trade-off: earn", ty:"Video", r:200, c:11, rp:38, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495571417493704704/"},
+      {t:"Gartner has named Stripe a Leader in the 2026 Gartner Magic Quadrant for", ty:"Image", r:211, c:11, rp:17, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495512334262644737/"},
+      {t:"New currency capabilities to help cut FX costs: Convert instantly between", ty:"Image", r:217, c:25, rp:15, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495386426793000960/"},
+      {t:"\"We think of Stripe as having inverted its value proposition. We began as a", ty:"Video", r:336, c:23, rp:28, d:"2026-08-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495253758512271360/"},
+      {t:"AI companies are now global by default. The 100 largest AI companies on", ty:"Article/Link", r:203, c:8, rp:18, d:"2026-08-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7494118902784798721/"},
+      {t:"Connect Stripe to Perplexity Computer for Builders. Check revenue, MRR, and", ty:"Video", r:203, c:52, rp:10, d:"2026-08-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491527475970105344/"},
+      {t:"Something wild is happening with Stripe Connect right now. We've added more", ty:"Text", r:767, c:42, rp:37, d:"2026-08-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490404063877177344/"},
+      {t:"Earlier this year, Anupam Upadhyay and I set ourselves a new goal: 10x every", ty:"Article/Link", r:322, c:29, rp:33, d:"2026-07-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7489016036600614912/"},
+      {t:"There comes a time in every acquisition where you ask yourself 'was this", ty:"Image", r:598, c:56, rp:27, d:"2026-07-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488686264544833536/"},
+      {t:"We've rolled out improvements to Stripe Directory to make it easier to find", ty:"Text", r:25, c:2, rp:4, d:"2026-07-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487569602357628928/"},
+      {t:"Businesses often tell me they believe the best way to fight a \"product not", ty:"Image", r:109, c:17, rp:7, d:"2026-07-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7485625318335184896/"},
+      {t:"New providers on Stripe Projects are available now: Chatbase Composio NodeOps", ty:"Video", r:224, c:43, rp:37, d:"2026-07-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483253516766109696/"},
+      {t:"New: templates for Stripe Projects. Generate a working starter app with", ty:"Video", r:126, c:20, rp:17, d:"2026-07-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483235745420369920/"},
+      {t:"\"More people will become entrepreneurs with AI. It's never been as easy to", ty:"Video", r:311, c:30, rp:20, d:"2026-07-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7481376718868643840/"},
+      {t:"Most of us judge a book by its cover before we've read a single page. That", ty:"Video", r:192, c:11, rp:8, d:"2026-07-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480998026195431424/"},
+      {t:"Conor McNamara sits down with investor and tech analyst Philipp Klockner to", ty:"Video", r:209, c:28, rp:7, d:"2026-06-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477791740645564416/"},
+      {t:"Shutdowns among new startups continue to decline. Our one-year shutdown proxy", ty:"Image", r:130, c:21, rp:17, d:"2026-06-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475930637804331009/"},
+      {t:"Today, we treat respiratory infections like the cold and flu as a minor", ty:"Image", r:219, c:19, rp:34, d:"2026-06-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475538591868272640/"},
+      {t:"After seven extraordinary years building Stripe's go-to-market engine, I'm", ty:"Article/Link", r:3155, c:349, rp:15, d:"2026-06-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7474846920255926273/"},
+      {t:"Introducing Stripe Directory, a new way for you (and your agents) to search", ty:"Video", r:174, c:18, rp:25, d:"2026-06-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7474838911408685056/"},
+      {t:"I just got off stage in Paris at Stripe Tour, talking about how French", ty:"Video", r:619, c:23, rp:22, d:"2026-06-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472681605304639489/"},
+      {t:"I was just at Stripe Tour Paris talking about a new frontier in fraud: token", ty:"Video", r:438, c:35, rp:7, d:"2026-06-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472658536984944641/"},
+      {t:"I recently wrote about what I've been working on the past two years, and", ty:"Article/Link", r:176, c:6, rp:16, d:"2026-06-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472397543809925121/"},
+      {t:"I've been thinking a lot about the future of user experience and what it", ty:"Video", r:266, c:17, rp:7, d:"2026-06-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472345698043346944/"},
+      {t:"It's a wild time to be building infrastructure. Today we shipped another", ty:"Article/Link", r:95, c:7, rp:4, d:"2026-06-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470880958137888770/"},
+      {t:"John Collison sits down with Barney Hussey-Yeo, the founder and CEO of AI", ty:"Video", r:276, c:13, rp:17, d:"2026-06-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470544995326787584/"},
+      {t:"New providers now available on Stripe Projects: Wix Laravel HeyGen Prisma", ty:"Video", r:229, c:24, rp:36, d:"2026-06-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470494370857873408/"},
+      {t:"Visa made a major change in April with the Digital Commerce Authentication", ty:"Article/Link", r:110, c:10, rp:8, d:"2026-06-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467977392372998145/"},
+      {t:"Solo founding is at an all-time high. Top-decile solo founders earned 61x the", ty:"Document/carousel", r:117, c:16, rp:5, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465851625761484801/"},
+      {t:"Stripe Atlas now forms a new company every 12 minutes. (This is one of those", ty:"Image", r:617, c:23, rp:19, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465830186790330368/"},
+      {t:"Across the Stripe network, over 1 in 6 sign-ups at AI companies are linked to", ty:"Image", r:111, c:2, rp:6, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465816194080575488/"},
+      {t:"Starting today, you can set up machine payments with a single prompt to your", ty:"Video", r:192, c:35, rp:16, d:"2026-05-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463261345459822592/"},
+      {t:"Nat Friedman on temperature probing teams through production iteration loops", ty:"Video", r:58, c:4, rp:2, d:"2026-05-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463253454405287936/"}
+    ]},
+
+    { name: "Incedo", bench: true, url: "https://www.linkedin.com/company/incedo-inc/posts/", posts: [
+      {t:"Agentic AI becomes valuable when AI agents can move work from intake to", ty:"Document/carousel", r:9, c:1, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503652374603886593/"},
+      {t:"What will remain uniquely human in the age", ty:"Image", r:86, c:1, rp:2, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503120034085380096/"},
+      {t:"We are building the future of software development—together with AWS. At", ty:"Image", r:42, c:2, rp:1, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502705641325785089/"},
+      {t:"A conversation worth tuning in! What", ty:"Image", r:61, c:1, rp:4, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501275603527135233/"},
+      {t:"Incedo Navigator helps enterprises transform the economics of operations with", ty:"Image", r:24, c:0, rp:0, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500922688522219520/"},
+      {t:"AI can move fast. But who keeps it moving in the right direction? In the", ty:"Video", r:57, c:0, rp:1, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500562146217590784/"},
+      {t:"Reporting answers to an important question: what changed? But decision-making", ty:"Image", r:14, c:0, rp:0, d:"2026-08-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500230153436975104/"},
+      {t:"Patient-centric pharma has reached an", ty:"Image", r:20, c:0, rp:1, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498731208026198016/"},
+      {t:"What does it take to lead through constant change? In a recent conversation", ty:"Image", r:96, c:0, rp:0, d:"2026-08-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498378279662399488/"},
+      {t:"The metric is not the decision. The value appears when a team can move from", ty:"Document/carousel", r:17, c:0, rp:0, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498038176062550017/"},
+      {t:"Deploying AI agents is one thing. Transforming an operation is another.", ty:"Document/carousel", r:21, c:0, rp:0, d:"2026-08-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497652197510385664/"},
+      {t:"Proud to be part of the 2026 Inc. 5000. Incedo", ty:"Image", r:93, c:1, rp:2, d:"2026-08-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496570892202835968/"},
+      {t:"AI isn't magic. It's an interaction. At ONNJ, Nitin Seth, Co-Founder and CEO,", ty:"Video", r:73, c:1, rp:2, d:"2026-08-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496179521809768449/"},
+      {t:"Can performance testing keep pace with the complexity of modern network", ty:"Image", r:12, c:1, rp:0, d:"2026-08-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495876140188930048/"},
+      {t:"A dashboard can make a metric visible. The harder job is to explain what is", ty:"Document/carousel", r:21, c:0, rp:0, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495501836985065472/"},
+      {t:"Complex operations need more than disconnected AI tools. They need", ty:"Document/carousel", r:15, c:0, rp:1, d:"2026-08-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495125056008921088/"},
+      {t:"At Incedo, we believe India's next chapter will be shaped by bold ideas,", ty:"Image", r:96, c:1, rp:2, d:"2026-08-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7494272146324643840/"},
+      {t:"Your AI strategy is only as strong as your data foundation. Many", ty:"Document/carousel", r:12, c:2, rp:0, d:"2026-08-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7494066938634051584/"},
+      {t:"Cyber risk is moving at machine speed. Banking defense must catch up.", ty:"Image", r:108, c:2, rp:2, d:"2026-08-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493651246311055360/"},
+      {t:"Most AI tools can answer questions. But enterprise decisions need more than", ty:"Document/carousel", r:22, c:1, rp:0, d:"2026-08-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7492937822975434752/"},
+      {t:"Data Modernization should not break what already works. With Incedo DataXel,", ty:"Image", r:30, c:0, rp:0, d:"2026-08-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491481980702957568/"},
+      {t:"AI is becoming more capable every day. But as it grows more powerful, one", ty:"Video", r:61, c:2, rp:1, d:"2026-08-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491134006529331201/"},
+      {t:"Business signals lose value when action comes too late. A revenue shift. A", ty:"Image", r:21, c:0, rp:0, d:"2026-08-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490581542579367936/"},
+      {t:"One year ago, Human Edge in the AI Age was", ty:"Image", r:569, c:31, rp:8, d:"2026-08-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7489950549799419904/"},
+      {t:"One of the biggest barriers to scaling enterprise AI isn't the capability of", ty:"Document/carousel", r:13, c:0, rp:1, d:"2026-07-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488983923918655488/"},
+      {t:"AI is everywhere. But where does real business value actually come from? In", ty:"Image", r:83, c:0, rp:1, d:"2026-07-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488598836253224961/"},
+      {t:"Modernizing legacy data should not mean losing the business logic that makes", ty:"Image", r:29, c:0, rp:1, d:"2026-07-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488261286011756544/"},
+      {t:"In Life Sciences, timing matters. The earlier teams can detect patient", ty:"Document/carousel", r:27, c:0, rp:0, d:"2026-07-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487875387016781824/"},
+      {t:"As AI becomes deeply embedded in how we work and lead, success will depend on", ty:"Image", r:38, c:0, rp:0, d:"2026-07-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486428286298767361/"},
+      {t:"Legacy data modernization does not need to be slow, complex, or cost-heavy.", ty:"Image", r:23, c:0, rp:0, d:"2026-07-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486308786610188288/"},
+      {t:"Welcoming our newest colleagues! As AI becomes", ty:"Document/carousel", r:53, c:0, rp:1, d:"2026-07-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483888038595588096/"},
+      {t:"AI is only as powerful as the data that powers it. Yet, many enterprises are", ty:"Video", r:31, c:2, rp:0, d:"2026-07-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483540871519502336/"},
+      {t:"Business problems rarely appear overnight. Revenue leakage starts as a small", ty:"Document/carousel", r:15, c:0, rp:1, d:"2026-07-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7482807516180058113/"},
+      {t:"Incedo BrainSpark is our enterprise AI platform built to help organizations", ty:"Document/carousel", r:40, c:0, rp:2, d:"2026-07-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7482443182778060800/"},
+      {t:"We are drowning in data, yet starving for insight. That is the paradox at the", ty:"Image", r:1148, c:57, rp:5, d:"2026-07-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7482436613457809408/"},
+      {t:"What is the role of humans in an AI-first", ty:"Video", r:83, c:1, rp:2, d:"2026-07-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7481022583614730241/"},
+      {t:"Your AI strategy is only as strong as the data it runs on. Most enterprises", ty:"Document/carousel", r:35, c:2, rp:4, d:"2026-07-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480666869990047744/"},
+      {t:"Your business is sending signals every day — shifts in revenue, risk, and", ty:"Document/carousel", r:18, c:0, rp:0, d:"2026-07-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480269986662477827/"},
+      {t:"What separates a 100X Executive from the rest? Not more dashboards. Not more", ty:"Document/carousel", r:28, c:0, rp:5, d:"2026-07-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478483762587156480/"},
+      {t:"Your AI is only as good as the data behind", ty:"Video", r:22, c:0, rp:2, d:"2026-07-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478092753827102720/"},
+      {t:"Just wrapped up a super intense week at our Gurgaon office, and I'm leaving", ty:"Image", r:607, c:9, rp:6, d:"2026-07-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478089922483089408/"},
+      {t:"The conversations may have concluded, but the ideas continue to inspire.", ty:"Video", r:73, c:1, rp:3, d:"2026-06-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477764813415235585/"},
+      {t:"Energy, purpose, and a bold vision for the", ty:"Image", r:278, c:6, rp:6, d:"2026-06-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7476135776880136193/"},
+      {t:"Your AI strategy is only as strong as your data foundation. Many", ty:"Document/carousel", r:23, c:0, rp:0, d:"2026-06-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475920497025773568/"},
+      {t:"Enterprises did not need faster coding", ty:"Video", r:25, c:0, rp:0, d:"2026-06-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475204403147489282/"},
+      {t:"For Telecom leaders, revenue leakage rarely starts as a major problem. It", ty:"Document/carousel", r:19, c:0, rp:1, d:"2026-06-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7474827396442066944/"},
+      {t:"On June 4, 2026, leaders from across industries gathered at Harvard Hall,", ty:"Image", r:121, c:2, rp:1, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473409547454320641/"},
+      {t:"The most expensive resource in your organization isn't compute. It isn't", ty:"Video", r:25, c:0, rp:2, d:"2026-06-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473026361847136257/"},
+      {t:"In a recent interview on ONNJ's (On New Jersey) Mornings with Ken Rosato, our", ty:"Video", r:53, c:0, rp:4, d:"2026-06-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472325122788433920/"},
+      {t:"Most data modernization programs succeed at moving data. Far fewer succeed at", ty:"Document/carousel", r:23, c:0, rp:0, d:"2026-06-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470851110057127936/"}
     ]}
   ]
 };

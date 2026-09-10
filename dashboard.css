@@ -939,3 +939,18 @@ html[data-theme="dark"] .li-plink,
 html[data-theme="dark"] .li-cohead a{background:#0f1a33;border-color:#24365e;color:#8ff8ff}
 html[data-theme="dark"] .li-plink:hover,
 html[data-theme="dark"] .li-cohead a:hover{background:#152b4a;border-color:#8ff8ff;color:#8ff8ff}
+
+/* LinkedIn module: sort bar, momentum column, benchmark rows, top-post marker */
+.li-sortbar{display:flex;flex-wrap:wrap;gap:7px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line);background:#fff}
+.li-sortbar .flabel{width:auto;margin-right:4px}
+.li-sub{display:block;font-size:11px;color:var(--muted);font-weight:650;margin-top:2px}
+.li-off{color:var(--muted)!important}
+.ours-badge.bench{background:#fff;color:#475569;border:1px solid var(--line2)}
+.li-row.bench .channel{color:#475569}
+.li-mix{display:block;margin-top:3px;color:var(--muted)}
+.li-top{display:inline-block;font-size:10px;font-weight:850;text-transform:uppercase;letter-spacing:.06em;color:#052975;background:#ecfeff;border:1px solid #a5f3fc;border-radius:999px;padding:2px 7px;margin-left:4px;white-space:nowrap}
+.li-post.top{background:#f7feff}
+html[data-theme="dark"] .li-sortbar{background:#0b1428;border-color:#1d2b4a}
+html[data-theme="dark"] .li-post.top{background:#0f2033}
+html[data-theme="dark"] .li-top{background:#0d2b3a;border-color:#155e75;color:#8ff8ff}
+html[data-theme="dark"] .ours-badge.bench{background:#0f1a33;border-color:#24365e;color:#cbd5e1}
