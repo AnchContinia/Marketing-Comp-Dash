@@ -50,14 +50,15 @@ window.YT_DATA = {
     { name: "Qvalia",              handle: "Qvalia",               totalViews: "787 total views",   socialBlade: "https://socialblade.com/youtube/channel/UC1x8GlYfNAh4jjp3mquVAvw", ours: false },
     { name: "Acubiz",              handle: "@acubiztv",            totalViews: "4.7K total views",  socialBlade: "https://socialblade.com/youtube/channel/UC69VeuWKBJRLmON3deGjwdw", ours: false },
     { name: "B2Brouter",           handle: "@b2brouter",           totalViews: "1.21M total views",  socialBlade: "https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ", ours: false },
-    /* Added Sep 10, 2026 with the six new 1:1 solution rivals; measured on Social
-       Blade the same day, so pending is gone and they render in the table. */
-    { name: "Pleo",                handle: "@Pleo",                totalViews: "43K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCQQitvQIlEgIxNyLlOgilXQ", ours: false },
-    { name: "Payhawk",             handle: "@payhawk_io",          totalViews: "583K total views",  socialBlade: "https://socialblade.com/youtube/handle/payhawk_io",              ours: false },
-    { name: "Rydoo",               handle: "@rydoo",               totalViews: "1.1M total views",  socialBlade: "https://socialblade.com/youtube/channel/UCTZYj7vm_ZcsGFL18jWHt_A", ours: false },
-    { name: "Expensify",           handle: "@Expensify",           totalViews: "439K total views",  socialBlade: "https://socialblade.com/youtube/channel/UC6D-zsQ1hs3muJRpdpPfKJw", ours: false },
-    { name: "Zoho Expense",        handle: "@ZohoExpense",         totalViews: "50M total views",   socialBlade: "https://socialblade.com/youtube/channel/UCbqmJgmRfq0ezuVVNvtEwKg", ours: false },
-    { name: "DocuWare",            handle: "@docuware",            totalViews: "1.4M total views",  socialBlade: "https://socialblade.com/youtube/user/docuware",                  ours: false }
+    /* Added Sep 10, 2026 with the six new 1:1 solution rivals. pending:true keeps
+       them out of the rendered table until a Social Blade pass fills in real
+       numbers — drop the flag (and set totalViews) on that refresh. */
+    { name: "Pleo",                handle: "@Pleo",                totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/channel/UCQQitvQIlEgIxNyLlOgilXQ", ours: false, pending: true },
+    { name: "Payhawk",             handle: "@payhawk_io",          totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/handle/payhawk_io",              ours: false, pending: true },
+    { name: "Rydoo",               handle: "@rydoo",               totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/channel/UCTZYj7vm_ZcsGFL18jWHt_A", ours: false, pending: true },
+    { name: "Expensify",           handle: "@Expensify",           totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/channel/UC6D-zsQ1hs3muJRpdpPfKJw", ours: false, pending: true },
+    { name: "Zoho Expense",        handle: "@ZohoExpense",         totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/channel/UCbqmJgmRfq0ezuVVNvtEwKg", ours: false, pending: true },
+    { name: "DocuWare",            handle: "@docuware",            totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/user/docuware",                  ours: false, pending: true }
   ],
 
   snapshots: [
@@ -194,15 +195,7 @@ window.YT_DATA = {
         "Dime Scheduler":     { subs: "85",   monthlyViews: -107,    monthlyViewsLabel: "-107",  monthlySubs: "+2",  earnings: "$0" },
         "Qvalia":             { subs: "19",   monthlyViews:  13,     monthlyViewsLabel: "+13",   monthlySubs: "0",   earnings: "$0" },
         "Acubiz":             { subs: "66",   monthlyViews:  39,     monthlyViewsLabel: "+39",   monthlySubs: "0",   earnings: "$0" },
-        "B2Brouter":          { subs: "1.49K", monthlyViews:  11000,  monthlyViewsLabel: "+11K",  monthlySubs: "0",   earnings: "$3-$46" },
-        /* The six 1:1 solution rivals, read on Social Blade Sep 10, 2026 and folded
-           into this pass rather than opening a snapshot for one day's difference. */
-        "Pleo":               { subs: "1.24K", monthlyViews:  1200,   monthlyViewsLabel: "+1.2K", monthlySubs: "+10", earnings: "$0-$5" },
-        "Payhawk":            { subs: "418",  monthlyViews:  1500,   monthlyViewsLabel: "+1.5K", monthlySubs: "+1",  earnings: "$0-$6" },
-        "Rydoo":              { subs: "670",  monthlyViews:  1100,   monthlyViewsLabel: "+1.1K", monthlySubs: "-1",  earnings: "$0-$4" },
-        "Expensify":          { subs: "3.87K", monthlyViews:  1400,   monthlyViewsLabel: "+1.4K", monthlySubs: "-10", earnings: "$0-$5" },
-        "Zoho Expense":       { subs: "4.85K", monthlyViews:  556000, monthlyViewsLabel: "+556K", monthlySubs: "+20", earnings: "$139-$2.2K" },
-        "DocuWare":           { subs: "16.9K", monthlyViews:  3900,   monthlyViewsLabel: "+3.9K", monthlySubs: "0",   earnings: "$1-$15" }
+        "B2Brouter":          { subs: "1.49K", monthlyViews:  11000,  monthlyViewsLabel: "+11K",  monthlySubs: "0",   earnings: "$3-$46" }
       }
     }
   ],
