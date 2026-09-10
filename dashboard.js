@@ -1028,7 +1028,7 @@ if(contentIdeasList){
   function esc(s){return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   var STANCE={ai:{l:"AI-offensive",c:"ai"},cons:{l:"Consolidation / M&A",c:"cons"},steady:{l:"Stable / niche",c:"steady"}};
   var PROXRANK={High:0,Medium:1,Low:2};
-  var REV_Y=2026, REV_M=7;   /* snapshot for tactical-note freshness; bump on refresh */
+  var REV_Y=2026, REV_M=9;   /* snapshot for tactical-note freshness; bump on refresh */
 
   /* Continia's own profile — the fixed left side of every head-to-head. Scale row
      carries the real AppSource numbers so "we win on review velocity" has a figure. */
@@ -1085,7 +1085,25 @@ if(contentIdeasList){
       obj:[["“B2Brouter already connects us to Peppol.”","For BC customers Continia embeds compliant e-invoicing in the workflow they already use — the network is handled without bolting on a separate access point."]]},
     "Qvalia":{reviewed:"2026-06",win:["Qvalia focuses on e-invoicing + line-item/spend data; Continia embeds e-invoicing in the full AP/finance flow inside BC — capture, approval, payment and compliance in one place.","No separate platform alongside BC to run for the network + analytics layer."],
       watch:["Line-item data automation is their distinctive angle — win on suite breadth and BC-native embedding rather than pure e-invoicing feature-by-feature."],
-      obj:[["“Qvalia gives us e-invoicing plus spend analytics.”","Continia embeds e-invoicing in the full BC AP flow; the transaction data lives next to the workflow instead of in a separate platform."]]}
+      obj:[["“Qvalia gives us e-invoicing plus spend analytics.”","Continia embeds e-invoicing in the full BC AP flow; the transaction data lives next to the workflow instead of in a separate platform."]]},
+    "Pleo":{reviewed:"2026-09",win:["Pleo exports into Business Central; Continia Expense Management lives in it \u2014 same dimensions, same approval hierarchy, same posting rules as the AP flow, no sync to reconcile.","One vendor for AP capture, expense, e-invoicing, banking and document output. Pleo covers the card and the claim, then hands the rest back to you."],
+      watch:["Strongest Nordic brand in expense (40,000+ businesses) and the most complete agent story \u2014 Policy Agent is live, AP/Treasury/Accounting are beta from July 2026. Don't dismiss it; compare production depth in BC."],
+      obj:[["\u201cPleo integrates with Business Central too.\u201d","It syncs to BC \u2014 VAT setup, dimensions, chart of accounts, vendors \u2014 and exports transactions in. Continia posts inside BC natively, so there is no second system holding the truth and no export to reconcile at close."]]},
+    "Payhawk":{reviewed:"2026-09",win:["Payhawk is card-and-spend-first: the value depends on running spend through their cards and rails. Continia adds expense to the ledger the customer already has, with no card programme to adopt.","Their AP is one module of a spend platform; Continia's AP capture is the core product, with EU e-invoicing compliance built into the same BC flow."],
+      watch:["Closest thing to a peer on Dynamics proximity \u2014 native AppSource app, official Microsoft ISV, $100M ARR and four working agents. Expect a credible technical story; win on where the data lives, not on integration checkboxes."],
+      obj:[["\u201cPayhawk has a native BC app and real AI agents.\u201d","The app is a bi-directional sync; the record of truth stays in Payhawk. Continia keeps it in BC. On agents, ask which ones post to the ledger unattended today \u2014 Continia automates the flow finance already signs off on."]]},
+    "Rydoo":{reviewed:"2026-09",win:["Rydoo's BC and F&O connectors are expense exports, not BC-native apps \u2014 the approval and coding work happens outside the ERP.","Its AP capability came from the Semine acquisition (Nordics) and sits beside expense rather than inside one flow. Continia is a single stack in BC."],
+      watch:["Eurazeo money behind international expansion, 130+ countries, and an MCP connector that puts approvals inside Claude and ChatGPT \u2014 a genuinely novel UX angle to answer."],
+      obj:[["\u201cRydoo does expense and AP now.\u201d","Two stacks acquired together (Rydoo + Semine), joined at the roadmap. Continia has run AP capture and expense in one BC-native suite for years \u2014 one setup, one approval model, one vendor."]]},
+    "Expensify":{reviewed:"2026-09",win:["No Business Central-native path \u2014 a BC customer buying Expensify runs expense in a separate system and reconciles it back by export.","European reality check: EU e-invoicing mandates, per-country VAT and Peppol delivery are Continia's home ground, not a US self-serve app's."],
+      watch:["15M members and enormous brand recall; MCP plus Concierge AI make it look modern and cheap. Land the total-cost argument, not a feature fight."],
+      obj:[["\u201cExpensify is cheaper per user.\u201d","Per seat, yes. Add the month-end work of getting it into BC correctly \u2014 coding, dimensions, VAT, approvals \u2014 and the saving goes back out the door. Continia posts it in BC the first time."]]},
+    "Zoho Expense":{reviewed:"2026-09",win:["Priced to win small deals (free for three users, a few dollars after) \u2014 but it integrates Zoho Books, QuickBooks Online and Xero, not Business Central. A BC shop gets no posting path.","Buying it means buying into the Zoho suite for the rest of the finance stack; Continia extends the ERP the customer already chose."],
+      watch:["The price floor of the category \u2014 expect it in cost-led SMB deals. Don't argue price; argue what happens after the receipt is scanned."],
+      obj:[["\u201cZoho Expense costs almost nothing.\u201d","Correct \u2014 and it stops at the receipt. No BC posting, no Peppol or e-invoicing compliance, and a second approval world to maintain. The cheap licence is the small part of the bill."]]},
+    "DocuWare":{reviewed:"2026-09",win:["In DocuWare the invoice lives in DocuWare and links back to BC. With Continia it lives in Business Central, with dimensions, approvals and matching in the ledger \u2014 no second archive to license, learn and audit.","DocuWare is document management first, AP second. Continia is finance automation first: AP capture, expense, e-invoicing, banking and output as one BC suite."],
+      watch:["Ricoh-owned, 21,000+ customers, 800+ partners and a 2026 Gartner MQ Challenger badge \u2014 plus e-invoicing as its stated 2025/26 priority. Real enterprise credibility; reframe the category rather than fight the badge."],
+      obj:[["\u201cDocuWare is a Gartner Challenger \u2014 you're not on that quadrant.\u201d","That quadrant is Document Management. Continia isn't a DMS \u2014 it's AP and finance automation embedded in Business Central. If the goal is a company-wide archive, DocuWare fits; if it's getting invoices posted correctly in BC, that's a different purchase."]]},
   };
   /* ERP-agnostic players — each gets a tailored one-liner (fallback keeps the generic). */
   var AGNOSTIC_WIN={
@@ -1229,7 +1247,13 @@ if(contentIdeasList){
   if(asof) asof.textContent=(D.source||"Social Blade estimates")+" \u00b7 "+fmtDate(snap.date);
   /* Rank the table by the newest snapshot's monthly views, highest first — auto
      re-sorts every time new data lands, so no manual reordering of channels[]. */
-  var rows=D.channels.map(function(ch){return {ch:ch, st:(snap.stats&&snap.stats[ch.name])||{}};})
+  var all=D.channels.map(function(ch){return {ch:ch, st:(snap.stats&&snap.stats[ch.name])||{}};});
+  /* Channels added to channels[] but not yet measured on Social Blade carry
+     pending:true. They stay out of the table (a row of dashes reads as a dead
+     channel) and are named in the footnote instead; drop the flag on the refresh
+     that first brings real numbers. */
+  var queued=all.filter(function(r){ return r.ch.pending && !r.st.subs; });
+  var rows=all.filter(function(r){ return queued.indexOf(r)<0; })
     .sort(function(a,b){ return (b.st.monthlyViews||0)-(a.st.monthlyViews||0); });
   /* Scale bars on real performance only \u2014 exclude flagged one-off corrections. */
   var scale=Math.max.apply(null, rows.filter(function(r){return !r.st.flag;}).map(function(r){return Math.abs(r.st.monthlyViews||0);}))||1;
@@ -1265,6 +1289,10 @@ if(contentIdeasList){
   if(hasFlag){
     var fn=document.getElementById("yt-footnote");
     if(fn) fn.innerHTML+=' \u00b7 <b>*</b> a one-time Social Blade recount, not monthly performance \u2014 shown for transparency but excluded from the bar scale.';
+  }
+  if(queued.length){
+    var fnq=document.getElementById("yt-footnote");
+    if(fnq) fnq.innerHTML+=' \u00b7 Queued for the next Social Blade pass: '+queued.map(function(r){return r.ch.name;}).join(", ")+'.';
   }
 })();
 

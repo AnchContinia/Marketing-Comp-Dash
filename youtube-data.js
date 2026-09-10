@@ -49,7 +49,16 @@ window.YT_DATA = {
     { name: "Dime Scheduler",      handle: "Dime Software",        totalViews: "25K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCYD4LGox7SJLL7r8gmjulNA", ours: false },
     { name: "Qvalia",              handle: "Qvalia",               totalViews: "787 total views",   socialBlade: "https://socialblade.com/youtube/channel/UC1x8GlYfNAh4jjp3mquVAvw", ours: false },
     { name: "Acubiz",              handle: "@acubiztv",            totalViews: "4.7K total views",  socialBlade: "https://socialblade.com/youtube/channel/UC69VeuWKBJRLmON3deGjwdw", ours: false },
-    { name: "B2Brouter",           handle: "@b2brouter",           totalViews: "1.21M total views",  socialBlade: "https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ", ours: false }
+    { name: "B2Brouter",           handle: "@b2brouter",           totalViews: "1.21M total views",  socialBlade: "https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ", ours: false },
+    /* Added Sep 10, 2026 with the six new 1:1 solution rivals. pending:true keeps
+       them out of the rendered table until a Social Blade pass fills in real
+       numbers — drop the flag (and set totalViews) on that refresh. */
+    { name: "Pleo",                handle: "@Pleo",                totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/channel/UCQQitvQIlEgIxNyLlOgilXQ", ours: false, pending: true },
+    { name: "Payhawk",             handle: "@payhawk_io",          totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/handle/payhawk_io",              ours: false, pending: true },
+    { name: "Rydoo",               handle: "@rydoo",               totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/channel/UCTZYj7vm_ZcsGFL18jWHt_A", ours: false, pending: true },
+    { name: "Expensify",           handle: "@Expensify",           totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/channel/UC6D-zsQ1hs3muJRpdpPfKJw", ours: false, pending: true },
+    { name: "Zoho Expense",        handle: "@ZohoExpense",         totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/channel/UCbqmJgmRfq0ezuVVNvtEwKg", ours: false, pending: true },
+    { name: "DocuWare",            handle: "@docuware",            totalViews: "pending",           socialBlade: "https://socialblade.com/youtube/user/docuware",                  ours: false, pending: true }
   ],
 
   snapshots: [

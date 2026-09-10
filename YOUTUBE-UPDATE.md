@@ -51,6 +51,23 @@ SB builds history. Until captured they render as "—" in the live table.
 | 15 | Qvalia | https://socialblade.com/youtube/channel/UC1x8GlYfNAh4jjp3mquVAvw | |
 | 16 | Acubiz | https://socialblade.com/youtube/channel/UC69VeuWKBJRLmON3deGjwdw | |
 | 17 | B2Brouter | https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ | |
+| 18 | Pleo | https://socialblade.com/youtube/channel/UCQQitvQIlEgIxNyLlOgilXQ | |
+| 19 | Payhawk | https://socialblade.com/youtube/handle/payhawk_io | |
+| 20 | Rydoo | https://socialblade.com/youtube/channel/UCTZYj7vm_ZcsGFL18jWHt_A | |
+| 21 | Expensify | https://socialblade.com/youtube/channel/UC6D-zsQ1hs3muJRpdpPfKJw | |
+| 22 | Zoho Expense | https://socialblade.com/youtube/channel/UCbqmJgmRfq0ezuVVNvtEwKg | |
+| 23 | DocuWare | https://socialblade.com/youtube/user/docuware | |
+
+> **Channels 18-23 are pending (added Sep 10, 2026).** They came in with the six
+> new 1:1 solution rivals (Pleo, Payhawk, Rydoo, Expensify, Zoho Expense,
+> DocuWare) and carry `pending: true` in the `channels` array with
+> `totalViews: "pending"`. The renderer keeps a pending channel **out of the
+> table** and names it in the footnote instead, so an unmeasured channel never
+> shows up as a row of dashes. **On the first pass that reads them: record their
+> numbers in the new snapshot, replace `totalViews` with the real figure, and
+> delete `pending: true`.** DocuWare runs several regional channels — only the
+> main `/user/docuware` one is tracked; if that URL 404s on Social Blade, resolve
+> the `/channel/<ID>` form and update both this table and `youtube-data.js`.
 
 > **Channel 9 renamed.** The channel at `UCcRBDOXYUHYZ18mJzVwptYg` now presents
 > itself as **Truvio** on YouTube and Social Blade (it was ExFlow / SignUp
