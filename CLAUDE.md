@@ -111,7 +111,11 @@ for good unless it is archived. Two steps:
    it exists purely as history (and feeds the archive-derived CSVs).
 2. **Keep the outgoing file itself under a dated name in `Assets/`** — the repo's own
    convention: `Assets/youtube-data_Jul 10.js`, `Assets/linkedin-data_Aug 31.js`. Commit the
-   source report too (`Assets/linkedin_post_engagement_report_<date>.txt`).
+   source capture too — LinkedIn trawls live in `Assets/LinkedIn trawls/` (from Sep 10, 2026 a
+   `linkedin_competitor_posts_<date>.csv` + `linkedin_competitor_summary_<date>.csv` pair;
+   older captures are the `linkedin_post_engagement_report_<date>.txt` files). Regenerate
+   `linkedin-data.js` with `Assets/LinkedIn trawls/gen-linkedin-data.py` — point its `CSV`,
+   `CAPTURED` and `KEEP` map at the new pair; it fails loudly on an unmapped post type.
 
 Only then regenerate, bump the `?v=` on every page that loads the file, and stamp
 `DASHBOARD_UPDATED`. (Standing instruction from the user.)

@@ -925,3 +925,17 @@ html[data-theme="dark"] .va-tile:hover{background:radial-gradient(68% 58% at 50%
 .sources a.wsite{border-color:var(--navy);color:var(--navy);font-weight:850}
 .sources a.wsite:hover{background:#f5f9ff}
 html[data-theme="dark"] .sources a.wsite{border-color:var(--cyan);color:var(--cyan)}
+
+/* LinkedIn module: per-post date, link-out arrow, and the window/cadence header */
+.li-post{grid-template-columns:22px minmax(0,1fr) 30px}
+.li-pd{font-weight:750;color:#475569}
+.li-plink{grid-column:3;grid-row:1/span 2;align-self:center;justify-self:end;display:grid;place-items:center;width:26px;height:26px;border:1px solid var(--line2);border-radius:8px;background:#fff;color:#475569;font-size:13px;text-decoration:none}
+.li-plink:hover{border-color:var(--navy);color:var(--navy);background:#f5f9ff}
+.li-cohead{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px;padding:10px 18px 0;font-size:12px;color:var(--muted);font-weight:650}
+.li-cohead a{text-decoration:none;font-weight:750;color:var(--navy);border:1px solid var(--line2);border-radius:8px;padding:5px 9px;background:#fff}
+.li-cohead a:hover{border-color:var(--navy);background:#f5f9ff}
+html[data-theme="dark"] .li-pd{color:#94a3b8}
+html[data-theme="dark"] .li-plink,
+html[data-theme="dark"] .li-cohead a{background:#0f1a33;border-color:#24365e;color:#8ff8ff}
+html[data-theme="dark"] .li-plink:hover,
+html[data-theme="dark"] .li-cohead a:hover{background:#152b4a;border-color:#8ff8ff;color:#8ff8ff}

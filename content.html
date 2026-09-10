@@ -8,7 +8,7 @@
 <script>try{if(!sessionStorage.getItem("continia-auth")&&!localStorage.getItem("continia-auth"))location.replace("login.html")}catch(e){}</script>
 <script>try{if(localStorage.getItem("continia-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <script>try{if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("reveal-on")}catch(e){}</script>
-<link rel="stylesheet" href="./dashboard.css?v=20260910a">
+<link rel="stylesheet" href="./dashboard.css?v=20260910b">
 <script src="https://kit.fontawesome.com/c11880975e.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -29,10 +29,10 @@
 <section class="section" id="pdf-compress"><div class="section-head"><h2>PDF compression</h2><span class="hint">iLovePDF · up to 2 PDFs</span></div><div class="cmp-wrap"><label class="cmp-drop" id="pdfc-drop"><input type="file" id="pdfc-input" accept="application/pdf,.pdf" multiple hidden><span class="cmp-ico"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4"></path><path d="m6 10 6-6 6 6"></path><path d="M4 20h16"></path></svg></span><b>Drop PDFs here or click to browse</b><span>PDF · up to 2 at a time · max 50MB per PDF</span></label><div class="cmp-note" id="pdfc-config"></div><div class="cmp-list" id="pdfc-list"></div><div class="cmp-actions" id="pdfc-actions" hidden><button class="cmp-btn" id="pdfc-dl-all">Download all</button><button class="cmp-btn ghost" id="pdfc-clear">Clear</button><span class="cmp-total" id="pdfc-total"></span></div></div><div class="footnote">Powered by iLovePDF via a serverless proxy — your API key stays server-side and is never exposed in the page.</div></section></div>
 <footer>Continia Marketing Hub · <span id="footerDate">June 29, 2026</span></footer>
 </div></main></div>
-<script src="./linkedin-data.js?v=20260909a-li"></script>
+<script src="./linkedin-data.js?v=20260910a-li"></script>
 <script src="./linkedin-images.js?v=20260702-images"></script>
 <script src="./newsletter-images.js?v=20260702-images"></script>
-<script src="./dashboard.js?v=20260910c"></script>
+<script src="./dashboard.js?v=20260910d"></script>
 <script>(function(){if(!document.documentElement.classList.contains("reveal-on"))return;var m=document.querySelectorAll(".workspace>*");if(!m.length)return;var vh=innerHeight,li=0;m.forEach(function(el){if(el.getBoundingClientRect().top<vh*0.92){el.style.transitionDelay=Math.min(li*70,350)+"ms";li++;}});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("rv-in");io.unobserve(e.target);}});},{threshold:0.08,rootMargin:"0px 0px -5% 0px"});m.forEach(function(el){io.observe(el);});})();</script>
 </body>
 </html>

@@ -536,7 +536,17 @@ if(contentIdeasList){
     var posts=co.posts||[], n=posts.length, R=0,C=0,P=0;
     posts.forEach(function(p){R+=p.r||0;C+=p.c||0;P+=p.rp||0;});
     var total=R+C+P;
-    return {name:co.name, ours:!!co.ours, posts:posts, n:n, R:R, C:C, P:P, total:total, avg:n?total/n:0};
+    /* Cadence is derived from the post dates, never stored: n posts over the window
+       they actually cover. 50 posts stretching back eight months is not the same
+       publishing rate as 50 filled in seven weeks, and avg-per-post hides that. */
+    var ds=posts.map(function(p){return p.d;}).filter(Boolean).sort();
+    var first=ds[0]||null, last=ds[ds.length-1]||null, days=0, ppw=0;
+    if(first&&last){
+      days=Math.round((new Date(last)-new Date(first))/86400000);
+      ppw=days>0?(n/(days/7)):0;
+    }
+    return {name:co.name, ours:!!co.ours, url:co.url||"", posts:posts, n:n, R:R, C:C, P:P,
+            total:total, avg:n?total/n:0, first:first, last:last, days:days, ppw:ppw};
   });
   /* rank + size the bar on engagement PER POST (avg), not the summed total —
      companies have unequal post counts (3..10 captured), so total just rewards
@@ -549,22 +559,28 @@ if(contentIdeasList){
     var barCls=r.avg===scale?"hot":"";
     var ours=r.ours?' <span class="ours-badge">Ours</span>':"";
     var trCls="li-row"+(r.ours?" ours":"");
+    /* Post rows live inside the .li-detail row and the expand/collapse handler is
+       bound to .li-row only, so the link arrow needs no stopPropagation. */
     var posts=r.posts.map(function(p,j){
+      var link=p.u?'<a class="li-plink" href="'+esc(p.u)+'" target="_blank" rel="noopener" title="Open this post on LinkedIn" aria-label="Open post '+(j+1)+' on LinkedIn">\u2197</a>':'';
       return '<div class="li-post">'+
         '<span class="li-pn">'+(j+1)+'</span>'+
         '<div class="li-pt"><b>'+esc(p.t)+'</b>'+(p.ty?'<span class="li-ty">'+esc(p.ty)+'</span>':"")+'</div>'+
-        '<div class="li-pm"><span><b>'+(p.r||0)+'</b> reactions</span><span><b>'+(p.c||0)+'</b> comments</span><span><b>'+(p.rp||0)+'</b> reposts</span></div>'+
+        '<div class="li-pm">'+(p.d?'<span class="li-pd">'+fmtDate(p.d)+'</span>':'')+'<span><b>'+(p.r||0)+'</b> reactions</span><span><b>'+(p.c||0)+'</b> comments</span><span><b>'+(p.rp||0)+'</b> reposts</span></div>'+
+        link+
       '</div>';
     }).join("");
+    /* Window + cadence header for the expanded list, plus the company page link. */
+    var head=(r.first&&r.last)?'<div class="li-cohead"><span>Newest first \u00b7 '+fmtDate(r.first)+' \u2192 '+fmtDate(r.last)+' \u00b7 '+r.days+' days'+(r.ppw?' \u00b7 '+r.ppw.toFixed(1)+' posts/week':'')+'</span>'+(r.url?'<a href="'+esc(r.url)+'" target="_blank" rel="noopener">Company page \u2197</a>':'')+'</div>':'';
     return '<tr class="'+trCls+'" data-li="'+i+'">'+
       '<td>'+(i+1)+'</td>'+
-      '<td><div class="channel">'+esc(r.name)+ours+' <span class="li-carrow">›</span></div><div class="handle">Ø '+r.avg.toFixed(1)+'/post · '+r.n+' posts · '+r.total+' total'+(r.n<5?' · low sample':'')+' · tap to see them</div></td>'+
+      '<td><div class="channel">'+esc(r.name)+ours+' <span class="li-carrow">›</span></div><div class="handle">Ø '+r.avg.toFixed(1)+'/post · '+r.n+' posts · '+r.total+' total'+(r.ppw?' · '+r.ppw.toFixed(1)+'/week':'')+(r.n<5?' · low sample':'')+' · tap to see them</div></td>'+
       '<td><div class="barline"><div class="bar"><i class="'+barCls+'" style="--w:'+w.toFixed(1)+'%"></i></div><span>'+Math.round(r.avg)+'</span></div></td>'+
       '<td class="num"><b>'+r.R+'</b></td>'+
       '<td class="num">'+r.C+'</td>'+
       '<td class="num">'+r.P+'</td>'+
     '</tr>'+
-    '<tr class="li-detail" data-li-detail="'+i+'"><td colspan="6"><div class="li-posts">'+posts+'</div></td></tr>';
+    '<tr class="li-detail" data-li-detail="'+i+'"><td colspan="6">'+head+'<div class="li-posts">'+posts+'</div></td></tr>';
   }).join("");
   Array.prototype.forEach.call(tb.querySelectorAll(".li-row"),function(row){
     row.addEventListener("click",function(){
@@ -628,6 +644,8 @@ if(contentIdeasList){
   var ours=null, field=[];
   LI.companies.forEach(function(c){ if(c.ours) ours=c; else field.push(c); });
   if(!ours||!field.length) return;
+  /* the footnote's company count follows the data, so it can't go stale */
+  Array.prototype.forEach.call(document.querySelectorAll('.js-li-count'),function(el){ el.textContent=LI.companies.length; });
   var youCounts=counts(ours);
   var perComp={}; field.forEach(function(c){ perComp[c.name]=counts(c); });
   var fieldTotal={}; LABELS.forEach(function(l){ var s=0; field.forEach(function(c){ s+=perComp[c.name][l]; }); fieldTotal[l]=s; });
