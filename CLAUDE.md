@@ -120,6 +120,20 @@ for good unless it is archived. Two steps:
 Only then regenerate, bump the `?v=` on every page that loads the file, and stamp
 `DASHBOARD_UPDATED`. (Standing instruction from the user.)
 
+## Archive CSV exports
+
+The five `archive-*.csv` files at repo root are **generated**, never hand-edited. Regenerate them
+after every archive prepend or YouTube refresh:
+
+```bash
+node tools/export-archive-csv.js
+```
+
+They come from two separate histories — `archive.js` (events, competitor cards, LinkedIn posts)
+and `youtube-data.js` (Social Blade series + vidIQ cadence). Snapshot dates are **not unique**
+(a day with two refreshes carries two layers), so the three archive CSVs also carry
+`snapshot_index` (0 = newest). No page loads these files.
+
 ## The two-kinds-of-dates rule
 
 There are two distinct date types on the page; never confuse them:

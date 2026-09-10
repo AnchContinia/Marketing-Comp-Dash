@@ -954,3 +954,12 @@ html[data-theme="dark"] .li-sortbar{background:#0b1428;border-color:#1d2b4a}
 html[data-theme="dark"] .li-post.top{background:#0f2033}
 html[data-theme="dark"] .li-top{background:#0d2b3a;border-color:#155e75;color:#8ff8ff}
 html[data-theme="dark"] .ours-badge.bench{background:#0f1a33;border-color:#24365e;color:#cbd5e1}
+
+/* Tech Blue for the LinkedIn sort pills and the "Ours" badge (light mode).
+   Dark mode keeps the near-black chip it already had - navy on a navy-ish
+   surface would lose the contrast that makes the active state readable. */
+.li-sortbar .chip.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.ours-badge{background:var(--navy)}
+html[data-theme="dark"] .li-sortbar .chip.active{background:#0f172a;border-color:#0f172a;color:#fff}
+html[data-theme="dark"] .ours-badge{background:#0f172a}
+html[data-theme="dark"] .ours-badge.bench{background:#0f1a33;border-color:#24365e;color:#cbd5e1}
