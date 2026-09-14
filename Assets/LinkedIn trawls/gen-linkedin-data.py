@@ -36,6 +36,33 @@ KEEP = collections.OrderedDict([
 OURS  = {"Continia Software"}
 BENCH = {"Stripe", "Incedo"}
 
+# Competitor cards in dashboard.js that have NO LinkedIn coverage yet, so they
+# are missing from the engagement table and the Content-Gap Analysis. The trawl
+# has to visit these pages before they can be added - there is no way to derive
+# their posts from the data we already hold. Add the CSV label to KEEP above
+# once a capture includes them.
+#
+# Verified company pages (trawl these):
+#   Yooz                 https://www.linkedin.com/company/yooz/posts/
+#   AvidXchange          https://www.linkedin.com/company/avidxchange-inc-/posts/
+#   Pagero               https://www.linkedin.com/company/pagero/posts/
+#   Compleat Software    https://www.linkedin.com/company/compleat-software-ltd/posts/
+#   Tungsten Automation  https://www.linkedin.com/company/tungstenautomation/posts/
+#   onPhase              https://www.linkedin.com/company/onphase/posts/
+#   MineralTree          https://www.linkedin.com/company/mineraltree-inc-/posts/
+#   Lasernet (Formpipe)  https://www.linkedin.com/showcase/lasernet-formpipe/posts/
+#   Dime Scheduler       https://www.linkedin.com/company/dimesoftware/posts/
+#
+# Unverified - find the real page before trawling:
+#   Acubiz (Visma)       slug not confirmed; "acubiz-consulting" is an unrelated
+#                        Malaysian pharma consultancy, do NOT trawl it.
+#
+# Deliberately NOT trawled:
+#   Microsoft Expense Agent - a Microsoft product, no company page of its own.
+#   SignUp Software (linkedin.com/company/signup-software) - the legacy page of
+#     the company that is now Truvio. It cross-posts the same Truvio content, so
+#     including it would double-count ExFlow/Truvio in every gap and SOV figure.
+
 # Pill vocabulary kept identical to every earlier capture so type-mix
 # comparisons across archive snapshots stay meaningful.
 TYMAP = {"Image":"Image", "Multi-image":"Image", "Carousel":"Document/carousel",
