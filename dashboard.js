@@ -534,11 +534,18 @@ if(contentIdeasList){
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 
   /* Momentum window: the 30 days up to the capture date, not "today", so the
-     column keeps meaning after the data has sat for a while. */
-  var capMs=new Date(D.captured).getTime();
-  var M30=capMs-30*86400000;
+     column keeps meaning after the data has sat for a while. The roster is
+     assembled from trawls run on different days, so each company measures its
+     own 30 days from its own "cap" date - otherwise the later trawl would get
+     a wider window than the earlier one and the column would stop comparing
+     like with like. Companies without "cap" were caught by the newest trawl. */
+  function win30(co){
+    var ms=new Date(co.cap||D.captured).getTime();
+    return ms-30*86400000;
+  }
 
   var rows=D.companies.map(function(co){
+    var M30=win30(co);
     var posts=co.posts||[], n=posts.length, R=0,C=0,P=0, m30=0, m30n=0;
     var types={};
     posts.forEach(function(p){
@@ -2423,7 +2430,7 @@ if(contentIdeasList){
    Both the topbar and the footer read from it, so they can never drift apart.
    The YouTube/News update routine sets this to today's date on every refresh. */
 (function(){
-  var DASHBOARD_UPDATED = "2026-09-10";
+  var DASHBOARD_UPDATED = "2026-09-14";
   var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   var p=String(DASHBOARD_UPDATED).split("-");
   var pretty=m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];

@@ -4,24 +4,16 @@
    reposts). Totals, averages and cadence are computed in dashboard.js from
    these raw posts, so the comparison table can never drift from the source.
 
-   Sources, all in Assets/LinkedIn trawls/:
-     linkedin_competitor_posts_2026-09-10.csv  (captured 2026-09-10)
-     linkedin_competitor_posts_2026-09-14_EXTRA.csv  (captured 2026-09-14)
-   Each has a matching linkedin_competitor_summary_*.csv holding the same
-   numbers pre-aggregated; those are kept only as a cross-check.
-
-   MIXED CAPTURE DATES. The roster was assembled from two trawls four days
-   apart, so a company captured before "captured" below carries its own "cap"
-   date. dashboard.js measures that company's 30-day momentum window from its
-   own capture date, which keeps the Last-30-days column comparable instead of
-   handing the later trawl four extra days of posts.
+   Source: Assets/LinkedIn trawls/linkedin_competitor_posts_2026-09-10.csv
+   (captured 2026-09-10; the matching linkedin_competitor_summary_2026-09-10.csv
+   holds the same numbers pre-aggregated and is kept only as a cross-check).
 
    Per post: "t" is the title as the trawl captured it (the opening line, cut at
-   a word boundary - no ellipsis is added, so a sentence may simply stop), "ty"
+   a word boundary — no ellipsis is added, so a sentence may simply stop), "ty"
    is the content-type pill, "r"/"c"/"rp" are reactions/comments/reposts, "d" is
    the post date (YYYY-MM-DD) and "u" links the original post. Per company, "url"
    is the LinkedIn company page. Up to 50 most-recent posts each; fewer where the
-   page had fewer (Equisys 44, AMC Banking 22, Dime Scheduler 18, Qvalia 16).
+   page had fewer (Equisys 44, AMC Banking 22, Qvalia 16).
 
    Type pills follow the vocabulary used since June 2026: LinkedIn's
    "Multi-image" renders as Image and "Carousel" as Document/carousel, so type
@@ -36,10 +28,10 @@
 
 window.LI_DATA = {
   source: "LinkedIn public engagement",
-  captured: "2026-09-14",
+  captured: "2026-09-10",
   windowLabel: "up to 50 recent posts each \u00b7 public engagement",
   companies: [
-    { name: "Continia Software", ours: true, cap: "2026-09-10", url: "https://www.linkedin.com/company/continia-software-a-s/posts/", posts: [
+    { name: "Continia Software", ours: true, url: "https://www.linkedin.com/company/continia-software-a-s/posts/", posts: [
       {t:"Thank you, Days of Knowledge ANZ It's a wrap on", ty:"Image", r:86, c:0, rp:0, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501566572784771072/"},
       {t:"Protecting the world's water shouldn't", ty:"Image", r:17, c:0, rp:2, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500522912907460608/"},
       {t:"It's about time... we found out who's", ty:"Image", r:98, c:0, rp:0, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498714244956303360/"},
@@ -92,7 +84,7 @@ window.LI_DATA = {
       {t:"Vi inviterer til danske webinarer Vil du", ty:"Image", r:27, c:0, rp:3, d:"2026-02-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7433089343373606912/"}
     ]},
 
-    { name: "Truvio", cap: "2026-09-10", url: "https://www.linkedin.com/company/truvio-official/posts/", posts: [
+    { name: "Truvio", url: "https://www.linkedin.com/company/truvio-official/posts/", posts: [
       {t:"Today, developers from across our partner community have taken over Aarhus", ty:"Image", r:77, c:2, rp:3, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503415053665099776/"},
       {t:"En hel dag væk fra indbakken skal være tiden værd. Derfor har vi sammen med", ty:"Image", r:19, c:0, rp:2, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502994197914923008/"},
       {t:"For St Vincent de Paul Society NSW, modernising Accounts Payable meant more", ty:"Image", r:24, c:1, rp:6, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502591635537555456/"},
@@ -145,7 +137,7 @@ window.LI_DATA = {
       {t:"Ready for a vacation... but worried your finance operations might not be?", ty:"Event", r:22, c:0, rp:6, d:"2026-07-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487951357560393728/"}
     ]},
 
-    { name: "Equisys", cap: "2026-09-10", url: "https://www.linkedin.com/company/equisys/posts/", posts: [
+    { name: "Equisys", url: "https://www.linkedin.com/company/equisys/posts/", posts: [
       {t:"Whether you're just starting to consider a change to your processes or", ty:"Image", r:1, c:0, rp:3, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503052041250934806/"},
       {t:"Join us as our panel of product experts and support specialists answer your", ty:"Image", r:2, c:0, rp:3, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500515319464058880/"},
       {t:"Our Implementation Services help Business Central partners deliver faster,", ty:"Image", r:4, c:0, rp:3, d:"2026-08-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7494015007639334912/"},
@@ -192,7 +184,7 @@ window.LI_DATA = {
       {t:"Zetadocs Expenses provides a powerful solution that's simple to manage. Learn", ty:"Image", r:3, c:0, rp:2, d:"2025-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7371552777178701824/"}
     ]},
 
-    { name: "Medius", cap: "2026-09-10", url: "https://www.linkedin.com/company/medius/posts/", posts: [
+    { name: "Medius", url: "https://www.linkedin.com/company/medius/posts/", posts: [
       {t:"We're excited to announce that Medius and Thomson Reuters have extended their", ty:"Image", r:84, c:0, rp:20, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503459817491955712/"},
       {t:"\"Within the first days of France's e-invoicing mandate, thousands of invoices", ty:"Image", r:40, c:0, rp:10, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502681502728601600/"},
       {t:"87% of finance leaders have personally ignored a small expense,", ty:"Document/carousel", r:8, c:0, rp:0, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501696715742351362/"},
@@ -245,7 +237,7 @@ window.LI_DATA = {
       {t:"We had an amazing day 1 at the Gartner Finance Symposium/Xpo 2026! We", ty:"Image", r:108, c:0, rp:5, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465647587761655828/"}
     ]},
 
-    { name: "Qvalia", cap: "2026-09-10", url: "https://www.linkedin.com/company/qvalia/posts/", posts: [
+    { name: "Qvalia", url: "https://www.linkedin.com/company/qvalia/posts/", posts: [
       {t:"Peppol for developers: 10 common invoice errors and how to fix them. From", ty:"Image", r:8, c:0, rp:1, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501550906727923712/"},
       {t:"E-invoicing mandates are becoming infrastructure decisions. As Slovakia", ty:"Image", r:5, c:0, rp:1, d:"2026-06-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470388817791860737/"},
       {t:"The new Billentis report on the global e-invoicing market is here.", ty:"Image", r:8, c:2, rp:0, d:"2026-06-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470004295195734017/"},
@@ -264,7 +256,7 @@ window.LI_DATA = {
       {t:"Connect is more than digital invoicing. It's your gateway to automation,", ty:"Article/Link", r:4, c:1, rp:0, d:"2025-09-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7376501398773010432/"}
     ]},
 
-    { name: "AMC Banking", cap: "2026-09-10", url: "https://www.linkedin.com/company/amc-banking/posts/", posts: [
+    { name: "AMC Banking", url: "https://www.linkedin.com/company/amc-banking/posts/", posts: [
       {t:"Working with multiple banks shouldn't mean working with multiple banking", ty:"Text", r:4, c:0, rp:0, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502693793981186048/"},
       {t:"What do you learn from 30+ years of working with bank integration? Probably", ty:"Image", r:18, c:1, rp:1, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497926223285673984/"},
       {t:"How many systems does your finance team touch just to make a payment? The", ty:"Article/Link", r:12, c:1, rp:0, d:"2026-08-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493591110922133504/"},
@@ -289,7 +281,7 @@ window.LI_DATA = {
       {t:"In this webinar, we'll take you through how AMC Banking's intelligent cash", ty:"Video", r:10, c:0, rp:0, d:"2025-10-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7383844399052521472/"}
     ]},
 
-    { name: "B2Brouter", cap: "2026-09-10", url: "https://www.linkedin.com/company/b2brouter/posts/", posts: [
+    { name: "B2Brouter", url: "https://www.linkedin.com/company/b2brouter/posts/", posts: [
       {t:"Deutsche E-Rechnung: Was sollten Produktteams klären, bevor die Entwicklung", ty:"Document/carousel", r:2, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503739590260781057/"},
       {t:"France is only the beginning. For ERP teams, the real challenge isn't", ty:"Text", r:2, c:0, rp:1, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503384247764930560/"},
       {t:"Si crees que la factura electrónica obligatoria es solo subir un archivo a un", ty:"Text", r:1, c:0, rp:0, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503377107079675905/"},
@@ -342,7 +334,7 @@ window.LI_DATA = {
       {t:"Empfangen ist nicht gleich Verarbeiten. Genau darüber haben wir vor zwei", ty:"Document/carousel", r:4, c:0, rp:0, d:"2026-07-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477994994683817984/"}
     ]},
 
-    { name: "Dooap", cap: "2026-09-10", url: "https://www.linkedin.com/company/dooap/posts/", posts: [
+    { name: "Dooap", url: "https://www.linkedin.com/company/dooap/posts/", posts: [
       {t:"What a great couple of days at #DynamicsCon Regional: Ohio Valley! We were", ty:"Image", r:24, c:2, rp:0, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503525345334247424/"},
       {t:"We are hitting the road in a few weeks and headed to Dynamics User Group", ty:"Image", r:12, c:2, rp:1, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501642410838478848/"},
       {t:"Evaluating AP automation for Microsoft Dynamics 365 Finance? The shortlist", ty:"Article/Link", r:9, c:0, rp:1, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501000650630131712/"},
@@ -395,7 +387,7 @@ window.LI_DATA = {
       {t:"Happy 2026, we're looking forward to meeting y'all in Dallas on Thursday!", ty:"Text", r:9, c:1, rp:1, d:"2026-01-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7419006712050954242/"}
     ]},
 
-    { name: "Yavrio", cap: "2026-09-10", url: "https://www.linkedin.com/company/yavrio/posts/", posts: [
+    { name: "Yavrio", url: "https://www.linkedin.com/company/yavrio/posts/", posts: [
       {t:"An embedded payments system means more than operational efficiency. It means", ty:"Video", r:14, c:0, rp:2, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503037444116844544/"},
       {t:"Our founder, John Lewis, caught up with a true legend of the Microsoft", ty:"Video", r:47, c:3, rp:1, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502714172355371009/"},
       {t:"A massive thank you to everyone in the ERP + Fintech community who made the", ty:"Image", r:65, c:7, rp:1, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501213204778340353/"},
@@ -448,7 +440,7 @@ window.LI_DATA = {
       {t:"Every card payment sets off a chain of events most people never see", ty:"Image", r:25, c:3, rp:1, d:"2026-04-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452669765376094208/"}
     ]},
 
-    { name: "Rillion", cap: "2026-09-10", url: "https://www.linkedin.com/company/rillion/posts/", posts: [
+    { name: "Rillion", url: "https://www.linkedin.com/company/rillion/posts/", posts: [
       {t:"Are CFOs out in the weeds? Or maybe the better question is: are they far", ty:"Document/carousel", r:4, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503761864749895683/"},
       {t:"Our CFO to CFO newsletter is live! This is a new initiative from our CFO,", ty:"Image", r:15, c:0, rp:0, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503380455220748288/"},
       {t:"Turns out our Product team is fast in more ways than one. Last week, Team", ty:"Video", r:25, c:1, rp:0, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502642426340073472/"},
@@ -501,7 +493,7 @@ window.LI_DATA = {
       {t:"Rillion's summer celebration was one for the books! This week, our team", ty:"Video", r:42, c:4, rp:0, d:"2026-06-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7471093947159986176/"}
     ]},
 
-    { name: "Fidesic", cap: "2026-09-10", url: "https://www.linkedin.com/company/fidesic/posts/", posts: [
+    { name: "Fidesic", url: "https://www.linkedin.com/company/fidesic/posts/", posts: [
       {t:"Your AP automation was supposed to eliminate manual work. Instead your team", ty:"Image", r:0, c:0, rp:0, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501380491703373824/"},
       {t:"Rally Day is coming to Nashville on Sunday, October 11, a Knights of GP event", ty:"Image", r:7, c:2, rp:1, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500976189780660225/"},
       {t:"Checks are still the top target for payment fraud according to the 2026 AFP", ty:"Image", r:1, c:0, rp:0, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500588026159562753/"},
@@ -554,7 +546,7 @@ window.LI_DATA = {
       {t:"Ninety-five percent (95%) of enterprise generative AI pilots fail to deliver", ty:"Article/Link", r:2, c:0, rp:0, d:"2026-06-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477782494667313153/"}
     ]},
 
-    { name: "Tipalti", cap: "2026-09-10", url: "https://www.linkedin.com/company/tipalti/posts/", posts: [
+    { name: "Tipalti", url: "https://www.linkedin.com/company/tipalti/posts/", posts: [
       {t:"Arthur Laykin studied philosophy at Tel Aviv University, took a part-time job", ty:"Image", r:26, c:0, rp:0, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503393273529536513/"},
       {t:"Two-thirds of finance teams saw manual work increase last year, even with new", ty:"Article/Link", r:5, c:0, rp:0, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503113683384885248/"},
       {t:"Scaling globally exposes every crack in your financial infrastructure before", ty:"Image", r:2, c:0, rp:0, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502737706603585536/"},
@@ -607,7 +599,7 @@ window.LI_DATA = {
       {t:"Before Tipalti, Thematic's finance team was manually managing international", ty:"Video", r:25, c:0, rp:1, d:"2026-07-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480634387030650880/"}
     ]},
 
-    { name: "Stampli", cap: "2026-09-10", url: "https://www.linkedin.com/company/stampli/posts/", posts: [
+    { name: "Stampli", url: "https://www.linkedin.com/company/stampli/posts/", posts: [
       {t:"Finance shouldn't have to reconstruct employee spend records every month", ty:"Article/Link", r:26, c:1, rp:7, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503464250934255616/"},
       {t:"An employee swipes a company card. Another pays out of pocket. Someone", ty:"Article/Link", r:16, c:0, rp:6, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503114180867039232/"},
       {t:"When leaders have room to grow, their teams can grow with them", ty:"Image", r:5, c:0, rp:0, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500939342903816195/"},
@@ -660,7 +652,7 @@ window.LI_DATA = {
       {t:"Corporate cards don't have to mean losing control of spend. With the right", ty:"Article/Link", r:17, c:0, rp:5, d:"2026-03-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440081107112529920/"}
     ]},
 
-    { name: "Pleo", cap: "2026-09-10", url: "https://www.linkedin.com/company/pleo-company/posts/", posts: [
+    { name: "Pleo", url: "https://www.linkedin.com/company/pleo-company/posts/", posts: [
       {t:"Your AI tool just became a spend expert. Pleo's MCP is now live,", ty:"Article/Link", r:6, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503800017615499265/"},
       {t:"Finance leaders, this one's for you. Where others see only details, you see", ty:"Video", r:27, c:0, rp:7, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503749508523024384/"},
       {t:"What's currently costing your finance team its time? Bring it to us at the", ty:"Document/carousel", r:33, c:4, rp:0, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503444790949265408/"},
@@ -713,7 +705,7 @@ window.LI_DATA = {
       {t:"Flowering.dk is on a mission to cut floral waste, but before Pleo, their", ty:"Video", r:18, c:0, rp:2, d:"2026-06-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467484017018322945/"}
     ]},
 
-    { name: "Payhawk", cap: "2026-09-10", url: "https://www.linkedin.com/company/payhawk/posts/", posts: [
+    { name: "Payhawk", url: "https://www.linkedin.com/company/payhawk/posts/", posts: [
       {t:"You're moving to DualEntry to get ahead, but that's only half of the", ty:"Video", r:22, c:0, rp:3, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503727197916999680/"},
       {t:"You're moving to DualEntry to get ahead, but that's only half of the", ty:"Video", r:22, c:0, rp:3, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503724110976401408/"},
       {t:"This month, Payhawk is showing up in person across Europe. Amsterdam,", ty:"Image", r:77, c:1, rp:1, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503372411694919680/"},
@@ -766,7 +758,7 @@ window.LI_DATA = {
       {t:"If you're a finance team in France dealing with e-invoicing compliance, we've", ty:"Image", r:155, c:4, rp:2, d:"2026-06-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467914375815749632/"}
     ]},
 
-    { name: "Rydoo", cap: "2026-09-10", url: "https://www.linkedin.com/company/rydoo/posts/", posts: [
+    { name: "Rydoo", url: "https://www.linkedin.com/company/rydoo/posts/", posts: [
       {t:"\"The software that matters over the next few years will be the one that shows", ty:"Text", r:2, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503739241881980928/"},
       {t:"\"How do you eat an elephant? One bite at a time\". Thanks Goran Fustin for", ty:"Image", r:61, c:3, rp:1, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503426501648777216/"},
       {t:"Do you know which of your European entities are already in scope for", ty:"Image", r:15, c:4, rp:3, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503420789069852674/"},
@@ -819,7 +811,7 @@ window.LI_DATA = {
       {t:"Great conversations at the World Finance Forum in the Beurs van Berlage", ty:"Image", r:38, c:1, rp:1, d:"2026-06-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475928852628795392/"}
     ]},
 
-    { name: "Expensify", cap: "2026-09-10", url: "https://www.linkedin.com/company/expensify/posts/", posts: [
+    { name: "Expensify", url: "https://www.linkedin.com/company/expensify/posts/", posts: [
       {t:"Starting from scratch every time you set an agent rule? Not anymore. Choose", ty:"Image", r:0, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503766069862543362/"},
       {t:"This one small (but difficult) habit change of clearly communicating the", ty:"Article/Link", r:11, c:0, rp:1, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503492390910017536/"},
       {t:"Company card expenses landing in the wrong vendor record in QuickBooks?", ty:"Image", r:7, c:0, rp:1, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503027110941192192/"},
@@ -872,7 +864,7 @@ window.LI_DATA = {
       {t:"We are pleased to welcome Expensify as a Partner Sponsor at Scaling New", ty:"Image", r:7, c:0, rp:1, d:"2026-04-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7450249110869315584/"}
     ]},
 
-    { name: "Zoho Expense", cap: "2026-09-10", url: "https://www.linkedin.com/showcase/zoho-expense/posts/", posts: [
+    { name: "Zoho Expense", url: "https://www.linkedin.com/showcase/zoho-expense/posts/", posts: [
       {t:"What if? What if managing travel and expenses didn't have to mean managing", ty:"Video", r:85, c:0, rp:26, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503479046450626560/"},
       {t:"For too long, we've accepted that managing business travel and expenses means", ty:"Video", r:43, c:0, rp:9, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501610195345698816/"},
       {t:"What if? Some questions have answers. Some questions change the world. \"What", ty:"Video", r:21, c:0, rp:2, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500522960961609728/"},
@@ -925,7 +917,7 @@ window.LI_DATA = {
       {t:"Unveiling Zoho ERP, a cutting edge resource planning platform designed to", ty:"Video", r:2118, c:51, rp:334, d:"2026-01-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7420380730981040128/"}
     ]},
 
-    { name: "DocuWare", cap: "2026-09-10", url: "https://www.linkedin.com/company/docuware-corporation/posts/", posts: [
+    { name: "DocuWare", url: "https://www.linkedin.com/company/docuware-corporation/posts/", posts: [
       {t:"Confusion around different versions of a document and who has edited what", ty:"Article/Link", r:1, c:0, rp:1, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503784465052368896/"},
       {t:"Load tickets, field reports, delivery notes, and that's just the start.", ty:"Image", r:24, c:1, rp:9, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503469808001134592/"},
       {t:"Why can you trust DocuWare's AI? We've gone a step further than adding AI", ty:"Image", r:35, c:0, rp:3, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503106674333941760/"},
@@ -978,505 +970,7 @@ window.LI_DATA = {
       {t:"You don't want to waste your time working with a maze-like file system. So,", ty:"Document/carousel", r:13, c:1, rp:1, d:"2026-07-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484992803706511360/"}
     ]},
 
-    { name: "Yooz", url: "https://www.linkedin.com/company/yooz/posts/", posts: [
-      {t:"We're #hiring a new Full Stack Development Engineer (F/H) in Greater Montpe", ty:"Article/Link", r:1, c:0, rp:1, d:"2026-09-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504863731185664000/"},
-      {t:"We're #hiring a new Production Software Analyst (F/H) in Greater Montpellie", ty:"Article/Link", r:3, c:0, rp:2, d:"2026-09-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504500310275551232/"},
-      {t:"Using AI is easy. Building a finance function that actually gets value from", ty:"Image", r:0, c:0, rp:0, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504086369930055681/"},
-      {t:"How much of your P2P process still depends on someone manually keeping it m", ty:"Image", r:1, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503829840438034432/"},
-      {t:"La Ley Crea y Crece, #VeriFactu y la próxima implantación de la factura ele", ty:"Article/Link", r:9, c:0, rp:0, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503240290388926464/"},
-      {t:"We're #hiring a new Marketing Intern - Customer Marketing & AI Programs in", ty:"Article/Link", r:4, c:0, rp:4, d:"2026-09-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502324205070340096/"},
-      {t:"We're #hiring a new Gestionnaire de paie et administratif (F/H) - CDD in Ai", ty:"Article/Link", r:4, c:0, rp:2, d:"2026-09-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501963368354906112/"},
-      {t:"Supplier Statements Recon in seconds, not afternoons! Pencil. Ruler. Highli", ty:"Video", r:10, c:0, rp:0, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501358418901778433/"},
-      {t:"Prolongez l’été avec le Summer road trip Yooz — Étape 6 · Suisse Dern", ty:"Video", r:3, c:0, rp:0, d:"2026-08-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499738442273284096/"},
-      {t:"We're #hiring a new Customer Marketing Specialist (F/H) - CDD in Greater Mo", ty:"Article/Link", r:6, c:0, rp:0, d:"2026-08-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499432084525203456/"},
-      {t:"Prolongez l’été avec le Summer road trip Yooz - Étape 5 · Allemagne 56 m", ty:"Video", r:3, c:0, rp:2, d:"2026-08-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499376064448626688/"},
-      {t:"Prolongez l’été avec le Summer road trip Yooz - Étape 4 · Luxembourg 12", ty:"Video", r:3, c:0, rp:0, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499013661445935105/"},
-      {t:"Prolongez l’été avec le Summer road trip Yooz - Étape 3 · Belgique Le Group", ty:"Video", r:2, c:0, rp:0, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498703920387526656/"},
-      {t:"Keep summer going with the Yooz Summer Road Trip - Stop 2 · United Kingdom", ty:"Video", r:1, c:0, rp:0, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497956573114404864/"},
-      {t:"If your AI investment cannot prove its value, should finance be investing i", ty:"Image", r:4, c:0, rp:1, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497925962286768128/"},
-      {t:"Keep summer going with the Yooz Summer Road Trip - Stop 1 · España La pa", ty:"Video", r:2, c:0, rp:0, d:"2026-08-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497646978600783872/"},
-      {t:"We're #hiring a new Comptable Support Fonctionnel (F/H) in Greater Montpell", ty:"Article/Link", r:10, c:0, rp:2, d:"2026-08-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496893906467405824/"},
-      {t:"Finance leaders do not need more AI. They need better AI decisions AI in", ty:"Image", r:11, c:3, rp:2, d:"2026-08-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496144202356019200/"},
-      {t:"We're #hiring a new Research Engineer (F/H) in Greater Montpellier Metropol", ty:"Article/Link", r:6, c:0, rp:1, d:"2026-08-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7494717780185862144/"},
-      {t:"We're #hiring a new Technical Product Owner (F/H) in Greater Montpellier Me", ty:"Article/Link", r:4, c:0, rp:0, d:"2026-08-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7494355985826910208/"},
-      {t:"We're #hiring a new Digital Marketing Manager in Dallas, Texas. Apply today", ty:"Article/Link", r:7, c:0, rp:1, d:"2026-08-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7492179956911919104/"},
-      {t:"We're #hiring a new SaaS Trainer in Coppell, Texas. Apply today or share th", ty:"Article/Link", r:2, c:0, rp:2, d:"2026-08-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491820326809579520/"},
-      {t:"We're #hiring a new Product Evangelist (F/H) in Greater Montpellier Metropo", ty:"Article/Link", r:8, c:0, rp:3, d:"2026-08-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7489280194776653824/"},
-      {t:"We're #hiring a new Customer Marketing Specialist (F/H) - CDD in Greater Mo", ty:"Article/Link", r:6, c:0, rp:0, d:"2026-07-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487107478510456832/"},
-      {t:"We're #hiring a new AP Automation Support Specialist in Coppell, Texas. App", ty:"Article/Link", r:7, c:1, rp:2, d:"2026-07-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486748676527312896/"},
-      {t:"We're #hiring a new Comptable (F/H) - bilingue anglais in Greater Montpelli", ty:"Article/Link", r:3, c:0, rp:2, d:"2026-07-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484567836259082240/"},
-      {t:"We're #hiring a new Office Manager Junior (F/H) - Alternance in Aimargues,", ty:"Article/Link", r:3, c:0, rp:3, d:"2026-07-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484209767490596864/"},
-      {t:"The final stretch Tomorrow is the World Cup final. And it’s also the end", ty:"Video", r:0, c:0, rp:0, d:"2026-07-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484147967004860416/"},
-      {t:"Semi-finals. The last four The end of the road for many. At Yooz, we’re a", ty:"Video", r:0, c:0, rp:0, d:"2026-07-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483423192024244224/"},
-      {t:"We're #hiring a new Field Marketing Specialist - CDD (F/H) in Greater Montp", ty:"Article/Link", r:5, c:0, rp:6, d:"2026-07-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7482035050478452736/"},
-      {t:"We're #hiring a new Functional Test Engineer (F/H) in Greater Montpellier M", ty:"Article/Link", r:1, c:0, rp:1, d:"2026-07-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7481673201194938369/"},
-      {t:"The knockout stage begins One defeat and it’s over. No room for error. In", ty:"Video", r:1, c:0, rp:0, d:"2026-07-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480886474352136192/"},
-      {t:"We're #hiring a new Digital Marketing Manager in Dallas, Texas. Apply today", ty:"Article/Link", r:5, c:0, rp:4, d:"2026-07-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7479498180053671936/"},
-      {t:"We're #hiring a new Customer Success Manager (F/H) - marché Expert-Comptabl", ty:"Article/Link", r:6, c:0, rp:1, d:"2026-07-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7479135440336470016/"},
-      {t:"The knockout stage begins One defeat and it’s over. No room for error. In", ty:"Video", r:7, c:0, rp:1, d:"2026-07-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478349763822895104/"},
-      {t:"We're #hiring a new Auditeur Qualité (F/H) - stage in Aimargues, Occitanie.", ty:"Article/Link", r:3, c:0, rp:1, d:"2026-06-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7476960651513458688/"},
-      {t:"We're #hiring a new Formateur (F/H) - CDD in Greater Montpellier Metropolit", ty:"Article/Link", r:7, c:0, rp:2, d:"2026-06-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7476598498923147264/"},
-      {t:"The group stage is coming to an end, with the line-up for the next round no", ty:"Video", r:17, c:0, rp:2, d:"2026-06-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475813046913949696/"},
-      {t:"The group stage is in full swing On the pitch, some teams are outperformi", ty:"Video", r:1, c:0, rp:0, d:"2026-06-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475458200377561088/"},
-      {t:"We're #hiring a new Integration Specialist in Dallas, Texas. Apply today or", ty:"Article/Link", r:13, c:0, rp:3, d:"2026-06-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7474422885516820480/"},
-      {t:"We're #hiring a new Custom Integrations Developer (F/H) - CDD 3 mois in Gre", ty:"Article/Link", r:2, c:0, rp:1, d:"2026-06-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7474059641669365760/"},
-      {t:"Nous recrutons (#hiring) pour le poste de Customer Success Manager (F/H) -", ty:"Article/Link", r:11, c:0, rp:6, d:"2026-06-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7471886297448550401/"},
-      {t:"We're #hiring a new Standard Integrations Engineer (F/H) - CDD 6 mois in Gr", ty:"Article/Link", r:0, c:0, rp:2, d:"2026-06-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7471525193597992960/"},
-      {t:"We're #hiring a new Project Manager (F/H) - marché FR in Greater Montpellie", ty:"Article/Link", r:7, c:0, rp:4, d:"2026-06-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7469346634183684096/"},
-      {t:"We're #hiring a new Research Project Engineer (F/H) in Greater Montpellier", ty:"Article/Link", r:2, c:0, rp:2, d:"2026-06-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7468986752280535041/"},
-      {t:"That’s a wrap from the P2P Transformation Summit 2026 in London A fantas", ty:"Image", r:52, c:4, rp:1, d:"2026-06-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7468610229069488128/"},
-      {t:"We're #hiring a new HR Executive (F/H) - CDD in Greater Montpellier Metropo", ty:"Article/Link", r:5, c:0, rp:3, d:"2026-05-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7466810119436029953/"},
-      {t:"We're #hiring a new AI Integration Manager in Aimargues, Occitanie. Apply t", ty:"Article/Link", r:5, c:0, rp:4, d:"2026-05-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7466448311353380864/"},
-      {t:"We're #hiring a new Comptable (F/H) - bilingue anglais in Greater Montpelli", ty:"Article/Link", r:3, c:1, rp:3, d:"2026-05-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7464274689985560576/"},
-      {t:"We're #hiring a new Senior Salesforce Consultant (F/H) in Greater Montpelli", ty:"Article/Link", r:4, c:0, rp:3, d:"2026-05-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463914204094369792/"}
-    ]},
-
-    { name: "AvidXchange", url: "https://www.linkedin.com/company/avidxchange-inc-/posts/", posts: [
-      {t:"The Change Maker Awards are back! If you or someone you know is driving", ty:"Image", r:20, c:0, rp:3, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503135196624424960/"},
-      {t:"AI adoption is accelerating. But where should finance teams focus first? F", ty:"Document/carousel", r:14, c:0, rp:7, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501655435402190848/"},
-      {t:"AI-powered AP is helping finance teams move faster, and our customers are s", ty:"Image", r:9, c:0, rp:0, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499103581103390722/"},
-      {t:"Celebrating the people who have helped shape AvidXchange along the way!", ty:"Image", r:126, c:1, rp:2, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498813652385390592/"},
-      {t:"\"Your people strategy is your AI strategy.\" As AI continues to reshape how", ty:"Video", r:58, c:1, rp:10, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495480196318326784/"},
-      {t:"\"AvidXchange allows us to work smarter.\" That's how Ross Tolbert, EVP of Pr", ty:"Image", r:27, c:1, rp:7, d:"2026-07-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7489052845825224704/"},
-      {t:"Every great ERP deserves an AP solution built to help it scale. That's why", ty:"Video", r:22, c:1, rp:11, d:"2026-07-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488321161093812224/"},
-      {t:"Giving back is one of the best ways to come together as a team. From suppor", ty:"Image", r:62, c:1, rp:2, d:"2026-07-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487963880929857536/"},
-      {t:"Career best. Course record. History made. Congratulations to Team AvidXchan", ty:"Image", r:140, c:0, rp:20, d:"2026-07-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486486641474174976/"},
-      {t:"AI-powered AP is making a measurable difference for finance teams, and ther", ty:"Image", r:38, c:1, rp:19, d:"2026-07-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486165271116759040/"},
-      {t:"AI-powered AP isn't what's next. It's what's now. That's why we've embedd", ty:"Video", r:65, c:1, rp:29, d:"2026-07-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483174058906431488/"},
-      {t:"What makes a great technology partnership? On the latest episode of The Pow", ty:"Video", r:36, c:2, rp:7, d:"2026-06-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477726329115865088/"},
-      {t:"Another season, another reason to thank our customers. We're honored to e", ty:"Document/carousel", r:36, c:2, rp:9, d:"2026-06-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475186234038935555/"},
-      {t:"A recent article from The Washington Post serves as an important reminder t", ty:"Repost", r:13, c:2, rp:1, d:"2026-06-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7474886367085277186/"},
-      {t:"Check fraud is becoming one of the most overlooked risks in finance today.", ty:"Image", r:24, c:2, rp:8, d:"2026-06-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7474831446608687104/"},
-      {t:"\"Embedded payments are pushing ERPs from systems of record to systems of", ty:"Video", r:26, c:1, rp:8, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473430940971847681/"},
-      {t:"Congratulations on another IOFM certification, Vicki We're proud to work", ty:"Repost", r:12, c:3, rp:4, d:"2026-06-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473098345243197440/"},
-      {t:"Happy National Accounts Payable Day! Behind every smoothly running busin", ty:"Image", r:69, c:9, rp:18, d:"2026-06-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472649787788394496/"},
-      {t:"The more specialized tech teams become, the harder it is for teams to stay", ty:"Image", r:30, c:1, rp:4, d:"2026-06-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472356284869296129/"},
-      {t:"Payments, now fully embedded in Workday. We’re excited to introduce AvidXch", ty:"Document/carousel", r:99, c:5, rp:22, d:"2026-06-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470121404189876225/"},
-      {t:"We’re excited to welcome Wade Fairey to AvidXchange as Chief Operating Offi", ty:"Image", r:429, c:90, rp:2, d:"2026-06-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7468308152694886401/"},
-      {t:"Our work with Ministry Brands continues to grow as we launch embedded payme", ty:"Document/carousel", r:77, c:3, rp:7, d:"2026-06-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467580843352342528/"},
-      {t:"The technology landscape is constantly evolving, making diverse perspective", ty:"Image", r:62, c:1, rp:5, d:"2026-05-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7466153155949379584/"},
-      {t:"What happens when AP gets faster, more accurate, and more connected? For We", ty:"Image", r:69, c:7, rp:5, d:"2026-05-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465498083494121472/"},
-      {t:"Big partnership and ERP news Building on our strategic partnership with", ty:"Video", r:127, c:6, rp:33, d:"2026-05-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465048813267984384/"},
-      {t:"Another year, another Institute of Finance and Management (IOFM) certificat", ty:"Image", r:26, c:5, rp:1, d:"2026-05-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7464045224793763841/"},
-      {t:"Embedded payment automation is here for Centerbase, the leading practice ma", ty:"Document/carousel", r:75, c:2, rp:16, d:"2026-05-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462510311724720128/"},
-      {t:"Great to see this! Proud of Lindsay Giriunas for representing AvidXchang", ty:"Repost", r:45, c:1, rp:0, d:"2026-05-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7460786656388747266/"},
-      {t:"As AI agents play a bigger role in decision-making, oversight matters more", ty:"Image", r:40, c:7, rp:1, d:"2026-05-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7458231468079603712/"},
-      {t:"Good conversations, great partners, and a little time with Michael Kim. Har", ty:"Image", r:184, c:3, rp:10, d:"2026-05-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7457804073501605888/"},
-      {t:"April is National Volunteer Month, but giving back is something our teammat", ty:"Image", r:66, c:1, rp:4, d:"2026-04-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7455732337293697024/"},
-      {t:"Proud to see our very own Emily Dalton on PBS representing AvidXchange and", ty:"Repost", r:35, c:1, rp:2, d:"2026-04-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7455346073960869888/"},
-      {t:"When it comes to AI’s impact on businesses in Charlotte and beyond, AvidXch", ty:"Article/Link", r:52, c:2, rp:1, d:"2026-04-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7455341875823185920/"},
-      {t:"Big ERP News: Our Accounts Payable as a Service solution is now embedded", ty:"Video", r:85, c:0, rp:18, d:"2026-04-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7454564537992847360/"},
-      {t:"What do AvidXchange customers think of us? These G2 Spring 2026 badges spea", ty:"Document/carousel", r:57, c:3, rp:17, d:"2026-04-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7453525469343182848/"},
-      {t:"Loved seeing my friend and teammate Lindsay Giriunas speak on a panel at th", ty:"Image", r:126, c:12, rp:1, d:"2026-04-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452778648681619456/"},
-      {t:"Proud to partner with CINC Systems to help CAM companies rethink what’s pos", ty:"Repost", r:10, c:0, rp:0, d:"2026-04-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452414808160636928/"},
-      {t:"Accounting can be more than a back-office function. In this episode of Powe", ty:"Video", r:20, c:2, rp:2, d:"2026-04-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7450584316570386434/"},
-      {t:"These findings highlight a growing reality for community management organiz", ty:"Repost", r:14, c:0, rp:1, d:"2026-04-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7448068793425092608/"},
-      {t:"If you’re feeling the effects of inflation and market volatility in your co", ty:"Image", r:19, c:3, rp:3, d:"2026-04-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7445498335735644160/"},
-      {t:"Finance is entering a new phase of transformation. Our CEO, Michael Praeger", ty:"Image", r:158, c:0, rp:3, d:"2026-03-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7442571574383247360/"},
-      {t:"Accounts Payable shouldn’t be this hard. For most CAM companies, AP is manu", ty:"Document/carousel", r:28, c:0, rp:5, d:"2026-03-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437969342056714240/"},
-      {t:"AI can accelerate support, surface insights, and solve complex problems, bu", ty:"Repost", r:17, c:1, rp:10, d:"2026-03-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7436841797445812225/"},
-      {t:"\"The only gap between where AI is and where it could be? The limitations of", ty:"Video", r:9, c:0, rp:1, d:"2026-02-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7433148950372696064/"},
-      {t:"Proud to partner with Acumatica and continue delivering value to our shared", ty:"Repost", r:29, c:1, rp:1, d:"2026-02-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7430708508310007808/"},
-      {t:"At #AcumaticaSummit 2026, we announced our strategic partnership with AvidX", ty:"Article/Link", r:74, c:3, rp:18, d:"2026-02-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7430642150419128320/"},
-      {t:"On the Power of Change podcast, Howard Barash, CFO of Property Resources", ty:"Video", r:24, c:0, rp:8, d:"2026-02-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7430265736079781888/"},
-      {t:"As Peak Property Management continued to grow across the Virginia, so did t", ty:"Image", r:47, c:0, rp:19, d:"2026-02-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7429542303775592451/"},
-      {t:"Finance teams are under pressure. Smaller teams, bigger workloads, higher e", ty:"Image", r:26, c:0, rp:20, d:"2026-02-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7429228153774104578/"},
-      {t:"Big ideas. Real connections. Well-earned recognition. Our revenue team's an", ty:"Image", r:108, c:3, rp:10, d:"2026-02-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7427366349783470081/"}
-    ]},
-
-    { name: "Pagero", url: "https://www.linkedin.com/company/pagero/posts/", posts: [
-      {t:"Delayed payments are often viewed as a temporary challenge. But they can al", ty:"Image", r:5, c:0, rp:2, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505195437377646593/"},
-      {t:"Tomorrow: join Thomson Reuters, IDC and Goodyear for a live discussion on b", ty:"Image", r:4, c:0, rp:2, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505169819105751040/"},
-      {t:"Italy has published new rules governing the automated VAT assessment proced", ty:"Image", r:8, c:0, rp:0, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504116756488060928/"},
-      {t:"Less than a week to go! Join our CEO, Steve Hasker, and Alexander Samuel", ty:"Repost", r:23, c:1, rp:13, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504092486219284480/"},
-      {t:"We're pleased to extend our partnership with Medius through the integration", ty:"Repost", r:10, c:0, rp:2, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503826477403144192/"},
-      {t:"Today, Thomson Reuters teammates across the globe are coming together for G", ty:"Image", r:83, c:2, rp:10, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503789700135084032/"},
-      {t:"Join us at Legal Revolution 2026, 21 to 22 September at Estrel Berlin. Visi", ty:"Image", r:13, c:1, rp:5, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503767228069093377/"},
-      {t:"The EU's biggest VAT reform is set to reshape reporting and e-invoicing acr", ty:"Image", r:15, c:0, rp:1, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503469654976167936/"},
-      {t:"We're excited to announce that Medius and Thomson Reuters have extended the", ty:"Image", r:107, c:0, rp:27, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503459817491955712/"},
-      {t:"Many organisations are investing in AI, but investment alone doesn't guaran", ty:"Repost", r:2, c:0, rp:0, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503437269144543232/"},
-      {t:"A common misconception about e-invoicing? That it's just a compliance proje", ty:"Article/Link", r:11, c:0, rp:0, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503380432063758336/"},
-      {t:"UK corporate decision-makers are reassessing their outside firms (and their", ty:"Article/Link", r:26, c:0, rp:1, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503097610472235011/"},
-      {t:"Still time to register! If you're responsible for UK accounts, statutory re", ty:"Image", r:13, c:0, rp:8, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503052773966528512/"},
-      {t:"Finance, compliance, operations, and IT leaders: if you're building an e-in", ty:"Image", r:3, c:0, rp:3, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503002962965917696/"},
-      {t:"Peppol has become one of the most important frameworks in global e-invoicin", ty:"Image", r:19, c:0, rp:0, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502684739540000768/"},
-      {t:"Portugal has issued updated guidance on invoice corrections, consolidating", ty:"Image", r:20, c:0, rp:1, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501183850056679424/"},
-      {t:"E-invoicing isn't a country-by-country compliance problem anymore. It's an", ty:"Image", r:14, c:0, rp:1, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500833467312545792/"},
-      {t:"Today at #ILTACON2026, the largest legal technology conference globally, we", ty:"Video", r:1079, c:287, rp:965, d:"2026-08-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500128878607278080/"},
-      {t:"Slovakia's Financial Administration has confirmed that the technical infras", ty:"Image", r:48, c:0, rp:7, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498737943168094208/"},
-      {t:"When discussing VAT in the Digital Age (ViDA), regulatory penalties often d", ty:"Image", r:24, c:0, rp:6, d:"2026-08-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498346649673551873/"},
-      {t:"Spain's Senate has approved a motion calling for a unified VAT reporting fr", ty:"Image", r:49, c:0, rp:5, d:"2026-08-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496177973318983680/"},
-      {t:"Every major AI lab has bet that frontier performance requires billions in c", ty:"Text", r:126, c:2, rp:46, d:"2026-08-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496161528518303744/"},
-      {t:"We're bringing Connect to Frankfurt! Join Thomson Reuters and your peers fr", ty:"Image", r:51, c:1, rp:26, d:"2026-08-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496119684845441025/"},
-      {t:"If your business operates in France, the countdown to e-invoicing complianc", ty:"Article/Link", r:34, c:4, rp:13, d:"2026-08-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495019249808318464/"},
-      {t:"German authorities have published a new action plan to combat tax and finan", ty:"Image", r:53, c:0, rp:6, d:"2026-08-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493596054496641024/"},
-      {t:"Would you rather your AI learn from tax experts or from the internet? In th", ty:"Video", r:74, c:0, rp:14, d:"2026-08-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493230707318894592/"},
-      {t:"Compliance Connect London was a hit. Now we're taking the conversation acro", ty:"Video", r:38, c:4, rp:11, d:"2026-08-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491471730096410624/"},
-      {t:"France has published additional regulations ahead of its September 2026 e-i", ty:"Image", r:73, c:2, rp:13, d:"2026-08-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491126209926316032/"},
-      {t:"When invoice processing becomes more efficient, the benefits extend across", ty:"Image", r:42, c:0, rp:1, d:"2026-08-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490671450174001152/"},
-      {t:"AI is changing how tax teams approach compliance. ONESOURCE Indirect Compli", ty:"Video", r:28, c:1, rp:3, d:"2026-07-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487403304793124864/"},
-      {t:"Come take a walk down knowers lane and meet The CoCo — the result of 175 ye", ty:"Video", r:1864, c:70, rp:809, d:"2026-07-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7485225964449296384/"},
-      {t:"Too much insight to scribble down in one notebook! Compliance Connect Londo", ty:"Video", r:39, c:0, rp:5, d:"2026-07-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484838266094018560/"},
-      {t:"The UK's e-invoicing mandate is pushing businesses to rethink how they hand", ty:"Video", r:68, c:0, rp:2, d:"2026-07-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483777729956601856/"},
-      {t:"More than an event. A community in motion. Compliance Connect London 2026 b", ty:"Video", r:17, c:0, rp:4, d:"2026-07-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7482765932344414208/"},
-      {t:"New e-invoicing and digital tax reporting developments are shaping complian", ty:"Video", r:42, c:0, rp:2, d:"2026-07-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7481293772732084225/"},
-      {t:"Tax has gone from background function to business priority. Along with this", ty:"Video", r:60, c:2, rp:5, d:"2026-07-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7481241484453830657/"},
-      {t:"Many businesses know ViDA is coming. Fewer know what readiness actually loo", ty:"Video", r:80, c:2, rp:9, d:"2026-07-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480123535525511168/"},
-      {t:"\"Getting it good isn't good enough. You have to get it right.\" In a world o", ty:"Video", r:46, c:0, rp:7, d:"2026-07-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478413076682149889/"},
-      {t:"With e‑invoicing mandates accelerating worldwide and continuous transaction", ty:"Video", r:40, c:0, rp:8, d:"2026-06-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477254668339953665/"},
-      {t:"OpenPeppol Conference 2026 brought together valuable perspectives on the fu", ty:"Image", r:29, c:0, rp:0, d:"2026-06-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475877193366118400/"},
-      {t:"\"Connect with peers. Map the future. Discover innovative approaches to the", ty:"Image", r:50, c:0, rp:2, d:"2026-06-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475809421659623424/"},
-      {t:"ONESOURCE Indirect Compliance powered by CoCounsel is now live, our new AI‑", ty:"Image", r:82, c:1, rp:10, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473369074664824833/"},
-      {t:"Compliance Connect London 2026 is underway, bringing together tax, finance,", ty:"Image", r:74, c:1, rp:10, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473310376290455552/"},
-      {t:"Tax teams deserve better than spreadsheets and disconnected processes. Meet", ty:"Video", r:19, c:0, rp:2, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473280304548577280/"},
-      {t:"Stronger together, in every sense! We are still buzzing with excitement fro", ty:"Video", r:35, c:0, rp:4, d:"2026-06-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472944732747431937/"},
-      {t:"How do your teams track e‑invoicing deadlines and regulation details across", ty:"Video", r:124, c:2, rp:25, d:"2026-06-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472578775411593216/"},
-      {t:"Global e-invoicing developments are moving fast. Paraguay, Sri Lanka, the U", ty:"Video", r:50, c:0, rp:7, d:"2026-06-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7471105531017945089/"},
-      {t:"The shift from PDFs to automated, structured finance is underway across Eur", ty:"Video", r:73, c:0, rp:6, d:"2026-06-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467846851669438464/"},
-      {t:"We’re proud to bring together a standout group of speakers for Compliance C", ty:"Document/carousel", r:61, c:1, rp:9, d:"2026-06-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467470237190397952/"},
-      {t:"Register for Compliance Connect 2026 in London to discover how you can acce", ty:"Video", r:21, c:0, rp:3, d:"2026-05-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462752350416392192/"}
-    ]},
-
-    { name: "Compleat", url: "https://www.linkedin.com/company/compleat-software-ltd/posts/", posts: [
-      {t:"97% of #finance teams have adopted #AI. Only 23% say it's exceeding expecta", ty:"Image", r:1, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503755624485134337/"},
-      {t:"96% of UK charities have restricted their own services this year. Energy co", ty:"Image", r:1, c:0, rp:0, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503075060723740672/"},
-      {t:"Global business travel spend is set to hit $1.71 trillion this year. Trip v", ty:"Image", r:1, c:0, rp:1, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501582380705439744/"},
-      {t:"The #DfE has quietly updated the academies chart of accounts for 2026-27. I", ty:"Image", r:1, c:0, rp:1, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500924009971265536/"},
-      {t:"If your #nonprofit passes federal grant money to subrecipients, the complia", ty:"Image", r:1, c:0, rp:1, d:"2026-08-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500198637067468800/"},
-      {t:"K-12 families are spending 24% more per student on back-to-school than seve", ty:"Image", r:4, c:0, rp:0, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499111478810087424/"},
-      {t:"October 1, 2026 is coming up fast for any nonprofit that relies on federal", ty:"Image", r:8, c:0, rp:3, d:"2026-08-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491116339487596544/"},
-      {t:"Ask most finance leaders how long an invoice takes to get approved, and the", ty:"Image", r:4, c:0, rp:1, d:"2026-08-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490755774927773696/"},
-      {t:"There's one question that comes up in almost every board meeting. And it's", ty:"Image", r:6, c:0, rp:0, d:"2026-08-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490347651444596737/"},
-      {t:"#HMRC isn't reviewing charity finances the way it used to. Structured risk", ty:"Image", r:1, c:0, rp:0, d:"2026-08-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7489984808861822977/"},
-      {t:"#ESSERfunding is gone. Enrollment is down in nearly 30 of the 50 largest US", ty:"Image", r:1, c:0, rp:0, d:"2026-08-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7489667342470197248/"},
-      {t:"Most expense fraud doesn't look like fraud. It looks like a slightly genero", ty:"Image", r:0, c:0, rp:0, d:"2026-08-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7489260821148045312/"},
-      {t:"The Academy Trust Handbook 2026 takes effect on 1 October, right as 37% of", ty:"Image", r:3, c:0, rp:2, d:"2026-07-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488898113190055936/"},
-      {t:"Most finance professionals spend the majority of their week on things that", ty:"Image", r:1, c:0, rp:0, d:"2026-07-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488580665567789056/"},
-      {t:"Tariffs aren't a one-off cost anymore. They're a slow leak. New data shows", ty:"Image", r:3, c:0, rp:0, d:"2026-07-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488217593019981825/"},
-      {t:"Britain has a new Prime Minister, and a Budget date that's still pending. A", ty:"Image", r:0, c:0, rp:0, d:"2026-07-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487896182388719616/"},
-      {t:"The best finance leaders in the room aren't the most technically brilliant.", ty:"Image", r:3, c:0, rp:3, d:"2026-07-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487131493480263680/"},
-      {t:"Holkham Hall's Finance Director used to run a team where 90% of their time", ty:"Video", r:6, c:0, rp:1, d:"2026-07-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486408043556081664/"},
-      {t:"There's five dimensions of finance leadership that separate the professiona", ty:"Image", r:3, c:0, rp:0, d:"2026-07-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7485636367042101250/"},
-      {t:"What's your cash position right now? This is the question that separates in", ty:"Video", r:7, c:0, rp:1, d:"2026-07-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484956402730348546/"},
-      {t:"What type of finance leader are you? The finance leaders who get noticed ar", ty:"Video", r:4, c:0, rp:1, d:"2026-07-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483461367270711297/"},
-      {t:"How much of your finance team's day is spent creating value and how much is", ty:"Image", r:1, c:0, rp:1, d:"2026-06-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477300278048952320/"},
-      {t:"AI isn’t replacing finance professionals but it will change what makes them", ty:"Image", r:2, c:0, rp:0, d:"2026-06-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475535259619659776/"},
-      {t:"A grant award is only the beginning of the story. The real challenge starts", ty:"Image", r:1, c:0, rp:0, d:"2026-06-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7474766582443880448/"},
-      {t:"Finance careers used to be built on technical expertise alone, but today, t", ty:"Image", r:0, c:0, rp:0, d:"2026-06-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473677238580883456/"},
-      {t:"The conversation around the Children's Wellbeing and Schools Bill has focus", ty:"Image", r:0, c:0, rp:0, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473359644447563777/"},
-      {t:"School district finance teams are used to managing tight budgets. What’s di", ty:"Image", r:1, c:0, rp:0, d:"2026-06-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473038283560648704/"},
-      {t:"#HMRC has increased funding for #charities supporting vulnerable customers", ty:"Image", r:2, c:0, rp:0, d:"2026-06-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7471169462801645569/"},
-      {t:"We’re all set up at EdExec: Live Events for School Business Professionals (", ty:"Article/Link", r:9, c:0, rp:0, d:"2026-06-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470406167513640960/"},
-      {t:"Everyone talks about removing friction from business processes but some fri", ty:"Image", r:1, c:0, rp:0, d:"2026-05-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7466067196612390912/"},
-      {t:"Most #financereporting is accurate, but it’s also just slightly behind real", ty:"Image", r:1, c:0, rp:0, d:"2026-05-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465341483160653825/"},
-      {t:"Most finance teams assume they're already sending and receiving invoices el", ty:"Video", r:6, c:0, rp:1, d:"2026-05-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7464979234369921024/"},
-      {t:"Most companies have two systems. Their official one… and the one people act", ty:"Image", r:4, c:1, rp:0, d:"2026-05-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463576428425564160/"},
-      {t:"The UK e-invoicing mandate will change how businesses send and receive invo", ty:"Image", r:5, c:0, rp:0, d:"2026-05-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463159193240449024/"},
-      {t:"Most finance teams we speak to think they're broadly ready for the UK #einv", ty:"Image", r:3, c:0, rp:0, d:"2026-05-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462128216351141888/"},
-      {t:"What a week for #JMTInnovate in Washington! Compleat Software were proud to", ty:"Repost", r:9, c:1, rp:0, d:"2026-05-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7458434660872781824/"},
-      {t:"We had an amazing time Tuesday night on the red carpet sponsored by Complea", ty:"Image", r:45, c:0, rp:2, d:"2026-05-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7458245252403916800/"},
-      {t:"Most organisations don’t have a spending problem, they have a behaviour pro", ty:"Image", r:6, c:0, rp:0, d:"2026-04-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7454826646961926146/"},
-      {t:"There’s a growing gap between how people buy and how finance expects to con", ty:"Image", r:2, c:0, rp:0, d:"2026-04-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452320918632214528/"},
-      {t:"Most finance teams are not struggling because of a lack of skill or effort.", ty:"Article/Link", r:3, c:0, rp:0, d:"2026-04-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7447291154355613697/"},
-      {t:"There is a difference between a system that includes purchasing functionali", ty:"Article/Link", r:6, c:0, rp:0, d:"2026-03-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7443331387388141569/"},
-      {t:"Late payments are no longer just an operational headache. The UK government", ty:"Article/Link", r:4, c:1, rp:0, d:"2026-03-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7442531747390439425/"},
-      {t:"Growth is supposed to feel good. More funding, more programmes, more impact", ty:"Article/Link", r:2, c:0, rp:0, d:"2026-03-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7441865758172729345/"},
-      {t:"Approvals aren’t the same as control. Most school districts have plenty of", ty:"Article/Link", r:2, c:0, rp:0, d:"2026-03-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440059329057058816/"},
-      {t:"We love hearing how long-term users continue to see value from Compleat. Lu", ty:"Video", r:7, c:0, rp:0, d:"2026-02-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7424793627194798080/"},
-      {t:"Quick poll for the finance & ops crowd Do you know how much invoice proc", ty:"Poll", r:2, c:1, rp:1, d:"2026-01-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7422593813661081600/"},
-      {t:"Visibility and control matter. Europa Oil & Gas Plc shares how flexible app", ty:"Video", r:13, c:0, rp:0, d:"2026-01-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7422233583735590912/"},
-      {t:"When finance saves time and brings people together. Spend control, visibili", ty:"Video", r:8, c:0, rp:0, d:"2026-01-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7420052303585361920/"},
-      {t:"When your finance team spends less time processing and more time thinking,", ty:"Video", r:13, c:0, rp:1, d:"2026-01-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7419361408586244096/"},
-      {t:"Absolutely spot on, Ceri Bates ! At Compleat, we’d never dream of disrupt", ty:"Repost", r:5, c:0, rp:0, d:"2025-12-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7407423911413301248/"}
-    ]},
-
-    { name: "Tungsten Automation", url: "https://www.linkedin.com/company/tungstenautomation/posts/", posts: [
-      {t:"A Leader. Again! We’ve been named a Leader in the 2026 Gartner Magic Quadr", ty:"Image", r:0, c:0, rp:1, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505264464016011264/"},
-      {t:"Most AP teams do the work twice. Approve the invoice in one system, then re", ty:"Image", r:13, c:0, rp:1, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505185475545059328/"},
-      {t:"Sydney Summit came and went — and if you were interstate, across the ditch", ty:"Image", r:4, c:0, rp:1, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504297791293255681/"},
-      {t:"Most organizations believe they are progressing with AI. In reality, they a", ty:"Image", r:1, c:0, rp:1, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504211288563179520/"},
-      {t:"Tungsten Automation has again been named a Leader in the 2026 Gartner Magi", ty:"Image", r:97, c:2, rp:29, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504204642948435969/"},
-      {t:"WonderBotz and Tungsten Automation are Houston-bound Join us next week a", ty:"Image", r:21, c:0, rp:3, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503848646539640832/"},
-      {t:"Most finance teams will tell you they don't have an invoicing fraud problem", ty:"Image", r:11, c:0, rp:1, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503848594731536384/"},
-      {t:"Teaching people to use AI was step one, nobody planned for step two. Learn", ty:"Image", r:1, c:0, rp:1, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503829854593822720/"},
-      {t:"Great energy at the Public Sector Network Queensland Innovation Showcase to", ty:"Image", r:52, c:3, rp:1, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503767820896382977/"},
-      {t:"We spent two days having great conversations while attending and sponsoring", ty:"Image", r:29, c:0, rp:1, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503763165604818945/"},
-      {t:"95% of enterprise AI pilots never make it to production. In banking, the re", ty:"Image", r:0, c:0, rp:1, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503754314537140224/"},
-      {t:"Your ex-employee left, their access didn’t. Classic. Roles change. Contract", ty:"Image", r:3, c:0, rp:1, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503422297622528001/"},
-      {t:"See how Sudarshan Chemical went from managing compliance across multiple sy", ty:"Image", r:1, c:0, rp:1, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503391877614960642/"},
-      {t:"Learn why most \"AI-ready\" enterprises aren't, and what closes the gap throu", ty:"Image", r:6, c:0, rp:5, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503029482354700288/"},
-      {t:"Join us on 17th September, 2026 at 10:00 AM UK time to learn how Tungsten A", ty:"Image", r:4, c:0, rp:1, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502651974396338176/"},
-      {t:"Read Kate Bohn's featured article to learn why print is your biggest compli", ty:"Image", r:7, c:0, rp:3, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501579963968471040/"},
-      {t:"Ask a finance leader where their process breaks down and you'll usually hea", ty:"Image", r:49, c:0, rp:15, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501316652253437952/"},
-      {t:"68% of trade professionals now call supply chain management their top strat", ty:"Image", r:1, c:0, rp:2, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501308307177984000/"},
-      {t:"95% touchless invoice postings. That's not a Jungheinrich win. That's what", ty:"Video", r:9, c:0, rp:5, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501217450865233920/"},
-      {t:"Two things happened this week that don't usually get mentioned in the same", ty:"Text", r:14, c:2, rp:1, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500939202218377216/"},
-      {t:"Every invoice is a payment decision, which bank, which rail, which timing.", ty:"Image", r:7, c:0, rp:4, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500885366745370624/"},
-      {t:"Your paperwork is quietly costing you six figures. You just haven't found t", ty:"Image", r:6, c:0, rp:2, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500855191886295043/"},
-      {t:"Still tracking e-invoicing mandates by checking government sites once a qua", ty:"Image", r:4, c:0, rp:4, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500523245176025088/"},
-      {t:"Today is the day. France's e-invoicing mandate is live. For the teams", ty:"Image", r:72, c:0, rp:11, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500502504699305985/"},
-      {t:"As the summer winds down and the kids go back to school, I'm reminded of th", ty:"Image", r:26, c:0, rp:1, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500493199141134336/"},
-      {t:"One navy warship generates 150 TB of sensor data a day. One day of Maxar im", ty:"Image", r:14, c:0, rp:5, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500462560664600576/"},
-      {t:"We had such a good conversation at PSN NSW, we're doing it again in Queensl", ty:"Image", r:14, c:0, rp:2, d:"2026-08-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500245132038975488/"},
-      {t:"Last chance to register to our upcoming webinar! https://ow.ly/Wb1k50ZtNaC", ty:"Image", r:9, c:0, rp:5, d:"2026-08-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500130332650807296/"},
-      {t:"Everyone's coaching executives on \"how to talk about AI.\" Almost nobody's c", ty:"Image", r:4, c:0, rp:3, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499073495147147266/"},
-      {t:"Be part of CXOCIETY’s 7th Annual C-Engage Convention 2026 at Marina Bay San", ty:"Image", r:5, c:0, rp:2, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499063407116017664/"},
-      {t:"Most finance automation projects fail for the same reason: leadership fixes", ty:"Video", r:5, c:0, rp:1, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499035554844499968/"},
-      {t:"Société Générale Algérie reduced their onboarding time from 30 days to just", ty:"Poll", r:3, c:1, rp:3, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498746332287881217/"},
-      {t:"163% productivity gains from AI adoption. Sounds incredible. Then why is yo", ty:"Image", r:12, c:0, rp:3, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498711140126883841/"},
-      {t:"Why do generative AI and IDP now depend on each other? https://ow.ly/8C8250", ty:"Image", r:7, c:0, rp:10, d:"2026-08-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498363986439077888/"},
-      {t:"IDP used to be about reading documents. Now it is about feeding enterprise", ty:"Document/carousel", r:10, c:1, rp:3, d:"2026-08-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498322181592985600/"},
-      {t:"Heute sind wir mit #PowerPDF auf der #Connect2026 von #brackalltron unterwe", ty:"Image", r:48, c:0, rp:5, d:"2026-08-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498313624784908288/"},
-      {t:"Great time in Hyderabad last week! Lots of discussions on WonderBotz and Tu", ty:"Repost", r:10, c:0, rp:1, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498049264850214913/"},
-      {t:"eInvoicing is moving rapidly from finance-process improvement to regulatory", ty:"Video", r:18, c:0, rp:3, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498049194599915520/"},
-      {t:"Last week, WonderBotz and Tungsten Automation came together at the GCC & Sh", ty:"Image", r:40, c:0, rp:5, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498048981151727616/"},
-      {t:"Last week, WonderBotz and Tungsten Automation came together at the GCC & Sh", ty:"Image", r:40, c:0, rp:5, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498019017559855106/"},
-      {t:"Your AI initiative is about to hit a wall. Not because the technology isn't", ty:"Image", r:16, c:0, rp:5, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497940957502386176/"},
-      {t:"PDF is everywhere. But the opportunity goes far beyond licenses. PDF remain", ty:"Image", r:19, c:0, rp:2, d:"2026-08-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497653056269058049/"},
-      {t:"Tomorrow: The e-Invoice Compliance Updates You Can't Afford to Miss R", ty:"Image", r:11, c:0, rp:4, d:"2026-08-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497593629692256256/"},
-      {t:"Your AI isn't broken, your documents are. Every enterprise chasing agentic", ty:"Article/Link", r:7, c:2, rp:3, d:"2026-08-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7497567167916261376/"},
-      {t:"Most IDP projects stall because accuracy in production never matches the de", ty:"Image", r:5, c:0, rp:3, d:"2026-08-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496582145834938369/"},
-      {t:"I'm looking forward to being in Sacramento for the California Government Te", ty:"Text", r:7, c:1, rp:1, d:"2026-08-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496566505204027393/"},
-      {t:"Nobody wants to hear this, but: most \"AI-ready\" companies aren't. They boug", ty:"Document/carousel", r:6, c:0, rp:4, d:"2026-08-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496506544222736384/"},
-      {t:"Process Director from Tungsten Automation Achieves SAP-certified for clean", ty:"Image", r:26, c:0, rp:9, d:"2026-08-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496235085646618624/"},
-      {t:"Government records teams have made real progress digitizing information. Bu", ty:"Image", r:7, c:0, rp:2, d:"2026-08-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496204912322785281/"},
-      {t:"Germany's e-invoicing clock is ticking. Starting January 1, 2027, German", ty:"Image", r:14, c:0, rp:6, d:"2026-08-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495842425370906624/"}
-    ]},
-
-    { name: "onPhase", url: "https://www.linkedin.com/company/onphase/posts/", posts: [
-      {t:"More than 75% of U.S. organizations experienced attempted or actual payment", ty:"Repost", r:1, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503849348430995457/"},
-      {t:"When invoices, contracts, approvals, and operational data live in different", ty:"Repost", r:1, c:0, rp:0, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503466567268012032/"},
-      {t:"Finance teams don't need more disconnected systems. They need a single sour", ty:"Image", r:10, c:0, rp:3, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503465421350563840/"},
-      {t:"Profit isn’t only lost on the lot. It can disappear quietly in the back off", ty:"Image", r:12, c:0, rp:2, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503086998514118656/"},
-      {t:"AI strategy is easy to talk about. Turning it into measurable business impa", ty:"Repost", r:9, c:0, rp:1, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501359680674234368/"},
-      {t:"The world doesn't need another high-level discussion about AI. That's why w", ty:"Image", r:27, c:1, rp:12, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501300522105126912/"},
-      {t:"Every invoice. Every approval. Every supplier flag. Finance sees the busine", ty:"Image", r:6, c:1, rp:1, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500912673333637120/"},
-      {t:"AI can spot anomalies. AI can surface patterns. AI can help identify risk.", ty:"Image", r:10, c:0, rp:5, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500507838193000450/"},
-      {t:"It's official: onPhase is on the Inc. 5000 list...again! For the second", ty:"Video", r:36, c:0, rp:8, d:"2026-08-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498365417640423425/"},
-      {t:"Ask a healthcare CFO where their HIPAA risk lives, and AP is almost never t", ty:"Image", r:5, c:1, rp:2, d:"2026-08-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498013568370483200/"},
-      {t:"Q4 is coming. Your AP team already knows. The instinct is to brace for volu", ty:"Document/carousel", r:7, c:1, rp:1, d:"2026-08-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496201629101375489/"},
-      {t:"Our team has been on the road all year and we're just getting started! We a", ty:"Video", r:14, c:0, rp:2, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495476853881872384/"},
-      {t:"Every dealership has that one process... You know the one. The process ever", ty:"Image", r:13, c:0, rp:1, d:"2026-08-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493664913970868224/"},
-      {t:"We're officially Certified in Karmak's Alliance Program. We've been working", ty:"Image", r:73, c:5, rp:16, d:"2026-08-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493390772918964224/"},
-      {t:"We're officially Certified in Karmak's Alliance Program. We've been working", ty:"Image", r:73, c:5, rp:16, d:"2026-08-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493291656604205056/"},
-      {t:"The Hackett Group found $1.7 trillion in excess working capital hiding amon", ty:"Event", r:27, c:0, rp:8, d:"2026-08-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493045585298518016/"},
-      {t:"Microsoft Dynamics GP is losing support at the end of 2029, and ERP migrati", ty:"Document/carousel", r:7, c:1, rp:1, d:"2026-08-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491128198966095872/"},
-      {t:"Month-end across multiple rooftops can turn into a scavenger hunt. An invoi", ty:"Image", r:6, c:0, rp:0, d:"2026-08-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490403423180288000/"},
-      {t:"Account Executive – B2B SaaS Sales | OnPhase | Rust Belt (MI/IN/OH/PA) | Dr", ty:"Article/Link", r:4, c:0, rp:3, d:"2026-08-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490098760102924288/"},
-      {t:"Hiring: Account Executive, Mid Atlantic Territory | OnPhase | B2B SaaS Sale", ty:"Article/Link", r:4, c:0, rp:3, d:"2026-08-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490072016600006656/"},
-      {t:"Moving from paper invoices to email. Expanding supplier portals. Automating", ty:"Video", r:6, c:0, rp:0, d:"2026-07-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488591483885916161/"},
-      {t:"Fixed ops isn't a side department anymore. It's carrying the dealership. He", ty:"Image", r:9, c:1, rp:0, d:"2026-07-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488229095948918784/"},
-      {t:"Last week was a launch, in every sense of the word. For the first time, we", ty:"Image", r:95, c:4, rp:5, d:"2026-07-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486790882701185024/"},
-      {t:"Last week was a launch, in every sense of the word. For the first time, we", ty:"Image", r:95, c:4, rp:5, d:"2026-07-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486076411406073856/"},
-      {t:"\"Start with the end in mind.\" That was one of the biggest takeaways from ou", ty:"Video", r:13, c:0, rp:0, d:"2026-07-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480981338637045760/"},
-      {t:"Excited for #PSC2026 this September in San Diego! As a strategic partner of", ty:"Repost", r:13, c:0, rp:0, d:"2026-07-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480368497747804160/"},
-      {t:"Our Certified Partner Spotlight series continues with onPhase! We're exc", ty:"Image", r:7, c:2, rp:1, d:"2026-07-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480324641794748416/"},
-      {t:"On July 14, we are teaming up with Procede Software to show dealer groups w", ty:"Event", r:9, c:0, rp:3, d:"2026-07-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478121513691377665/"},
-      {t:"Most cash flow problems aren't cash flow problems. They're timing problems.", ty:"Document/carousel", r:6, c:1, rp:1, d:"2026-06-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475183132762206209/"},
-      {t:"\"At the six month mark, I could finally breathe each day.\" — Ashley Felts,", ty:"Video", r:9, c:0, rp:0, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473400397852975104/"},
-      {t:"The best dealership finance teams right now aren't waiting for the market t", ty:"Document/carousel", r:14, c:1, rp:4, d:"2026-06-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473008805664993281/"},
-      {t:"The biggest challenge finance teams are facing right now isn’t just change", ty:"Video", r:10, c:0, rp:1, d:"2026-06-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7468660151177211905/"},
-      {t:"Audit season doesn't knock. It just walks in. And when it does, most AP tea", ty:"Document/carousel", r:7, c:1, rp:1, d:"2026-06-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467935375597027328/"},
-      {t:"What does getting time back actually look like in finance? It is easy to sa", ty:"Video", r:8, c:0, rp:0, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465837492169019393/"},
-      {t:"Most finance teams aren't flying blind. They're flying with partial visibil", ty:"Repost", r:6, c:0, rp:0, d:"2026-05-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465037944483999744/"},
-      {t:"Finance teams don’t need more disconnected tools. They need better visibili", ty:"Image", r:12, c:0, rp:3, d:"2026-05-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465037172895625217/"},
-      {t:"This is exactly why we do what we do. Real visibility. Real results. And a", ty:"Repost", r:8, c:0, rp:0, d:"2026-05-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463649959687553024/"},
-      {t:"Just wrapped up speaking at the Southeast Comptroller's Conference with onP", ty:"Image", r:25, c:1, rp:2, d:"2026-05-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463581388710203392/"},
-      {t:"One of the most common ways to expose AP bottlenecks? Having someone go out", ty:"Video", r:11, c:0, rp:0, d:"2026-05-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463224333193338880/"},
-      {t:"onPhase is proud to join the Associated Equipment Distributors community. W", ty:"Repost", r:12, c:0, rp:0, d:"2026-05-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462228114417463297/"},
-      {t:"AED welcomes onPhase! onPhase provides accounts payable automation and paym", ty:"Image", r:21, c:1, rp:3, d:"2026-05-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462185377345212416/"},
-      {t:"That’s a wrap on Transform, our customer-dedicated roadshow!! Over two pack", ty:"Image", r:39, c:2, rp:4, d:"2026-05-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7461055087839289344/"},
-      {t:"If OCR alone solved invoice processing, AP teams wouldn’t still be fixing e", ty:"Document/carousel", r:8, c:0, rp:1, d:"2026-05-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7459600454587437056/"},
-      {t:"Change is constant in AP. New problems, new processes, more to keep up with", ty:"Video", r:16, c:0, rp:0, d:"2026-05-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7455976576053125120/"},
-      {t:"Supplier onboarding isn’t an admin task. It’s a risk control point. In a po", ty:"Text", r:14, c:1, rp:1, d:"2026-04-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7453151777157439488/"},
-      {t:"As AI continues to reshape AP and payment processes, one thing is clear: wh", ty:"Video", r:9, c:0, rp:0, d:"2026-04-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7450903145800634368/"},
-      {t:"If your ERP is supposed to solve AP, why is your team still: • Rekeying inv", ty:"Document/carousel", r:8, c:1, rp:1, d:"2026-04-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7449815982140796929/"},
-      {t:"Are you automating Accounts Payable, or just speeding up mistakes? The", ty:"Image", r:12, c:0, rp:2, d:"2026-04-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7449813204022738944/"},
-      {t:"Move faster. Reduce risk. Keep up with AI. Support growth. Tighten controls", ty:"Document/carousel", r:8, c:2, rp:1, d:"2026-04-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7448426716521201665/"},
-      {t:"Month-end close is hell week for accountants, but it doesn't have to be. Be", ty:"Video", r:18, c:0, rp:2, d:"2026-04-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7445104939951046656/"}
-    ]},
-
-    { name: "MineralTree", url: "https://www.linkedin.com/company/mineraltree-inc-/posts/", posts: [
-      {t:"Consumers are embracing AI for discovery, research and comparison, but when", ty:"Image", r:33, c:1, rp:7, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505243969421996033/"},
-      {t:"There was plenty to take in at Genius World — from thought-provoking conver", ty:"Document/carousel", r:52, c:1, rp:6, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504236213961154560/"},
-      {t:"What keeps SMB retailers up at night? We spoke with store owners to uncover", ty:"Article/Link", r:35, c:2, rp:5, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501664883378376705/"},
-      {t:"Curious about how AI is changing the way we shop and pay? Tune in as our ow", ty:"Article/Link", r:77, c:3, rp:7, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501487462540759040/"},
-      {t:"Throughout our transformation journey as a unified organization, we’ve cont", ty:"Article/Link", r:67, c:2, rp:4, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500930049232084992/"},
-      {t:"We're redefining what it means to lead at Genius World! From dynamic conver", ty:"Image", r:264, c:0, rp:10, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499157667760734208/"},
-      {t:"French consumers have clear payment preferences when it comes to debit card", ty:"Repost", r:8, c:1, rp:2, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499093174624182272/"},
-      {t:"Cards and digital wallets continue to be the preferred payment method acros", ty:"Repost", r:74, c:4, rp:10, d:"2026-08-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495162524816990208/"},
-      {t:"Across North America, cards dominate — with direct use of credit, debit and", ty:"Image", r:31, c:0, rp:3, d:"2026-08-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495102204626800640/"},
-      {t:"Embedded payments have moved from a nice-to-have to a competitive advantage", ty:"Repost", r:110, c:1, rp:7, d:"2026-08-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493026963805323264/"},
-      {t:"For small businesses, time is one of the most valuable resources, yet many", ty:"Image", r:46, c:1, rp:4, d:"2026-08-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7492935374973943809/"},
-      {t:"Boosting authorization rates can have a significant impact on business perf", ty:"Repost", r:53, c:1, rp:3, d:"2026-08-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491131045044547585/"},
-      {t:"Coda, an international leader in digital content monetization relies on Wor", ty:"Document/carousel", r:47, c:2, rp:14, d:"2026-08-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490806385702633472/"},
-      {t:"After 39 unforgettable days, the world’s biggest international football tou", ty:"Video", r:57, c:0, rp:3, d:"2026-07-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488596566518214656/"},
-      {t:"One week. Endless opportunities to thrive. Globalpayers around the worl", ty:"Image", r:168, c:1, rp:9, d:"2026-07-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487860441667248131/"},
-      {t:"What are the preferred payment methods in Canada and what options are on th", ty:"Repost", r:52, c:1, rp:1, d:"2026-07-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486124249082998784/"},
-      {t:"Commerce is in constant motion, and in France, the Global Payments Report 2", ty:"Image", r:38, c:2, rp:2, d:"2026-07-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486012290602016769/"},
-      {t:"The mass movement of tourists around a major international sporting event i", ty:"Video", r:118, c:3, rp:15, d:"2026-07-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483505976621473792/"},
-      {t:"As international football fans continue to flock to the US, Canada and Mexi", ty:"Document/carousel", r:137, c:4, rp:56, d:"2026-07-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483140637672894464/"},
-      {t:"In Canada, credit cards remain the country's dominant payment method, used", ty:"Image", r:22, c:0, rp:9, d:"2026-07-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7482494137368485888/"},
-      {t:"Shoppers are increasingly seeking environmentally conscious choices at the", ty:"Video", r:135, c:2, rp:8, d:"2026-07-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7482426394862366720/"},
-      {t:"Earlier this year, Globalpayers from across the globe came together to form", ty:"Image", r:400, c:1, rp:10, d:"2026-07-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7481346540498825219/"},
-      {t:"Within the restaurant space where speed, accuracy and convenience define th", ty:"Image", r:287, c:1, rp:50, d:"2026-07-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480976587618758656/"},
-      {t:"Our executive leadership team was recently in London to meet with some of o", ty:"Image", r:423, c:0, rp:6, d:"2026-07-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480961479664513025/"},
-      {t:"The Asia-Pacific region is driven by mobile-first consumers and government", ty:"Repost", r:7, c:0, rp:0, d:"2026-07-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478123567692521472/"},
-      {t:"As we celebrate Pride Month, we asked members of our Pride LGBTQ+ Inclusion", ty:"Document/carousel", r:136, c:2, rp:8, d:"2026-06-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477724070302797824/"},
-      {t:"Global Payments Worldpay for Platforms' just dropped the 2026 Merchant Insi", ty:"Repost", r:123, c:0, rp:16, d:"2026-06-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475219866518528001/"},
-      {t:"The 2026 Merchant Insider Report is live! This year's report is packed with", ty:"Video", r:24, c:0, rp:6, d:"2026-06-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475171191348072449/"},
-      {t:"Last week, our Globalpayers around the world stepped up to meet the local n", ty:"Image", r:362, c:1, rp:10, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473404374493499392/"},
-      {t:"Innovation is about solving today's challenges while helping businesses pre", ty:"Video", r:169, c:5, rp:26, d:"2026-06-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472297712487473152/"},
-      {t:"It’s Worldwide Day of Service! Today, our Globalpayers around the world are", ty:"Image", r:272, c:3, rp:10, d:"2026-06-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470813367247552513/"},
-      {t:"Ordering food shouldn’t feel stressful, but it often does. In fact, about 5", ty:"Video", r:52, c:0, rp:7, d:"2026-06-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470173519562326018/"},
-      {t:"Last week we were at Money20/20 Europe to talk about innovation, optimizati", ty:"Image", r:194, c:0, rp:4, d:"2026-06-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7469758872455553024/"},
-      {t:"Digital wallets define the payment landscape in APAC, accounting for 77% of", ty:"Document/carousel", r:34, c:0, rp:7, d:"2026-06-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467847652601331713/"},
-      {t:"We’ve wrapped up our first Rethink as a combined company and what a week it", ty:"Video", r:223, c:2, rp:10, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465805079346888704/"},
-      {t:"During last week’s J.P. Morgan Global Technology, Media, and Communications", ty:"Document/carousel", r:144, c:1, rp:6, d:"2026-05-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465421074080440321/"},
-      {t:"We caught up with our CEO Cameron Bready fresh off the stage at Rethink, ou", ty:"Video", r:475, c:0, rp:39, d:"2026-05-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462843273393422336/"},
-      {t:"Forecast to grow at 11% CAGR for ecommerce, buy now, pay later is innovatin", ty:"Video", r:117, c:1, rp:8, d:"2026-05-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7460002430282481665/"},
-      {t:"From lunch rush and drive-thrus to dinner service and deliveries, Genius ha", ty:"Video", r:164, c:0, rp:37, d:"2026-05-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7459634776032026625/"},
-      {t:"We are proud to see our teams around the world showing up in meaningful way", ty:"Image", r:293, c:3, rp:12, d:"2026-04-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7453526986880180224/"},
-      {t:"Faster refunds are a strategic differentiator and essential aspect of retai", ty:"Document/carousel", r:48, c:1, rp:15, d:"2026-04-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452764499100659713/"},
-      {t:"Everything you need to deliver an exceptional retail experience? It’s in Ge", ty:"Video", r:103, c:0, rp:29, d:"2026-04-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452040673266044928/"},
-      {t:"From the Cleveland Guardians’ Progressive Field to stadiums around the worl", ty:"Repost", r:292, c:4, rp:38, d:"2026-04-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7447703850393862145/"},
-      {t:"Starting this season, Global Payments is bringing big-league reliability to", ty:"Image", r:81, c:1, rp:20, d:"2026-04-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7447644436840288256/"},
-      {t:"Modern technology built for full-service restaurants. That’s what A&W Canad", ty:"Image", r:98, c:0, rp:28, d:"2026-04-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7447309658819751936/"},
-      {t:"This March, Globalpayers celebrated Women's History Month and International", ty:"Document/carousel", r:154, c:2, rp:12, d:"2026-03-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7444412384087072768/"},
-      {t:"We were proud to be the headline sponsor for the recent 2026 Women of the F", ty:"Image", r:420, c:4, rp:9, d:"2026-03-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7443220351645306880/"},
-      {t:"Optimizing your payments strategy is no easy task. Tune in below as our hea", ty:"Repost", r:67, c:1, rp:5, d:"2026-03-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7441820491042091008/"},
-      {t:"You bring the spread. We’ll bring the sights. Give customers a feast for th", ty:"Repost", r:85, c:1, rp:9, d:"2026-03-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440487270035468288/"},
-      {t:"We recently sat down on the Payments Unfiltered Podcast hosted by our partn", ty:"Image", r:128, c:1, rp:7, d:"2026-03-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440389714374705152/"}
-    ]},
-
-    { name: "Lasernet", url: "https://www.linkedin.com/showcase/lasernet-formpipe/posts/", posts: [
-      {t:"Can you prove that a batch certificate used the right data and approved for", ty:"Image", r:22, c:0, rp:1, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503422990219497472/"},
-      {t:"You may have made your website European Accessibility Act (EAA) compliant.", ty:"Image", r:14, c:0, rp:1, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503052101694996480/"},
-      {t:"Could your bank use the data it already holds to make marketing messages mo", ty:"Image", r:9, c:0, rp:0, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500869915063648256/"},
-      {t:"A great example of Lasernet in action within a complex SAP environment.", ty:"Repost", r:11, c:1, rp:0, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500504738984058880/"},
-      {t:"Rien ne vaut le témoignage d'un client qui raconte son quotidien SAP. À la", ty:"Image", r:13, c:1, rp:3, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500447906357788672/"},
-      {t:"The end of an era for our Nottingham office. For the past ten years, thi", ty:"Image", r:39, c:2, rp:0, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499085964493889536/"},
-      {t:"A new event is joining the Dynamics calendar Directions for Enterprise i", ty:"Article/Link", r:17, c:1, rp:1, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498726517699411971/"},
-      {t:"Why should a warehouse document follow the order Dynamics 365 happens to re", ty:"Image", r:21, c:0, rp:1, d:"2026-08-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498344525879324673/"},
-      {t:"The excitement is building for Nordic Summit at Legoland! Lasernet will", ty:"Image", r:21, c:1, rp:1, d:"2026-08-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496531033668935680/"},
-      {t:"What happens when the document stage cannot keep up with your utility billi", ty:"Image", r:12, c:0, rp:0, d:"2026-08-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495793214684106753/"},
-      {t:"We can't wait to see you all in Nashville!", ty:"Repost", r:5, c:1, rp:0, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495540091063414784/"},
-      {t:"Join Lasernet at booth 925 at Dynamic Communities #MySummitNA (Community Su", ty:"Image", r:11, c:2, rp:2, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495524963794292736/"},
-      {t:"Same office, new relationship. This week, our friends and colleagues fro", ty:"Image", r:139, c:6, rp:3, d:"2026-08-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493606135170772993/"},
-      {t:"Is your document portal really self-service if staff still have to find and", ty:"Image", r:16, c:0, rp:1, d:"2026-08-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493241651356942336/"},
-      {t:"𝗗𝗮𝘆 #𝟭 𝗼𝗳 𝘁𝗵𝗲 𝗠𝗲𝗿𝗴𝗲𝗿 & 𝗜𝗻𝘁𝗲𝗴𝗿𝗮𝘁𝗶𝗼𝗻 𝗼𝗳 𝗟𝗮𝘀𝗲", ty:"Image", r:246, c:24, rp:5, d:"2026-08-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7492487295992803329/"},
-      {t:"How many systems does your team open just to build one customer document? T", ty:"Image", r:17, c:0, rp:1, d:"2026-08-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490710675107852290/"},
-      {t:"Lasernet is heading to Billund this September as a Gold Sponsor of Nordic S", ty:"Repost", r:21, c:0, rp:1, d:"2026-07-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487507123569053697/"},
-      {t:"We are happy to be announcing Lasernet as a Gold sponsor of #NordicSummit 2", ty:"Image", r:5, c:0, rp:1, d:"2026-07-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487494134665035777/"},
-      {t:"Today marks an exciting new chapter in the Lasernet journey. Over the pa", ty:"Image", r:88, c:2, rp:5, d:"2026-07-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486383858687356928/"},
-      {t:"How much is invoice format complexity really costing your manufacturing bus", ty:"Image", r:9, c:0, rp:1, d:"2026-07-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7485273532499689472/"},
-      {t:"Password-protecting output documents is a common requirement for many Laser", ty:"Repost", r:6, c:0, rp:0, d:"2026-07-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484930270433837057/"},
-      {t:"One of the most common requirements we get at Lasernet is how to password p", ty:"Video", r:7, c:0, rp:1, d:"2026-07-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484904426080714753/"},
-      {t:"The UK Government has announced that Peppol will serve as the core interope", ty:"Image", r:10, c:0, rp:0, d:"2026-06-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477642623382626305/"},
-      {t:"CCM, DMS, ECM and output management are often treated as competing tools, b", ty:"Image", r:7, c:0, rp:0, d:"2026-06-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475127039327559681/"},
-      {t:"Drinks, great company and a stunning venue in Paddington? We cannot wait", ty:"Image", r:7, c:0, rp:1, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473359649992445952/"},
-      {t:"Many Dynamics 365 Finance & Operations teams already use Microsoft's Electr", ty:"Image", r:13, c:0, rp:2, d:"2026-06-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470441719994585088/"},
-      {t:"E-invoicing mandates are accelerating. In 2026 and 2027, new B2B e-invoi", ty:"Image", r:9, c:0, rp:1, d:"2026-06-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467516743402528768/"},
-      {t:"DynamicsMinds you did it again! Portorož brought the energy, the conversati", ty:"Image", r:79, c:2, rp:1, d:"2026-05-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7466094494375952384/"},
-      {t:"We’re proud to share that Lasernet won Best Booth Activation at DynamicsMin", ty:"Repost", r:31, c:4, rp:0, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465772597008531456/"},
-      {t:"Proud is an understatement! Thrilled to say we won Best Booth Activation at", ty:"Image", r:113, c:32, rp:1, d:"2026-05-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465461218590371841/"},
-      {t:"And just like that, we've transported you back to 2005. We've had a grea", ty:"Image", r:55, c:1, rp:1, d:"2026-05-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7464698814805721089/"},
-      {t:"Your DynamicsMinds agenda just got a little busier. In 6 days, the Lasern", ty:"Image", r:22, c:2, rp:3, d:"2026-05-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462487778497540096/"},
-      {t:"Last week, we had a fantastic two days at the European Collaboration Summit", ty:"Image", r:32, c:1, rp:0, d:"2026-05-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7459897685869842432/"},
-      {t:"We’re keeping things focused next week. Lasernet will be at the Baan Inf", ty:"Image", r:7, c:1, rp:1, d:"2026-05-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7458454474836135938/"},
-      {t:"Document management deserves more attention in Dynamics 365 conversations,", ty:"Image", r:12, c:0, rp:0, d:"2026-05-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7457693166536716288/"},
-      {t:"Viva Las Vegas. Lasernet is heading to DynamicsCon 2026 next week. Invoi", ty:"Image", r:14, c:0, rp:1, d:"2026-05-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7457370542237499392/"},
-      {t:"Heading to Cologne next week for the European Collaboration Summit 2026.", ty:"Image", r:21, c:1, rp:3, d:"2026-05-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7455919815128698880/"},
-      {t:"Document management doesn’t usually get the spotlight it deserves in Dynami", ty:"Image", r:19, c:2, rp:0, d:"2026-04-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7455248047170543616/"},
-      {t:"We’re out and about a fair bit in 2026. From community events to industr", ty:"Image", r:13, c:1, rp:1, d:"2026-04-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7454832234563411968/"},
-      {t:"We’re pleased to be partnering with UST FinX to support their customers wit", ty:"Image", r:26, c:0, rp:0, d:"2026-04-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452724392666624000/"},
-      {t:"Do you hate managing product labels? Standardising printed labels across", ty:"Image", r:15, c:1, rp:0, d:"2026-04-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452373758205480961/"},
-      {t:"Lasernet is heading to Vegas. We’re sponsoring Dynamics Con 2026 from 12", ty:"Image", r:31, c:2, rp:0, d:"2026-04-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7450483442418491392/"},
-      {t:"Supply chain visibility isn’t a nice to have anymore. It’s a priority. ‼ 7", ty:"Image", r:13, c:0, rp:0, d:"2026-03-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7442933638503116800/"},
-      {t:"When creating the new Lasernet identity, we started with one simple idea: D", ty:"Image", r:27, c:0, rp:0, d:"2026-03-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7442165091623387136/"},
-      {t:"We’re proud to be Platinum Sponsors of DynamicsMinds 2026. Portorož is t", ty:"Image", r:42, c:2, rp:0, d:"2026-03-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440352402081202177/"},
-      {t:"As we close the chapter on Formpipe, we’re proud to introduce the new Laser", ty:"Video", r:62, c:4, rp:10, d:"2026-03-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7439280075482681344/"},
-      {t:"A premium fashion brand needs premium documents. After migrating to Dyna", ty:"Image", r:32, c:0, rp:2, d:"2026-03-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7438154416014307329/"},
-      {t:"We’re live at HSO Customer Day 2026 today! It’s great to be here as a Go", ty:"Image", r:40, c:2, rp:1, d:"2026-03-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437807504790712320/"},
-      {t:"Rising costs are forcing organisations to look closely at where money is re", ty:"Image", r:12, c:0, rp:3, d:"2026-03-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437498850350690322/"},
-      {t:"In celebration of Women’s History Month, we’re proud to see our CEO, Sophie", ty:"Image", r:33, c:0, rp:0, d:"2026-03-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437090658420531202/"}
-    ]},
-
-    { name: "Dime Scheduler", url: "https://www.linkedin.com/company/dimesoftware/posts/", posts: [
-      {t:"Webinar alert: What's new in 𝐃𝐢𝐦𝐞.𝐒𝐜𝐡𝐞𝐝𝐮𝐥𝐞𝐫 We've shipped a", ty:"Image", r:4, c:0, rp:0, d:"2026-05-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465304885429796864/"},
-      {t:"The latest updates to Dime.Scheduler bring a range of great new capabilitie", ty:"Image", r:9, c:0, rp:1, d:"2026-05-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462415118987857920/"},
-      {t:"A new version of 𝐃𝐢𝐦𝐞.𝐒𝐜𝐡𝐞𝐝𝐮𝐥𝐞𝐫 is out now! Discover the la", ty:"Image", r:17, c:0, rp:2, d:"2026-05-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7460229664289112064/"},
-      {t:"New sandbox update for 𝐃𝐢𝐦𝐞.𝐒𝐜𝐡𝐞𝐝𝐮𝐥𝐞𝐫 We’ve rolled out a ne", ty:"Image", r:16, c:4, rp:1, d:"2026-02-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7432006461666471937/"},
-      {t:"As the year comes to a close, we would like to thank everyone who has been", ty:"Image", r:13, c:3, rp:1, d:"2025-12-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7407694867532894208/"},
-      {t:"That’s a wrap for Directions #EMEA2025! What a great few days filled wit", ty:"Image", r:33, c:0, rp:0, d:"2025-11-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7392465089825615873/"},
-      {t:"Great to see so many partners stopping by our booth, joining our session, a", ty:"Image", r:33, c:0, rp:0, d:"2025-11-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7392089686221066240/"},
-      {t:"It’s day 2 at Directions #EMEA2025! Join Hendrik Bulens at 12:15 to see Dim", ty:"Image", r:25, c:0, rp:2, d:"2025-11-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7391728177816944641/"},
-      {t:"Early morning shenanigans at our booth on day 1 of Directions #EMEA2025. We", ty:"Image", r:23, c:0, rp:0, d:"2025-11-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7391385991522963456/"},
-      {t:"Hello from beautiful Poznań! We’re all set for Directions #EMEA2025 and can", ty:"Image", r:22, c:0, rp:0, d:"2025-11-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7391085002416963584/"},
-      {t:"Mark your calendars - this is going to be a good one! #EMEA2025", ty:"Repost", r:2, c:0, rp:0, d:"2025-10-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7386386531680399360/"},
-      {t:"AI, scheduling, and Business Central: all in one session at Directions #EME", ty:"Image", r:24, c:2, rp:2, d:"2025-10-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7384622732086509569/"},
-      {t:"Integration comes first in Dime.Scheduler, not as an afterthought. That’s w", ty:"Document/carousel", r:4, c:1, rp:1, d:"2025-10-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7383407152780050432/"},
-      {t:"It’s already been a couple of weeks since our webinar with Bertalan Nagy fr", ty:"Article/Link", r:3, c:0, rp:0, d:"2025-10-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7380874844252434432/"},
-      {t:"Today we welcome a new member to the Dime.Scheduler team. A robot member, t", ty:"Video", r:9, c:0, rp:1, d:"2025-09-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7378364092899561472/"},
-      {t:"Last week, we unveiled the future of Dime.Scheduler in our yearly update we", ty:"Video", r:14, c:0, rp:3, d:"2025-09-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7375888398516928512/"},
-      {t:"One more day until our webinar with MultiSoft Ltd., where we'll demonstrate", ty:"Image", r:4, c:0, rp:1, d:"2025-09-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7375845476090327040/"},
-      {t:"Field Service Reimagined with Servotion & Dime.Scheduler Discover how to", ty:"Image", r:8, c:0, rp:3, d:"2025-09-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7374827864296173569/"}
-    ]},
-
-    { name: "Acubiz", url: "https://www.linkedin.com/company/acubiz/posts/", posts: [
-      {t:"En chat er fin til det simple. Når det ikke er simpelt, kan I ringe og tale", ty:"Video", r:24, c:0, rp:0, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504071749500641282/"},
-      {t:"I fredags løb og gik vi fra Acubiz sammen med Visma endnu engang DHL-stafet", ty:"Image", r:76, c:2, rp:0, d:"2026-08-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500152938477035520/"},
-      {t:"Den hyppigste grund til at blive i sit udgiftssystem er ikke prisen. Det er", ty:"Video", r:21, c:0, rp:0, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495424978331451393/"},
-      {t:"Vi er så glade for at byde tre nye kolleger velkommen til Acubiz her efter", ty:"Image", r:60, c:7, rp:0, d:"2026-08-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491047954363920384/"},
-      {t:"Bruger I stadig tid på at taste udgifter ind manuelt? Det er der en nemmere", ty:"Image", r:19, c:0, rp:0, d:"2026-07-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488157649876783105/"},
-      {t:"Ét overblik. Alle udgifter. Med Acubiz-appen har du og dine medarbejdere fu", ty:"Image", r:16, c:0, rp:0, d:"2026-07-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7485622197252923392/"},
-      {t:"Udgiftshåndtering behøver ikke være besværligt. Med Acubiz registrerer dine", ty:"Image", r:16, c:0, rp:0, d:"2026-07-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483447864354902016/"},
-      {t:"Vi søger en barselsvikar til vores seje marketingafdeling! Er du på udki", ty:"Article/Link", r:23, c:2, rp:2, d:"2026-07-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483073042777059328/"},
-      {t:"Sommeren er her, og det er tid til at koble fra. Acubiz holder styr på f", ty:"Image", r:26, c:0, rp:0, d:"2026-07-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478719206457430016/"},
-      {t:"Sommerferien nærmer sig... Mangler du noget underholdning til liggest", ty:"Image", r:16, c:0, rp:0, d:"2026-06-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475811621542588416/"},
-      {t:"Sommerferien er lige om hjørnet... Har du husket at få sendt de sidste fakt", ty:"Image", r:17, c:0, rp:0, d:"2026-06-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7472573713692151808/"},
-      {t:"Vi er simpelthen så glade for at kunne byde et varmt velkommen til vores to", ty:"Image", r:94, c:7, rp:1, d:"2026-06-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470761819876474880/"},
-      {t:"Store nyheder fra Acubiz! Vi kan med stor glæde offentliggøre, at Visma", ty:"Image", r:41, c:1, rp:3, d:"2026-06-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470369249451237377/"},
-      {t:"Snart er det tid til at koble af... Har du husket at få registreret alle", ty:"Video", r:23, c:0, rp:0, d:"2026-06-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470037531015749632/"},
-      {t:"Sommerferien nærmer sig med hastige skridt... Men inden du trækker stikk", ty:"Image", r:16, c:0, rp:1, d:"2026-06-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467481508329570304/"},
-      {t:"Effektive økonomiske processer på tværs af afdelinger? Det har vi kigget næ", ty:"Document/carousel", r:18, c:1, rp:0, d:"2026-05-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7464957540259344384/"},
-      {t:"I formiddags holdt vi årets Finance Summit i samrbejde med Compello og efac", ty:"Image", r:60, c:1, rp:0, d:"2026-05-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462853712823226370/"},
-      {t:"Hvordan slipper man af med fysiske bilag og manuelle arbejdsprocesser? Det", ty:"Document/carousel", r:20, c:1, rp:0, d:"2026-05-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462082974910578689/"},
-      {t:"Hvorfor bruge tid på papirnusseri i 2026? Vores Commercial Director, Anders", ty:"Video", r:51, c:1, rp:0, d:"2026-05-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7459891966898556928/"},
-      {t:"Vi holder fast i hvederne! Selvom kalenderen siger noget andet, så holder v", ty:"Image", r:56, c:1, rp:1, d:"2026-04-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7455542744401461248/"},
-      {t:"Hvorfor skal du automatisere din fakturahåndtering? Manuelle processer i", ty:"Document/carousel", r:17, c:1, rp:0, d:"2026-04-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452612184603488256/"},
-      {t:"Hvorfor gøre det manuelt, når det kan ske automatisk? Spar tid og undgå", ty:"Video", r:22, c:1, rp:1, d:"2026-04-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7450498928447373312/"},
-      {t:"Vi håndterer dine udgifter fra a-z. Helt enkelt!", ty:"Video", r:65, c:1, rp:2, d:"2026-04-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7449713326831505408/"},
-      {t:"Byd varmt velkommen til Daniel og Anders! Der sker spændende ting på vor", ty:"Image", r:180, c:3, rp:0, d:"2026-04-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7449350818345934848/"},
-      {t:"Bruger I for meget tid på at rette fejl i indgående fakturaer? I 'Acubiz", ty:"Document/carousel", r:14, c:1, rp:0, d:"2026-04-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7447236759912017920/"},
-      {t:"God påske fra hele Acubiz! Vi holder lukket torsdag, fredag og mandag, m", ty:"Image", r:27, c:0, rp:0, d:"2026-04-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7445062411281203200/"},
-      {t:"I fredags var vi ude at spille padel Sammen med teamet havde vi en vir", ty:"Image", r:89, c:1, rp:0, d:"2026-03-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7444322561003393024/"},
-      {t:"Er tidsregistrering en tidsrøver hos jer? Tidsregistrering er nu et lovk", ty:"Document/carousel", r:26, c:1, rp:0, d:"2026-03-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7442541215411138560/"},
-      {t:"Er fakturahåndtering stadig en tidsrøver hos jer? I 'Acubiz & Venner' sætte", ty:"Document/carousel", r:26, c:2, rp:0, d:"2026-03-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440332490197741568/"},
-      {t:"Nogle ting er svære at skjule... ligesom mængden af systemer, Acubiz integr", ty:"Video", r:18, c:0, rp:0, d:"2026-03-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7439596902746206209/"},
-      {t:"De fleste virksomheder drukner i manuelle opgaver, der spænder ben for væks", ty:"Image", r:29, c:1, rp:0, d:"2026-03-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437768218867519488/"},
-      {t:"Vidste du, at Acubiz kan integreres med de fleste systemer? Dataudveksling", ty:"Video", r:20, c:0, rp:1, d:"2026-03-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437045094261805056/"},
-      {t:"Fodboldtrøjefredag hos Acubiz Sammen gør vi en forskel", ty:"Image", r:99, c:0, rp:0, d:"2026-03-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7435674126926635008/"},
-      {t:"Ny feature i Acubiz, der gør din hverdag lettere Vi er nu live med en ny i", ty:"Image", r:23, c:2, rp:3, d:"2026-03-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7435278044430225408/"},
-      {t:"Vi er så glade for at byde Mikaela Kihl og @Kresten de Place velkommen som", ty:"Image", r:60, c:0, rp:0, d:"2026-03-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7434560737731166208/"},
-      {t:"I Acubiz mener vi det, når vi siger, at medarbejdernes trivsel kommer i før", ty:"Image", r:57, c:2, rp:0, d:"2026-02-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7432756405956145152/"},
-      {t:"Er det dig vi leder efter? https://lnkd.in/ebGtxyVf", ty:"Article/Link", r:12, c:0, rp:0, d:"2026-02-25", u:"https://www.linkedin.com/feed/update/urn:li:activity:7432375636045873153/"},
-      {t:"Vi er mega stolte af Christian Gjerum Fredbo-Nielsen og Kasper Kruse Lange", ty:"Repost", r:8, c:0, rp:0, d:"2026-02-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7432017501401550849/"},
-      {t:"Hvad sker der, når man giver talentfulde studerende friheden til at eksperi", ty:"Document/carousel", r:79, c:2, rp:4, d:"2026-02-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7431612785534533632/"},
-      {t:"Hos Acubiz har vi taget en beslutning: Vi vil hellere give med en betydning", ty:"Image", r:52, c:4, rp:1, d:"2026-02-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7429857244189581312/"},
-      {t:"Det er den tid på året - sæsonen for fastelavnsboller er over os! Nemt a", ty:"Image", r:24, c:0, rp:0, d:"2026-02-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7427654479270948865/"},
-      {t:"Glædelig tirsdag fra Acubiz-kontoret! Selvom kalenderen siger vinterferi", ty:"Image", r:63, c:2, rp:0, d:"2026-02-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7426965734758559744/"},
-      {t:"Det skal være nemt at få afsluttet ugens småopgaver, før ferieroen sænker s", ty:"Image", r:33, c:0, rp:0, d:"2026-02-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7425131104958902272/"},
-      {t:"Overgangen til Acubiz er lettere, end du tror Vores strømlinede onboardin", ty:"Video", r:17, c:1, rp:1, d:"2026-02-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7424406379873939457/"},
-      {t:"Hos e-nettet er målet klart: Mindre manuelt arbejde og en mere effektiv inf", ty:"Document/carousel", r:23, c:1, rp:3, d:"2026-01-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7422598136881225728/"},
-      {t:"Vi er så begejstrede over, at byde Malene Drost Henriksen velkommen som vor", ty:"Image", r:121, c:8, rp:0, d:"2026-01-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7421869613908471808/"},
-      {t:"Udgifter er en del af hverdagen. Men bunker af kvitteringer behøver ikke væ", ty:"Video", r:18, c:1, rp:1, d:"2026-01-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7420065733956771840/"},
-      {t:"Er du også træt af at slæbe rundt på dine kvitteringer? Med Acubiz Realtime", ty:"Document/carousel", r:23, c:0, rp:1, d:"2026-01-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7418925227096756225/"},
-      {t:"Byd varmt velkommen til Petra og Cecilie! Vi glæder os over at kunne sta", ty:"Image", r:102, c:3, rp:0, d:"2026-01-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7417838175546413056/"},
-      {t:"Godt nytår fra hele Acubiz-teamet! 2026 er i fuld gang, og vi glæder os", ty:"Article/Link", r:14, c:0, rp:1, d:"2026-01-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7415301595480875008/"}
-    ]},
-
-    { name: "Stripe", bench: true, cap: "2026-09-10", url: "https://www.linkedin.com/company/stripe/posts/", posts: [
+    { name: "Stripe", bench: true, url: "https://www.linkedin.com/company/stripe/posts/", posts: [
       {t:"We're livestreaming the Lenny & Friends Summit, featuring talks on what's", ty:"Document/carousel", r:88, c:15, rp:8, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503482743364751360/"},
       {t:"Connect Link's wallet for agents to Muse, a new app from Meta that lets you", ty:"Video", r:92, c:26, rp:13, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503176710318854144/"},
       {t:"As the parent company behind Shopee, Garena and Monee, Sea is one of", ty:"Video", r:154, c:21, rp:4, d:"2026-09-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501256832003231744/"},
@@ -1529,7 +1023,7 @@ window.LI_DATA = {
       {t:"Nat Friedman on temperature probing teams through production iteration loops", ty:"Video", r:58, c:4, rp:2, d:"2026-05-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463253454405287936/"}
     ]},
 
-    { name: "Incedo", bench: true, cap: "2026-09-10", url: "https://www.linkedin.com/company/incedo-inc/posts/", posts: [
+    { name: "Incedo", bench: true, url: "https://www.linkedin.com/company/incedo-inc/posts/", posts: [
       {t:"Agentic AI becomes valuable when AI agents can move work from intake to", ty:"Document/carousel", r:9, c:1, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503652374603886593/"},
       {t:"What will remain uniquely human in the age", ty:"Image", r:86, c:1, rp:2, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503120034085380096/"},
       {t:"We are building the future of software development—together with AWS. At", ty:"Image", r:42, c:2, rp:1, d:"2026-09-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7502705641325785089/"},

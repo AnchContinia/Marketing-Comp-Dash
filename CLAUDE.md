@@ -114,8 +114,13 @@ for good unless it is archived. Two steps:
    source capture too — LinkedIn trawls live in `Assets/LinkedIn trawls/` (from Sep 10, 2026 a
    `linkedin_competitor_posts_<date>.csv` + `linkedin_competitor_summary_<date>.csv` pair;
    older captures are the `linkedin_post_engagement_report_<date>.txt` files). Regenerate
-   `linkedin-data.js` with `Assets/LinkedIn trawls/gen-linkedin-data.py` — point its `CSV`,
-   `CAPTURED` and `KEEP` map at the new pair; it fails loudly on an unmapped post type.
+   `linkedin-data.js` with `Assets/LinkedIn trawls/gen-linkedin-data.py` — add the new CSV
+   to its `SOURCES` list, bump `CAPTURED` to the newest date and map any new company labels
+   in `KEEP`; it fails loudly on an unmapped post type or an unmatched `KEEP` entry.
+   `SOURCES` merges several trawls, so a roster can be widened without re-trawling the
+   companies already covered: each company carries the capture date of the trawl it came
+   from (`cap`), and `dashboard.js` measures that company's 30-day momentum window from its
+   own date so a later trawl gets no wider window than an earlier one.
 
 Only then regenerate, bump the `?v=` on every page that loads the file, and stamp
 `DASHBOARD_UPDATED`. (Standing instruction from the user.)
