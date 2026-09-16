@@ -5,16 +5,29 @@ import csv, io, json, re, unicodedata, collections, sys
 BASE = "/Users/andreasv.christensen/Desktop/Claude-Marketing-dashboard/Assets/LinkedIn trawls/"
 OUT  = "/Users/andreasv.christensen/Desktop/Claude-Marketing-dashboard/linkedin-data.js"
 
-# (csv filename, capture date). Read in order; a company appearing in more than
-# one file keeps the LAST one listed, so put fresher captures further down.
-# Captures do not have to share a date - each company carries the date of the
-# trawl it came from, and dashboard.js measures that company's 30-day momentum
-# window from its own capture date rather than from one global "as of".
+# (csv filename, capture date, dialect). Read in order; a company appearing in
+# more than one file keeps the LAST one listed, so put fresher captures further
+# down. Captures do not have to share a date - each company carries the date of
+# the trawl it came from, and dashboard.js measures that company's 30-day
+# momentum window from its own capture date rather than from one global "as of".
+#
+# Two dialects, because the captures do not all come from the same tool:
+#   "trawl"    the multi-company competitor sweep - comma-separated, one
+#              "company" column, English type names, titles cut at ~75 chars.
+#   "continia" our own page export - semicolon-separated, Danish headers
+#              (Dato/Titel/Type/Link), no company column, lowercase type names
+#              ("multi-image (9)", "carousel/document") and FULL titles.
 SOURCES = [
-    ("linkedin_competitor_posts_2026-09-10.csv",       "2026-09-10"),
-    ("linkedin_competitor_posts_2026-09-14_EXTRA.csv", "2026-09-14"),
+    ("linkedin_competitor_posts_2026-09-10.csv",       "2026-09-10", "trawl"),
+    ("linkedin_competitor_posts_2026-09-14_EXTRA.csv", "2026-09-14", "trawl"),
+    ("continia-linkedin-50-posts_16 SEP.csv",          "2026-09-16", "continia"),
 ]
-CAPTURED = "2026-09-14"   # newest capture; shown as the module's "as of" date
+CAPTURED = "2026-09-16"   # newest capture; shown as the module's "as of" date
+
+# The "continia" dialect carries no company/company_url columns - they are the
+# same on every row, so they live here instead.
+CONTINIA_LABEL = "Continia Software A/S"
+CONTINIA_URL   = "https://www.linkedin.com/company/continia-software-a-s/posts/"
 
 # CSV company label -> dashboard label. Anything not listed here is dropped.
 # Dashboard labels match the competitor-card names in dashboard.js wherever a
@@ -76,6 +89,20 @@ TYMAP = {"Image":"Image", "Multi-image":"Image", "Carousel":"Document/carousel",
          "Video":"Video", "Poll":"Poll", "Text":"Text", "Link/Article":"Article/Link",
          "Event":"Event", "Repost":"Repost"}
 
+# The Continia export spells the same types in lowercase and counts the images
+# in a multi-image post ("multi-image (9)"). Fold it back onto the vocabulary
+# above so our own row stays comparable with every competitor row.
+CONTINIA_TYMAP = {"image":"Image", "multi-image":"Multi-image",
+                  "carousel/document":"Carousel", "video":"Video",
+                  "text":"Text", "poll":"Poll", "link/article":"Link/Article",
+                  "event":"Event", "repost":"Repost"}
+
+def continia_type(raw):
+    t = re.sub(r"\s*\(\d+\)\s*$", "", raw.strip().lower())   # drop "(9)"
+    if t not in CONTINIA_TYMAP:
+        sys.exit("unmapped Continia post type: %r" % raw)
+    return CONTINIA_TYMAP[t]
+
 ZW = dict.fromkeys(map(ord, "​‌‍⁠️︎"), None)
 
 def norm(s):
@@ -93,8 +120,34 @@ by      = {}   # csv label -> rows
 cap_of  = {}   # csv label -> capture date of the trawl it came from
 seen_types = collections.Counter()
 
-for fname, captured in SOURCES:
-    rows = list(csv.DictReader(io.open(BASE + fname, encoding="utf-8-sig")))
+def read_trawl(fname):
+    """Multi-company competitor sweep: comma-separated, already in our shape."""
+    return list(csv.DictReader(io.open(BASE + fname, encoding="utf-8-sig")))
+
+def read_continia(fname):
+    """Our own page export: semicolon-separated, Danish headers, no company."""
+    out = []
+    for r in csv.DictReader(io.open(BASE + fname, encoding="utf-8-sig"), delimiter=";"):
+        out.append({
+            "company":      CONTINIA_LABEL,
+            "post_no":      r["#"],
+            "date":         r["Dato"],
+            "type":         continia_type(r["Type"]),
+            "reactions":    r["Reactions"],
+            "comments":     r["Comments"],
+            "reposts":      r["Reposts"],
+            "title":        r["Titel"],
+            "post_url":     r["Link"].strip(),
+            "company_url":  CONTINIA_URL,
+        })
+    return out
+
+READERS = {"trawl": read_trawl, "continia": read_continia}
+
+for fname, captured, dialect in SOURCES:
+    if dialect not in READERS:
+        sys.exit("unknown dialect %r for %s" % (dialect, fname))
+    rows = READERS[dialect](fname)
     if not rows:
         sys.exit("empty CSV: %s" % fname)
     grouped = collections.defaultdict(list)
@@ -140,7 +193,7 @@ body = "\n\n".join(out)
 body = body[:-1] if body.endswith(",") else body  # last company: no trailing comma
 
 src_lines = "\n".join(
-    "     %s  (captured %s)" % (f, d) for f, d in SOURCES)
+    "     %s  (captured %s, %s dialect)" % (f, d, dl) for f, d, dl in SOURCES)
 
 header = '''/* =========================================================================
    LinkedIn post-engagement data for the Continia competitor dashboard.
@@ -159,8 +212,11 @@ header = '''/* =================================================================
    own capture date, which keeps the Last-30-days column comparable instead of
    handing the later trawl four extra days of posts.
 
-   Per post: "t" is the title as the trawl captured it (the opening line, cut at
-   a word boundary - no ellipsis is added, so a sentence may simply stop), "ty"
+   Per post: "t" is the title as the capture recorded it. The competitor sweep
+   cuts it at ~75 characters on a word boundary (no ellipsis is added, so a
+   sentence may simply stop); the Continia export carries the full first line,
+   so our own titles read longer than the rest. Emoji are stripped either way.
+   "ty"
    is the content-type pill, "r"/"c"/"rp" are reactions/comments/reposts, "d" is
    the post date (YYYY-MM-DD) and "u" links the original post. Per company, "url"
    is the LinkedIn company page. Up to 50 most-recent posts each; fewer where the

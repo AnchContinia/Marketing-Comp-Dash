@@ -115,8 +115,13 @@ for good unless it is archived. Two steps:
    `linkedin_competitor_posts_<date>.csv` + `linkedin_competitor_summary_<date>.csv` pair;
    older captures are the `linkedin_post_engagement_report_<date>.txt` files). Regenerate
    `linkedin-data.js` with `Assets/LinkedIn trawls/gen-linkedin-data.py` — add the new CSV
-   to its `SOURCES` list, bump `CAPTURED` to the newest date and map any new company labels
-   in `KEEP`; it fails loudly on an unmapped post type or an unmatched `KEEP` entry.
+   to its `SOURCES` list as `(file, capture date, dialect)`, bump `CAPTURED` to the newest
+   date and map any new company labels in `KEEP`; it fails loudly on an unmapped post type
+   or an unmatched `KEEP` entry. Two dialects: `trawl` is the multi-company competitor
+   sweep (comma-separated, English type names, ~75-char titles) and `continia` is our own
+   page export (semicolon-separated, Danish `Dato`/`Titel`/`Type`/`Link` headers, lowercase
+   types like `multi-image (9)`, full titles). A capture covering only our page updates the
+   Continia row and leaves every competitor row on its own older capture date.
    `SOURCES` merges several trawls, so a roster can be widened without re-trawling the
    companies already covered: each company carries the capture date of the trawl it came
    from (`cap`), and `dashboard.js` measures that company's 30-day momentum window from its

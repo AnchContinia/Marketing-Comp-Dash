@@ -5,9 +5,8 @@
    these raw posts, so the comparison table can never drift from the source.
 
    Sources, all in Assets/LinkedIn trawls/:
-     linkedin_competitor_posts_2026-09-10.csv  (captured 2026-09-10, trawl dialect)
-     linkedin_competitor_posts_2026-09-14_EXTRA.csv  (captured 2026-09-14, trawl dialect)
-     continia-linkedin-50-posts_16 SEP.csv  (captured 2026-09-16, continia dialect)
+     linkedin_competitor_posts_2026-09-10.csv  (captured 2026-09-10)
+     linkedin_competitor_posts_2026-09-14_EXTRA.csv  (captured 2026-09-14)
    Each has a matching linkedin_competitor_summary_*.csv holding the same
    numbers pre-aggregated; those are kept only as a cross-check.
 
@@ -17,11 +16,8 @@
    own capture date, which keeps the Last-30-days column comparable instead of
    handing the later trawl four extra days of posts.
 
-   Per post: "t" is the title as the capture recorded it. The competitor sweep
-   cuts it at ~75 characters on a word boundary (no ellipsis is added, so a
-   sentence may simply stop); the Continia export carries the full first line,
-   so our own titles read longer than the rest. Emoji are stripped either way.
-   "ty"
+   Per post: "t" is the title as the trawl captured it (the opening line, cut at
+   a word boundary - no ellipsis is added, so a sentence may simply stop), "ty"
    is the content-type pill, "r"/"c"/"rp" are reactions/comments/reposts, "d" is
    the post date (YYYY-MM-DD) and "u" links the original post. Per company, "url"
    is the LinkedIn company page. Up to 50 most-recent posts each; fewer where the
@@ -40,60 +36,60 @@
 
 window.LI_DATA = {
   source: "LinkedIn public engagement",
-  captured: "2026-09-16",
+  captured: "2026-09-14",
   windowLabel: "up to 50 recent posts each \u00b7 public engagement",
   companies: [
-    { name: "Continia Software", ours: true, url: "https://www.linkedin.com/company/continia-software-a-s/posts/", posts: [
-      {t:"2026 R2 is almost here, and it's our biggest AI release yet", ty:"Document/carousel", r:43, c:0, rp:7, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505230135697199104/"},
-      {t:"Join us for a morning run through Paris!", ty:"Image", r:56, c:0, rp:2, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504091003386171392/"},
-      {t:"Thank you, Days of Knowledge ANZ", ty:"Image", r:91, c:0, rp:0, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501566572784771072/"},
-      {t:"Protecting the world's water shouldn't mean drowning in paperwork", ty:"Image", r:18, c:0, rp:2, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500522912907460608/"},
-      {t:"It's about time... we found out who's faster", ty:"Image", r:99, c:0, rp:0, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498714244956303360/"},
-      {t:"Colleagues, vineyards, and a glass (or two) of wine", ty:"Image", r:82, c:2, rp:0, d:"2026-08-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496515169880023040/"},
-      {t:"It's about time you stopped doing these 5 things", ty:"Document/carousel", r:36, c:2, rp:1, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495449544915226624/"},
-      {t:"12 free features your Business Central setup is missing", ty:"Document/carousel", r:41, c:0, rp:5, d:"2026-08-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493277173751951360/"},
-      {t:"We've got room left on the team!", ty:"Document/carousel", r:34, c:0, rp:4, d:"2026-08-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491099509893156864/"},
-      {t:"Your e-invoicing data is only as safe as your vendor", ty:"Image", r:28, c:0, rp:3, d:"2026-08-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490376084551577602/"},
-      {t:"Every AP automation pitch this year sounds the same...", ty:"Image", r:21, c:0, rp:2, d:"2026-07-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488564108284473345/"},
-      {t:"We're back from a great DynamicsCon in Ghana", ty:"Image", r:63, c:2, rp:2, d:"2026-07-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487839356519354369/"},
+    { name: "Continia Software", ours: true, cap: "2026-09-10", url: "https://www.linkedin.com/company/continia-software-a-s/posts/", posts: [
+      {t:"Thank you, Days of Knowledge ANZ It's a wrap on", ty:"Image", r:86, c:0, rp:0, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501566572784771072/"},
+      {t:"Protecting the world's water shouldn't", ty:"Image", r:17, c:0, rp:2, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500522912907460608/"},
+      {t:"It's about time... we found out who's", ty:"Image", r:98, c:0, rp:0, d:"2026-08-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7498714244956303360/"},
+      {t:"Colleagues, vineyards, and a glass (or two)", ty:"Image", r:82, c:2, rp:0, d:"2026-08-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7496515169880023040/"},
+      {t:"It's about time you stopped doing these 5", ty:"Document/carousel", r:36, c:2, rp:1, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495449544915226624/"},
+      {t:"12 free features your Business Central", ty:"Document/carousel", r:41, c:0, rp:5, d:"2026-08-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493277173751951360/"},
+      {t:"We've got room left on the team! If the summer", ty:"Document/carousel", r:34, c:0, rp:4, d:"2026-08-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7491099509893156864/"},
+      {t:"Your e-invoicing data is only as safe as", ty:"Image", r:28, c:0, rp:3, d:"2026-08-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7490376084551577602/"},
+      {t:"Every AP automation pitch this year", ty:"Image", r:21, c:0, rp:2, d:"2026-07-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7488564108284473345/"},
+      {t:"We're back from a great DynamicsCon in", ty:"Image", r:63, c:2, rp:2, d:"2026-07-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487839356519354369/"},
       {t:"Same Monday, two very different workdays", ty:"Image", r:30, c:0, rp:1, d:"2026-07-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7487476939503538177/"},
-      {t:"The office is quiet. Why not spend the summer learning?", ty:"Image", r:23, c:0, rp:0, d:"2026-07-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486027425286533121/"},
-      {t:"Separate accounts—but it's one relationship", ty:"Image", r:33, c:1, rp:5, d:"2026-07-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7485302625081466880/"},
+      {t:"The office is quiet. Why not spend the", ty:"Image", r:23, c:0, rp:0, d:"2026-07-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486027425286533121/"},
+      {t:"Separate accounts—but it’s one", ty:"Image", r:33, c:1, rp:5, d:"2026-07-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7485302625081466880/"},
       {t:"More than 1,000 active Continia solutions", ty:"Image", r:119, c:1, rp:8, d:"2026-07-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7483490893254291456/"},
       {t:"Submitting expenses just got even easier!", ty:"Document/carousel", r:37, c:5, rp:8, d:"2026-07-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7482762545431351296/"},
       {t:"See Continia in action, at your own pace", ty:"Image", r:36, c:1, rp:4, d:"2026-07-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7480591520149151744/"},
       {t:"It's about time... for an ice-cream break!", ty:"Image", r:70, c:1, rp:0, d:"2026-07-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478062480389279744/"},
-      {t:"Fake invoices don't always look fake", ty:"Image", r:23, c:0, rp:3, d:"2026-06-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477333822297169922/"},
-      {t:"Our biggest team meetup yet", ty:"Image", r:243, c:4, rp:6, d:"2026-06-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475112920251772928/"},
-      {t:"From a full-time AP person to automation in minutes", ty:"Image", r:23, c:0, rp:3, d:"2026-06-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470809611818905600/"},
-      {t:"The Elevate tour continues — this time in Poland!", ty:"Image", r:71, c:1, rp:0, d:"2026-06-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470444661824913410/"},
+      {t:"Fake invoices don't always look fake They", ty:"Image", r:23, c:0, rp:3, d:"2026-06-29", u:"https://www.linkedin.com/feed/update/urn:li:activity:7477333822297169922/"},
+      {t:"Our biggest team meetup yet Last week, we brought", ty:"Image", r:243, c:4, rp:6, d:"2026-06-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7475112920251772928/"},
+      {t:"From a full-time AP person to automation", ty:"Image", r:23, c:0, rp:3, d:"2026-06-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470809611818905600/"},
+      {t:"The Elevate tour continues — this time in", ty:"Image", r:71, c:1, rp:0, d:"2026-06-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470444661824913410/"},
       {t:"Kicking off Continia Elevate in the UK", ty:"Video", r:53, c:2, rp:1, d:"2026-06-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470074789961973760/"},
-      {t:"We're ISO 27001 certified", ty:"Image", r:195, c:2, rp:1, d:"2026-06-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7468284352783761408/"},
-      {t:"It's about time ... we cycled to work", ty:"Image", r:69, c:1, rp:0, d:"2026-06-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467545726575759360/"},
-      {t:"250 Continia-løsninger er en god grund til kage", ty:"Image", r:70, c:1, rp:2, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465688326994460672/"},
+      {t:"We're ISO 27001 certified After months of hard work", ty:"Image", r:195, c:2, rp:1, d:"2026-06-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7468284352783761408/"},
+      {t:"It's about time ... we cycled to work In May,", ty:"Image", r:69, c:1, rp:0, d:"2026-06-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467545726575759360/"},
+      {t:"250 Continia-løsninger er en god grund til", ty:"Image", r:70, c:1, rp:2, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465688326994460672/"},
       {t:"Thanks for a great time at DynamicsMinds!", ty:"Image", r:93, c:2, rp:0, d:"2026-05-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465360837474566144/"},
-      {t:"Continia is growing — swipe to find your next role", ty:"Document/carousel", r:42, c:0, rp:0, d:"2026-05-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463196907054600192/"},
-      {t:"Your BC setup is almost there. Why not upgrade it for free?", ty:"Video", r:34, c:0, rp:4, d:"2026-05-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462849736732082179/"},
-      {t:"Continia Elevate comes to Warsaw!", ty:"Image", r:47, c:4, rp:2, d:"2026-05-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462472156136902656/"},
-      {t:"That's a wrap on Directions ASIA", ty:"Image", r:59, c:0, rp:0, d:"2026-05-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7460977299979509761/"},
-      {t:"The Continia Expense App now supports Microsoft Intune", ty:"Image", r:69, c:0, rp:2, d:"2026-05-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7460297900410109954/"},
-      {t:"Is your Accounts Receivable setup as efficient as it could be?", ty:"Document/carousel", r:39, c:0, rp:0, d:"2026-05-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7459935482685259777/"},
+      {t:"Continia is growing — swipe to find your", ty:"Document/carousel", r:42, c:0, rp:0, d:"2026-05-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463196907054600192/"},
+      {t:"Your BC setup is almost there. Why not", ty:"Video", r:34, c:0, rp:4, d:"2026-05-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462849736732082179/"},
+      {t:"Continia Elevate comes to Warsaw! Elevate", ty:"Image", r:47, c:4, rp:2, d:"2026-05-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462472156136902656/"},
+      {t:"That’s a wrap on Directions ASIA A big thank you", ty:"Image", r:59, c:0, rp:0, d:"2026-05-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7460977299979509761/"},
+      {t:"The Continia Expense App now supports", ty:"Image", r:69, c:0, rp:2, d:"2026-05-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7460297900410109954/"},
+      {t:"Is your Accounts Receivable setup as", ty:"Document/carousel", r:39, c:0, rp:0, d:"2026-05-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7459935482685259777/"},
       {t:"Celebrating our very own Microsoft MVP", ty:"Image", r:217, c:17, rp:1, d:"2026-05-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7458127078098415616/"},
-      {t:"Catch up on 2026 R1 and showcase your expertise", ty:"Image", r:27, c:0, rp:2, d:"2026-05-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7457762342773350400/"},
-      {t:"Let's catch up at DynamicsMinds!", ty:"Image", r:66, c:1, rp:1, d:"2026-04-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7454863943778533376/"},
-      {t:"Spend 30 minutes learning and save hours every month", ty:"Image", r:32, c:0, rp:1, d:"2026-04-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7454499717926985728/"},
-      {t:"Did you miss our 2026 R1 \"What's New\" webinars?", ty:"Image", r:31, c:0, rp:1, d:"2026-04-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7453059289675587584/"},
-      {t:"25 års samarbejde og +500 aktive Continia-løsninger", ty:"Image", r:75, c:2, rp:2, d:"2026-04-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7449810332358897664/"},
-      {t:"Celebrating the first release of 2026", ty:"Image", r:80, c:0, rp:1, d:"2026-04-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7449425551938740225/"},
-      {t:"2026 R1: A big step forward for AR automation", ty:"Video", r:84, c:2, rp:6, d:"2026-04-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7447612965991854080/"},
-      {t:"Hopping into Easter...", ty:"Image", r:61, c:0, rp:2, d:"2026-04-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7445077523211685889/"},
-      {t:"Handling 15,000 invoices every month is no small task", ty:"Image", r:27, c:0, rp:1, d:"2026-03-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7442193520951595008/"},
-      {t:"Join us at Days of Knowledge Nordic", ty:"Image", r:33, c:0, rp:1, d:"2026-03-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7441831220042186752/"},
-      {t:"Happy birthday to our CEO!", ty:"Image", r:208, c:20, rp:0, d:"2026-03-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440017920887296000/"},
-      {t:"Get a first look at 2026 R1!", ty:"Document/carousel", r:31, c:0, rp:3, d:"2026-03-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437845004946989056/"},
-      {t:"Football shirts for a good cause", ty:"Image", r:67, c:2, rp:0, d:"2026-03-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7436757687792578560/"},
-      {t:"Vi fejrer +500 implementerede Continia-løsninger hos Twoday", ty:"Image", r:77, c:0, rp:3, d:"2026-03-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7435649052156784640/"},
-      {t:"Where to meet Continia this spring and summer", ty:"Document/carousel", r:34, c:0, rp:3, d:"2026-03-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7435317830352261120/"}
+      {t:"Catch up on 2026 R1 and showcase your", ty:"Image", r:27, c:0, rp:2, d:"2026-05-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7457762342773350400/"},
+      {t:"Let's catch up at DynamicsMinds! From May 25-27,", ty:"Image", r:66, c:1, rp:1, d:"2026-04-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7454863943778533376/"},
+      {t:"Spend 30 minutes learning and save hours", ty:"Image", r:32, c:0, rp:1, d:"2026-04-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7454499717926985728/"},
+      {t:"Did you miss our 2026 R1 \"What's New\"", ty:"Image", r:31, c:0, rp:1, d:"2026-04-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7453059289675587584/"},
+      {t:"25 års samarbejde og +500 aktive", ty:"Image", r:75, c:2, rp:2, d:"2026-04-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7449810332358897664/"},
+      {t:"Celebrating the first release of 2026 2026", ty:"Image", r:80, c:0, rp:1, d:"2026-04-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7449425551938740225/"},
+      {t:"2026 R1: A big step forward for AR", ty:"Video", r:84, c:2, rp:6, d:"2026-04-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7447612965991854080/"},
+      {t:"Hopping into Easter... This week, a little Easter", ty:"Image", r:61, c:0, rp:2, d:"2026-04-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7445077523211685889/"},
+      {t:"Handling 15,000 invoices every month is no", ty:"Image", r:27, c:0, rp:1, d:"2026-03-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7442193520951595008/"},
+      {t:"Join us at Days of Knowledge Nordic In just a", ty:"Image", r:33, c:0, rp:1, d:"2026-03-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7441831220042186752/"},
+      {t:"Happy birthday to our CEO! Last week, we celebrated a", ty:"Image", r:208, c:20, rp:0, d:"2026-03-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440017920887296000/"},
+      {t:"Get a first look at 2026 R1! Continia's first release", ty:"Document/carousel", r:31, c:0, rp:3, d:"2026-03-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437845004946989056/"},
+      {t:"Football shirts for a good cause Last week, we", ty:"Image", r:67, c:2, rp:0, d:"2026-03-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7436757687792578560/"},
+      {t:"Vi fejrer +500 implementerede", ty:"Image", r:77, c:0, rp:3, d:"2026-03-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7435649052156784640/"},
+      {t:"Where to meet Continia this spring and", ty:"Document/carousel", r:34, c:0, rp:3, d:"2026-03-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7435317830352261120/"},
+      {t:"Lap times (almost) as quick as our invoice", ty:"Image", r:53, c:0, rp:1, d:"2026-03-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7434945850356908033/"},
+      {t:"Vi inviterer til danske webinarer Vil du", ty:"Image", r:27, c:0, rp:3, d:"2026-02-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7433089343373606912/"}
     ]},
 
     { name: "Truvio", cap: "2026-09-10", url: "https://www.linkedin.com/company/truvio-official/posts/", posts: [
@@ -982,7 +978,7 @@ window.LI_DATA = {
       {t:"You don't want to waste your time working with a maze-like file system. So,", ty:"Document/carousel", r:13, c:1, rp:1, d:"2026-07-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7484992803706511360/"}
     ]},
 
-    { name: "Yooz", cap: "2026-09-14", url: "https://www.linkedin.com/company/yooz/posts/", posts: [
+    { name: "Yooz", url: "https://www.linkedin.com/company/yooz/posts/", posts: [
       {t:"We're #hiring a new Full Stack Development Engineer (F/H) in Greater Montpe", ty:"Article/Link", r:1, c:0, rp:1, d:"2026-09-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504863731185664000/"},
       {t:"We're #hiring a new Production Software Analyst (F/H) in Greater Montpellie", ty:"Article/Link", r:3, c:0, rp:2, d:"2026-09-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504500310275551232/"},
       {t:"Using AI is easy. Building a finance function that actually gets value from", ty:"Image", r:0, c:0, rp:0, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504086369930055681/"},
@@ -1035,7 +1031,7 @@ window.LI_DATA = {
       {t:"We're #hiring a new Senior Salesforce Consultant (F/H) in Greater Montpelli", ty:"Article/Link", r:4, c:0, rp:3, d:"2026-05-23", u:"https://www.linkedin.com/feed/update/urn:li:activity:7463914204094369792/"}
     ]},
 
-    { name: "AvidXchange", cap: "2026-09-14", url: "https://www.linkedin.com/company/avidxchange-inc-/posts/", posts: [
+    { name: "AvidXchange", url: "https://www.linkedin.com/company/avidxchange-inc-/posts/", posts: [
       {t:"The Change Maker Awards are back! If you or someone you know is driving", ty:"Image", r:20, c:0, rp:3, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503135196624424960/"},
       {t:"AI adoption is accelerating. But where should finance teams focus first? F", ty:"Document/carousel", r:14, c:0, rp:7, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501655435402190848/"},
       {t:"AI-powered AP is helping finance teams move faster, and our customers are s", ty:"Image", r:9, c:0, rp:0, d:"2026-08-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7499103581103390722/"},
@@ -1088,7 +1084,7 @@ window.LI_DATA = {
       {t:"Big ideas. Real connections. Well-earned recognition. Our revenue team's an", ty:"Image", r:108, c:3, rp:10, d:"2026-02-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7427366349783470081/"}
     ]},
 
-    { name: "Pagero", cap: "2026-09-14", url: "https://www.linkedin.com/company/pagero/posts/", posts: [
+    { name: "Pagero", url: "https://www.linkedin.com/company/pagero/posts/", posts: [
       {t:"Delayed payments are often viewed as a temporary challenge. But they can al", ty:"Image", r:5, c:0, rp:2, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505195437377646593/"},
       {t:"Tomorrow: join Thomson Reuters, IDC and Goodyear for a live discussion on b", ty:"Image", r:4, c:0, rp:2, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505169819105751040/"},
       {t:"Italy has published new rules governing the automated VAT assessment proced", ty:"Image", r:8, c:0, rp:0, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504116756488060928/"},
@@ -1141,7 +1137,7 @@ window.LI_DATA = {
       {t:"Register for Compliance Connect 2026 in London to discover how you can acce", ty:"Video", r:21, c:0, rp:3, d:"2026-05-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462752350416392192/"}
     ]},
 
-    { name: "Compleat", cap: "2026-09-14", url: "https://www.linkedin.com/company/compleat-software-ltd/posts/", posts: [
+    { name: "Compleat", url: "https://www.linkedin.com/company/compleat-software-ltd/posts/", posts: [
       {t:"97% of #finance teams have adopted #AI. Only 23% say it's exceeding expecta", ty:"Image", r:1, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503755624485134337/"},
       {t:"96% of UK charities have restricted their own services this year. Energy co", ty:"Image", r:1, c:0, rp:0, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503075060723740672/"},
       {t:"Global business travel spend is set to hit $1.71 trillion this year. Trip v", ty:"Image", r:1, c:0, rp:1, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501582380705439744/"},
@@ -1194,7 +1190,7 @@ window.LI_DATA = {
       {t:"Absolutely spot on, Ceri Bates ! At Compleat, we’d never dream of disrupt", ty:"Repost", r:5, c:0, rp:0, d:"2025-12-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7407423911413301248/"}
     ]},
 
-    { name: "Tungsten Automation", cap: "2026-09-14", url: "https://www.linkedin.com/company/tungstenautomation/posts/", posts: [
+    { name: "Tungsten Automation", url: "https://www.linkedin.com/company/tungstenautomation/posts/", posts: [
       {t:"A Leader. Again! We’ve been named a Leader in the 2026 Gartner Magic Quadr", ty:"Image", r:0, c:0, rp:1, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505264464016011264/"},
       {t:"Most AP teams do the work twice. Approve the invoice in one system, then re", ty:"Image", r:13, c:0, rp:1, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505185475545059328/"},
       {t:"Sydney Summit came and went — and if you were interstate, across the ditch", ty:"Image", r:4, c:0, rp:1, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504297791293255681/"},
@@ -1247,7 +1243,7 @@ window.LI_DATA = {
       {t:"Germany's e-invoicing clock is ticking. Starting January 1, 2027, German", ty:"Image", r:14, c:0, rp:6, d:"2026-08-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495842425370906624/"}
     ]},
 
-    { name: "onPhase", cap: "2026-09-14", url: "https://www.linkedin.com/company/onphase/posts/", posts: [
+    { name: "onPhase", url: "https://www.linkedin.com/company/onphase/posts/", posts: [
       {t:"More than 75% of U.S. organizations experienced attempted or actual payment", ty:"Repost", r:1, c:0, rp:0, d:"2026-09-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503849348430995457/"},
       {t:"When invoices, contracts, approvals, and operational data live in different", ty:"Repost", r:1, c:0, rp:0, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503466567268012032/"},
       {t:"Finance teams don't need more disconnected systems. They need a single sour", ty:"Image", r:10, c:0, rp:3, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503465421350563840/"},
@@ -1300,7 +1296,7 @@ window.LI_DATA = {
       {t:"Month-end close is hell week for accountants, but it doesn't have to be. Be", ty:"Video", r:18, c:0, rp:2, d:"2026-04-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7445104939951046656/"}
     ]},
 
-    { name: "MineralTree", cap: "2026-09-14", url: "https://www.linkedin.com/company/mineraltree-inc-/posts/", posts: [
+    { name: "MineralTree", url: "https://www.linkedin.com/company/mineraltree-inc-/posts/", posts: [
       {t:"Consumers are embracing AI for discovery, research and comparison, but when", ty:"Image", r:33, c:1, rp:7, d:"2026-09-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505243969421996033/"},
       {t:"There was plenty to take in at Genius World — from thought-provoking conver", ty:"Document/carousel", r:52, c:1, rp:6, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504236213961154560/"},
       {t:"What keeps SMB retailers up at night? We spoke with store owners to uncover", ty:"Article/Link", r:35, c:2, rp:5, d:"2026-09-04", u:"https://www.linkedin.com/feed/update/urn:li:activity:7501664883378376705/"},
@@ -1353,7 +1349,7 @@ window.LI_DATA = {
       {t:"We recently sat down on the Payments Unfiltered Podcast hosted by our partn", ty:"Image", r:128, c:1, rp:7, d:"2026-03-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440389714374705152/"}
     ]},
 
-    { name: "Lasernet", cap: "2026-09-14", url: "https://www.linkedin.com/showcase/lasernet-formpipe/posts/", posts: [
+    { name: "Lasernet", url: "https://www.linkedin.com/showcase/lasernet-formpipe/posts/", posts: [
       {t:"Can you prove that a batch certificate used the right data and approved for", ty:"Image", r:22, c:0, rp:1, d:"2026-09-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503422990219497472/"},
       {t:"You may have made your website European Accessibility Act (EAA) compliant.", ty:"Image", r:14, c:0, rp:1, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503052101694996480/"},
       {t:"Could your bank use the data it already holds to make marketing messages mo", ty:"Image", r:9, c:0, rp:0, d:"2026-09-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500869915063648256/"},
@@ -1406,7 +1402,7 @@ window.LI_DATA = {
       {t:"In celebration of Women’s History Month, we’re proud to see our CEO, Sophie", ty:"Image", r:33, c:0, rp:0, d:"2026-03-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437090658420531202/"}
     ]},
 
-    { name: "Dime Scheduler", cap: "2026-09-14", url: "https://www.linkedin.com/company/dimesoftware/posts/", posts: [
+    { name: "Dime Scheduler", url: "https://www.linkedin.com/company/dimesoftware/posts/", posts: [
       {t:"Webinar alert: What's new in 𝐃𝐢𝐦𝐞.𝐒𝐜𝐡𝐞𝐝𝐮𝐥𝐞𝐫 We've shipped a", ty:"Image", r:4, c:0, rp:0, d:"2026-05-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465304885429796864/"},
       {t:"The latest updates to Dime.Scheduler bring a range of great new capabilitie", ty:"Image", r:9, c:0, rp:1, d:"2026-05-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7462415118987857920/"},
       {t:"A new version of 𝐃𝐢𝐦𝐞.𝐒𝐜𝐡𝐞𝐝𝐮𝐥𝐞𝐫 is out now! Discover the la", ty:"Image", r:17, c:0, rp:2, d:"2026-05-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7460229664289112064/"},
@@ -1427,7 +1423,7 @@ window.LI_DATA = {
       {t:"Field Service Reimagined with Servotion & Dime.Scheduler Discover how to", ty:"Image", r:8, c:0, rp:3, d:"2025-09-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7374827864296173569/"}
     ]},
 
-    { name: "Acubiz", cap: "2026-09-14", url: "https://www.linkedin.com/company/acubiz/posts/", posts: [
+    { name: "Acubiz", url: "https://www.linkedin.com/company/acubiz/posts/", posts: [
       {t:"En chat er fin til det simple. Når det ikke er simpelt, kan I ringe og tale", ty:"Video", r:24, c:0, rp:0, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504071749500641282/"},
       {t:"I fredags løb og gik vi fra Acubiz sammen med Visma endnu engang DHL-stafet", ty:"Image", r:76, c:2, rp:0, d:"2026-08-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500152938477035520/"},
       {t:"Den hyppigste grund til at blive i sit udgiftssystem er ikke prisen. Det er", ty:"Video", r:21, c:0, rp:0, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495424978331451393/"},
