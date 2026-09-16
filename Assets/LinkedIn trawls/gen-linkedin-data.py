@@ -10,17 +10,39 @@ OUT  = "/Users/andreasv.christensen/Desktop/Claude-Marketing-dashboard/linkedin-
 # down. Captures do not have to share a date - each company carries the date of
 # the trawl it came from, and dashboard.js measures that company's 30-day
 # momentum window from its own capture date rather than from one global "as of".
+# A capture that skips a company simply leaves that company on its older data.
 #
-# Two dialects, because the captures do not all come from the same tool:
-#   "trawl"    the multi-company competitor sweep - comma-separated, one
-#              "company" column, English type names, titles cut at ~75 chars.
+# Three dialects, because the captures do not all come from the same tool:
+#   "trawl"    the original competitor sweep - comma-separated, lowercase
+#              "company"/"type" headers, English type names, ~75-char titles.
 #   "continia" our own page export - semicolon-separated, Danish headers
 #              (Dato/Titel/Type/Link), no company column, lowercase type names
 #              ("multi-image (9)", "carousel/document") and FULL titles.
+#   "sweep2"   the Sep 16 competitor sweep - comma-separated but different
+#              headers ("Post #", "Date (UTC)" with a time, "Post type",
+#              "Posted by", "Post URL", "Company page"), type names like
+#              "Document/Carousel (PDF)" and "Multi-image (4)", and no Repost
+#              type at all: a repost is recorded as the original post's type
+#              plus the original author in "Posted by". See SELF_ALIAS.
 SOURCES = [
     ("linkedin_competitor_posts_2026-09-10.csv",       "2026-09-10", "trawl"),
     ("linkedin_competitor_posts_2026-09-14_EXTRA.csv", "2026-09-14", "trawl"),
     ("continia-linkedin-50-posts_16 SEP.csv",          "2026-09-16", "continia"),
+    # QUARANTINED - do not re-enable this file:
+    #   ("linkedin_konkurrent_posts_16 sep.csv",       "2026-09-16", "sweep2"),
+    # The Sep 16 competitor sweep is a broken capture. 635 of its 1398 rows
+    # (45%) carry 0 reactions AND 0 comments AND 0 reposts, spread evenly
+    # across post position (43-50% in every block of ten), including Stripe's
+    # newest posts. Cross-checking post URLs against the Sep 10/14 captures
+    # settles it: 612 native posts match the older numbers exactly, while 431
+    # read zero - so the tool reports correctly when it reads the counter at
+    # all and writes 0 when it fails. Because it wrote 0 instead of leaving the
+    # cell empty, a real zero is indistinguishable from a failed read and the
+    # file cannot be repaired. Loading it dropped every competitor's average
+    # by roughly 5x (Stripe 348 -> 68, MineralTree 154 -> 7) and would have
+    # made Continia look dramatically stronger than it is.
+    # The "sweep2" dialect below is finished and tested against this file, so a
+    # clean re-run only needs the SOURCES line above uncommented.
 ]
 CAPTURED = "2026-09-16"   # newest capture; shown as the module's "as of" date
 
@@ -30,48 +52,59 @@ CONTINIA_LABEL = "Continia Software A/S"
 CONTINIA_URL   = "https://www.linkedin.com/company/continia-software-a-s/posts/"
 
 # CSV company label -> dashboard label. Anything not listed here is dropped.
+# Several CSV labels may map to the SAME dashboard label: each sweep spells some
+# names differently ("Fidesic" vs "Fidesic AP", "Dime Scheduler" vs "Dime
+# Software"), so rows are grouped by the DASHBOARD label, never by the CSV one.
 # Dashboard labels match the competitor-card names in dashboard.js wherever a
 # card exists, so the module lines up with the roster.
 KEEP = collections.OrderedDict([
-    ("Continia Software A/S", "Continia Software"),
-    ("Truvio",                "Truvio"),
-    ("Equisys (Zetadocs)",    "Equisys"),
-    ("Medius",                "Medius"),
-    ("Qvalia",                "Qvalia"),
-    ("AMC Banking",           "AMC Banking"),
-    ("B2Brouter",             "B2Brouter"),
-    ("Dooap",                 "Dooap"),
-    ("Yavrio",                "Yavrio"),
-    ("Rillion",               "Rillion"),
-    ("Fidesic",               "Fidesic"),
-    ("Tipalti",               "Tipalti"),
-    ("Stampli",               "Stampli"),
+    ("Continia Software A/S",     "Continia Software"),
+    ("Truvio",                    "Truvio"),
+    ("Equisys (Zetadocs)",        "Equisys"),
+    ("Equisys",                   "Equisys"),
+    ("Medius",                    "Medius"),
+    ("Qvalia",                    "Qvalia"),
+    ("AMC Banking",               "AMC Banking"),
+    ("B2Brouter",                 "B2Brouter"),
+    ("Dooap",                     "Dooap"),
+    ("Yavrio",                    "Yavrio"),
+    ("Rillion",                   "Rillion"),
+    ("Fidesic",                   "Fidesic"),
+    ("Fidesic AP",                "Fidesic"),
+    ("Tipalti",                   "Tipalti"),
+    ("Stampli",                   "Stampli"),
     # Added with the Sep 10 trawl - the 1:1 solution rivals.
-    ("Pleo",                  "Pleo"),
-    ("Payhawk",               "Payhawk"),
-    ("Rydoo",                 "Rydoo"),
-    ("Expensify",             "Expensify"),
-    ("Zoho Expense",          "Zoho Expense"),
-    ("DocuWare",              "DocuWare"),
+    ("Pleo",                      "Pleo"),
+    ("Payhawk",                   "Payhawk"),
+    ("Rydoo",                     "Rydoo"),
+    ("Expensify",                 "Expensify"),
+    ("Zoho Expense",              "Zoho Expense"),
+    ("DocuWare",                  "DocuWare"),
     # Added with the Sep 14 EXTRA trawl - competitor cards that had no LinkedIn
     # coverage at all and were therefore invisible in the Content-Gap Analysis.
-    ("Yooz",                  "Yooz"),
-    ("AvidXchange",           "AvidXchange"),
-    ("Pagero",                "Pagero"),
-    ("Compleat Software",     "Compleat"),
-    ("Tungsten Automation",   "Tungsten Automation"),
-    ("onPhase",               "onPhase"),
-    ("MineralTree",           "MineralTree"),
-    ("Lasernet (Formpipe)",   "Lasernet"),
-    ("Dime Scheduler",        "Dime Scheduler"),
-    ("Acubiz",                "Acubiz"),
+    ("Yooz",                      "Yooz"),
+    ("AvidXchange",               "AvidXchange"),
+    ("Pagero",                    "Pagero"),
+    ("Pagero (Thomson Reuters)",  "Pagero"),
+    ("Compleat Software",         "Compleat"),
+    ("Tungsten Automation",       "Tungsten Automation"),
+    ("onPhase",                   "onPhase"),
+    ("MineralTree",               "MineralTree"),
+    ("Lasernet (Formpipe)",       "Lasernet"),
+    ("Dime Scheduler",            "Dime Scheduler"),
+    ("Dime Software",             "Dime Scheduler"),
+    ("Acubiz",                    "Acubiz"),
     # Benchmarks: not competitors. They render with a Benchmark badge, stay out
     # of the engagement bar's scale and are excluded from content-gap / SOV.
-    ("Stripe",                "Stripe"),
-    ("Incedo Inc",            "Incedo"),
+    ("Stripe",                    "Stripe"),
+    ("Incedo Inc",                "Incedo"),
+    ("Incedo Inc.",               "Incedo"),
 ])
 OURS  = {"Continia Software"}
 BENCH = {"Stripe", "Incedo"}
+
+# Render order = first appearance of each dashboard label in KEEP.
+ORDER = list(collections.OrderedDict((v, None) for v in KEEP.values()))
 
 # Still no LinkedIn coverage, and none is possible:
 #   Microsoft Expense Agent - a Microsoft product, no company page of its own.
@@ -82,6 +115,20 @@ BENCH = {"Stripe", "Incedo"}
 #     including it would double-count ExFlow/Truvio in every gap and SOV figure.
 #   acubiz-consulting - an unrelated Malaysian pharma consultancy. The real
 #     Acubiz (Visma, Birkerod) is linkedin.com/company/acubiz.
+
+# "sweep2" records a repost as the original post's type plus the original
+# author, so the only way to spot one is that "Posted by" is not the page
+# itself. Four pages post under a name that differs from their sweep label -
+# a legal name, a parent brand, or the showcase's own name - and treating
+# those as reposts would mislabel 200 native posts. Anything NOT listed here
+# is a genuine repost of someone else's content.
+SELF_ALIAS = {
+    "AvidXchange":              {"AvidXchange, Inc."},
+    "MineralTree":              {"MineralTree, Inc."},
+    "Pagero (Thomson Reuters)": {"Thomson Reuters Europe", "Thomson Reuters",
+                                 "Thomson Reuters ONESOURCE"},
+    "Lasernet (Formpipe)":      {"Lasernet"},
+}
 
 # Pill vocabulary kept identical to every earlier capture so type-mix
 # comparisons across archive snapshots stay meaningful.
@@ -97,11 +144,29 @@ CONTINIA_TYMAP = {"image":"Image", "multi-image":"Multi-image",
                   "text":"Text", "poll":"Poll", "link/article":"Link/Article",
                   "event":"Event", "repost":"Repost"}
 
+# sweep2 spells them differently again. "Entity/Link" is a shared LinkedIn
+# entity - in practice the auto-generated #hiring job posts - which the earlier
+# sweep recorded as Link/Article, so it keeps that pill.
+SWEEP2_TYMAP = {"Image":"Image", "Multi-image":"Multi-image", "Video":"Video",
+                "Text":"Text", "Poll":"Poll", "Event":"Event",
+                "Article/Link":"Link/Article", "Entity/Link":"Link/Article",
+                "Document/Carousel (PDF)":"Carousel", "Repost":"Repost"}
+
+def strip_count(raw):
+    """'Multi-image (9)' -> 'Multi-image'."""
+    return re.sub(r"\s*\(\d+\)\s*$", "", raw.strip())
+
 def continia_type(raw):
-    t = re.sub(r"\s*\(\d+\)\s*$", "", raw.strip().lower())   # drop "(9)"
+    t = strip_count(raw).lower()
     if t not in CONTINIA_TYMAP:
         sys.exit("unmapped Continia post type: %r" % raw)
     return CONTINIA_TYMAP[t]
+
+def sweep2_type(raw):
+    t = strip_count(raw)
+    if t not in SWEEP2_TYMAP:
+        sys.exit("unmapped sweep2 post type: %r" % raw)
+    return SWEEP2_TYMAP[t]
 
 ZW = dict.fromkeys(map(ord, "​‌‍⁠️︎"), None)
 
@@ -116,12 +181,9 @@ def norm(s):
     s = re.sub(r"\.{4,}", "...", s)
     return re.sub(r"\s+", " ", s).strip()
 
-by      = {}   # csv label -> rows
-cap_of  = {}   # csv label -> capture date of the trawl it came from
-seen_types = collections.Counter()
-
+# ---------------------------------------------------------------- readers ----
 def read_trawl(fname):
-    """Multi-company competitor sweep: comma-separated, already in our shape."""
+    """The original competitor sweep: already in our shape."""
     return list(csv.DictReader(io.open(BASE + fname, encoding="utf-8-sig")))
 
 def read_continia(fname):
@@ -129,20 +191,49 @@ def read_continia(fname):
     out = []
     for r in csv.DictReader(io.open(BASE + fname, encoding="utf-8-sig"), delimiter=";"):
         out.append({
-            "company":      CONTINIA_LABEL,
-            "post_no":      r["#"],
-            "date":         r["Dato"],
-            "type":         continia_type(r["Type"]),
-            "reactions":    r["Reactions"],
-            "comments":     r["Comments"],
-            "reposts":      r["Reposts"],
-            "title":        r["Titel"],
-            "post_url":     r["Link"].strip(),
-            "company_url":  CONTINIA_URL,
+            "company":     CONTINIA_LABEL,
+            "post_no":     r["#"],
+            "date":        r["Dato"],
+            "type":        continia_type(r["Type"]),
+            "reactions":   r["Reactions"],
+            "comments":    r["Comments"],
+            "reposts":     r["Reposts"],
+            "title":       r["Titel"],
+            "post_url":    r["Link"].strip(),
+            "company_url": CONTINIA_URL,
         })
     return out
 
-READERS = {"trawl": read_trawl, "continia": read_continia}
+def read_sweep2(fname):
+    """Sep 16 competitor sweep: own headers, timestamped dates, reposts implied
+    by 'Posted by'."""
+    out = []
+    for r in csv.DictReader(io.open(BASE + fname, encoding="utf-8-sig")):
+        co = r["Company"].strip()
+        by = r["Posted by"].strip()
+        ty = sweep2_type(r["Post type"])
+        if by and by != co and by not in SELF_ALIAS.get(co, set()):
+            ty = "Repost"
+        out.append({
+            "company":     co,
+            "post_no":     r["Post #"],
+            "date":        r["Date (UTC)"].strip()[:10],   # drop the HH:MM
+            "type":        ty,
+            "reactions":   r["Reactions"],
+            "comments":    r["Comments"],
+            "reposts":     r["Reposts"],
+            "title":       r["Title (first line of post)"],
+            "post_url":    r["Post URL"].strip(),
+            "company_url": r["Company page"].strip().split("?")[0],
+        })
+    return out
+
+READERS = {"trawl": read_trawl, "continia": read_continia, "sweep2": read_sweep2}
+
+# ------------------------------------------------------------------ merge ----
+by     = {}   # dashboard label -> rows
+cap_of = {}   # dashboard label -> capture date of the trawl it came from
+seen_types = collections.Counter()
 
 for fname, captured, dialect in SOURCES:
     if dialect not in READERS:
@@ -152,10 +243,11 @@ for fname, captured, dialect in SOURCES:
         sys.exit("empty CSV: %s" % fname)
     grouped = collections.defaultdict(list)
     for r in rows:
-        if r["company"] not in KEEP:
+        label = KEEP.get(r["company"])
+        if label is None:
             continue
         seen_types[r["type"]] += 1
-        grouped[r["company"]].append(r)
+        grouped[label].append(r)
     for label, rs in grouped.items():
         by[label] = rs               # later SOURCES win
         cap_of[label] = captured
@@ -164,17 +256,18 @@ unknown = [t for t in seen_types if t not in TYMAP]
 if unknown:
     sys.exit("unmapped post type(s): %r" % unknown)
 
-missing = [c for c in KEEP if c not in by]
+missing = [c for c in ORDER if c not in by]
 if missing:
     sys.exit("no rows for %r - is it in one of the SOURCES CSVs?" % missing)
 
+# ------------------------------------------------------------------- emit ----
 out = []
-for csv_name, name in KEEP.items():
-    posts = sorted(by[csv_name], key=lambda r: int(r["post_no"]))
+for name in ORDER:
+    posts = sorted(by[name], key=lambda r: int(r["post_no"]))
     flag = ' ours: true,' if name in OURS else (' bench: true,' if name in BENCH else '')
     # Only companies captured on a different day than CAPTURED carry "cap";
     # the rest inherit the module-level capture date.
-    cap = '' if cap_of[csv_name] == CAPTURED else ' cap: %s,' % json.dumps(cap_of[csv_name])
+    cap = '' if cap_of[name] == CAPTURED else ' cap: %s,' % json.dumps(cap_of[name])
     head = '    { name: %s,%s%s url: %s, posts: [' % (
         json.dumps(name, ensure_ascii=False), flag, cap,
         json.dumps(posts[0]["company_url"], ensure_ascii=False))
@@ -203,28 +296,35 @@ header = '''/* =================================================================
 
    Sources, all in Assets/LinkedIn trawls/:
 %s
-   Each has a matching linkedin_competitor_summary_*.csv holding the same
+   Some have a matching linkedin_competitor_summary_*.csv holding the same
    numbers pre-aggregated; those are kept only as a cross-check.
 
-   MIXED CAPTURE DATES. The roster was assembled from two trawls four days
-   apart, so a company captured before "captured" below carries its own "cap"
-   date. dashboard.js measures that company's 30-day momentum window from its
-   own capture date, which keeps the Last-30-days column comparable instead of
-   handing the later trawl four extra days of posts.
+   MIXED CAPTURE DATES. The roster is assembled from several trawls, so a
+   company captured before "captured" below carries its own "cap" date.
+   dashboard.js measures that company's 30-day momentum window from its own
+   capture date, which keeps the Last-30-days column comparable instead of
+   handing the later trawl extra days of posts. A sweep that skips a company
+   leaves it on its older data rather than dropping it.
 
-   Per post: "t" is the title as the capture recorded it. The competitor sweep
-   cuts it at ~75 characters on a word boundary (no ellipsis is added, so a
-   sentence may simply stop); the Continia export carries the full first line,
-   so our own titles read longer than the rest. Emoji are stripped either way.
-   "ty"
-   is the content-type pill, "r"/"c"/"rp" are reactions/comments/reposts, "d" is
-   the post date (YYYY-MM-DD) and "u" links the original post. Per company, "url"
-   is the LinkedIn company page. Up to 50 most-recent posts each; fewer where the
-   page had fewer (Equisys 44, AMC Banking 22, Dime Scheduler 18, Qvalia 16).
+   Per post: "t" is the title as the capture recorded it. The competitor sweeps
+   cut it at ~75-130 characters on a word boundary (no ellipsis is added, so a
+   sentence may simply stop); the Continia export carries the full first line.
+   Emoji are stripped either way. "ty" is the content-type pill, "r"/"c"/"rp"
+   are reactions/comments/reposts, "d" is the post date (YYYY-MM-DD) and "u"
+   links the original post. Per company, "url" is the LinkedIn company page.
+   Up to 50 most-recent posts each; fewer where the page had fewer.
 
    Type pills follow the vocabulary used since June 2026: LinkedIn's
    "Multi-image" renders as Image and "Carousel" as Document/carousel, so type
-   mixes stay comparable with the archive snapshots.
+   mixes stay comparable with the archive snapshots. The Sep 16 sweep has no
+   Repost type of its own - it records a repost as the original post's type
+   plus the original author - so a row whose author is not the page itself is
+   re-pilled as Repost. Four pages legitimately post under another name
+   (AvidXchange Inc., MineralTree Inc., Thomson Reuters for Pagero, Lasernet
+   for the Formpipe showcase); those are listed as SELF_ALIAS in the generator
+   so their own posts are not mislabelled. Note that a repost carries the
+   engagement of the post it resurfaces, which is how every earlier capture
+   counted it too.
 
    Two rows carry bench:true - Stripe (payments benchmark) and Incedo (consulting
    firm). They are not competitors: they render with a Benchmark badge, are left
@@ -244,6 +344,6 @@ window.LI_DATA = {
 ''' % (src_lines, CAPTURED, body)
 
 io.open(OUT, "w", encoding="utf-8").write(header)
-print("companies:", len(KEEP), "posts:", sum(len(by[c]) for c in KEEP))
+print("companies:", len(ORDER), "posts:", sum(len(by[c]) for c in ORDER))
 print("captures:", dict(collections.Counter(cap_of.values())))
 print("types:", dict(seen_types))

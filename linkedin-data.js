@@ -8,28 +8,35 @@
      linkedin_competitor_posts_2026-09-10.csv  (captured 2026-09-10, trawl dialect)
      linkedin_competitor_posts_2026-09-14_EXTRA.csv  (captured 2026-09-14, trawl dialect)
      continia-linkedin-50-posts_16 SEP.csv  (captured 2026-09-16, continia dialect)
-   Each has a matching linkedin_competitor_summary_*.csv holding the same
+   Some have a matching linkedin_competitor_summary_*.csv holding the same
    numbers pre-aggregated; those are kept only as a cross-check.
 
-   MIXED CAPTURE DATES. The roster was assembled from two trawls four days
-   apart, so a company captured before "captured" below carries its own "cap"
-   date. dashboard.js measures that company's 30-day momentum window from its
-   own capture date, which keeps the Last-30-days column comparable instead of
-   handing the later trawl four extra days of posts.
+   MIXED CAPTURE DATES. The roster is assembled from several trawls, so a
+   company captured before "captured" below carries its own "cap" date.
+   dashboard.js measures that company's 30-day momentum window from its own
+   capture date, which keeps the Last-30-days column comparable instead of
+   handing the later trawl extra days of posts. A sweep that skips a company
+   leaves it on its older data rather than dropping it.
 
-   Per post: "t" is the title as the capture recorded it. The competitor sweep
-   cuts it at ~75 characters on a word boundary (no ellipsis is added, so a
-   sentence may simply stop); the Continia export carries the full first line,
-   so our own titles read longer than the rest. Emoji are stripped either way.
-   "ty"
-   is the content-type pill, "r"/"c"/"rp" are reactions/comments/reposts, "d" is
-   the post date (YYYY-MM-DD) and "u" links the original post. Per company, "url"
-   is the LinkedIn company page. Up to 50 most-recent posts each; fewer where the
-   page had fewer (Equisys 44, AMC Banking 22, Dime Scheduler 18, Qvalia 16).
+   Per post: "t" is the title as the capture recorded it. The competitor sweeps
+   cut it at ~75-130 characters on a word boundary (no ellipsis is added, so a
+   sentence may simply stop); the Continia export carries the full first line.
+   Emoji are stripped either way. "ty" is the content-type pill, "r"/"c"/"rp"
+   are reactions/comments/reposts, "d" is the post date (YYYY-MM-DD) and "u"
+   links the original post. Per company, "url" is the LinkedIn company page.
+   Up to 50 most-recent posts each; fewer where the page had fewer.
 
    Type pills follow the vocabulary used since June 2026: LinkedIn's
    "Multi-image" renders as Image and "Carousel" as Document/carousel, so type
-   mixes stay comparable with the archive snapshots.
+   mixes stay comparable with the archive snapshots. The Sep 16 sweep has no
+   Repost type of its own - it records a repost as the original post's type
+   plus the original author - so a row whose author is not the page itself is
+   re-pilled as Repost. Four pages legitimately post under another name
+   (AvidXchange Inc., MineralTree Inc., Thomson Reuters for Pagero, Lasernet
+   for the Formpipe showcase); those are listed as SELF_ALIAS in the generator
+   so their own posts are not mislabelled. Note that a repost carries the
+   engagement of the post it resurfaces, which is how every earlier capture
+   counted it too.
 
    Two rows carry bench:true - Stripe (payments benchmark) and Incedo (consulting
    firm). They are not competitors: they render with a Benchmark badge, are left
