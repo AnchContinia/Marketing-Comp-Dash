@@ -126,6 +126,18 @@ for good unless it is archived. Two steps:
    companies already covered: each company carries the capture date of the trawl it came
    from (`cap`), and `dashboard.js` measures that company's 30-day momentum window from its
    own date so a later trawl gets no wider window than an earlier one.
+   **A newer capture unions with the older one, it does not replace it.** Sweeps come back
+   incomplete — the Sep 17 sweep missed ~31% of the posts the Sep 10/14 captures held,
+   evenly spread across post age — and replacing wholesale halves `posts/week` and empties
+   a third of the Last-30-days column. Post sets are merged on the permalink, the newer
+   reading of a post wins, and the result is trimmed to `MAX_POSTS` (50) most recent. The
+   trade-off: one company's figures can come from two read dates, so a post only the older
+   capture saw carries a slightly stale count.
+   **Verify every capture before wiring it in.** Cross-check post permalinks against the
+   live data: unchanged posts should match their old numbers. A Sep 16 sweep was rejected
+   outright because 45% of its rows read 0/0/0 — it wrote `0` where it failed to read a
+   counter, which is indistinguishable from a real zero and unrepairable. See the
+   QUARANTINED note in the generator.
 
 Only then regenerate, bump the `?v=` on every page that loads the file, and stamp
 `DASHBOARD_UPDATED`. (Standing instruction from the user.)

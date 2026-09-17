@@ -28,6 +28,7 @@ SOURCES = [
     ("linkedin_competitor_posts_2026-09-10.csv",       "2026-09-10", "trawl"),
     ("linkedin_competitor_posts_2026-09-14_EXTRA.csv", "2026-09-14", "trawl"),
     ("continia-linkedin-50-posts_16 SEP.csv",          "2026-09-16", "continia"),
+    ("linkedin_competitor_posts_18of31_SEP 17.csv",     "2026-09-17", "sweep2"),
     # QUARANTINED - do not re-enable this file:
     #   ("linkedin_konkurrent_posts_16 sep.csv",       "2026-09-16", "sweep2"),
     # The Sep 16 competitor sweep is a broken capture. 635 of its 1398 rows
@@ -44,7 +45,8 @@ SOURCES = [
     # The "sweep2" dialect below is finished and tested against this file, so a
     # clean re-run only needs the SOURCES line above uncommented.
 ]
-CAPTURED = "2026-09-16"   # newest capture; shown as the module's "as of" date
+CAPTURED = "2026-09-17"   # newest capture; shown as the module's "as of" date
+MAX_POSTS = 50            # window size per company, after merging captures
 
 # The "continia" dialect carries no company/company_url columns - they are the
 # same on every row, so they live here instead.
@@ -59,6 +61,7 @@ CONTINIA_URL   = "https://www.linkedin.com/company/continia-software-a-s/posts/"
 # card exists, so the module lines up with the roster.
 KEEP = collections.OrderedDict([
     ("Continia Software A/S",     "Continia Software"),
+    ("Continia Software",         "Continia Software"),
     ("Truvio",                    "Truvio"),
     ("Equisys (Zetadocs)",        "Equisys"),
     ("Equisys",                   "Equisys"),
@@ -124,6 +127,7 @@ ORDER = list(collections.OrderedDict((v, None) for v in KEEP.values()))
 # is a genuine repost of someone else's content.
 SELF_ALIAS = {
     "AvidXchange":              {"AvidXchange, Inc."},
+    "Fidesic":                  {"Fidesic AP"},
     "MineralTree":              {"MineralTree, Inc."},
     "Pagero (Thomson Reuters)": {"Thomson Reuters Europe", "Thomson Reuters",
                                  "Thomson Reuters ONESOURCE"},
@@ -171,7 +175,15 @@ def sweep2_type(raw):
 ZW = dict.fromkeys(map(ord, "​‌‍⁠️︎"), None)
 
 def norm(s):
-    """Strip zero-width joiners and emoji, keep real letters (incl. aeoa), tidy space."""
+    """Strip zero-width joiners and emoji, keep real letters (incl. aeoa), tidy space.
+
+    NFKC first: LinkedIn posts are full of mathematical-bold text used as fake
+    headline styling ("\U0001d7ee\U0001d7ec\U0001d7ee\U0001d7f0 \U0001d5e5\U0001d7ee" for "2026 R2"). Those are distinct code
+    points, so themeOf in dashboard.js cannot match a keyword against them and
+    the post silently goes untagged. NFKC folds them to plain ASCII while
+    leaving real letters - including aeoa and accents - untouched.
+    """
+    s = unicodedata.normalize("NFKC", s)
     s = s.translate(ZW)
     out = []
     for ch in s:
@@ -249,7 +261,25 @@ for fname, captured, dialect in SOURCES:
         seen_types[r["type"]] += 1
         grouped[label].append(r)
     for label, rs in grouped.items():
-        by[label] = rs               # later SOURCES win
+        # UNION, not replace. A sweep does not always return every one of the
+        # 50 most recent posts - the Sep 17 sweep missed about 31% of what the
+        # Sep 10/14 captures held, evenly spread across post age - and letting
+        # it replace the company wholesale would have cut posts/week roughly in
+        # half (Rydoo 4.5 -> 2.0) and dropped a third of the posts out of the
+        # Last-30-days column. So post sets are merged on the permalink, the
+        # newer reading of a post wins, and the result is trimmed back to the
+        # MAX_POSTS most recent so every company still shows the same window.
+        # Consequence to keep in mind: a company's engagement figures can come
+        # from two different read dates, so a post only the older capture saw
+        # carries a slightly stale count. That is a much smaller error than
+        # missing a third of the posts.
+        if label in by:
+            merged = collections.OrderedDict((r["post_url"], r) for r in by[label])
+            for r in rs:
+                merged[r["post_url"]] = r
+            rs = list(merged.values())
+        rs.sort(key=lambda r: (r["date"], -int(r["post_no"])), reverse=True)
+        by[label] = rs[:MAX_POSTS]
         cap_of[label] = captured
 
 unknown = [t for t in seen_types if t not in TYMAP]
@@ -263,7 +293,7 @@ if missing:
 # ------------------------------------------------------------------- emit ----
 out = []
 for name in ORDER:
-    posts = sorted(by[name], key=lambda r: int(r["post_no"]))
+    posts = by[name]               # already newest-first from the merge step
     flag = ' ours: true,' if name in OURS else (' bench: true,' if name in BENCH else '')
     # Only companies captured on a different day than CAPTURED carry "cap";
     # the rest inherit the module-level capture date.
