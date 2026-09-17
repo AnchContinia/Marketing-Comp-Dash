@@ -109,6 +109,16 @@ BENCH = {"Stripe", "Incedo"}
 # Render order = first appearance of each dashboard label in KEEP.
 ORDER = list(collections.OrderedDict((v, None) for v in KEEP.values()))
 
+# CSV labels that a capture may contain and that we deliberately throw away.
+# Everything NOT in KEEP and NOT in here is a mistake - a sweep spelling a
+# company a new way - and the run stops rather than dropping the rows quietly.
+# That silence already cost us once: the Sep 17 sweep wrote "Continia Software"
+# where the older trawls wrote "Continia Software A/S", so all 50 of our own
+# posts vanished and the capture looked like it covered 17 companies, not 18.
+DROP = {
+    "SignUp Software",      # Truvio's former brand, see below
+}
+
 # Still no LinkedIn coverage, and none is possible:
 #   Microsoft Expense Agent - a Microsoft product, no company page of its own.
 #
@@ -254,12 +264,19 @@ for fname, captured, dialect in SOURCES:
     if not rows:
         sys.exit("empty CSV: %s" % fname)
     grouped = collections.defaultdict(list)
+    stray = collections.Counter()
     for r in rows:
         label = KEEP.get(r["company"])
         if label is None:
+            if r["company"] not in DROP:
+                stray[r["company"]] += 1
             continue
         seen_types[r["type"]] += 1
         grouped[label].append(r)
+    if stray:
+        sys.exit("%s: company label(s) not in KEEP and not in DROP: %s\n"
+                 "Add each to KEEP (mapped to its dashboard name) or to DROP."
+                 % (fname, ", ".join("%r (%d rows)" % (k, v) for k, v in stray.most_common())))
     for label, rs in grouped.items():
         # UNION, not replace. A sweep does not always return every one of the
         # 50 most recent posts - the Sep 17 sweep missed about 31% of what the

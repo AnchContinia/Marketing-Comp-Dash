@@ -133,14 +133,31 @@ for good unless it is archived. Two steps:
    reading of a post wins, and the result is trimmed to `MAX_POSTS` (50) most recent. The
    trade-off: one company's figures can come from two read dates, so a post only the older
    capture saw carries a slightly stale count.
-   **Verify every capture before wiring it in.** Cross-check post permalinks against the
-   live data: unchanged posts should match their old numbers. A Sep 16 sweep was rejected
-   outright because 45% of its rows read 0/0/0 — it wrote `0` where it failed to read a
-   counter, which is indistinguishable from a real zero and unrepairable. See the
-   QUARANTINED note in the generator.
+   **Verify every capture before wiring it in** — `node tools/verify-trawl.js "<csv>"`.
+   It auto-detects the dialect and judges three things separately: TRUST (do posts the live
+   data already holds still carry the same numbers), PLAUSIBLE (is the all-zero rate low
+   enough to be real) and COMPLETE (does it hold the posts we already know about). Exit 1 =
+   reject. A Sep 16 sweep was rejected this way: 45% of its rows read 0/0/0 because it wrote
+   `0` where it failed to read a counter, which is indistinguishable from a real zero and
+   unrepairable. See the QUARANTINED note in the generator.
+   An unmapped company label is a hard error, not a silent skip — add it to `KEEP` (mapped
+   to its dashboard name) or to `DROP` (deliberate exclusions). This is how a sweep spelling
+   our own name "Continia Software" instead of "Continia Software A/S" once dropped all 50
+   of our posts without a word.
 
 Only then regenerate, bump the `?v=` on every page that loads the file, and stamp
 `DASHBOARD_UPDATED`. (Standing instruction from the user.)
+
+## Asking for a new LinkedIn trawl
+
+`node tools/make-trawl-prompt.js` regenerates [Likedin TRAWLER prompt.md](Likedin TRAWLER prompt.md)
+from the live data — paste that into a browser-driving Claude. **Regenerate it before every
+run.** It carries a per-company *stop marker* (the newest post already on file) so the trawler
+knows where the last capture ended and cannot quietly skip posts in between; those markers go
+stale the moment a capture lands. Companies are ordered stalest-capture-first and split into
+batches of six, because a single 31-page run degraded badly — it missed ~31% of posts and
+stopped at 18 pages. One batch per session, stalest first, so a short run still lands the data
+that was most out of date.
 
 ## Archive CSV exports
 
