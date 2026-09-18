@@ -15,13 +15,16 @@ date, and pushes to `AnchContinia/Marketing-Comp-Dash`.
 
 ---
 
-## What gets edited (all inside `index.html`)
+## What gets edited (all inside `dashboard.js` — **not** `index.html` any more)
 
-Two JavaScript arrays near the top of the page's `<script>`:
+Two JavaScript arrays at the top of `dashboard.js` (`const data = [` on line ~2,
+`const events = [` further down). **How to find the news** — the fixed source
+order (RSS → Google News RSS → PR wires → newsroom → LinkedIn → AppSource → web
+search) — is in [FULL-UPDATE.md](FULL-UPDATE.md) Step 1; follow it here too.
 
 | Array | What it is | Shape |
 |---|---|---|
-| `events` | The **Key Events** timeline | `{ w:"May 13, 2026", c:"ai", t:"<b>Vendor</b> did X." }` |
+| `events` | The **Key Events** timeline | `{ w:"May 13, 2026", d:"2026-05-13", c:"ai", t:"<b>Vendor</b> did X." }` — `d` is the sortable ISO date, always set it |
 | `data`   | The **competitor cards** | one object per competitor (`n`, `o`, `stance`, `head`, `rel`, `str`, `pos`, `ai`, `sc`, `s` sources…) |
 
 - **`c` (event colour / category):** one of `ai`, `cons` (consolidation),
@@ -41,8 +44,8 @@ There are **two kinds** of dates on the page; do not mix them up:
 1. **Event/content dates** (the `w` field, "Apr 30, 2026", and any dates inside
    card text) are **real historical dates**. Use the date the thing actually
    happened. **Never** bump these to today.
-2. **The "Updated" stamp** — `var DASHBOARD_UPDATED = "YYYY-MM-DD";` near the
-   bottom of `index.html`. This is the single source of truth for both the
+2. **The "Updated" stamp** — `var DASHBOARD_UPDATED = "YYYY-MM-DD";` in
+   `dashboard.js` (~line 768). This is the single source of truth for both the
    topbar "Updated …" and the footer date. **Set it to today** on every refresh
    (news *and* YouTube). One change keeps every stamp on the page consistent.
 
@@ -57,10 +60,11 @@ There are **two kinds** of dates on the page; do not mix them up:
 > extracts it from the live files. This preserves the old news/competitor state
 > that this refresh would otherwise overwrite.
 
-1. Claude edits `events` / `data` in `index.html` with the new news.
+1. Claude edits `events` / `data` in `dashboard.js` with the new news.
 2. Claude sets `DASHBOARD_UPDATED` to **today's date**.
 3. Claude commits and pushes:
-   `git add index.html && git commit -m "..." && git push origin main`.
+   `git add dashboard.js archive.js index.html content.html video.html && git commit -m "..." && git push origin main`
+   (bump `dashboard.js?v=` on all three pages first — see CLAUDE.md cache-busting).
    (The `.gitignore` keeps local-only files out of the push.)
 4. GitHub Pages updates the live dashboard within a minute. Claude confirms with
    the new commit hash on `origin/main`.

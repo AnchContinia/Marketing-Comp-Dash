@@ -61,8 +61,67 @@ dates** (which never move):
 
 ## Step 1 — Competitor cards + per-source sweep  (`data` in `dashboard.js`)
 
-For **each competitor** in the `data` array, actively check their own channels
-for anything new since the last refresh — not just a generic news search:
+### How to source the news (read this before searching anything)
+
+The sweep used to be "web-search each competitor and see what comes up". That
+re-discovers the sources from scratch every run, so what lands depends on what
+the search engine happened to surface that day. The 130 `s:` source pairs on
+the cards show the real sources are stable and few: PR wires, `learn.microsoft.com`,
+and the competitors' own newsroom/blog pages. **Work from a fixed source list,
+in this order, and only fall back to open web search at the end:**
+
+1. **Native feeds where they exist.** Some competitor sites expose RSS; use it —
+   it is the only source that reliably shows *everything* they published, dated.
+   Known working (Sep 2026): `https://www.stampli.com/feed/`,
+   `https://www.dooap.com/blog/rss.xml`. Medius, Tipalti, Rillion and Equisys
+   have **no** feed at the standard paths — do not waste time guessing; use 2–3.
+   When you find a new working feed, **add it to the table below** so the next
+   run has it.
+2. **Google News RSS per company** — works for every competitor with zero setup
+   and returns dated, linkable items:
+   `https://news.google.com/rss/search?q="<Company name>"&hl=en&gl=US&ceid=US:en`
+   (e.g. `q="Medius"+AP` when the name is ambiguous). Read the last 30 days.
+3. **PR-wire searches** — `prnewswire.com`, `globenewswire.com`, `businesswire.com`
+   each have a site search; funding, M&A and "named a Leader" items land here
+   first and are the most quotable sources.
+4. **The competitor's own newsroom/blog page** — open it and compare the list of
+   post titles against the card's current `rel`/`str`. New title → read it.
+5. **LinkedIn company page** (roster below) — announcements, event posts, hiring
+   signals, campaign themes. The LinkedIn *engagement numbers* come from the
+   trawl (see CLAUDE.md), not from this step; here you only read *what* they said.
+6. **AppSource listing** — for BC-native rivals check the app's listing for a
+   new version / "last updated" date; a bumped version with release notes is a
+   card-worthy `rel`.
+7. **Open web search, last** — only for the "did anything else happen" check.
+
+Every item you keep must carry its URL into the card's `s` array or the event.
+If step 1–6 turned up nothing for a competitor, say so in the run summary rather
+than padding the card with a rewritten old fact.
+
+**Target tooling (not built yet, Sep 2026):** a `sources.json` per competitor
+(feed URL, newsroom URL, Google-News query, AppSource id, LinkedIn URL) and a
+`tools/news-inbox.js` that fetches all of it, diffs against the previous run and
+writes `news-inbox.md` with **only what is new since last time**, URL included.
+Claude then reads the inbox and decides what becomes an event or a card change —
+judgement, not discovery. Note it must run in Claude Code on the Mac (or in the
+Monday scheduled task): the Cowork sandbox has no outbound network.
+
+### Known feeds / source URLs
+
+| Card | Native feed | Newsroom / blog |
+|---|---|---|
+| Stampli | https://www.stampli.com/feed/ | https://www.stampli.com/blog/ |
+| Dooap | https://www.dooap.com/blog/rss.xml | https://www.dooap.com/blog |
+| Medius | — (none at /feed) | https://www.medius.com/resources/ |
+| Tipalti | — (500 at /feed) | https://tipalti.com/blog/ |
+| Rillion | — | https://www.rillion.com/news/ |
+| Zetadocs (Equisys) | — | https://www.equisys.com/news |
+| *(add rows as feeds are found)* | | |
+
+### What to check per competitor
+
+For **each competitor** in the `data` array, work through the source order above
+for anything new since the last refresh:
 
 - **Their website / product pages** — new releases, version notes, pricing.
 - **Their blog / newsroom** — launches, partnerships, positioning shifts.
@@ -110,6 +169,15 @@ first); keep the old ones for history. Shape:
 `{ w:"May 13, 2026", c:"ai", t:"<b>Vendor</b> did X." }`.
 `c` (category colour) is one of `ai`, `cons`, `steady`, or omit for the default
 blue — match what similar events already use. Use **real historical dates** in `w`.
+
+**Also give every new event an ISO date: `d:"YYYY-MM-DD"`.** `w` is the display
+string and is free text ("Sept 15, 2026", "Autumn 2025"), which is why
+`archive-events.csv` cannot be sorted or filtered by date in Excel. `d` is the
+machine date: the real day when known; the 1st of the month for month-only
+items ("Sept 2026" → `d:"2026-09-01"`); the 1st of the quarter's first month for
+"Autumn 2025"-style items. Backfill `d` on the older events when you touch the
+array anyway — it is additive, nothing reads `w` differently. Future-dated
+items (a deadline like KSeF on Sept 30) are fine; they are scheduled facts.
 
 ## Step 3 — YouTube snapshot  (`youtube-data.js`)
 

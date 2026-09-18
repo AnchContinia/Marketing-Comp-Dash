@@ -9,6 +9,10 @@ framework, no bundler, no package.json, no tests. It is published via **GitHub P
 the repo root (`AnchContinia/Marketing-Comp-Dash`, branch `main`). The `.nojekyll` file keeps
 Pages from running Jekyll over the files.
 
+**Network note:** the Cowork sandbox and its device shell have **no outbound network**. Anything
+that fetches (news feeds, Social Blade, LinkedIn) runs in Claude Code on the Mac or in the Monday
+scheduled task, not from Cowork.
+
 There is **no build, lint, or test step.** Editing a file and pushing to `main` is the entire
 deploy pipeline — GitHub Pages serves the new version within ~1 minute.
 
@@ -159,6 +163,41 @@ batches of six, because a single 31-page run degraded badly — it missed ~31% o
 stopped at 18 pages. One batch per session, stalest first, so a short run still lands the data
 that was most out of date.
 
+### Why captures go wrong, and the fix that is planned
+
+Both failure modes on record come from the same cause: the trawler **reads the
+counters visually and scrolls by hand**. The Sep 16 sweep wrote `0` wherever a
+counter had not rendered (45% fake zeros); the Sep 17 sweep skipped ~31% of posts
+while scrolling. Stop markers and `verify-trawl.js` catch this after the fact —
+they do not prevent it.
+
+**The fix is to stop reading the screen.** LinkedIn's posts feed is structured in
+the DOM: each post is a `div[data-urn^="urn:li:activity:"]` (the urn *is* the
+permalink id), and the counters sit in `.social-details-social-counts`. A small
+JS extractor run in the LinkedIn tab (Claude in Chrome `javascript_tool`, one
+company page per call) should:
+
+1. scroll until it holds **N distinct urns** (or the feed ends) — no skipping is
+   possible because completeness is counted, not eyeballed;
+2. read reactions/comments/reposts from the DOM text, and write an **empty cell**
+   when the element is absent — never `0`;
+3. emit CSV rows in the `sweep2` dialect (`Company,Post #,Date (UTC),Title (first
+   line of post),Reactions,Comments,Reposts,Total engagement,Post type,Posted by,
+   Post URL,Company page`) so the file goes straight through `verify-trawl.js` →
+   `gen-linkedin-data.py` with no new dialect.
+
+Rules for whoever builds it: keep every selector in one `SEL` object at the top
+and **fail loudly** (throw, non-zero) when a selector matches nothing — LinkedIn
+renames classes often and a silent empty file is exactly the bug we are trying to
+kill. Keep it modest: 31 pages once a week from the logged-in account is fine;
+do not run it more often. If the browser dependency itself is the problem, a paid
+scraper API (e.g. an Apify LinkedIn company-posts actor) is the alternative that
+can run inside the Monday scheduled task without Chrome.
+
+**Continia's own numbers** should come from LinkedIn Pages → Analytics → Content
+→ Export (xls), not from reading the feed: exact counts plus impressions, which
+the public page never shows. That export feeds the `continia` dialect.
+
 ## Archive CSV exports
 
 The five `archive-*.csv` files at repo root are **generated**, never hand-edited. Regenerate them
@@ -180,6 +219,9 @@ There are two distinct date types on the page; never confuse them:
 1. **Content/event dates** (e.g. an `events` entry's `w` field, dates inside card text) are **real
    historical dates** — the date the thing actually happened. Never bump these to today.
 2. **`DASHBOARD_UPDATED`** is the "last refreshed" stamp — **set it to today** on every refresh.
+3. **Every event carries `d:"YYYY-MM-DD"`** next to its free-text `w`. `w` is what the page
+   shows; `d` is the sortable machine date (month-only items → the 1st; season-only → the
+   1st of the first month). New events always get both; backfill old ones when passing by.
 
 ## Monthly update runbooks
 
@@ -192,14 +234,18 @@ Trigger-phrase routines, each with a runbook doc:
 - **[NEWS-UPDATE.md](NEWS-UPDATE.md)** — trigger "Kør news-opdateringen." Refreshes the `events`
   and `data` arrays (Key Events + competitor cards) in `dashboard.js`. Every claim stays backed by
   a clickable public source in the card's `s` array.
+  **Sourcing order** (fixed list first, open web search last) lives in FULL-UPDATE.md Step 1 —
+  native RSS where known → Google News RSS per company → PR wires → newsroom page → LinkedIn →
+  AppSource listing → web search. Planned tooling: `sources.json` + `tools/news-inbox.js`
+  producing a "new since last run" inbox so Claude judges instead of discovers.
 - **[YOUTUBE-UPDATE.md](YOUTUBE-UPDATE.md)** — trigger "Kør YouTube-opdateringen." Reads channel
   numbers off Social Blade and appends a new snapshot to `youtube-data.js` (keep old snapshots for
   history; newest is rendered). `monthlyViews` must be a real number — it sizes the bar and a
   negative value renders a red "down" bar; use `flag:"correction"` for one-time recount spikes.
 
-> **Stale-location note:** NEWS-UPDATE.md and YOUTUBE-UPDATE.md still say the `data`/`events` arrays
-> and `DASHBOARD_UPDATED` live in `index.html` — they were moved to `dashboard.js`. FULL-UPDATE.md
-> has the correct map.
+> **Stale-location note:** YOUTUBE-UPDATE.md still says the arrays and `DASHBOARD_UPDATED` live in
+> `index.html` — they were moved to `dashboard.js`. FULL-UPDATE.md has the correct map;
+> NEWS-UPDATE.md was corrected Sep 18, 2026.
 
 ## TinyJPG proxy (separate from the site)
 
