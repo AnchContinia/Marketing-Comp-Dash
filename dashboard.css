@@ -1004,7 +1004,7 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
   background:linear-gradient(100deg,rgba(5,41,117,.86) 0%,rgba(7,31,85,.74) 46%,rgba(10,21,51,.52) 100%)}
 .ck-hero-in{position:relative;z-index:2;max-width:760px}
 .ck-hero .eyebrow{color:var(--cyan)}
-.ck-hero .eyebrow:before{background:var(--cyan)}
+.ck-hero .eyebrow:before{background:var(--cyan);box-shadow:0 0 0 3px rgba(143,248,255,.18);animation:heroPulse 2.4s infinite}@media(prefers-reduced-motion:reduce){.brief .eyebrow:before,.ck-hero .eyebrow:before{animation:none}}
 .ck-hero h1{color:#fff;font-size:34px;line-height:1.08}
 .ck-hero-sub{margin:12px 0 0;color:#c3d2ee;font-size:14.5px;line-height:1.6;max-width:66ch}
 .ck-hero-search{display:flex;align-items:center;gap:10px;margin-top:22px;background:#fff;border-radius:15px;
