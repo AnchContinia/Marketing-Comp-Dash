@@ -29,6 +29,7 @@ SOURCES = [
     ("linkedin_competitor_posts_2026-09-14_EXTRA.csv", "2026-09-14", "trawl"),
     ("continia-linkedin-50-posts_16 SEP.csv",          "2026-09-16", "continia"),
     ("linkedin_competitor_posts_18of31_SEP 17.csv",     "2026-09-17", "sweep2"),
+    ("linkedin_competitor_trawl_2026-09-22.csv",       "2026-09-22", "sweep2"),
     # QUARANTINED - do not re-enable this file:
     #   ("linkedin_konkurrent_posts_16 sep.csv",       "2026-09-16", "sweep2"),
     # The Sep 16 competitor sweep is a broken capture. 635 of its 1398 rows
@@ -45,7 +46,7 @@ SOURCES = [
     # The "sweep2" dialect below is finished and tested against this file, so a
     # clean re-run only needs the SOURCES line above uncommented.
 ]
-CAPTURED = "2026-09-17"   # newest capture; shown as the module's "as of" date
+CAPTURED = "2026-09-22"   # newest capture; shown as the module's "as of" date
 MAX_POSTS = 50            # window size per company, after merging captures
 
 # The "continia" dialect carries no company/company_url columns - they are the
@@ -90,10 +91,12 @@ KEEP = collections.OrderedDict([
     ("Pagero",                    "Pagero"),
     ("Pagero (Thomson Reuters)",  "Pagero"),
     ("Compleat Software",         "Compleat"),
+    ("Compleat",                  "Compleat"),
     ("Tungsten Automation",       "Tungsten Automation"),
     ("onPhase",                   "onPhase"),
     ("MineralTree",               "MineralTree"),
     ("Lasernet (Formpipe)",       "Lasernet"),
+    ("Lasernet",                  "Lasernet"),
     ("Dime Scheduler",            "Dime Scheduler"),
     ("Dime Software",             "Dime Scheduler"),
     ("Acubiz",                    "Acubiz"),
@@ -102,6 +105,7 @@ KEEP = collections.OrderedDict([
     ("Stripe",                    "Stripe"),
     ("Incedo Inc",                "Incedo"),
     ("Incedo Inc.",               "Incedo"),
+    ("Incedo",                    "Incedo"),
 ])
 OURS  = {"Continia Software"}
 BENCH = {"Stripe", "Incedo"}
@@ -117,6 +121,21 @@ ORDER = list(collections.OrderedDict((v, None) for v in KEEP.values()))
 # posts vanished and the capture looked like it covered 17 companies, not 18.
 DROP = {
     "SignUp Software",      # Truvio's former brand, see below
+}
+
+# Dashboard labels whose OLDER captures are known to hold the wrong page and
+# must be thrown away rather than merged. A capture listed later in SOURCES
+# replaces these outright instead of unioning with what came before.
+#
+#   MineralTree - the Sep 14 EXTRA trawl recorded 50 posts under this label
+#   that are Global Payments Inc. corporate marketing (Genius World, consumer
+#   payment research), not MineralTree AP content: zero permalink overlap with
+#   the Sep 22 sweep of the same company_url, and the permalinks resolve to
+#   "Global Payments Inc." MineralTree is a Global Payments brand, so the
+#   trawler most likely followed the page through to the parent. The old rows
+#   stay in archive.js; they must not keep feeding the live card.
+RESET = {
+    "MineralTree",
 }
 
 # Still no LinkedIn coverage, and none is possible:
@@ -290,7 +309,7 @@ for fname, captured, dialect in SOURCES:
         # from two different read dates, so a post only the older capture saw
         # carries a slightly stale count. That is a much smaller error than
         # missing a third of the posts.
-        if label in by:
+        if label in by and label not in RESET:
             merged = collections.OrderedDict((r["post_url"], r) for r in by[label])
             for r in rs:
                 merged[r["post_url"]] = r
