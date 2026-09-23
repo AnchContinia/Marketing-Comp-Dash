@@ -2464,7 +2464,7 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-09-23 09:35";
+var DASHBOARD_UPDATED = "2026-09-23 09:45";
 var MODULE_UPDATED = {
   /* index.html */
   "news":            {at:"2026-09-22 16:52", src:"News sweep"},
@@ -2482,8 +2482,8 @@ var MODULE_UPDATED = {
   "image-search":    {at:"2026-09-17 13:52", src:"LinkedIn image bank"},
   "newsletter-bank": {at:"2026-09-17 13:52", src:"Newsletter image bank"},
   /* video.html */
-  "youtube":         {at:"2026-09-17 13:52", src:"Social Blade snapshot"},
-  "continia-uploads":{at:"2026-09-17 13:52", src:"vidIQ upload pass"},
+  "youtube":         {at:"2026-09-23 09:45", src:"Social Blade snapshot"},
+  "continia-uploads":{at:"2026-09-23 09:45", src:"vidIQ upload pass"},
   "video-ideas-long":{at:"2026-09-17 13:52", src:"Video idea pass"},
   "video-ideas-short":{at:"2026-09-17 13:52", src:"Video idea pass"},
   "youtube-bank":    {at:"2026-06-10 12:08", src:"YouTube image bank"}
