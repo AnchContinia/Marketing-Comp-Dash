@@ -138,6 +138,21 @@ headings, links and accents all read cyan there. If a dark-mode element needs na
 *background*, pair it the other way round — `background:#8ff8ff;color:#052975` — because cyan
 text on a cyan fill does not read. (Standing instruction from the user.)
 
+### Link colours (never the generic blue)
+
+**A link is never `var(--blue)` / `#2563eb`.** That is the generic web-blue and it is off-palette;
+it must never be used as a link colour anywhere. Links are:
+
+- **light mode — black**, `var(--ink)` (or `var(--navy)` where a link is already navy, e.g.
+  `.sources a:hover`, `.li-cohead a`);
+- **dark mode — Innovation Blue**, `#8ff8ff` / `var(--cyan)`.
+
+`--blue` stays in the palette *only* as a data-mark fill — the competitor `.dot`, the YouTube
+`.bar i` fill and the `.ev .d` timeline dot. It is not a text colour and never a link. When adding
+a link, check the light value is `--ink` or `--navy` and that a `html[data-theme="dark"]` rule
+turns it cyan; the CK source pills and portal host links were the two that got this wrong.
+(Standing instruction from the user.)
+
 ## Archive rule (never overwrite data without saving it)
 
 **Every data refresh — news, YouTube or LinkedIn — must save the outgoing data before it is
