@@ -2115,11 +2115,11 @@ if(contentIdeasList){
 })();
 
 /* ---- Continia knowledge base (knowledge.html) ---------------------------
-   Rendered from continia-knowledge.js. Deliberately docs-style: plain running
-   text, headings and lists, no cards and no accent bars. Every entry ends in
-   its own source row, because an entry without a source is not usable for
-   fact-checking. One search box filters solutions, platform components, naming
-   rows and gotchas at the same time and lists the hits as jump links. */
+   Help-centre layout: a search hero, a grid of solution tiles, and everything
+   below folded into accordions so the page opens light instead of dumping
+   forty screens of text. Modules are nested accordions inside their solution.
+   Every entry still ends in its own source row — that is the whole point of
+   the page, so it is never collapsed away, it sits inside the open panel. */
 (function(){
   if(typeof window.CK_DATA==="undefined") return;
   var D=window.CK_DATA;
@@ -2127,124 +2127,191 @@ if(contentIdeasList){
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
   function srcRow(s){
     if(!s||!s.length) return "";
-    return '<div class="ck-src"><span class="ck-src-l">Sources</span>'+s.map(function(x){
+    return '<div class="ck-src"><span class="ck-lbl">Sources</span>'+s.map(function(x){
       return '<a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0])+' ↗</a>';
     }).join("")+'</div>';
   }
   function ul(arr){ return '<ul class="ck-ul">'+arr.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+"</ul>"; }
+  function termRow(terms){
+    if(!terms||!terms.length) return "";
+    return '<div class="ck-terms"><span class="ck-lbl">Terms</span>'+terms.map(function(t){
+      return '<button type="button" class="ck-term" data-q="'+esc(t)+'">'+esc(t)+"</button>";
+    }).join("")+"</div>";
+  }
+  /* One accordion. `head` is the always-visible row, `body` the panel. */
+  function acc(o){
+    return '<article class="ckx'+(o.cls?" "+o.cls:"")+'" id="'+esc(o.id)+'" data-kind="'+esc(o.kind)+'" data-title="'+esc(o.title)+'">'+
+      '<button type="button" class="ckx-top" aria-expanded="false"><span class="ckx-h">'+o.head+"</span>"+
+      '<span class="ckx-chev" aria-hidden="true"><i class="fa-light fa-chevron-down"></i></span></button>'+
+      '<div class="ckx-body"><div class="ckx-in">'+o.body+"</div></div></article>";
+  }
 
-  /* ---------- knowledge portals + the fact-check rules ---------- */
+  /* ---------- hero: popular lookups ---------- */
+  var pop=document.getElementById("ck-popular");
+  if(pop){
+    var picks=["Order Matching","Advanced Capture","Web Approval Portal","Peppol","per diem","credit card",
+               "Secure Archive","end of support","migration","Team Member licence","e-invoicing","Denmark",
+               "factoring","direct debit","eDocuments","Business Central"];
+    pop.innerHTML='<span class="ck-lbl">Popular lookups</span>'+picks.map(function(t){
+      return '<button type="button" class="ck-term" data-q="'+esc(t)+'">'+esc(t)+"</button>";
+    }).join("");
+  }
+
+  /* ---------- solution tiles ----------
+     Three tiles carry a filled brand colour, the rest stay plain, so the grid
+     has a focal point without turning into a paint chart. */
+  var ACCENT={"ck-document-capture":"navy","ck-banking":"green","ck-expense-management":"purple"};
+  var STATUS={active:"Active", legacy:"Legacy", discontinued:"Discontinued"};
+  var tiles=document.getElementById("ck-tiles");
+  if(tiles) tiles.innerHTML=D.solutions.map(function(x){
+    var n=(x.modules||[]).length;
+    var count=n? n+(n===1?" module":" modules") : STATUS[x.status];
+    return '<button type="button" class="ck-tile'+(ACCENT[x.id]?" ck-tile-"+ACCENT[x.id]:"")+'" data-go="'+esc(x.id)+'">'+
+      '<span class="ck-tile-k">'+esc(count)+"</span>"+
+      '<span class="ck-tile-n">'+esc(x.name)+"</span>"+
+      '<span class="ck-tile-m">'+esc(x.area)+'</span>'+
+      '<span class="ck-tile-go" aria-hidden="true"><i class="fa-light fa-arrow-right"></i></span></button>';
+  }).join("");
+
+  /* ---------- one accordion per solution ---------- */
+  function solutionBody(x){
+    var h='<p class="ck-what">'+esc(x.what)+"</p>";
+    if(x.claims) h+='<p class="ck-claim"><b>Headline claims.</b> '+esc(x.claims)+"</p>";
+    if(x.surfaces){ h+='<h4 class="ck-h4">User surfaces</h4>'+ul(x.surfaces); }
+    if(x.eol){ h+='<h4 class="ck-h4">Status and migration</h4>'+ul(x.eol); }
+    if(x.modules&&x.modules.length){
+      h+='<h4 class="ck-h4">Modules</h4><div class="ck-mods">'+x.modules.map(function(m,i){
+        return acc({id:x.id+"-m"+i, kind:"Module", title:m.n+" · "+x.name, cls:"ckx-sub",
+                    head:'<span class="ckx-mn">'+esc(m.n)+'</span><span class="ckx-mc">'+m.p.length+" points</span>",
+                    body:ul(m.p)});
+      }).join("")+"</div>";
+    }
+    if(x.compliance){ h+='<h4 class="ck-h4">Compliance, markets and localization</h4>'+ul(x.compliance); }
+    if(x.links){ h+='<h4 class="ck-h4">How it connects to the rest of the portfolio</h4>'+ul(x.links); }
+    return h+termRow(x.terms)+srcRow(x.s);
+  }
+  var sm=document.getElementById("ck-solutions-body");
+  if(sm) sm.innerHTML=D.solutions.map(function(x){
+    return acc({
+      id:x.id, kind:"Solution", title:x.name, cls:"ck-sol",
+      head:'<span class="ckx-t"><b>'+esc(x.name)+'</b><span class="ck-st ck-st-'+esc(x.status)+'">'+esc(STATUS[x.status]||x.status)+"</span></span>"+
+           '<span class="ckx-one">'+esc(x.one)+"</span>"+
+           '<span class="ckx-meta">'+esc(x.area)+" · "+esc(x.markets)+" · "+esc(x.release)+"</span>",
+      body:solutionBody(x)
+    });
+  }).join("");
+
+  /* ---------- platform components ---------- */
+  var plm=document.getElementById("ck-platform-body");
+  if(plm) plm.innerHTML=D.platform.map(function(x){
+    return acc({
+      id:x.id, kind:"Platform", title:x.name,
+      head:'<span class="ckx-t"><b>'+esc(x.name)+"</b></span>"+'<span class="ckx-one">'+esc(x.what)+"</span>",
+      body:ul(x.p)+termRow(x.terms)+srcRow(x.s)
+    });
+  }).join("");
+
+  /* ---------- naming table, itself folded away ---------- */
+  var nm=document.getElementById("ck-naming-body");
+  if(nm) nm.innerHTML=acc({
+    id:"ck-naming", kind:"Naming", title:"Product and component names",
+    head:'<span class="ckx-t"><b>Product and component names</b></span>'+
+         '<span class="ckx-one">Use the left column exactly. The internal abbreviations (DC, EM, DO, CB, CF, CM, WAP, CDN) are fine in partner-facing and internal material once spelled out.</span>'+
+         '<span class="ckx-meta">'+D.naming.length+" rows</span>",
+    body:'<table class="ck-table"><thead><tr><th>Use this</th><th>Not this</th></tr></thead><tbody>'+
+      D.naming.map(function(r){
+        return '<tr class="ck-nm" data-kind="Naming" data-title="'+esc(r.ok)+'"><td><b>'+esc(r.ok)+"</b></td><td>"+esc(r.no)+"</td></tr>";
+      }).join("")+"</tbody></table>"
+  });
+
+  /* ---------- gotchas ---------- */
+  var gm=document.getElementById("ck-gotchas-body");
+  if(gm) gm.innerHTML=D.gotchas.map(function(g,i){
+    return acc({id:"ck-gotcha-"+i, kind:"Gotcha", title:g.t, cls:"ckx-sub",
+                head:'<span class="ckx-mn">'+esc(g.t)+"</span>", body:"<p>"+esc(g.d)+"</p>"+srcRow(g.s)});
+  }).join("");
+
+  /* ---------- portals and rules ---------- */
   var pm=document.getElementById("ck-portals-body");
   if(pm){
     pm.innerHTML=D.portals.map(function(p){
       return '<article class="ck-portal">'+
         '<div class="ck-p-head"><h3>'+esc(p.name)+'</h3><span class="ck-tag">'+esc(p.role)+'</span></div>'+
         '<div class="ck-p-host"><a href="'+esc(p.url)+'" target="_blank" rel="noopener">'+esc(p.host)+' ↗</a></div>'+
-        "<p>"+esc(p.what)+"</p>"+
-        '<p class="ck-wins">'+esc(p.wins)+"</p>"+
-        srcRow(p.s)+"</article>";
-    }).join("")+
-    '<div class="ck-rules"><h3>How to use them</h3><ol class="ck-ol">'+D.rules.map(function(r){
-      return "<li><b>"+esc(r.t)+"</b> "+esc(r.d)+"</li>";
-    }).join("")+"</ol></div>";
+        "<p>"+esc(p.what)+"</p>"+'<p class="ck-wins">'+esc(p.wins)+"</p>"+srcRow(p.s)+"</article>";
+    }).join("");
   }
+  var rm=document.getElementById("ck-rules-body");
+  if(rm) rm.innerHTML=D.rules.map(function(r,i){
+    return acc({id:"ck-rule-"+i, kind:"Rule", title:r.t, cls:"ckx-sub",
+                head:'<span class="ckx-rn">'+(i+1)+'</span><span class="ckx-mn">'+esc(r.t)+"</span>",
+                body:"<p>"+esc(r.d)+"</p>"});
+  }).join("");
 
   var cm=document.getElementById("ck-proof");
   if(cm&&D.company){
     cm.innerHTML='<div class="ck-proof-row">'+D.company.points.map(function(p){
       return '<div class="ck-proof"><b>'+esc(p.v)+"</b><span>"+esc(p.l)+"</span></div>";
-    }).join("")+"</div>"+ul(D.company.notes)+srcRow(D.company.s);
+    }).join("")+"</div>"+
+    acc({id:"ck-company-notes", kind:"Company", title:"Trial, licensing and release cadence", cls:"ckx-sub",
+         head:'<span class="ckx-mn">Trial, licensing and release cadence</span><span class="ckx-mc">'+D.company.notes.length+" points</span>",
+         body:ul(D.company.notes)+srcRow(D.company.s)});
   }
 
-  /* ---------- one article per solution ---------- */
-  var STATUS={active:"Active", legacy:"Legacy", discontinued:"Discontinued"};
-  function solutionHTML(x){
-    var h='<article class="ck-art" id="'+esc(x.id)+'" data-kind="Solution" data-title="'+esc(x.name)+'">'+
-      '<div class="ck-a-head"><h3>'+esc(x.name)+'</h3><span class="ck-st ck-st-'+esc(x.status)+'">'+esc(STATUS[x.status]||x.status)+"</span></div>"+
-      '<div class="ck-facts"><span><b>Process area</b>'+esc(x.area)+"</span><span><b>Markets</b>"+esc(x.markets)+"</span><span><b>Release</b>"+esc(x.release)+"</span></div>"+
-      '<p class="ck-one">'+esc(x.one)+"</p>"+
-      "<p>"+esc(x.what)+"</p>";
-    if(x.claims) h+='<p class="ck-claim"><b>Headline claims.</b> '+esc(x.claims)+"</p>";
-    if(x.surfaces){ h+="<h4>User surfaces</h4>"+ul(x.surfaces); }
-    if(x.eol){ h+="<h4>Status and migration</h4>"+ul(x.eol); }
-    if(x.modules&&x.modules.length){
-      h+="<h4>Modules</h4>"+x.modules.map(function(m){
-        return '<div class="ck-mod"><h5>'+esc(m.n)+"</h5>"+ul(m.p)+"</div>";
-      }).join("");
+  /* ---------- open / close ---------- */
+  function setOpen(el,on){
+    el.classList.toggle("open",!!on);
+    var t=el.querySelector(":scope > .ckx-top");
+    if(t) t.setAttribute("aria-expanded",on?"true":"false");
+  }
+  document.addEventListener("click",function(e){
+    var top=e.target.closest?e.target.closest(".ckx-top"):null;
+    if(top){ var a=top.parentNode; setOpen(a,!a.classList.contains("open")); return; }
+    var tile=e.target.closest?e.target.closest(".ck-tile"):null;
+    if(tile){ jump(tile.getAttribute("data-go"),true); return; }
+    var hit=e.target.closest?e.target.closest(".ck-hit"):null;
+    if(hit){ jump(hit.getAttribute("data-go"),true); return; }
+    var term=e.target.closest?e.target.closest(".ck-term"):null;
+    if(term&&input){ input.value=term.getAttribute("data-q"); run(); input.focus();
+      document.getElementById("ck-search").scrollIntoView({behavior:"smooth",block:"start"}); }
+  });
+
+  function jump(id,open){
+    var el=document.getElementById(id); if(!el) return;
+    if(open&&el.classList.contains("ckx")){
+      setOpen(el,true);
+      /* open every accordion this one sits inside, or the jump lands on a
+         collapsed parent and nothing appears to happen */
+      var p=el.parentNode;
+      while(p&&p!==document.body){ if(p.classList&&p.classList.contains("ckx")) setOpen(p,true); p=p.parentNode; }
     }
-    if(x.compliance){ h+="<h4>Compliance, markets and localization</h4>"+ul(x.compliance); }
-    if(x.links){ h+="<h4>How it connects to the rest of the portfolio</h4>"+ul(x.links); }
-    if(x.terms&&x.terms.length){
-      h+='<div class="ck-terms"><span class="ck-src-l">Terms</span>'+x.terms.map(function(t){
-        return '<button type="button" class="ck-term" data-q="'+esc(t)+'">'+esc(t)+"</button>";
-      }).join("")+"</div>";
-    }
-    return h+srcRow(x.s)+"</article>";
+    setTimeout(function(){
+      el.scrollIntoView({behavior:"smooth", block:"start"});
+      el.classList.add("ck-flash");
+      setTimeout(function(){ el.classList.remove("ck-flash"); },1500);
+    },60);
   }
 
-  var sm=document.getElementById("ck-solutions-body");
-  if(sm) sm.innerHTML=D.solutions.map(solutionHTML).join("");
-
-  var toc=document.getElementById("ck-toc");
-  if(toc) toc.innerHTML=D.solutions.map(function(x){
-    return '<a href="#'+esc(x.id)+'" class="ck-toc-a ck-st-'+esc(x.status)+'">'+esc(x.name)+"</a>";
-  }).join("");
-
-  /* ---------- platform components ---------- */
-  var plm=document.getElementById("ck-platform-body");
-  if(plm) plm.innerHTML=D.platform.map(function(x){
-    return '<article class="ck-art" id="'+esc(x.id)+'" data-kind="Platform" data-title="'+esc(x.name)+'">'+
-      '<div class="ck-a-head"><h3>'+esc(x.name)+"</h3></div>"+
-      "<p>"+esc(x.what)+"</p>"+ul(x.p)+
-      (x.terms?'<div class="ck-terms"><span class="ck-src-l">Terms</span>'+x.terms.map(function(t){
-        return '<button type="button" class="ck-term" data-q="'+esc(t)+'">'+esc(t)+"</button>";
-      }).join("")+"</div>":"")+
-      srcRow(x.s)+"</article>";
-  }).join("");
-
-  /* ---------- naming table + gotchas ---------- */
-  var nm=document.getElementById("ck-naming-body");
-  if(nm) nm.innerHTML='<table class="ck-table"><thead><tr><th>Use this</th><th>Not this</th></tr></thead><tbody>'+
-    D.naming.map(function(r){
-      return '<tr class="ck-nm" data-kind="Naming" data-title="'+esc(r.ok)+'"><td><b>'+esc(r.ok)+"</b></td><td>"+esc(r.no)+"</td></tr>";
-    }).join("")+"</tbody></table>";
-
-  var gm=document.getElementById("ck-gotchas-body");
-  if(gm) gm.innerHTML=D.gotchas.map(function(g,i){
-    return '<article class="ck-art ck-got" id="ck-gotcha-'+i+'" data-kind="Gotcha" data-title="'+esc(g.t)+'">'+
-      "<h4>"+esc(g.t)+"</h4><p>"+esc(g.d)+"</p>"+srcRow(g.s)+"</article>";
-  }).join("");
-
-  /* ---------- search across everything rendered above ----------
-     The index is built from the DOM after render, so anything added to
-     continia-knowledge.js becomes searchable without touching this code. */
+  /* ---------- search ----------
+     The index is read from the DOM after render, so anything added to
+     continia-knowledge.js becomes searchable without touching this code.
+     A hit opens its accordion; clearing the box folds everything back up. */
   var input=document.getElementById("ck-input");
   var meta=document.getElementById("ck-meta");
   var hits=document.getElementById("ck-hits");
   if(!input) return;
 
-  var IDX=[].map.call(document.querySelectorAll(".ck-art, .ck-nm"), function(el){
+  var IDX=[].map.call(document.querySelectorAll(".ckx, .ck-nm"),function(el){
     return {el:el, kind:el.getAttribute("data-kind")||"", title:el.getAttribute("data-title")||"",
-            id:el.id||"", text:(el.textContent||"").toLowerCase()};
+            id:el.id||"", top:!el.classList.contains("ckx-sub"), text:(el.textContent||"").toLowerCase()};
   });
-  var TOTAL=IDX.length;
-
-  function clearFlash(){
-    [].forEach.call(document.querySelectorAll(".ck-flash"),function(e){e.classList.remove("ck-flash");});
-  }
-  function jump(id){
-    var el=document.getElementById(id); if(!el) return;
-    clearFlash();
-    el.scrollIntoView({behavior:"smooth", block:"start"});
-    el.classList.add("ck-flash");
-    setTimeout(function(){ el.classList.remove("ck-flash"); }, 1600);
-  }
+  var TOTAL=IDX.filter(function(r){return r.top;}).length;
 
   function run(){
     var q=(input.value||"").trim().toLowerCase();
     var terms=q.split(/\s+/).filter(Boolean);
     if(!terms.length){
-      IDX.forEach(function(r){ r.el.classList.remove("ck-hide"); });
+      IDX.forEach(function(r){ r.el.classList.remove("ck-hide"); if(r.el.classList.contains("ckx")) setOpen(r.el,false); });
       meta.textContent=TOTAL+" entries · verified "+D.verified;
       hits.innerHTML=""; hits.classList.add("ck-hide");
       return;
@@ -2252,29 +2319,32 @@ if(contentIdeasList){
     var found=[];
     IDX.forEach(function(r){
       var ok=terms.every(function(t){ return r.text.indexOf(t)>-1; });
-      r.el.classList.toggle("ck-hide", !ok);
-      if(ok) found.push(r);
+      r.el.classList.toggle("ck-hide",!ok);
+      if(ok){ found.push(r); if(r.el.classList.contains("ckx")) setOpen(r.el,true); }
     });
-    meta.textContent=found.length+" of "+TOTAL+" entries match “"+input.value.trim()+"”";
+    /* a matching child inside a non-matching parent would be hidden with it,
+       so re-show and open every ancestor of a hit */
+    found.forEach(function(r){
+      var p=r.el.parentNode;
+      while(p&&p!==document.body){
+        if(p.classList&&p.classList.contains("ckx")){ p.classList.remove("ck-hide"); setOpen(p,true); }
+        p=p.parentNode;
+      }
+    });
+    var tops=found.filter(function(r){return r.top;});
+    meta.textContent=found.length+" match “"+input.value.trim()+"”";
     if(!found.length){
-      hits.innerHTML='<div class="ck-nohit">Nothing matches. Both portals are linked at the top of the page — check there, then add what you find here.</div>';
-      hits.classList.remove("ck-hide");
-      return;
+      hits.innerHTML='<div class="ck-nohit">Nothing matches. Both portals are linked at the bottom of this page — check there, then add what you find to continia-knowledge.js.</div>';
+      hits.classList.remove("ck-hide"); return;
     }
-    hits.innerHTML=found.map(function(r){
+    hits.innerHTML=(tops.length?tops:found).map(function(r){
       return '<button type="button" class="ck-hit" data-go="'+esc(r.id)+'"><span class="ck-hit-k">'+esc(r.kind)+"</span>"+esc(r.title)+"</button>";
     }).join("");
     hits.classList.remove("ck-hide");
   }
 
-  input.addEventListener("input", run);
-  input.addEventListener("keydown", function(e){ if(e.key==="Escape"){ input.value=""; run(); } });
-  document.addEventListener("click", function(e){
-    var hit=e.target.closest?e.target.closest(".ck-hit"):null;
-    if(hit){ jump(hit.getAttribute("data-go")); return; }
-    var term=e.target.closest?e.target.closest(".ck-term"):null;
-    if(term){ input.value=term.getAttribute("data-q"); run(); input.scrollIntoView({behavior:"smooth",block:"center"}); }
-  });
+  input.addEventListener("input",run);
+  input.addEventListener("keydown",function(e){ if(e.key==="Escape"){ input.value=""; run(); } });
   run();
 })();
 
@@ -2546,11 +2616,11 @@ if(contentIdeasList){
       {id:"video-assets", icon:"fa-layer-group", label:"Video asset library"}
     ]},
     {page:"knowledge.html", icon:"fa-book-open", label:"Knowledge base", items:[
-      {id:"ck-portals", icon:"fa-compass", label:"Knowledge portals"},
-      {id:"ck-search", icon:"fa-magnifying-glass", label:"Look up a term"},
+      {id:"ck-search", icon:"fa-magnifying-glass", label:"Search"},
       {id:"ck-solutions", icon:"fa-cubes", label:"Solutions"},
       {id:"ck-platform", icon:"fa-diagram-project", label:"Platform & shared"},
-      {id:"ck-names", icon:"fa-spell-check", label:"Names & gotchas"}
+      {id:"ck-names", icon:"fa-spell-check", label:"Names & gotchas"},
+      {id:"ck-portals", icon:"fa-compass", label:"Where this comes from"}
     ]}
   ];
   var path=(location.pathname.split("/").pop()||"index.html");
@@ -2635,7 +2705,7 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-09-23 12:40";
+var DASHBOARD_UPDATED = "2026-09-23 14:05";
 var MODULE_UPDATED = {
   /* index.html */
   "news":            {at:"2026-09-22 16:52", src:"News sweep"},
@@ -2659,11 +2729,11 @@ var MODULE_UPDATED = {
   "video-ideas-short":{at:"2026-09-17 13:52", src:"Video idea pass"},
   "youtube-bank":    {at:"2026-06-10 12:08", src:"YouTube image bank"},
   /* knowledge.html */
-  "ck-portals":      {at:"2026-09-23 12:40", src:"Portal verification"},
-  "ck-search":       {at:"2026-09-23 12:40", src:"Portal verification"},
-  "ck-solutions":    {at:"2026-09-23 12:40", src:"Docs + continia.com read"},
-  "ck-platform":     {at:"2026-09-23 12:40", src:"Docs + continia.com read"},
-  "ck-names":        {at:"2026-09-23 12:40", src:"Docs + continia.com read"}
+  "ck-portals":      {at:"2026-09-23 14:05", src:"Portal verification"},
+  "ck-search":       {at:"2026-09-23 14:05", src:"Portal verification"},
+  "ck-solutions":    {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
+  "ck-platform":     {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
+  "ck-names":        {at:"2026-09-23 14:05", src:"Docs + continia.com read"}
 };
 (function(){
   var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];

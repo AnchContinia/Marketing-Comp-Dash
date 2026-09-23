@@ -8,7 +8,7 @@
 <script>try{if(!sessionStorage.getItem("continia-auth")&&!localStorage.getItem("continia-auth"))location.replace("login.html")}catch(e){}</script>
 <script>try{if(localStorage.getItem("continia-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <script>try{if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("reveal-on")}catch(e){}</script>
-<link rel="stylesheet" href="./dashboard.css?v=20260923b">
+<link rel="stylesheet" href="./dashboard.css?v=20260923c">
 <script src="https://kit.fontawesome.com/c11880975e.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -16,40 +16,49 @@
 <aside class="sidebar" id="sidebar"></aside>
 <main class="main"><div class="topbar"><div class="crumb"><span>Marketing Hub</span><span>/</span><b>Continia knowledge base</b></div><div class="status"><span><b id="lastUpdated">Updated September 23, 2026</b></span></div></div><div class="workspace ck-page">
 
-<section class="section" id="ck-portals"><div class="section-head"><h2>Knowledge portals</h2><span class="hint">two sources of truth · everything here traces back to one of them</span></div>
-<div class="ck-lede"><p>This is Continia's own product knowledge, written down so a claim can be checked before it ships. It is built from two portals and nothing else. Docs decides what the product does; continia.com decides how it is said. Where this page and a live page disagree, the live page is right and this page needs fixing.</p></div>
-<div class="ck-portals" id="ck-portals-body"></div>
-<div class="ck-proof-wrap" id="ck-proof"></div>
-<div class="footnote">Verified against both portals on September 23, 2026. Anything dated — end-of-sale, end-of-support, release names, supported Business Central versions, e-invoicing mandates — gets re-read on the live page before it goes into an asset, even when it is written here.</div></section>
-
-<section class="section" id="ck-search"><div class="section-head"><h2>Look up a term</h2><span class="hint">searches solutions, modules, platform components, names and gotchas at once</span></div>
-<div class="ck-search-wrap">
-<div class="is-search"><span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span><input id="ck-input" type="search" placeholder="Search — e.g. Order Matching, Peppol, per diem, Team Member licence, end of support…" autocomplete="off"></div>
-<div class="is-meta" id="ck-meta"></div>
-<div class="ck-hits ck-hide" id="ck-hits"></div>
+<section class="section ck-hero-sec" id="ck-search">
+<div class="ck-hero">
+  <div class="ck-hero-in">
+    <div class="eyebrow">Continia · Knowledge base</div>
+    <h1>What do you need to check?</h1>
+    <p class="ck-hero-sub">Continia's own product knowledge, written down so a claim can be verified before it ships. Built from two portals and nothing else — every entry carries its sources.</p>
+    <div class="ck-hero-search">
+      <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg></span>
+      <input id="ck-input" type="search" placeholder="Search solutions, modules, terms — e.g. Order Matching, Peppol, per diem…" autocomplete="off">
+    </div>
+    <div class="ck-popular" id="ck-popular"></div>
+  </div>
 </div>
-<div class="footnote">Typing filters every entry on this page and lists the matches as jump links. Esc clears it. The <b>Terms</b> row under each solution runs the same search, so a term can be followed from one solution into the others that use it.</div></section>
+<div class="ck-results"><div class="is-meta" id="ck-meta"></div><div class="ck-hits ck-hide" id="ck-hits"></div></div>
+<div class="footnote">Typing searches every solution, module, platform component, name and gotcha at once, opens the matches and folds the rest away. Esc clears it. Each entry's <b>Terms</b> row runs the same search, so a term can be followed from one solution into the others that use it.</div></section>
 
 <section class="section" id="ck-solutions"><div class="section-head"><h2>Solutions</h2><span class="hint">nine entries · six active, two legacy, one discontinued</span></div>
-<nav class="ck-toc" id="ck-toc" aria-label="Solutions"></nav>
+<div class="ck-tiles" id="ck-tiles"></div>
 <div class="ck-body" id="ck-solutions-body"></div>
 <div class="footnote">Legacy and discontinued solutions are documented here on purpose: they come up in customer and partner conversations, and the useful answer is the successor plus the migration path, not silence. They never go into new marketing material as current products.</div></section>
 
 <section class="section" id="ck-platform"><div class="section-head"><h2>Platform &amp; shared components</h2><span class="hint">the pieces that span several solutions</span></div>
 <div class="ck-body" id="ck-platform-body"></div>
-<div class="footnote">These are sold as part of a solution rather than on their own, which is why a claim about them has to name the solution it applies to — Secure Archive in Document Capture and Expense Management, the Web Approval Portal in Document Capture and Expense Management, CDN inbound in Document Capture and outbound in Document Output.</div></section>
+<div class="footnote">These are sold as part of a solution rather than on their own, which is why a claim about them has to name the solution it applies to — Secure Archive in Document Capture and Expense Management, the Web Approval Portal in both, CDN inbound in Document Capture and outbound in Document Output.</div></section>
 
 <section class="section" id="ck-names"><div class="section-head"><h2>Names &amp; gotchas</h2><span class="hint">the exact forms, and the facts that go wrong most often</span></div>
-<div class="ck-sub"><h3>Product and component names</h3><p>Use the left column exactly. The internal abbreviations (DC, EM, DO, CB, CF, CM, WAP, CDN) are fine in partner-facing and internal material once they have been spelled out.</p></div>
 <div class="ck-body" id="ck-naming-body"></div>
-<div class="ck-sub"><h3>Facts that are easy to get wrong</h3><p>Each of these has been wrong in published material or is wrong on a live page right now. Every one carries its own source.</p></div>
+<div class="ck-sub"><h3>Facts that are easy to get wrong</h3><p>Each of these has been wrong in published material, or is wrong on a live page right now. Every one carries its own source.</p></div>
 <div class="ck-body" id="ck-gotchas-body"></div>
 <div class="footnote">The module count on continia.com/solutions is the live example of the Docs-wins rule: the overview page says seven Continia Finance modules, the Finance product page and Docs both say eight. Use eight, and flag the overview page so it gets corrected.</div></section>
+
+<section class="section" id="ck-portals"><div class="section-head"><h2>Where this comes from</h2><span class="hint">two portals · everything above traces back to one of them</span></div>
+<div class="ck-portals" id="ck-portals-body"></div>
+<div class="ck-sub"><h3>How to use them</h3><p>Five rules, in the order to apply them.</p></div>
+<div class="ck-body" id="ck-rules-body"></div>
+<div class="ck-sub"><h3>Company proof points</h3><p>The numbers Continia puts its name on publicly.</p></div>
+<div class="ck-proof-wrap" id="ck-proof"></div>
+<div class="footnote">Verified against both portals on September 23, 2026 — all 25 source links checked and live. Anything dated — end-of-sale, end-of-support, release names, supported Business Central versions, e-invoicing mandates — gets re-read on the live page before it goes into an asset, even when it is written here.</div></section>
 
 <footer>Continia Marketing Hub · <span id="footerDate">September 23, 2026</span></footer>
 </div></main></div>
 <script src="./continia-knowledge.js?v=20260923-ck"></script>
-<script src="./dashboard.js?v=20260923c"></script>
+<script src="./dashboard.js?v=20260923d"></script>
 <script>(function(){if(!document.documentElement.classList.contains("reveal-on"))return;var m=document.querySelectorAll(".workspace>*");if(!m.length)return;var vh=innerHeight,li=0;m.forEach(function(el){if(el.getBoundingClientRect().top<vh*0.92){el.style.transitionDelay=Math.min(li*70,350)+"ms";li++;}});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("rv-in");io.unobserve(e.target);}});},{threshold:0.08,rootMargin:"0px 0px -5% 0px"});m.forEach(function(el){io.observe(el);});})();</script>
 </body>
 </html>
