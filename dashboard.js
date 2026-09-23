@@ -2290,6 +2290,50 @@ if(contentIdeasList){
     },60);
   }
 
+  /* ---------- highlighting ----------
+     Wraps each search term in <mark> inside the results, walking text nodes so
+     the surrounding markup, links and open state are left alone. Marks are
+     stripped before every re-run, otherwise a second keystroke would nest them. */
+  function rxFor(terms){
+    return new RegExp("("+terms.map(function(t){
+      return t.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+    }).join("|")+")","gi");
+  }
+  function unmark(root){
+    if(!root) return;
+    [].forEach.call(root.querySelectorAll("mark.ck-mk"),function(m){
+      var p=m.parentNode; if(!p) return;
+      while(m.firstChild) p.insertBefore(m.firstChild,m);
+      p.removeChild(m);
+      if(p.normalize) p.normalize();
+    });
+  }
+  function mark(root,terms){
+    if(!root||!terms.length) return;
+    var rx=rxFor(terms), walker, hits=[], n;
+    try{ walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null,false); }catch(e){ return; }
+    while((n=walker.nextNode())){
+      if(!n.nodeValue||!n.nodeValue.trim()) continue;
+      rx.lastIndex=0;
+      if(rx.test(n.nodeValue)) hits.push(n);
+    }
+    hits.forEach(function(t){
+      var s=t.nodeValue, frag=document.createDocumentFragment(), last=0, m;
+      rx.lastIndex=0;
+      while((m=rx.exec(s))){
+        if(!m[0].length){ rx.lastIndex++; continue; }
+        if(m.index>last) frag.appendChild(document.createTextNode(s.slice(last,m.index)));
+        var el=document.createElement("mark");
+        el.className="ck-mk";
+        el.textContent=m[0];
+        frag.appendChild(el);
+        last=m.index+m[0].length;
+      }
+      if(last<s.length) frag.appendChild(document.createTextNode(s.slice(last)));
+      if(t.parentNode) t.parentNode.replaceChild(frag,t);
+    });
+  }
+
   /* ---------- search ----------
      The index is read from the DOM after render, so anything added to
      continia-knowledge.js becomes searchable without touching this code.
@@ -2341,6 +2385,9 @@ if(contentIdeasList){
   function run(){
     var q=(input.value||"").trim();
     var terms=q.toLowerCase().split(/\s+/).filter(Boolean);
+    /* every keystroke starts clean: strip the previous highlights before
+       anything else, so a re-run can never nest a mark inside a mark */
+    unmark(page||document.body);
     if(!terms.length){ idle(); return; }
 
     var hitNested=[];
@@ -2362,6 +2409,9 @@ if(contentIdeasList){
       return TOPS.map(function(r){return r.el;}).indexOf(a)-TOPS.map(function(r){return r.el;}).indexOf(b);
     });
 
+    /* home everything first, so the only entries left in the host are the ones
+       this query pulled up - otherwise a previous query's entries sit detached */
+    restore();
     if(page) page.classList.add("ck-searching");
     host.innerHTML="";
     host.classList.remove("ck-hide");
@@ -2369,18 +2419,19 @@ if(contentIdeasList){
     if(!show.length){
       restore();
       host.innerHTML='<div class="ck-nohit">Nothing matches “'+esc(q)+'”. Both portals are linked at the bottom of this page — check there, then add what you find to continia-knowledge.js.</div>';
-      meta.textContent="No match for “"+esc(q)+"”";
+      meta.textContent="No match for “"+q+"”";
       return;
     }
 
     show.forEach(function(el){ host.appendChild(el); setOpen(el,true); });
+    mark(host,terms);
     /* open the nested accordion that actually matched, and its parents */
     hitNested.forEach(function(el){
       if(el.classList.contains("ckx")) setOpen(el,true);
       var up=el.parentNode&&el.parentNode.closest?el.parentNode.closest(".ckx"):null;
       while(up){ setOpen(up,true); up=up.parentNode&&up.parentNode.closest?up.parentNode.closest(".ckx"):null; }
     });
-    meta.textContent=show.length+(show.length===1?" entry":" entries")+" for “"+esc(q)+"”";
+    meta.textContent=show.length+(show.length===1?" entry":" entries")+" for “"+q+"”";
   }
 
   input.addEventListener("input",run);

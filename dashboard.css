@@ -1204,3 +1204,8 @@ html[data-theme="dark"] .ck-p-host a{color:#8ff8ff}
 /* the rule-number badge is the one place --navy is a background; cyan-on-white
    would not read, so it flips to the cyan-on-navy pairing used elsewhere */
 html[data-theme="dark"] .ckx-rn{background:#8ff8ff;color:#052975}
+
+/* search-term highlight inside the results; <mark>'s browser yellow is replaced
+   by the brand cyan - solid on light, a tint on dark where the text is cyan */
+mark.ck-mk{background:#8ff8ff;color:#052975;border-radius:3px;padding:0 2px;font-weight:inherit}
+html[data-theme="dark"] mark.ck-mk{background:rgba(143,248,255,.24);color:#8ff8ff}
