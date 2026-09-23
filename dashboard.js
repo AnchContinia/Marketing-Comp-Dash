@@ -2269,8 +2269,6 @@ if(contentIdeasList){
     if(top){ var a=top.parentNode; setOpen(a,!a.classList.contains("open")); return; }
     var tile=e.target.closest?e.target.closest(".ck-tile"):null;
     if(tile){ jump(tile.getAttribute("data-go"),true); return; }
-    var hit=e.target.closest?e.target.closest(".ck-hit"):null;
-    if(hit){ jump(hit.getAttribute("data-go"),true); return; }
     var term=e.target.closest?e.target.closest(".ck-term"):null;
     if(term&&input){ input.value=term.getAttribute("data-q"); run(); input.focus();
       document.getElementById("ck-search").scrollIntoView({behavior:"smooth",block:"start"}); }
@@ -2295,57 +2293,99 @@ if(contentIdeasList){
   /* ---------- search ----------
      The index is read from the DOM after render, so anything added to
      continia-knowledge.js becomes searchable without touching this code.
-     A hit opens its accordion; clearing the box folds everything back up. */
+
+     A search physically moves the matching entries up into the hero module and
+     hides the sections below, so the answer lands under the box you typed in
+     instead of somewhere further down the page. The entries are *moved*, never
+     cloned, so ids, open state and the delegated click handlers survive the
+     round trip; clearing the box appends each one back into its own container
+     in its original order. */
   var input=document.getElementById("ck-input");
   var meta=document.getElementById("ck-meta");
-  var hits=document.getElementById("ck-hits");
-  if(!input) return;
+  var host=document.getElementById("ck-hits");
+  var page=document.querySelector(".ck-page");
+  if(!input||!host) return;
 
   var IDX=[].map.call(document.querySelectorAll(".ckx, .ck-nm"),function(el){
-    return {el:el, kind:el.getAttribute("data-kind")||"", title:el.getAttribute("data-title")||"",
-            id:el.id||"", top:!el.classList.contains("ckx-sub"), text:(el.textContent||"").toLowerCase()};
+    var up=el.parentNode&&el.parentNode.closest?el.parentNode.closest(".ckx"):null;
+    return {el:el, top:!up, kind:el.getAttribute("data-kind")||"", title:el.getAttribute("data-title")||"",
+            text:(el.textContent||"").toLowerCase()};
   });
-  var TOTAL=IDX.filter(function(r){return r.top;}).length;
+  /* the movable units: accordions that sit inside no other accordion */
+  var TOPS=IDX.filter(function(r){ return r.top && r.el.classList.contains("ckx"); });
+  var TOTAL=TOPS.length;
+
+  /* where each one lives when nothing is being searched */
+  var GROUPS=[];
+  TOPS.forEach(function(r){
+    var g=null;
+    for(var i=0;i<GROUPS.length;i++) if(GROUPS[i].parent===r.el.parentNode) g=GROUPS[i];
+    if(!g){ g={parent:r.el.parentNode, items:[]}; GROUPS.push(g); }
+    g.items.push(r.el);
+  });
+  function restore(){
+    GROUPS.forEach(function(g){ g.items.forEach(function(el){ g.parent.appendChild(el); }); });
+  }
+
+  function idle(){
+    restore();
+    IDX.forEach(function(r){
+      r.el.classList.remove("ck-hide");
+      if(r.el.classList.contains("ckx")) setOpen(r.el,false);   /* nested ones too */
+    });
+    if(page) page.classList.remove("ck-searching");
+    host.innerHTML=""; host.classList.add("ck-hide");
+    meta.textContent=TOTAL+" entries · verified "+D.verified;
+  }
 
   function run(){
-    var q=(input.value||"").trim().toLowerCase();
-    var terms=q.split(/\s+/).filter(Boolean);
-    if(!terms.length){
-      IDX.forEach(function(r){ r.el.classList.remove("ck-hide"); if(r.el.classList.contains("ckx")) setOpen(r.el,false); });
-      meta.textContent=TOTAL+" entries · verified "+D.verified;
-      hits.innerHTML=""; hits.classList.add("ck-hide");
-      return;
-    }
-    var found=[];
+    var q=(input.value||"").trim();
+    var terms=q.toLowerCase().split(/\s+/).filter(Boolean);
+    if(!terms.length){ idle(); return; }
+
+    var hitNested=[];
+    var show=[];
     IDX.forEach(function(r){
-      var ok=terms.every(function(t){ return r.text.indexOf(t)>-1; });
-      r.el.classList.toggle("ck-hide",!ok);
-      if(ok){ found.push(r); if(r.el.classList.contains("ckx")) setOpen(r.el,true); }
-    });
-    /* a matching child inside a non-matching parent would be hidden with it,
-       so re-show and open every ancestor of a hit */
-    found.forEach(function(r){
-      var p=r.el.parentNode;
-      while(p&&p!==document.body){
-        if(p.classList&&p.classList.contains("ckx")){ p.classList.remove("ck-hide"); setOpen(p,true); }
-        p=p.parentNode;
+      if(!terms.every(function(t){ return r.text.indexOf(t)>-1; })) return;
+      if(r.top&&r.el.classList.contains("ckx")){ if(show.indexOf(r.el)<0) show.push(r.el); return; }
+      hitNested.push(r.el);
+      /* a nested hit brings its top-level entry along */
+      var up=r.el.parentNode&&r.el.parentNode.closest?r.el.parentNode.closest(".ckx"):null;
+      while(up){
+        var next=up.parentNode&&up.parentNode.closest?up.parentNode.closest(".ckx"):null;
+        if(!next&&show.indexOf(up)<0) show.push(up);
+        up=next;
       }
     });
-    var tops=found.filter(function(r){return r.top;});
-    meta.textContent=found.length+" match “"+input.value.trim()+"”";
-    if(!found.length){
-      hits.innerHTML='<div class="ck-nohit">Nothing matches. Both portals are linked at the bottom of this page — check there, then add what you find to continia-knowledge.js.</div>';
-      hits.classList.remove("ck-hide"); return;
+    /* keep them in the order the page lists them, not the order they matched */
+    show.sort(function(a,b){
+      return TOPS.map(function(r){return r.el;}).indexOf(a)-TOPS.map(function(r){return r.el;}).indexOf(b);
+    });
+
+    if(page) page.classList.add("ck-searching");
+    host.innerHTML="";
+    host.classList.remove("ck-hide");
+
+    if(!show.length){
+      restore();
+      host.innerHTML='<div class="ck-nohit">Nothing matches “'+esc(q)+'”. Both portals are linked at the bottom of this page — check there, then add what you find to continia-knowledge.js.</div>';
+      meta.textContent="No match for “"+esc(q)+"”";
+      return;
     }
-    hits.innerHTML=(tops.length?tops:found).map(function(r){
-      return '<button type="button" class="ck-hit" data-go="'+esc(r.id)+'"><span class="ck-hit-k">'+esc(r.kind)+"</span>"+esc(r.title)+"</button>";
-    }).join("");
-    hits.classList.remove("ck-hide");
+
+    show.forEach(function(el){ host.appendChild(el); setOpen(el,true); });
+    /* open the nested accordion that actually matched, and its parents */
+    hitNested.forEach(function(el){
+      if(el.classList.contains("ckx")) setOpen(el,true);
+      var up=el.parentNode&&el.parentNode.closest?el.parentNode.closest(".ckx"):null;
+      while(up){ setOpen(up,true); up=up.parentNode&&up.parentNode.closest?up.parentNode.closest(".ckx"):null; }
+    });
+    meta.textContent=show.length+(show.length===1?" entry":" entries")+" for “"+esc(q)+"”";
   }
 
   input.addEventListener("input",run);
   input.addEventListener("keydown",function(e){ if(e.key==="Escape"){ input.value=""; run(); } });
-  run();
+  idle();
 })();
 
 /* ---- Left sidebar: built from one source, injected on every page ----

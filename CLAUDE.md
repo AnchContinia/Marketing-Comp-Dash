@@ -121,10 +121,22 @@ keep their existing 8px — this rule is about the tiles. (Standing instruction 
 
 ## Brand-colour rule (no off-palette tints)
 
-Stick to the Continia palette. In particular, **never use `#9adcc9` or `#e0a54a`** (off-palette
-lightened tints) — use **Smart Green `#5f9e8d`** and **Performance Purple `#983eae`** instead.
-Full palette: Tech Blue `#052975`, Innovation Blue/cyan `#8ff8ff`, Smart Green `#5f9e8d`,
-Performance Purple `#983eae`. (Standing instruction from the user.)
+Stick to the Continia palette. Full palette: Tech Blue `#052975`, Innovation Blue/cyan
+`#8ff8ff`, Smart Green `#5f9e8d`, Performance Purple `#983eae`.
+
+**Banned off-palette colours — never use any of these:**
+
+| Never | Use instead | What it was |
+|---|---|---|
+| `#9adcc9` | Smart Green `#5f9e8d` | lightened green tint |
+| `#e0a54a` | Performance Purple `#983eae` | lightened amber tint |
+| `#6ea8ff` (and `rgba(110,168,255,…)`) | Innovation Blue `#8ff8ff` | the dark theme's old lightened navy |
+
+`#6ea8ff` was not a one-off: it was the **dark-theme value of the `--navy` token**, so it
+leaked into ~69 rules at once. In dark mode `--navy` now resolves to `#8ff8ff`, which is why
+headings, links and accents all read cyan there. If a dark-mode element needs navy as a
+*background*, pair it the other way round — `background:#8ff8ff;color:#052975` — because cyan
+text on a cyan fill does not read. (Standing instruction from the user.)
 
 ## Archive rule (never overwrite data without saving it)
 
