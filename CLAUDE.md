@@ -144,6 +144,16 @@ for good unless it is archived. Two steps:
    reject. A Sep 16 sweep was rejected this way: 45% of its rows read 0/0/0 because it wrote
    `0` where it failed to read a counter, which is indistinguishable from a real zero and
    unrepairable. See the QUARANTINED note in the generator.
+   **A capture can hold the wrong page.** The union merge assumes both
+   captures read the same company; when one did not, merging keeps both sets
+   and the card becomes a blend of two firms. The generator's `RESET` set
+   names labels whose older captures are known bad - a later capture replaces
+   them outright instead of unioning. `MineralTree` is in it: the Sep 14 trawl
+   recorded Global Payments Inc. corporate posts under that label (zero
+   permalink overlap with the Sep 22 sweep of the same `company_url`; the
+   permalinks resolve to Global Payments). The tell is `verify-trawl.js`
+   reporting a company as missing *all* of its known posts while every other
+   company sits in single digits - check the titles before merging.
    An unmapped company label is a hard error, not a silent skip — add it to `KEEP` (mapped
    to its dashboard name) or to `DROP` (deliberate exclusions). This is how a sweep spelling
    our own name "Continia Software" instead of "Continia Software A/S" once dropped all 50
