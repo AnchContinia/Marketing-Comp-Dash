@@ -994,7 +994,9 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 .ck-hide{display:none!important}
 
 /* ----- hero ----- */
-.ck-hero-sec{overflow:visible}
+/* keep .section's overflow:hidden - it is what clips the blue hero to the
+   card's 8px corners. Nothing inside the hero needs to escape the box. */
+.ck-hero-sec{overflow:hidden}
 .ck-hero{position:relative;overflow:hidden;padding:38px 32px 34px;
   background:#052975 url('./Assets/Dashboard_images_export.jpg') center/cover no-repeat}
 /* the video sits over the poster jpg and crossfades in on first play - the
