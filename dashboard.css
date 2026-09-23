@@ -1176,3 +1176,17 @@ html[data-theme="dark"] .ck-hero-search .ic{color:var(--cyan)}
   .ck-portals{grid-template-columns:1fr}
   .ck-table{font-size:12px}
 }
+
+/* ---- Dark mode: every source / reference link in Innovation Blue ---------
+   The source pills kept `background:#fff; color:#334155` in dark mode, so they
+   sat on the page as white chips - and `.sources a.wsite`, which is already
+   cyan, was cyan text on a white pill. This applies the treatment `.li-cohead a`
+   already uses (dark pill, cyan text) to every one of them. */
+html[data-theme="dark"] .sources a,
+html[data-theme="dark"] .ci-sources a,
+html[data-theme="dark"] .ck-src a{background:#0f1a33;border-color:#24365e;color:#8ff8ff}
+html[data-theme="dark"] .sources a:hover,
+html[data-theme="dark"] .ci-sources a:hover,
+html[data-theme="dark"] .ck-src a:hover{background:#152b4a;border-color:#8ff8ff;color:#8ff8ff}
+html[data-theme="dark"] .sources a.wsite{border-color:#8ff8ff}
+html[data-theme="dark"] .ck-p-host a{color:#8ff8ff}
