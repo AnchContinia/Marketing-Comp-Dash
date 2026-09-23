@@ -1080,8 +1080,11 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 .ckx-sub .ckx-mc{font-size:11px;color:var(--muted);margin-left:8px}
 .ckx-sub .ckx-h{flex-direction:row;align-items:center;gap:0;flex-wrap:wrap}
 .ckx-sub .ckx-chev{width:24px;height:24px;font-size:10px}
+/* line-height:1 matters: the badge otherwise inherits 1.45 from body, so the
+   centred line box is taller than the digit and the number rides high */
 .ckx-rn{flex:none;width:20px;height:20px;border-radius:50%;background:var(--navy);color:#fff;font-size:10px;
-  font-weight:850;display:grid;place-items:center;margin-right:10px}
+  font-weight:850;line-height:1;font-variant-numeric:tabular-nums;
+  display:inline-flex;align-items:center;justify-content:center;margin-right:10px}
 .ck-mods{margin:0 0 4px}
 
 /* ----- article content inside a panel ----- */
