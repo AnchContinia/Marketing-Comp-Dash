@@ -1020,6 +1020,10 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 /* results live in the hero module: the matching entries are moved in here so
    the answer sits directly under the search box */
 .ck-results{padding:14px 18px 6px}
+/* scoped to #ck-meta so the image banks' .is-meta lines are untouched.
+   --navy is Innovation Blue #8ff8ff in dark mode and Tech Blue #052975 in
+   light, where cyan on the white panel would not read. */
+#ck-meta{font-weight:850;color:var(--navy)}
 .ck-hits{margin-top:12px}
 .ck-hits>.ckx{margin-bottom:8px}
 .ck-hits>.ckx:last-child{margin-bottom:0}
