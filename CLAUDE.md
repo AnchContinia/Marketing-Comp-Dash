@@ -40,10 +40,10 @@ Read it when picking the repo up in a fresh chat.
 
 ## Architecture
 
-**Three pages, one shared brain.** `index.html` (Home), `content.html` (Content), and
-`video.html` (Video) are near-identical shells. They differ only in their `<section>` content
-and which data scripts they load. All three load the same [dashboard.css](dashboard.css) and
-[dashboard.js](dashboard.js).
+**Four pages, one shared brain.** `index.html` (Home), `content.html` (Content),
+`video.html` (Video) and `knowledge.html` (Continia knowledge base) are near-identical shells.
+They differ only in their `<section>` content and which data scripts they load. All four load
+the same [dashboard.css](dashboard.css) and [dashboard.js](dashboard.js).
 
 [dashboard.js](dashboard.js) runs on all three pages. It contains **both the data and the
 render logic**, and each render block self-guards so a page only runs the renderers whose data
@@ -53,7 +53,7 @@ and DOM actually exist:
 if (typeof window.YT_DATA === "undefined") return;   // skip on pages that didn't load it
 ```
 
-This is why one shared script can power three different pages without errors. Key contents:
+This is why one shared script can power four different pages without errors. Key contents:
 
 - **Inline data arrays** (top of the file): `data` (competitor cards), `events` (Key Events
   timeline), `contentIdeas`. **Note:** the runbooks say these live in `index.html` — they don't,
@@ -75,12 +75,35 @@ This is why one shared script can power three different pages without errors. Ke
 | [youtube-images.js](youtube-images.js) | `window.YOUTUBE_IMAGES` | video.html | filename index for the YouTube thumbnail bank |
 | [linkedin-images.js](linkedin-images.js) | `window.LINKEDIN_IMAGES` | content.html | filename index for the LinkedIn image bank |
 | [newsletter-images.js](newsletter-images.js) | `window.NEWSLETTER_IMAGES` | content.html | filename index for the Newsletter image bank |
+| [continia-knowledge.js](continia-knowledge.js) | `window.CK_DATA` | knowledge.html | the Continia knowledge base: solutions, modules, platform components, naming, gotchas |
 
 **Image banks** are filename arrays only; the actual images live in `Assets/<folder>/`
 (`Linkedin images`, `Newsletter images`, `Youtube images`). The bank JS files are auto-generated
 "newest-first" indexes with filenames **normalized to NFC** so they match the git/GitHub-served
 paths (macOS NFD filenames otherwise 404 on Pages). When you add bank images, **push the actual
 `Assets/<folder>` files too — not just the index JS** — or the bank renders broken thumbnails.
+
+## Knowledge-base rule (nothing without a source)
+
+[knowledge.html](knowledge.html) renders [continia-knowledge.js](continia-knowledge.js) and exists
+to be fact-checked against, so **every entry carries an `s:[["label","url"]]` array** — same
+convention as the competitor cards — and an entry without one does not go in. Two portals are the
+only allowed sources: **docs.continia.com wins on functionality** (features, dependencies, formats,
+supported versions, dates) and **continia.com wins on messaging** (positioning, headline claims,
+customer numbers). When the two disagree, that split decides; when the file disagrees with either,
+the live page is right and the file is wrong.
+
+Anything dated — end-of-sale, end-of-support, release names, supported BC versions, e-invoicing
+mandates — gets re-read on the live page before it is written down, because these have already
+moved once. Verify the links resolve after editing:
+
+```bash
+node -e 'global.window={};require("./continia-knowledge.js");var D=window.CK_DATA;var u=new Set();[].concat(D.portals,D.solutions,D.platform,D.gotchas,[D.company]).forEach(function(o){(o.s||[]).forEach(function(x){u.add(x[1]);});});console.log([...u].join("\n"))' \
+  | while read -r x; do printf "%s  %s\n" "$(curl -s -o /dev/null -w '%{http_code}' -L "$x")" "$x"; done
+```
+
+Known live discrepancy (Sep 23, 2026): `continia.com/solutions` says Continia Finance has **7**
+specialized modules; the Finance product page and Docs both say **8**. Eight is correct.
 
 ## Box styling rule (no left-accent bars)
 
