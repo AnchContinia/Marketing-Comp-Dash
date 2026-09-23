@@ -963,3 +963,25 @@ html[data-theme="dark"] .ours-badge.bench{background:#0f1a33;border-color:#24365
 html[data-theme="dark"] .li-sortbar .chip.active{background:#0f172a;border-color:#0f172a;color:#fff}
 html[data-theme="dark"] .ours-badge{background:#0f172a}
 html[data-theme="dark"] .ours-badge.bench{background:#0f1a33;border-color:#24365e;color:#cbd5e1}
+
+/* ---- Per-module "data updated" stamp ----
+   Injected by dashboard.js as the last child of every data-backed .section
+   (see MODULE_UPDATED there). Reads like the existing .footnote - same muted
+   tone, same uniform 1px top border, no coloured edge stripe - because it is
+   the same kind of small print. Where a section already ends in a .footnote
+   the two share one border so they read as one block rather than two bars.
+   The source label is set in Tech Blue so the eye can scan which routine
+   produced the module without reading the whole line. */
+.mod-stamp{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;
+  padding:9px 16px;background:#f8fafc;color:var(--muted);font-size:11.5px;
+  border-top:1px solid var(--line)}
+.mod-stamp .ms-src{font-weight:850;letter-spacing:.06em;text-transform:uppercase;
+  font-size:10px;color:var(--navy)}
+.mod-stamp .ms-src:after{content:"\00b7";margin-left:8px;color:var(--line2)}
+.footnote + .mod-stamp{border-top:0;padding-top:0}
+html[data-theme="dark"] .mod-stamp{background:var(--panel)}
+html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
+/* Video-ideas sections push their footnote to the bottom of a flex column;
+   the stamp has to follow it there instead of claiming the auto margin. */
+#video-ideas>.section>.footnote{margin-top:auto}
+#video-ideas>.section>.mod-stamp{margin-top:0}

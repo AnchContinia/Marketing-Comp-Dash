@@ -301,3 +301,10 @@ keeps its own `snapshots`.
   succeeded — don't block the whole update on one feed.
 - This runbook **supersedes** running NEWS-UPDATE and YOUTUBE-UPDATE separately,
   but those still work on their own if you only want one side refreshed.
+
+---
+
+> **Stamps.** Set `DASHBOARD_UPDATED` in `dashboard.js` to the run **timestamp**
+> (`"YYYY-MM-DD HH:MM"`), and bump the `MODULE_UPDATED` entries for every module
+> this routine touched. The per-module stamps are what the page prints under each
+> section; leaving them behind makes the page overstate how fresh it is.

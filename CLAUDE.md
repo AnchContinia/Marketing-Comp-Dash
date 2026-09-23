@@ -229,9 +229,20 @@ There are two distinct date types on the page; never confuse them:
 1. **Content/event dates** (e.g. an `events` entry's `w` field, dates inside card text) are **real
    historical dates** — the date the thing actually happened. Never bump these to today.
 2. **`DASHBOARD_UPDATED`** is the "last refreshed" stamp — **set it to today** on every refresh.
+   It is a **timestamp**, `"YYYY-MM-DD HH:MM"`, not a bare date.
 3. **Every event carries `d:"YYYY-MM-DD"`** next to its free-text `w`. `w` is what the page
    shows; `d` is the sortable machine date (month-only items → the 1st; season-only → the
    1st of the first month). New events always get both; backfill old ones when passing by.
+4. **`MODULE_UPDATED`** (right below it in `dashboard.js`) carries one stamp per
+   data-backed section, keyed by section id, as `{at, src}`. `dashboard.js` appends
+   a small "data updated" line to each of those sections. **Every refresh must bump
+   the entries for the modules it actually touched** — a LinkedIn trawl bumps
+   `content-gap` and `linkedin-compare`, a news pass bumps `news`, `competitors` and
+   `events`, a YouTube pass bumps `youtube`, `continia-uploads` and the video-idea
+   sections. Bumping only the global stamp makes every other module claim a freshness
+   it does not have, which is worse than no stamp at all. Tool sections (Event
+   Calendar, SEO scan, the compressors) and static ones (hero, Method, video assets)
+   are deliberately absent.
 
 ## Monthly update runbooks
 

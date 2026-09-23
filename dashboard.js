@@ -2449,17 +2449,70 @@ if(contentIdeasList){
   onScroll();
 })();
 
-/* ---- Single source of truth for the "Updated" stamp ----
-   Set DASHBOARD_UPDATED to the date the page was last refreshed (YYYY-MM-DD).
-   Both the topbar and the footer read from it, so they can never drift apart.
-   The YouTube/News update routine sets this to today's date on every refresh. */
+/* ---- Single source of truth for the "Updated" stamps ----
+   DASHBOARD_UPDATED is the hub's own last-refresh timestamp; the topbar and
+   the footer both read it, so they can never drift apart.
+
+   MODULE_UPDATED gives every data-backed section its OWN stamp, because the
+   modules are not refreshed together: a LinkedIn trawl does not touch the
+   Market Map, and a news pass does not touch YouTube. Without this, one
+   global date implies the whole page is as fresh as its freshest module.
+   Each entry is keyed by the section id and carries:
+     at   "YYYY-MM-DD HH:MM" - when that data actually landed on the hub
+     src  short label naming the routine or file it came from
+   Sections deliberately absent: the hero, the Method panel, the static asset
+   tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
+   none of them hold captured data, so a stamp would be noise.
+   Update the entry for every module a refresh touches, not just the global. */
+var DASHBOARD_UPDATED = "2026-09-23 09:35";
+var MODULE_UPDATED = {
+  /* index.html */
+  "news":            {at:"2026-09-22 16:52", src:"News sweep"},
+  "competitors":     {at:"2026-09-22 16:52", src:"News sweep"},
+  "content-gap":     {at:"2026-09-23 09:35", src:"LinkedIn trawl"},
+  "battlecards":     {at:"2026-07-01 15:27", src:"Battlecard seed"},
+  "appsource":       {at:"2026-07-01 10:55", src:"AppSource review pass"},
+  "markets-map":     {at:"2026-06-30 11:38", src:"Market coverage pass"},
+  "timeline":        {at:"2026-07-01 10:34", src:"E-invoicing mandate pass"},
+  /* content.html */
+  "insights":        {at:"2026-06-10 09:32", src:"Strategic readout"},
+  "events":          {at:"2026-09-22 16:52", src:"News sweep"},
+  "content-ideas":   {at:"2026-08-31 14:53", src:"Content idea pass"},
+  "linkedin-compare":{at:"2026-09-23 09:35", src:"LinkedIn trawl"},
+  "image-search":    {at:"2026-09-17 13:52", src:"LinkedIn image bank"},
+  "newsletter-bank": {at:"2026-09-17 13:52", src:"Newsletter image bank"},
+  /* video.html */
+  "youtube":         {at:"2026-09-17 13:52", src:"Social Blade snapshot"},
+  "continia-uploads":{at:"2026-09-17 13:52", src:"vidIQ upload pass"},
+  "video-ideas-long":{at:"2026-09-17 13:52", src:"Video idea pass"},
+  "video-ideas-short":{at:"2026-09-17 13:52", src:"Video idea pass"},
+  "youtube-bank":    {at:"2026-06-10 12:08", src:"YouTube image bank"}
+};
 (function(){
-  var DASHBOARD_UPDATED = "2026-09-23";
-  var m=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  var p=String(DASHBOARD_UPDATED).split("-");
-  var pretty=m[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];
-  var top=document.getElementById("lastUpdated"); if(top) top.textContent="Updated "+pretty;
-  var ft=document.getElementById("footerDate");   if(ft)  ft.textContent=pretty;
+  var M=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  /* "2026-09-23 09:35" -> "Sep 23, 2026 · 09:35"; a bare date renders without
+     the time so an older stamp that was never given one still reads cleanly. */
+  function pretty(ts){
+    var s=String(ts).trim().split(/[ T]/), p=s[0].split("-");
+    if(p.length<3) return String(ts);
+    var out=M[parseInt(p[1],10)-1]+" "+parseInt(p[2],10)+", "+p[0];
+    return s[1] ? out+" · "+s[1].slice(0,5) : out;
+  }
+  var full=pretty(DASHBOARD_UPDATED);
+  var top=document.getElementById("lastUpdated"); if(top) top.textContent="Updated "+full;
+  var ft=document.getElementById("footerDate");   if(ft)  ft.textContent=full;
+
+  Object.keys(MODULE_UPDATED).forEach(function(id){
+    var sec=document.getElementById(id); if(!sec) return;          // not on this page
+    if(sec.querySelector(":scope > .mod-stamp")) return;           // never stamp twice
+    var m=MODULE_UPDATED[id];
+    var el=document.createElement("div");
+    el.className="mod-stamp";
+    el.innerHTML='<span class="ms-src"></span><span class="ms-at"></span>';
+    el.querySelector(".ms-src").textContent=m.src;
+    el.querySelector(".ms-at").textContent="data updated "+pretty(m.at);
+    sec.appendChild(el);
+  });
 })();
 
 /* ---- Hero banner: fade the video in over the poster jpg once it starts playing ----

@@ -245,3 +245,10 @@ If the push fails with a genuine **auth** error (not the username error above),
 the keychain token has expired — make a new fine-grained PAT (Contents:
 read/write on the repo) and re-store it with:
 `printf "protocol=https\nhost=github.com\nusername=AnchContinia\npassword=NEW_TOKEN\n" | git credential-osxkeychain store`
+
+---
+
+> **Stamps.** Set `DASHBOARD_UPDATED` in `dashboard.js` to the run **timestamp**
+> (`"YYYY-MM-DD HH:MM"`), and bump the `MODULE_UPDATED` entries for every module
+> this routine touched. The per-module stamps are what the page prints under each
+> section; leaving them behind makes the page overstate how fresh it is.

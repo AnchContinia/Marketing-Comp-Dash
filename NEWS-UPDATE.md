@@ -62,6 +62,11 @@ There are **two kinds** of dates on the page; do not mix them up:
 
 1. Claude edits `events` / `data` in `dashboard.js` with the new news.
 2. Claude sets `DASHBOARD_UPDATED` to **today's date**.
+
+> **Stamps.** Set `DASHBOARD_UPDATED` in `dashboard.js` to the run **timestamp**
+> (`"YYYY-MM-DD HH:MM"`), and bump the `MODULE_UPDATED` entries for every module
+> this routine touched. The per-module stamps are what the page prints under each
+> section; leaving them behind makes the page overstate how fresh it is.
 3. Claude commits and pushes:
    `git add dashboard.js archive.js index.html content.html video.html && git commit -m "..." && git push origin main`
    (bump `dashboard.js?v=` on all three pages first — see CLAUDE.md cache-busting).
