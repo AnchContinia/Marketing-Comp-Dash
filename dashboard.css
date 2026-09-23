@@ -1109,7 +1109,7 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 .ck-term:hover{border-color:#5f9e8d;color:#5f9e8d}
 .ck-src a{font-size:11.5px;font-weight:650;color:var(--blue);text-decoration:none;
   border:1px solid var(--line);border-radius:999px;padding:4px 11px}
-.ck-src a:hover{border-color:var(--blue);text-decoration:underline}
+.ck-src a:hover{border-color:var(--blue)}
 
 /* ----- naming table ----- */
 .ck-table{width:100%;border-collapse:collapse;font-size:13px}
@@ -1128,7 +1128,7 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
   border:1px solid var(--line);border-radius:999px;padding:3px 9px;white-space:nowrap;background:var(--paper)}
 .ck-p-host{margin-bottom:9px}
 .ck-p-host a{font-size:12.5px;font-weight:750;color:var(--blue);text-decoration:none}
-.ck-p-host a:hover{text-decoration:underline}
+.ck-p-host a:hover{opacity:.72}
 .ck-portal p{margin:0 0 8px;font-size:13.5px;line-height:1.65;color:var(--ink);max-width:70ch}
 .ck-wins{color:var(--muted)!important;font-style:italic}
 
