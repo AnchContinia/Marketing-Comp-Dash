@@ -1143,15 +1143,26 @@ html[data-theme="dark"] .ck-tile,
 html[data-theme="dark"] .ckx-chev,
 html[data-theme="dark"] .ck-hit,
 html[data-theme="dark"] .ck-st{background:var(--panel)}
+/* the three accent tiles keep their fill in dark mode - the rule above is
+   more specific than the plain .ck-tile-navy/green/purple ones, so without
+   these they lost the colour and kept only the border */
+html[data-theme="dark"] .ck-tile-navy{background:#052975;border-color:#052975}
+html[data-theme="dark"] .ck-tile-green{background:#5f9e8d;border-color:#5f9e8d}
+html[data-theme="dark"] .ck-tile-purple{background:#983eae;border-color:#983eae}
 html[data-theme="dark"] .ckx-top:hover{background:rgba(143,248,255,.05)}
 html[data-theme="dark"] .ckx-sub,
 html[data-theme="dark"] .ck-portal,
 html[data-theme="dark"] .ck-proof,
 html[data-theme="dark"] .ck-term{background:var(--canvas)}
+/* every heading on this page is white in dark mode, whatever tile or panel it
+   sits on - --navy resolves to a light blue in the dark theme, which is what
+   made the plain tiles' names read blue while the filled ones read white */
+html[data-theme="dark"] .ck-tile-n,
 html[data-theme="dark"] .ckx-t b,
+html[data-theme="dark"] .ckx-mn,
 html[data-theme="dark"] .ck-h4,
 html[data-theme="dark"] .ck-p-head h3,
-html[data-theme="dark"] .ck-sub h3,
+html[data-theme="dark"] .ck-sub h3{color:#fff}
 html[data-theme="dark"] .ck-proof b,
 html[data-theme="dark"] .ckx.open>.ckx-top .ckx-chev{color:var(--cyan)}
 html[data-theme="dark"] .ck-hero-search{background:var(--panel)}
