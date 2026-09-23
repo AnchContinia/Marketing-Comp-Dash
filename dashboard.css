@@ -1002,8 +1002,6 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 .ck-hero .brief-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
 .ck-hero:before{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(100deg,rgba(5,41,117,.86) 0%,rgba(7,31,85,.74) 46%,rgba(10,21,51,.52) 100%)}
-.ck-hero:after{content:"";position:absolute;right:-90px;top:-120px;width:340px;height:340px;border-radius:50%;z-index:1;
-  background:radial-gradient(circle,rgba(143,248,255,.20),transparent 68%)}
 .ck-hero-in{position:relative;z-index:2;max-width:760px}
 .ck-hero .eyebrow{color:var(--cyan)}
 .ck-hero .eyebrow:before{background:var(--cyan)}
