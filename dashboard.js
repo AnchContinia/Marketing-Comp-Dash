@@ -2146,14 +2146,14 @@ if(contentIdeasList){
       '<div class="ckx-body"><div class="ckx-in">'+o.body+"</div></div></article>";
   }
 
-  /* ---------- hero: popular lookups ---------- */
+  /* ---------- hero: key terms ----------
+     Read from CK_DATA.keyTerms, where each one carries the page it was taken
+     from. That provenance becomes the chip's tooltip, so the list can be
+     questioned the same way every other claim on this page can. */
   var pop=document.getElementById("ck-popular");
-  if(pop){
-    var picks=["Order Matching","Advanced Capture","Web Approval Portal","Peppol","per diem","credit card",
-               "Secure Archive","end of support","migration","Team Member licence","e-invoicing","Denmark",
-               "factoring","direct debit","eDocuments","Business Central"];
-    pop.innerHTML='<span class="ck-lbl">Popular lookups</span>'+picks.map(function(t){
-      return '<button type="button" class="ck-term" data-q="'+esc(t)+'">'+esc(t)+"</button>";
+  if(pop&&D.keyTerms){
+    pop.innerHTML='<span class="ck-lbl">Key terms</span>'+D.keyTerms.map(function(k){
+      return '<button type="button" class="ck-term" data-q="'+esc(k.t)+'" title="'+esc(k.w)+'">'+esc(k.t)+"</button>";
     }).join("");
   }
 
@@ -2796,7 +2796,7 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-09-23 14:05";
+var DASHBOARD_UPDATED = "2026-09-23 15:25";
 var MODULE_UPDATED = {
   /* index.html */
   "news":            {at:"2026-09-22 16:52", src:"News sweep"},
@@ -2821,7 +2821,7 @@ var MODULE_UPDATED = {
   "youtube-bank":    {at:"2026-06-10 12:08", src:"YouTube image bank"},
   /* knowledge.html */
   "ck-portals":      {at:"2026-09-23 14:05", src:"Portal verification"},
-  "ck-search":       {at:"2026-09-23 14:05", src:"Portal verification"},
+  "ck-search":       {at:"2026-09-23 15:25", src:"Key terms re-read off the product pages"},
   "ck-solutions":    {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-platform":     {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-names":        {at:"2026-09-23 14:05", src:"Docs + continia.com read"}

@@ -45,6 +45,37 @@ window.CK_DATA = {
     {t: "Attribute the percentages", d: "The 95% / 80% / 10+ hours / two-thirds figures are website product-page claims presented as customers' results. Use them with that framing, not as measured benchmarks."}
   ],
 
+  /* ---- Key terms: the capabilities Continia's own pages lead with -------
+     Not a popularity measure - the site has no usage data and nobody's search
+     behaviour has been measured. Each one is a named capability, module or
+     component that docs.continia.com and/or the product page on continia.com
+     puts in a heading or a feature block, read 2026-09-23. `w` records where,
+     so the list can be re-checked rather than re-guessed. Ordered by solution,
+     matching the order of the page below. */
+  keyTerms: [
+    {t:"OCR",                  w:"Document Capture product page \u2014 \u201cIntelligent OCR\u201d"},
+    {t:"Order Matching",       w:"Document Capture module, on the product page and in Docs"},
+    {t:"Advanced Capture",     w:"Document Capture module, on the product page and in Docs"},
+    {t:"per diem",             w:"Expense Management module; Docs organises a setup section around it"},
+    {t:"mileage",              w:"Expense Management module; Docs organises a setup section around it"},
+    {t:"receipt scanning",     w:"Expense Management product page \u2014 \u201cAI-powered receipt scanning\u201d"},
+    {t:"credit card",          w:"Expense Management module \u2014 Credit Card Transactions"},
+    {t:"email templates",      w:"Document Output product page \u2014 lead feature"},
+    {t:"remittance advice",    w:"Document Output and Continia Banking product pages"},
+    {t:"eSeal",                w:"Document Output Security module \u2014 eIDAS eSeal certification"},
+    {t:"direct debit",         w:"Continia Banking Essential; also the core of Collection Management"},
+    {t:"bank reconciliation",  w:"Continia Banking product page \u2014 \u201cReliable reconciliations\u201d"},
+    {t:"payment approval",     w:"Continia Banking Security module"},
+    {t:"Associations",         w:"Continia Finance specialized module"},
+    {t:"Treasury",             w:"Continia Finance specialized module"},
+    {t:"Factoring",            w:"Continia Finance specialized module"},
+    {t:"Betalingsservice",     w:"Collection Management \u2014 Mastercard Betalingsservice"},
+    {t:"Peppol",               w:"Carried by Document Capture, Document Output and the Delivery Network"},
+    {t:"eDocuments",           w:"Named component shared by Document Capture and Document Output"},
+    {t:"Secure Archive",       w:"Named component shared by Document Capture and Expense Management"},
+    {t:"Web Approval Portal",  w:"Named component shared by Document Capture and Expense Management"}
+  ],
+
   /* ---- Company-level proof points -------------------------------------- */
   company: {
     points: [
