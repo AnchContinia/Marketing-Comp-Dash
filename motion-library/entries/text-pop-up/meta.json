@@ -1,0 +1,45 @@
+{
+  "slug": "text-pop-up",
+  "name": "Text Pop Up",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "text",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-distance-md",
+    "--motion-duration-moderate",
+    "--motion-duration-slow",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Rises and gains a soft shadow, so it lifts off the background rather than sliding along it.",
+  "demo": "<span class=\"mlp-headline\">30+ years</span>",
+  "addedAt": "2026-09-24"
+}

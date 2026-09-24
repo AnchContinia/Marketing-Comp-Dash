@@ -131,11 +131,30 @@ for every animation the hub uses, built on one set of tokens.
 motion-library/
 ├── index.html        gallery — hub shell + tokens reference + cards
 ├── gallery.css/.js   gallery chrome only (cards, filters, code panel)
-├── library.json      the manifest the gallery reads — one object per entry
+├── library.json      GENERATED manifest the gallery reads — one object per entry
 ├── tokens/           motion-tokens.css + .js — the single source of truth
 ├── base/             base-animations.css — Continia keyframes, tokens only
-└── entries/<slug>/   <slug>.html, <slug>.css, meta.json
+└── entries/<slug>/   GENERATED: <slug>.html, <slug>.css, meta.json
 ```
+
+**49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
+ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
+
+**`base/base-animations.css` is the only file written by hand.** Everything under `entries/`
+and `library.json` is generated from it:
+
+```bash
+node tools/gen-motion-entries.js     # base-animations.css + META → entries/ + library.json
+node tools/gen-motion-previews.js    # library.json + COPY → motion-previews.js (video page)
+```
+
+Each entry's standalone CSS is *extracted* from the base stylesheet by slug, so an entry can
+never drift from what the hub ships. Adding an animation is three edits: the keyframes and
+class in `base-animations.css` (including the shared `:is()` list and, if it rotates, skews or
+loops, the reduced-motion block), a `META` row in `gen-motion-entries.js`, and a `COPY` row in
+`gen-motion-previews.js`. Both generators exit non-zero on a mismatch, and the extractor
+refuses a rule belonging to another animation (`.ml-bounce-in` leaking into `.ml-bounce` was a
+real bug — `\b` matches before a hyphen).
 
 **Tokens win, always.** Durations, easings, stagger and travel distance come from
 `tokens/motion-tokens.css` (mirrored for JS in `tokens/motion-tokens.js`). No raw `ms` or
@@ -144,8 +163,17 @@ loops (`ml-pulse`, `ml-shimmer`), whose loop length is deliberately outside the 
 If an animation needs a value no token covers, **add a token**; never hardcode one to satisfy
 another design skill's advice.
 
+**Speed is a class, not a new duration.** `ml-fast` (0.75×), `ml-slow` (1.5×), `ml-slower` (2×)
+and `ml-slowest` (3×) set `--ml-scale`, which the shared rule multiplies the duration by. It is an
+inherited custom property, so the class works on a wrapper as well as on the element, and it
+scales an entrance, an exit and a loop by the same factor. **Never slow an animation by editing a
+token** — the tokens are the hub's UI timings and a change there reaches every hover on the site.
+
 **Output is vanilla HTML/CSS/JS.** No React, no build step, no third-party animation library
 (Animate.css, Animista and friends are out) — the hub has none of those and must not grow any.
+The catalogue *covers the motion ideas* in Animate.css and Animista, but none of their CSS is
+here: a keyframe written against their per-animation constants would not respect our duration
+scale, and re-deriving it on the tokens is the whole point.
 React Bits components get *translated* to vanilla, keeping `source`, `sourceUrl` and `license`
 in their `meta.json` (MIT + Commons Clause: fine for Continia's own sites, not for resale).
 

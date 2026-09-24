@@ -1,0 +1,43 @@
+{
+  "slug": "zoom-in",
+  "name": "Zoom In",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "entrance",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-moderate",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Comes forward from 50%. The loud cousin of Scale In - for a number or a claim, not a list.",
+  "demo": "<span class=\"mlp-chip\">21,000+ customers</span>",
+  "addedAt": "2026-09-24"
+}

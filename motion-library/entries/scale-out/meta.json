@@ -23,6 +23,10 @@
       "type": "token",
       "default": "--motion-ease-out"
     },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
     "--ml-index": {
       "type": "number",
       "default": 0
@@ -35,7 +39,7 @@
   "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
   "notPorted": [],
   "brandNotes": "",
-  "blurb": "Shrinks to 96% while fading. The natural close for anything that opened with Scale In.",
+  "blurb": "Shrinks slightly as it fades. The undo of Scale In.",
   "demo": "<span class=\"mlp-chip\">Closing</span>",
   "addedAt": "2026-09-24"
 }

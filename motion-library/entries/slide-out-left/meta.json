@@ -1,0 +1,46 @@
+{
+  "slug": "slide-out-left",
+  "name": "Slide Out Left",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "exit",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-distance-lg",
+    "--motion-duration-base",
+    "--motion-duration-moderate",
+    "--motion-ease-in",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Leaves to the left. Send it out the side it came in, or the eye loses the thread.",
+  "demo": "<span class=\"mlp-chip\">Dismissed left</span>",
+  "addedAt": "2026-09-24"
+}

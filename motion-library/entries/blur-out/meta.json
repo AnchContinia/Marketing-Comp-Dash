@@ -1,0 +1,45 @@
+{
+  "slug": "blur-out",
+  "name": "Blur Out",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "exit",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-base",
+    "--motion-duration-moderate",
+    "--motion-ease-in",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Loses focus as it fades. Pairs with Blur In around a single hero moment.",
+  "demo": "<span class=\"mlp-chip\">Out of focus</span>",
+  "addedAt": "2026-09-24"
+}

@@ -21,6 +21,10 @@
       "type": "token",
       "default": "--motion-ease-out"
     },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
     "--ml-index": {
       "type": "number",
       "default": 0
@@ -33,7 +37,7 @@
   "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
   "notPorted": [],
   "brandNotes": "",
-  "blurb": "Grows from 96% while fading in. Suits things that appear where you clicked - dialogs, popovers, tooltips.",
+  "blurb": "Grows from 96%. Feels anchored to the point it appears at.",
   "demo": "<span class=\"mlp-chip\">Order Matching</span>",
   "addedAt": "2026-09-24"
 }

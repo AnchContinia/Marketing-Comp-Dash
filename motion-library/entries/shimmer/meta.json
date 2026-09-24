@@ -4,7 +4,7 @@
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",
-  "category": "attention",
+  "category": "ambient",
   "class": "css",
   "dependencies": [],
   "tokens": [
@@ -21,6 +21,10 @@
     "--ml-ease": {
       "type": "token",
       "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
     },
     "--ml-index": {
       "type": "number",

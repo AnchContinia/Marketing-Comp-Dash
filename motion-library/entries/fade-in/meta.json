@@ -21,6 +21,10 @@
       "type": "token",
       "default": "--motion-ease-out"
     },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
     "--ml-index": {
       "type": "number",
       "default": 0
@@ -33,7 +37,7 @@
   "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
   "notPorted": [],
   "brandNotes": "",
-  "blurb": "The plainest entrance there is. Opacity only, no movement - use it when a shift would be noise.",
+  "blurb": "Opacity only, no movement. The quietest way to bring something on.",
   "demo": "<span class=\"mlp-chip\">Document Capture</span>",
   "addedAt": "2026-09-24"
 }

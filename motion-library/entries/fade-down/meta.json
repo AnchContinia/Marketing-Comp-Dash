@@ -22,6 +22,10 @@
       "type": "token",
       "default": "--motion-ease-out"
     },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
     "--ml-index": {
       "type": "number",
       "default": 0
@@ -34,7 +38,7 @@
   "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
   "notPorted": [],
   "brandNotes": "",
-  "blurb": "Fade Up mirrored - the element settles downward. For things that drop in from above, like a toast or a menu.",
+  "blurb": "Fades in while settling down from 16px above. For anything anchored to the top of the frame.",
   "demo": "<span class=\"mlp-chip\">Continia Banking</span>",
   "addedAt": "2026-09-24"
 }

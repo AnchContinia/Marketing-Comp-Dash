@@ -22,6 +22,10 @@
       "type": "token",
       "default": "--motion-ease-out"
     },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
     "--ml-index": {
       "type": "number",
       "default": 0
@@ -34,7 +38,7 @@
   "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
   "notPorted": [],
   "brandNotes": "",
-  "blurb": "The right-hand mirror. Pair the two on opposing columns; do not mix directions inside one list.",
+  "blurb": "The mirrored arrival. Use the pair on opposing columns, never inside one list.",
   "demo": "<span class=\"mlp-chip\">Continia Finance</span>",
   "addedAt": "2026-09-24"
 }

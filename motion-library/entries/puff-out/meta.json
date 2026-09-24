@@ -1,0 +1,44 @@
+{
+  "slug": "puff-out",
+  "name": "Puff Out",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "exit",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-moderate",
+    "--motion-ease-in",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Expands to 200% into a blur and disappears. Reads as dissolving, not leaving.",
+  "demo": "<span class=\"mlp-chip\">Gone</span>",
+  "addedAt": "2026-09-24"
+}

@@ -1004,6 +1004,12 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
   transition:var(--motion-duration-fast) var(--motion-ease-standard)}
 .mvp-f:hover{border-color:var(--navy)}
 .mvp-f.on{background:var(--navy);border-color:var(--navy);color:#fff}
+.mvp-sset{margin-left:6px}
+.mvp-s{border:1px solid var(--line2);background:var(--paper);color:var(--muted);border-radius:999px;
+  padding:5px 10px;font:inherit;font-size:11.5px;font-weight:800;cursor:pointer;
+  transition:var(--motion-duration-fast) var(--motion-ease-standard)}
+.mvp-s:hover{color:var(--ink);border-color:var(--navy)}
+.mvp-s.on{background:var(--navy);border-color:var(--navy);color:#fff}
 .mvp-all{margin-left:auto;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--navy);
   background:var(--navy);color:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:11.5px;
   font-weight:800;cursor:pointer;transition:var(--motion-duration-fast) var(--motion-ease-standard)}
@@ -1052,6 +1058,11 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 .mvp-dot{width:9px;height:9px;border-radius:50%;background:#983eae;flex:none}
 .mvp-skel{display:block;width:172px;height:13px;border-radius:999px;background:var(--line)}
 .mvp-skel.short{width:104px}
+.mvp-title.wide{letter-spacing:.14em;font-size:17px;max-width:none}
+/* Ken Burns needs something to scale, Background Pan paints its own gradient */
+.mvp-plate{display:block;width:210px;height:112px;border-radius:12px;
+  background:linear-gradient(135deg,#052975,#983eae 55%,#5f9e8d)}
+.mvp-plate.bare{background:none}
 
 @media(max-width:1280px){.mvp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.mvp-grid{grid-template-columns:1fr;padding-left:14px;padding-right:14px}

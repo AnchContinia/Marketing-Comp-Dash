@@ -1,0 +1,46 @@
+{
+  "slug": "shake-x",
+  "name": "Shake X",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "attention",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-distance-sm",
+    "--motion-duration-moderate",
+    "--motion-duration-slow",
+    "--motion-ease-in-out",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Four short horizontal shakes. The standard 'this is wrong' signal on a form field.",
+  "demo": "<span class=\"mlp-chip\">Validation failed</span>",
+  "addedAt": "2026-09-24"
+}

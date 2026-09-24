@@ -1,5 +1,50 @@
 [
   {
+    "slug": "back-in-up",
+    "name": "Back In Up",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Rises into frame at 70%, holds, then comes forward to full size. Reads as coming from behind the frame.",
+    "demo": "<span class=\"mlp-chip\">Secure Archive</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
     "slug": "blur-in",
     "name": "Blur In",
     "source": "continia",
@@ -23,6 +68,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -35,8 +84,53 @@
     "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
     "notPorted": [],
     "brandNotes": "",
-    "blurb": "Sharpens from an 8px blur over the slow duration. Expensive to paint - one per view, headlines only.",
+    "blurb": "Resolves from an 8px blur. Expensive to render - one authored moment, never a list.",
     "demo": "<span class=\"mlp-chip\">Peppol e-invoicing</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "bounce-in",
+    "name": "Bounce In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-ease-standard",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Overshoots to 104% and settles. The only entrance that overshoots; keep it for confirmations.",
+    "demo": "<span class=\"mlp-chip\">Trial started</span>",
     "addedAt": "2026-09-24"
   },
   {
@@ -63,6 +157,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -75,7 +173,7 @@
     "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
     "notPorted": [],
     "brandNotes": "",
-    "blurb": "Fade Up mirrored - the element settles downward. For things that drop in from above, like a toast or a menu.",
+    "blurb": "Fades in while settling down from 16px above. For anything anchored to the top of the frame.",
     "demo": "<span class=\"mlp-chip\">Continia Banking</span>",
     "addedAt": "2026-09-24"
   },
@@ -102,6 +200,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -114,7 +216,7 @@
     "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
     "notPorted": [],
     "brandNotes": "",
-    "blurb": "The plainest entrance there is. Opacity only, no movement - use it when a shift would be noise.",
+    "blurb": "Opacity only, no movement. The quietest way to bring something on.",
     "demo": "<span class=\"mlp-chip\">Document Capture</span>",
     "addedAt": "2026-09-24"
   },
@@ -142,6 +244,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -156,6 +262,183 @@
     "brandNotes": "",
     "blurb": "Fades in while rising 16px. The default entrance for cards, list items and section content.",
     "demo": "<span class=\"mlp-chip\">Expense Management</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "flip-in-x",
+    "name": "Flip In X",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Rotates in around the horizontal axis in 3D, like a card turning face-up.",
+    "demo": "<span class=\"mlp-chip\">Invoice matched</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "flip-in-y",
+    "name": "Flip In Y",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "The same 3D turn around the vertical axis. Pairs with Flip Out X for a two-sided card.",
+    "demo": "<span class=\"mlp-chip\">Approval sent</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "light-speed-in",
+    "name": "Light Speed In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-base",
+      "--motion-duration-moderate",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Skews in from the right at speed and straightens out. Built on the short duration token - it must feel fast.",
+    "demo": "<span class=\"mlp-chip\">Instant posting</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "puff-in",
+    "name": "Puff In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Contracts from 200% out of a blur. Reads as materialising rather than arriving.",
+    "demo": "<span class=\"mlp-chip\">OCR complete</span>",
     "addedAt": "2026-09-24"
   },
   {
@@ -182,6 +465,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -194,8 +481,97 @@
     "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
     "notPorted": [],
     "brandNotes": "",
-    "blurb": "Wipes upward with clip-path, so the element is uncovered rather than moved. Built for headlines.",
+    "blurb": "A clip-path mask lifts off the element. The text itself never moves, so long lines stay readable.",
     "demo": "<span class=\"mlp-headline\">Automate your AP in Business Central</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "roll-in",
+    "name": "Roll In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Rolls in from off-screen left, rotating as it travels.",
+    "demo": "<span class=\"mlp-chip\">Peppol ready</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "rotate-in",
+    "name": "Rotate In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Swings in from -45 degrees while scaling up. Restrained on purpose - a full spin reads as a toy.",
+    "demo": "<span class=\"mlp-chip\">New in 2026 R2</span>",
     "addedAt": "2026-09-24"
   },
   {
@@ -221,6 +597,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -233,8 +613,53 @@
     "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
     "notPorted": [],
     "brandNotes": "",
-    "blurb": "Grows from 96% while fading in. Suits things that appear where you clicked - dialogs, popovers, tooltips.",
+    "blurb": "Grows from 96%. Feels anchored to the point it appears at.",
     "demo": "<span class=\"mlp-chip\">Order Matching</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "slide-in-blurred",
+    "name": "Slide In Blurred",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Travels up with a motion-blur streak and stretches back into shape. The most expensive entrance here.",
+    "demo": "<span class=\"mlp-chip\">Continia Delivery Network</span>",
     "addedAt": "2026-09-24"
   },
   {
@@ -261,6 +686,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -273,7 +702,7 @@
     "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
     "notPorted": [],
     "brandNotes": "",
-    "blurb": "Enters from the left across 32px. Reads as “arriving from off-screen”, so keep it for edge-anchored panels.",
+    "blurb": "Travels in from the left across 32px. Reads as arriving from off-screen.",
     "demo": "<span class=\"mlp-chip\">Document Output</span>",
     "addedAt": "2026-09-24"
   },
@@ -301,6 +730,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -313,8 +746,229 @@
     "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
     "notPorted": [],
     "brandNotes": "",
-    "blurb": "The right-hand mirror. Pair the two on opposing columns; do not mix directions inside one list.",
+    "blurb": "The mirrored arrival. Use the pair on opposing columns, never inside one list.",
     "demo": "<span class=\"mlp-chip\">Continia Finance</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "swirl-in",
+    "name": "Swirl In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Half a turn plus a scale from 40%. A deliberate flourish - one per video at most.",
+    "demo": "<span class=\"mlp-chip\">Continia Hub</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "tilt-in",
+    "name": "Tilt In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "A 3D lean: rotates back on the Y axis and pushes forward in Z. Good for screenshots and device shots.",
+    "demo": "<span class=\"mlp-chip\">Web Approval Portal</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "zoom-in",
+    "name": "Zoom In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Comes forward from 50%. The loud cousin of Scale In - for a number or a claim, not a list.",
+    "demo": "<span class=\"mlp-chip\">21,000+ customers</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "back-out-down",
+    "name": "Back Out Down",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-moderate",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Drops to 70% in place, then falls out of frame. The undo of Back In Up.",
+    "demo": "<span class=\"mlp-chip\">Sent back</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "blur-out",
+    "name": "Blur Out",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-base",
+      "--motion-duration-moderate",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Loses focus as it fades. Pairs with Blur In around a single hero moment.",
+    "demo": "<span class=\"mlp-chip\">Out of focus</span>",
     "addedAt": "2026-09-24"
   },
   {
@@ -342,6 +996,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -354,8 +1012,141 @@
     "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
     "notPorted": [],
     "brandNotes": "",
-    "blurb": "The exit counterpart to Fade In - ease-in, base duration. Exits run shorter than entrances on purpose.",
+    "blurb": "Opacity to zero on the short token. Exits are shorter than entrances on purpose.",
     "demo": "<span class=\"mlp-chip\">Dismissed</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "flip-out-x",
+    "name": "Flip Out X",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Turns away around the horizontal axis. Use it to swap two cards in the same spot.",
+    "demo": "<span class=\"mlp-chip\">Turned over</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "puff-out",
+    "name": "Puff Out",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Expands to 200% into a blur and disappears. Reads as dissolving, not leaving.",
+    "demo": "<span class=\"mlp-chip\">Gone</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "roll-out",
+    "name": "Roll Out",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-moderate",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Rolls off to the right, rotating as it goes. The undo of Roll In.",
+    "demo": "<span class=\"mlp-chip\">Rolled away</span>",
     "addedAt": "2026-09-24"
   },
   {
@@ -383,6 +1174,10 @@
         "type": "token",
         "default": "--motion-ease-out"
       },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
       "--ml-index": {
         "type": "number",
         "default": 0
@@ -395,17 +1190,873 @@
     "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
     "notPorted": [],
     "brandNotes": "",
-    "blurb": "Shrinks to 96% while fading. The natural close for anything that opened with Scale In.",
+    "blurb": "Shrinks slightly as it fades. The undo of Scale In.",
     "demo": "<span class=\"mlp-chip\">Closing</span>",
     "addedAt": "2026-09-24"
   },
   {
-    "slug": "pulse",
-    "name": "Pulse",
+    "slug": "slide-out-left",
+    "name": "Slide Out Left",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-base",
+      "--motion-duration-moderate",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Leaves to the left. Send it out the side it came in, or the eye loses the thread.",
+    "demo": "<span class=\"mlp-chip\">Dismissed left</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "slide-out-right",
+    "name": "Slide Out Right",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-base",
+      "--motion-duration-moderate",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Leaves to the right. The counterpart to Slide In Left.",
+    "demo": "<span class=\"mlp-chip\">Dismissed right</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "zoom-out",
+    "name": "Zoom Out",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-base",
+      "--motion-duration-moderate",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Collapses to 50% while fading. The undo of Zoom In.",
+    "demo": "<span class=\"mlp-chip\">Cleared</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "bounce",
+    "name": "Bounce",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
     "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-distance-sm",
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "A single vertical hop that returns to rest. Fires once - it is a nudge, not a loop.",
+    "demo": "<span class=\"mlp-chip\">New document</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "head-shake",
+    "name": "Head Shake",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-sm",
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Moves and turns at once, so it reads as a 'no' rather than a rattle.",
+    "demo": "<span class=\"mlp-chip\">Not approved</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "heart-beat",
+    "name": "Heart Beat",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slower",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "A double scale beat. For a count that just changed.",
+    "demo": "<span class=\"mlp-chip\">2 awaiting you</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "jello",
+    "name": "Jello",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slower",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "A skew wobble that settles. Playful; it fits a success state, not an error.",
+    "demo": "<span class=\"mlp-chip\">Squeezed</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "rubber-band",
+    "name": "Rubber Band",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slower",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Squash and stretch on the two axes. The most cartoon-like thing in the set - use sparingly.",
+    "demo": "<span class=\"mlp-chip\">Stretch</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "shake-x",
+    "name": "Shake X",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-sm",
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Four short horizontal shakes. The standard 'this is wrong' signal on a form field.",
+    "demo": "<span class=\"mlp-chip\">Validation failed</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "swing",
+    "name": "Swing",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Rotates around its top edge, like something hanging. Needs transform-origin: top center.",
+    "demo": "<span class=\"mlp-chip\">Pending approval</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "tada",
+    "name": "Tada",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slower",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Scales and rocks - the celebration. One per video, on the thing that actually matters.",
+    "demo": "<span class=\"mlp-chip\">All 42 invoices posted</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "vibrate",
+    "name": "Vibrate",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-linear",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "A one-pixel jitter. Reads as an alert without moving the layout.",
+    "demo": "<span class=\"mlp-chip\">Sync failed</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "wobble",
+    "name": "Wobble",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slower",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Swings sideways while rotating, damping out. Large movement - give it room.",
+    "demo": "<span class=\"mlp-chip\">Unstable</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "focus-in",
+    "name": "Focus In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "text",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slower",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Blur and tracking resolve together, like a lens finding the words.",
+    "demo": "<span class=\"mlp-headline\">Built Inside Business Central</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "text-pop-up",
+    "name": "Text Pop Up",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "text",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-md",
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Rises and gains a soft shadow, so it lifts off the background rather than sliding along it.",
+    "demo": "<span class=\"mlp-headline\">30+ years</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "tracking-in",
+    "name": "Tracking In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "text",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slower",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Letter-spacing closes from 0.6em as it fades in. For a title card - it cannot be composited on the GPU.",
+    "demo": "<span class=\"mlp-headline\">CONTINIA</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "tracking-out",
+    "name": "Tracking Out",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "text",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Letter-spacing opens out as it fades. The exit half of a title card.",
+    "demo": "<span class=\"mlp-headline\">CONTINIA</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "bg-pan",
+    "name": "Background Pan",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "ambient",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-linear",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Loop stops; the element rests in its idle state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Pans a brand gradient across the element. The gradient is the four palette colours and nothing else.",
+    "demo": "<span class=\"mlp-skel wide\"></span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "flicker",
+    "name": "Flicker",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "ambient",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-linear",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Loop stops; the element rests in its idle state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "An irregular dip in opacity, like a sign about to go out. Atmosphere only.",
+    "demo": "<span class=\"mlp-chip\">LIVE</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "ken-burns",
+    "name": "Ken Burns",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "ambient",
     "class": "css",
     "dependencies": [],
     "tokens": [
@@ -422,6 +2073,54 @@
       "--ml-ease": {
         "type": "token",
         "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Loop stops; the element rests in its idle state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "A 20-second scale-and-drift that alternates direction. For a still image that has to hold the screen.",
+    "demo": "<span class=\"mlp-skel wide\"></span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "pulse",
+    "name": "Pulse",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "ambient",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
       },
       "--ml-index": {
         "type": "number",
@@ -445,7 +2144,7 @@
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
-    "category": "attention",
+    "category": "ambient",
     "class": "css",
     "dependencies": [],
     "tokens": [
@@ -462,6 +2161,10 @@
       "--ml-ease": {
         "type": "token",
         "default": "--motion-ease-out"
+      },
+      "--ml-scale": {
+        "type": "number",
+        "default": 1
       },
       "--ml-index": {
         "type": "number",

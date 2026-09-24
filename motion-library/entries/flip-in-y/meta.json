@@ -1,0 +1,44 @@
+{
+  "slug": "flip-in-y",
+  "name": "Flip In Y",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "entrance",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-moderate",
+    "--motion-duration-slow",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "The same 3D turn around the vertical axis. Pairs with Flip Out X for a two-sided card.",
+  "demo": "<span class=\"mlp-chip\">Approval sent</span>",
+  "addedAt": "2026-09-24"
+}

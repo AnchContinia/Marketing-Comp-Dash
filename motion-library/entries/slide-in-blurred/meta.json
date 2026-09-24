@@ -1,0 +1,45 @@
+{
+  "slug": "slide-in-blurred",
+  "name": "Slide In Blurred",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "entrance",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-distance-lg",
+    "--motion-duration-moderate",
+    "--motion-duration-slow",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Travels up with a motion-blur streak and stretches back into shape. The most expensive entrance here.",
+  "demo": "<span class=\"mlp-chip\">Continia Delivery Network</span>",
+  "addedAt": "2026-09-24"
+}

@@ -23,6 +23,10 @@
       "type": "token",
       "default": "--motion-ease-out"
     },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
     "--ml-index": {
       "type": "number",
       "default": 0
@@ -35,7 +39,7 @@
   "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
   "notPorted": [],
   "brandNotes": "",
-  "blurb": "The exit counterpart to Fade In - ease-in, base duration. Exits run shorter than entrances on purpose.",
+  "blurb": "Opacity to zero on the short token. Exits are shorter than entrances on purpose.",
   "demo": "<span class=\"mlp-chip\">Dismissed</span>",
   "addedAt": "2026-09-24"
 }

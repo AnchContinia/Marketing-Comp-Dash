@@ -1,0 +1,44 @@
+{
+  "slug": "tilt-in",
+  "name": "Tilt In",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "entrance",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-moderate",
+    "--motion-duration-slow",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-scale": {
+      "type": "number",
+      "default": 1
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "A 3D lean: rotates back on the Y axis and pushes forward in Z. Good for screenshots and device shots.",
+  "demo": "<span class=\"mlp-chip\">Web Approval Portal</span>",
+  "addedAt": "2026-09-24"
+}

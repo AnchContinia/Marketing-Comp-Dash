@@ -2150,10 +2150,21 @@ if(contentIdeasList){
 
   /* ---------- filters + play all ---------- */
   var cats=[]; P.forEach(function(m){ if(cats.indexOf(m.category)<0) cats.push(m.category); });
+  /* Speed: --ml-scale is an inherited custom property, so one class on the grid
+     slows every stage inside it. Defaults to 2x - at 1x the short ones are over
+     before you have found them on the page. */
+  var SPEEDS=[["","1\u00d7"],["ml-slow","1.5\u00d7"],["ml-slower","2\u00d7"],["ml-slowest","3\u00d7"]];
+  var SPEED_DEFAULT="ml-slower";
+  grid.classList.add(SPEED_DEFAULT);
+
   bar.innerHTML='<div class="mvp-fset"><span class="ck-lbl">Show</span>'+
     '<button type="button" class="mvp-f on" data-v="all">All '+P.length+"</button>"+
     cats.map(function(c){ return '<button type="button" class="mvp-f" data-v="'+esc(c)+'">'+esc(c)+"</button>"; }).join("")+
     "</div>"+
+    '<div class="mvp-fset mvp-sset"><span class="ck-lbl">Speed</span>'+
+    SPEEDS.map(function(x){
+      return '<button type="button" class="mvp-s'+(x[0]===SPEED_DEFAULT?" on":"")+'" data-s="'+x[0]+'">'+x[1]+"</button>";
+    }).join("")+"</div>"+
     '<button type="button" class="mvp-all" id="mvp-all">'+
       '<i class="fa-light fa-play" aria-hidden="true"></i>Play all</button>';
 
@@ -2173,6 +2184,14 @@ if(contentIdeasList){
       [].forEach.call(grid.children,function(c){
         c.classList.toggle("hide", v!=="all" && c.dataset.cat!==v);
       });
+      return;
+    }
+    var sp=e.target.closest(".mvp-s");
+    if(sp){
+      SPEEDS.forEach(function(x){ if(x[0]) grid.classList.remove(x[0]); });
+      if(sp.dataset.s) grid.classList.add(sp.dataset.s);
+      [].forEach.call(bar.querySelectorAll(".mvp-s"),function(x){ x.classList.toggle("on",x===sp); });
+      [].forEach.call(grid.children,function(c){ if(!c.classList.contains("hide")) replay(c); });
       return;
     }
     if(e.target.closest("#mvp-all"))
@@ -2202,8 +2221,8 @@ if(contentIdeasList){
   });
 
   /* ---------- play when scrolled into view ----------
-     Twelve animations firing at once behind the fold is noise, and the loops
-     would run the whole time the page is open. */
+     Forty-nine animations firing at once behind the fold is noise, and the
+     ambient ones would run the whole time the page is open. */
   var reduce=false;
   try{ reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
   if(reduce||!("IntersectionObserver" in window)){
@@ -2214,7 +2233,7 @@ if(contentIdeasList){
         var el=x.target.querySelector("[data-anim]");
         if(!el) return;
         if(x.isIntersecting) el.classList.remove("ml-paused");
-        else if(x.target.dataset.slug==="pulse"||x.target.dataset.slug==="shimmer")
+        else if(x.target.dataset.cat==="ambient")
           el.classList.add("ml-paused");   /* park the loops when they scroll away */
       });
     },{threshold:0.3});
@@ -3021,7 +3040,7 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-09-24 13:10";
+var DASHBOARD_UPDATED = "2026-09-24 16:20";
 var MODULE_UPDATED = {
   /* index.html */
   "news":            {at:"2026-09-22 16:52", src:"News sweep"},
@@ -3048,7 +3067,7 @@ var MODULE_UPDATED = {
   "ck-portals":      {at:"2026-09-23 14:05", src:"Portal verification"},
   "ck-search":       {at:"2026-09-23 15:25", src:"Key terms re-read off the product pages"},
   "ck-tools":        {at:"2026-09-24 10:40", src:"Vendor trust / security / privacy pages"},
-  "motion-previews": {at:"2026-09-24 13:10", src:"motion-library/library.json"},
+  "motion-previews": {at:"2026-09-24 16:20", src:"motion-library/library.json"},
   "ck-solutions":    {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-platform":     {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-names":        {at:"2026-09-23 14:05", src:"Docs + continia.com read"}
