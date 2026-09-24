@@ -151,7 +151,12 @@ and `library.json` is generated from it:
 ```bash
 node tools/gen-motion-entries.js     # base-animations.css + META → entries/ + library.json
 node tools/gen-motion-previews.js    # library.json + COPY → motion-previews.js (video page)
+node tools/gen-motion-dist.js        # tokens/ + base/ → dist/ (the standalone bundle)
 ```
+
+`dist/` is the **export**: `continia-motion.css` (tokens + all 49 animations, self-contained —
+no `@import`, no `url()`), a minified twin and a `README.md` with the full class table. It is for
+handing the set to a project that has none of the rest of the hub. No page here loads it.
 
 Each entry's standalone CSS is *extracted* from the base stylesheet by slug, so an entry can
 never drift from what the hub ships. Adding an animation is three edits: the keyframes and
