@@ -127,6 +127,11 @@ linked vendor pages before repeating a claim**; the certification edition is the
 A **fifth page**, and the only one in a sub-folder: `motion-library/index.html`. It is the gallery
 for every animation the hub uses, built on one set of tokens.
 
+**It is not in the sidebar.** The nav group was removed on request — the way in is the **Motion
+library** section on `video.html` (section id `motion-previews`), whose footnote links to the
+gallery for the code. `dashboard.js` still detects the sub-folder and prefixes the nav hrefs with
+`../`, so the shared sidebar renders correctly there; no group is marked current.
+
 ```
 motion-library/
 ├── index.html        gallery — hub shell + tokens reference + cards

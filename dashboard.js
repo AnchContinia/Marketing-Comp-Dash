@@ -2937,7 +2937,7 @@ if(contentIdeasList){
       {id:"video-ideas", icon:"fa-film", label:"Long- & short form ideas"},
       {id:"youtube-bank", icon:"fa-photo-film", label:"Youtube thumbnails bank"},
       {id:"video-assets", icon:"fa-layer-group", label:"Video asset library"},
-      {id:"motion-previews", icon:"fa-wand-magic-sparkles", label:"Motion previews"}
+      {id:"motion-previews", icon:"fa-wand-magic-sparkles", label:"Motion library"}
     ]},
     {page:"knowledge.html", icon:"fa-book-open", label:"Knowledge base", items:[
       {id:"ck-search", icon:"fa-magnifying-glass", label:"Search"},
@@ -2946,17 +2946,14 @@ if(contentIdeasList){
       {id:"ck-names", icon:"fa-spell-check", label:"Names & gotchas"},
       {id:"ck-tools", icon:"fa-toolbox", label:"3rd party tools"},
       {id:"ck-portals", icon:"fa-compass", label:"Where this comes from"}
-    ]},
-    {page:"motion-library/index.html", icon:"fa-wand-magic-sparkles", label:"Motion library", items:[
-      {id:"ml-intro", icon:"fa-circle-info", label:"What this is"},
-      {id:"ml-tokens", icon:"fa-sliders", label:"Tokens"},
-      {id:"ml-gallery", icon:"fa-shapes", label:"Gallery"}
     ]}
   ];
   var path=(location.pathname.split("/").pop()||"index.html");
   if(path==="") path="index.html";
   /* Pages in a sub-folder (motion-library/) need the nav's root-relative hrefs
-     prefixed, and a bare "index.html" would otherwise match the Home page. */
+     prefixed, and a bare "index.html" would otherwise match the Home page. The
+     gallery is no longer a nav group - it is reached from the Motion library
+     section on the Video page - so on that page no group is marked current. */
   var segs=location.pathname.split("/").filter(Boolean); segs.pop();
   var BASE="", dir=segs.pop()||"";
   if(dir==="motion-library"){ BASE="../"; path="motion-library/index.html"; }
