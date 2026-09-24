@@ -2114,6 +2114,114 @@ if(contentIdeasList){
   }
 })();
 
+/* ---- Motion previews (video.html) ---------------------------------------
+   The motion library's own gallery is written for developers - code panels,
+   token lists, copy-paste. This module is written for the video team: play
+   the motion big, read what it is for, and copy a prompt that carries our
+   real token values into Claude Design, so what they build moves the way the
+   hub moves. No code shown here on purpose. */
+(function(){
+  if(typeof window.MOTION_PREVIEWS==="undefined") return;   /* skip on other pages */
+  var grid=document.getElementById("mvp-grid");
+  if(!grid) return;
+  var P=window.MOTION_PREVIEWS, bar=document.getElementById("mvp-bar");
+
+  function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+  grid.innerHTML=P.map(function(m){
+    return '<article class="mvp-card" data-cat="'+esc(m.category)+'" data-slug="'+esc(m.slug)+'">'+
+      '<div class="mvp-stage">'+
+        '<button type="button" class="mvp-replay" aria-label="Replay '+esc(m.name)+'">'+
+          '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>'+
+        '<div class="ml-'+esc(m.slug)+' ml-paused" data-anim="ml-'+esc(m.slug)+'">'+m.demo+"</div>"+
+      "</div>"+
+      '<div class="mvp-body">'+
+        '<div class="mvp-top"><span class="mvp-name">'+esc(m.name)+"</span>"+
+          '<span class="mvp-cat">'+esc(m.category)+(m.loops?" · loops":"")+"</span></div>"+
+        '<p class="mvp-feel">'+esc(m.feel)+"</p>"+
+        '<p class="mvp-use"><b>Use it for</b>'+esc(m.useFor)+"</p>"+
+      "</div>"+
+      '<button type="button" class="mvp-copy" data-slug="'+esc(m.slug)+'">'+
+        '<span class="mvp-copy-t">Copy prompt for Claude Design</span>'+
+        '<span class="mvp-copy-i" aria-hidden="true"><i class="fa-light fa-clipboard"></i></span>'+
+      "</button></article>";
+  }).join("");
+
+  /* ---------- filters + play all ---------- */
+  var cats=[]; P.forEach(function(m){ if(cats.indexOf(m.category)<0) cats.push(m.category); });
+  bar.innerHTML='<div class="mvp-fset"><span class="ck-lbl">Show</span>'+
+    '<button type="button" class="mvp-f on" data-v="all">All '+P.length+"</button>"+
+    cats.map(function(c){ return '<button type="button" class="mvp-f" data-v="'+esc(c)+'">'+esc(c)+"</button>"; }).join("")+
+    "</div>"+
+    '<button type="button" class="mvp-all" id="mvp-all">'+
+      '<i class="fa-light fa-play" aria-hidden="true"></i>Play all</button>';
+
+  function replay(card){
+    var el=card.querySelector("[data-anim]");
+    if(!el) return;
+    var cls=el.getAttribute("data-anim");
+    el.classList.remove(cls,"ml-paused");
+    void el.offsetWidth;            /* forced reflow - the only way to restart a CSS animation */
+    el.classList.add(cls);
+  }
+  bar.addEventListener("click",function(e){
+    var f=e.target.closest(".mvp-f");
+    if(f){
+      var v=f.getAttribute("data-v");
+      [].forEach.call(bar.querySelectorAll(".mvp-f"),function(x){ x.classList.toggle("on",x===f); });
+      [].forEach.call(grid.children,function(c){
+        c.classList.toggle("hide", v!=="all" && c.dataset.cat!==v);
+      });
+      return;
+    }
+    if(e.target.closest("#mvp-all"))
+      [].forEach.call(grid.children,function(c){ if(!c.classList.contains("hide")) replay(c); });
+  });
+
+  /* ---------- replay + copy ---------- */
+  grid.addEventListener("click",function(e){
+    var r=e.target.closest(".mvp-replay");
+    if(r){ replay(r.closest(".mvp-card")); return; }
+    var c=e.target.closest(".mvp-copy");
+    if(!c) return;
+    var slug=c.getAttribute("data-slug"), m=null;
+    P.forEach(function(x){ if(x.slug===slug) m=x; });
+    if(!m) return;
+    var label=c.querySelector(".mvp-copy-t"), was=label.textContent;
+    navigator.clipboard.writeText(m.prompt).then(function(){
+      label.textContent="Copied \u2014 paste it into Claude Design";
+      c.classList.add("done");
+      setTimeout(function(){ label.textContent=was; c.classList.remove("done"); },1800);
+    }).catch(function(){
+      /* clipboard is blocked on insecure origins - show the text so it can still be taken */
+      label.textContent="Press \u2318C to copy";
+      window.prompt("Prompt for Claude Design:", m.prompt);
+      setTimeout(function(){ label.textContent=was; },1800);
+    });
+  });
+
+  /* ---------- play when scrolled into view ----------
+     Twelve animations firing at once behind the fold is noise, and the loops
+     would run the whole time the page is open. */
+  var reduce=false;
+  try{ reduce=window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches; }catch(e){}
+  if(reduce||!("IntersectionObserver" in window)){
+    [].forEach.call(grid.querySelectorAll("[data-anim]"),function(el){ el.classList.remove("ml-paused"); });
+  }else{
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(x){
+        var el=x.target.querySelector("[data-anim]");
+        if(!el) return;
+        if(x.isIntersecting) el.classList.remove("ml-paused");
+        else if(x.target.dataset.slug==="pulse"||x.target.dataset.slug==="shimmer")
+          el.classList.add("ml-paused");   /* park the loops when they scroll away */
+      });
+    },{threshold:0.3});
+    [].forEach.call(grid.children,function(c){ io.observe(c); });
+  }
+})();
+
 /* ---- Continia knowledge base (knowledge.html) ---------------------------
    Help-centre layout: a search hero, a grid of solution tiles, and everything
    below folded into accordions so the page opens light instead of dumping
@@ -2809,7 +2917,8 @@ if(contentIdeasList){
       {id:"continia-uploads", icon:"fa-magnifying-glass-chart", label:"In-depth Continia"},
       {id:"video-ideas", icon:"fa-film", label:"Long- & short form ideas"},
       {id:"youtube-bank", icon:"fa-photo-film", label:"Youtube thumbnails bank"},
-      {id:"video-assets", icon:"fa-layer-group", label:"Video asset library"}
+      {id:"video-assets", icon:"fa-layer-group", label:"Video asset library"},
+      {id:"motion-previews", icon:"fa-wand-magic-sparkles", label:"Motion previews"}
     ]},
     {page:"knowledge.html", icon:"fa-book-open", label:"Knowledge base", items:[
       {id:"ck-search", icon:"fa-magnifying-glass", label:"Search"},
@@ -2912,7 +3021,7 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-09-24 10:40";
+var DASHBOARD_UPDATED = "2026-09-24 13:10";
 var MODULE_UPDATED = {
   /* index.html */
   "news":            {at:"2026-09-22 16:52", src:"News sweep"},
@@ -2939,6 +3048,7 @@ var MODULE_UPDATED = {
   "ck-portals":      {at:"2026-09-23 14:05", src:"Portal verification"},
   "ck-search":       {at:"2026-09-23 15:25", src:"Key terms re-read off the product pages"},
   "ck-tools":        {at:"2026-09-24 10:40", src:"Vendor trust / security / privacy pages"},
+  "motion-previews": {at:"2026-09-24 13:10", src:"motion-library/library.json"},
   "ck-solutions":    {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-platform":     {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-names":        {at:"2026-09-23 14:05", src:"Docs + continia.com read"}
