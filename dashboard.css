@@ -993,6 +993,50 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 .ck-lbl{font-size:9.5px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
 .ck-hide{display:none!important}
 
+/* ----- 3rd party tools: four cards on one row, each ending in a compliance
+   accordion. Uniform 1px borders, tiles at 15px, palette only. ----- */
+.ck3-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:4px 18px 18px}
+.ck3-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:15px;
+  background:var(--panel);overflow:hidden}
+.ck3-top{flex:1;padding:16px 16px 14px}
+.ck3-name{font-size:15px;font-weight:850;color:var(--navy);line-height:1.15}
+.ck3-host{display:inline-block;margin-top:4px;font-size:12px;font-weight:750;color:var(--ink);text-decoration:none}
+.ck3-host:hover{opacity:.66}
+.ck3-what{margin:10px 0 0;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.ck3-badges{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.ck3-b{font-size:9.5px;font-weight:850;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);
+  background:var(--paper);border:1px solid var(--line2);border-radius:999px;padding:3px 8px}
+.ck3-b.gap{color:var(--rose);border-color:var(--rose)}
+.ck3-use{margin:13px 0 0;padding-top:11px;border-top:1px solid var(--line);
+  font-size:12px;line-height:1.6;color:var(--muted)}
+.ck3-use b{display:block;margin-bottom:3px;font-size:9.5px;font-weight:850;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink)}
+/* the accordion sits flush at the foot of the card, square where it meets it */
+.ck3-acc{margin:0;border:0;border-top:1px solid var(--line);border-radius:0;background:var(--paper)}
+.ck3-acc>.ckx-top{border-radius:0}
+/* ...but it becomes a free-standing card again once the search moves it out */
+.ck-hits>.ck3-acc{border:1px solid var(--line);border-radius:8px}
+.ck3-rows{margin:0;font-size:12.5px}
+.ck3-rows dt{font-size:9.5px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--navy);margin-bottom:3px}
+.ck3-rows dd{margin:0 0 11px;line-height:1.65;color:var(--ink)}
+.ck3-rows dd:last-child{margin-bottom:0}
+.ck3-gb{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:14px}
+.ck3-h4{margin:0 0 5px;font-size:9.5px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--navy)}
+.ck3-gb .ck-ul{padding-left:17px;margin:0}
+.ck3-gb .ck-ul li{font-size:12.5px;line-height:1.6}
+.ck3-watch{margin:14px 0 0!important;padding:11px 13px;border:1px solid var(--line);border-radius:8px;
+  background:var(--panel);font-size:12.5px;line-height:1.65;color:var(--ink)}
+.ck3-watch b{display:block;margin-bottom:3px;font-size:9.5px;font-weight:850;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--navy)}
+@media(max-width:1280px){.ck3-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){.ck3-grid{grid-template-columns:1fr;padding-left:14px;padding-right:14px}
+  .ck3-gb{grid-template-columns:1fr;gap:10px}}
+html[data-theme="dark"] .ck3-name,html[data-theme="dark"] .ck3-rows dt,
+html[data-theme="dark"] .ck3-h4,html[data-theme="dark"] .ck3-watch b{color:#fff}
+html[data-theme="dark"] .ck3-host{color:var(--cyan)}
+
 /* ----- hero ----- */
 /* keep .section's overflow:hidden - it is what clips the blue hero to the
    card's 8px corners. Nothing inside the hero needs to escape the box. */

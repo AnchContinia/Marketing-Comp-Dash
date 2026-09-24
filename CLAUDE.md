@@ -105,6 +105,22 @@ node -e 'global.window={};require("./continia-knowledge.js");var D=window.CK_DAT
 Known live discrepancy (Sep 23, 2026): `continia.com/solutions` says Continia Finance has **7**
 specialized modules; the Finance product page and Docs both say **8**. Eight is correct.
 
+### The one exception: third-party tools
+
+The `thirdParty` array in `continia-knowledge.js` (the **3rd party tools** section) is the only
+part of the page not built from the two portals, because docs.continia.com has nothing to say
+about a Dutch image compressor. Those entries are sourced to **each vendor's own trust, security
+or privacy page** instead, and each row states what the vendor says rather than what we infer.
+The `s:` requirement is unchanged — an entry without sources still does not go in.
+
+Every tool carries the same four rows (`ISO 27001`, `GDPR & jurisdiction`, `EU AI Act`,
+`What happens to the file`) so the four cards compare like for like, plus `good`, `bad` and a
+single `watch` string. A badge beginning `!` is rendered in the warning treatment — use it for a
+real gap, not for emphasis. Compliance posture moves faster than product docs, so **re-read the
+linked vendor pages before repeating a claim**; the certification edition is the usual trap
+(iLovePDF's page still names ISO/IEC 27001:**2017**, and every pre-2022 certificate lapsed on
+31 October 2025).
+
 ## Box styling rule (no left-accent bars)
 
 **Never style a box/panel with a colored left-accent bar** (`border-left:4px solid …` or

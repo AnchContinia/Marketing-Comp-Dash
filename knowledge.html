@@ -8,7 +8,7 @@
 <script>try{if(!sessionStorage.getItem("continia-auth")&&!localStorage.getItem("continia-auth"))location.replace("login.html")}catch(e){}</script>
 <script>try{if(localStorage.getItem("continia-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <script>try{if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("reveal-on")}catch(e){}</script>
-<link rel="stylesheet" href="./dashboard.css?v=20260923p">
+<link rel="stylesheet" href="./dashboard.css?v=20260924a">
 <script src="https://kit.fontawesome.com/c11880975e.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -48,6 +48,10 @@
 <div class="ck-body" id="ck-gotchas-body"></div>
 <div class="footnote">The module count on continia.com/solutions is the live example of the Docs-wins rule: the overview page says seven Continia Finance modules, the Finance product page and Docs both say eight. Use eight, and flag the overview page so it gets corrected.</div></section>
 
+<section class="section" id="ck-tools"><div class="section-head"><h2>3rd party tools</h2><span class="hint">what we hand files to, and what each one does about ISO 27001, GDPR and the AI Act</span></div>
+<div class="ck3-grid" id="ck-tools-body"></div>
+<div class="footnote">The only part of this page not built from the two Continia portals — docs.continia.com has nothing to say about a Dutch image compressor. Every row here is sourced to the vendor’s own trust, security or privacy page, and says what the vendor states rather than what we assume. Compliance posture moves: re-read the linked page before you repeat a claim in a customer conversation. None of this is legal advice — a tool being certified says nothing about whether the specific file you are about to upload should leave the building.</div></section>
+
 <section class="section" id="ck-portals"><div class="section-head"><h2>Where this comes from</h2><span class="hint">two portals · everything above traces back to one of them</span></div>
 <div class="ck-portals" id="ck-portals-body"></div>
 <div class="ck-sub"><h3>How to use them</h3><p>Five rules, in the order to apply them.</p></div>
@@ -58,8 +62,8 @@
 
 <footer>Continia Marketing Hub · <span id="footerDate">September 23, 2026</span></footer>
 </div></main></div>
-<script src="./continia-knowledge.js?v=20260923-ckb"></script>
-<script src="./dashboard.js?v=20260923g"></script>
+<script src="./continia-knowledge.js?v=20260924-ck"></script>
+<script src="./dashboard.js?v=20260924a"></script>
 <script>(function(){if(!document.documentElement.classList.contains("reveal-on"))return;var m=document.querySelectorAll(".workspace>*");if(!m.length)return;var vh=innerHeight,li=0;m.forEach(function(el){if(el.getBoundingClientRect().top<vh*0.92){el.style.transitionDelay=Math.min(li*70,350)+"ms";li++;}});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("rv-in");io.unobserve(e.target);}});},{threshold:0.08,rootMargin:"0px 0px -5% 0px"});m.forEach(function(el){io.observe(el);});})();</script>
 </body>
 </html>

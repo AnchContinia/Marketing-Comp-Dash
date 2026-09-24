@@ -2231,6 +2231,41 @@ if(contentIdeasList){
                 head:'<span class="ckx-mn">'+esc(g.t)+"</span>", body:"<p>"+esc(g.d)+"</p>"+srcRow(g.s)});
   }).join("");
 
+  /* ---------- third-party tools ----------
+     Four cards on one row, each ending in an accordion holding the compliance
+     read. That accordion is an ordinary .ckx, so the search indexes and moves
+     it like any other entry - which is why its header repeats the tool name:
+     once it has been pulled out of its card it has to stand on its own. */
+  var tm=document.getElementById("ck-tools-body");
+  if(tm&&D.thirdParty) tm.innerHTML=D.thirdParty.map(function(t){
+    var badges=t.badges.map(function(b){
+      var gap=b.charAt(0)==="!";   /* a leading "!" marks a gap worth seeing at a glance */
+      return '<span class="ck3-b'+(gap?" gap":"")+'">'+esc(gap?b.slice(1):b)+"</span>";
+    }).join("");
+    var rows='<dl class="ck3-rows">'+t.rows.map(function(r){
+      return "<dt>"+esc(r.k)+"</dt><dd>"+esc(r.v)+"</dd>";
+    }).join("")+"</dl>";
+    var body=rows+
+      '<div class="ck3-gb">'+
+        '<div><h4 class="ck3-h4">The good</h4>'+ul(t.good)+"</div>"+
+        '<div><h4 class="ck3-h4">The bad</h4>'+ul(t.bad)+"</div>"+
+      "</div>"+
+      '<p class="ck3-watch"><b>Watch out</b>'+esc(t.watch)+"</p>"+
+      srcRow(t.s);
+    return '<article class="ck3-card">'+
+      '<div class="ck3-top">'+
+        '<div class="ck3-name">'+esc(t.name)+"</div>"+
+        '<a class="ck3-host" href="'+esc(t.url)+'" target="_blank" rel="noopener">'+esc(t.host)+" \u2197</a>"+
+        '<p class="ck3-what">'+esc(t.what)+"</p>"+
+        '<div class="ck3-badges">'+badges+"</div>"+
+        '<p class="ck3-use"><b>How we use it</b>'+esc(t.use)+"</p>"+
+      "</div>"+
+      acc({id:t.id, kind:"Third-party tool", title:t.name, cls:"ckx-sub ck3-acc",
+           head:'<span class="ckx-mn">'+esc(t.name)+" \u2014 compliance</span>",
+           body:body})+
+      "</article>";
+  }).join("");
+
   /* ---------- portals and rules ---------- */
   var pm=document.getElementById("ck-portals-body");
   if(pm){
@@ -2711,6 +2746,7 @@ if(contentIdeasList){
       {id:"ck-solutions", icon:"fa-cubes", label:"Solutions"},
       {id:"ck-platform", icon:"fa-diagram-project", label:"Platform & shared"},
       {id:"ck-names", icon:"fa-spell-check", label:"Names & gotchas"},
+      {id:"ck-tools", icon:"fa-toolbox", label:"3rd party tools"},
       {id:"ck-portals", icon:"fa-compass", label:"Where this comes from"}
     ]}
   ];
@@ -2796,7 +2832,7 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-09-23 15:25";
+var DASHBOARD_UPDATED = "2026-09-24 10:40";
 var MODULE_UPDATED = {
   /* index.html */
   "news":            {at:"2026-09-22 16:52", src:"News sweep"},
@@ -2822,6 +2858,7 @@ var MODULE_UPDATED = {
   /* knowledge.html */
   "ck-portals":      {at:"2026-09-23 14:05", src:"Portal verification"},
   "ck-search":       {at:"2026-09-23 15:25", src:"Key terms re-read off the product pages"},
+  "ck-tools":        {at:"2026-09-24 10:40", src:"Vendor trust / security / privacy pages"},
   "ck-solutions":    {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-platform":     {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-names":        {at:"2026-09-23 14:05", src:"Docs + continia.com read"}

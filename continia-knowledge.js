@@ -524,6 +524,146 @@ window.CK_DATA = {
     }
   ],
 
+  /* ---- Third-party tools -------------------------------------------------
+     A deliberate exception to the two-portal rule. That rule governs claims
+     about CONTINIA, and docs.continia.com has nothing to say about a Dutch
+     image compressor. These entries are sourced from each vendor's own trust,
+     security and privacy pages instead, and every row says what the vendor
+     states rather than what we assume. Compliance posture moves - re-read the
+     linked pages before relying on a row in a customer conversation.
+
+     Four fixed rows per tool (iso / gdpr / ai / keep) so the cards compare
+     like for like, then what it is good at, what it is not, and the specific
+     thing that catches people out. Read 2026-09-24. */
+  thirdParty: [
+    {
+      id: "ck3-swisstransfer",
+      name: "SwissTransfer",
+      host: "swisstransfer.com",
+      url: "https://www.swisstransfer.com/en",
+      what: "Free large-file transfer. Up to 50 GB per transfer, links live for up to 30 days, no account needed.",
+      use: "Sending a video cut, a print-ready PDF or an asset pack that will not go through email or Teams.",
+      badges: ["ISO 27001", "Swiss hosting", "No account"],
+      rows: [
+        {k: "ISO 27001", v: "Yes, at the operator. Infomaniak has been certified ISO 27001 since June 2018 and lists the current 2022 edition, alongside ISO 9001 (2022), ISO 14001 and ISO 50001 (both 2015) and B Corp (2025)."},
+        {k: "GDPR & jurisdiction", v: "Swiss company, own data centres in Geneva and Zurich, and it does not outsource operations - support included. Switzerland holds an EU adequacy decision, so an EU-to-Switzerland transfer needs no extra safeguards, and Infomaniak offers an Article 28 DPA."},
+        {k: "EU AI Act", v: "Out of scope. The transfer flow contains no AI system, so neither the provider nor the deployer duties attach. Infomaniak sells separate \u201csovereign AI\u201d services; those are a different product and a separate assessment."},
+        {k: "What happens to the file", v: "Encrypted in transit through an AES-GCM tunnel and stored with double encryption (LUKS plus AES-256) in TIER III+ data centres. The transfer expires after the period you pick, up to 30 days."}
+      ],
+      good: [
+        "The strongest jurisdiction of the four - Swiss law, Swiss metal, outside US and Chinese reach.",
+        "No account, so nothing to provision and no shadow-IT sign-up trail.",
+        "50 GB in one link kills the \u201csplit it into five emails\u201d problem."
+      ],
+      bad: [
+        "A transfer link is a bearer token: anyone holding the URL can download, with no identity check.",
+        "The free tier gives you no record of who actually downloaded.",
+        "Retention is a ceiling you set up front, not a delete button you press later."
+      ],
+      watch: "Set a password on anything that is not already public, and send the link and the password by different routes. Never paste a transfer link into a public or client-wide channel - it is the URL, not the recipient, that grants access.",
+      s: [
+        ["SwissTransfer", "https://www.swisstransfer.com/en"],
+        ["Infomaniak \u2014 certifications", "https://www.infomaniak.com/en/certifications"],
+        ["Infomaniak \u2014 SwissTransfer data security", "https://www.infomaniak.com/en/support/faq/1755/understanding-swisstransfer-data-security"],
+        ["Infomaniak \u2014 GDPR", "https://www.infomaniak.com/en/legal/general-data-protection-regulation"]
+      ]
+    },
+    {
+      id: "ck3-tinyjpg",
+      name: "TinyJPG / TinyPNG",
+      host: "tinyjpg.com",
+      url: "https://tinyjpg.com/",
+      what: "JPEG and PNG compression. Drop an image in the browser, or call the Tinify API.",
+      use: "Already wired in: the Content page's image compressor calls the Tinify API through our own Cloudflare Worker, so the API key never reaches the browser.",
+      badges: ["!No ISO 27001", "EU company", "48 h"],
+      rows: [
+        {k: "ISO 27001", v: "None published. Tinify states no ISO 27001 certificate and no external audit report, which makes it the thinnest assurance of the four - what you have is their own word."},
+        {k: "GDPR & jurisdiction", v: "Tinify B.V. is established in Hoevelaken, the Netherlands, so it sits under EU law by default. It states it is \u201cGDPR ready and compliant\u201d and publishes a data processing agreement at tinify.com/dpa. Processing runs on Google Cloud."},
+        {k: "EU AI Act", v: "Out of scope. Lossy image compression is not an AI system, so no provider or deployer duty arises."},
+        {k: "What happens to the file", v: "Uploaded images are stored, optimised and deleted within 48 hours. Request logs, which hold the IP address and a fingerprint of the file, are deleted within 31 days."}
+      ],
+      good: [
+        "EU establishment and an off-the-shelf DPA, so the paperwork exists if procurement asks.",
+        "The data it touches is one image and one IP address - a small blast radius.",
+        "The API is stable enough to sit behind our own proxy, which is exactly how we use it."
+      ],
+      bad: [
+        "No certification and no public audit: the security claim rests entirely on self-declaration.",
+        "48 hours is a long window for an image you would call confidential.",
+        "The free web tool has no account, so there is no route to demand early deletion."
+      ],
+      watch: "Compress finished, already-approved artwork. An unreleased campaign visual, a customer logo under embargo or a screenshot with personal data in it should not go through a free web tool - and note that our Worker hides the API key, not the image: the file still travels to Tinify.",
+      s: [
+        ["TinyJPG", "https://tinyjpg.com/"],
+        ["Tinify \u2014 terms of service", "https://tinify.com/terms"],
+        ["Tinify \u2014 data processing agreement", "https://tinify.com/dpa"]
+      ]
+    },
+    {
+      id: "ck3-ilovepdf",
+      name: "iLovePDF",
+      host: "ilovepdf.com",
+      url: "https://www.ilovepdf.com/",
+      what: "PDF toolbox - merge, split, compress, convert, OCR and sign.",
+      use: "Already wired in: the Content page's PDF compressor drives the iLovePDF API through a second Cloudflare Worker, with the key held as an encrypted secret.",
+      badges: ["!ISO 27001 \u2014 check edition", "EU company", "2 h"],
+      rows: [
+        {k: "ISO 27001", v: "Certified, but read the edition. Their own security page names ISO/IEC 27001:2017, renewed in 2023. The 2022 edition replaced it and every pre-2022 certificate lapsed on 31 October 2025, so ask for the current certificate and its scope before leaning on it."},
+        {k: "GDPR & jurisdiction", v: "An EU company, based in Spain, stating full GDPR compliance with access, rectification and erasure rights. The server region is not stated anywhere public - the security page says only \u201ccloud infrastructure partnerships\u201d - so ask directly if data residency is a requirement."},
+        {k: "EU AI Act", v: "Out of scope for the tools we use. Merging, compressing and OCR are not AI systems. If an AI-labelled feature is used later, that is a separate call: it makes us a deployer, and the Article 4 AI-literacy duty has applied to providers and deployers of any risk tier since 2 February 2025."},
+        {k: "What happens to the file", v: "Files are encrypted and permanently deleted within two hours of processing. The exception is signed documents, kept up to five years to meet legal requirements."}
+      ],
+      good: [
+        "A genuine certification behind it, which is more than TinyJPG offers.",
+        "Two hours is the tightest deletion window of the four.",
+        "A documented API, which is why it could be put behind our own proxy."
+      ],
+      bad: [
+        "The published certificate names a superseded edition of the standard.",
+        "No stated server region, so data residency cannot be evidenced from public material.",
+        "The five-year retention on signed documents is a completely different regime from the two-hour rule."
+      ],
+      watch: "The two-hour promise does not cover the signature tool. If you use iLovePDF Sign, you have handed a document to a five-year retention, so route anything with contract or personal data in it through legal first.",
+      s: [
+        ["iLovePDF", "https://www.ilovepdf.com/"],
+        ["iLovePDF \u2014 security", "https://www.ilovepdf.com/help/security"],
+        ["iLovePDF \u2014 ISO 27001 certification", "https://www.ilovepdf.com/blog/iso-27001-ilovepdf-certification"],
+        ["iLovePDF \u2014 legal", "https://www.ilovepdf.com/help/legal"]
+      ]
+    },
+    {
+      id: "ck3-smallpdf",
+      name: "Smallpdf (Flatten PDF)",
+      host: "smallpdf.com",
+      url: "https://smallpdf.com/flatten-pdf",
+      what: "PDF toolbox. The linked tool flattens a PDF so form fields, annotations and layers become fixed page content.",
+      use: "Flattening a filled form or an annotated proof before it is sent out, so the recipient cannot edit the fields.",
+      badges: ["ISO 27001", "Swiss company", "1 h"],
+      rows: [
+        {k: "ISO 27001", v: "Certified, with annual audits, and it also states GDPR, CCPA, nFADP and eIDAS compliance. Of the four this is the broadest set of claims."},
+        {k: "GDPR & jurisdiction", v: "Smallpdf AG, Steinstrasse 21, 8003 Z\u00fcrich, Switzerland - Swiss law plus the EU adequacy decision. Its privacy notice is written against the revised FADP, the GDPR and the CCPA together."},
+        {k: "EU AI Act", v: "Relevant, unlike the other three - Smallpdf ships AI features. Its privacy notice states user files are not used to train models and that nothing is persistently stored unless you save the result; AWS Bedrock is used for internal analytics only, not user-facing AI, and high-risk AI processing goes through a DPIA. Flattening itself involves no AI. Using an AI feature would make us a deployer and pull in the Article 4 AI-literacy duty, in force since 2 February 2025."},
+        {k: "What happens to the file", v: "Through an account, files are deleted within one hour unless you save them to file storage; files you save and then delete go within about 14 days. Transfers run over TLS."}
+      ],
+      good: [
+        "Swiss jurisdiction and ISO 27001 together, which is the strongest pairing here.",
+        "An explicit, written no-training commitment - rare and worth having on record.",
+        "nFADP, CCPA and eIDAS are named as well, so it survives a procurement questionnaire."
+      ],
+      bad: [
+        "The one-hour rule is written for the account path; the anonymous path is less clearly documented.",
+        "File storage is opt-in but, once on, it extends retention well past that hour.",
+        "The free flow pushes hard toward creating an account."
+      ],
+      watch: "Flattening is not redaction. It fixes how the page looks - it does not reliably strip what sits underneath, so text hidden behind a black box or held in metadata can survive. To remove content, redact it with a tool built for that, then flatten.",
+      s: [
+        ["Smallpdf \u2014 Flatten PDF", "https://smallpdf.com/flatten-pdf"],
+        ["Smallpdf \u2014 trust center", "https://smallpdf.com/trust-center"],
+        ["Smallpdf \u2014 privacy notice", "https://smallpdf.com/privacy"]
+      ]
+    }
+  ],
+
   /* ---- Naming: the exact forms ------------------------------------------ */
   naming: [
     {ok: "Document Capture", no: "DC (external), Continia Document Capture 365"},
