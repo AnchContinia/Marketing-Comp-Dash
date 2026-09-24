@@ -995,7 +995,7 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 
 /* ----- 3rd party tools: four cards on one row, each ending in a compliance
    accordion. Uniform 1px borders, tiles at 15px, palette only. ----- */
-.ck3-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:4px 18px 18px}
+.ck3-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;padding:18px}
 .ck3-card{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:15px;
   background:var(--panel);overflow:hidden}
 .ck3-top{flex:1;padding:16px 16px 14px}
