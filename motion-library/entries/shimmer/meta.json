@@ -1,0 +1,40 @@
+{
+  "slug": "shimmer",
+  "name": "Shimmer",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "attention",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-moderate",
+    "--motion-ease-linear",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Loop stops; the element rests in its idle state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "A loading placeholder sweep. Use it while real content is on its way, never as decoration.",
+  "demo": "<span class=\"mlp-skel\"></span>",
+  "addedAt": "2026-09-24"
+}

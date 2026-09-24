@@ -1,0 +1,40 @@
+{
+  "slug": "pulse",
+  "name": "Pulse",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "attention",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-moderate",
+    "--motion-ease-in-out",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Loop stops; the element rests in its idle state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "A soft breathing loop for live state. It runs forever, so it must earn its place - one per screen.",
+  "demo": "<span class=\"mlp-dot\" aria-hidden=\"true\"></span><span class=\"mlp-chip\">Sync running</span>",
+  "addedAt": "2026-09-24"
+}

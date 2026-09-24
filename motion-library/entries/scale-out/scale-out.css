@@ -1,0 +1,15 @@
+/* Continia Motion Library — Scale Out
+   These rules already ship in base/base-animations.css. This file exists so the
+   entry can be lifted on its own; do not load both, or the animation is declared
+   twice. Requires tokens/motion-tokens.css for the custom properties. */
+
+/* shared timing, copied from base-animations.css */
+.ml-scale-out {
+  animation-duration: var(--ml-duration, var(--motion-duration-moderate));
+  animation-timing-function: var(--ml-ease, var(--motion-ease-out));
+  animation-delay: calc(var(--ml-index, 0) * var(--ml-stagger, var(--motion-stagger-base)));
+  animation-fill-mode: both;
+}
+
+.ml-scale-out { animation-name: ml-scale-out; --ml-ease: var(--motion-ease-in); --ml-duration: var(--motion-duration-base); }
+@keyframes ml-scale-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(0.96); } }

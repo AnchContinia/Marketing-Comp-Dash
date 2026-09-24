@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="../favicon.svg?v=2" type="image/svg+xml">
+<title>Marketing Hub · Motion library</title>
+<script>try{if(!sessionStorage.getItem("continia-auth")&&!localStorage.getItem("continia-auth"))location.replace("../login.html")}catch(e){}</script>
+<script>try{if(localStorage.getItem("continia-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
+<link rel="stylesheet" href="../dashboard.css?v=20260924c">
+<link rel="stylesheet" href="./tokens/motion-tokens.css?v=20260924a">
+<link rel="stylesheet" href="./base/base-animations.css?v=20260924a">
+<link rel="stylesheet" href="./gallery.css?v=20260924a">
+<script src="https://kit.fontawesome.com/c11880975e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" id="sidebar"></aside>
+<main class="main"><div class="topbar"><div class="crumb"><span>Marketing Hub</span><span>/</span><b>Motion library</b></div><div class="status"><span><b id="lastUpdated">Updated September 24, 2026</b></span></div></div><div class="workspace">
+
+<section class="section" id="ml-intro"><div class="section-head"><h2>Motion library</h2><span class="hint">one set of tokens · every animation built on them</span></div>
+<div class="ck-sub"><h3>What this is</h3><p>Every animation the Marketing Hub uses, in one place, built on one set of tokens. Copy the snippet, load the two stylesheets, done — there is no build step, no framework and no third-party animation library. If a motion needs a duration or an easing no token covers, the token file gets a new entry; nothing is hardcoded to make one animation work.</p></div>
+<div class="ck-sub"><h3>How to use it</h3><p>Load in this order — <code>tokens/motion-tokens.css</code>, then <code>base/base-animations.css</code>, then any entry CSS — and put the class on the element. Stagger a list by setting <code>--ml-index</code> per item. To hold an animation until it scrolls into view, add <code>ml-paused</code> and remove it with an IntersectionObserver.</p></div>
+<div class="footnote">Every animation honours <code>prefers-reduced-motion</code>. The tokens collapse durations and travel distance to nothing, and the loops switch themselves off — the element still ends in its final state, so nothing disappears for someone who asked for less movement. The <b>Reduced motion</b> switch in the gallery below sets <code>data-motion</code> on the page so you can see both versions without changing your OS setting; it starts on if your system already asks for reduced motion.</div></section>
+
+<section class="section" id="ml-tokens"><div class="section-head"><h2>Tokens</h2><span class="hint">the single source of truth · <code>tokens/motion-tokens.css</code></span></div>
+<div class="mlt-grid">
+  <div class="mlt-card"><h3>Duration</h3><p>Picked by purpose, not by feel. Anything past 800ms reads as slow rather than considered.</p>
+    <div class="mlt-row"><code>--motion-duration-instant</code><b>100ms</b></div>
+    <div class="mlt-row"><code>--motion-duration-fast</code><b>150ms</b></div>
+    <div class="mlt-row"><code>--motion-duration-base</code><b>250ms</b></div>
+    <div class="mlt-row"><code>--motion-duration-moderate</code><b>400ms</b></div>
+    <div class="mlt-row"><code>--motion-duration-slow</code><b>600ms</b></div>
+    <div class="mlt-row"><code>--motion-duration-slower</code><b>800ms</b></div></div>
+  <div class="mlt-card"><h3>Easing</h3><p>Entrances decelerate, exits accelerate. That asymmetry is what makes motion feel physical.</p>
+    <div class="mlt-row"><code>--motion-ease-standard</code><b>0.2, 0, 0, 1</b></div>
+    <div class="mlt-row"><code>--motion-ease-out</code><b>0.16, 1, 0.3, 1</b></div>
+    <div class="mlt-row"><code>--motion-ease-in</code><b>0.7, 0, 0.84, 0</b></div>
+    <div class="mlt-row"><code>--motion-ease-in-out</code><b>0.65, 0, 0.35, 1</b></div>
+    <div class="mlt-row"><code>--motion-ease-linear</code><b>linear</b></div></div>
+  <div class="mlt-card"><h3>Stagger &amp; distance</h3><p>Stagger multiplies by <code>--ml-index</code>. Distance is how far an element travels — never further than 32px.</p>
+    <div class="mlt-row"><code>--motion-stagger-tight</code><b>30ms</b></div>
+    <div class="mlt-row"><code>--motion-stagger-base</code><b>60ms</b></div>
+    <div class="mlt-row"><code>--motion-stagger-loose</code><b>100ms</b></div>
+    <div class="mlt-row"><code>--motion-distance-sm</code><b>8px</b></div>
+    <div class="mlt-row"><code>--motion-distance-md</code><b>16px</b></div>
+    <div class="mlt-row"><code>--motion-distance-lg</code><b>32px</b></div></div>
+</div>
+<div class="footnote">Mirrored for JavaScript in <code>tokens/motion-tokens.js</code>, which also exports the nearest GSAP easing names and a <code>prefersReducedMotion()</code> helper that respects the gallery toggle as well as the OS setting. Use the mirror rather than retyping numbers into a script.</div></section>
+
+<section class="section" id="ml-gallery"><div class="section-head"><h2>Gallery</h2><span class="hint">live previews · copy the snippet straight out of the card</span></div>
+<div class="ml-bar" id="ml-bar"></div>
+<div class="ml-count" id="ml-count"></div>
+<div class="ml-grid" id="ml-grid"></div>
+<div class="footnote">Each card's code panel is read from that entry's own files on the disk, so what you copy is what ships — it cannot drift from the library. The page has to be served over http for that (and for <code>library.json</code>): <code>python3 -m http.server 8000</code> from the repo root, then open <code>/motion-library/</code>.</div></section>
+
+<footer>Continia Marketing Hub · <span id="footerDate">September 24, 2026</span></footer>
+</div></main></div>
+<script src="../dashboard.js?v=20260924c"></script>
+<script src="./gallery.js?v=20260924a"></script>
+</body>
+</html>

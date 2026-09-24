@@ -1,0 +1,26 @@
+/* Continia Motion Library — Pulse
+   These rules already ship in base/base-animations.css. This file exists so the
+   entry can be lifted on its own; do not load both, or the animation is declared
+   twice. Requires tokens/motion-tokens.css for the custom properties. */
+
+/* shared timing, copied from base-animations.css */
+.ml-pulse {
+  animation-duration: var(--ml-duration, var(--motion-duration-moderate));
+  animation-timing-function: var(--ml-ease, var(--motion-ease-out));
+  animation-delay: calc(var(--ml-index, 0) * var(--ml-stagger, var(--motion-stagger-base)));
+  animation-fill-mode: both;
+}
+
+.ml-pulse {
+  animation-name: ml-pulse;
+  --ml-duration: 1.6s;               /* ambient loop — intentionally outside duration tokens */
+  --ml-ease: var(--motion-ease-in-out);
+  animation-iteration-count: infinite;
+}
+@keyframes ml-pulse   { 0%, 100% { opacity: 1; transform: none; } 50% { opacity: .7; transform: scale(1.02); } }
+
+/* loops do not stop on their own — reduced motion has to switch them off */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .ml-pulse { animation: none; }
+}
+:root[data-motion="reduced"] .ml-pulse { animation: none; }

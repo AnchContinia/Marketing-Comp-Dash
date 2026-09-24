@@ -1,0 +1,15 @@
+/* Continia Motion Library — Fade Up
+   These rules already ship in base/base-animations.css. This file exists so the
+   entry can be lifted on its own; do not load both, or the animation is declared
+   twice. Requires tokens/motion-tokens.css for the custom properties. */
+
+/* shared timing, copied from base-animations.css */
+.ml-fade-up {
+  animation-duration: var(--ml-duration, var(--motion-duration-moderate));
+  animation-timing-function: var(--ml-ease, var(--motion-ease-out));
+  animation-delay: calc(var(--ml-index, 0) * var(--ml-stagger, var(--motion-stagger-base)));
+  animation-fill-mode: both;
+}
+
+.ml-fade-up    { animation-name: ml-fade-up; }
+@keyframes ml-fade-up   { from { opacity: 0; transform: translateY(var(--motion-distance-md)); } to { opacity: 1; transform: none; } }

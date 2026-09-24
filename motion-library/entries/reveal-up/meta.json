@@ -1,0 +1,40 @@
+{
+  "slug": "reveal-up",
+  "name": "Reveal Up",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "entrance",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-moderate",
+    "--motion-duration-slow",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Wipes upward with clip-path, so the element is uncovered rather than moved. Built for headlines.",
+  "demo": "<span class=\"mlp-headline\">Automate your AP in Business Central</span>",
+  "addedAt": "2026-09-24"
+}

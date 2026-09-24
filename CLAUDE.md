@@ -40,8 +40,9 @@ Read it when picking the repo up in a fresh chat.
 
 ## Architecture
 
-**Four pages, one shared brain.** `index.html` (Home), `content.html` (Content),
-`video.html` (Video) and `knowledge.html` (Continia knowledge base) are near-identical shells.
+**Five pages, one shared brain.** `index.html` (Home), `content.html` (Content),
+`video.html` (Video), `knowledge.html` (Continia knowledge base) and
+`motion-library/index.html` (Motion library) are near-identical shells.
 They differ only in their `<section>` content and which data scripts they load. All four load
 the same [dashboard.css](dashboard.css) and [dashboard.js](dashboard.js).
 
@@ -120,6 +121,49 @@ real gap, not for emphasis. Compliance posture moves faster than product docs, s
 linked vendor pages before repeating a claim**; the certification edition is the usual trap
 (iLovePDF's page still names ISO/IEC 27001:**2017**, and every pre-2022 certificate lapsed on
 31 October 2025).
+
+## Motion library (`motion-library/`)
+
+A **fifth page**, and the only one in a sub-folder: `motion-library/index.html`. It is the gallery
+for every animation the hub uses, built on one set of tokens.
+
+```
+motion-library/
+├── index.html        gallery — hub shell + tokens reference + cards
+├── gallery.css/.js   gallery chrome only (cards, filters, code panel)
+├── library.json      the manifest the gallery reads — one object per entry
+├── tokens/           motion-tokens.css + .js — the single source of truth
+├── base/             base-animations.css — Continia keyframes, tokens only
+└── entries/<slug>/   <slug>.html, <slug>.css, meta.json
+```
+
+**Tokens win, always.** Durations, easings, stagger and travel distance come from
+`tokens/motion-tokens.css` (mirrored for JS in `tokens/motion-tokens.js`). No raw `ms` or
+`cubic-bezier()` anywhere outside `tokens/` — the one documented exception is the two ambient
+loops (`ml-pulse`, `ml-shimmer`), whose loop length is deliberately outside the duration scale.
+If an animation needs a value no token covers, **add a token**; never hardcode one to satisfy
+another design skill's advice.
+
+**Output is vanilla HTML/CSS/JS.** No React, no build step, no third-party animation library
+(Animate.css, Animista and friends are out) — the hub has none of those and must not grow any.
+React Bits components get *translated* to vanilla, keeping `source`, `sourceUrl` and `license`
+in their `meta.json` (MIT + Commons Clause: fine for Continia's own sites, not for resale).
+
+**Reduced motion is not optional.** The tokens collapse durations and distances; loops have to
+switch themselves off explicitly. The gallery's toggle sets `data-motion="reduced"` / `"full"`
+on `<html>` so both versions can be seen without changing the OS setting.
+
+**The sidebar is path-aware.** `dashboard.js` detects a `motion-library/` sub-folder page and
+prefixes every nav href, the brand logo and the sign-out redirect with `../`; it also maps the
+page to `motion-library/index.html` so a bare `index.html` does not match Home. Any future
+sub-folder page needs adding to that check.
+
+The gallery reads `library.json` and each entry's real files over `fetch`, so **it has to be
+served over http** — `python3 -m http.server 8000`, then `/motion-library/`. Opening it as a
+`file://` URL shows the cards but no code panels.
+
+Work on it through the **`continia-motion-library` skill** (modes: setup, translate, add-base,
+audit). The React Bits reference clone lives outside the repo at `~/refs/react-bits`.
 
 ## Box styling rule (no left-accent bars)
 

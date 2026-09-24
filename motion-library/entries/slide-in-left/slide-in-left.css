@@ -1,0 +1,15 @@
+/* Continia Motion Library — Slide In Left
+   These rules already ship in base/base-animations.css. This file exists so the
+   entry can be lifted on its own; do not load both, or the animation is declared
+   twice. Requires tokens/motion-tokens.css for the custom properties. */
+
+/* shared timing, copied from base-animations.css */
+.ml-slide-in-left {
+  animation-duration: var(--ml-duration, var(--motion-duration-moderate));
+  animation-timing-function: var(--ml-ease, var(--motion-ease-out));
+  animation-delay: calc(var(--ml-index, 0) * var(--ml-stagger, var(--motion-stagger-base)));
+  animation-fill-mode: both;
+}
+
+.ml-slide-in-left  { animation-name: ml-slide-in-left; }
+@keyframes ml-slide-in-left  { from { opacity: 0; transform: translateX(calc(var(--motion-distance-lg) * -1)); } to { opacity: 1; transform: none; } }

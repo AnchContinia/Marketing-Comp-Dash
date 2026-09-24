@@ -2818,19 +2818,29 @@ if(contentIdeasList){
       {id:"ck-names", icon:"fa-spell-check", label:"Names & gotchas"},
       {id:"ck-tools", icon:"fa-toolbox", label:"3rd party tools"},
       {id:"ck-portals", icon:"fa-compass", label:"Where this comes from"}
+    ]},
+    {page:"motion-library/index.html", icon:"fa-wand-magic-sparkles", label:"Motion library", items:[
+      {id:"ml-intro", icon:"fa-circle-info", label:"What this is"},
+      {id:"ml-tokens", icon:"fa-sliders", label:"Tokens"},
+      {id:"ml-gallery", icon:"fa-shapes", label:"Gallery"}
     ]}
   ];
   var path=(location.pathname.split("/").pop()||"index.html");
   if(path==="") path="index.html";
+  /* Pages in a sub-folder (motion-library/) need the nav's root-relative hrefs
+     prefixed, and a bare "index.html" would otherwise match the Home page. */
+  var segs=location.pathname.split("/").filter(Boolean); segs.pop();
+  var BASE="", dir=segs.pop()||"";
+  if(dir==="motion-library"){ BASE="../"; path="motion-library/index.html"; }
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
-  var html='<a class="sb-brand" href="index.html"><div class="sb-logo"><img src="Assets/Hourglass.svg" alt=""></div><div><b>Continia</b><span>Marketing Hub</span></div></a><nav class="sb-nav">';
+  var html='<a class="sb-brand" href="'+BASE+'index.html"><div class="sb-logo"><img src="'+BASE+'Assets/Hourglass.svg" alt=""></div><div><b>Continia</b><span>Marketing Hub</span></div></a><nav class="sb-nav">';
   NAV.forEach(function(g){
     var cur=g.page===path;
     html+='<div class="sb-group'+(cur?" current":"")+'">';
-    html+='<a class="sb-head'+(cur?" active":"")+'" href="'+g.page+'"><i class="fa-light '+g.icon+'"></i><span>'+esc(g.label)+'</span></a>';
+    html+='<a class="sb-head'+(cur?" active":"")+'" href="'+BASE+g.page+'"><i class="fa-light '+g.icon+'"></i><span>'+esc(g.label)+'</span></a>';
     html+='<div class="sb-sub">';
     g.items.forEach(function(it){
-      var href=(cur?"":g.page)+"#"+it.id;
+      var href=(cur?"":BASE+g.page)+"#"+it.id;
       html+='<a href="'+href+'" data-anchor="'+it.id+'" data-page="'+g.page+'"><i class="fa-light '+it.icon+'"></i>'+esc(it.label)+'</a>';
     });
     html+='</div></div>';
@@ -2858,7 +2868,7 @@ if(contentIdeasList){
   var sbLogout=document.getElementById("sbLogout");
   if(sbLogout) sbLogout.addEventListener("click",function(){
     try{ localStorage.removeItem("continia-auth"); sessionStorage.removeItem("continia-auth"); }catch(e){}
-    location.replace("login.html");
+    location.replace(BASE+"login.html");
   });
 
   /* scroll-spy over the current page's sections only */

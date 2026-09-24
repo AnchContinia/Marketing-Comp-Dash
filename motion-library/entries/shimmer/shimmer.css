@@ -1,0 +1,28 @@
+/* Continia Motion Library — Shimmer
+   These rules already ship in base/base-animations.css. This file exists so the
+   entry can be lifted on its own; do not load both, or the animation is declared
+   twice. Requires tokens/motion-tokens.css for the custom properties. */
+
+/* shared timing, copied from base-animations.css */
+.ml-shimmer {
+  animation-duration: var(--ml-duration, var(--motion-duration-moderate));
+  animation-timing-function: var(--ml-ease, var(--motion-ease-out));
+  animation-delay: calc(var(--ml-index, 0) * var(--ml-stagger, var(--motion-stagger-base)));
+  animation-fill-mode: both;
+}
+
+.ml-shimmer {
+  animation-name: ml-shimmer;
+  --ml-duration: 1.4s;               /* ambient loop */
+  --ml-ease: var(--motion-ease-linear);
+  animation-iteration-count: infinite;
+  background: linear-gradient(90deg, rgba(5,41,117,.06) 25%, rgba(143,248,255,.18) 50%, rgba(5,41,117,.06) 75%);
+  background-size: 200% 100%;
+}
+@keyframes ml-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+/* loops do not stop on their own — reduced motion has to switch them off */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .ml-shimmer { animation: none; }
+}
+:root[data-motion="reduced"] .ml-shimmer { animation: none; }

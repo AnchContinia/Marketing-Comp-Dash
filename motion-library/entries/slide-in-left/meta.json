@@ -1,0 +1,40 @@
+{
+  "slug": "slide-in-left",
+  "name": "Slide In Left",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "entrance",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-distance-lg",
+    "--motion-duration-moderate",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Enters from the left across 32px. Reads as “arriving from off-screen”, so keep it for edge-anchored panels.",
+  "demo": "<span class=\"mlp-chip\">Document Output</span>",
+  "addedAt": "2026-09-24"
+}

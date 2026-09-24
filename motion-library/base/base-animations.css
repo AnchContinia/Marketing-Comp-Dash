@@ -1,0 +1,72 @@
+/* Continia Motion Library — base animations v0.1
+   Built only on motion-tokens.css. Load order: motion-tokens.css → base-animations.css.
+
+   Usage:  <div class="ml-fade-up">…</div>
+   Stagger: <li class="ml-fade-up" style="--ml-index: 2">…</li>
+   Trigger on scroll: add class "ml-paused" and remove it via IntersectionObserver. */
+
+/* ---------- shared ---------- */
+:is(.ml-fade-in, .ml-fade-up, .ml-fade-down, .ml-slide-in-left, .ml-slide-in-right, .ml-scale-in, .ml-blur-in, .ml-reveal-up, .ml-fade-out, .ml-scale-out, .ml-pulse, .ml-shimmer) {
+  /* extend this list when adding base animations */
+  animation-duration: var(--ml-duration, var(--motion-duration-moderate));
+  animation-timing-function: var(--ml-ease, var(--motion-ease-out));
+  animation-delay: calc(var(--ml-index, 0) * var(--ml-stagger, var(--motion-stagger-base)));
+  animation-fill-mode: both;
+}
+.ml-paused { animation-play-state: paused; }
+
+/* ---------- entrance ---------- */
+.ml-fade-in    { animation-name: ml-fade-in; }
+.ml-fade-up    { animation-name: ml-fade-up; }
+.ml-fade-down  { animation-name: ml-fade-down; }
+.ml-slide-in-left  { animation-name: ml-slide-in-left; }
+.ml-slide-in-right { animation-name: ml-slide-in-right; }
+.ml-scale-in   { animation-name: ml-scale-in; }
+.ml-blur-in    { animation-name: ml-blur-in; --ml-duration: var(--motion-duration-slow); }
+.ml-reveal-up  { animation-name: ml-reveal-up; --ml-duration: var(--motion-duration-slow); }
+
+@keyframes ml-fade-in   { from { opacity: 0; } to { opacity: 1; } }
+@keyframes ml-fade-up   { from { opacity: 0; transform: translateY(var(--motion-distance-md)); } to { opacity: 1; transform: none; } }
+@keyframes ml-fade-down { from { opacity: 0; transform: translateY(calc(var(--motion-distance-md) * -1)); } to { opacity: 1; transform: none; } }
+@keyframes ml-slide-in-left  { from { opacity: 0; transform: translateX(calc(var(--motion-distance-lg) * -1)); } to { opacity: 1; transform: none; } }
+@keyframes ml-slide-in-right { from { opacity: 0; transform: translateX(var(--motion-distance-lg)); } to { opacity: 1; transform: none; } }
+@keyframes ml-scale-in  { from { opacity: 0; transform: scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes ml-blur-in   { from { opacity: 0; filter: blur(8px); } to { opacity: 1; filter: none; } }
+@keyframes ml-reveal-up { from { clip-path: inset(100% 0 0 0); } to { clip-path: inset(0 0 0 0); } }
+
+/* ---------- exit ---------- */
+.ml-fade-out  { animation-name: ml-fade-out;  --ml-ease: var(--motion-ease-in); --ml-duration: var(--motion-duration-base); }
+.ml-scale-out { animation-name: ml-scale-out; --ml-ease: var(--motion-ease-in); --ml-duration: var(--motion-duration-base); }
+
+@keyframes ml-fade-out  { from { opacity: 1; } to { opacity: 0; } }
+@keyframes ml-scale-out { from { opacity: 1; transform: none; } to { opacity: 0; transform: scale(0.96); } }
+
+/* ---------- attention / loading (loops) ---------- */
+.ml-pulse {
+  animation-name: ml-pulse;
+  --ml-duration: 1.6s;               /* ambient loop — intentionally outside duration tokens */
+  --ml-ease: var(--motion-ease-in-out);
+  animation-iteration-count: infinite;
+}
+.ml-shimmer {
+  animation-name: ml-shimmer;
+  --ml-duration: 1.4s;               /* ambient loop */
+  --ml-ease: var(--motion-ease-linear);
+  animation-iteration-count: infinite;
+  background: linear-gradient(90deg, rgba(5,41,117,.06) 25%, rgba(143,248,255,.18) 50%, rgba(5,41,117,.06) 75%);
+  background-size: 200% 100%;
+}
+
+@keyframes ml-pulse   { 0%, 100% { opacity: 1; transform: none; } 50% { opacity: .7; transform: scale(1.02); } }
+@keyframes ml-shimmer { from { background-position: 200% 0; } to { background-position: -200% 0; } }
+
+/* ---------- reduced motion ---------- */
+/* Tokens already collapse durations/distances; loops must stop explicitly. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .ml-pulse,
+  :root:not([data-motion="full"]) .ml-shimmer { animation: none; }
+  :root:not([data-motion="full"]) .ml-blur-in { filter: none; }
+}
+:root[data-motion="reduced"] .ml-pulse,
+:root[data-motion="reduced"] .ml-shimmer { animation: none; }
+:root[data-motion="reduced"] .ml-blur-in { filter: none; }

@@ -1,0 +1,39 @@
+{
+  "slug": "fade-in",
+  "name": "Fade In",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "entrance",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-moderate",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "The plainest entrance there is. Opacity only, no movement - use it when a shift would be noise.",
+  "demo": "<span class=\"mlp-chip\">Document Capture</span>",
+  "addedAt": "2026-09-24"
+}

@@ -1,0 +1,39 @@
+{
+  "slug": "scale-in",
+  "name": "Scale In",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "entrance",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-moderate",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Grows from 96% while fading in. Suits things that appear where you clicked - dialogs, popovers, tooltips.",
+  "demo": "<span class=\"mlp-chip\">Order Matching</span>",
+  "addedAt": "2026-09-24"
+}

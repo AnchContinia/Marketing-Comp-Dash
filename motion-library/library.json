@@ -1,0 +1,482 @@
+[
+  {
+    "slug": "blur-in",
+    "name": "Blur In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Sharpens from an 8px blur over the slow duration. Expensive to paint - one per view, headlines only.",
+    "demo": "<span class=\"mlp-chip\">Peppol e-invoicing</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "fade-down",
+    "name": "Fade Down",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-md",
+      "--motion-duration-moderate",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Fade Up mirrored - the element settles downward. For things that drop in from above, like a toast or a menu.",
+    "demo": "<span class=\"mlp-chip\">Continia Banking</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "fade-in",
+    "name": "Fade In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "The plainest entrance there is. Opacity only, no movement - use it when a shift would be noise.",
+    "demo": "<span class=\"mlp-chip\">Document Capture</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "fade-up",
+    "name": "Fade Up",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-md",
+      "--motion-duration-moderate",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Fades in while rising 16px. The default entrance for cards, list items and section content.",
+    "demo": "<span class=\"mlp-chip\">Expense Management</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "reveal-up",
+    "name": "Reveal Up",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-duration-slow",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Wipes upward with clip-path, so the element is uncovered rather than moved. Built for headlines.",
+    "demo": "<span class=\"mlp-headline\">Automate your AP in Business Central</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "scale-in",
+    "name": "Scale In",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Grows from 96% while fading in. Suits things that appear where you clicked - dialogs, popovers, tooltips.",
+    "demo": "<span class=\"mlp-chip\">Order Matching</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "slide-in-left",
+    "name": "Slide In Left",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-moderate",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Enters from the left across 32px. Reads as “arriving from off-screen”, so keep it for edge-anchored panels.",
+    "demo": "<span class=\"mlp-chip\">Document Output</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "slide-in-right",
+    "name": "Slide In Right",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "entrance",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-distance-lg",
+      "--motion-duration-moderate",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "The right-hand mirror. Pair the two on opposing columns; do not mix directions inside one list.",
+    "demo": "<span class=\"mlp-chip\">Continia Finance</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "fade-out",
+    "name": "Fade Out",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-base",
+      "--motion-duration-moderate",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "The exit counterpart to Fade In - ease-in, base duration. Exits run shorter than entrances on purpose.",
+    "demo": "<span class=\"mlp-chip\">Dismissed</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "scale-out",
+    "name": "Scale Out",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "exit",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-base",
+      "--motion-duration-moderate",
+      "--motion-ease-in",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "Shrinks to 96% while fading. The natural close for anything that opened with Scale In.",
+    "demo": "<span class=\"mlp-chip\">Closing</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "pulse",
+    "name": "Pulse",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-in-out",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Loop stops; the element rests in its idle state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "A soft breathing loop for live state. It runs forever, so it must earn its place - one per screen.",
+    "demo": "<span class=\"mlp-dot\" aria-hidden=\"true\"></span><span class=\"mlp-chip\">Sync running</span>",
+    "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "shimmer",
+    "name": "Shimmer",
+    "source": "continia",
+    "sourceUrl": "",
+    "license": "Continia internal",
+    "category": "attention",
+    "class": "css",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-moderate",
+      "--motion-ease-linear",
+      "--motion-ease-out",
+      "--motion-stagger-base"
+    ],
+    "options": {
+      "--ml-duration": {
+        "type": "token",
+        "default": "--motion-duration-moderate"
+      },
+      "--ml-ease": {
+        "type": "token",
+        "default": "--motion-ease-out"
+      },
+      "--ml-index": {
+        "type": "number",
+        "default": 0
+      },
+      "--ml-stagger": {
+        "type": "token",
+        "default": "--motion-stagger-base"
+      }
+    },
+    "reducedMotion": "Loop stops; the element rests in its idle state.",
+    "notPorted": [],
+    "brandNotes": "",
+    "blurb": "A loading placeholder sweep. Use it while real content is on its way, never as decoration.",
+    "demo": "<span class=\"mlp-skel\"></span>",
+    "addedAt": "2026-09-24"
+  }
+]

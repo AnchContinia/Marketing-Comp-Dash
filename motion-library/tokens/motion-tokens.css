@@ -1,0 +1,50 @@
+/* Continia Motion Tokens — v0.1 (proposal, review before locking)
+   Single source of truth for duration, easing, stagger and distance.
+   Mirror in motion-tokens.js for GSAP / Web Animations API. */
+
+:root {
+  /* Duration — by purpose */
+  --motion-duration-instant: 100ms;  /* press feedback, toggles */
+  --motion-duration-fast: 150ms;     /* hover, focus, small state changes */
+  --motion-duration-base: 250ms;     /* default UI transitions */
+  --motion-duration-moderate: 400ms; /* entrances, panels, cards */
+  --motion-duration-slow: 600ms;     /* section reveals */
+  --motion-duration-slower: 800ms;   /* hero / one authored moment — max */
+
+  /* Easing */
+  --motion-ease-standard: cubic-bezier(0.2, 0, 0, 1);   /* general UI */
+  --motion-ease-out: cubic-bezier(0.16, 1, 0.3, 1);     /* entrances (expo-out) */
+  --motion-ease-in: cubic-bezier(0.7, 0, 0.84, 0);      /* exits */
+  --motion-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1); /* moves between states */
+  --motion-ease-linear: linear;                         /* loops, progress */
+
+  /* Stagger / delay increments */
+  --motion-stagger-tight: 30ms;  /* characters */
+  --motion-stagger-base: 60ms;   /* words, list items */
+  --motion-stagger-loose: 100ms; /* cards, sections */
+
+  /* Travel distance */
+  --motion-distance-sm: 8px;
+  --motion-distance-md: 16px;
+  --motion-distance-lg: 32px;
+}
+
+/* Reduced motion — OS setting or gallery toggle */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) {
+    --motion-duration-moderate: 1ms;
+    --motion-duration-slow: 1ms;
+    --motion-duration-slower: 1ms;
+    --motion-distance-sm: 0px;
+    --motion-distance-md: 0px;
+    --motion-distance-lg: 0px;
+  }
+}
+:root[data-motion="reduced"] {
+  --motion-duration-moderate: 1ms;
+  --motion-duration-slow: 1ms;
+  --motion-duration-slower: 1ms;
+  --motion-distance-sm: 0px;
+  --motion-distance-md: 0px;
+  --motion-distance-lg: 0px;
+}

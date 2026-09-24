@@ -1,0 +1,40 @@
+{
+  "slug": "fade-down",
+  "name": "Fade Down",
+  "source": "continia",
+  "sourceUrl": "",
+  "license": "Continia internal",
+  "category": "entrance",
+  "class": "css",
+  "dependencies": [],
+  "tokens": [
+    "--motion-distance-md",
+    "--motion-duration-moderate",
+    "--motion-ease-out",
+    "--motion-stagger-base"
+  ],
+  "options": {
+    "--ml-duration": {
+      "type": "token",
+      "default": "--motion-duration-moderate"
+    },
+    "--ml-ease": {
+      "type": "token",
+      "default": "--motion-ease-out"
+    },
+    "--ml-index": {
+      "type": "number",
+      "default": 0
+    },
+    "--ml-stagger": {
+      "type": "token",
+      "default": "--motion-stagger-base"
+    }
+  },
+  "reducedMotion": "Duration and travel distance collapse to ~0, so the element appears in its final state.",
+  "notPorted": [],
+  "brandNotes": "",
+  "blurb": "Fade Up mirrored - the element settles downward. For things that drop in from above, like a toast or a menu.",
+  "demo": "<span class=\"mlp-chip\">Continia Banking</span>",
+  "addedAt": "2026-09-24"
+}
