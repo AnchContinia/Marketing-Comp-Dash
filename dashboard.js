@@ -2260,11 +2260,81 @@ if(contentIdeasList){
         '<div class="ck3-badges">'+badges+"</div>"+
         '<p class="ck3-use"><b>How we use it</b>'+esc(t.use)+"</p>"+
       "</div>"+
+      '<button type="button" class="ck3-open" data-tool="'+esc(t.id)+'">'+
+        '<span class="ck3-open-t">Compliance &amp; watch-outs</span>'+
+        '<span class="ck3-mag" aria-hidden="true"><i class="fa-light fa-magnifying-glass"></i></span>'+
+      "</button>"+
+      /* The accordion stays in the card but hidden. It is what the page search
+         indexes, moves and shows in the hero - drop it and the compliance text
+         becomes unfindable. In the card the button above opens the dialog
+         instead; .ck-hits reveals this again when a search moves it. */
       acc({id:t.id, kind:"Third-party tool", title:t.name, cls:"ckx-sub ck3-acc",
            head:'<span class="ckx-mn">'+esc(t.name)+" \u2014 compliance</span>",
            body:body})+
       "</article>";
   }).join("");
+
+  /* ---------- the compliance dialog ----------
+     One dialog, reused: the card button fills it from the tool's own entry.
+     Closes on the X, on Esc and on a click outside the panel, restores page
+     scroll and hands focus back to the button that opened it. */
+  if(tm&&D.thirdParty&&!document.getElementById("ck3-ov")){
+    var ov=document.createElement("div");
+    ov.className="ck3-ov"; ov.id="ck3-ov";
+    ov.innerHTML='<div class="ck3-dlg" role="dialog" aria-modal="true" aria-labelledby="ck3-dlg-t">'+
+      '<div class="ck3-dlg-head"><div class="ck3-dlg-id">'+
+        '<div class="ck3-dlg-t" id="ck3-dlg-t"></div>'+
+        '<a class="ck3-dlg-host" target="_blank" rel="noopener"></a></div>'+
+      '<button type="button" class="ck3-x" aria-label="Close">'+
+        '<i class="fa-light fa-xmark" aria-hidden="true"></i></button></div>'+
+      '<div class="ck3-dlg-body" id="ck3-dlg-body"></div></div>';
+    document.body.appendChild(ov);
+
+    var dTitle=ov.querySelector("#ck3-dlg-t"), dHost=ov.querySelector(".ck3-dlg-host"),
+        dBody=ov.querySelector("#ck3-dlg-body"), dPanel=ov.querySelector(".ck3-dlg"),
+        dClose=ov.querySelector(".ck3-x"), opener=null, scrollLock="";
+
+    function openDlg(id, from){
+      var t=null;
+      D.thirdParty.forEach(function(x){ if(x.id===id) t=x; });
+      if(!t) return;
+      /* the dialog shows the same body the hidden accordion carries */
+      var src=document.getElementById(id);
+      dTitle.textContent=t.name;
+      dHost.href=t.url; dHost.textContent=t.host+" \u2197";
+      dBody.innerHTML=src?src.querySelector(".ckx-in").innerHTML:"";
+      opener=from||null;
+      scrollLock=document.body.style.overflow;
+      document.body.style.overflow="hidden";
+      ov.classList.add("is-open");
+      dClose.focus();
+    }
+    function closeDlg(){
+      if(!ov.classList.contains("is-open")) return;
+      ov.classList.remove("is-open");
+      document.body.style.overflow=scrollLock;
+      dBody.innerHTML="";
+      if(opener&&opener.focus) opener.focus();
+      opener=null;
+    }
+    tm.addEventListener("click",function(e){
+      var b=e.target.closest(".ck3-open");
+      if(b) openDlg(b.getAttribute("data-tool"), b);
+    });
+    dClose.addEventListener("click",closeDlg);
+    ov.addEventListener("mousedown",function(e){ if(!dPanel.contains(e.target)) closeDlg(); });
+    document.addEventListener("keydown",function(e){
+      if(!ov.classList.contains("is-open")) return;
+      if(e.key==="Escape"){ closeDlg(); return; }
+      if(e.key!=="Tab") return;
+      /* keep tabbing inside the dialog while it is open */
+      var f=dPanel.querySelectorAll('a[href], button:not([disabled])');
+      if(!f.length) return;
+      var first=f[0], last=f[f.length-1];
+      if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); }
+      else if(!e.shiftKey&&document.activeElement===last){ e.preventDefault(); first.focus(); }
+    });
+  }
 
   /* ---------- portals and rules ---------- */
   var pm=document.getElementById("ck-portals-body");

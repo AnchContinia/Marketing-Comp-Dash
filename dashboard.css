@@ -1011,11 +1011,44 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
   font-size:12px;line-height:1.6;color:var(--muted)}
 .ck3-use b{display:block;margin-bottom:3px;font-size:9.5px;font-weight:850;letter-spacing:.07em;
   text-transform:uppercase;color:var(--ink)}
-/* the accordion sits flush at the foot of the card, square where it meets it */
-.ck3-acc{margin:0;border:0;border-top:1px solid var(--line);border-radius:0;background:var(--paper)}
-.ck3-acc>.ckx-top{border-radius:0}
-/* ...but it becomes a free-standing card again once the search moves it out */
-.ck-hits>.ck3-acc{border:1px solid var(--line);border-radius:8px}
+/* The card's footer button opens the dialog. The accordion it replaces is
+   still in the card, hidden - the search indexes and moves it, and .ck-hits
+   brings it back as an ordinary entry. */
+.ck3-open{width:100%;display:flex;align-items:center;justify-content:space-between;gap:12px;
+  padding:12px 16px;border:0;border-top:1px solid var(--line);background:var(--paper);
+  font:inherit;color:var(--ink);text-align:left;cursor:pointer;transition:background .16s}
+.ck3-open:hover{background:var(--panel)}
+.ck3-open-t{font-size:12.5px;font-weight:800}
+.ck3-mag{flex:none;width:28px;height:28px;border:1px solid var(--line);border-radius:8px;
+  display:grid;place-items:center;font-size:11px;color:var(--muted);background:var(--paper);
+  transition:color .16s,border-color .16s}
+.ck3-open:hover .ck3-mag{color:var(--navy);border-color:var(--line2)}
+.ck3-card>.ck3-acc{display:none}
+.ck-hits>.ck3-acc{display:block;border:1px solid var(--line);border-radius:8px;background:var(--paper)}
+
+/* ----- the compliance dialog ----- */
+.ck3-ov{position:fixed;inset:0;z-index:60;display:none;align-items:flex-start;justify-content:center;
+  padding:44px 20px;overflow:auto;background:rgba(5,15,35,.62);-webkit-backdrop-filter:blur(3px);
+  backdrop-filter:blur(3px)}
+.ck3-ov.is-open{display:flex;animation:ck3In .18s ease}
+@keyframes ck3In{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.ck3-ov.is-open{animation:none}}
+.ck3-dlg{width:min(780px,100%);background:var(--paper);border:1px solid var(--line);border-radius:15px;
+  box-shadow:0 42px 90px -42px rgba(5,15,35,.8);overflow:hidden;margin:auto 0}
+.ck3-dlg-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;
+  padding:17px 20px;border-bottom:1px solid var(--line);background:var(--panel)}
+.ck3-dlg-id{min-width:0}
+.ck3-dlg-t{font-size:17px;font-weight:850;color:var(--navy);line-height:1.15}
+.ck3-dlg-host{display:inline-block;margin-top:4px;font-size:12px;font-weight:750;color:var(--ink);
+  text-decoration:none}
+.ck3-dlg-host:hover{opacity:.66}
+.ck3-x{flex:none;width:32px;height:32px;border:1px solid var(--line);border-radius:8px;
+  background:var(--paper);color:var(--muted);font-size:13px;cursor:pointer;display:grid;place-items:center;
+  transition:color .16s,border-color .16s}
+.ck3-x:hover{color:var(--ink);border-color:var(--line2)}
+.ck3-dlg-body{padding:18px 20px 20px;max-height:calc(100vh - 210px);overflow:auto}
+.ck3-dlg-body>*:first-child{margin-top:0}
+.ck3-dlg-body .ck-src{margin-bottom:0}
 .ck3-rows{margin:0;font-size:12.5px}
 .ck3-rows dt{font-size:9.5px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;
   color:var(--navy);margin-bottom:3px}
@@ -1036,6 +1069,9 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 html[data-theme="dark"] .ck3-name,html[data-theme="dark"] .ck3-rows dt,
 html[data-theme="dark"] .ck3-h4,html[data-theme="dark"] .ck3-watch b{color:#fff}
 html[data-theme="dark"] .ck3-host{color:var(--cyan)}
+html[data-theme="dark"] .ck3-dlg-t{color:#fff}
+html[data-theme="dark"] .ck3-dlg-host{color:var(--cyan)}
+html[data-theme="dark"] .ck3-ov{background:rgba(2,8,20,.74)}
 
 /* ----- hero ----- */
 /* keep .section's overflow:hidden - it is what clips the blue hero to the
