@@ -2201,7 +2201,9 @@ if(contentIdeasList){
   }
   function reelOf(card){
     var m=card.querySelector(".mvp-mount");
-    return m&&m.__mlReel?m.__mlReel:null;
+    /* __ml, not __mlReel: every component exposes the shared handle, and this
+       button is rendered for all of them. */
+    return m&&m.__ml?m.__ml:null;
   }
 
   function replay(card){
@@ -2327,7 +2329,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV="20260925d";        /* same cache-busting job the <script> ?v= does */
+  var MLV="20260925f";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);

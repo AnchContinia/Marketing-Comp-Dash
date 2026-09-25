@@ -2232,6 +2232,136 @@
     "addedAt": "2026-09-24"
   },
   {
+    "slug": "magic-transform",
+    "name": "Magic Transform",
+    "kind": "component",
+    "source": "continia",
+    "sourceUrl": "https://pro.reactbits.dev/docs/components/magic-transform",
+    "license": "Continia internal",
+    "category": "ui",
+    "class": "js",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-fast",
+      "--motion-duration-base",
+      "--motion-duration-moderate",
+      "--motion-duration-slower",
+      "--motion-ease-standard",
+      "--motion-ease-out",
+      "--motion-ease-in",
+      "--motion-stagger-tight",
+      "--motion-distance-lg"
+    ],
+    "options": {
+      "height": {
+        "type": "number",
+        "default": 560,
+        "unit": "px"
+      },
+      "docCount": {
+        "type": "number",
+        "default": 4,
+        "note": "procedural documents in rotation; [data-mt-doc] children override them"
+      },
+      "docWidth": {
+        "type": "number",
+        "default": 220,
+        "unit": "px"
+      },
+      "docHeight": {
+        "type": "number",
+        "default": 320,
+        "unit": "px"
+      },
+      "docGap": {
+        "type": "number",
+        "default": 60,
+        "unit": "px"
+      },
+      "docDuration": {
+        "type": "number",
+        "default": 4,
+        "unit": "s",
+        "note": "travel time to the axis - a loop length, not a transition, so an option rather than a token"
+      },
+      "axis": {
+        "type": "number",
+        "default": 0.46,
+        "note": "0-1 across the stage"
+      },
+      "axisWidth": {
+        "type": "number",
+        "default": 2,
+        "unit": "px"
+      },
+      "coreSize": {
+        "type": "number",
+        "default": 56,
+        "unit": "px"
+      },
+      "slices": {
+        "type": "number",
+        "default": 14,
+        "note": "shred bars per document"
+      },
+      "particles": {
+        "type": "number",
+        "default": 18
+      },
+      "resultCount": {
+        "type": "number",
+        "default": 5,
+        "note": "distinct result rows in rotation; [data-mt-result] children override them"
+      },
+      "maxResults": {
+        "type": "number",
+        "default": 6
+      },
+      "paused": {
+        "type": "boolean",
+        "default": false
+      },
+      "compact": {
+        "type": "boolean",
+        "default": false,
+        "note": "the card-sized skin - thinner bars and tighter rows, for a stage under ~200px"
+      },
+      "seed": {
+        "type": "number",
+        "default": 7,
+        "note": "deterministic texture and fan, so a reload looks the same"
+      }
+    },
+    "reducedMotion": "Nothing travels and nothing bursts. The stage lays out a static frame instead - one document parked short of the axis, the axis lit, and the result rows already out - so the picture still says what the machine does.",
+    "notPorted": [
+      "axisColor - the default is #7C3AED, which is off the Continia palette. The axis takes var(--navy) instead, so it is Tech Blue in light mode and Innovation Blue in dark without a second value to keep in sync.",
+      "backgroundColor - the stage is transparent and sits on whatever surface hosts it; a page that needs a ground sets it on the wrapper.",
+      "width - CSS's job. The element is display:block and fills its container; only height is an option because the stage has to know its own.",
+      "centerContent as a ReactNode - there is no React here, so the core takes a [data-mt-core] child. With none, it draws the quarter circle from the logomark.",
+      "classNames / className / style - a vanilla caller styles the element and the documented classes directly.",
+      "documents / results as data arrays - passed as [data-mt-doc] and [data-mt-result] template children instead, which keeps the markup copyable without a build step."
+    ],
+    "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour, on the Continia tokens. sourceUrl points at the page that describes the idea, for provenance, not at code that was copied. Two brand corrections against the reference: the axis is not the source's purple #7C3AED but var(--navy), and the confetti and result chips use the four brand colours only - Tech Blue, Innovation Blue, Smart Green and Performance Purple - where the reference fans out an open palette. The core is Innovation Blue behind Tech Blue, the way round that reads; cyan on cyan does not.",
+    "blurb": "Documents drift toward a lit axis, shred into it, and come out the other side as coloured result rows, with a confetti burst on every beat.",
+    "demo": "<img src=\"../Assets/Hourglass.svg\" data-mt-core alt=\"\">",
+    "addedAt": "2026-09-25",
+    "demoAttrs": {
+      "height": 172,
+      "compact": 1,
+      "doc-count": 4,
+      "doc-width": 58,
+      "doc-height": 104,
+      "doc-gap": 26,
+      "doc-duration": 3.2,
+      "axis": 0.42,
+      "core-size": 30,
+      "slices": 7,
+      "particles": 10,
+      "result-count": 4,
+      "max-results": 3
+    }
+  },
+  {
     "slug": "reel-gallery",
     "name": "Reel Gallery",
     "kind": "component",

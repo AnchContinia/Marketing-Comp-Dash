@@ -644,6 +644,33 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Loop stops; the element rests in its idle state."
   },
   {
+    "slug": "magic-transform",
+    "name": "Magic Transform",
+    "category": "ui",
+    "kind": "component",
+    "feel": "Documents drift in from the left, hit a lit vertical axis and shred into it a bar at a time. The axis flares, confetti in the four brand colours throws forward, and a coloured result row slides out on the other side. It runs on a beat, so there is always one document mid-transformation.",
+    "useFor": "Anything that turns a mess into structure: a capture explainer, an e-invoicing page, a hero for automation. It reads as 'paper goes in, data comes out' without a word of copy. It is a component rather than a class, so it carries its own JS.",
+    "prompt": "Build a document transformation stage. Documents 220x320 queue up off the left edge with 60px between them and travel right at a constant speed, each taking about 4 seconds to reach a lit vertical axis at 46% of the width. When a document's right edge touches the axis it breaks into 14 horizontal bars that slide to the axis and scale to zero, staggered 30ms apart over 400ms with cubic-bezier(0.7, 0, 0.84, 0). At the same moment 18 small squares burst forward from the axis in a cone over 800ms with cubic-bezier(0.16, 1, 0.3, 1), and a result row - a coloured pill next to a bordered bar with two short lines in it - slides out to the right of the axis over 400ms, each row rotated a couple of degrees so the stack fans. Keep six rows; the oldest drifts 32px right and fades over 250ms. The axis is a 2px line with a soft radial glow, and a 56px rounded tile sits on it that scales to 1.08 on every hit. Colours: the line and the documents follow the page's own ink and panel tokens, and the pills and confetti use only Tech Blue #052975, Innovation Blue #8ff8ff, Smart Green #5f9e8d and Performance Purple #983eae. Place the document texture and the row fan from a seeded random number generator so a reload looks the same. Under prefers-reduced-motion: nothing travels and nothing bursts - park one document short of the axis, light the axis, and lay the result rows out already finished.",
+    "demo": "<img src=\"Assets/Hourglass.svg\" data-mt-core alt=\"\">",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "doc-count": 4,
+      "doc-width": 58,
+      "doc-height": 104,
+      "doc-gap": 26,
+      "doc-duration": 3.2,
+      "axis": 0.42,
+      "core-size": 30,
+      "slices": 7,
+      "particles": 10,
+      "result-count": 4,
+      "max-results": 3
+    },
+    "loops": true,
+    "reducedMotion": "Nothing travels and nothing bursts. The stage lays out a static frame instead - one document parked short of the axis, the axis lit, and the result rows already out - so the picture still says what the machine does."
+  },
+  {
     "slug": "reel-gallery",
     "name": "Reel Gallery",
     "category": "ui",

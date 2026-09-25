@@ -144,7 +144,8 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **one component** (`reel-gallery`, category `ui`), so `library.json` holds 50 entries.
+Plus **two components** (`reel-gallery` and `magic-transform`, both category `ui`), so
+`library.json` holds 51 entries.
 
 **Two kinds of entry**, told apart by `meta.json → kind`. `"animation"` is a CSS class generated
 from `base-animations.css` — never hand-edit those files. `"component"` is a JS module written by
@@ -152,6 +153,10 @@ hand (`<slug>.html` + `.css` + `.js` + `meta.json`), listed in the `COMPONENTS` 
 of `gen-motion-entries.js`; the generator only validates the four files and copies the meta into
 `library.json`. A component is an ES module exporting `initReelGallery`-style `init…(el, options)`
 → `{el, update, destroy}` plus `mountAll(root)`, and it mounts itself onto `[data-ml="<slug>"]`.
+It must also park the instance on the element as **`el.__ml`** (its own `__mlReel` /
+`__mlMagic` name is optional extra): both hosts render one play/pause button per component
+and look the instance up under that one name. Reading `__mlReel` was the bug that made the
+second component's button dead on arrival - the card looked fine and did nothing.
 A component **is** previewed on the Video page — `gen-motion-previews.js` needs a `COPY` row for it
 like any other entry. Its preview sizing lives in `meta.json → demoAttrs` and is written onto the
 mount as `data-*` by **both** hosts, so the gallery card and the Video card can never be sized
@@ -161,7 +166,8 @@ full-width stage). Both hosts must also clamp the mount to `width:100%;height:10
 1616px content width inside a 350px card. It is **filtered
 out** of `gen-motion-dist.js`, because the bundle is CSS only, which is why `dist/` still says 49.
 `dashboard.js` renders a component card with a **play/pause toggle** instead of replay, leaves it
-out of `ml-paused` and the speed classes, and dynamically imports its module after the cards exist;
+out of `ml-paused` and the speed classes, and dynamically imports **one module per component**
+after the cards exist;
 the module exposes `isPaused()` / `toggle()` so the button reads its state rather than tracking it.
 Both pages fetch the module and `library.json`, so both carry a `MLV` constant doing the `?v=` job
 a `<script>` tag would — bump it with the rest. **A dynamic `import()` specifier must start with

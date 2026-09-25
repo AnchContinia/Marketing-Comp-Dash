@@ -10,7 +10,7 @@
 
   /* library.json and each component module are fetched, not <script>-linked, so
      they need the same ?v= cache-busting every other file here gets. */
-  var MLV = "20260925d";
+  var MLV = "20260925f";
 
   var countEl = document.getElementById("ml-count"),
       barEl   = document.getElementById("ml-bar"),
@@ -116,7 +116,9 @@
      back off it so the two can never disagree. */
   function reelOf(card) {
     var m = card.querySelector("[data-ml]");
-    return m && m.__mlReel ? m.__mlReel : null;
+    /* __ml, not __mlReel: every component exposes the shared handle, and this
+       button is rendered for all of them. */
+    return m && m.__ml ? m.__ml : null;
   }
   function syncToggle(card) {
     var b = card.querySelector(".ml-toggle"), reel = reelOf(card);

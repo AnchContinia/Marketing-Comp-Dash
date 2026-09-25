@@ -238,7 +238,7 @@ Object.keys(META).forEach(function (slug) {
 /* Component entries are hand-written - a JS component cannot be extracted from
    a keyframe - so their files are left alone and only their meta.json is read
    into library.json. They are listed here so an orphan is still an error. */
-var COMPONENTS = ["reel-gallery"];
+var COMPONENTS = ["reel-gallery", "magic-transform"];
 COMPONENTS.forEach(function (slug) {
   var f = path.join(ML, "entries", slug, "meta.json");
   if (!fs.existsSync(f)) { console.error("Component entry " + slug + " has no meta.json"); process.exit(1); }

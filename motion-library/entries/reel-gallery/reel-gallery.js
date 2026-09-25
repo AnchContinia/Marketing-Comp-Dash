@@ -85,7 +85,7 @@ var SPOT_OK = (function () {
 })();
 
 export function initReelGallery(el, options) {
-  if (!el || el.__mlReel) return el && el.__mlReel;
+  if (!el || el.__ml) return el && el.__ml;
   var o = Object.assign({}, DEFAULTS, fromData(el), options || {});
 
   /* the images the caller put inside; anything else is left alone */
@@ -337,9 +337,13 @@ export function initReelGallery(el, options) {
       el.innerHTML = "";
       source.forEach(function (node) { el.appendChild(node); });
       delete el.__mlReel;
+      delete el.__ml;
     }
   };
   el.__mlReel = api;
+  /* the handle both hosts look for. A host renders a play/pause button for
+     every component, so it cannot know the per-entry name. */
+  el.__ml = api;
   return api;
 }
 

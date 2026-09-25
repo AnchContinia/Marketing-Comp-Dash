@@ -1,0 +1,243 @@
+/* Continia Motion Library — Magic Transform
+   Requires tokens/motion-tokens.css. Built from scratch on those tokens; the
+   motion idea is React Bits Pro's "Magic Transform", none of their code is here.
+
+   Everything that travels is a transform written by the module. This file only
+   describes the shape: the stage, the documents, the lit axis, the shred bars,
+   the confetti and the result rows.
+
+   Colour comes from the hub's own tokens, so both themes are handled without a
+   second palette here: --navy resolves to Tech Blue in light mode and to
+   Innovation Blue in dark, which is why the axis reads on either ground. The
+   fallbacks only matter if this file is used without dashboard.css. */
+
+.mlmt {
+  position: relative;
+  display: block;
+
+  --mlmt-h: 560px;
+  --mlmt-dw: 220px;
+  --mlmt-dh: 320px;
+  --mlmt-axis: 46%;
+  --mlmt-line: 2px;
+  --mlmt-core: 56px;
+  --mlmt-radius: 12px;
+
+  /* The four Continia brand colours, in token form where one exists. Override
+     any of them per instance; there is deliberately no fifth. */
+  --mlmt-c1: var(--navy, #052975);
+  --mlmt-c2: var(--cyan, #8ff8ff);
+  --mlmt-c3: #5f9e8d;                 /* Smart Green */
+  --mlmt-c4: #983eae;                 /* Performance Purple */
+}
+
+.mlmt-stage {
+  position: relative;
+  height: var(--mlmt-h);
+  /* a host that clamps the mount to its card is the shorter of the two; without
+     this the stage stands 1px proud of a 171px preview mount */
+  max-height: 100%;
+  overflow: hidden;
+}
+
+.mlmt-lane,
+.mlmt-fx,
+.mlmt-out { position: absolute; inset: 0; pointer-events: none; }
+
+/* ---------- documents ---------- */
+.mlmt-doc {
+  position: absolute;
+  left: 0;
+  width: var(--mlmt-dw);
+  height: var(--mlmt-dh);
+  box-sizing: border-box;
+  padding: calc(var(--mlmt-dw) * 0.09);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--mlmt-dh) * 0.026);
+  border: 1px solid var(--line, #e3e7ef);
+  border-radius: var(--mlmt-radius);
+  background: var(--panel, #fbfcff);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.mlmt-dline {
+  height: 3px;
+  border-radius: 999px;
+  background: var(--line2, #cbd5e1);
+  opacity: .8;
+  flex: none;
+}
+.mlmt-dhead { height: 6px; background: var(--muted, #64748b); opacity: .55; margin-bottom: 4px; }
+
+.mlmt-dfields { display: flex; gap: 6px; flex: none; margin: 4px 0; }
+.mlmt-dfield {
+  height: 10px;
+  border-radius: 4px;
+  background: var(--line2, #cbd5e1);
+  opacity: .95;
+}
+
+/* The scan block: one element, one box-shadow list. A grid of 280-odd squares
+   as real nodes would be the single most expensive thing on the page. */
+.mlmt-code {
+  flex: none;
+  color: var(--muted, #64748b);
+  opacity: .75;
+  margin-bottom: 6px;
+}
+
+/* ---------- the axis ---------- */
+.mlmt-axis {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--mlmt-axis);
+  width: var(--mlmt-line);
+  background: var(--navy, #052975);
+  transform: translateX(-50%);
+}
+/* the glow, as a wide soft twin rather than a box-shadow, so it does not
+   bleed a rectangle over the documents behind it */
+.mlmt-axis::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 120px;
+  transform: translateX(-50%);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--navy, #052975) 26%, transparent), transparent);
+  pointer-events: none;
+}
+
+.mlmt-core {
+  position: absolute;
+  top: 50%;
+  left: var(--mlmt-axis);
+  width: var(--mlmt-core);
+  height: var(--mlmt-core);
+  transform: translate(-50%, -50%);
+  border-radius: calc(var(--mlmt-core) * 0.22);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  /* Innovation Blue behind, Tech Blue on top. Pairing it the other way round -
+     cyan mark on a cyan fill - is exactly the combination that does not read. */
+  background: var(--cyan, #8ff8ff);
+  color: #052975;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cyan, #8ff8ff) 55%, transparent),
+              0 0 26px color-mix(in srgb, var(--cyan, #8ff8ff) 45%, transparent);
+  transition: transform var(--motion-duration-fast) var(--motion-ease-standard),
+              box-shadow var(--motion-duration-base) var(--motion-ease-standard);
+}
+.mlmt-core.is-hit {
+  transform: translate(-50%, -50%) scale(1.08);
+  box-shadow: 0 0 0 1px var(--cyan, #8ff8ff),
+              0 0 40px color-mix(in srgb, var(--cyan, #8ff8ff) 70%, transparent);
+}
+.mlmt-core > * { display: block; width: 62%; height: 62%; object-fit: contain; }
+
+/* With nothing supplied, the core carries the quarter circle from the logomark -
+   the approved shape. The hourglass itself is only ever White or Tech Blue, so
+   a caller who wants it passes it in as [data-mt-core] rather than having this
+   file redraw it. */
+.mlmt-core:empty::after {
+  content: "";
+  width: 46%;
+  height: 46%;
+  background: currentColor;
+  border-radius: 100% 0 0 0;
+}
+
+/* ---------- the shred ---------- */
+.mlmt-shred {
+  position: absolute;
+  border-radius: 2px;
+  background: var(--line2, #cbd5e1);
+  transform-origin: right center;   /* collapses toward the axis, not its own middle */
+  will-change: transform;
+}
+
+/* ---------- confetti ---------- */
+.mlmt-p {
+  position: absolute;
+  display: block;
+  border-radius: 2px;
+  background: var(--mlmt-c);
+  will-change: transform, opacity;
+}
+
+/* ---------- results ---------- */
+.mlmt-out {
+  left: var(--mlmt-axis);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding-left: calc(var(--mlmt-core) * 0.9);
+  padding-right: 12px;
+}
+
+.mlmt-res {
+  position: relative;
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transform: rotate(var(--mlmt-tilt, 0deg));
+  will-change: transform, opacity;
+}
+
+.mlmt-chip {
+  flex: none;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--mlmt-c, var(--mlmt-c1));
+}
+
+.mlmt-bar {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  height: 34px;
+  padding: 0 12px;
+  border: 1px solid var(--line, #e3e7ef);
+  border-radius: 8px;
+  background: var(--panel, #fbfcff);
+}
+.mlmt-barline {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--line2, #cbd5e1);
+  opacity: .85;
+}
+
+/* ---------- reduced motion ----------
+   Nothing travels and nothing bursts. The module lays out a static frame -
+   one document short of the axis and the result rows already out - so the
+   picture still says what the machine does. */
+.mlmt-static .mlmt-core { transition: none; }
+.mlmt-static .mlmt-axis::before { opacity: .6; }
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mlmt-core { transition: none; }
+}
+:root[data-motion="reduced"] .mlmt-core { transition: none; }
+
+/* ---------- demo furniture ----------
+   Not part of the component. Both preview cards size the stage down to a third
+   of a grid row, where the default 34px result bars and 14px chips read as
+   slabs. Scoped to the card so a real page is untouched. */
+.mlmt-sm .mlmt-bar { height: 20px; padding: 0 7px; gap: 3px; border-radius: 6px; }
+.mlmt-sm .mlmt-barline { height: 3px; }
+.mlmt-sm .mlmt-chip { height: 9px; }
+.mlmt-sm .mlmt-out { gap: 5px; padding-right: 8px; }
+.mlmt-sm .mlmt-doc { padding: 6px; gap: 3px; border-radius: 8px; }
+.mlmt-sm .mlmt-dline { height: 2px; }
+.mlmt-sm .mlmt-dhead { height: 3px; margin-bottom: 2px; }
+.mlmt-sm .mlmt-dfield { height: 6px; border-radius: 3px; }
