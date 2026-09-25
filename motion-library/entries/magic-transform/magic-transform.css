@@ -136,12 +136,14 @@
   display: grid;
   place-items: center;
   overflow: hidden;
-  /* Innovation Blue behind, Tech Blue on top. Pairing it the other way round -
-     cyan mark on a cyan fill - is exactly the combination that does not read. */
-  background: var(--cyan, #8ff8ff);
-  color: #052975;
-  box-shadow: 0 0 0 1px color-mix(in srgb, var(--cyan, #8ff8ff) 55%, transparent),
-              0 0 26px color-mix(in srgb, var(--cyan, #8ff8ff) 45%, transparent);
+  /* The tile takes --navy, so it is Tech Blue in light mode and Innovation Blue
+     in dark - the one colour that reads against each ground. The mark on it is
+     the opposite: white on the Tech Blue tile, Tech Blue on the cyan one. Never
+     the same hue as the tile; cyan on cyan is what does not read. */
+  background: var(--navy, #052975);
+  color: #fff;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--navy, #052975) 55%, transparent),
+              0 0 26px color-mix(in srgb, var(--navy, #052975) 45%, transparent);
   transition: transform var(--motion-duration-fast) var(--motion-ease-standard),
               box-shadow var(--motion-duration-base) var(--motion-ease-standard);
 }
@@ -150,7 +152,32 @@
   box-shadow: 0 0 0 1px var(--cyan, #8ff8ff),
               0 0 40px color-mix(in srgb, var(--cyan, #8ff8ff) 70%, transparent);
 }
+html[data-theme="dark"] .mlmt-core { color: #052975; }
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme="light"]) .mlmt-core { color: #052975; }
+}
+
 .mlmt-core > * { display: block; width: 62%; height: 62%; object-fit: contain; }
+
+/* A mark that follows the tile. An <img> paints its own colours, and the
+   hourglass ships white, so it cannot be Tech Blue on a cyan tile. Drawn as a
+   mask over currentColor instead, it is white in light mode and Tech Blue in
+   dark without a second file:
+     <span data-mt-core class="mlmt-mark"
+           style="-webkit-mask-image:url(Assets/Hourglass.svg);mask-image:url(Assets/Hourglass.svg)"></span>
+   A caller passing a logo that must keep its own colours uses a plain <img>.
+
+   The file goes in the style attribute and not into a custom property this rule
+   reads: a relative url() carried through a var() is resolved against the
+   stylesheet that *uses* it, so --mlmt-mark set on the element still looked for
+   the SVG next to this file and 404'd. The longhands below are deliberate - the
+   `mask` shorthand would reset the image the attribute just set. */
+.mlmt-mark {
+  background: currentColor;
+  -webkit-mask-size: contain;         mask-size: contain;
+  -webkit-mask-repeat: no-repeat;     mask-repeat: no-repeat;
+  -webkit-mask-position: center;      mask-position: center;
+}
 
 /* With nothing supplied, the core carries the quarter circle from the logomark -
    the approved shape. The hourglass itself is only ever White or Tech Blue, so

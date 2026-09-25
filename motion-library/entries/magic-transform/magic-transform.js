@@ -258,7 +258,7 @@ export function initMagicTransform(node, options) {
   buildTemplates();
 
   /* ---------- geometry ---------- */
-  var axisX = 0, speed = 0, docTop = 0, outW = 0, stageH = 0;
+  var axisX = 0, speed = 0, docTop = 0, outW = 0, stageH = 0, beatSec = 1;
   function measure() {
     var w = stage.clientWidth || node.clientWidth || 0;
     stageH = stage.clientHeight || o.height;
@@ -268,6 +268,8 @@ export function initMagicTransform(node, options) {
        A document then keeps going for its own width before it is fully under. */
     speed = Math.max(1, axisX) / Math.max(0.2, o.docDuration);
     docTop = Math.max(0, (stageH - o.docHeight) / 2);
+    /* one beat per document, and a document arrives every pitch/speed seconds */
+    beatSec = Math.max(0.3, (o.docWidth + o.docGap) / speed);
   }
   measure();
 
@@ -323,7 +325,7 @@ export function initMagicTransform(node, options) {
      travel: offset 0.74 would arrive about a fifth of the way through the wall
      clock, so a piece spent four fifths of its life already faded out and the
      stage looked empty between beats. */
-  function throwPiece(i, rand, phase) {
+  function throwPiece(i, rand, phase, lane, lanes) {
     var r = results[i % results.length].cloneNode(true);
     r.style.top = px(Math.round(stageH / 2));
     out.appendChild(r);
@@ -336,12 +338,19 @@ export function initMagicTransform(node, options) {
        under it. */
     var lift = Math.max(12, (stageH / 2 - (r.offsetHeight || 34) / 2 - 6) * 0.78);
 
-    var reach = 0.22 + rand() * 0.78;
+    /* One lane per piece in the beat, centred on the axis. A random dy stacked
+       two pieces on top of each other often enough to look like a bug; lanes
+       cannot, and the fan still reads because the distance is what varies. */
+    var n = Math.max(1, lanes || 1);
+    var dy = n === 1 ? 0 : (((lane + 0.5) / n) - 0.5) * 2 * lift;
+
+    var reach = 0.36 + rand() * 0.64;
     var dx = Math.min(room, o.coreSize * 0.45 + reach * room * o.resultSpread);
-    /* the cone: bunched at the core, spread out at the far end */
-    var dy = (rand() - 0.5) * 2 * reach * lift;
     var rot = (rand() - 0.5) * 9;
-    var life = Math.max(0.4, o.resultLife) * 1000;
+    /* The beat is the ceiling: a piece has to be gone before the next document
+       goes under, or the far side turns into a pile. resultLife is a cap on
+       top of that, not a promise. */
+    var life = Math.max(400, Math.min(o.resultLife, beatSec * 0.92) * 1000);
 
     function at(f, scale, spin) {
       return "translate3d(" + (dx * f).toFixed(1) + "px,calc(" + (dy * f).toFixed(1) +
@@ -403,7 +412,8 @@ export function initMagicTransform(node, options) {
   var thrown = 0;
   function emit(phase) {
     var rand = rng(o.seed + beat * 977 + thrown * 13);
-    for (var i = 0; i < Math.round(o.resultsPerBeat); i++) throwPiece(thrown++, rand, phase);
+    var n = Math.round(o.resultsPerBeat);
+    for (var i = 0; i < n; i++) throwPiece(thrown++, rand, phase, i, n);
     burst(rand);
 
     /* pieces expire on their own; this is only a floor under a tab that was
@@ -490,16 +500,17 @@ export function initMagicTransform(node, options) {
     lane.appendChild(d);
     out.innerHTML = "";
     var rand = rng(o.seed);
-    var n = Math.min(Math.round(o.maxResults), Math.round(o.resultsPerBeat) * 2);
-    for (var i = 0; i < n; i++) throwPiece(i, rand, 0);
+    var n = Math.round(o.resultsPerBeat);
+    for (var i = 0; i < n; i++) throwPiece(i, rand, 0, i, n);
   }
 
-  /* The first frame is already mid-flow: three beats' worth of pieces seeded at
-     different points in their life, so the card - and every thumbnail of it -
-     opens on a fan rather than on an empty right-hand side. */
+  /* The first frame is already mid-flow: one beat's worth of pieces, part-way
+     through their life, so the card - and every thumbnail of it - opens on a
+     fan rather than on an empty right-hand side. One beat, not several: the
+     far side is never meant to hold two bursts at once. */
   function seedOut() {
     out.innerHTML = "";
-    [0.66, 0.38, 0.14].forEach(function (phase) { emit(phase); });
+    emit(0.35);
   }
 
   /* ---------- listeners ---------- */

@@ -72,13 +72,13 @@
     "resultsPerBeat": {
       "type": "number",
       "default": 3,
-      "note": "pieces thrown each time a document goes under the axis"
+      "note": "pieces thrown each time a document goes under the axis; each gets its own lane, so they never stack"
     },
     "resultLife": {
       "type": "number",
       "default": 4,
       "unit": "s",
-      "note": "how long a thrown piece lives - a loop length, not a transition, so an option rather than a token"
+      "note": "the longest a thrown piece may live. It is also capped at 92% of the beat, so a burst is always gone before the next document goes under - a loop length, so an option rather than a token"
     },
     "resultSpread": {
       "type": "number",
@@ -118,9 +118,9 @@
     "classNames / className / style - a vanilla caller styles the element and the documented classes directly.",
     "documents / results as data arrays - passed as [data-mt-doc] and [data-mt-result] template children instead, which keeps the markup copyable without a build step."
   ],
-  "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour, on the Continia tokens. sourceUrl points at the page that describes the idea, for provenance, not at code that was copied. Two brand corrections against the reference: the axis is not the source's purple #7C3AED but var(--navy), and the confetti and the chips on the thrown pieces use the four brand colours only - Tech Blue, Innovation Blue, Smart Green and Performance Purple - where the reference fans out an open palette. The core is Innovation Blue behind Tech Blue, the way round that reads; cyan on cyan does not.",
+  "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour, on the Continia tokens. sourceUrl points at the page that describes the idea, for provenance, not at code that was copied. Two brand corrections against the reference: the axis is not the source's purple #7C3AED but var(--navy), and the confetti and the chips on the thrown pieces use the four brand colours only - Tech Blue, Innovation Blue, Smart Green and Performance Purple - where the reference fans out an open palette. The core tile takes --navy, so it is Tech Blue on a light ground and Innovation Blue on a dark one, and the mark on it is always the opposite - white on the Tech Blue tile, Tech Blue on the cyan one. The hourglass ships as one white SVG and is painted as a mask over the tile's ink rather than kept as a second, recoloured file; the logomark itself is still only ever White or Tech Blue, which is exactly the two values this produces.",
   "blurb": "Documents drift toward a lit axis and slide in under it; the far side throws them back out as small coloured pieces, fanning wider as they travel, with a confetti burst on every beat.",
-  "demo": "<img src=\"../Assets/Hourglass.svg\" data-mt-core alt=\"\">",
+  "demo": "<span data-mt-core class=\"mlmt-mark\" style=\"-webkit-mask-image:url(../Assets/Hourglass.svg);mask-image:url(../Assets/Hourglass.svg)\"></span>",
   "addedAt": "2026-09-25",
   "demoAttrs": {
     "height": 172,
@@ -133,10 +133,10 @@
     "axis": 0.42,
     "core-size": 30,
     "result-count": 4,
-    "results-per-beat": 3,
+    "results-per-beat": 4,
     "result-life": 4.2,
     "result-spread": 0.95,
-    "max-results": 12,
+    "max-results": 8,
     "particles": 10
   }
 }

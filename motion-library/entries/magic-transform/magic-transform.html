@@ -10,7 +10,12 @@
      edge takes it, so it reads as sliding in under the line.
      Every option is also a data-* attribute; see meta.json for the full list. -->
 <div data-ml="magic-transform" data-height="480" data-doc-duration="4">
-  <img data-mt-core src="Assets/Hourglass.svg" alt="">
+  <!-- .mlmt-mark paints the file as a mask over the tile's own ink, so the
+       hourglass is white on the Tech Blue tile in light mode and Tech Blue on
+       the Innovation Blue tile in dark - from the one white SVG. A logo that
+       has to keep its own colours goes in as a plain <img> instead. -->
+  <span data-mt-core class="mlmt-mark"
+        style="-webkit-mask-image:url(Assets/Hourglass.svg);mask-image:url(Assets/Hourglass.svg)"></span>
 </div>
 
 <script type="module" src="motion-library/entries/magic-transform/magic-transform.js"></script>
@@ -18,7 +23,8 @@
 <!-- Real documents and real pieces instead of the procedural ones:
 
 <div data-ml="magic-transform" data-height="480">
-  <img data-mt-core src="Assets/Hourglass.svg" alt="">
+  <span data-mt-core class="mlmt-mark"
+        style="-webkit-mask-image:url(Assets/Hourglass.svg);mask-image:url(Assets/Hourglass.svg)"></span>
 
   <article data-mt-doc>
     <h4>Invoice 2026-0417</h4>
