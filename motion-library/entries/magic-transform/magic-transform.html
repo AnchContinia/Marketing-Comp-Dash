@@ -4,8 +4,10 @@
 
      Everything inside the stage is drawn by the module, so the plain case is a
      single empty div. Children are optional templates, not stage furniture:
-     [data-mt-doc] replaces the procedural documents, [data-mt-result] the rows
-     that come out, and [data-mt-core] is whatever sits on the axis.
+     [data-mt-doc] replaces the procedural documents, [data-mt-result] the
+     pieces thrown out the far side, and [data-mt-core] is whatever sits on the
+     axis. A document is never cut up - it travels on and the lane's clipped
+     edge takes it, so it reads as sliding in under the line.
      Every option is also a data-* attribute; see meta.json for the full list. -->
 <div data-ml="magic-transform" data-height="480" data-doc-duration="4">
   <img data-mt-core src="Assets/Hourglass.svg" alt="">
@@ -13,7 +15,7 @@
 
 <script type="module" src="motion-library/entries/magic-transform/magic-transform.js"></script>
 
-<!-- Real documents and real result rows instead of the procedural ones:
+<!-- Real documents and real pieces instead of the procedural ones:
 
 <div data-ml="magic-transform" data-height="480">
   <img data-mt-core src="Assets/Hourglass.svg" alt="">
@@ -34,7 +36,7 @@
 <script type="module">
   import { initMagicTransform } from "./motion-library/entries/magic-transform/magic-transform.js";
   const mt = initMagicTransform(document.querySelector("#capture-hero"), {
-    height: 520, docDuration: 3.2, particles: 24, maxResults: 5
+    height: 520, docDuration: 3.2, particles: 24, resultsPerBeat: 4, resultLife: 3
   });
   mt.update({ paused: true });   // stop the beat, keep the frame
   mt.destroy();                  // listeners off, rAF cancelled, children restored

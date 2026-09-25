@@ -3,8 +3,8 @@
    motion idea is React Bits Pro's "Magic Transform", none of their code is here.
 
    Everything that travels is a transform written by the module. This file only
-   describes the shape: the stage, the documents, the lit axis, the shred bars,
-   the confetti and the result rows.
+   describes the shape: the stage, the documents, the lit axis, the confetti and
+   the pieces thrown out the far side.
 
    Colour comes from the hub's own tokens, so both themes are handled without a
    second palette here: --navy resolves to Tech Blue in light mode and to
@@ -22,6 +22,7 @@
   --mlmt-line: 2px;
   --mlmt-core: 56px;
   --mlmt-radius: 12px;
+  --mlmt-fade: 26px;                  /* how softly a document dissolves into the axis */
 
   /* The four Continia brand colours, in token form where one exists. Override
      any of them per instance; there is deliberately no fifth. */
@@ -43,6 +44,18 @@
 .mlmt-lane,
 .mlmt-fx,
 .mlmt-out { position: absolute; inset: 0; pointer-events: none; }
+
+/* The lane stops at the axis and is painted under it. A document is not cut up
+   when it arrives - it keeps travelling and this edge takes it, which is what
+   reads as sliding in beneath the line and the core. The mask softens the last
+   few pixels so the edge itself is never visible as an edge. */
+.mlmt-lane {
+  right: auto;
+  width: var(--mlmt-axis);
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - var(--mlmt-fade)), transparent 100%);
+          mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - var(--mlmt-fade)), transparent 100%);
+}
 
 /* ---------- documents ---------- */
 .mlmt-doc {
@@ -151,15 +164,6 @@
   border-radius: 100% 0 0 0;
 }
 
-/* ---------- the shred ---------- */
-.mlmt-shred {
-  position: absolute;
-  border-radius: 2px;
-  background: var(--line2, #cbd5e1);
-  transform-origin: right center;   /* collapses toward the axis, not its own middle */
-  will-change: transform;
-}
-
 /* ---------- confetti ---------- */
 .mlmt-p {
   position: absolute;
@@ -169,24 +173,21 @@
   will-change: transform, opacity;
 }
 
-/* ---------- results ---------- */
+/* ---------- the pieces that come out ----------
+   A free field, not a column: every piece is placed by its own transform, so
+   the fan can widen with distance. overflow:hidden keeps a piece that is still
+   travelling from escaping the card it is previewed in. */
 .mlmt-out {
   left: var(--mlmt-axis);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 8px;
-  padding-left: calc(var(--mlmt-core) * 0.9);
-  padding-right: 12px;
+  overflow: hidden;
 }
 
 .mlmt-res {
-  position: relative;
-  flex: none;
+  position: absolute;
+  left: 0;
   display: flex;
   align-items: center;
   gap: 8px;
-  transform: rotate(var(--mlmt-tilt, 0deg));
   will-change: transform, opacity;
 }
 
@@ -198,12 +199,12 @@
 }
 
 .mlmt-bar {
-  flex: 1 1 auto;
   min-width: 0;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 4px;
+  flex: none;
   height: 34px;
   padding: 0 12px;
   border: 1px solid var(--line, #e3e7ef);
@@ -219,7 +220,7 @@
 
 /* ---------- reduced motion ----------
    Nothing travels and nothing bursts. The module lays out a static frame -
-   one document short of the axis and the result rows already out - so the
+   one document short of the axis and the pieces already spread - so the
    picture still says what the machine does. */
 .mlmt-static .mlmt-core { transition: none; }
 .mlmt-static .mlmt-axis::before { opacity: .6; }
@@ -236,7 +237,7 @@
 .mlmt-sm .mlmt-bar { height: 20px; padding: 0 7px; gap: 3px; border-radius: 6px; }
 .mlmt-sm .mlmt-barline { height: 3px; }
 .mlmt-sm .mlmt-chip { height: 9px; }
-.mlmt-sm .mlmt-out { gap: 5px; padding-right: 8px; }
+.mlmt-sm { --mlmt-fade: 14px; }
 .mlmt-sm .mlmt-doc { padding: 6px; gap: 3px; border-radius: 8px; }
 .mlmt-sm .mlmt-dline { height: 2px; }
 .mlmt-sm .mlmt-dhead { height: 3px; margin-bottom: 2px; }
