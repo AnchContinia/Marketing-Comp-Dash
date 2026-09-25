@@ -8,6 +8,10 @@
   var grid = document.getElementById("ml-grid");
   if (!grid) return;
 
+  /* library.json and each component module are fetched, not <script>-linked, so
+     they need the same ?v= cache-busting every other file here gets. */
+  var MLV = "20260925c";
+
   var countEl = document.getElementById("ml-count"),
       barEl   = document.getElementById("ml-bar"),
       root    = document.documentElement;
@@ -108,6 +112,21 @@
     });
   }
 
+  /* Components: the button drives the module's own pause, and the icon is read
+     back off it so the two can never disagree. */
+  function reelOf(card) {
+    var m = card.querySelector("[data-ml]");
+    return m && m.__mlReel ? m.__mlReel : null;
+  }
+  function syncToggle(card) {
+    var b = card.querySelector(".ml-toggle"), reel = reelOf(card);
+    if (!b || !reel) return;
+    var paused = reel.isPaused();
+    b.innerHTML = '<i class="fa-light fa-' + (paused ? "play" : "pause") + '" aria-hidden="true"></i>';
+    b.setAttribute("aria-label", (paused ? "Play " : "Pause ") +
+                   card.querySelector(".ml-name").textContent);
+  }
+
   /* ---------- cards ---------- */
   function card(e) {
     var badges =
@@ -122,9 +141,13 @@
     return '<article class="ml-card" data-slug="' + esc(e.slug) + '" data-source="' + esc(e.source) +
            '" data-category="' + esc(e.category) + '" data-cls="' + esc(e["class"]) + '">' +
       '<div class="ml-stage">' +
-        (e.kind === "component" ? "" :
-          '<button type="button" class="ml-replay" aria-label="Replay ' + esc(e.name) + '">' +
-          '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>') +
+        /* a component runs its own JS: nothing to restart, so it gets a
+           play/pause toggle where an animation gets replay */
+        (e.kind === "component"
+          ? '<button type="button" class="ml-replay ml-toggle" aria-label="Pause ' + esc(e.name) + '">' +
+            '<i class="fa-light fa-pause" aria-hidden="true"></i></button>'
+          : '<button type="button" class="ml-replay" aria-label="Replay ' + esc(e.name) + '">' +
+            '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>') +
         /* a component mounts itself onto data-ml; an animation is a class */
         (e.kind === "component"
           ? '<div data-ml="' + esc(e.slug) + '">' + (e.demo || "") + "</div>"
@@ -185,7 +208,7 @@
   }
 
   /* ---------- boot ---------- */
-  fetch("library.json").then(function (r) {
+  fetch("library.json?v=" + MLV).then(function (r) {
     if (!r.ok) throw new Error("library.json " + r.status);
     return r.json();
   }).then(function (entries) {
@@ -194,6 +217,12 @@
     apply();
 
     grid.addEventListener("click", function (e) {
+      var t = e.target.closest(".ml-toggle");
+      if (t) {
+        var card = t.closest(".ml-card"), reel = reelOf(card);
+        if (reel) { reel.toggle(); syncToggle(card); }
+        return;
+      }
       var b = e.target.closest(".ml-replay");
       if (b) replay(b.closest(".ml-stage"));
     });
@@ -214,8 +243,9 @@
        [data-ml="<slug>"]. Import each one once, after the cards exist. A
        failure is reported on the card rather than left as an empty stage. */
     entries.filter(function (e) { return e.kind === "component"; }).forEach(function (e) {
-      import("./entries/" + e.slug + "/" + e.slug + ".js").then(function (m) {
+      import("./entries/" + e.slug + "/" + e.slug + ".js?v=" + MLV).then(function (m) {
         if (m.mountAll) m.mountAll(grid);
+        [].forEach.call(grid.querySelectorAll(".ml-card.is-component"), syncToggle);
       }).catch(function (err) {
         var stage = grid.querySelector('.ml-card[data-slug="' + e.slug + '"] .ml-stage');
         if (stage) stage.innerHTML = '<p class="ml-blurb">Could not load ' + esc(e.slug) +

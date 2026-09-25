@@ -156,8 +156,13 @@ A component **is** previewed on the Video page — `gen-motion-previews.js` need
 like any other entry, plus an `attrs` object holding the preview's own `data-*` (the card stage is a
 third of a grid row, so the reel runs two short rows there, not three tall ones). It is **filtered
 out** of `gen-motion-dist.js`, because the bundle is CSS only, which is why `dist/` still says 49.
-`dashboard.js` renders a component card without a replay button or `ml-paused`, leaves it out of
-Play-all and the speed classes, and dynamically imports its module after the cards exist.
+`dashboard.js` renders a component card with a **play/pause toggle** instead of replay, leaves it
+out of `ml-paused` and the speed classes, and dynamically imports its module after the cards exist;
+the module exposes `isPaused()` / `toggle()` so the button reads its state rather than tracking it.
+Both pages fetch the module and `library.json`, so both carry a `MLV` constant doing the `?v=` job
+a `<script>` tag would — bump it with the rest. A component's `demo` in `meta.json` should not
+depend on particular images: the reel's is a row of numbered `.mlrg-card` boxes, which read in
+both themes because they are drawn in `--panel` / `--line` / `--navy`.
 
 **`base/base-animations.css` is the only file written by hand.** Everything under `entries/`
 and `library.json` is generated from it:

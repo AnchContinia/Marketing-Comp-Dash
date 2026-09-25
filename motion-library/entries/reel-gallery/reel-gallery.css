@@ -111,3 +111,32 @@
 }
 :root[data-motion="reduced"] .mlrg-tilt { transform: none; }
 :root[data-motion="reduced"] .mlrg-spot { display: none; }
+
+/* ---------- demo furniture ----------
+   Not part of the component. The gallery card and the Video-page preview show
+   numbered cards rather than stills, so the effect reads on any background and
+   the entry carries no image dependency. In production the children are
+   whatever you put there — see reel-gallery.html for the usual <img> case.
+
+   The colours come from the hub's own tokens, which already flip with the
+   theme: in light mode the number is Tech Blue on the panel, in dark mode the
+   same token resolves to Innovation Blue. The fallbacks only matter if the
+   file is used without dashboard.css. */
+/* scoped to the item, because `.mlrg-item > *` above is more specific than a
+   bare class and would otherwise win on display and sizing */
+.mlrg-item > .mlrg-card {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  width: auto;
+  aspect-ratio: 3 / 4;
+  border: 1px solid var(--line, #e6e9ef);
+  border-radius: var(--mlrg-radius);
+  background: var(--panel, #fff);
+  color: var(--navy, #052975);
+  font-weight: 850;
+  font-size: calc(var(--mlrg-h) * 0.28);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .01em;
+}

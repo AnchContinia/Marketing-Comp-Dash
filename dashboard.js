@@ -2144,9 +2144,13 @@ if(contentIdeasList){
         '" data-slug="'+esc(m.slug)+'" data-find="'+
         esc((m.name+" "+m.category+" "+m.feel+" "+m.useFor).toLowerCase())+'">'+
       '<div class="mvp-stage">'+
-        /* a component runs its own JS: there is no class to restart, so no replay button */
-        (comp?"":'<button type="button" class="mvp-replay" aria-label="Replay '+esc(m.name)+'">'+
-          '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>')+
+        /* a component runs its own JS: nothing to restart, so it gets a
+           play/pause toggle where a CSS entry gets replay */
+        (comp
+          ? '<button type="button" class="mvp-replay mvp-toggle" aria-label="Pause '+esc(m.name)+'">'+
+            '<i class="fa-light fa-pause" aria-hidden="true"></i></button>'
+          : '<button type="button" class="mvp-replay" aria-label="Replay '+esc(m.name)+'">'+
+            '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>')+
         (comp
           ? '<div class="mvp-mount" data-ml="'+esc(m.slug)+'"'+attrs(m)+">"+m.demo+"</div>"
           : '<div class="ml-'+esc(m.slug)+' ml-paused" data-anim="ml-'+esc(m.slug)+'">'+m.demo+"</div>")+
@@ -2186,9 +2190,28 @@ if(contentIdeasList){
     '<button type="button" class="mvp-all" id="mvp-all">'+
       '<i class="fa-light fa-play" aria-hidden="true"></i>Play all</button>';
 
+  /* Reflects a component's own state onto the card's button, so the icon can
+     never disagree with what the reel is doing. */
+  function syncToggle(card){
+    var b=card.querySelector(".mvp-toggle"), reel=reelOf(card);
+    if(!b||!reel) return;
+    var paused=reel.isPaused();
+    b.innerHTML='<i class="fa-light fa-'+(paused?"play":"pause")+'" aria-hidden="true"></i>';
+    b.setAttribute("aria-label",(paused?"Play ":"Pause ")+card.querySelector(".mvp-name").textContent);
+  }
+  function reelOf(card){
+    var m=card.querySelector(".mvp-mount");
+    return m&&m.__mlReel?m.__mlReel:null;
+  }
+
   function replay(card){
     var el=card.querySelector("[data-anim]");
-    if(!el) return;                 /* a component has none - it never replays */
+    if(!el){
+      /* a component has no class to restart; "play" means take it off pause */
+      var reel=reelOf(card);
+      if(reel){ reel.update({paused:false}); syncToggle(card); }
+      return;
+    }
     var cls=el.getAttribute("data-anim");
     el.classList.remove(cls,"ml-paused");
     void el.offsetWidth;            /* forced reflow - the only way to restart a CSS animation */
@@ -2246,6 +2269,12 @@ if(contentIdeasList){
 
   /* ---------- replay + copy ---------- */
   grid.addEventListener("click",function(e){
+    var t=e.target.closest(".mvp-toggle");
+    if(t){
+      var card=t.closest(".mvp-card"), reel=reelOf(card);
+      if(reel){ reel.toggle(); syncToggle(card); }
+      return;
+    }
     var r=e.target.closest(".mvp-replay");
     if(r){ replay(r.closest(".mvp-card")); return; }
     var c=e.target.closest(".mvp-copy");
@@ -2294,9 +2323,11 @@ if(contentIdeasList){
      prefix is derived rather than assumed so a sub-folder page still resolves */
   var segs=location.pathname.split("/").filter(Boolean); segs.pop();
   var BASE=(segs.pop()||"")==="motion-library"?"../":"";
+  var MLV="20260925c";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
-    import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js").then(function(mod){
+    import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
+      [].forEach.call(grid.querySelectorAll(".mvp-card.is-component"),syncToggle);
     }).catch(function(err){
       var st=grid.querySelector('.mvp-card[data-slug="'+m.slug+'"] .mvp-stage');
       if(st) st.innerHTML='<p class="mvp-empty">Could not load '+esc(m.slug)+".js ("+esc(err.message)+").</p>";

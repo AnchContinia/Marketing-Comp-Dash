@@ -303,6 +303,7 @@ export function initReelGallery(el, options) {
     io.observe(el);
   }
 
+  if (o.paused) el.classList.add("is-paused");
   if (reduced) {
     /* Static frame: the rows are laid out and readable, nothing drifts. Drag
        still works, because that is the reader asking for movement. */
@@ -318,16 +319,21 @@ export function initReelGallery(el, options) {
       el.style.setProperty("--mlrg-gray", String(o.grayscale));
       el.style.setProperty("--mlrg-focus", px(o.focusRadius));
       el.style.setProperty("--mlrg-tilt", o.tilt + "deg");
+      el.classList.toggle("is-paused", !!o.paused);
       kick();
       return api;
     },
+    /* so a host can label its own play/pause control without tracking state */
+    isPaused: function () { return !!o.paused; },
+    toggle: function () { return api.update({ paused: !o.paused }); },
     destroy: function () {
       if (raf) cancelAnimationFrame(raf);
       raf = 0; running = false;
       listeners.forEach(function (l) { l[0].removeEventListener(l[1], l[2], l[3]); });
       listeners.length = 0;
       if (io) io.disconnect();
-      el.classList.remove("mlrg", "mlrg-int", "mlrg-nospot", "mlrg-static", "is-lit", "is-drag");
+      el.classList.remove("mlrg", "mlrg-int", "mlrg-nospot", "mlrg-static",
+                          "is-lit", "is-drag", "is-paused");
       el.innerHTML = "";
       source.forEach(function (node) { el.appendChild(node); });
       delete el.__mlReel;

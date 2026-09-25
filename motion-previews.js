@@ -651,13 +651,14 @@ window.MOTION_PREVIEWS = [
     "feel": "Three tilted rows of stills drift sideways at different speeds. Everything sits desaturated until the cursor passes over it, and colour comes back in a soft circle that follows the pointer.",
     "useFor": "A wall of work. A showreel opener, a partner page, an end card that has to say 'there is a lot of this' without playing any of it. It is the one effect here that is a component rather than a class, so it carries its own JS.",
     "prompt": "Build a reel gallery: three rows of images, each row a horizontal strip drifting sideways forever at about 26px per second, neighbouring rows running in opposite directions and at slightly different speeds so they never line up. Rotate the whole stack -8deg and scale it 1.12 so the rotated corners stay covered, and drop the outer rows about 18px lower than the middle one so the set arches. Fade the left and right edges out over 72px with a mask so images enter and leave instead of being cut. Each image is 116px tall with a 12px radius and 14px between them. Desaturate everything and restore full colour in a 170px circle that follows the cursor. The wheel, a drag and the arrow keys all push the rows, with inertia that settles at 0.94 per frame. Transitions on the chrome run 250ms with cubic-bezier(0.2, 0, 0, 1). Under prefers-reduced-motion: no drift, no tilt, no spotlight - the rows sit level and still, and only dragging moves them.",
-    "demo": "<img src=\"Assets/Youtube%20images/2025%20R2%20-%20Release%20video_Thumbnail.jpg\" alt=\"2025 R2 release video\"><img src=\"Assets/Youtube%20images/Continia%20suite%20video_Youtube%20thumbnail_2025.jpg\" alt=\"The Continia suite\"><img src=\"Assets/Youtube%20images/Finance%2060%20sec_Thumbnail.jpg\" alt=\"Continia Finance in 60 seconds\"><img src=\"Assets/Youtube%20images/LinkedIn_German%20webinar_Line%20recognition%20AI%20%2B%20YT_Thumbnail%202.jpg\" alt=\"Line recognition AI webinar\"><img src=\"Assets/Youtube%20images/LinkedIn_German%20webinar_Line%20recognition%20AI%20%2B%20YT_Thumbnail.jpg\" alt=\"Line recognition AI webinar, German\"><img src=\"Assets/Youtube%20images/Release%20webinars_YT%20thumbnails_2026_General_BA.jpg\" alt=\"2026 release webinar, Continia Banking\">",
+    "demo": "<span class=\"mlrg-card\">01</span><span class=\"mlrg-card\">02</span><span class=\"mlrg-card\">03</span><span class=\"mlrg-card\">04</span><span class=\"mlrg-card\">05</span><span class=\"mlrg-card\">06</span><span class=\"mlrg-card\">07</span><span class=\"mlrg-card\">08</span>",
     "attrs": {
       "rows": 2,
       "row-height": 74,
       "arch": 10,
       "fade": 56,
-      "focus-radius": 130
+      "focus-radius": 130,
+      "speed": 44
     },
     "loops": true,
     "reducedMotion": "No drift and no tilt - the rows sit level and still, and the spotlight is removed. Dragging still works, because that is the reader asking for movement rather than the page deciding."
