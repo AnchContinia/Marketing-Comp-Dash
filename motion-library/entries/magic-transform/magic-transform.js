@@ -327,16 +327,24 @@ export function initMagicTransform(node, options) {
      stage looked empty between beats. */
   function throwPiece(i, rand, phase, lane, lanes) {
     var r = results[i % results.length].cloneNode(true);
-    r.style.top = px(Math.round(stageH / 2));
-    out.appendChild(r);
+    /* Two elements, because they need two curves. The holder carries the throw
+       - the travel and the tilt, fast then settling - and the piece inside it
+       carries only the scale and the fade, on a gentler curve over a longer
+       span. In one transform string they would share an easing, and the scale
+       finished inside the first 40ms: a pop rather than something growing as
+       it flies out. */
+    var hold = el("div", "mlmt-throw");
+    hold.style.top = px(Math.round(stageH / 2));
+    hold.appendChild(r);
+    out.appendChild(hold);
 
     /* measure once, then stay inside the stage: a piece that flies past the
        right edge is clipped, which looks like a dropped frame */
-    var room = Math.max(24, outW - (r.offsetWidth || 160) - 10);
+    var room = Math.max(24, outW - (hold.offsetWidth || 160) - 10);
     /* 0.78 of the half-height, not all of it: a host draws its own play/pause
        control in the top-right of the stage, and a piece at full lift lands
        under it. */
-    var lift = Math.max(12, (stageH / 2 - (r.offsetHeight || 34) / 2 - 6) * 0.78);
+    var lift = Math.max(12, (stageH / 2 - (hold.offsetHeight || 34) / 2 - 6) * 0.78);
 
     /* One lane per piece in the beat, centred on the axis. A random dy stacked
        two pieces on top of each other often enough to look like a bug; lanes
@@ -352,26 +360,40 @@ export function initMagicTransform(node, options) {
        top of that, not a promise. */
     var life = Math.max(400, Math.min(o.resultLife, beatSec * 0.92) * 1000);
 
-    function at(f, scale, spin) {
+    function at(f, spin) {
       return "translate3d(" + (dx * f).toFixed(1) + "px,calc(" + (dy * f).toFixed(1) +
-        "px - 50%),0) scale(" + scale + ") rotate(" + (rot * spin).toFixed(2) + "deg)";
+        "px - 50%),0) rotate(" + (rot * spin).toFixed(2) + "deg)";
     }
-    var a = play(r, [
-      { offset: 0,    transform: at(0, ".5", 0),      opacity: 0, easing: ease.out },
-      { offset: 0.10, transform: at(0.45, "1", 0.45), opacity: 1, easing: ease.out },
-      { offset: 0.40, transform: at(1, "1", 1),       opacity: 1, easing: "linear" },
-      { offset: 0.75, transform: at(1.06, "1", 1.1),  opacity: 1, easing: ease.standard },
-      { offset: 1,    transform: at(1.16, ".95", 1.3), opacity: 0 }
+    var a = play(hold, [
+      { offset: 0,    transform: at(0, 0),       easing: ease.out },
+      { offset: 0.10, transform: at(0.45, 0.45), easing: ease.out },
+      { offset: 0.40, transform: at(1, 1),       easing: "linear" },
+      { offset: 0.75, transform: at(1.06, 1.1),  easing: ease.standard },
+      { offset: 1,    transform: at(1.16, 1.3) }
+    ], { duration: life, easing: "linear", fill: "forwards" });
+
+    /* The scale runs over the first fifth rather than the first tenth, from
+       0.74 rather than 0.5, on the standard curve rather than expo - a smaller
+       distance over twice the time on a gentler ease. It is still growing while
+       the holder is still travelling, which is the point. */
+    var b = play(r, [
+      { offset: 0,    transform: "scale(.74)", opacity: 0, easing: ease.standard },
+      { offset: 0.22, transform: "scale(1)",   opacity: 1, easing: "linear" },
+      { offset: 0.78, transform: "scale(1)",   opacity: 1, easing: ease.standard },
+      { offset: 1,    transform: "scale(.94)", opacity: 0 }
     ], { duration: life, easing: "linear", fill: "forwards" });
 
     if (a) {
       /* seeding the first frame: a piece dropped in part-way through its life,
          so the stage opens mid-flow instead of with an empty right-hand side */
-      if (phase) { try { a.currentTime = life * phase; } catch (e) {} }
-      a.addEventListener("finish", function () { r.remove(); });
+      if (phase) {
+        try { a.currentTime = life * phase; } catch (e) {}
+        try { if (b) b.currentTime = life * phase; } catch (e) {}
+      }
+      a.addEventListener("finish", function () { hold.remove(); });
     } else {
       /* no WAAPI (reduced motion, or a test env): park it where it would land */
-      r.style.transform = at(1, "1", 1);
+      hold.style.transform = at(1, 1);
     }
     return r;
   }

@@ -212,9 +212,15 @@ html[data-theme="dark"] .mlmt-core { color: #052975; }
   overflow: hidden;
 }
 
-.mlmt-res {
+/* The holder flies; the piece inside it scales and fades. Two elements so the
+   two can carry different easings - in one transform string they share one. */
+.mlmt-throw {
   position: absolute;
   left: 0;
+  will-change: transform;
+}
+
+.mlmt-res {
   display: flex;
   align-items: center;
   gap: 8px;
