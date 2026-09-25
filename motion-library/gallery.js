@@ -128,6 +128,16 @@
   }
 
   /* ---------- cards ---------- */
+  /* A component's own defaults are for a full-width stage; this card is a third
+     of a grid row. meta.json -> demoAttrs carries the preview sizing, and the
+     Video page reads the same object. */
+  function demoAttrs(e) {
+    if (!e.demoAttrs) return "";
+    return Object.keys(e.demoAttrs).map(function (k) {
+      return ' data-' + esc(k) + '="' + esc(e.demoAttrs[k]) + '"';
+    }).join("");
+  }
+
   function card(e) {
     var badges =
       '<span class="ml-b src-' + esc(e.source) + '">' +
@@ -150,7 +160,7 @@
             '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>') +
         /* a component mounts itself onto data-ml; an animation is a class */
         (e.kind === "component"
-          ? '<div data-ml="' + esc(e.slug) + '">' + (e.demo || "") + "</div>"
+          ? '<div data-ml="' + esc(e.slug) + '"' + demoAttrs(e) + ">" + (e.demo || "") + "</div>"
           : '<div class="ml-' + esc(e.slug) + '" data-anim="ml-' + esc(e.slug) + '">' + (e.demo || "") + "</div>") +
       "</div>" +
       '<div class="ml-head"><div class="ml-name">' + esc(e.name) + "</div>" +

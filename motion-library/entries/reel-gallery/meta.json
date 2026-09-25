@@ -125,5 +125,13 @@
   "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour, on the Continia tokens. sourceUrl points at the page that describes the idea, for provenance, not at code that was copied.",
   "blurb": "Tilted rows of images drifting sideways, with wheel, drag and arrow-key control, inertia, and a spotlight that restores colour under the cursor.",
   "demo": "<span class=\"mlrg-card\">01</span><span class=\"mlrg-card\">02</span><span class=\"mlrg-card\">03</span><span class=\"mlrg-card\">04</span><span class=\"mlrg-card\">05</span><span class=\"mlrg-card\">06</span><span class=\"mlrg-card\">07</span><span class=\"mlrg-card\">08</span>",
-  "addedAt": "2026-09-25"
+  "addedAt": "2026-09-25",
+  "demoAttrs": {
+    "rows": 2,
+    "row-height": 74,
+    "arch": 10,
+    "fade": 56,
+    "focus-radius": 130,
+    "speed": 44
+  }
 }

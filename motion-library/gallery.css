@@ -40,7 +40,11 @@
   background:var(--canvas);border-bottom:1px solid var(--line);overflow:hidden}
 /* A component is not a 132px thumbnail - give it room and let it bleed to
    the card edges, the way it would sit in a real section. */
-.ml-card.is-component .ml-stage{height:auto;min-height:232px;padding:0;display:block}
+/* A component mounts itself and sizes its own stage. Without the width clamp
+   the reel laid out at its content width (1616px) inside a 350px card, so the
+   right-hand mask fade fell off-screen and the rows bled past the border. */
+.ml-card.is-component .ml-stage{height:172px;padding:0;display:block}
+.ml-card.is-component .ml-stage>[data-ml]{display:block;width:100%;height:100%;max-width:100%}
 .ml-card.is-component .ml-stage>[data-ml]{width:100%}
 
 .ml-replay{position:absolute;top:8px;right:8px;z-index:2;width:28px;height:28px;border:1px solid var(--line);

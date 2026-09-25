@@ -153,8 +153,12 @@ of `gen-motion-entries.js`; the generator only validates the four files and copi
 `library.json`. A component is an ES module exporting `initReelGallery`-style `init…(el, options)`
 → `{el, update, destroy}` plus `mountAll(root)`, and it mounts itself onto `[data-ml="<slug>"]`.
 A component **is** previewed on the Video page — `gen-motion-previews.js` needs a `COPY` row for it
-like any other entry, plus an `attrs` object holding the preview's own `data-*` (the card stage is a
-third of a grid row, so the reel runs two short rows there, not three tall ones). It is **filtered
+like any other entry. Its preview sizing lives in `meta.json → demoAttrs` and is written onto the
+mount as `data-*` by **both** hosts, so the gallery card and the Video card can never be sized
+differently (the reel runs two short rows on a card, not the three tall ones its defaults give a
+full-width stage). Both hosts must also clamp the mount to `width:100%;height:100%;max-width:100%`
+— the shared stage rules shrink-wrap their child, and without the clamp the reel laid out at its
+1616px content width inside a 350px card. It is **filtered
 out** of `gen-motion-dist.js`, because the bundle is CSS only, which is why `dist/` still says 49.
 `dashboard.js` renders a component card with a **play/pause toggle** instead of replay, leaves it
 out of `ml-paused` and the speed classes, and dynamically imports its module after the cards exist;
