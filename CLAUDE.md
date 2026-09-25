@@ -160,7 +160,11 @@ out** of `gen-motion-dist.js`, because the bundle is CSS only, which is why `dis
 out of `ml-paused` and the speed classes, and dynamically imports its module after the cards exist;
 the module exposes `isPaused()` / `toggle()` so the button reads its state rather than tracking it.
 Both pages fetch the module and `library.json`, so both carry a `MLV` constant doing the `?v=` job
-a `<script>` tag would — bump it with the rest. A component's `demo` in `meta.json` should not
+a `<script>` tag would — bump it with the rest. **A dynamic `import()` specifier must start with
+`./`, `../` or `/`**; anything else is a bare specifier and the browser refuses to resolve it
+without an import map. `BASE` is therefore `"./"` on a root page, not `""`. This shipped broken
+once: jsdom can stub the import away, so only a real browser catches it. A component card that
+renders empty is this bug until proven otherwise — open the console. A component's `demo` in `meta.json` should not
 depend on particular images: the reel's is a row of numbered `.mlrg-card` boxes, which read in
 both themes because they are drawn in `--panel` / `--line` / `--navy`.
 
@@ -226,6 +230,15 @@ served over http** — `python3 -m http.server 8000`, then `/motion-library/`. O
 
 Work on it through the **`continia-motion-library` skill** (modes: setup, translate, add-base,
 audit). The React Bits reference clone lives outside the repo at `~/refs/react-bits`.
+
+**jsdom is not enough for this page.** It does no layout and resolves modules through Node, so it
+passed a bare import specifier, a mount that overflowed its stage and a button painted under the
+reel — all three only showed up in Chrome. Drive the real browser for anything visual:
+`npm i puppeteer-core` in the scratchpad, point `executablePath` at
+`/Applications/Google Chrome.app/Contents/MacOS/Google Chrome`, seed
+`sessionStorage["continia-auth"]="1"` with `evaluateOnNewDocument` (the pages redirect to
+`login.html` without it), and read `getComputedStyle` rather than `getBoundingClientRect` — the
+reel's rects are rotated and scaled, so a correct 55×74 item measures 73×91.
 
 ## Box styling rule (no left-accent bars)
 

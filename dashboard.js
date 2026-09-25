@@ -813,7 +813,7 @@ if(contentIdeasList){
     field.map(function(c){ return '<option value="'+esc(c.name)+'">'+esc(c.name)+'</option>'; }).join("");
   mount.innerHTML=
     '<div class="cg-hero">'+
-      '<video class="cg-hero-bg brief-bg" autoplay muted loop playsinline poster="./Dashboard_images_export.jpg">'+
+      '<video class="cg-hero-bg brief-bg" autoplay muted loop playsinline poster="./Assets/Dashboard_images_export.jpg">'+
         '<source src="./Assets/Video for claude banner - Rezied - 200_WEB.mp4" type="video/mp4">'+
         '<source src="./Assets/Video for claude banner - Rezied - 200_WEB.webm" type="video/webm">'+
       '</video>'+
@@ -2321,16 +2321,26 @@ if(contentIdeasList){
      reported on its own stage instead of leaving an empty box. */
   /* the previews only render on video.html, which is at the repo root, but the
      prefix is derived rather than assumed so a sub-folder page still resolves */
-  var segs=location.pathname.split("/").filter(Boolean); segs.pop();
-  var BASE=(segs.pop()||"")==="motion-library"?"../":"";
-  var MLV="20260925c";        /* same cache-busting job the <script> ?v= does */
+  var segs=location.pathname.split("/").filter(Boolean);
+  if(!/\/$/.test(location.pathname)) segs.pop();   /* only a filename comes off */
+  /* "./" is not decoration: a specifier that does not start with ./ ../ or /
+     is a bare specifier, and the browser refuses to resolve it without an
+     import map. Dropping it cost a release - the card rendered empty. */
+  var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
+  var MLV="20260925d";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
       [].forEach.call(grid.querySelectorAll(".mvp-card.is-component"),syncToggle);
     }).catch(function(err){
-      var st=grid.querySelector('.mvp-card[data-slug="'+m.slug+'"] .mvp-stage');
-      if(st) st.innerHTML='<p class="mvp-empty">Could not load '+esc(m.slug)+".js ("+esc(err.message)+").</p>";
+      /* replace the mount, not the stage - the stage also holds the card's
+         play/pause button, and wiping it hid the only clue something failed */
+      var card=grid.querySelector('.mvp-card[data-slug="'+m.slug+'"]');
+      if(!card) return;
+      var mt=card.querySelector(".mvp-mount");
+      if(mt) mt.innerHTML='<p class="mvp-empty">Could not load '+esc(m.slug)+".js ("+esc(err.message)+").</p>";
+      var b=card.querySelector(".mvp-toggle");
+      if(b){ b.disabled=true; b.setAttribute("aria-label","Unavailable"); }
     });
   });
 })();
@@ -3048,7 +3058,11 @@ if(contentIdeasList){
      prefixed, and a bare "index.html" would otherwise match the Home page. The
      gallery is no longer a nav group - it is reached from the Motion library
      section on the Video page - so on that page no group is marked current. */
-  var segs=location.pathname.split("/").filter(Boolean); segs.pop();
+  /* Only drop a trailing filename. "/motion-library/" has none, and popping
+     blindly took the folder off instead - BASE came back "" and the brand logo
+     404-ed at motion-library/Assets/Hourglass.svg. */
+  var segs=location.pathname.split("/").filter(Boolean);
+  if(!/\/$/.test(location.pathname)) segs.pop();
   var BASE="", dir=segs.pop()||"";
   if(dir==="motion-library"){ BASE="../"; path="motion-library/index.html"; }
   function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}

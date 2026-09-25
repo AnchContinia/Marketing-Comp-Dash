@@ -1033,7 +1033,7 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
   background:var(--canvas);border-bottom:1px solid var(--line);overflow:hidden}
 .mvp-stage>div{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
   text-align:center;max-width:100%}
-.mvp-replay{position:absolute;top:9px;right:9px;width:28px;height:28px;border:1px solid var(--line);
+.mvp-replay{position:absolute;top:9px;right:9px;z-index:2;width:28px;height:28px;border:1px solid var(--line);
   border-radius:8px;background:var(--paper);color:var(--muted);font-size:11px;cursor:pointer;
   display:grid;place-items:center;transition:var(--motion-duration-fast) var(--motion-ease-standard)}
 .mvp-replay:hover{color:var(--navy);border-color:var(--line2)}
@@ -1078,7 +1078,9 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
 /* A component mounts itself and sizes its own stage; the grid's centring and
    padding would only fight it, so the stage gets out of the way. */
 .mvp-card.is-component .mvp-stage{padding:0;display:block}
-.mvp-card.is-component .mvp-stage>.mvp-mount{display:block;max-width:none;height:100%}
+/* the shared .mvp-stage>div rule centres and shrink-wraps; a mount fills the
+   stage instead, and clips its own overflow */
+.mvp-card.is-component .mvp-stage>.mvp-mount{display:block;width:100%;height:100%;max-width:100%}
 
 @media(max-width:1280px){.mvp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.mvp-grid{grid-template-columns:1fr;padding-left:14px;padding-right:14px}

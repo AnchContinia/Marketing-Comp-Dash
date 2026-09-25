@@ -43,7 +43,7 @@
 .ml-card.is-component .ml-stage{height:auto;min-height:232px;padding:0;display:block}
 .ml-card.is-component .ml-stage>[data-ml]{width:100%}
 
-.ml-replay{position:absolute;top:8px;right:8px;width:28px;height:28px;border:1px solid var(--line);
+.ml-replay{position:absolute;top:8px;right:8px;z-index:2;width:28px;height:28px;border:1px solid var(--line);
   border-radius:8px;background:var(--paper);color:var(--muted);font-size:11px;cursor:pointer;
   display:grid;place-items:center;transition:var(--motion-duration-fast) var(--motion-ease-standard)}
 .ml-replay:hover{color:var(--navy);border-color:var(--line2)}

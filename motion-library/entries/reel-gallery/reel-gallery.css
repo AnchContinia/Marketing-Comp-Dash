@@ -46,15 +46,17 @@
 
 .mlrg-strip {
   display: flex;
+  align-items: flex-start;       /* default stretch would fight the fixed row height */
   width: max-content;
   will-change: transform;
   backface-visibility: hidden;
 }
-.mlrg-run { display: flex; }
+.mlrg-run { display: flex; align-items: flex-start; }
 
 .mlrg-item {
   flex: none;
   height: var(--mlrg-h);
+  align-self: flex-start;
   margin-right: var(--mlrg-gap);
   border-radius: var(--mlrg-radius);
   overflow: hidden;
