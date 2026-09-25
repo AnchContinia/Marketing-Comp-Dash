@@ -1,6 +1,7 @@
 {
   "slug": "bounce-in",
   "name": "Bounce In",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

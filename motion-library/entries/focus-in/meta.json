@@ -1,6 +1,7 @@
 {
   "slug": "focus-in",
   "name": "Focus In",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

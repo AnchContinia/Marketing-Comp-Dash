@@ -1,0 +1,129 @@
+{
+  "slug": "reel-gallery",
+  "name": "Reel Gallery",
+  "kind": "component",
+  "source": "continia",
+  "sourceUrl": "https://pro.reactbits.dev/docs/components/reel-gallery",
+  "license": "Continia internal",
+  "category": "ui",
+  "class": "js",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-base",
+    "--motion-ease-standard"
+  ],
+  "options": {
+    "rows": {
+      "type": "number",
+      "default": 3
+    },
+    "rowHeight": {
+      "type": "number",
+      "default": 116,
+      "unit": "px"
+    },
+    "rowGap": {
+      "type": "number",
+      "default": 14,
+      "unit": "px"
+    },
+    "itemGap": {
+      "type": "number",
+      "default": 14,
+      "unit": "px"
+    },
+    "radius": {
+      "type": "number",
+      "default": 12,
+      "unit": "px"
+    },
+    "speed": {
+      "type": "number",
+      "default": 26,
+      "unit": "px/s",
+      "note": "ambient loop speed - an option, not a token"
+    },
+    "speedVariance": {
+      "type": "number",
+      "default": 0.35
+    },
+    "autoScroll": {
+      "type": "boolean",
+      "default": true
+    },
+    "direction": {
+      "type": "string",
+      "default": "alternate",
+      "values": [
+        "alternate",
+        "left",
+        "right"
+      ]
+    },
+    "interactive": {
+      "type": "boolean",
+      "default": true
+    },
+    "wheelSensitivity": {
+      "type": "number",
+      "default": 0.7
+    },
+    "dragSensitivity": {
+      "type": "number",
+      "default": 1
+    },
+    "inertia": {
+      "type": "boolean",
+      "default": true
+    },
+    "damping": {
+      "type": "number",
+      "default": 0.94,
+      "note": "per frame at 60fps, rescaled for other refresh rates"
+    },
+    "tilt": {
+      "type": "number",
+      "default": -8,
+      "unit": "deg"
+    },
+    "arch": {
+      "type": "number",
+      "default": 18,
+      "unit": "px"
+    },
+    "fade": {
+      "type": "number",
+      "default": 72,
+      "unit": "px"
+    },
+    "grayscale": {
+      "type": "number",
+      "default": 1
+    },
+    "focusRadius": {
+      "type": "number",
+      "default": 170,
+      "unit": "px"
+    },
+    "focusStrength": {
+      "type": "number",
+      "default": 1
+    },
+    "paused": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "reducedMotion": "No drift and no tilt - the rows sit level and still, and the spotlight is removed. Dragging still works, because that is the reader asking for movement rather than the page deciding.",
+  "notPorted": [
+    "maxAspect / minAspect - items keep their own aspect ratio and are cropped to the row height instead of being clamped to a range.",
+    "brightness / dim - the spotlight reveals the untouched image rather than over-brightening it; a brightened copy reads as a blown-out photo on the hub's light theme.",
+    "taper - rows are not narrowed toward the edges; the soft mask edge (fade) does that job with one gradient instead of per-row width maths.",
+    "dpr - a WebGL concern. This is DOM and CSS transforms, so there is no canvas to scale.",
+    "className / children - the element itself is the component and its children are the reel, so neither is a prop here."
+  ],
+  "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour, on the Continia tokens. sourceUrl points at the page that describes the idea, for provenance, not at code that was copied.",
+  "blurb": "Tilted rows of images drifting sideways, with wheel, drag and arrow-key control, inertia, and a spotlight that restores colour under the cursor.",
+  "demo": "<img src=\"../Assets/Youtube%20images/2025%20R2%20-%20Release%20video_Thumbnail.jpg\" alt=\"2025 R2 release video\"><img src=\"../Assets/Youtube%20images/Continia%20suite%20video_Youtube%20thumbnail_2025.jpg\" alt=\"The Continia suite\"><img src=\"../Assets/Youtube%20images/Finance%2060%20sec_Thumbnail.jpg\" alt=\"Continia Finance in 60 seconds\"><img src=\"../Assets/Youtube%20images/LinkedIn_German%20webinar_Line%20recognition%20AI%20%2B%20YT_Thumbnail%202.jpg\" alt=\"Line recognition AI webinar\"><img src=\"../Assets/Youtube%20images/LinkedIn_German%20webinar_Line%20recognition%20AI%20%2B%20YT_Thumbnail.jpg\" alt=\"Line recognition AI webinar, German\"><img src=\"../Assets/Youtube%20images/Release%20webinars_YT%20thumbnails_2026_General_BA.jpg\" alt=\"2026 release webinar, Continia Banking\">",
+  "addedAt": "2026-09-25"
+}

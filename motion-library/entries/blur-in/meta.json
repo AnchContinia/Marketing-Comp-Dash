@@ -1,6 +1,7 @@
 {
   "slug": "blur-in",
   "name": "Blur In",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

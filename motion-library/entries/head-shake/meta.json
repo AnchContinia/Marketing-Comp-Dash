@@ -1,6 +1,7 @@
 {
   "slug": "head-shake",
   "name": "Head Shake",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

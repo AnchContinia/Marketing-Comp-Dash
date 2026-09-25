@@ -1,6 +1,7 @@
 {
   "slug": "slide-in-right",
   "name": "Slide In Right",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

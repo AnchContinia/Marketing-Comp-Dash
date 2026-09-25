@@ -1,6 +1,7 @@
 {
   "slug": "tada",
   "name": "Tada",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

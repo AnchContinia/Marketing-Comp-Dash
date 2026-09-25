@@ -1,6 +1,7 @@
 {
   "slug": "rotate-in",
   "name": "Rotate In",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

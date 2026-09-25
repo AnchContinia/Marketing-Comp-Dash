@@ -1,6 +1,7 @@
 {
   "slug": "pulse",
   "name": "Pulse",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

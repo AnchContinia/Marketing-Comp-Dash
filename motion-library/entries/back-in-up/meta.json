@@ -1,6 +1,7 @@
 {
   "slug": "back-in-up",
   "name": "Back In Up",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

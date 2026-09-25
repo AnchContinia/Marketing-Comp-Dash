@@ -1,0 +1,113 @@
+/* Continia Motion Library — Reel Gallery
+   Requires tokens/motion-tokens.css. Built from scratch on those tokens; the
+   motion idea is React Bits Pro's "Reel Gallery", none of their code is here.
+
+   Everything that moves is a transform on .mlrg-strip, written by the module.
+   This file only describes the shape: the tilt, the arch, the soft edges and
+   the spotlight. */
+
+.mlrg {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  touch-action: pan-y;                     /* let the page scroll; we take the sideways drag */
+  --mlrg-radius: 12px;
+  --mlrg-gap: 14px;
+  --mlrg-h: 116px;
+  --mlrg-fade: 72px;
+  --mlrg-gray: 1;
+  --mlrg-focus: 170px;
+  --mlrg-tilt: -8deg;
+  --mlrg-x: 50%;
+  --mlrg-y: 50%;
+}
+.mlrg-int { cursor: grab; }
+.mlrg-int.is-drag { cursor: grabbing; }
+.mlrg-int:focus-visible { outline: 2px solid var(--motion-focus-ring, currentColor); outline-offset: 3px; }
+
+.mlrg-view {
+  position: relative;
+  /* the soft left and right edge, so items enter and leave instead of being cut */
+  -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 var(--mlrg-fade),
+                      #000 calc(100% - var(--mlrg-fade)), transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0, #000 var(--mlrg-fade),
+                      #000 calc(100% - var(--mlrg-fade)), transparent 100%);
+}
+
+.mlrg-tilt {
+  display: flex;
+  flex-direction: column;
+  transform: rotate(var(--mlrg-tilt)) scale(1.12);   /* the scale hides the corners the rotation exposes */
+  transform-origin: center;
+  will-change: transform;
+}
+
+.mlrg-row { overflow: hidden; height: var(--mlrg-h); }
+
+.mlrg-strip {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+.mlrg-run { display: flex; }
+
+.mlrg-item {
+  flex: none;
+  height: var(--mlrg-h);
+  margin-right: var(--mlrg-gap);
+  border-radius: var(--mlrg-radius);
+  overflow: hidden;
+  background: var(--panel, #f2f4f8);
+}
+.mlrg-item > * {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* ---------- spotlight ----------
+   One element over the whole stack: it desaturates what is behind it and
+   carries a hole at the cursor, so the lit image is the untouched original.
+   A filter on every item would do the same thing at N times the cost. */
+.mlrg-spot {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--motion-duration-base) var(--motion-ease-standard);
+  -webkit-backdrop-filter: grayscale(var(--mlrg-gray));
+          backdrop-filter: grayscale(var(--mlrg-gray));
+  -webkit-mask-image: radial-gradient(circle var(--mlrg-focus) at var(--mlrg-x) var(--mlrg-y),
+                      transparent 0, transparent 40%, #000 100%);
+          mask-image: radial-gradient(circle var(--mlrg-focus) at var(--mlrg-x) var(--mlrg-y),
+                      transparent 0, transparent 40%, #000 100%);
+}
+.mlrg.is-lit .mlrg-spot { opacity: 1; }
+
+/* No backdrop-filter: desaturate the lot and skip the spotlight rather than
+   ship a dead element. The filter sits on each item, not on .mlrg-tilt — a
+   filter on an ancestor cannot be undone by a child, so hovering an item
+   inside a greyed-out wrapper would reveal nothing. */
+.mlrg-nospot .mlrg-item {
+  filter: grayscale(var(--mlrg-gray));
+  transition: filter var(--motion-duration-base) var(--motion-ease-standard);
+}
+.mlrg-nospot .mlrg-item:hover { filter: grayscale(0); }
+
+/* ---------- reduced motion ----------
+   Nothing drifts. The rows are laid out and readable, the tilt flattens so the
+   whole set is level, and the spotlight does not follow anything. Dragging
+   still works: that is the reader asking for movement, not the page deciding. */
+.mlrg-static .mlrg-tilt { transform: none; }
+.mlrg-static .mlrg-spot { display: none; }
+.mlrg-static .mlrg-row { height: auto; min-height: var(--mlrg-h); }
+
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mlrg-tilt { transform: none; }
+  :root:not([data-motion="full"]) .mlrg-spot { display: none; }
+}
+:root[data-motion="reduced"] .mlrg-tilt { transform: none; }
+:root[data-motion="reduced"] .mlrg-spot { display: none; }

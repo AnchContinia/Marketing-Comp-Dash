@@ -297,7 +297,12 @@ function demoFor(slug, name) {
   return '<span class="mvp-lower"><b>' + name + '</b><i>Continia · Marketing</i></span>';
 }
 
-var out = lib.map(function (e) {
+/* Component entries (the Reel Gallery) are not previewed on the Video page:
+   the stage there replays a CSS class and scales it with ml-slow/ml-slower,
+   and neither means anything to a JS component. They live in the gallery. */
+var anims = lib.filter(function (e) { return e.kind !== "component"; });
+
+var out = anims.map(function (e) {
   var c = COPY[e.slug];
   if (!c) { console.error("No video-facing copy for " + e.slug); process.exit(1); }
   return {
@@ -309,7 +314,7 @@ var out = lib.map(function (e) {
   };
 });
 var extra = Object.keys(COPY).filter(function (k) {
-  return !lib.some(function (e) { return e.slug === k; });
+  return !anims.some(function (e) { return e.slug === k; });
 });
 if (extra.length) { console.error("Copy written for slugs not in library.json: " + extra); process.exit(1); }
 

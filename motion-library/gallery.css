@@ -38,6 +38,11 @@
 .ml-card.hide{display:none}
 .ml-stage{position:relative;height:132px;display:grid;place-items:center;padding:14px;
   background:var(--canvas);border-bottom:1px solid var(--line);overflow:hidden}
+/* A component is not a 132px thumbnail - give it room and let it bleed to
+   the card edges, the way it would sit in a real section. */
+.ml-card.is-component .ml-stage{height:auto;min-height:232px;padding:0;display:block}
+.ml-card.is-component .ml-stage>[data-ml]{width:100%}
+
 .ml-replay{position:absolute;top:8px;right:8px;width:28px;height:28px;border:1px solid var(--line);
   border-radius:8px;background:var(--paper);color:var(--muted);font-size:11px;cursor:pointer;
   display:grid;place-items:center;transition:var(--motion-duration-fast) var(--motion-ease-standard)}

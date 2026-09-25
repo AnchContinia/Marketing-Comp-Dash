@@ -1,6 +1,7 @@
 {
   "slug": "rubber-band",
   "name": "Rubber Band",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

@@ -12,7 +12,9 @@ var DIST = path.join(ML, "dist");
 
 var tokens = fs.readFileSync(path.join(ML, "tokens", "motion-tokens.css"), "utf8");
 var base = fs.readFileSync(path.join(ML, "base", "base-animations.css"), "utf8");
-var lib = JSON.parse(fs.readFileSync(path.join(ML, "library.json"), "utf8"));
+var lib = JSON.parse(fs.readFileSync(path.join(ML, "library.json"), "utf8"))
+  /* the bundle is stylesheet-only; a JS component cannot travel in a .css file */
+  .filter(function (e) { return e.kind !== "component"; });
 
 /* the bundle must not depend on anything the hub happens to define */
 ["@import", "url("].forEach(function (bad) {

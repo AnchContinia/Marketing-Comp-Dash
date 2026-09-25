@@ -1,6 +1,7 @@
 {
   "slug": "light-speed-in",
   "name": "Light Speed In",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

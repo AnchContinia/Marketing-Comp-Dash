@@ -1,6 +1,7 @@
 {
   "slug": "heart-beat",
   "name": "Heart Beat",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

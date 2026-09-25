@@ -1,6 +1,7 @@
 {
   "slug": "slide-in-left",
   "name": "Slide In Left",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

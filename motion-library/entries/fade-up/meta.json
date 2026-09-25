@@ -1,6 +1,7 @@
 {
   "slug": "fade-up",
   "name": "Fade Up",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

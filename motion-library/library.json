@@ -2,6 +2,7 @@
   {
     "slug": "back-in-up",
     "name": "Back In Up",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -47,6 +48,7 @@
   {
     "slug": "blur-in",
     "name": "Blur In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -91,6 +93,7 @@
   {
     "slug": "bounce-in",
     "name": "Bounce In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -136,6 +139,7 @@
   {
     "slug": "fade-down",
     "name": "Fade Down",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -180,6 +184,7 @@
   {
     "slug": "fade-in",
     "name": "Fade In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -223,6 +228,7 @@
   {
     "slug": "fade-up",
     "name": "Fade Up",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -267,6 +273,7 @@
   {
     "slug": "flip-in-x",
     "name": "Flip In X",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -311,6 +318,7 @@
   {
     "slug": "flip-in-y",
     "name": "Flip In Y",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -355,6 +363,7 @@
   {
     "slug": "light-speed-in",
     "name": "Light Speed In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -400,6 +409,7 @@
   {
     "slug": "puff-in",
     "name": "Puff In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -444,6 +454,7 @@
   {
     "slug": "reveal-up",
     "name": "Reveal Up",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -488,6 +499,7 @@
   {
     "slug": "roll-in",
     "name": "Roll In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -533,6 +545,7 @@
   {
     "slug": "rotate-in",
     "name": "Rotate In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -577,6 +590,7 @@
   {
     "slug": "scale-in",
     "name": "Scale In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -620,6 +634,7 @@
   {
     "slug": "slide-in-blurred",
     "name": "Slide In Blurred",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -665,6 +680,7 @@
   {
     "slug": "slide-in-left",
     "name": "Slide In Left",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -709,6 +725,7 @@
   {
     "slug": "slide-in-right",
     "name": "Slide In Right",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -753,6 +770,7 @@
   {
     "slug": "swirl-in",
     "name": "Swirl In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -797,6 +815,7 @@
   {
     "slug": "tilt-in",
     "name": "Tilt In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -841,6 +860,7 @@
   {
     "slug": "zoom-in",
     "name": "Zoom In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -884,6 +904,7 @@
   {
     "slug": "back-out-down",
     "name": "Back Out Down",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -929,6 +950,7 @@
   {
     "slug": "blur-out",
     "name": "Blur Out",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -974,6 +996,7 @@
   {
     "slug": "fade-out",
     "name": "Fade Out",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1019,6 +1042,7 @@
   {
     "slug": "flip-out-x",
     "name": "Flip Out X",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1063,6 +1087,7 @@
   {
     "slug": "puff-out",
     "name": "Puff Out",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1107,6 +1132,7 @@
   {
     "slug": "roll-out",
     "name": "Roll Out",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1152,6 +1178,7 @@
   {
     "slug": "scale-out",
     "name": "Scale Out",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1197,6 +1224,7 @@
   {
     "slug": "slide-out-left",
     "name": "Slide Out Left",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1243,6 +1271,7 @@
   {
     "slug": "slide-out-right",
     "name": "Slide Out Right",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1289,6 +1318,7 @@
   {
     "slug": "zoom-out",
     "name": "Zoom Out",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1334,6 +1364,7 @@
   {
     "slug": "bounce",
     "name": "Bounce",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1381,6 +1412,7 @@
   {
     "slug": "head-shake",
     "name": "Head Shake",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1427,6 +1459,7 @@
   {
     "slug": "heart-beat",
     "name": "Heart Beat",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1472,6 +1505,7 @@
   {
     "slug": "jello",
     "name": "Jello",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1517,6 +1551,7 @@
   {
     "slug": "rubber-band",
     "name": "Rubber Band",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1562,6 +1597,7 @@
   {
     "slug": "shake-x",
     "name": "Shake X",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1608,6 +1644,7 @@
   {
     "slug": "swing",
     "name": "Swing",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1653,6 +1690,7 @@
   {
     "slug": "tada",
     "name": "Tada",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1698,6 +1736,7 @@
   {
     "slug": "vibrate",
     "name": "Vibrate",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1742,6 +1781,7 @@
   {
     "slug": "wobble",
     "name": "Wobble",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1787,6 +1827,7 @@
   {
     "slug": "focus-in",
     "name": "Focus In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1831,6 +1872,7 @@
   {
     "slug": "text-pop-up",
     "name": "Text Pop Up",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1876,6 +1918,7 @@
   {
     "slug": "tracking-in",
     "name": "Tracking In",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1920,6 +1963,7 @@
   {
     "slug": "tracking-out",
     "name": "Tracking Out",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -1965,6 +2009,7 @@
   {
     "slug": "bg-pan",
     "name": "Background Pan",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -2009,6 +2054,7 @@
   {
     "slug": "flicker",
     "name": "Flicker",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -2053,6 +2099,7 @@
   {
     "slug": "ken-burns",
     "name": "Ken Burns",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -2097,6 +2144,7 @@
   {
     "slug": "pulse",
     "name": "Pulse",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -2141,6 +2189,7 @@
   {
     "slug": "shimmer",
     "name": "Shimmer",
+    "kind": "animation",
     "source": "continia",
     "sourceUrl": "",
     "license": "Continia internal",
@@ -2181,5 +2230,134 @@
     "blurb": "A loading placeholder sweep. Use it while real content is on its way, never as decoration.",
     "demo": "<span class=\"mlp-skel\"></span>",
     "addedAt": "2026-09-24"
+  },
+  {
+    "slug": "reel-gallery",
+    "name": "Reel Gallery",
+    "kind": "component",
+    "source": "continia",
+    "sourceUrl": "https://pro.reactbits.dev/docs/components/reel-gallery",
+    "license": "Continia internal",
+    "category": "ui",
+    "class": "js",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-base",
+      "--motion-ease-standard"
+    ],
+    "options": {
+      "rows": {
+        "type": "number",
+        "default": 3
+      },
+      "rowHeight": {
+        "type": "number",
+        "default": 116,
+        "unit": "px"
+      },
+      "rowGap": {
+        "type": "number",
+        "default": 14,
+        "unit": "px"
+      },
+      "itemGap": {
+        "type": "number",
+        "default": 14,
+        "unit": "px"
+      },
+      "radius": {
+        "type": "number",
+        "default": 12,
+        "unit": "px"
+      },
+      "speed": {
+        "type": "number",
+        "default": 26,
+        "unit": "px/s",
+        "note": "ambient loop speed - an option, not a token"
+      },
+      "speedVariance": {
+        "type": "number",
+        "default": 0.35
+      },
+      "autoScroll": {
+        "type": "boolean",
+        "default": true
+      },
+      "direction": {
+        "type": "string",
+        "default": "alternate",
+        "values": [
+          "alternate",
+          "left",
+          "right"
+        ]
+      },
+      "interactive": {
+        "type": "boolean",
+        "default": true
+      },
+      "wheelSensitivity": {
+        "type": "number",
+        "default": 0.7
+      },
+      "dragSensitivity": {
+        "type": "number",
+        "default": 1
+      },
+      "inertia": {
+        "type": "boolean",
+        "default": true
+      },
+      "damping": {
+        "type": "number",
+        "default": 0.94,
+        "note": "per frame at 60fps, rescaled for other refresh rates"
+      },
+      "tilt": {
+        "type": "number",
+        "default": -8,
+        "unit": "deg"
+      },
+      "arch": {
+        "type": "number",
+        "default": 18,
+        "unit": "px"
+      },
+      "fade": {
+        "type": "number",
+        "default": 72,
+        "unit": "px"
+      },
+      "grayscale": {
+        "type": "number",
+        "default": 1
+      },
+      "focusRadius": {
+        "type": "number",
+        "default": 170,
+        "unit": "px"
+      },
+      "focusStrength": {
+        "type": "number",
+        "default": 1
+      },
+      "paused": {
+        "type": "boolean",
+        "default": false
+      }
+    },
+    "reducedMotion": "No drift and no tilt - the rows sit level and still, and the spotlight is removed. Dragging still works, because that is the reader asking for movement rather than the page deciding.",
+    "notPorted": [
+      "maxAspect / minAspect - items keep their own aspect ratio and are cropped to the row height instead of being clamped to a range.",
+      "brightness / dim - the spotlight reveals the untouched image rather than over-brightening it; a brightened copy reads as a blown-out photo on the hub's light theme.",
+      "taper - rows are not narrowed toward the edges; the soft mask edge (fade) does that job with one gradient instead of per-row width maths.",
+      "dpr - a WebGL concern. This is DOM and CSS transforms, so there is no canvas to scale.",
+      "className / children - the element itself is the component and its children are the reel, so neither is a prop here."
+    ],
+    "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour, on the Continia tokens. sourceUrl points at the page that describes the idea, for provenance, not at code that was copied.",
+    "blurb": "Tilted rows of images drifting sideways, with wheel, drag and arrow-key control, inertia, and a spotlight that restores colour under the cursor.",
+    "demo": "<img src=\"../Assets/Youtube%20images/2025%20R2%20-%20Release%20video_Thumbnail.jpg\" alt=\"2025 R2 release video\"><img src=\"../Assets/Youtube%20images/Continia%20suite%20video_Youtube%20thumbnail_2025.jpg\" alt=\"The Continia suite\"><img src=\"../Assets/Youtube%20images/Finance%2060%20sec_Thumbnail.jpg\" alt=\"Continia Finance in 60 seconds\"><img src=\"../Assets/Youtube%20images/LinkedIn_German%20webinar_Line%20recognition%20AI%20%2B%20YT_Thumbnail%202.jpg\" alt=\"Line recognition AI webinar\"><img src=\"../Assets/Youtube%20images/LinkedIn_German%20webinar_Line%20recognition%20AI%20%2B%20YT_Thumbnail.jpg\" alt=\"Line recognition AI webinar, German\"><img src=\"../Assets/Youtube%20images/Release%20webinars_YT%20thumbnails_2026_General_BA.jpg\" alt=\"2026 release webinar, Continia Banking\">",
+    "addedAt": "2026-09-25"
   }
 ]

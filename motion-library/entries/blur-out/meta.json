@@ -1,6 +1,7 @@
 {
   "slug": "blur-out",
   "name": "Blur Out",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

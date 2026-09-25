@@ -1,6 +1,7 @@
 {
   "slug": "slide-in-blurred",
   "name": "Slide In Blurred",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

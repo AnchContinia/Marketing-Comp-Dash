@@ -1,6 +1,7 @@
 {
   "slug": "text-pop-up",
   "name": "Text Pop Up",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

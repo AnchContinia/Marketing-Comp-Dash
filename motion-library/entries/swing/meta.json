@@ -1,6 +1,7 @@
 {
   "slug": "swing",
   "name": "Swing",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

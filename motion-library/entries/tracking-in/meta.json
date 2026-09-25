@@ -1,6 +1,7 @@
 {
   "slug": "tracking-in",
   "name": "Tracking In",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

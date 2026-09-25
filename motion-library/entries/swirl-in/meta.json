@@ -1,6 +1,7 @@
 {
   "slug": "swirl-in",
   "name": "Swirl In",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

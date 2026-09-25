@@ -87,7 +87,8 @@
       card.classList.toggle("hide", !ok);
       if (ok) shown++;
     });
-    countEl.textContent = shown + (shown === 1 ? " animation" : " animations");
+    /* "entries", not "animations" — a component card is in here too */
+    countEl.textContent = shown + (shown === 1 ? " entry" : " entries");
   }
 
   /* ---------- previews ----------
@@ -121,9 +122,13 @@
     return '<article class="ml-card" data-slug="' + esc(e.slug) + '" data-source="' + esc(e.source) +
            '" data-category="' + esc(e.category) + '" data-cls="' + esc(e["class"]) + '">' +
       '<div class="ml-stage">' +
-        '<button type="button" class="ml-replay" aria-label="Replay ' + esc(e.name) + '">' +
-          '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>' +
-        '<div class="ml-' + esc(e.slug) + '" data-anim="ml-' + esc(e.slug) + '">' + (e.demo || "") + "</div>" +
+        (e.kind === "component" ? "" :
+          '<button type="button" class="ml-replay" aria-label="Replay ' + esc(e.name) + '">' +
+          '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>') +
+        /* a component mounts itself onto data-ml; an animation is a class */
+        (e.kind === "component"
+          ? '<div data-ml="' + esc(e.slug) + '">' + (e.demo || "") + "</div>"
+          : '<div class="ml-' + esc(e.slug) + '" data-anim="ml-' + esc(e.slug) + '">' + (e.demo || "") + "</div>") +
       "</div>" +
       '<div class="ml-head"><div class="ml-name">' + esc(e.name) + "</div>" +
         '<div class="ml-badges">' + badges + "</div></div>" +
@@ -198,20 +203,40 @@
     var cards = [].slice.call(grid.children);
     cards.forEach(function (c, i) {
       var el = c.querySelector("[data-anim]");
-      if (el) el.classList.add("ml-paused");
+      /* A component runs its own JS; ml-paused would do nothing to it, and the
+         replay button has no class to toggle, so neither is wired up. */
+      if (el && entries[i].kind !== "component") el.classList.add("ml-paused");
+      if (entries[i].kind === "component") c.classList.add("is-component");
       loadCode(c, entries[i]);
+    });
+
+    /* Component entries are ES modules that mount themselves onto
+       [data-ml="<slug>"]. Import each one once, after the cards exist. A
+       failure is reported on the card rather than left as an empty stage. */
+    entries.filter(function (e) { return e.kind === "component"; }).forEach(function (e) {
+      import("./entries/" + e.slug + "/" + e.slug + ".js").then(function (m) {
+        if (m.mountAll) m.mountAll(grid);
+      }).catch(function (err) {
+        var stage = grid.querySelector('.ml-card[data-slug="' + e.slug + '"] .ml-stage');
+        if (stage) stage.innerHTML = '<p class="ml-blurb">Could not load ' + esc(e.slug) +
+          ".js (" + esc(err.message) + ") — serve the folder over http.</p>";
+      });
     });
     if ("IntersectionObserver" in window) {
       var io = new IntersectionObserver(function (es) {
         es.forEach(function (x) {
           if (!x.isIntersecting) return;
-          x.target.querySelector("[data-anim]").classList.remove("ml-paused");
+          var a = x.target.querySelector("[data-anim]");
+          if (a) a.classList.remove("ml-paused");
           io.unobserve(x.target);
         });
       }, { threshold: 0.25 });
       cards.forEach(function (c) { io.observe(c); });
     } else {
-      cards.forEach(function (c) { c.querySelector("[data-anim]").classList.remove("ml-paused"); });
+      cards.forEach(function (c) {
+        var a = c.querySelector("[data-anim]");
+        if (a) a.classList.remove("ml-paused");
+      });
     }
   }).catch(function (err) {
     grid.innerHTML = '<p class="ml-blurb">Could not load library.json (' + esc(err.message) +

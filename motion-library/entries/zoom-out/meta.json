@@ -1,6 +1,7 @@
 {
   "slug": "zoom-out",
   "name": "Zoom Out",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

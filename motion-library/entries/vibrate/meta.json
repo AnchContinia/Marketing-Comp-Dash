@@ -1,6 +1,7 @@
 {
   "slug": "vibrate",
   "name": "Vibrate",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

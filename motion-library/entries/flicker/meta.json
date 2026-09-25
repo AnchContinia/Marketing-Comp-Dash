@@ -1,6 +1,7 @@
 {
   "slug": "flicker",
   "name": "Flicker",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

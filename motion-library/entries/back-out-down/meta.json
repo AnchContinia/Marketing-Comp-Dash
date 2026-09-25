@@ -1,6 +1,7 @@
 {
   "slug": "back-out-down",
   "name": "Back Out Down",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

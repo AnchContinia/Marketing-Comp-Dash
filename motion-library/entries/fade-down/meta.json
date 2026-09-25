@@ -1,6 +1,7 @@
 {
   "slug": "fade-down",
   "name": "Fade Down",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

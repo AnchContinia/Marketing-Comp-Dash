@@ -1,6 +1,7 @@
 {
   "slug": "shake-x",
   "name": "Shake X",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

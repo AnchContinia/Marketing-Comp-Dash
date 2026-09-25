@@ -1,6 +1,7 @@
 {
   "slug": "slide-out-left",
   "name": "Slide Out Left",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

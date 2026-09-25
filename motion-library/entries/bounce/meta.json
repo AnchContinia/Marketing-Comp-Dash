@@ -1,6 +1,7 @@
 {
   "slug": "bounce",
   "name": "Bounce",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

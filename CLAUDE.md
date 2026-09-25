@@ -144,6 +144,16 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
+Plus **one component** (`reel-gallery`, category `ui`), so `library.json` holds 50 entries.
+
+**Two kinds of entry**, told apart by `meta.json → kind`. `"animation"` is a CSS class generated
+from `base-animations.css` — never hand-edit those files. `"component"` is a JS module written by
+hand (`<slug>.html` + `.css` + `.js` + `meta.json`), listed in the `COMPONENTS` array at the foot
+of `gen-motion-entries.js`; the generator only validates the four files and copies the meta into
+`library.json`. A component is an ES module exporting `initReelGallery`-style `init…(el, options)`
+→ `{el, update, destroy}` plus `mountAll(root)`, and it mounts itself onto `[data-ml="<slug>"]`.
+Components are **filtered out** of `gen-motion-previews.js` (the video page previews CSS classes)
+and of `gen-motion-dist.js` (the bundle is CSS only), which is why both still say 49.
 
 **`base/base-animations.css` is the only file written by hand.** Everything under `entries/`
 and `library.json` is generated from it:
@@ -186,6 +196,11 @@ here: a keyframe written against their per-animation constants would not respect
 scale, and re-deriving it on the tokens is the whole point.
 React Bits components get *translated* to vanilla, keeping `source`, `sourceUrl` and `license`
 in their `meta.json` (MIT + Commons Clause: fine for Continia's own sites, not for resale).
+**React Bits *Pro* is different** — its source is paid and gated, and §2.4 of its licence forbids
+putting it in a repository or making it available to third parties. This repo is public and ships
+`dist/` as a reusable bundle, so no Pro source may enter it. A Pro idea is rebuilt from scratch on
+our tokens, `source` stays `"continia"`, `sourceUrl` points at the docs page for provenance only,
+and the reasoning goes in `meta.json → brandNotes` (see `entries/reel-gallery/`).
 
 **Reduced motion is not optional.** The tokens collapse durations and distances; loops have to
 switch themselves off explicitly. The gallery's toggle sets `data-motion="reduced"` / `"full"`

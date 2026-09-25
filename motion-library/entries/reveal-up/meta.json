@@ -1,6 +1,7 @@
 {
   "slug": "reveal-up",
   "name": "Reveal Up",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

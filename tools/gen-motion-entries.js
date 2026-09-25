@@ -212,7 +212,8 @@ Object.keys(META).forEach(function (slug) {
   fs.writeFileSync(path.join(dir, slug + ".html"), html);
 
   var meta = {
-    slug: slug, name: e.name, source: "continia", sourceUrl: "",
+    slug: slug, name: e.name, kind: "animation",
+    source: "continia", sourceUrl: "",
     license: "Continia internal", category: e.cat, "class": "css",
     dependencies: [], tokens: css,
     options: {
@@ -234,15 +235,32 @@ Object.keys(META).forEach(function (slug) {
   lib.push(meta); made++;
 });
 
-/* an entry folder with no META row is a leftover - say so rather than leaving it
-   in the tree where the gallery will not list it */
-fs.readdirSync(path.join(ML, "entries")).forEach(function (d) {
-  if (!META[d]) console.error("WARNING: entries/" + d + " has no META row - orphaned");
+/* Component entries are hand-written - a JS component cannot be extracted from
+   a keyframe - so their files are left alone and only their meta.json is read
+   into library.json. They are listed here so an orphan is still an error. */
+var COMPONENTS = ["reel-gallery"];
+COMPONENTS.forEach(function (slug) {
+  var f = path.join(ML, "entries", slug, "meta.json");
+  if (!fs.existsSync(f)) { console.error("Component entry " + slug + " has no meta.json"); process.exit(1); }
+  var m = JSON.parse(fs.readFileSync(f, "utf8"));
+  if (m.kind !== "component") { console.error(slug + "/meta.json must carry kind: \"component\""); process.exit(1); }
+  ["html", "css", "js"].forEach(function (ext) {
+    if (!fs.existsSync(path.join(ML, "entries", slug, slug + "." + ext))) {
+      console.error("Component entry " + slug + " is missing " + slug + "." + ext); process.exit(1);
+    }
+  });
+  lib.push(m);
 });
 
-var order = { entrance: 0, exit: 1, attention: 2, text: 3, ambient: 4 };
+/* an entry folder with neither a META row nor a COMPONENTS row is a leftover -
+   say so rather than leaving it in the tree where the gallery will not list it */
+fs.readdirSync(path.join(ML, "entries")).forEach(function (d) {
+  if (!META[d] && COMPONENTS.indexOf(d) < 0) console.error("WARNING: entries/" + d + " has no META row - orphaned");
+});
+
+var order = { entrance: 0, exit: 1, attention: 2, text: 3, ambient: 4, ui: 5 };
 lib.sort(function (a, b) {
   return (order[a.category] - order[b.category]) || a.name.localeCompare(b.name);
 });
 fs.writeFileSync(path.join(ML, "library.json"), JSON.stringify(lib, null, 2) + "\n");
-console.log("entries: " + made + "  ·  library.json: " + lib.length);
+console.log("entries: " + made + " generated + " + COMPONENTS.length + " component  ·  library.json: " + lib.length);

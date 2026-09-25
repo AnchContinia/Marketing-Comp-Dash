@@ -1,6 +1,7 @@
 {
   "slug": "puff-out",
   "name": "Puff Out",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

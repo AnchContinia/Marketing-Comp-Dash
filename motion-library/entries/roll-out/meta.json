@@ -1,6 +1,7 @@
 {
   "slug": "roll-out",
   "name": "Roll Out",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

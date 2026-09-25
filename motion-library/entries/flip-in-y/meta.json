@@ -1,6 +1,7 @@
 {
   "slug": "flip-in-y",
   "name": "Flip In Y",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",

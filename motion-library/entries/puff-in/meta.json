@@ -1,6 +1,7 @@
 {
   "slug": "puff-in",
   "name": "Puff In",
+  "kind": "animation",
   "source": "continia",
   "sourceUrl": "",
   "license": "Continia internal",
