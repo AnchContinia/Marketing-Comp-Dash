@@ -1010,7 +1010,18 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
   transition:var(--motion-duration-fast) var(--motion-ease-standard)}
 .mvp-s:hover{color:var(--ink);border-color:var(--navy)}
 .mvp-s.on{background:var(--navy);border-color:var(--navy);color:#fff}
-.mvp-all{margin-left:auto;display:inline-flex;align-items:center;gap:8px;border:1px solid var(--navy);
+/* Search sits in front of Play all and pushes it to the right edge. */
+.mvp-search{margin-left:auto;display:inline-flex;align-items:center;gap:7px;
+  border:1px solid var(--line2);border-radius:999px;background:var(--paper);padding:0 12px;height:30px;
+  transition:var(--motion-duration-fast) var(--motion-ease-standard)}
+.mvp-search:focus-within{border-color:var(--navy)}
+.mvp-search i{font-size:11px;color:var(--muted)}
+.mvp-search input{width:150px;border:0;background:none;font:inherit;font-size:12px;font-weight:700;
+  color:var(--ink);outline:none;padding:0}
+.mvp-search input::placeholder{color:var(--muted);font-weight:700}
+.mvp-search input::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none}
+.mvp-empty{grid-column:1/-1;margin:0;padding:26px 2px;text-align:center;font-size:12.5px;color:var(--muted)}
+.mvp-all{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--navy);
   background:var(--navy);color:#fff;border-radius:999px;padding:6px 14px;font:inherit;font-size:11.5px;
   font-weight:800;cursor:pointer;transition:var(--motion-duration-fast) var(--motion-ease-standard)}
 .mvp-all:hover{opacity:.88}
@@ -1064,14 +1075,21 @@ html[data-theme="dark"] .mod-stamp .ms-src{color:var(--cyan)}
   background:linear-gradient(135deg,#052975,#983eae 55%,#5f9e8d)}
 .mvp-plate.bare{background:none}
 
+/* A component mounts itself and sizes its own stage; the grid's centring and
+   padding would only fight it, so the stage gets out of the way. */
+.mvp-card.is-component .mvp-stage{padding:0;display:block}
+.mvp-card.is-component .mvp-stage>.mvp-mount{display:block;max-width:none;height:100%}
+
 @media(max-width:1280px){.mvp-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:760px){.mvp-grid{grid-template-columns:1fr;padding-left:14px;padding-right:14px}
-  .mvp-all{margin-left:0}}
+  .mvp-search{margin-left:0;flex:1 1 100%}
+  .mvp-search input{width:100%}}
 html[data-theme="dark"] .mvp-name,html[data-theme="dark"] .mvp-lower b,
 html[data-theme="dark"] .mvp-title,html[data-theme="dark"] .mvp-live{color:#fff}
 html[data-theme="dark"] .mvp-f.on{background:#8ff8ff;border-color:#8ff8ff;color:#052975}
 html[data-theme="dark"] .mvp-all{background:#8ff8ff;border-color:#8ff8ff;color:#052975}
 html[data-theme="dark"] .mvp-copy:hover{color:var(--cyan)}
+html[data-theme="dark"] .mvp-search:focus-within{border-color:#8ff8ff}
 
 /* ----- 3rd party tools: four cards on one row, each ending in a compliance
    accordion. Uniform 1px borders, tiles at 15px, palette only. ----- */

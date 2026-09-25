@@ -272,6 +272,19 @@ var COPY = {
     feel: "A brand gradient drifts across the element, never repeating a hard edge.",
     useFor: "A backdrop behind a title, or an end card. The gradient is the four Continia colours - do not substitute others.",
     prompt: "Pan a gradient across this: background linear-gradient(90deg, #052975, #983eae, #5f9e8d, #8ff8ff, #052975) at background-size 300% 100%, animating background-position from 0% 50% to 300% 50% over 8s linear, looping forever. Those four colours are Tech Blue, Performance Purple, Smart Green and Innovation Blue - use no others. Stop it under prefers-reduced-motion."
+  },
+
+  /* ---------- components ---------- */
+  "reel-gallery": {
+    loops: true,
+    /* The gallery gives a component a full-width stage; the Video page gives it
+       one third of a grid row. Two shorter rows fit the 172px stage the CSS
+       cards share, so the component does not stretch the row it sits in.
+       These are preview settings only - the defaults are in meta.json. */
+    attrs: { rows: 2, "row-height": 74, arch: 10, fade: 56, "focus-radius": 130 },
+    feel: "Three tilted rows of stills drift sideways at different speeds. Everything sits desaturated until the cursor passes over it, and colour comes back in a soft circle that follows the pointer.",
+    useFor: "A wall of work. A showreel opener, a partner page, an end card that has to say 'there is a lot of this' without playing any of it. It is the one effect here that is a component rather than a class, so it carries its own JS.",
+    prompt: "Build a reel gallery: three rows of images, each row a horizontal strip drifting sideways forever at about 26px per second, neighbouring rows running in opposite directions and at slightly different speeds so they never line up. Rotate the whole stack -8deg and scale it 1.12 so the rotated corners stay covered, and drop the outer rows about 18px lower than the middle one so the set arches. Fade the left and right edges out over 72px with a mask so images enter and leave instead of being cut. Each image is 116px tall with a 12px radius and 14px between them. Desaturate everything and restore full colour in a 170px circle that follows the cursor. The wheel, a drag and the arrow keys all push the rows, with inertia that settles at 0.94 per frame. Transitions on the chrome run 250ms with cubic-bezier(0.2, 0, 0, 1). Under prefers-reduced-motion: no drift, no tilt, no spotlight - the rows sit level and still, and only dragging moves them."
   }
 };
 
@@ -297,24 +310,30 @@ function demoFor(slug, name) {
   return '<span class="mvp-lower"><b>' + name + '</b><i>Continia · Marketing</i></span>';
 }
 
-/* Component entries (the Reel Gallery) are not previewed on the Video page:
-   the stage there replays a CSS class and scales it with ml-slow/ml-slower,
-   and neither means anything to a JS component. They live in the gallery. */
-var anims = lib.filter(function (e) { return e.kind !== "component"; });
+/* A component brings its own preview markup: the module mounts onto the stage
+   and lays the children out itself, so there is nothing to make up here. The
+   gallery sits one folder down, so its demo paths are relative to that; the
+   Video page is at the repo root, so the ../ comes off. */
+function componentDemo(e) {
+  if (!e.demo) { console.error("Component " + e.slug + " has no demo markup"); process.exit(1); }
+  return e.demo.replace(/(src|href)="\.\.\//g, '$1="');
+}
 
-var out = anims.map(function (e) {
+var out = lib.map(function (e) {
   var c = COPY[e.slug];
   if (!c) { console.error("No video-facing copy for " + e.slug); process.exit(1); }
+  var isComp = e.kind === "component";
   return {
-    slug: e.slug, name: e.name, category: e.category,
+    slug: e.slug, name: e.name, category: e.category, kind: e.kind || "animation",
     feel: c.feel, useFor: c.useFor, prompt: c.prompt,
-    demo: demoFor(e.slug, e.name),
-    loops: e.category === "ambient",
+    demo: isComp ? componentDemo(e) : demoFor(e.slug, e.name),
+    attrs: c.attrs || null,
+    loops: isComp ? !!c.loops : e.category === "ambient",
     reducedMotion: e.reducedMotion
   };
 });
 var extra = Object.keys(COPY).filter(function (k) {
-  return !anims.some(function (e) { return e.slug === k; });
+  return !lib.some(function (e) { return e.slug === k; });
 });
 if (extra.length) { console.error("Copy written for slugs not in library.json: " + extra); process.exit(1); }
 

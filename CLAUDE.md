@@ -152,8 +152,12 @@ hand (`<slug>.html` + `.css` + `.js` + `meta.json`), listed in the `COMPONENTS` 
 of `gen-motion-entries.js`; the generator only validates the four files and copies the meta into
 `library.json`. A component is an ES module exporting `initReelGallery`-style `init…(el, options)`
 → `{el, update, destroy}` plus `mountAll(root)`, and it mounts itself onto `[data-ml="<slug>"]`.
-Components are **filtered out** of `gen-motion-previews.js` (the video page previews CSS classes)
-and of `gen-motion-dist.js` (the bundle is CSS only), which is why both still say 49.
+A component **is** previewed on the Video page — `gen-motion-previews.js` needs a `COPY` row for it
+like any other entry, plus an `attrs` object holding the preview's own `data-*` (the card stage is a
+third of a grid row, so the reel runs two short rows there, not three tall ones). It is **filtered
+out** of `gen-motion-dist.js`, because the bundle is CSS only, which is why `dist/` still says 49.
+`dashboard.js` renders a component card without a replay button or `ml-paused`, leaves it out of
+Play-all and the speed classes, and dynamically imports its module after the cards exist.
 
 **`base/base-animations.css` is the only file written by hand.** Everything under `entries/`
 and `library.json` is generated from it:

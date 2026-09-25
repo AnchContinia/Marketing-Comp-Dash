@@ -2129,12 +2129,27 @@ if(contentIdeasList){
   function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;")
     .replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
 
+  /* A component reads its options off data-*. These are the preview's, not the
+     component's defaults - the stage here is a third of a grid row. */
+  function attrs(m){
+    if(!m.attrs) return "";
+    return Object.keys(m.attrs).map(function(k){
+      return ' data-'+esc(k)+'="'+esc(m.attrs[k])+'"';
+    }).join("");
+  }
+
   grid.innerHTML=P.map(function(m){
-    return '<article class="mvp-card" data-cat="'+esc(m.category)+'" data-slug="'+esc(m.slug)+'">'+
+    var comp=m.kind==="component";
+    return '<article class="mvp-card'+(comp?" is-component":"")+'" data-cat="'+esc(m.category)+
+        '" data-slug="'+esc(m.slug)+'" data-find="'+
+        esc((m.name+" "+m.category+" "+m.feel+" "+m.useFor).toLowerCase())+'">'+
       '<div class="mvp-stage">'+
-        '<button type="button" class="mvp-replay" aria-label="Replay '+esc(m.name)+'">'+
-          '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>'+
-        '<div class="ml-'+esc(m.slug)+' ml-paused" data-anim="ml-'+esc(m.slug)+'">'+m.demo+"</div>"+
+        /* a component runs its own JS: there is no class to restart, so no replay button */
+        (comp?"":'<button type="button" class="mvp-replay" aria-label="Replay '+esc(m.name)+'">'+
+          '<i class="fa-light fa-rotate-right" aria-hidden="true"></i></button>')+
+        (comp
+          ? '<div class="mvp-mount" data-ml="'+esc(m.slug)+'"'+attrs(m)+">"+m.demo+"</div>"
+          : '<div class="ml-'+esc(m.slug)+' ml-paused" data-anim="ml-'+esc(m.slug)+'">'+m.demo+"</div>")+
       "</div>"+
       '<div class="mvp-body">'+
         '<div class="mvp-top"><span class="mvp-name">'+esc(m.name)+"</span>"+
@@ -2165,25 +2180,56 @@ if(contentIdeasList){
     SPEEDS.map(function(x){
       return '<button type="button" class="mvp-s'+(x[0]===SPEED_DEFAULT?" on":"")+'" data-s="'+x[0]+'">'+x[1]+"</button>";
     }).join("")+"</div>"+
+    '<div class="mvp-search"><i class="fa-light fa-magnifying-glass" aria-hidden="true"></i>'+
+      '<input type="search" id="mvp-q" placeholder="Search motion" '+
+      'aria-label="Search the motion library" autocomplete="off"></div>'+
     '<button type="button" class="mvp-all" id="mvp-all">'+
       '<i class="fa-light fa-play" aria-hidden="true"></i>Play all</button>';
 
   function replay(card){
     var el=card.querySelector("[data-anim]");
-    if(!el) return;
+    if(!el) return;                 /* a component has none - it never replays */
     var cls=el.getAttribute("data-anim");
     el.classList.remove(cls,"ml-paused");
     void el.offsetWidth;            /* forced reflow - the only way to restart a CSS animation */
     el.classList.add(cls);
   }
+
+  /* Category and search are two filters over one list, so they are applied in
+     one place: setting either on its own would otherwise undo the other. */
+  var cat="all", q="";
+  function apply(){
+    var shown=0;
+    [].forEach.call(grid.children,function(c){
+      if(c.classList.contains("mvp-empty")) return;
+      var ok=(cat==="all"||c.dataset.cat===cat)&&(!q||c.dataset.find.indexOf(q)>=0);
+      c.classList.toggle("hide",!ok);
+      if(ok) shown++;
+    });
+    var none=grid.querySelector(".mvp-empty");
+    if(!shown&&!none){
+      none=document.createElement("p");
+      none.className="mvp-empty";
+      grid.appendChild(none);
+    }
+    if(none){
+      none.textContent='Nothing matches "'+q+'".';
+      none.style.display=shown?"none":"";
+    }
+  }
+
+  bar.addEventListener("input",function(e){
+    if(e.target.id!=="mvp-q") return;
+    q=e.target.value.trim().toLowerCase();
+    apply();
+  });
+
   bar.addEventListener("click",function(e){
     var f=e.target.closest(".mvp-f");
     if(f){
-      var v=f.getAttribute("data-v");
+      cat=f.getAttribute("data-v");
       [].forEach.call(bar.querySelectorAll(".mvp-f"),function(x){ x.classList.toggle("on",x===f); });
-      [].forEach.call(grid.children,function(c){
-        c.classList.toggle("hide", v!=="all" && c.dataset.cat!==v);
-      });
+      apply();
       return;
     }
     var sp=e.target.closest(".mvp-s");
@@ -2231,7 +2277,7 @@ if(contentIdeasList){
     var io=new IntersectionObserver(function(es){
       es.forEach(function(x){
         var el=x.target.querySelector("[data-anim]");
-        if(!el) return;
+        if(!el) return;             /* components park their own rAF loop */
         if(x.isIntersecting) el.classList.remove("ml-paused");
         else if(x.target.dataset.cat==="ambient")
           el.classList.add("ml-paused");   /* park the loops when they scroll away */
@@ -2239,6 +2285,23 @@ if(contentIdeasList){
     },{threshold:0.3});
     [].forEach.call(grid.children,function(c){ io.observe(c); });
   }
+
+  /* Component entries are ES modules that mount themselves onto
+     [data-ml="<slug>"]. They are imported here rather than linked in the page
+     so a page that renders no component never fetches one; a failed import is
+     reported on its own stage instead of leaving an empty box. */
+  /* the previews only render on video.html, which is at the repo root, but the
+     prefix is derived rather than assumed so a sub-folder page still resolves */
+  var segs=location.pathname.split("/").filter(Boolean); segs.pop();
+  var BASE=(segs.pop()||"")==="motion-library"?"../":"";
+  P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
+    import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js").then(function(mod){
+      if(mod.mountAll) mod.mountAll(grid);
+    }).catch(function(err){
+      var st=grid.querySelector('.mvp-card[data-slug="'+m.slug+'"] .mvp-stage');
+      if(st) st.innerHTML='<p class="mvp-empty">Could not load '+esc(m.slug)+".js ("+esc(err.message)+").</p>";
+    });
+  });
 })();
 
 /* ---- Continia knowledge base (knowledge.html) ---------------------------
