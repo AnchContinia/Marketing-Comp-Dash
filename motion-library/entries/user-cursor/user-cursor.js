@@ -57,6 +57,7 @@ export const DEFAULTS = {
    trackpad is around 1.6px per millisecond; anything faster is already at the
    limit, which is what keeps a fast move from spinning the arrow. */
 var TILT_AT = 1.6;
+var SEQ = 0;                       /* so every instance gets its own gradient ids */
 
 var ACCENTS = ["auto", "blue", "cyan", "green", "purple"];
 var NUM = ["height", "size", "follow", "labelFollow", "maxTrail", "tilt", "drift"];
@@ -98,6 +99,7 @@ export function initUserCursor(node, options) {
   content.className = "mluc-content";
   kept.forEach(function (n) { content.appendChild(n); });
 
+  var gid = "mluc-g" + ++SEQ;
   var layer = document.createElement("div");
   layer.className = "mluc-layer";
   layer.setAttribute("aria-hidden", "true");
@@ -108,9 +110,35 @@ export function initUserCursor(node, options) {
        a back edge that curves in between the two. Traced off the reference at
        the two frames where it is standing still, so its own lean is not baked
        into the shape: apex 49 degrees, the two edges within 8% of the same
-       length, and the back edge 12% of its chord deep. */
+       length, and the back edge 12% of its chord deep.
+
+       Each of the three points is rounded to a radius of one viewBox unit,
+       measured off the second reference: on a 355px render the corner arcs came
+       out 17-20px against edges of ~340, so 5% of an edge. The corner is a
+       quadratic whose control point is the sharp vertex it replaces, which is
+       tangent to both edges by construction.
+
+       The fill and the rim are two gradients rather than flat paint, because
+       the reference is one colour throughout at a falling alpha - 0.76 at the
+       tip down to nothing at the far ends, with the outline carrying its own,
+       shallower ramp on top. Both read currentColor, so --mluc-accent still
+       drives the whole thing and light mode stays Tech Blue. The ids are
+       per-instance: SVG references are document-wide, and two cursors on one
+       page would otherwise share the first one's gradients. */
     '<div class="mluc-cur"><svg viewBox="0 0 24 24" focusable="false">' +
-      '<path d="M4.6 3.2 L22.6 6.81 Q14.73 13.33 14.35 19.82 Z"/>' +
+      "<defs>" +
+        '<linearGradient id="' + gid + '-f" gradientUnits="userSpaceOnUse" x1="5.8" y1="4" x2="16.6" y2="13.3">' +
+          '<stop offset="0" stop-color="currentColor" stop-opacity=".94"/>' +
+          '<stop offset="1" stop-color="currentColor" stop-opacity=".3"/>' +
+        "</linearGradient>" +
+        '<linearGradient id="' + gid + '-r" gradientUnits="userSpaceOnUse" x1="5.8" y1="4" x2="16.6" y2="13.3">' +
+          '<stop offset="0" stop-color="currentColor" stop-opacity="1"/>' +
+          '<stop offset="1" stop-color="currentColor" stop-opacity=".62"/>' +
+        "</linearGradient>" +
+      "</defs>" +
+      '<path d="M6.79 3.64 L20.54 6.4 Q22.6 6.81 21.02 8.19 Q16.45 12.4 15 16.6 ' +
+        'Q14.35 19.82 12.68 16.98 L5.73 5.13 Q4.6 3.2 6.79 3.64 Z" ' +
+        'fill="url(#' + gid + '-f)" stroke="url(#' + gid + '-r)"/>' +
     "</svg></div>";
 
   node.classList.add("mluc");

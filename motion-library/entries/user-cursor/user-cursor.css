@@ -17,7 +17,11 @@
      always the opposite, because cyan on cyan does not read. */
   --mluc-accent: var(--navy, #052975);
   --mluc-ink: #fff;
-  --mluc-edge: var(--paper, #fff);
+
+  /* the glow around the arrow - the accent, thinned, so it never needs its own
+     colour and can never drift off the palette */
+  --mluc-glow: color-mix(in srgb, var(--mluc-accent) 46%, transparent);
+  --mluc-glow-soft: color-mix(in srgb, var(--mluc-accent) 26%, transparent);
 }
 html[data-theme="dark"] .mluc { --mluc-ink: #052975; }
 
@@ -55,19 +59,30 @@ html[data-theme="dark"] .mluc { --mluc-ink: #052975; }
    left writes, so the whole thing stays on the compositor. */
 .mluc-cur, .mluc-label { position: absolute; top: 0; left: 0; will-change: transform; }
 
-.mluc-cur { transform-origin: 19.2% 13.3%; }   /* the arrow's tip, so it pivots there */
+/* 24.1% / 16.8% is where the rounded tip actually sits - one unit of corner
+   radius pulls the visible point back along the bisector from the sharp vertex
+   the old shape pivoted on. */
+.mluc-cur { transform-origin: 24.1% 16.8%; color: var(--mluc-accent); }
 .mluc-cur svg {
   display: block;
   width: var(--mluc-size);
   height: var(--mluc-size);
   overflow: visible;
+  /* Two shadows, both offset down-right: the reference's soft band measures
+     ~1% of the arrow on the top-left edge and four times that on the bottom
+     right, which is a light from the upper left, not an even halo. Scaled off
+     --mluc-size so the glow stays in proportion at any size. */
+  filter:
+    drop-shadow(0 0 calc(var(--mluc-size) * .055) var(--mluc-glow))
+    drop-shadow(calc(var(--mluc-size) * .05) calc(var(--mluc-size) * .07)
+                calc(var(--mluc-size) * .17) var(--mluc-glow-soft));
 }
+/* fill and stroke are the two gradients the module writes; all that is set here
+   is how the outline is drawn. Thin: at 22px the reference's rim is well under
+   a pixel, so it works as an edge sharpener rather than a visible border. */
 .mluc-cur path {
-  fill: var(--mluc-accent);
-  stroke: var(--mluc-edge);
-  stroke-width: 1.5;
+  stroke-width: .7;
   stroke-linejoin: round;
-  paint-order: stroke fill;   /* a thin ground-coloured halo, so it reads on any surface */
 }
 
 .mluc-pill {
@@ -87,6 +102,8 @@ html[data-theme="dark"] .mluc { --mluc-ink: #052975; }
   font-weight: 800;
   line-height: 1.25;
   letter-spacing: .01em;
+  /* the same light as the arrow, so the two read as one object */
+  box-shadow: 0 2px 8px var(--mluc-glow-soft);
 }
 
 /* the card-sized skin */
