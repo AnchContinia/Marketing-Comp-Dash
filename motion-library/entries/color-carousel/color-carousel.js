@@ -302,10 +302,17 @@ export function initColorCarousel(node, options) {
   }
 
   /* ---- the tour ----
-     Two beats per card: the arrow walks to the card on the right, then presses
-     it. The press is what advances the carousel, so the demo shows a hand
-     doing what a visitor would do rather than a slideshow running itself. */
+     Two beats per card, in this order: the arrow rides the card in front while
+     it holds, then walks to the card on its right, and the press lands on the
+     lap boundary - the moment it has arrived. That press is what advances the
+     carousel, so the demo shows a hand doing what a visitor would do rather
+     than a slideshow running itself, and because `target` becomes the card the
+     arrow is already standing on, it rides that one forward without jumping
+     back. Walking first and pressing last would have it leave for the card
+     after next and then snap back, which is what it did before. */
   function lap() { return o.step + o.dwell; }
+
+  function nextIdx() { return target + 1 >= cards.length ? 0 : target + 1; }
 
   function centreOf(el) {
     var s = stage.getBoundingClientRect(), r = el.getBoundingClientRect();
@@ -315,10 +322,8 @@ export function initColorCarousel(node, options) {
   function tourPoint() {
     if (!cards.length) return null;
     var t = clock % lap();
-    var nxt = cards[(target + 1) % cards.length];
-    if (t < o.step) return centreOf(nxt.el);          /* on the way to the next card */
-    var front = cards[clamp(target)];
-    return centreOf(front.el);                        /* riding it into the front */
+    if (t < o.dwell) return centreOf(cards[clamp(target)].el);   /* riding the front card */
+    return centreOf(cards[nextIdx()].el);                        /* walking to the next */
   }
 
   function advance() {
@@ -326,7 +331,7 @@ export function initColorCarousel(node, options) {
     if (s === step) return;
     step = s;
     if (uc) uc.press();
-    go(target + 1 >= cards.length ? 0 : target + 1);
+    go(nextIdx());
   }
 
   function frame(now) {
@@ -465,7 +470,7 @@ export function initColorCarousel(node, options) {
   var api = {
     el: node,
     go: function (i) { clock = 0; step = 0; go(i); return api; },
-    next: function () { return api.go(target + 1 >= cards.length ? 0 : target + 1); },
+    next: function () { return api.go(nextIdx()); },
     prev: function () { return api.go(target - 1 < 0 ? cards.length - 1 : target - 1); },
     index: function () { return target; },
     color: function () { return node.style.getPropertyValue("--mlcc-color") || null; },

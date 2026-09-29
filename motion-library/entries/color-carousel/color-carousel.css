@@ -80,6 +80,12 @@ html[data-theme="dark"] .mlcc-wash {
   transform-style: preserve-3d;
 }
 
+/* The arrow goes over the ring. The cursor's own layer takes no z-index, so
+   the track's would paint the cards on top of it and the demo would show a
+   hand pressing buttons from behind the furniture. Its own stacking rules
+   belong to that entry, so the number is set from here rather than there. */
+.mlcc .mluc-layer { z-index: 4; }
+
 .mlcc-card {
   position: absolute;
   top: 50%;
