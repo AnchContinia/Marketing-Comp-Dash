@@ -2138,6 +2138,17 @@ if(contentIdeasList){
     }).join("");
   }
 
+  /* The section head's tally is counted, never typed: a hand-written
+     "49 animations + 1 component" goes stale the moment an entry lands, and it
+     did. Same string as the gallery writes, from the same two kinds. */
+  (function(){
+    var t=document.querySelector("[data-ml-tally]");
+    if(!t) return;
+    var c=P.filter(function(m){ return m.kind==="component"; }).length, a=P.length-c;
+    t.textContent=a+(a===1?" animation":" animations")+" + "+
+      c+(c===1?" component":" components");
+  })();
+
   grid.innerHTML=P.map(function(m){
     var comp=m.kind==="component";
     return '<article class="mvp-card'+(comp?" is-component":"")+'" data-cat="'+esc(m.category)+
@@ -2329,7 +2340,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV = "20260929l";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20260929m";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);

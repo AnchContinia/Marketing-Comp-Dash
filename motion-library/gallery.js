@@ -10,7 +10,7 @@
 
   /* library.json and each component module are fetched, not <script>-linked, so
      they need the same ?v= cache-busting every other file here gets. */
-  var MLV = "20260929l";
+  var MLV = "20260929m";
 
   var countEl = document.getElementById("ml-count"),
       barEl   = document.getElementById("ml-bar"),
@@ -219,12 +219,24 @@
     });
   }
 
+  /* The section head's tally is counted from library.json, never typed: a hand-
+     written "49 animations + 1 component" goes stale the moment an entry lands,
+     and it did. Both hosts write the same string into [data-ml-tally]. */
+  function tally(list) {
+    var c = list.filter(function (e) { return e.kind === "component"; }).length,
+        a = list.length - c;
+    return a + (a === 1 ? " animation" : " animations") + " + " +
+           c + (c === 1 ? " component" : " components");
+  }
+
   /* ---------- boot ---------- */
   fetch("library.json?v=" + MLV).then(function (r) {
     if (!r.ok) throw new Error("library.json " + r.status);
     return r.json();
   }).then(function (entries) {
     grid.innerHTML = entries.map(card).join("");
+    var tallyEl = document.querySelector("[data-ml-tally]");
+    if (tallyEl) tallyEl.textContent = tally(entries);
     buildFilters(entries);
     apply();
 

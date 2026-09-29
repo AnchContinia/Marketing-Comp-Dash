@@ -149,6 +149,16 @@ Plus **eight components** — `reel-gallery`, `magic-transform`, `user-cursor`, 
 category `text`, because a component's category says what it is for, not how it is built — so
 `library.json` holds 57 entries.
 
+**The counts on the page are counted, never typed.** Both section heads — the gallery's
+`#ml-intro` and the Video page's `#motion-previews` — carry a `[data-ml-tally]` span, and each
+host writes `"N animations + M components"` into it from the list it already has (`library.json`
+in `gallery.js`, `window.MOTION_PREVIEWS` in `dashboard.js`). The hard-coded text sat at
+"49 animations + 1 component" through seven components, because nothing made it wrong enough to
+notice. **Never put a count back into the HTML** — the literal in the markup is only the
+pre-fetch fallback, so bring it along when a component lands, but the tally a visitor reads comes
+from the data. The prose counts in this file are still hand-maintained: update them with every
+new entry. (Standing instruction from the user.)
+
 **Two kinds of entry**, told apart by `meta.json → kind`. `"animation"` is a CSS class generated
 from `base-animations.css` — never hand-edit those files. `"component"` is a JS module written by
 hand (`<slug>.html` + `.css` + `.js` + `meta.json`), listed in the `COMPONENTS` array at the foot
