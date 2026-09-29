@@ -1,0 +1,178 @@
+{
+  "slug": "color-carousel",
+  "name": "Color Carousel",
+  "kind": "component",
+  "source": "continia",
+  "sourceUrl": "https://pro.reactbits.dev/docs/components/gradient-carousel",
+  "license": "Continia internal",
+  "category": "ui",
+  "class": "js",
+  "dependencies": [
+    "user-cursor"
+  ],
+  "tokens": [
+    "--motion-duration-fast",
+    "--motion-duration-base",
+    "--motion-duration-moderate",
+    "--motion-ease-out"
+  ],
+  "options": {
+    "height": {
+      "type": "number",
+      "default": 360,
+      "unit": "px",
+      "note": "the stage"
+    },
+    "card": {
+      "type": "number",
+      "default": 210,
+      "unit": "px",
+      "note": "the width of the card in front; its height follows from ratio"
+    },
+    "ratio": {
+      "type": "number",
+      "default": 1,
+      "note": "the card's width : height. 1 is the square the reference uses; 1.78 for a 16:9 screenshot."
+    },
+    "spread": {
+      "type": "number",
+      "default": 1.1,
+      "note": "how far apart the cards sit, as a fraction of the card's width. The side cards are already narrower for having receded, so a shade over 1 is what opens a visible gap between them; below 1 they tuck behind each other."
+    },
+    "depth": {
+      "type": "number",
+      "default": 300,
+      "unit": "px",
+      "note": "how far each step back recedes. With perspective, this is what shrinks the side cards - they are not separately scaled. perspective / (perspective + depth) is the shrink: the default pair gives the reference's three-quarters."
+    },
+    "angle": {
+      "type": "number",
+      "default": 34,
+      "unit": "deg",
+      "note": "how far a card off centre turns. A right-hand card turns its inner edge away, so the ring is seen from outside rather than from within."
+    },
+    "perspective": {
+      "type": "number",
+      "default": 900,
+      "unit": "px",
+      "note": "the camera distance. Smaller is a wider lens and a more dramatic ring; much below 700 the far cards start to smear."
+    },
+    "radius": {
+      "type": "number",
+      "default": 15,
+      "unit": "px",
+      "note": "the corner radius - the hub's tile radius, and the stage takes it too"
+    },
+    "reach": {
+      "type": "number",
+      "default": 3,
+      "note": "how many cards each side stay on the stage. The last one is mid-fade, so three shows two clearly."
+    },
+    "wash": {
+      "type": "number",
+      "default": 30,
+      "unit": "%",
+      "note": "how much of the card's colour reaches the stage in the light theme"
+    },
+    "glow": {
+      "type": "number",
+      "default": 42,
+      "unit": "%",
+      "note": "the same in the dark theme, where a colour on a dark ground has to work much harder to be seen at all"
+    },
+    "saturate": {
+      "type": "number",
+      "default": 1.25,
+      "note": "the sampled colour is pushed this far toward full chroma. 1 uses the picture's own colour, which is usually too soft to light a stage with."
+    },
+    "dwell": {
+      "type": "number",
+      "default": 2400,
+      "unit": "ms",
+      "note": "how long a card holds the front before the next one. A loop length, so it is an option rather than a token."
+    },
+    "step": {
+      "type": "number",
+      "default": 900,
+      "unit": "ms",
+      "note": "how long the arrow takes to walk to the next card before pressing it"
+    },
+    "interactive": {
+      "type": "boolean",
+      "default": true,
+      "note": "drag, wheel-free arrow keys, and click a card to bring it forward"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true,
+      "note": "advance on its own when no pointer is on the stage"
+    },
+    "cursor": {
+      "type": "boolean",
+      "default": true,
+      "note": "mount the library's User Cursor on the stage. Off, the carousel answers the real pointer only."
+    },
+    "name": {
+      "type": "string",
+      "default": "",
+      "note": "the cursor's pill. Empty here on purpose - the cards are the thing to look at, and a name floating over a photograph is one label too many."
+    },
+    "accent": {
+      "type": "string",
+      "default": "auto",
+      "values": [
+        "auto",
+        "blue",
+        "cyan",
+        "green",
+        "purple"
+      ],
+      "note": "passed to the cursor. auto follows --navy: Tech Blue on a light ground, Innovation Blue on a dark one."
+    },
+    "size": {
+      "type": "number",
+      "default": 22,
+      "unit": "px",
+      "note": "the cursor's arrow"
+    },
+    "index": {
+      "type": "number",
+      "default": 0,
+      "note": "which card starts in front"
+    },
+    "paused": {
+      "type": "boolean",
+      "default": false,
+      "note": "stops the tour and the arrow together - pausing one without the other leaves a cursor pressing cards that never come forward"
+    },
+    "compact": {
+      "type": "boolean",
+      "default": false,
+      "note": "the card-sized skin, for a stage under ~200px"
+    }
+  },
+  "reducedMotion": "The carousel still works - it is a control, not decoration. What goes is the self-driving tour, the glide between cards and the colour's cross-fade: a card arrives in front instead of travelling there, and the stage changes colour instead of bleeding into the next one. Drag, arrow keys and clicking a card are untouched.",
+  "notPorted": [
+    "the gradient itself. The reference reads a gradient definition off each slide and paints the background with it; this one samples the card's own pixels, which is the whole difference - drop photographs in and the light follows them with nobody picking colours.",
+    "colour as a free value. accent is one of four palette names, or auto, and anything else throws. The sampled wash is exempt: it comes from the picture, which is the point.",
+    "a spring on the ring. The glide is exponential smoothing on one time constant, because that is what the rest of this library uses.",
+    "slides as React nodes. A card is any direct child element, moved across whole - so the markup stays a plain list of images with this module removed."
+  ],
+  "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour and a screen recording, on the Continia tokens, and it was rebuilt differently on purpose: the reference is a gradient carousel and this is a colour carousel, taking its light from the card's own pixels rather than from a gradient someone wrote down. The sampler bins pixels into a coarse 6x6x6 cube and drops the near-white, near-black and near-grey ones before averaging the biggest bucket, because a flat mean of a green field under a blue sky is grey. Palette discipline is unchanged where the module chooses a colour - the demo tiles are Tech Blue, Smart Green, Performance Purple and Innovation Blue, and the cursor's accent is still one of four names - but the wash is sampled, not chosen, so a photograph lights the stage in its own colour. The arrow is the library's own User Cursor, mounted rather than redrawn, and here with an empty name so the pill stays out of the way; that module gained the empty-name case for this.",
+  "blurb": "A 3D carousel whose stage lights up in the colour of the card in front. Made for photographs: the colour is read off the picture's own pixels, so a green shot washes the stage green and the next one warms it, with nobody picking a palette to match.",
+  "demo": "<div class=\"mlcc-num mlcc-num-1\">1</div><div class=\"mlcc-num mlcc-num-2\">2</div><div class=\"mlcc-num mlcc-num-3\">3</div><div class=\"mlcc-num mlcc-num-4\">4</div><div class=\"mlcc-num mlcc-num-1\">5</div><div class=\"mlcc-num mlcc-num-2\">6</div>",
+  "addedAt": "2026-09-29",
+  "demoAttrs": {
+    "height": 172,
+    "compact": 1,
+    "card": 88,
+    "depth": 190,
+    "angle": 30,
+    "perspective": 620,
+    "radius": 10,
+    "size": 16,
+    "dwell": 1700,
+    "step": 700,
+    "name": ""
+  }
+}

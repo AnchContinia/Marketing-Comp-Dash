@@ -1,0 +1,167 @@
+/* Continia Motion Library — Color Carousel
+   Requires tokens/motion-tokens.css, and user-cursor.css when the arrow is on
+   (the default) - the arrow is the User Cursor entry, mounted rather than
+   redrawn, so its stylesheet is a real dependency and not a convenience.
+
+   Where each card sits is a transform the module writes every frame. What is
+   here is the camera, the card, and how the colour the module samples turns
+   into light on the stage. */
+
+.mlcc {
+  position: relative;
+  display: block;
+  --mlcc-card: 210px;
+  --mlcc-ratio: 1;
+  --mlcc-radius: 15px;
+  --mlcc-persp: 900px;
+  --mlcc-wash: 30%;
+  --mlcc-glow: 42%;
+  /* the fallback matters: the stage must look deliberate for the frame before
+     the first card has been sampled, and on a card that has no colour at all.
+     Tech Blue as a literal, not var(--navy): that token resolves to Innovation
+     Blue in the dark theme, and the stage would light a different colour on
+     each theme for reasons the author never asked for. */
+  --mlcc-color: #052975;
+}
+
+.mlcc-stage {
+  position: relative;
+  height: var(--mlcc-h, 360px);
+  overflow: hidden;
+  border-radius: var(--mlcc-radius);
+  background: var(--canvas, #f6f7fb);
+  /* the camera. Without it the rotateY is a flat squash and the carousel reads
+     as a row of sheared rectangles */
+  perspective: var(--mlcc-persp);
+  perspective-origin: 50% 50%;
+  touch-action: pan-y;
+}
+.mlcc.is-static .mlcc-stage { touch-action: auto; }
+.mlcc:not(.is-static) .mlcc-stage { cursor: grab; }
+.mlcc.is-dragging .mlcc-stage { cursor: grabbing; }
+
+/* ---- the light ----
+   Two radials rather than a flat fill: a tight one behind the card in front
+   and a wide one washing the corners, which is what a lit object in a room
+   actually does to the wall behind it. Both are mixed with the page's own
+   surface, so the same colour reads as a tint on paper and as a glow in the
+   dark theme without the module knowing which theme it is in. */
+.mlcc-wash {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(58% 72% at 50% 52%,
+      color-mix(in srgb, var(--mlcc-color) var(--mlcc-wash), transparent) 0%,
+      transparent 72%),
+    radial-gradient(120% 108% at 50% 108%,
+      color-mix(in srgb, var(--mlcc-color) calc(var(--mlcc-wash) / 2.4), transparent) 0%,
+      transparent 78%);
+  transition: background var(--motion-duration-moderate) var(--motion-ease-out);
+}
+html[data-theme="dark"] .mlcc-stage { background: #071127; }
+html[data-theme="dark"] .mlcc-wash {
+  background:
+    radial-gradient(58% 72% at 50% 52%,
+      color-mix(in srgb, var(--mlcc-color) var(--mlcc-glow), transparent) 0%,
+      transparent 72%),
+    radial-gradient(120% 108% at 50% 108%,
+      color-mix(in srgb, var(--mlcc-color) calc(var(--mlcc-glow) / 2.2), transparent) 0%,
+      transparent 78%);
+}
+
+/* ---- the ring ---- */
+
+.mlcc-track {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transform-style: preserve-3d;
+}
+
+.mlcc-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0;
+  width: var(--mlcc-card);
+  height: calc(var(--mlcc-card) / var(--mlcc-ratio));
+  /* the module writes `transform`, so the centring cannot live there too */
+  margin-left: calc(var(--mlcc-card) / -2);
+  margin-top: calc(var(--mlcc-card) / var(--mlcc-ratio) / -2);
+  border-radius: var(--mlcc-radius);
+  overflow: hidden;
+  background: var(--panel, #fff);
+  /* Both edges: a card turned 34 degrees shows the viewer its side, and a card
+     with no outline at that angle looks like a decal rather than an object. */
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--mlcc-color) 30%, transparent),
+    0 26px 60px -24px color-mix(in srgb, #052975 55%, transparent);
+  will-change: transform, opacity;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  cursor: pointer;
+}
+.mlcc.is-static .mlcc-card { cursor: default; }
+.mlcc-card:focus-visible { outline: 2px solid var(--navy, #052975); outline-offset: 3px; }
+
+.mlcc-card > * {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* The card in front is the only one at full strength; the rest step back into
+   the light rather than out of focus, so a photograph two places away is still
+   legible enough to want. */
+.mlcc-card:not(.is-front) > * { filter: brightness(.82) saturate(.9); }
+.mlcc-card > * { transition: filter var(--motion-duration-moderate) var(--motion-ease-out); }
+.mlcc-card.is-front {
+  box-shadow:
+    0 0 0 1.5px color-mix(in srgb, var(--mlcc-color) 62%, transparent),
+    0 34px 70px -22px color-mix(in srgb, var(--mlcc-color) 60%, transparent);
+}
+
+/* ---- the demo content, drawn in page tokens so it reads in both themes ----
+   Numbers, not pictures: the point of the card is the picture that belongs in
+   it, and a numbered tile says that more plainly than a photograph would. Each
+   tile carries a palette colour, so the stage visibly follows the card. */
+.mlcc-num {
+  display: grid;
+  place-items: center;
+  font-size: 58px;
+  font-weight: 850;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: #fff;
+  /* the palette hexes as literals: var(--navy) is Innovation Blue in the dark
+     theme, which would paint tiles 1 and 4 the same colour and put white type
+     on a near-white fill */
+  background: #052975;
+}
+.mlcc-num-2 { background: #5f9e8d; }
+.mlcc-num-3 { background: #983eae; }
+/* Innovation Blue is a light fill, so the number goes navy on it - cyan type
+   on a cyan ground does not read. */
+.mlcc-num-4 { background: #8ff8ff; color: #052975; }
+
+/* the card-sized skin */
+.mlcc-sm .mlcc-num { font-size: 30px; }
+.mlcc-sm .mlcc-card { box-shadow: 0 0 0 1px color-mix(in srgb, var(--mlcc-color) 30%, transparent),
+  0 14px 30px -14px color-mix(in srgb, #052975 55%, transparent); }
+.mlcc-sm .mlcc-card.is-front { box-shadow: 0 0 0 1.5px color-mix(in srgb, var(--mlcc-color) 62%, transparent),
+  0 18px 36px -14px color-mix(in srgb, var(--mlcc-color) 60%, transparent); }
+
+/* Reduced motion: the carousel still works - it is a control, not decoration.
+   The module stops the tour and puts each card straight where it belongs, so
+   what is left here is the colour, which stops gliding and simply changes. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mlcc-wash,
+  :root:not([data-motion="full"]) .mlcc-card > * { transition: none; }
+}
+:root[data-motion="reduced"] .mlcc-wash,
+:root[data-motion="reduced"] .mlcc-card > * { transition: none; }

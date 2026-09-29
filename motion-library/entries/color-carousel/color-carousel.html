@@ -1,0 +1,51 @@
+<!-- Continia Motion Library — Color Carousel
+
+     Two stylesheets and one module. user-cursor.css is a real dependency, not a
+     convenience: the arrow on the stage IS the User Cursor entry, mounted by
+     this module rather than redrawn. Drop it, and set data-cursor="0", if you
+     only want the carousel.
+
+     <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+     <link rel="stylesheet" href="motion-library/entries/user-cursor/user-cursor.css">
+     <link rel="stylesheet" href="motion-library/entries/color-carousel/color-carousel.css">
+     <script type="module" src="motion-library/entries/color-carousel/color-carousel.js"></script>
+
+     A card is any direct child. The stage takes its colour from the card in
+     front: from data-cc-color if it has one, otherwise from the pixels of its
+     first <img>, otherwise from its own background colour. -->
+
+<div data-ml="color-carousel" data-height="360" data-card="210">
+  <img src="Assets/carousel/document-capture.jpg" alt="Invoices captured from an inbox">
+  <img src="Assets/carousel/expense-management.jpg" alt="An expense photographed on a phone">
+  <img src="Assets/carousel/document-output.jpg" alt="A branded document going out">
+  <img src="Assets/carousel/banking.jpg" alt="A bank reconciliation in Business Central">
+</div>
+
+
+<!-- A photo served from a CDN taints the canvas, so the pixels cannot be read.
+     Say what colour it is and the stage lights correctly anyway:
+
+<div data-ml="color-carousel" data-height="360">
+  <img src="https://cdn.example.com/a.jpg" alt="" data-cc-color="#5f9e8d">
+  <img src="https://cdn.example.com/b.jpg" alt="" data-cc-color="#983eae">
+</div>
+-->
+
+<!-- No arrow, no tour: the visitor drags it themselves. Use this where the
+     carousel is the page's own control rather than a demo of one.
+
+<div data-ml="color-carousel" data-cursor="0" data-autoplay="0" data-height="320">
+  <img src="Assets/carousel/1.jpg" alt="">
+  <img src="Assets/carousel/2.jpg" alt="">
+</div>
+-->
+
+<!-- Wider cards, a shallower ring and a stronger wash - a 16:9 stage for
+     screenshots rather than the square the reference uses:
+
+<div data-ml="color-carousel" data-height="320" data-card="300" data-ratio="1.78"
+     data-angle="26" data-depth="150" data-wash="30">
+  <img src="Assets/carousel/wide-1.png" alt="">
+  <img src="Assets/carousel/wide-2.png" alt="">
+</div>
+-->

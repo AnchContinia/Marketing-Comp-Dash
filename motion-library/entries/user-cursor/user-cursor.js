@@ -25,7 +25,7 @@ import { prefersReducedMotion, durationMs } from "../../tokens/motion-tokens.js"
 
 export const DEFAULTS = {
   height: 320,            /* px, the stage */
-  name: "Sophie",         /* what the pill says */
+  name: "Sophie",         /* what the pill says - "" for the arrow on its own */
   accent: "auto",         /* auto | blue | cyan | green | purple - palette only */
   size: 22,               /* px, the arrow's width; everything else scales off it */
 
@@ -185,6 +185,10 @@ export function initUserCursor(node, options) {
     node.classList.toggle("mluc-sm", !!o.compact);
     node.classList.toggle("mluc-hide", !!o.hideNative);
     pill.textContent = o.name;
+    /* An empty name is a real setting, not a missing one: some stages want the
+       arrow and nothing else. Emptying the pill alone would leave its padding
+       and background trailing the arrow as a small blank tag. */
+    node.classList.toggle("mluc-noname", !o.name);
   }
 
   function measure() {

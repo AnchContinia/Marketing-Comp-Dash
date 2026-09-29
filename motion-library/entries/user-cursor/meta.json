@@ -24,7 +24,7 @@
     "name": {
       "type": "string",
       "default": "Sophie",
-      "note": "what the pill says"
+      "note": "what the pill trailing the arrow says. Empty hides the pill: the arrow on its own, for a stage where a name would be one thing too many."
     },
     "accent": {
       "type": "string",

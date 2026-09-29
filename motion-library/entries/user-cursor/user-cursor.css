@@ -133,6 +133,9 @@ html[data-theme="dark"] .mluc { --mluc-ink: #052975; }
 /* the card-sized skin */
 .mluc-sm { --mluc-size: 17px; }
 .mluc-sm .mluc-pill { padding: 2px 6px 3px; font-size: 9.5px; }
+
+/* name: "" - the arrow with no one attached to it */
+.mluc-noname .mluc-label { display: none; }
 .mluc-sm .mluc-content { gap: 7px; padding: 14px; }
 
 /* ---- the demo content, drawn in page tokens so it reads in both themes ----

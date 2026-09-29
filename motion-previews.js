@@ -644,6 +644,31 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Loop stops; the element rests in its idle state."
   },
   {
+    "slug": "color-carousel",
+    "name": "Color Carousel",
+    "category": "ui",
+    "kind": "component",
+    "feel": "A ring of cards turning past you, and the whole stage lit in the colour of whichever one is in front. The card facing you is square-on and sharp; the ones either side are turned away, stepped back and dimmed. When the next one comes forward the light behind the stage bleeds from one colour to the next over 400ms rather than cutting, so the change reads as a room being re-lit rather than a background being swapped.",
+    "useFor": "A row of photographs that deserves more than a strip: customer stories, a product gallery, release screenshots, an event recap. It is built for images - the colour is read off the picture's own pixels, so nobody has to pick a palette to go with the shots, and swapping the pictures re-colours the whole thing for free. It is a component rather than a class, so it carries its own JS - and it mounts the User Cursor, so it needs that entry's stylesheet too.",
+    "prompt": "Build a 3D carousel of square cards on a stage with a 1100px perspective. The card in front is face-on at full size with a 15px radius; each step out translates one card width sideways, 190px back in Z and turns 34 degrees so its inner edge goes away from you - the ring is seen from outside, not from within - and the third card each side is mid-fade. Then light the stage with the card in front: sample that card's own pixels, bin them into a coarse 6x6x6 cube, throw out the near-white, near-black and near-grey ones because they are the paper and the shadows rather than the subject, average the biggest bucket that is left, and push the result a quarter of the way toward full chroma. Paint it as two radials - a tight one behind the front card and a wide one washing the bottom corners - mixed into the page's own surface so the same colour reads as a tint on paper and as a glow on a dark ground. Transition the colour over 400ms so it bleeds rather than cuts. An author's own data-cc-color always wins over the sample, and a cross-origin image whose canvas cannot be read falls back to the card's background colour rather than going grey. The ring itself glides on exponential smoothing with a 400ms time constant, not on a spring. With no pointer on the stage it drives itself: the cursor walks to the card on the right over 900ms, presses it - the arrow dips toward the surface and a ring pings out from its tip - and that press is what brings the card forward, which then holds for 2400ms. No name on the pill; the cards are the thing to look at. Drag, arrow keys and clicking a card all work, and a real pointer takes over the moment it arrives. Under prefers-reduced-motion the carousel still works, because it is a control and not decoration - the card arrives in front instead of travelling there and the colour changes instead of bleeding.",
+    "demo": "<div class=\"mlcc-num mlcc-num-1\">1</div><div class=\"mlcc-num mlcc-num-2\">2</div><div class=\"mlcc-num mlcc-num-3\">3</div><div class=\"mlcc-num mlcc-num-4\">4</div><div class=\"mlcc-num mlcc-num-1\">5</div><div class=\"mlcc-num mlcc-num-2\">6</div>",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "card": 88,
+      "depth": 120,
+      "angle": 30,
+      "perspective": 700,
+      "radius": 10,
+      "size": 16,
+      "dwell": 1700,
+      "step": 700,
+      "name": ""
+    },
+    "loops": true,
+    "reducedMotion": "The carousel still works - it is a control, not decoration. What goes is the self-driving tour, the glide between cards and the colour's cross-fade: a card arrives in front instead of travelling there, and the stage changes colour instead of bleeding into the next one. Drag, arrow keys and clicking a card are untouched."
+  },
+  {
     "slug": "hover-preview",
     "name": "Hover Preview",
     "category": "ui",

@@ -144,8 +144,8 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **five components** (`reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview` and
-`modal-cards`, all category `ui`), so `library.json` holds 54 entries.
+Plus **six components** (`reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+`modal-cards` and `color-carousel`, all category `ui`), so `library.json` holds 55 entries.
 
 **Two kinds of entry**, told apart by `meta.json → kind`. `"animation"` is a CSS class generated
 from `base-animations.css` — never hand-edit those files. `"component"` is a JS module written by
@@ -201,6 +201,17 @@ with `at()` rather than the real pointer, so the two can never disagree about wh
 arrow; and **show the click with `press()`** — an entry about clicking that never renders a click
 is the demo failing at its one job. Yield to a real pointer: when `at().mode === "pointer"` the
 tour stops and the visitor drives.
+
+**A colour sampled off an image is not a mean.** `color-carousel` lights its stage in the colour
+of the card in front by reading that card's pixels, and the flat mean of a green field under a
+blue sky is grey. It bins into a coarse 6x6x6 cube, drops the near-white, near-black and
+near-grey pixels as paper and shadow, and averages the biggest bucket that is left. Three things
+that bite: a cross-origin image **taints the canvas** and `getImageData` throws, which is the
+common case for a CDN photo, so the sampler catches and falls back to the card's own background
+colour (`data-cc-color` is the fix when the wash matters); an `<img>` that has not decoded has no
+pixels, so the card is re-sampled on `load`; and a colour used as a *fill* must be a literal hex,
+never `var(--navy)` — that token is Innovation Blue in the dark theme, which painted two demo
+tiles the same colour and put white type on a near-white ground.
 
 **Hit-test a wrapped inline trigger per line.** `getBoundingClientRect()` on a `<span>` that
 wraps returns the union of both lines - the full column width - which swallows every word beside
