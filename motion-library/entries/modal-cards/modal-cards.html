@@ -1,0 +1,58 @@
+<!-- Continia Motion Library — Modal Cards
+
+     Two stylesheets and one module. user-cursor.css is a real dependency, not a
+     convenience: the arrow on the stage IS the User Cursor entry, mounted by
+     this module rather than redrawn, so it needs its own styles. Drop it, and
+     set data-cursor="0", if the cards sit in a real page where the reader has a
+     cursor of their own.
+
+     <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+     <link rel="stylesheet" href="motion-library/entries/user-cursor/user-cursor.css">
+     <link rel="stylesheet" href="motion-library/entries/modal-cards/modal-cards.css">
+     <script type="module" src="motion-library/entries/modal-cards/modal-cards.js"></script>
+
+     A card is any direct child element. The markup is read, not required: the
+     first image becomes the media, the first heading the title and the first
+     paragraph the body - so this list is still a readable list of articles with
+     the module removed, and still readable to a crawler. -->
+
+<div data-ml="modal-cards" data-height="380" data-columns="3">
+
+  <article>
+    <img src="Assets/previews/document-capture.png" alt="">
+    <h3>Document Capture</h3>
+    <p>Purchase invoices arrive, are read, and are matched to the order they
+       belong to - inside Business Central, with the approval flow attached.</p>
+  </article>
+
+  <article>
+    <img src="Assets/previews/expense-management.png" alt="">
+    <h3>Expense Management</h3>
+    <p>Expenses, mileage and settlements from the phone in the employee's hand,
+       reconciled against the card statement before anyone is asked to approve.</p>
+  </article>
+
+  <article>
+    <img src="Assets/previews/document-output.png" alt="">
+    <h3>Document Output</h3>
+    <p>Every outgoing document leaves by the channel its recipient asked for -
+       e-mail, print or the Continia Delivery Network - from one setup.</p>
+  </article>
+</div>
+
+
+<!-- Four across, no arrow, and opened from code. Use this where the cards sit
+     in a real page: the reader has a cursor already, and a second one on top of
+     it reads as a bug rather than as a demo.
+
+<div data-ml="modal-cards" data-columns="4" data-cursor="0" data-height="300">
+  …four <article> children…
+</div>
+
+<script type="module">
+  import { initModalCards } from "./motion-library/entries/modal-cards/modal-cards.js";
+  const mc = document.querySelector('[data-ml="modal-cards"]').__ml;
+  mc.open(1);        // open the second card
+  mc.close();        // and put it back
+</script>
+-->

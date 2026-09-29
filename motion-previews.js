@@ -694,6 +694,29 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Nothing travels and nothing bursts. The stage lays out a static frame instead - one document parked short of the axis, the axis lit, and the pieces already spread across the far side - so the picture still says what the machine does."
   },
   {
+    "slug": "modal-cards",
+    "name": "Modal Cards",
+    "category": "ui",
+    "kind": "component",
+    "feel": "A row of cards, and one of them opens by becoming the page. The cursor walks to a card's plus, dips as it presses, and the card leaves the row and grows into the whole stage in a quarter of a second while the others fade out behind a scrim; its title grows with it and a paragraph unfolds underneath. Then the cursor goes for the cross and the card drops back into its slot faster than it left - opening is the move you are meant to read, closing is the one that has to get out of the way.",
+    "useFor": "Anything where a tile has more behind it than fits on it: a solutions row, a customer-story grid, a release page where each card opens into what changed. It answers 'what is this one' without leaving the page. It is a component rather than a class, so it carries its own JS - and it mounts the User Cursor, so it needs that entry's stylesheet too.",
+    "prompt": "Build a row of three cards that open in place. Each card is all picture with a 15px radius, its title and a round plus button sitting over the foot of the image on a dark gradient scrim. Clicking the plus takes that card out of the grid and lays it over the whole stage: not by scaling it - measured on the reference the open card is 3.2 times wider but only 1.9 times taller than its slot, so a scale would turn the radius into an ellipse and stretch the text - but by FLIP. Move it to its open position first, measure, apply the transform that puts it back where it started, then transition that transform away over 250ms on the standard ease-out. The title grows with the card on font-size rather than on a transform, so it stays crisp, and a paragraph fades in underneath one duration-fast later, once the card has somewhere to put it. The plus becomes a cross, the other cards fade to nothing, and a scrim in 34% of the page's --navy comes up behind. Closing runs the same move backwards in 150ms, because opening is the move that has to be read and closing is the one that has to get out of the way. With no pointer on the stage the component drives itself: the cursor walks to a card's button over 950ms, presses - the arrow dips 18% toward the surface for one duration-instant and a ring pings out from its tip - opens the card, drifts over it for 1900ms, walks to the cross, presses again, then steps below the row for a beat before the next card's turn. Park the loop when the stage is off-screen, and hand control straight over when a real pointer arrives. Under prefers-reduced-motion the card still opens and still closes, because it is a control and not decoration - it just arrives instead of travelling, with no FLIP, no transitions and no tour.",
+    "demo": "<article><div data-mc-media class=\"mlmc-swatch\">DC</div><h3>Document Capture</h3><p>Invoices arrive, are read, and are matched to the order they belong to.</p></article><article><div data-mc-media class=\"mlmc-swatch mlmc-swatch-2\">EM</div><h3>Expense Management</h3><p>Expenses and mileage from the phone, reconciled before anyone approves.</p></article><article><div data-mc-media class=\"mlmc-swatch mlmc-swatch-3\">DO</div><h3>Document Output</h3><p>Every document leaves by the channel its recipient asked for.</p></article>",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "gap": 8,
+      "pad": 10,
+      "size": 16,
+      "reach": 800,
+      "hold": 1500,
+      "rest": 600,
+      "name": "Sophie"
+    },
+    "loops": true,
+    "reducedMotion": "The card still opens and still closes - it is a control, not decoration - it just arrives instead of travelling: no FLIP, no transitions, and no self-driving tour. The cursor's click ring is skipped too, since there is no demo left for it to narrate."
+  },
+  {
     "slug": "reel-gallery",
     "name": "Reel Gallery",
     "category": "ui",

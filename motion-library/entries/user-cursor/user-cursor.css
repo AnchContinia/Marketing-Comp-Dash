@@ -77,6 +77,30 @@ html[data-theme="dark"] .mluc { --mluc-ink: #052975; }
     drop-shadow(calc(var(--mluc-size) * .05) calc(var(--mluc-size) * .07)
                 calc(var(--mluc-size) * .17) var(--mluc-glow-soft));
 }
+/* The click. A ring the size of the arrow, centred on the tip - the same
+   24.1% / 16.8% the rotation pivots on - pinging out once per press. It rides
+   inside .mluc-cur so it travels and rotates with the arrow, which costs
+   nothing because a ring looks the same at every angle. */
+.mluc-ring {
+  position: absolute;
+  left: 24.1%;
+  top: 16.8%;
+  width: var(--mluc-size);
+  height: var(--mluc-size);
+  margin: calc(var(--mluc-size) / -2) 0 0 calc(var(--mluc-size) / -2);
+  border: 2px solid var(--mluc-accent);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+.mluc-cur.is-press .mluc-ring {
+  animation: mluc-ping var(--motion-duration-base) var(--motion-ease-out) 1;
+}
+@keyframes mluc-ping {
+  from { transform: scale(.28); opacity: .85; }
+  to   { transform: scale(1.7); opacity: 0; }
+}
+
 /* fill and stroke are the two gradients the module writes; all that is set here
    is how the outline is drawn. Thin: at 22px the reference's rim is well under
    a pixel, so it works as an edge sharpener rather than a visible border. */
@@ -137,5 +161,7 @@ html[data-theme="dark"] .mluc { --mluc-ink: #052975; }
    cursor, it just never eases or leans. All that is left here is the fade. */
 @media (prefers-reduced-motion: reduce) {
   :root:not([data-motion="full"]) .mluc-layer { transition: none; }
+  :root:not([data-motion="full"]) .mluc-cur.is-press .mluc-ring { animation: none; }
 }
 :root[data-motion="reduced"] .mluc-layer { transition: none; }
+:root[data-motion="reduced"] .mluc-cur.is-press .mluc-ring { animation: none; }

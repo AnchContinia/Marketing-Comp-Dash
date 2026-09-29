@@ -1,0 +1,220 @@
+/* Continia Motion Library — Modal Cards
+   Requires tokens/motion-tokens.css, and user-cursor.css when the arrow is on
+   (the default) - the arrow is the User Cursor entry, mounted rather than
+   redrawn, so its stylesheet is a real dependency and not a convenience.
+
+   The morph itself is a FLIP the module writes; what is here is the two
+   layouts it moves between, and everything that changes without moving. */
+
+.mlmc {
+  position: relative;
+  display: block;
+  --mlmc-cols: 3;
+  --mlmc-gap: 16px;
+  --mlmc-pad: 18px;
+}
+
+.mlmc-stage {
+  position: relative;
+  height: var(--mlmc-h, 360px);
+  overflow: hidden;
+}
+
+.mlmc-grid {
+  position: absolute;
+  inset: var(--mlmc-pad);
+  display: grid;
+  grid-template-columns: repeat(var(--mlmc-cols), 1fr);
+  gap: var(--mlmc-gap);
+  align-content: center;
+}
+
+/* ---- a card in the row ---- */
+
+.mlmc-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  border-radius: 15px;
+  overflow: hidden;
+  background: var(--panel, #fff);
+  border: 1px solid var(--line, #e6e8ee);
+  cursor: pointer;
+  /* Opacity and the dim are the only things transitioned here. The position
+     and size are carried by the module's FLIP, which owns `transform` while it
+     runs - putting transform in this shorthand too would have the two fight on
+     every open. */
+  transition: opacity var(--motion-duration-fast) var(--motion-ease-out),
+              filter var(--motion-duration-fast) var(--motion-ease-out);
+}
+.mlmc-card:focus-visible { outline: 2px solid var(--navy, #052975); outline-offset: 2px; }
+
+/* the rest of the row steps back while one card has the stage */
+.mlmc.is-open .mlmc-card { opacity: 0; filter: saturate(.4); pointer-events: none; }
+.mlmc.is-open .mlmc-card.is-open { opacity: 1; filter: none; pointer-events: auto; }
+
+/* A card in the row has no height of its own: the bar is positioned over the
+   media and the body is collapsed, so without a ratio here every card shrinks
+   to nothing and the grid renders three 24px slivers. Open, the ratio goes and
+   the media takes whatever the body leaves. */
+.mlmc-media {
+  position: relative;
+  flex: none;
+  aspect-ratio: 3 / 2;
+  background: var(--navy, #052975);
+  overflow: hidden;
+}
+.mlmc-card.is-open .mlmc-media { flex: 1 1 auto; aspect-ratio: auto; min-height: 0; }
+/* Size every child but the bar, and leave `display` alone: `:not()` outranks
+   a single class, so setting display:block here would flatten a grid or flex
+   demo tile into top-left text. Only real media gets a display of its own. */
+.mlmc-media > :not(.mlmc-bar) { width: 100%; height: 100%; }
+.mlmc-media > img,
+.mlmc-media > video,
+.mlmc-media > picture { display: block; object-fit: cover; }
+
+/* title and button sit over the foot of the media, on a scrim, exactly as the
+   reference has them - so the card is all picture and the chrome is on top */
+.mlmc-bar {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 26px 10px 9px;
+  background: linear-gradient(to top, rgba(5, 41, 117, .72), rgba(5, 41, 117, 0));
+  pointer-events: none;
+}
+.mlmc-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: -.005em;
+  /* The one thing that really does grow with the card. It grows on font-size
+     rather than on a transform, so it stays crisp the whole way across and the
+     card's radius is never stretched with it. */
+  transition: font-size var(--motion-duration-base) var(--motion-ease-out);
+}
+
+.mlmc-btn {
+  flex: none;
+  width: 24px;
+  height: 24px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .92);
+  color: var(--navy, #052975);
+  cursor: pointer;
+  pointer-events: auto;
+  transition: transform var(--motion-duration-fast) var(--motion-ease-out),
+              background-color var(--motion-duration-fast) var(--motion-ease-out);
+}
+.mlmc-btn svg { width: 14px; height: 14px; display: block; }
+.mlmc-btn:hover { transform: scale(1.12); background: #fff; }
+.mlmc-btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+
+/* ---- the body, which only exists once the card is open ---- */
+
+.mlmc-body {
+  flex: none;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0 14px;
+  color: var(--muted, #667);
+  font-size: 12px;
+  line-height: 1.5;
+  transition: opacity var(--motion-duration-fast) var(--motion-ease-out);
+}
+.mlmc-body > * { margin: 0; }
+
+/* ---- the open card ---- */
+
+.mlmc-card.is-open {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  cursor: default;
+}
+.mlmc-card.is-open .mlmc-title { font-size: 22px; }
+.mlmc-card.is-open .mlmc-body {
+  max-height: 40%;
+  opacity: 1;
+  padding: 12px 16px 14px;
+  /* later than the morph on purpose: the card has to have somewhere to put the
+     text before the text arrives */
+  transition: opacity var(--motion-duration-base) var(--motion-ease-out) var(--motion-duration-fast);
+}
+.mlmc-card.is-open .mlmc-bar { padding: 40px 16px 12px; }
+
+.mlmc-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: color-mix(in srgb, var(--navy, #052975) 34%, transparent);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--motion-duration-base) var(--motion-ease-out);
+}
+.mlmc.is-open .mlmc-scrim { opacity: 1; pointer-events: auto; }
+
+/* ---- the demo content, drawn in page tokens so it reads in both themes ----
+   No images on purpose: both hosts inject this markup and a missing file would
+   404 on one of them. The real-content case lives in modal-cards.html. */
+.mlmc-swatch {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  font-size: 26px;
+  font-weight: 850;
+  letter-spacing: -.02em;
+  color: #fff;
+  background: var(--navy, #052975);
+}
+html[data-theme="dark"] .mlmc-swatch { color: #052975; }
+/* the palette hexes, not the page's --green/--purple: --green resolves to
+   #16a34a on these pages, which is a data-mark colour and off the brand set */
+.mlmc-swatch-2 { background: #5f9e8d; color: #fff; }
+.mlmc-swatch-3 { background: #983eae; color: #fff; }
+html[data-theme="dark"] .mlmc-swatch-2,
+html[data-theme="dark"] .mlmc-swatch-3 { color: #fff; }
+
+/* the card-sized skin */
+.mlmc-sm .mlmc-card { border-radius: 10px; }
+.mlmc-sm .mlmc-title { font-size: 9.5px; }
+.mlmc-sm .mlmc-card.is-open .mlmc-title { font-size: 14px; }
+.mlmc-sm .mlmc-btn { width: 17px; height: 17px; }
+.mlmc-sm .mlmc-btn svg { width: 10px; height: 10px; }
+.mlmc-sm .mlmc-bar { padding: 18px 7px 6px; }
+.mlmc-sm .mlmc-card.is-open .mlmc-bar { padding: 26px 11px 8px; }
+.mlmc-sm .mlmc-body { font-size: 9px; line-height: 1.45; }
+.mlmc-sm .mlmc-card.is-open .mlmc-body { padding: 7px 11px 9px; }
+.mlmc-sm .mlmc-swatch { font-size: 15px; }
+
+/* Reduced motion: the card still opens and still closes - it is a control, not
+   decoration - it just arrives instead of travelling. The module skips the FLIP
+   and the tour; all that is left here is to stop the rest transitioning. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mlmc-card,
+  :root:not([data-motion="full"]) .mlmc-title,
+  :root:not([data-motion="full"]) .mlmc-body,
+  :root:not([data-motion="full"]) .mlmc-btn,
+  :root:not([data-motion="full"]) .mlmc-scrim { transition: none; }
+}
+:root[data-motion="reduced"] .mlmc-card,
+:root[data-motion="reduced"] .mlmc-title,
+:root[data-motion="reduced"] .mlmc-body,
+:root[data-motion="reduced"] .mlmc-btn,
+:root[data-motion="reduced"] .mlmc-scrim { transition: none; }

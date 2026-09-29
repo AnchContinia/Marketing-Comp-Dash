@@ -144,8 +144,8 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **four components** (`reel-gallery`, `magic-transform`, `user-cursor` and `hover-preview`,
-all category `ui`), so `library.json` holds 53 entries.
+Plus **five components** (`reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview` and
+`modal-cards`, all category `ui`), so `library.json` holds 54 entries.
 
 **Two kinds of entry**, told apart by `meta.json → kind`. `"animation"` is a CSS class generated
 from `base-animations.css` — never hand-edit those files. `"component"` is a JS module written by
@@ -185,6 +185,22 @@ two hooks for it: `autoPath(clock, W, H) -> [x, y]` replaces the wander, and `at
 the tip is heading; both speak in **tip** coordinates, not the SVG box's. Hit-testing reads
 `at()` rather than the real pointer, so the preview and the arrow can never disagree about what
 is hovered - including while the cursor drives itself.
+
+### Pointer demos use the User Cursor
+
+**Any entry whose point is a pointer — hover, click, drag, selection — demonstrates it with the
+library's `user-cursor`, mounted, never with an arrow of its own.** One arrow, one set of
+timings, one silhouette across the whole library; a second hand-drawn cursor is the thing that
+makes two cards look like two libraries. (Standing instruction from the user.)
+
+The wiring is the same every time: name `user-cursor` in `meta.json → dependencies` and link
+**both** stylesheets on every page that loads the entry; mount it on an inner stage, never on the
+component's own node, because both would fight over `el.__ml`; drive the demo by passing
+`autoPath(clock, W, H) -> [x, y]`, which replaces the cursor's wander with your own tour; hit-test
+with `at()` rather than the real pointer, so the two can never disagree about what is under the
+arrow; and **show the click with `press()`** — an entry about clicking that never renders a click
+is the demo failing at its one job. Yield to a real pointer: when `at().mode === "pointer"` the
+tour stops and the visitor drives.
 
 **Hit-test a wrapped inline trigger per line.** `getBoundingClientRect()` on a `<span>` that
 wraps returns the union of both lines - the full column width - which swallows every word beside

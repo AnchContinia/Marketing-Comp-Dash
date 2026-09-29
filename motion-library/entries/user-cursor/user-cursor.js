@@ -139,7 +139,7 @@ export function initUserCursor(node, options) {
        drives the whole thing and light mode stays Tech Blue. The ids are
        per-instance: SVG references are document-wide, and two cursors on one
        page would otherwise share the first one's gradients. */
-    '<div class="mluc-cur"><svg viewBox="0 0 24 24" focusable="false">' +
+    '<div class="mluc-cur"><i class="mluc-ring"></i><svg viewBox="0 0 24 24" focusable="false">' +
       "<defs>" +
         '<linearGradient id="' + gid + '-f" gradientUnits="userSpaceOnUse" x1="5.8" y1="4" x2="16.6" y2="13.3">' +
           '<stop offset="0" stop-color="currentColor" stop-opacity=".94"/>' +
@@ -160,6 +160,7 @@ export function initUserCursor(node, options) {
   node.appendChild(layer);
 
   var cur = layer.querySelector(".mluc-cur"),
+      ring = layer.querySelector(".mluc-ring"),
       lab = layer.querySelector(".mluc-label"),
       pill = layer.querySelector(".mluc-pill");
 
@@ -169,6 +170,7 @@ export function initUserCursor(node, options) {
       tx = 0, ty = 0,       /* where both are heading */
       vx = 0,               /* smoothed horizontal speed, px/ms */
       ang = 0,
+      squash = 0,           /* 1 the instant a click lands, decaying back to 0 */
       clock = 0,            /* wander time, advanced only while running */
       mode = "auto",
       raf = 0, last = 0, running = false, reduced = false, seeded = false;
@@ -205,7 +207,12 @@ export function initUserCursor(node, options) {
   }
 
   function write() {
-    cur.style.transform = "translate3d(" + px.toFixed(2) + "px," + py.toFixed(2) + "px,0) rotate(" + ang.toFixed(2) + "deg)";
+    /* The squash is on the same element as the travel, so it has to be part of
+       the same transform string rather than its own transition - and it has to
+       come after rotate(), or the arrow would scale about the box instead of
+       about the tip the rotation just pivoted on. */
+    cur.style.transform = "translate3d(" + px.toFixed(2) + "px," + py.toFixed(2) + "px,0) rotate(" + ang.toFixed(2) +
+      "deg) scale(" + (1 - 0.18 * squash).toFixed(3) + ")";
     lab.style.transform = "translate3d(" + lx.toFixed(2) + "px," + ly.toFixed(2) + "px,0)";
   }
 
@@ -244,6 +251,7 @@ export function initUserCursor(node, options) {
 
     var target = clamp(vx / TILT_AT, -1, 1) * o.tilt;
     ang += (target - ang) * (1 - Math.exp(-dt / durationMs.instant));
+    if (squash > 0) squash = Math.max(0, squash - dt / durationMs.fast);
 
     write();
   }
@@ -296,6 +304,7 @@ export function initUserCursor(node, options) {
   vars();
   seed();
 
+  on(ring, "animationend", function () { cur.classList.remove("is-press"); });
   on(node, "pointerenter", point);
   on(node, "pointermove", point);
   on(node, "pointerleave", leave);
@@ -331,6 +340,22 @@ export function initUserCursor(node, options) {
       if (o.paused) halt(); else kick();
       return api;
     },
+    /* Show a click. A cursor that drives itself has no real button to press,
+       so nothing on the page would say a click just happened - the arrow dips
+       toward the surface for one duration-fast and a ring pings out from the
+       tip. Caller's job to say when: this module knows where the cursor is, not
+       what it is pressing. Ignored under reduced motion, where there is no
+       self-driving demo to narrate in the first place. */
+    press: function () {
+      if (reduced) return api;
+      squash = 1;
+      write();
+      /* re-trigger the animation on a second click inside its own length */
+      cur.classList.remove("is-press");
+      void ring.offsetWidth;
+      cur.classList.add("is-press");
+      return api;
+    },
     /* Where the tip is headed, in the stage's own coordinates, and which
        source is setting it. A component built on this one hit-tests against
        the same point the arrow is chasing rather than against the real
@@ -346,6 +371,7 @@ export function initUserCursor(node, options) {
       listeners.forEach(function (l) { l[0].removeEventListener(l[1], l[2], l[3]); });
       listeners.length = 0;
       if (io) io.disconnect();
+      cur.classList.remove("is-press");
       node.classList.remove("mluc", "mluc-sm", "mluc-hide", "is-on", "is-live", "is-paused");
       delete node.dataset.accent;
       ["--mluc-h", "--mluc-size"].forEach(function (v) { node.style.removeProperty(v); });
