@@ -144,8 +144,8 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **two components** (`reel-gallery` and `magic-transform`, both category `ui`), so
-`library.json` holds 51 entries.
+Plus **three components** (`reel-gallery`, `magic-transform` and `user-cursor`, all category
+`ui`), so `library.json` holds 52 entries.
 
 **Two kinds of entry**, told apart by `meta.json → kind`. `"animation"` is a CSS class generated
 from `base-animations.css` — never hand-edit those files. `"component"` is a JS module written by

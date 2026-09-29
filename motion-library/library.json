@@ -2509,5 +2509,116 @@
       "focus-radius": 130,
       "speed": 44
     }
+  },
+  {
+    "slug": "user-cursor",
+    "name": "User Cursor",
+    "kind": "component",
+    "source": "continia",
+    "sourceUrl": "https://pro.reactbits.dev/docs/components/user-cursor",
+    "license": "Continia internal",
+    "category": "ui",
+    "class": "js",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-instant",
+      "--motion-duration-fast",
+      "--motion-duration-base",
+      "--motion-duration-moderate",
+      "--motion-ease-out"
+    ],
+    "options": {
+      "height": {
+        "type": "number",
+        "default": 320,
+        "unit": "px"
+      },
+      "name": {
+        "type": "string",
+        "default": "Sophie",
+        "note": "what the pill says"
+      },
+      "accent": {
+        "type": "string",
+        "default": "auto",
+        "note": "auto | blue | cyan | green | purple. Palette only - an unknown value throws rather than painting an off-brand cursor. auto follows --navy, so Tech Blue on a light ground and Innovation Blue on a dark one."
+      },
+      "size": {
+        "type": "number",
+        "default": 22,
+        "unit": "px",
+        "note": "the arrow's width; the pill's offset and type scale off it"
+      },
+      "follow": {
+        "type": "number",
+        "default": 150,
+        "unit": "ms",
+        "note": "a time constant, not a transition: the arrow closes 63% of the gap to the pointer in this long, so a bigger number is a softer, later cursor. Off the duration scale (--motion-duration-fast). It cannot go much higher without the arrow leaving the stage on a fast move - a lagging follower sits speed x this far behind whatever it chases."
+      },
+      "labelFollow": {
+        "type": "number",
+        "default": 250,
+        "unit": "ms",
+        "note": "the same for the pill, one step up the scale (--motion-duration-base). The difference between the two is the only thing that makes the pill trail - there is no hardcoded offset."
+      },
+      "maxTrail": {
+        "type": "number",
+        "default": 56,
+        "unit": "px",
+        "note": "the furthest the pill may fall behind the arrow. The trail grows with speed and would leave the stage unbounded, so the pill is pulled back onto a leash rather than given a shorter lag - a slow move still reads as a soft follow."
+      },
+      "tilt": {
+        "type": "number",
+        "default": 12,
+        "unit": "deg",
+        "note": "the most the arrow may lean into a move; it reaches this at 1.6px/ms of the ARROW's own speed and no further, so a fast flick cannot spin it. The angle is eased on --motion-duration-instant and the speed is read raw, because the arrow's position is already smoothed - stacking more lag on top and the lean never arrives on a short move."
+      },
+      "drift": {
+        "type": "number",
+        "default": 9,
+        "unit": "s",
+        "note": "one wander cycle with no pointer on the stage - a loop length, so an option rather than a token"
+      },
+      "autoplay": {
+        "type": "boolean",
+        "default": true,
+        "note": "wander when no pointer is present. false makes it an ordinary custom cursor: hidden until the pointer enters."
+      },
+      "hideNative": {
+        "type": "boolean",
+        "default": true,
+        "note": "hide the real cursor, and only while the pointer is inside the stage"
+      },
+      "paused": {
+        "type": "boolean",
+        "default": false
+      },
+      "compact": {
+        "type": "boolean",
+        "default": false,
+        "note": "the card-sized skin - smaller arrow, pill and demo type, for a stage under ~200px"
+      }
+    },
+    "reducedMotion": "No loop and no wander. The cursor is still there and still follows the pointer, but it is written straight through with no smoothing and no lean, so there is never a moving element nobody asked for - and never an invisible pointer either, which is the trap with a custom cursor.",
+    "notPorted": [
+      "colour as a free value - the source takes any hex. Here accent is one of four palette names, or auto, and anything else throws. An off-palette cursor is the exact failure the brand rule exists to stop.",
+      "multiple remote cursors driven by a presence backend - there is no socket here. One cursor, driven by the pointer or by its own wander.",
+      "className / style props - a vanilla caller styles .mluc, .mluc-cur and .mluc-pill directly.",
+      "width - CSS's job. The element is display:block and fills its container; only height is an option, because the stage has to know its own.",
+      "a spring with stiffness and damping numbers - replaced by two time constants off the duration scale, which say the same thing in the units the rest of this library uses and cannot drift from the hub's timings."
+    ],
+    "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour and a screen recording, on the Continia tokens. sourceUrl points at the page that describes the idea, for provenance, not at code that was copied. Two deliberate differences from the reference: the reference cursor is orange, which is not a Continia colour, so the default follows --navy and the pill's text takes the opposite value - white on the Tech Blue arrow in light mode, Tech Blue on the Innovation Blue one in dark - and the motion is slower than the reference on request, with both time constants taken off the duration scale, the lean damped on --motion-duration-fast so a fast move eases the arrow over rather than snapping it, and the pill's trail put on a 56px leash so speed can never fling it off the stage.",
+    "blurb": "A second cursor on the stage: an arrow that leans into the direction it is travelling, with a name pill trailing a step behind it. It follows the pointer when there is one and wanders on its own when there is not.",
+    "demo": "<span class=\"mluc-eyebrow\">Move your cursor here</span><span class=\"mluc-title\">Hello, Sophie</span>",
+    "addedAt": "2026-09-29",
+    "demoAttrs": {
+      "height": 172,
+      "compact": 1,
+      "name": "Sophie",
+      "drift": 11,
+      "follow": 150,
+      "label-follow": 250,
+      "tilt": 10
+    }
   }
 ]

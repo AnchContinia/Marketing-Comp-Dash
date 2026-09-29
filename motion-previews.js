@@ -691,5 +691,26 @@ window.MOTION_PREVIEWS = [
     },
     "loops": true,
     "reducedMotion": "No drift and no tilt - the rows sit level and still, and the spotlight is removed. Dragging still works, because that is the reader asking for movement rather than the page deciding."
+  },
+  {
+    "slug": "user-cursor",
+    "name": "User Cursor",
+    "category": "ui",
+    "kind": "component",
+    "feel": "Someone else's cursor, on your page. An arrow leans a few degrees into whichever way it is travelling and a small name pill follows a step behind it, close on a slow move and further back on a fast one - the lag is the whole effect, and it is deliberately gentler than the reference. Move the pointer onto the card and it takes over; take it away and the cursor goes back to wandering on its own, so the card is never still and never frantic.",
+    "useFor": "Anything about two people looking at the same thing: a Web Approval Portal hero, a shared-queue explainer, a collaboration section. Also works as a plain custom cursor on a landing page - set autoplay off and it stays hidden until the pointer arrives. It is a component rather than a class, so it carries its own JS.",
+    "prompt": "Build a stage with a second cursor on it. The cursor is a 22px classic arrow filled in the page's --navy with a 1.5px halo in the page background colour drawn under the fill, so it reads on any surface, plus a rounded name pill sitting 0.74 of the arrow's width below it and 0.58 to the right, in the same colour with the opposite ink - white text on Tech Blue in light mode, Tech Blue on Innovation Blue in dark. Both the arrow and the pill are moved by transform only, from the same target, but with different smoothing: each frame each closes 1 - exp(-dt/tau) of its remaining distance, with tau 150ms for the arrow and 250ms for the pill. That difference is the only thing that makes the pill trail - there is no fixed offset and no second path - and because the gap grows with speed, the pill is pulled back onto a 56px leash so a fast move cannot fling it off the stage. The arrow leans into the move: take the arrow's own horizontal speed - not the pointer's, it is already smooth because the position it comes from was - read raw, map 1.6px per millisecond to the full 12 degrees and clamp there, then ease the angle itself on 100ms. Exactly one lag: the arrow's speed peaks the instant the pointer jumps and decays on its own 150ms, so any filter stacked on top is still winding up when the peak has gone, and the lean never arrives. When a pointer is over the stage the target is the pointer, the native cursor is hidden, and touch pointers are ignored. When no pointer is present the target wanders on two sine waves at a 1:0.618 ratio - 30% of the width across and 26% of the height down from the centre, one cycle every 9 seconds - so it drifts for a long time before it repeats. Seed the first frame at the start of that path rather than at the origin, or it slides in from the top-left corner on load. Park the whole loop when the stage is off-screen. Under prefers-reduced-motion there is no loop and no wander: the cursor still follows the pointer, but written straight through with no smoothing and no lean, so a custom cursor never becomes an invisible one.",
+    "demo": "<span class=\"mluc-eyebrow\">Move your cursor here</span><span class=\"mluc-title\">Hello, Sophie</span>",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "name": "Sophie",
+      "drift": 11,
+      "follow": 150,
+      "label-follow": 250,
+      "tilt": 10
+    },
+    "loops": true,
+    "reducedMotion": "No loop and no wander. The cursor is still there and still follows the pointer, but it is written straight through with no smoothing and no lean, so there is never a moving element nobody asked for - and never an invisible pointer either, which is the trap with a custom cursor."
   }
 ];

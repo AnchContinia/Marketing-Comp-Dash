@@ -1,0 +1,41 @@
+<!-- Requires: motion-library/tokens/motion-tokens.css,
+               motion-library/entries/user-cursor/user-cursor.css
+     Script:   motion-library/entries/user-cursor/user-cursor.js (type="module")
+
+     The children are yours - the module moves them into a content layer and
+     paints the cursor on a layer above, then puts them back on destroy().
+     With a pointer on the stage the cursor follows it; with none it wanders on
+     its own, which is what makes the thing demonstrate itself in a card.
+     Every option is also a data-* attribute; see meta.json for the full list. -->
+<div data-ml="user-cursor" data-name="Sophie" data-height="360">
+  <span class="mluc-eyebrow">Move your cursor here</span>
+  <span class="mluc-title">Hello, Sophie</span>
+</div>
+
+<script type="module" src="motion-library/entries/user-cursor/user-cursor.js"></script>
+
+<!-- Over real content, with the name coming from the signed-in user:
+
+<section id="approval-hero" data-ml="user-cursor" data-accent="cyan" data-height="420">
+  <h2>Two people, one approval queue</h2>
+  <p>Continia Web Approval Portal — see who is looking at the same invoice.</p>
+</section>
+
+<script type="module">
+  import { initUserCursor } from "./motion-library/entries/user-cursor/user-cursor.js";
+  const uc = initUserCursor(document.querySelector("#approval-hero"), {
+    name: "Sophie", accent: "cyan", follow: 150, labelFollow: 250, drift: 11
+  });
+  uc.update({ paused: true });   // park it where it stands
+  uc.destroy();                  // listeners off, rAF cancelled, children restored
+</script>
+-->
+
+<!-- A softer, later cursor: raise both time constants and keep the gap between
+     them. follow is how long the arrow takes to close 63% of the distance to
+     the pointer; labelFollow is the same for the pill, and the difference is
+     the only thing that makes the pill trail.
+
+<div data-ml="user-cursor" data-name="Sophie"
+     data-follow="260" data-label-follow="380" data-tilt="8" data-drift="14">…</div>
+-->

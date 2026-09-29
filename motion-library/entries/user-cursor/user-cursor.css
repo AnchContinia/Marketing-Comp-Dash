@@ -1,0 +1,124 @@
+/* Continia Motion Library — User Cursor
+   Requires tokens/motion-tokens.css. Built from scratch on those tokens; the
+   motion idea is React Bits Pro's "User Cursor", none of their code is here.
+
+   Everything that moves is a transform written by the module. This file only
+   describes the shape: the arrow, the pill, and how the two are offset. */
+
+.mluc {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  height: var(--mluc-h, 320px);
+  --mluc-size: 22px;
+
+  /* Palette only. The default follows --navy, so the cursor is Tech Blue on a
+     light ground and Innovation Blue on a dark one - and the pill's text is
+     always the opposite, because cyan on cyan does not read. */
+  --mluc-accent: var(--navy, #052975);
+  --mluc-ink: #fff;
+  --mluc-edge: var(--paper, #fff);
+}
+html[data-theme="dark"] .mluc { --mluc-ink: #052975; }
+
+.mluc[data-accent="blue"]   { --mluc-accent: #052975; --mluc-ink: #fff; }
+.mluc[data-accent="cyan"]   { --mluc-accent: #8ff8ff; --mluc-ink: #052975; }
+.mluc[data-accent="green"]  { --mluc-accent: #5f9e8d; --mluc-ink: #fff; }
+.mluc[data-accent="purple"] { --mluc-accent: #983eae; --mluc-ink: #fff; }
+
+/* Only while the pointer is actually inside, so the page keeps its cursor
+   everywhere else. */
+.mluc.mluc-hide.is-live { cursor: none; }
+
+.mluc-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  padding: 18px;
+}
+
+.mluc-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--motion-duration-moderate) var(--motion-ease-out);
+}
+.mluc.is-on .mluc-layer { opacity: 1; }
+
+/* Both children sit at the origin and are moved by transform alone - no top /
+   left writes, so the whole thing stays on the compositor. */
+.mluc-cur, .mluc-label { position: absolute; top: 0; left: 0; will-change: transform; }
+
+.mluc-cur { transform-origin: 22.5% 10.8%; }   /* the arrow's tip, so it pivots there */
+.mluc-cur svg {
+  display: block;
+  width: var(--mluc-size);
+  height: var(--mluc-size);
+  overflow: visible;
+}
+.mluc-cur path {
+  fill: var(--mluc-accent);
+  stroke: var(--mluc-edge);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  paint-order: stroke fill;   /* a thin ground-coloured halo, so it reads on any surface */
+}
+
+.mluc-pill {
+  position: absolute;
+  top: calc(var(--mluc-size) * 0.74);
+  left: calc(var(--mluc-size) * 0.58);
+  display: inline-block;
+  max-width: 14ch;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 3px 8px 4px;
+  border-radius: 999px;
+  background: var(--mluc-accent);
+  color: var(--mluc-ink);
+  font-size: 11px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: .01em;
+}
+
+/* the card-sized skin */
+.mluc-sm { --mluc-size: 17px; }
+.mluc-sm .mluc-pill { padding: 2px 6px 3px; font-size: 9.5px; }
+.mluc-sm .mluc-content { gap: 7px; padding: 14px; }
+
+/* ---- the demo content, drawn in page tokens so it reads in both themes ----
+   No images on purpose: the gallery and the Video page both inject this, and a
+   missing file would 404 on one of them. The real-content case lives in
+   user-cursor.html. */
+.mluc-eyebrow {
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--muted, #667);
+}
+.mluc-title {
+  font-size: 26px;
+  font-weight: 850;
+  letter-spacing: -.015em;
+  line-height: 1.1;
+  color: var(--ink, #111);
+}
+.mluc-sm .mluc-eyebrow { font-size: 7.5px; letter-spacing: .18em; }
+.mluc-sm .mluc-title { font-size: 17px; }
+
+/* Reduced motion: the module stops the loop and the wander, and writes the
+   pointer straight through with no smoothing - so there is still a visible
+   cursor, it just never eases or leans. All that is left here is the fade. */
+@media (prefers-reduced-motion: reduce) {
+  :root:not([data-motion="full"]) .mluc-layer { transition: none; }
+}
+:root[data-motion="reduced"] .mluc-layer { transition: none; }
