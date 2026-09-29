@@ -1,0 +1,214 @@
+{
+  "slug": "tile-reveal",
+  "name": "Tile Reveal",
+  "kind": "component",
+  "source": "continia",
+  "sourceUrl": "https://pro.reactbits.dev/docs/components/tile-reveal",
+  "license": "Continia internal",
+  "category": "ui",
+  "class": "js",
+  "dependencies": [
+    "user-cursor"
+  ],
+  "tokens": [
+    "--motion-duration-fast",
+    "--motion-duration-slower",
+    "--motion-ease-out",
+    "--motion-ease-in"
+  ],
+  "options": {
+    "height": {
+      "type": "number",
+      "default": 420,
+      "unit": "px",
+      "note": "the stage - the whole section, since it is sticky rather than scrolled through"
+    },
+    "columns": {
+      "type": "number",
+      "default": 5,
+      "note": "cells across. The stagger is measured from the middle column, so an odd number gives a clean centre."
+    },
+    "rows": {
+      "type": "number",
+      "default": 3,
+      "note": "cells down"
+    },
+    "tile": {
+      "type": "number",
+      "default": 116,
+      "unit": "px",
+      "note": "a tile's width; its height follows from ratio. Cells are placed in percentages, so tiles can overlap their neighbours - that is the reference's look and it is deliberate."
+    },
+    "ratio": {
+      "type": "number",
+      "default": 0.82,
+      "note": "a tile's width : height. Below 1 is the portrait the reference uses."
+    },
+    "radius": {
+      "type": "number",
+      "default": 15,
+      "unit": "px",
+      "note": "the corner radius - the hub's tile radius, and the stage takes it too"
+    },
+    "perspective": {
+      "type": "number",
+      "default": 1000,
+      "unit": "px",
+      "note": "the camera. Without it the tiles' Z is ignored and they arrive by fading rather than by flying."
+    },
+    "depth": {
+      "type": "number",
+      "default": 900,
+      "unit": "px",
+      "note": "how far behind the camera a tile starts"
+    },
+    "near": {
+      "type": "number",
+      "default": 780,
+      "unit": "px",
+      "note": "how far past the camera it ends up. The run out is quadratic rather than linear, so a tile accelerates away instead of drifting."
+    },
+    "stagger": {
+      "type": "number",
+      "default": 0.34,
+      "note": "how much of the scroll range is given over to the spread between columns. The middle column runs first and the outer ones last, which is the reference's order and also the readable one - the eye is already in the middle."
+    },
+    "inEnd": {
+      "type": "number",
+      "default": 0.42,
+      "note": "a tile has arrived by this point in its own run"
+    },
+    "outStart": {
+      "type": "number",
+      "default": 0.64,
+      "note": "and starts leaving here. The gap between the two is the rest, which is what lets the wall be read at all."
+    },
+    "ctaAt": {
+      "type": "number",
+      "default": 0.86,
+      "note": "the scroll position where the sub-line and the button arrive. They follow the position rather than a transition, so dragging backwards takes them away again instead of leaving them stranded."
+    },
+    "scroll": {
+      "type": "number",
+      "default": 3400,
+      "unit": "ms",
+      "note": "how long the self-driving tour takes to work down the section. A loop length, so it is an option rather than a token."
+    },
+    "settle": {
+      "type": "number",
+      "default": 800,
+      "unit": "ms",
+      "note": "resting at the far end with the button up, before the arrow goes for it"
+    },
+    "reach": {
+      "type": "number",
+      "default": 900,
+      "unit": "ms",
+      "note": "walking to the button"
+    },
+    "rest": {
+      "type": "number",
+      "default": 600,
+      "unit": "ms",
+      "note": "the beat after the flight, before the section starts again"
+    },
+    "interactive": {
+      "type": "boolean",
+      "default": true,
+      "note": "wheel, drag and the arrow keys all seek the section"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true,
+      "note": "run the tour when no pointer is on the stage"
+    },
+    "cursor": {
+      "type": "boolean",
+      "default": true,
+      "note": "mount the library's User Cursor. Off, the section answers the real pointer only - which is what a real page wants."
+    },
+    "name": {
+      "type": "string",
+      "default": "",
+      "note": "the cursor's pill. Empty here on purpose: the copy is the thing to read and a name floating over a headline is one label too many."
+    },
+    "accent": {
+      "type": "string",
+      "default": "auto",
+      "values": [
+        "auto",
+        "blue",
+        "cyan",
+        "green",
+        "purple"
+      ],
+      "note": "passed to the cursor. auto follows --navy: Tech Blue on a light ground, Innovation Blue on a dark one."
+    },
+    "size": {
+      "type": "number",
+      "default": 22,
+      "unit": "px",
+      "note": "the cursor's arrow"
+    },
+    "title": {
+      "type": "string",
+      "default": "Built inside Business Central",
+      "note": "the headline, which does not move - it is the fixed thing the wall flies past"
+    },
+    "sub": {
+      "type": "string",
+      "default": "One platform. Six solutions. Thirty years of it.",
+      "note": "arrives at ctaAt. Empty hides it."
+    },
+    "cta": {
+      "type": "string",
+      "default": "See more",
+      "note": "the button. Pressing it throws the section at the viewer and starts it over. Empty hides it, and the loop then simply restarts."
+    },
+    "hint": {
+      "type": "string",
+      "default": "Scroll",
+      "note": "the nudge at the foot while nothing has moved yet; it fades out on the first 8% of the scroll. Empty hides it."
+    },
+    "paused": {
+      "type": "boolean",
+      "default": false,
+      "note": "stops the tour and the arrow together - pausing one without the other leaves a cursor pressing a button on a section that never moves"
+    },
+    "compact": {
+      "type": "boolean",
+      "default": false,
+      "note": "the card-sized skin, for a stage under ~200px"
+    }
+  },
+  "reducedMotion": "No tour and no flight. The module settles the section at the point where the wall is up and the call to action has arrived, and leaves it there - it is a piece of copy with a picture wall behind it, and that is the state worth showing. The wheel, a drag and the arrow keys still seek it; they just arrive instead of travelling.",
+  "notPorted": [
+    "the page scroll itself. The reference is a sticky section driven by the window's scroll position; this is one stage driven by a single number, which the wheel, a drag, the arrow keys or your own scroll handler can all set through seek(). That makes it usable inside a card, which a sticky section is not.",
+    "colour as a free value - the source takes any hex. Here accent is one of four palette names, or auto, and anything else throws.",
+    "tiles as React nodes with per-tile props. A tile is any direct child element, moved across whole - so the markup stays a plain list of images with this module removed.",
+    "the reference's own headline and its greyscale photography. The copy is an option and the demo ships numbered tiles instead of stand-in images, because the point of a tile is the photograph that belongs in it."
+  ],
+  "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour and a screen recording, on the Continia tokens. Measured off the recording: the tiles arrive from behind the camera rather than sliding in, the middle column lands first and the outer ones follow, the wall holds assembled for roughly a quarter of the run, and it then carries on past the camera rather than fading - one Z per tile with three segments, so nothing is sequenced by hand and seeking backwards is free. The flyaway the button sets off is the one thing here that is a transition rather than a per-frame curve, so it takes --motion-duration-slower, the duration scale's one authored moment. The arrow is the library's own User Cursor, mounted rather than redrawn, with an empty name so the pill stays off the headline; it works its way down the section while the scroll runs, then goes for the button and presses it, and that press is what throws the section at the viewer.",
+  "blurb": "A headline that holds still while a wall of tiles flies in around it from behind, rests long enough to be read, then carries on past the camera and out. At the far end a sub-line and a button arrive; press it and the whole section leaves toward you and starts again.",
+  "demo": "<div class=\"mltr-num mltr-num-1\">1</div><div class=\"mltr-num mltr-num-2\">2</div><div class=\"mltr-num mltr-num-3\">3</div><div class=\"mltr-num mltr-num-4\">4</div><div class=\"mltr-num mltr-num-1\">5</div><div class=\"mltr-num mltr-num-2\">6</div><div class=\"mltr-num mltr-num-3\">7</div><div class=\"mltr-num mltr-num-4\">8</div><div class=\"mltr-num mltr-num-1\">9</div><div class=\"mltr-num mltr-num-2\">10</div><div class=\"mltr-num mltr-num-3\">11</div><div class=\"mltr-num mltr-num-4\">12</div><div class=\"mltr-num mltr-num-1\">13</div><div class=\"mltr-num mltr-num-2\">14</div><div class=\"mltr-num mltr-num-3\">15</div>",
+  "addedAt": "2026-09-29",
+  "demoAttrs": {
+    "height": 172,
+    "compact": 1,
+    "tile": 50,
+    "ratio": 0.82,
+    "radius": 8,
+    "perspective": 560,
+    "depth": 460,
+    "near": 420,
+    "size": 16,
+    "scroll": 2600,
+    "settle": 600,
+    "reach": 700,
+    "rest": 500,
+    "name": "",
+    "title": "Built inside Business Central",
+    "sub": "One platform. Six solutions.",
+    "cta": "See more"
+  }
+}

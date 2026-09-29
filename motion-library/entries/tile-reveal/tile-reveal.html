@@ -1,0 +1,57 @@
+<!-- Continia Motion Library — Tile Reveal
+
+     Two stylesheets and one module. user-cursor.css is a real dependency, not a
+     convenience: the arrow on the stage IS the User Cursor entry, mounted by
+     this module rather than redrawn. Drop it, and set data-cursor="0", if the
+     section is a real one a visitor scrolls themselves.
+
+     <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+     <link rel="stylesheet" href="motion-library/entries/user-cursor/user-cursor.css">
+     <link rel="stylesheet" href="motion-library/entries/tile-reveal/tile-reveal.css">
+     <script type="module" src="motion-library/entries/tile-reveal/tile-reveal.js"></script>
+
+     A tile is any direct child, laid into the columns x rows grid in order.
+     Fewer children than cells leaves gaps; extras are ignored. The whole
+     section is one number - the scroll position - so seeking backwards takes
+     everything back, including the call to action. -->
+
+<div data-ml="tile-reveal" data-height="420" data-columns="5" data-rows="3"
+     data-title="Built inside Business Central"
+     data-sub="One platform. Six solutions. Thirty years of it."
+     data-cta="See more">
+  <img src="Assets/reveal/01.jpg" alt="">
+  <img src="Assets/reveal/02.jpg" alt="">
+  <img src="Assets/reveal/03.jpg" alt="">
+  <img src="Assets/reveal/04.jpg" alt="">
+  <img src="Assets/reveal/05.jpg" alt="">
+  <img src="Assets/reveal/06.jpg" alt="">
+  <img src="Assets/reveal/07.jpg" alt="">
+  <img src="Assets/reveal/08.jpg" alt="">
+  <img src="Assets/reveal/09.jpg" alt="">
+  <img src="Assets/reveal/10.jpg" alt="">
+  <img src="Assets/reveal/11.jpg" alt="">
+  <img src="Assets/reveal/12.jpg" alt="">
+  <img src="Assets/reveal/13.jpg" alt="">
+  <img src="Assets/reveal/14.jpg" alt="">
+  <img src="Assets/reveal/15.jpg" alt="">
+</div>
+
+
+<!-- A real section: no arrow, no tour, and the visitor drives it with the
+     wheel. Drive seek() from your own sticky-section scroll handler if you
+     want it tied to the page rather than to the stage.
+
+<div data-ml="tile-reveal" data-cursor="0" data-autoplay="0" data-height="560"
+     data-title="Every document, in one place" data-cta="Book a demo">
+  <img src="Assets/reveal/01.jpg" alt=""> …
+</div>
+-->
+
+<!-- Wider tiles, fewer of them, and the wall arriving later - a calmer version
+     for a page that already has a lot going on:
+
+<div data-ml="tile-reveal" data-columns="4" data-rows="2" data-tile="150"
+     data-ratio="1.3" data-stagger="0.2" data-cta-at="0.8" data-height="380">
+  <img src="Assets/reveal/01.jpg" alt=""> …
+</div>
+-->

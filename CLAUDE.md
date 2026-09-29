@@ -144,8 +144,9 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **six components** (`reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
-`modal-cards` and `color-carousel`, all category `ui`), so `library.json` holds 55 entries.
+Plus **seven components** (`reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+`modal-cards`, `color-carousel` and `tile-reveal`, all category `ui`), so `library.json` holds
+56 entries.
 
 **Two kinds of entry**, told apart by `meta.json → kind`. `"animation"` is a CSS class generated
 from `base-animations.css` — never hand-edit those files. `"component"` is a JS module written by
@@ -212,6 +213,19 @@ colour (`data-cc-color` is the fix when the wash matters); an `<img>` that has n
 pixels, so the card is re-sampled on `load`; and a colour used as a *fill* must be a literal hex,
 never `var(--navy)` — that token is Innovation Blue in the dark theme, which painted two demo
 tiles the same colour and put white type on a near-white ground.
+
+**A 3D wrapper decides paint order by depth, not by `z-index`.** Everything inside one
+`transform-style: preserve-3d` context is sorted by how far forward it sits, so a tile travelling
+toward the camera prints over a headline that carries a higher `z-index` - which is exactly how
+Tile Reveal first rendered, with the middle column across the copy. The fix is to give the moving
+layer its own `perspective` and leave the wrapper flat: the wall then composites as one layer that
+`z-index` can sort under the veil, the copy and the arrow, and the tiles travel unchanged.
+
+**A tour that scrubs its own progress must hand the clock over.** Where the loop writes `prog`
+every frame, a wheel, drag or key seek is undone 16ms later unless the manual path moves the
+tour's clock to where the user just put the section and holds the hand off for a beat. Resetting
+the clock to zero instead - the obvious-looking move - is worse than doing nothing: the next frame
+drags the section back to the top, so every interaction reads as dead.
 
 **Hit-test a wrapped inline trigger per line.** `getBoundingClientRect()` on a `<span>` that
 wraps returns the union of both lines - the full column width - which swallows every word beside

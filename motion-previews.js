@@ -762,6 +762,37 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "No drift and no tilt - the rows sit level and still, and the spotlight is removed. Dragging still works, because that is the reader asking for movement rather than the page deciding."
   },
   {
+    "slug": "tile-reveal",
+    "name": "Tile Reveal",
+    "category": "ui",
+    "kind": "component",
+    "feel": "A headline sits dead still in the middle of a black stage while a wall of tiles comes at it from behind - the middle column first, the outer ones last - settles into a grid long enough to be read, and then keeps going, straight past the camera and out of frame. What is left is the headline, a line under it and a button. The cursor presses the button and the whole section is thrown at you on the Z axis and starts again.",
+    "useFor": "A section opener that has to carry a picture wall and a single message at the same time: a campaign landing page, a solutions overview, a release page, an event splash. The copy never moves, so it stays readable the whole way through, which is the part a fading hero gets wrong. It is a component rather than a class, so it carries its own JS - and it mounts the User Cursor, so it needs that entry's stylesheet too.",
+    "prompt": "Build a sticky section as one stage with a 1000px perspective and a headline centred on it that never moves. Behind the headline put a five by three grid of tiles, placed in percentages so they overlap a little, and drive the whole thing from one number - the scroll position from 0 to 1. Each tile gets its own run inside that number: the middle column runs first and the outer columns last, spread over a third of the range, because the eye is already in the middle. Inside its run a tile flies in from 900px behind the camera on an expo-out, holds still from 42% to 64% so the wall can actually be read, then accelerates to 780px in front of the camera on a squared curve and fades as it passes. Lay a radial veil between the wall and the copy so the headline stays legible over it, and bring the veil up and down with the wall. At 86% a sub-line and a button arrive - bound to the scroll position rather than to a transition, so dragging backwards takes them away again instead of leaving them stranded. Pressing the button throws the whole section at the viewer: one wrapper, translateZ 680px and fade over --motion-duration-slower on the ease-in, then the scroll resets to 0 and it runs again. With no pointer on the stage the cursor drives it: it works its way down the middle of the section over 3400ms while the scroll runs, rests for 800ms at the far end with the button up, walks to the button over 900ms and presses it - the arrow dips toward the surface and a ring pings out from its tip. The wheel, a drag and the arrow keys all seek, and a real pointer takes over the moment it arrives. Under prefers-reduced-motion there is no tour and no flight: the section settles where the wall is up and the call to action has arrived, and stays there.",
+    "demo": "<div class=\"mltr-num mltr-num-1\">1</div><div class=\"mltr-num mltr-num-2\">2</div><div class=\"mltr-num mltr-num-3\">3</div><div class=\"mltr-num mltr-num-4\">4</div><div class=\"mltr-num mltr-num-1\">5</div><div class=\"mltr-num mltr-num-2\">6</div><div class=\"mltr-num mltr-num-3\">7</div><div class=\"mltr-num mltr-num-4\">8</div><div class=\"mltr-num mltr-num-1\">9</div><div class=\"mltr-num mltr-num-2\">10</div><div class=\"mltr-num mltr-num-3\">11</div><div class=\"mltr-num mltr-num-4\">12</div><div class=\"mltr-num mltr-num-1\">13</div><div class=\"mltr-num mltr-num-2\">14</div><div class=\"mltr-num mltr-num-3\">15</div>",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "tile": 50,
+      "ratio": 0.82,
+      "radius": 8,
+      "perspective": 560,
+      "depth": 460,
+      "near": 420,
+      "size": 16,
+      "scroll": 2600,
+      "settle": 600,
+      "reach": 700,
+      "rest": 500,
+      "name": "",
+      "title": "Built inside Business Central",
+      "sub": "One platform. Six solutions.",
+      "cta": "See more"
+    },
+    "loops": true,
+    "reducedMotion": "No tour and no flight. The module settles the section at the point where the wall is up and the call to action has arrived, and leaves it there - it is a piece of copy with a picture wall behind it, and that is the state worth showing. The wheel, a drag and the arrow keys still seek it; they just arrive instead of travelling."
+  },
+  {
     "slug": "user-cursor",
     "name": "User Cursor",
     "category": "ui",
