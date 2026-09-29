@@ -227,6 +227,14 @@ tour's clock to where the user just put the section and holds the hand off for a
 the clock to zero instead - the obvious-looking move - is worse than doing nothing: the next frame
 drags the section back to the top, so every interaction reads as dead.
 
+**A grid is a seeding pattern, not a layout.** `tile-reveal` lays its tiles on `columns x rows`
+so the stage is covered evenly and no two land on each other, then throws every one off its cell
+(`scatter`), resizes it (`sizeVary`) and rests it at its own depth (`depthVary`) - straight rows,
+one tile size and a single flat plane are the three things that make a wall read as a table. The
+randomness is **seeded and computed once**: re-rolling it in the per-frame or per-resize path
+would have the wall rearrange itself while you watch, and the two hosts would disagree about the
+layout.
+
 **Hit-test a wrapped inline trigger per line.** `getBoundingClientRect()` on a `<span>` that
 wraps returns the union of both lines - the full column width - which swallows every word beside
 it, so the hit test answers with whichever wrapped trigger comes first and the last word on the
