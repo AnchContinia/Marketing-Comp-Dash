@@ -55,7 +55,7 @@ html[data-theme="dark"] .mluc { --mluc-ink: #052975; }
    left writes, so the whole thing stays on the compositor. */
 .mluc-cur, .mluc-label { position: absolute; top: 0; left: 0; will-change: transform; }
 
-.mluc-cur { transform-origin: 22.5% 10.8%; }   /* the arrow's tip, so it pivots there */
+.mluc-cur { transform-origin: 19.2% 13.3%; }   /* the arrow's tip, so it pivots there */
 .mluc-cur svg {
   display: block;
   width: var(--mluc-size);

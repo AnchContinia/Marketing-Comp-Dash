@@ -103,8 +103,14 @@ export function initUserCursor(node, options) {
   layer.setAttribute("aria-hidden", "true");
   layer.innerHTML =
     '<div class="mluc-label"><span class="mluc-pill"></span></div>' +
+    /* Not the OS arrow with its rectangular tail - a three-pointed concave
+       arrowhead: a tip, a shallow wing out to the right, a long point down, and
+       a back edge that curves in between the two. Traced off the reference at
+       the two frames where it is standing still, so its own lean is not baked
+       into the shape: apex 49 degrees, the two edges within 8% of the same
+       length, and the back edge 12% of its chord deep. */
     '<div class="mluc-cur"><svg viewBox="0 0 24 24" focusable="false">' +
-      '<path d="M5.4 2.6 L5.4 19.6 L9.8 15.6 L12.4 21.2 L15.2 19.9 L12.6 14.4 L18.5 14.1 Z"/>' +
+      '<path d="M4.6 3.2 L22.6 6.81 Q14.73 13.33 14.35 19.82 Z"/>' +
     "</svg></div>";
 
   node.classList.add("mluc");
