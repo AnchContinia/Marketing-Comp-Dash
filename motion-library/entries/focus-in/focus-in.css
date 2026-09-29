@@ -14,6 +14,6 @@
 
 .ml-focus-in     { animation-name: ml-focus-in;     --ml-duration: var(--motion-duration-slower); }
 @keyframes ml-focus-in {
-  from { opacity: 0; filter: blur(12px); letter-spacing: 0.3em; }
-  to   { opacity: 1; filter: none; letter-spacing: normal; }
+  from { opacity: 0; filter: blur(12px); transform: scale(1.06); }
+  to   { opacity: 1; filter: none; transform: none; }
 }

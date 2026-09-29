@@ -282,6 +282,16 @@ transition cannot be given the delay of an animation it is not part of. Any "swa
 the highlight lands" is this bug waiting to happen; check it in dark mode, where the off-state and
 the on-state are furthest apart.
 
+**A text effect that changes a layout property re-wraps the text while it runs.** `ml-focus-in`
+animated `letter-spacing` from `0.3em` to `normal`, so its headline was three lines wide at the
+start and two at the end and the words jumped a line 200ms in, under the blur. A focus pull is
+optical, so it belongs in `filter` and `transform` - `scale(1.06)` reads as the lens racking in
+and touches no layout at all. The two tracking animations keep their `letter-spacing` because
+tracking *is* the effect, which is exactly why they are only for a short headline on its own
+line - a word or two, never a string long enough to break. The tell is `offsetHeight` taking more
+than one value across a run; `getBoundingClientRect()` will not show it, because a transform
+changes that too.
+
 **Hit-test a wrapped inline trigger per line.** `getBoundingClientRect()` on a `<span>` that
 wraps returns the union of both lines - the full column width - which swallows every word beside
 it, so the hit test answers with whichever wrapped trigger comes first and the last word on the

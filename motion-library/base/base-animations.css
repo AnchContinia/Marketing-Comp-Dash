@@ -242,8 +242,10 @@
 }
 
 /* ---------- text ----------
-   These animate letter-spacing, which the browser cannot composite on the GPU.
-   They are for one headline at a time, never for a paragraph or a list. */
+   The two tracking animations animate letter-spacing, which the browser cannot
+   composite on the GPU and which re-wraps the text as it runs. They are for one
+   short headline at a time - a word or two, on its own line - never for a
+   paragraph, a list, or any string long enough to break. */
 .ml-tracking-in  { animation-name: ml-tracking-in;  --ml-duration: var(--motion-duration-slower); }
 .ml-tracking-out { animation-name: ml-tracking-out; --ml-duration: var(--motion-duration-slow); --ml-ease: var(--motion-ease-in); }
 .ml-focus-in     { animation-name: ml-focus-in;     --ml-duration: var(--motion-duration-slower); }
@@ -257,9 +259,14 @@
   from { opacity: 1; letter-spacing: normal; }
   to   { opacity: 0; letter-spacing: 0.6em; }
 }
+/* A focus pull is optical, so it is a filter and a transform - never
+   letter-spacing. Tracking is a layout property: at 0.3em this headline was
+   three lines wide and at normal it is two, so it re-wrapped 200ms in and the
+   words jumped a line while the blur was still clearing. Scale gives the lens
+   the same "racking in" read and touches no layout at all. */
 @keyframes ml-focus-in {
-  from { opacity: 0; filter: blur(12px); letter-spacing: 0.3em; }
-  to   { opacity: 1; filter: none; letter-spacing: normal; }
+  from { opacity: 0; filter: blur(12px); transform: scale(1.06); }
+  to   { opacity: 1; filter: none; transform: none; }
 }
 @keyframes ml-text-pop-up {
   from { opacity: 0; transform: translateY(var(--motion-distance-md)); text-shadow: none; }
