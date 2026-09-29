@@ -49,6 +49,10 @@ export const DEFAULTS = {
   /* Where a tile's own run sits inside the scroll. The middle column lands
      first and leaves first, so `stagger` is how much of the range is given
      over to that spread; the rest is the run every tile gets. */
+  scatter: 0.62,          /* how far off its cell a tile may sit, in cell widths */
+  sizeVary: 0.38,         /* how much the tile sizes differ, 0 = all the same */
+  depthVary: 140,         /* px of resting depth between the nearest and furthest */
+  seed: 7,                /* the scatter is random but fixed: same layout every load */
   stagger: 0.34,
   inEnd: 0.42,            /* a tile has arrived by here, within its own run */
   outStart: 0.64,         /* and starts leaving here */
@@ -58,10 +62,10 @@ export const DEFAULTS = {
      than tokens - the duration scale describes transitions and tops out at
      800ms. The flyaway is the exception: it is a transition, and it takes
      --motion-duration-slower, the scale's one authored moment. */
-  scroll: 3400,           /* working down the section */
-  settle: 800,            /* resting at the far end with the button up */
-  reach: 900,             /* walking to the button */
-  rest: 600,              /* black, before it starts again */
+  scroll: 6800,           /* working down the section */
+  settle: 1600,           /* resting at the far end with the button up */
+  reach: 1800,            /* walking to the button */
+  rest: 1200,             /* still, before it starts again */
 
   interactive: true,      /* wheel, drag and the arrow keys all seek */
   autoplay: true,         /* run the tour when no pointer is on the stage */
@@ -78,7 +82,7 @@ export const DEFAULTS = {
 };
 
 var NUM = ["height", "columns", "rows", "tile", "ratio", "radius", "perspective", "depth", "near",
-  "stagger", "inEnd", "outStart", "ctaAt", "scroll", "settle", "reach", "rest", "size"];
+  "scatter", "sizeVary", "depthVary", "seed", "stagger", "inEnd", "outStart", "ctaAt", "scroll", "settle", "reach", "rest", "size"];
 var BOOL = ["interactive", "autoplay", "cursor", "paused", "compact"];
 var ACCENTS = ["auto", "blue", "cyan", "green", "purple"];
 
@@ -158,11 +162,35 @@ export function initTileReveal(node, options) {
     return { el: el, c: c, r: r, i: i };
   });
 
-  /* Centre column first, outward. That is the reference's order and it is also
-     the readable one: the eye is already in the middle. */
-  var mid = (o.columns - 1) / 2;
-  var maxRank = Math.max(1, mid);
-  tiles.forEach(function (t) { t.lead = (Math.abs(t.c - mid) / maxRank) * o.stagger; });
+  /* ---- the scatter ----
+     A grid is only the seeding pattern, so no two tiles land on top of each
+     other and the stage stays evenly covered; every tile is then thrown off
+     its own cell, resized and set at its own resting depth. Straight rows and
+     columns are the thing this is avoiding - a wall in clear lines reads as a
+     table, not as pictures.
+
+     The randomness is seeded, so the layout is the same on every load and on
+     both hosts, and it is computed once rather than in `vars()`: re-rolling on
+     a resize would have the wall rearrange itself while you watch. */
+  function rnd(n) {
+    /* a small integer hash - enough scatter for fifteen boxes, and no state */
+    var x = Math.sin((o.seed + 1) * 97.13 + n * 41.7) * 43758.5453;
+    return x - Math.floor(x);
+  }
+  var mid = (o.columns - 1) / 2, midR = (o.rows - 1) / 2;
+  var maxRank = Math.max(0.001, Math.sqrt(mid * mid + midR * midR));
+  tiles.forEach(function (t, n) {
+    t.jx = (rnd(n * 3) - 0.5) * o.scatter;
+    t.jy = (rnd(n * 3 + 1) - 0.5) * o.scatter;
+    t.scale = 1 + (rnd(n * 3 + 2) - 0.5) * o.sizeVary;
+    t.zoff = (rnd(n * 3 + 11) - 0.5) * o.depthVary;
+    /* Out from the middle, measured on the scattered position in both axes,
+       and then nudged at random. Column order was legible but it read as five
+       shutters; this arrives from the centre without being countable. */
+    var dx = (t.c + t.jx - mid), dy = (t.r + t.jy - midR) * (o.columns / Math.max(1, o.rows));
+    var rank = Math.sqrt(dx * dx + dy * dy) / maxRank;
+    t.lead = clamp01(rank * 0.78 + rnd(n * 3 + 5) * 0.22) * o.stagger;
+  });
 
   node.classList.add("mltr");
   /* The source children are read, not displayed: left in place they stack
@@ -199,11 +227,12 @@ export function initTileReveal(node, options) {
     hint.hidden = !o.hint;
     sub.hidden = !o.sub;
     cta.hidden = !o.cta;
-    /* Each tile is placed on the grid in percentages, so the layout follows the
-       stage rather than the numbers it was authored at. */
+    /* Each tile is placed in percentages, so the layout follows the stage
+       rather than the numbers it was authored at, and carries its own size. */
     tiles.forEach(function (t) {
-      t.el.style.left = ((t.c + 0.5) / o.columns * 100).toFixed(3) + "%";
-      t.el.style.top = ((t.r + 0.5) / o.rows * 100).toFixed(3) + "%";
+      t.el.style.left = ((t.c + 0.5 + t.jx) / o.columns * 100).toFixed(3) + "%";
+      t.el.style.top = ((t.r + 0.5 + t.jy) / o.rows * 100).toFixed(3) + "%";
+      t.el.style.setProperty("--mltr-tile", (o.tile * t.scale).toFixed(1) + "px");
     });
   }
 
@@ -224,13 +253,15 @@ export function initTileReveal(node, options) {
       var tp = clamp01((prog - t.lead) / span), z, op;
       if (tp < o.inEnd) {
         var a = easeOut(tp / o.inEnd);
-        z = -o.depth * (1 - a);
+        z = t.zoff * a - o.depth * (1 - a);
         op = a;
       } else if (tp < o.outStart) {
-        z = 0; op = 1;
+        /* Resting, but not all on one plane: a single flat sheet is the other
+           half of the grid look, so each tile holds at its own depth. */
+        z = t.zoff; op = 1;
       } else {
         var c = (tp - o.outStart) / Math.max(0.001, 1 - o.outStart);
-        z = o.near * c * c;                 /* accelerating away, not drifting */
+        z = t.zoff + (o.near - t.zoff) * c * c;   /* accelerating away, not drifting */
         op = 1 - clamp01((c - 0.55) / 0.45);
       }
       t.el.style.transform = "translate3d(-50%,-50%," + z.toFixed(1) + "px)";

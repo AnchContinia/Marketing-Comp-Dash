@@ -780,14 +780,17 @@ window.MOTION_PREVIEWS = [
       "depth": 460,
       "near": 420,
       "size": 16,
-      "scroll": 2600,
-      "settle": 600,
-      "reach": 700,
-      "rest": 500,
+      "scroll": 5200,
+      "settle": 1200,
+      "reach": 1400,
+      "rest": 1000,
       "name": "",
       "title": "Built inside Business Central",
       "sub": "One platform. Six solutions.",
-      "cta": "See more"
+      "cta": "See more",
+      "scatter": 0.5,
+      "sizeVary": 0.34,
+      "depthVary": 70
     },
     "loops": true,
     "reducedMotion": "No tour and no flight. The module settles the section at the point where the wall is up and the call to action has arrived, and leaves it there - it is a piece of copy with a picture wall behind it, and that is the state worth showing. The wheel, a drag and the arrow keys still seek it; they just arrive instead of travelling."

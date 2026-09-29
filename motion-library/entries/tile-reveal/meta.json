@@ -68,6 +68,27 @@
       "unit": "px",
       "note": "how far past the camera it ends up. The run out is quadratic rather than linear, so a tile accelerates away instead of drifting."
     },
+    "scatter": {
+      "type": "number",
+      "default": 0.62,
+      "note": "how far off its own cell a tile may sit, in cell widths. 0 lays the wall out as a plain grid; the default throws it far enough that no row or column reads as a line"
+    },
+    "sizeVary": {
+      "type": "number",
+      "default": 0.38,
+      "note": "the spread of tile sizes around `tile`. 0 makes every tile the same size, which is the other half of the grid look"
+    },
+    "depthVary": {
+      "type": "number",
+      "default": 140,
+      "unit": "px",
+      "note": "how far apart the tiles rest in Z, so the assembled wall is not one flat sheet"
+    },
+    "seed": {
+      "type": "number",
+      "default": 7,
+      "note": "the scatter is random but fixed - change the seed for a different arrangement, and the same seed always lays out the same way"
+    },
     "stagger": {
       "type": "number",
       "default": 0.34,
@@ -90,25 +111,25 @@
     },
     "scroll": {
       "type": "number",
-      "default": 3400,
+      "default": 6800,
       "unit": "ms",
       "note": "how long the self-driving tour takes to work down the section. A loop length, so it is an option rather than a token."
     },
     "settle": {
       "type": "number",
-      "default": 800,
+      "default": 1600,
       "unit": "ms",
       "note": "resting at the far end with the button up, before the arrow goes for it"
     },
     "reach": {
       "type": "number",
-      "default": 900,
+      "default": 1800,
       "unit": "ms",
       "note": "walking to the button"
     },
     "rest": {
       "type": "number",
-      "default": 600,
+      "default": 1200,
       "unit": "ms",
       "note": "the beat after the flight, before the section starts again"
     },
@@ -202,13 +223,16 @@
     "depth": 460,
     "near": 420,
     "size": 16,
-    "scroll": 2600,
-    "settle": 600,
-    "reach": 700,
-    "rest": 500,
+    "scroll": 5200,
+    "settle": 1200,
+    "reach": 1400,
+    "rest": 1000,
     "name": "",
     "title": "Built inside Business Central",
     "sub": "One platform. Six solutions.",
-    "cta": "See more"
+    "cta": "See more",
+    "scatter": 0.5,
+    "sizeVary": 0.34,
+    "depthVary": 70
   }
 }
