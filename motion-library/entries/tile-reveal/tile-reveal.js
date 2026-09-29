@@ -348,17 +348,52 @@ export function initTileReveal(node, options) {
     return [r.left - s.left + r.width / 2, r.top - s.top + r.height / 2];
   }
 
+  /* A path with no corners in it. Every beat either holds a point or eases
+     between two, and an eased leg leaves and arrives at zero speed, so the
+     joins carry no kink - and the last leg walks back to where the first one
+     starts, so the lap closes instead of teleporting the arrow from the button
+     at the foot to the top of the section. The cursor's spring smooths what is
+     left; it should not be asked to absorb a jump this size. */
+  function ease(u) { return u * u * (3 - 2 * u); }
+  function mix(a, b, u) {
+    var e = ease(clamp01(u));
+    return [a[0] + (b[0] - a[0]) * e, a[1] + (b[1] - a[1]) * e];
+  }
+
+  /* Where the button is, frozen the moment it is pressed. Read live, this
+     chases a button that is flying at the camera: the flyaway scales the whole
+     copy up and out, so `getBoundingClientRect` reports it sprinting away and
+     the arrow sprints after it - which was the one speed spike the spring could
+     not explain. The hand stays where it pressed and lets the section go. */
+  var ctaSeen = null;
+  function ctaPoint() {
+    if (!node.classList.contains("is-flying")) ctaSeen = centreOf(cta);
+    return ctaSeen || [W * 0.5, H * 0.62];
+  }
+
   function tourPoint() {
     var t = clock % lap();
+    var A = [W * 0.62, H * 0.24], B = [W * 0.66, H * 0.76], C = ctaPoint();
+    /* the flyaway plus the pause after it - the arrow's way home */
+    var back = durationMs.slower + o.rest;
     if (t < o.scroll) {
-      /* working down the middle of the section: that is what a scroll looks
-         like from outside, and it keeps the arrow off the copy */
-      var a = t / o.scroll;
-      return [W * (0.62 + 0.06 * Math.sin(a * Math.PI * 2)), H * (0.24 + 0.52 * a)];
+      /* Working down the middle of the section: that is what a scroll looks
+         like from outside, and it keeps the arrow off the copy. One sway
+         across the run, which closes on itself so the sideways motion has no
+         kink either. */
+      var a = ease(t / o.scroll);
+      return [A[0] + (B[0] - A[0]) * a + W * 0.05 * Math.sin(a * Math.PI * 2),
+              A[1] + (B[1] - A[1]) * a];
     }
-    if (t < o.scroll + o.settle) return [W * 0.68, H * 0.76];
-    if (t < o.scroll + o.settle + o.reach) return centreOf(cta);
-    return centreOf(cta);
+    t -= o.scroll;
+    if (t < o.settle) return B;
+    t -= o.settle;
+    if (t < o.reach) return mix(B, C, t / o.reach);
+    t -= o.reach;
+    /* on the button through the press and the flyaway, then home */
+    var wait = back * 0.42;
+    if (t < wait) return C;
+    return mix(C, A, (t - wait) / Math.max(1, back - wait));
   }
 
   function advance() {

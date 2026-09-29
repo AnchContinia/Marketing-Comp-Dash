@@ -227,6 +227,24 @@ tour's clock to where the user just put the section and holds the hand off for a
 the clock to zero instead - the obvious-looking move - is worse than doing nothing: the next frame
 drags the section back to the top, so every interaction reads as dead.
 
+**The User Cursor's follower is a critically damped spring, not a lag.** A single-pole lag
+answers a jumped target with its *highest* speed in the very first frame and decays from there, so
+every component that walks the arrow between waypoints read as a series of lunges - measured on
+the Tile Reveal tour, the arrow peaked at 98x its own average speed. The spring leaves at rest,
+accelerates and arrives at rest with no overshoot, and it is integrated in closed form so a 64ms
+frame is as stable as a 4ms one. The pill is the same spring at a lower frequency and never a lag:
+a lag beside a spring *leads* it out of a standstill, because the lag is fastest in the frame the
+spring is still winding up.
+
+**Two things the spring cannot absorb, so the paths must not ask it to.** A tour has to close its
+own loop - `tile-reveal`'s last beat walks the arrow back to where the first one starts, because a
+teleport from the button at the foot to the top of the section is a jump no smoothing makes
+graceful. And **an `autoPath` waypoint read off a live rect must not be read while that element is
+animating**: aiming at `getBoundingClientRect()` of a button that the flyaway is scaling toward the
+camera had the arrow sprinting after it, which was the one speed spike left after the spring
+landed. Freeze the point at the press. Measured end to end: peak speed 4.23 to 0.20 px/ms, peak
+jerk 50x lower.
+
 **A grid is a seeding pattern, not a layout.** `tile-reveal` lays its tiles on `columns x rows`
 so the stage is covered evenly and no two land on each other, then throws every one off its cell
 (`scatter`), resizes it (`sizeVary`) and rests it at its own depth (`depthVary`) - straight rows,

@@ -166,9 +166,10 @@ export function initUserCursor(node, options) {
 
   var W = 0, H = 0,
       px = 0, py = 0,       /* where the arrow is */
-      lx = 0, ly = 0,       /* where the pill is - the same target, more lag */
+      lx = 0, ly = 0,       /* where the pill is - the same target, a softer spring */
       tx = 0, ty = 0,       /* where both are heading */
-      vx = 0,               /* smoothed horizontal speed, px/ms */
+      vx = 0, vy = 0,       /* the arrow's real velocity, px/ms */
+      lvx = 0, lvy = 0,     /* the pill's */
       ang = 0,
       squash = 0,           /* 1 the instant a click lands, decaying back to 0 */
       clock = 0,            /* wander time, advanced only while running */
@@ -210,6 +211,26 @@ export function initUserCursor(node, options) {
     ty = H * 0.5 + H * 0.26 * Math.sin(w * clock * 0.618 + 1.1);
   }
 
+  /* ---- how the arrow chases its target ----
+     Critically damped, not a single-pole lag. A lag answers a step with its
+     HIGHEST speed in the very first frame and decays from there, so a hand that
+     walks between waypoints - which is what every component driving this one
+     asks for - reads as a series of lunges: measured on the Tile Reveal tour it
+     peaked at 98x its own average speed. A critically damped spring leaves at
+     rest, accelerates, and arrives at rest, with no overshoot, so the same
+     waypoints become one continuous move and a jumped target is a reach rather
+     than a snap.
+
+     Solved in closed form rather than stepped, so a 64ms frame is as stable as
+     a 4ms one - stepping this integrator would ring, and then overshoot, on
+     exactly the slow frames where it matters. `w` is the spring's frequency,
+     taken off the same `follow` token the lag used: 2/follow settles in about
+     the same time the lag took, with none of the initial snap. */
+  function damp(p, v, t, w, dt) {
+    var e = Math.exp(-w * dt), A = p - t, B = v + w * A, q = A + B * dt;
+    return [t + q * e, (B - w * q) * e];
+  }
+
   function write() {
     /* The squash is on the same element as the travel, so it has to be part of
        the same transform string rather than its own transition - and it has to
@@ -229,22 +250,18 @@ export function initUserCursor(node, options) {
 
     if (mode === "auto") { clock += dt; autoTarget(); }
 
-    var kA = 1 - Math.exp(-dt / o.follow),
-        kL = 1 - Math.exp(-dt / o.labelFollow),
-        nx = px + (tx - px) * kA,
-        ny = py + (ty - py) * kA;
+    var wA = 2 / o.follow, wL = 2 / o.labelFollow;
+    var rx = damp(px, vx, tx, wA, dt), ry = damp(py, vy, ty, wA, dt);
+    px = rx[0]; vx = rx[1];
+    py = ry[0]; vy = ry[1];
 
-    /* The speed that drives the lean is the ARROW's, not the pointer's, so it
-       is already smooth - the position it comes from was smoothed a line ago.
-       It is read raw here on purpose. Filtering it as well, and then easing the
-       angle on top of that, put three lags in series, and because the arrow's
-       speed peaks the instant the pointer jumps and then decays on its own
-       150ms, the filters were still winding up when the peak had gone: a 260ms
-       flick that should read as several degrees managed 0.4. One lag only - the
-       angle's - and it is a short one. */
-    vx = (nx - px) / dt;
-    px = nx; py = ny;
-    lx += (tx - lx) * kL; ly += (ty - ly) * kL;
+    /* The pill is the same spring at a lower frequency, not a lag: a lag next
+       to a spring LEADS it out of a standstill, because the lag is fastest in
+       the frame the spring is still winding up, and the pill would jump ahead
+       of the arrow it is supposed to trail. */
+    var lrx = damp(lx, lvx, tx, wL, dt), lry = damp(ly, lvy, ty, wL, dt);
+    lx = lrx[0]; lvx = lrx[1];
+    ly = lry[0]; lvy = lry[1];
 
     /* The gap between the two time constants is what makes the pill trail, and
        it grows with speed - unbounded, it leaves the stage on a fast move. Pull
@@ -253,6 +270,9 @@ export function initUserCursor(node, options) {
     var dx = lx - px, dy = ly - py, d = Math.hypot(dx, dy);
     if (d > o.maxTrail) { var pull = o.maxTrail / d; lx = px + dx * pull; ly = py + dy * pull; }
 
+    /* The lean comes from the ARROW's velocity, which the spring hands over
+       directly - no difference quotient, so it is smooth by construction and
+       the angle's own short lag is the only filter in the chain. */
     var target = clamp(vx / TILT_AT, -1, 1) * o.tilt;
     ang += (target - ang) * (1 - Math.exp(-dt / durationMs.instant));
     if (squash > 0) squash = Math.max(0, squash - dt / durationMs.fast);
@@ -281,6 +301,7 @@ export function initUserCursor(node, options) {
     if (!W || !H) return;            /* laid out later; the observer will call back */
     autoTarget();
     px = lx = tx; py = ly = ty;
+    vx = vy = lvx = lvy = 0;   /* placed, not thrown: a seed carries no momentum */
     write();
     seeded = true;
     if (o.autoplay || reduced) show(true);
@@ -293,7 +314,7 @@ export function initUserCursor(node, options) {
     mode = "pointer";
     node.classList.add("is-live");
     show(true);
-    if (reduced) { px = lx = tx; py = ly = ty; ang = 0; write(); return; }
+    if (reduced) { px = lx = tx; py = ly = ty; vx = vy = lvx = lvy = 0; ang = 0; write(); return; }
     kick();
   }
   function leave() {
