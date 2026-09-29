@@ -2329,7 +2329,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV="20260925j";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20260929a";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
@@ -2567,6 +2567,147 @@ if(contentIdeasList){
       if(e.shiftKey&&document.activeElement===first){ e.preventDefault(); last.focus(); }
       else if(!e.shiftKey&&document.activeElement===last){ e.preventDefault(); first.focus(); }
     });
+  }
+
+  /* ---------- AI model assessment ----------
+     One toggle drives two things at once: which department cards are on
+     screen, and which roles are relevant to them. A role marked side:"both"
+     is always shown, so the toggle narrows the list without ever hiding a
+     leaderboard that matters to everyone. The model table sits below both
+     sides and never changes - there is one set of prices.
+
+     Role leaderboards go through acc() like every other entry on this page,
+     which is what puts them in the page search for free. */
+  var am=document.getElementById("cka-depts");
+  if(am&&D.ai){
+    var A=D.ai, side="marketing";
+
+    /* Elo and index scores are bare numbers; everything else is a percentage.
+       Read it off the benchmark name rather than carrying a unit per role. */
+    function unit(b){ return /Elo|Index/.test(b)?"":"%"; }
+    function money(v){
+      if(v===null||v===undefined) return "—";
+      return "$"+(v<1||v%1?v.toFixed(2):String(v));
+    }
+    function num(v){ return (v===null||v===undefined)?"—":String(v); }
+
+    function deptCard(x){
+      return '<article class="cka-card" data-side="'+esc(x.side)+'">'+
+        '<div class="cka-c-head"><span class="cka-ic" aria-hidden="true"><i class="fa-light '+esc(x.icon)+'"></i></span>'+
+          "<h3>"+esc(x.name)+"</h3></div>"+
+        '<p class="cka-jobs">'+esc(x.jobs)+"</p>"+
+        '<dl class="cka-picks">'+
+          "<dt>First choice</dt><dd><b>"+esc(x.pick.m)+"</b> "+esc(x.pick.why)+"</dd>"+
+          "<dt>Second option</dt><dd><b>"+esc(x.value.m)+"</b> "+esc(x.value.why)+"</dd>"+
+        "</dl>"+
+        '<p class="cka-careful"><b>Watch out</b>'+esc(x.careful)+"</p>"+
+        srcRow(x.s)+"</article>";
+    }
+
+    function roleAcc(r){
+      var max=r.top.reduce(function(m,t){ return Math.max(m,t[1]); },0)||1, u=unit(r.bench);
+      var bars='<ol class="cka-bars">'+r.top.map(function(t){
+        return "<li><span class=\"cka-bn\">"+esc(t[0])+"</span>"+
+          '<span class="cka-bt"><i style="width:'+Math.round(t[1]/max*100)+'%"></i></span>'+
+          '<span class="cka-bv">'+esc(t[1]+u)+"</span></li>";
+      }).join("")+"</ol>";
+      return acc({id:r.id, kind:"AI role", title:r.label, cls:"ckx-sub cka-role-"+r.side,
+        head:'<span class="ckx-mn">'+esc(r.label)+"</span>"+
+             '<span class="cka-bench">'+esc(r.bench)+"</span>",
+        body:'<p class="cka-what">'+esc(r.what)+"</p>"+bars+
+             '<p class="cka-roster">Tested on '+esc(r.roster)+".</p>"+
+             '<p class="cka-read"><b>How to read it</b>'+esc(r.read)+"</p>"+srcRow(r.s)});
+    }
+
+    /* Sortable because the right model depends on which column you came for -
+       the cheapest 45 and the highest score are different rows. */
+    var COLS=[
+      {k:"name",  t:"Model",        cls:"",        f:function(m){return '<b>'+esc(m.name)+"</b>";}},
+      {k:"vendor",t:"Vendor",       cls:"",        f:function(m){return esc(m.vendor);}},
+      {k:"ii",    t:"Intelligence", cls:"cka-n",   f:function(m){return num(m.ii);}},
+      {k:"speed", t:"Tok/s",        cls:"cka-n",   f:function(m){return num(m.speed);}},
+      {k:"ctx",   t:"Context",      cls:"cka-n",   f:function(m){return esc(m.ctx);}},
+      {k:"pcache",t:"Cache hit",    cls:"cka-n",   f:function(m){return money(m.pcache);}},
+      {k:"pin",   t:"Input",        cls:"cka-n",   f:function(m){return money(m.pin);}},
+      {k:"pout",  t:"Output",       cls:"cka-n",   f:function(m){return money(m.pout);}},
+      {k:"task",  t:"Per task",     cls:"cka-n",   f:function(m){return money(m.task);}}
+    ];
+    var sortKey="ii", sortDir=-1;
+
+    function drawTable(){
+      var rows=A.models.slice().sort(function(a,b){
+        var x=a[sortKey], y=b[sortKey];
+        if(x===null||x===undefined) return 1;      /* unmeasured always sinks */
+        if(y===null||y===undefined) return -1;
+        if(typeof x==="string") return sortDir*x.localeCompare(y);
+        return sortDir*(x-y);
+      });
+      var head="<tr>"+COLS.map(function(c){
+        var on=c.k===sortKey;
+        return '<th class="'+c.cls+(on?" is-sorted":"")+'"><button type="button" data-k="'+c.k+'">'+
+          esc(c.t)+'<i class="fa-light fa-'+(on?(sortDir<0?"arrow-down":"arrow-up"):"arrows-up-down")+'" aria-hidden="true"></i></button></th>';
+      }).join("")+"</tr>";
+      var body=rows.map(function(m){
+        return "<tr>"+COLS.map(function(c){ return '<td class="'+c.cls+'">'+c.f(m)+"</td>"; }).join("")+"</tr>"+
+          '<tr class="cka-noterow"><td colspan="'+COLS.length+'">'+esc(m.note)+"</td></tr>";
+      }).join("");
+      document.getElementById("cka-models").innerHTML=
+        '<table class="cka-tbl"><caption>Read off Artificial Analysis on '+esc(A.captured)+
+        ' and cross-checked against each vendor the same day. Intelligence is the '+esc(A.indexName)+
+        '. Prices are list, per 1 million tokens. "Per task" is Artificial Analysis’ measured cost to complete one Intelligence Index task.</caption>'+
+        "<thead>"+head+"</thead><tbody>"+body+"</tbody></table>"+srcRow(A.modelsSrc);
+    }
+
+    /* Both sides are rendered once and the toggle only sets data-side on the
+       section, because the page search indexes .ckx elements from the DOM at
+       load and moves them in and out of #ck-hits. Re-rendering on every toggle
+       would hand it detached nodes and wipe containers it is holding elements
+       out of. The hide rule is scoped inside #ck-ai, so a role the search has
+       moved into the hero shows regardless of which side is on. */
+    var sec=document.getElementById("ck-ai");
+    function draw(){
+      sec.setAttribute("data-side",side);
+      document.getElementById("cka-note").textContent=
+        side==="marketing"
+          ? "Six marketing desks. Switch to see legal, developers, data, research, HR and the rest."
+          : "Eight departments outside marketing. Switch back for the marketing desks.";
+    }
+
+    am.innerHTML=A.depts.map(deptCard).join("");
+    document.getElementById("cka-roles").innerHTML=A.roles.map(roleAcc).join("");
+
+    document.querySelectorAll("#ck-ai .cka-tab").forEach(function(b){
+      b.addEventListener("click",function(){
+        if(b.getAttribute("data-side")===side) return;
+        side=b.getAttribute("data-side");
+        document.querySelectorAll("#ck-ai .cka-tab").forEach(function(o){
+          var on=o===b;
+          o.classList.toggle("is-on",on);
+          o.setAttribute("aria-selected",on?"true":"false");
+        });
+        draw();
+      });
+    });
+
+    document.getElementById("cka-models").addEventListener("click",function(e){
+      var b=e.target.closest("button[data-k]");
+      if(!b) return;
+      var k=b.getAttribute("data-k");
+      /* first click on a new column sorts the useful way round: text A-Z,
+         numbers high-to-low, except the price columns where cheap wins */
+      if(k===sortKey) sortDir=-sortDir;
+      else { sortKey=k; sortDir=(k==="name"||k==="vendor"||k==="pcache"||k==="pin"||k==="pout"||k==="task")?1:-1; }
+      drawTable();
+    });
+
+    document.getElementById("cka-watch").innerHTML=A.watch.map(function(w,i){
+      return acc({id:"aiw-"+i, kind:"AI watch-out", title:w.t, cls:"ckx-sub",
+        head:'<span class="ckx-mn">'+esc(w.t)+"</span>",
+        body:"<p>"+esc(w.d)+"</p>"+srcRow(w.s)});
+    }).join("");
+
+    draw();
+    drawTable();
   }
 
   /* ---------- portals and rules ---------- */
@@ -3051,6 +3192,7 @@ if(contentIdeasList){
       {id:"ck-platform", icon:"fa-diagram-project", label:"Platform & shared"},
       {id:"ck-names", icon:"fa-spell-check", label:"Names & gotchas"},
       {id:"ck-tools", icon:"fa-toolbox", label:"3rd party tools"},
+      {id:"ck-ai", icon:"fa-robot", label:"AI model assessment"},
       {id:"ck-portals", icon:"fa-compass", label:"Where this comes from"}
     ]}
   ];
@@ -3147,7 +3289,7 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-09-24 16:20";
+var DASHBOARD_UPDATED = "2026-09-29 15:10";
 var MODULE_UPDATED = {
   /* index.html */
   "news":            {at:"2026-09-22 16:52", src:"News sweep"},
@@ -3174,6 +3316,7 @@ var MODULE_UPDATED = {
   "ck-portals":      {at:"2026-09-23 14:05", src:"Portal verification"},
   "ck-search":       {at:"2026-09-23 15:25", src:"Key terms re-read off the product pages"},
   "ck-tools":        {at:"2026-09-24 10:40", src:"Vendor trust / security / privacy pages"},
+  "ck-ai":           {at:"2026-09-29 15:10", src:"Artificial Analysis + Anthropic / OpenAI / Google pricing pages"},
   "motion-previews": {at:"2026-09-24 16:20", src:"motion-library/library.json"},
   "ck-solutions":    {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-platform":     {at:"2026-09-23 14:05", src:"Docs + continia.com read"},

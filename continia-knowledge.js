@@ -697,4 +697,289 @@ window.CK_DATA = {
     {t: "Percentages are customers' results, not benchmarks", d: "95%, 80%, 10+ hours and the two-thirds cost reduction come from continia.com product pages and are presented as what customers achieve. Keep that framing.", s: [["Document Capture product page", "https://www.continia.com/solutions/document-capture/"]]},
     {t: "Docs describes the latest online version", d: "For on-premises or older versions a documented feature may not exist. Say which version you are writing for when the audience is on-prem.", s: [["Docs (en-us)", "https://docs.continia.com/en-us/"]]}
   ]
+,
+
+  /* ---------- AI model assessment ----------
+     The second documented exception to the two-portals rule, for the same
+     reason as the 3rd party tools: docs.continia.com has nothing to say about
+     which model writes a better subject line. Two kinds of claim live here and
+     they are sourced separately - a benchmark score comes from Artificial
+     Analysis, a price comes from the vendor's own pricing page, and the two are
+     never mixed. Every score was read off the live AA page on `captured`, and
+     every list price was re-checked against Anthropic, OpenAI and Google the
+     same day; all three matched AA to the cent.
+
+     A model missing from a role's leaderboard was NOT tested on that
+     evaluation - AA runs different rosters per benchmark (Harvey and
+     AnalystAgent are seven models, EnterpriseOps ten, the Intelligence Index
+     twenty-four). Absence is not a low score, and the `roster` field on each
+     role says how many models the number covers. */
+  ai: {
+    captured: "2026-09-29",
+    indexName: "Artificial Analysis Intelligence Index v4.3.2",
+    indexNote: "Ten evaluations averaged: AA-Briefcase v1.1, GDPval-AA v2.1, AutomationBench-AA, Terminal-Bench 4.0, SciCode, Humanity's Last Exam, GDP.pdf, CritPt, AA-Omniscience and AA-LCR v1.1. Higher is better; the whole scale currently tops out at 58.",
+
+    /* The table below is one entry in its own right, so it carries its own
+       sources: the scores from AA, the prices from each vendor directly. */
+    modelsSrc: [
+      ["Artificial Analysis — Models","https://artificialanalysis.ai/models"],
+      ["Anthropic — API pricing","https://www.anthropic.com/pricing"],
+      ["OpenAI — API pricing","https://developers.openai.com/api/docs/pricing"],
+      ["Google — Gemini API pricing","https://ai.google.dev/gemini-api/docs/pricing"]
+    ],
+
+    /* Twelve models, not the 679 AA tracks: the three frontier families plus
+       the cheap tiers and the two open-weight leaders that actually win a role
+       below. Prices are list per 1M tokens - batch halves them, a cache hit is
+       the third column. */
+    models: [
+      {id:"aim-opus55", name:"Claude Opus 5.5", vendor:"Anthropic", ii:58, speed:93, ctx:"1M", pcache:0.20, pin:4, pout:20, task:5.98,
+       note:"Top of the Intelligence Index and of the Finance & Accounting Index. The default for anything where being wrong is expensive."},
+      {id:"aim-sonnet55", name:"Claude Sonnet 5.5", vendor:"Anthropic", ii:56, speed:139, ctx:"1M", pcache:0.20, pin:2, pout:10, task:null,
+       note:"Two index points below Opus at half the price and 1.5x the speed. The workhorse pick for most desks."},
+      {id:"aim-fable51", name:"Claude Fable 5.1", vendor:"Anthropic", ii:53, speed:69, ctx:"1M", pcache:0.25, pin:10, pout:50, task:7.63,
+       note:"The most expensive model on this list and the strongest on spreadsheets and on knowledge accuracy. Slow, dense output that needs an editing pass."},
+      {id:"aim-astra", name:"GPT-6 Astra", vendor:"OpenAI", ii:53, speed:59, ctx:"1M", pcache:1.00, pin:10, pout:50, task:3.26,
+       note:"OpenAI's flagship. Best in the set on document reasoning and on research workflows; the slowest of the frontier three."},
+      {id:"aim-sol", name:"GPT-6 Sol", vendor:"OpenAI", ii:48, speed:79, ctx:"872k", pcache:0.20, pin:2, pout:10, task:null,
+       note:"Priced identically to Sonnet 5.5 and eight index points behind it. Worth having as a second opinion, not as the default."},
+      {id:"aim-luna", name:"GPT-6 Luna", vendor:"OpenAI", ii:37, speed:146, ctx:"1M", pcache:0.01, pin:0.10, pout:0.50, task:0.07,
+       note:"The cheapest useful model here - 40x cheaper per task than Opus. For bulk mechanical text where a human reads the output anyway."},
+      {id:"aim-gem38", name:"Gemini 3.8 Flash", vendor:"Google", ii:41, speed:239, ctx:"1M", pcache:0.08, pin:0.75, pout:3.75, task:1.24,
+       note:"Fastest of the capable models and the best of them at reading images relative to price. Its price is introductory - see the watch-outs."},
+      {id:"aim-gemlite", name:"Gemini 3.5 Flash-Lite", vendor:"Google", ii:22, speed:320, ctx:"1M", pcache:0.03, pin:0.30, pout:2.50, task:null,
+       note:"The fastest model AA measures at this tier. Classification and routing only - the index score is too low for anything customer-facing."},
+      {id:"aim-grok47", name:"Grok 4.7", vendor:"xAI", ii:46, speed:74, ctx:"500k", pcache:0.50, pin:2, pout:6, task:3.74,
+       note:"Mid-pack on intelligence, cheaper output than Sonnet, and one of the few models that refuses rather than guesses (71% non-hallucination)."},
+      {id:"aim-kimik3", name:"Kimi K3", vendor:"Moonshot (open weights)", ii:44, speed:null, ctx:"1M", pcache:0.30, pin:3, pout:15, task:null,
+       note:"Wins two of the roles below outright - legal criterion pass rate and long-context reasoning - and the weights are public."},
+      {id:"aim-glm53", name:"GLM-5.3", vendor:"Z.ai (open weights)", ii:45, speed:87, ctx:"1M", pcache:0.26, pin:1.40, pout:4.40, task:2.01,
+       note:"Frontier-adjacent index score at a fifth of Opus's output price. The cheapest way to buy a 45."},
+      {id:"aim-dsv41", name:"DeepSeek V4.1 Flash", vendor:"DeepSeek (open weights)", ii:39, speed:217, ctx:"1M", pcache:0.01, pin:0.30, pout:1.20, task:0.27,
+       note:"Fast and nearly free, and third on SaaS-workflow automation. Also the worst model here on hallucination (4% non-hallucination) - never unsupervised."}
+    ],
+
+    /* One entry per job-to-be-done, each backed by a single named AA
+       evaluation so the claim can be checked rather than believed. `top` is
+       read straight off that evaluation's chart. */
+    roles: [
+      {id:"air-writing", side:"marketing", label:"Long-form writing & editorial", bench:"AA-Briefcase v1.1 (Elo)", roster:"24 models",
+       what:"Agentic knowledge work: research a brief, produce the document, get graded on rubric pass rate plus analytical quality and presentation.",
+       top:[["Claude Opus 5.5",1822],["Claude Sonnet 5.5",1811],["Claude Fable 5.1",1678],["Grok 4.7",1657],["Qwen3.8 Max",1626]],
+       read:"AA measures whether the document is right, not whether it reads well - no public benchmark scores prose. On rubric pass rate Opus and Sonnet tie at 66% with Fable at 59%, while the writing-specific reviews put Fable ahead on raw sentence quality at 5x Sonnet's price. Draft on Sonnet, escalate to Fable only when the voice is the deliverable.",
+       s:[["Artificial Analysis — AA-Briefcase","https://artificialanalysis.ai/models"],["Best AI for writing, Sep 2026","https://www.buildmvpfast.com/articles/best-llms-2026-guide/content-writing-ai"]]},
+
+      {id:"air-realwork", side:"both", label:"Real-world work tasks", bench:"GDPval-AA v2.1", roster:"24 models",
+       what:"Tasks drawn from real occupations, graded by professionals in those occupations. The closest thing to \"can it do the job\".",
+       top:[["Claude Opus 5.5",67],["Claude Sonnet 5.5",67],["Claude Fable 5.1",62],["Grok 4.7",60],["Muse Spark 1.3",59]],
+       read:"Opus and Sonnet are level here, which is the strongest argument for Sonnet as the house default: the same real-world result at half the price and 1.5x the speed.",
+       s:[["Artificial Analysis — GDPval-AA","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-automation", side:"both", label:"SaaS workflow automation", bench:"AutomationBench-AA", roster:"24 models",
+       what:"Driving real SaaS tools end to end - the shape of work an agent does inside HubSpot, Monday or a CMS.",
+       top:[["Claude Sonnet 5.5",71],["Claude Opus 5.5",70],["DeepSeek V4.1 Flash",69],["GPT-6 Astra",68],["Grok 4.7",66]],
+       read:"The one leaderboard where Sonnet beats Opus, and where an open-weight model at $0.30/$1.20 lands within two points of both. For high-volume mechanical automation the price gap is the whole argument.",
+       s:[["Artificial Analysis — AutomationBench-AA","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-coding", side:"rest", label:"Agentic coding & terminal use", bench:"Terminal-Bench 4.0", roster:"24 models",
+       what:"Multi-step work in a real terminal: read the repo, change it, run it, fix what broke.",
+       top:[["Claude Sonnet 5.5",64],["Claude Opus 5.5",60],["GPT-6 Astra",59],["Claude Fable 5.1",52],["GPT-6 Sol",44]],
+       read:"Sonnet leads and the field falls away fast - fifth place is a third below first. This is the role with the widest spread on the page, so the model choice matters more here than anywhere else.",
+       s:[["Artificial Analysis — Terminal-Bench 4.0","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-scicode", side:"rest", label:"Writing correct code", bench:"SciCode", roster:"24 models",
+       what:"Scientific and numerical programming - correctness of the code itself rather than the agent loop around it.",
+       top:[["Claude Opus 5.5",67],["Claude Fable 5.1",63],["Claude Sonnet 5.5",61],["MiMo-V2.6-Pro",61],["Kimi K3",59]],
+       read:"Order flips versus the terminal benchmark: Opus writes the more correct code, Sonnet runs the better agent loop. Use Sonnet to do the work and Opus to review the hard function.",
+       s:[["Artificial Analysis — SciCode","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-docs", side:"marketing", label:"Reading documents & PDFs", bench:"GDP.pdf", roster:"24 models",
+       what:"Professional document reasoning, scored all-pass: every question about the document has to be right, not most of them.",
+       top:[["GPT-6 Astra",31],["Muse Spark 1.3",27],["Claude Opus 5.5",26],["Claude Fable 5.1",26],["Claude Sonnet 5.5",26]],
+       read:"The lowest ceiling on this page - the best model gets under a third of documents fully right. Treat any model summary of a PDF as a first pass that a person still has to check against the source.",
+       s:[["Artificial Analysis — GDP.pdf","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-accuracy", side:"both", label:"Knowledge accuracy", bench:"AA-Omniscience Accuracy", roster:"24 models",
+       what:"How often the model knows the answer at all, across a broad factual set.",
+       top:[["Claude Fable 5.1",67],["Claude Opus 5.5",66],["GPT-6 Astra",63],["Gemini 3.8 Flash",55],["GPT-6 Sol",54]],
+       read:"Read this row together with the next one. Knowing more and admitting ignorance are separate skills, and the models that top this list sit near the bottom of the one below.",
+       s:[["Artificial Analysis — AA-Omniscience","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-halluc", side:"both", label:"Refusing to make things up", bench:"AA-Omniscience Non-Hallucination Rate", roster:"24 models",
+       what:"One minus the hallucination rate: how often the model says it does not know instead of inventing an answer.",
+       top:[["MiniMax-M3",82],["K2 Horizon 375B",74],["GLM-5.3-Flash",72],["Qwen3.8 Max",71],["Grok 4.7",71]],
+       read:"The inversion that matters most for marketing: Opus 5.5 scores 41% here, Fable 5.1 scores 27% and DeepSeek V4.1 Flash scores 4%. The best writers are the most confident liars. Every number, date, customer count and product name in a draft gets checked against docs.continia.com before it ships.",
+       s:[["Artificial Analysis — AA-Omniscience","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-longctx", side:"both", label:"Long-context reasoning", bench:"AA-LCR v1.1", roster:"24 models",
+       what:"Reasoning across a context window large enough to hold a year of documents, not just retrieving a sentence from it.",
+       top:[["Kimi K3",89],["Step 5 Preview",88],["MiMo-V2.6-Pro",86],["Claude Fable 5.1",85],["Claude Opus 5.5",85]],
+       read:"The flattest leaderboard here - everything from first to twentieth sits between 89% and 79%. Context length is no longer the differentiator it was; pick on price and speed for this job.",
+       s:[["Artificial Analysis — AA-LCR v1.1","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-legal", side:"rest", label:"Legal work", bench:"Harvey LAB-AA (criterion pass rate)", roster:"7 models only",
+       what:"Agentic legal tasks scored against the criteria a lawyer would apply, built with Harvey.",
+       top:[["Kimi K3",95],["Claude Sonnet 5.5",93],["Claude Fable 5.1",93],["Claude Opus 5.5",91],["MiniMax-M3",88]],
+       read:"Only seven models have been run, so this is a short list rather than a ranking of the field - GPT-6 and Gemini are simply absent, not beaten. A high criterion pass rate is not legal advice and does not make a model a lawyer.",
+       s:[["Artificial Analysis — Harvey LAB-AA","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-sheets", side:"both", label:"Spreadsheets & quantitative analysis", bench:"AA-AnalystAgent", roster:"7 models only",
+       what:"Quantitative analysis across spreadsheets and documents - the analyst's job, not the writer's.",
+       top:[["Claude Fable 5.1",57],["GPT-6 Astra",51],["Kimi K3",39],["Inkling",24],["Mistral Medium 3.5",13]],
+       read:"The one role where the most expensive model is also the clearly right one, and the gap to third place is 18 points. Seven-model roster, so read it as \"of the models tested\".",
+       s:[["Artificial Analysis — AA-AnalystAgent","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-finance", side:"rest", label:"Finance & accounting", bench:"Artificial Analysis Finance & Accounting Index", roster:"24 models",
+       what:"A seven-evaluation composite weighted toward finance and accounting work. The closest public index to what Continia's own customers do all day.",
+       top:[["Claude Opus 5.5",61],["Claude Sonnet 5.5",57],["Claude Fable 5.1",56],["GPT-6 Astra",55],["Grok 4.7",52]],
+       read:"Same order as the general index, slightly wider gaps. Worth citing internally: the domain our products serve is one where the frontier models are measurably ahead of the cheap tiers.",
+       s:[["Artificial Analysis — Finance & Accounting Index","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-visual", side:"marketing", label:"Reading images & layouts", bench:"MMMU-Pro", roster:"15 models",
+       what:"Visual reasoning over charts, diagrams and mixed image-and-text pages.",
+       top:[["Claude Opus 5.5",88],["GPT-6 Astra",87],["Gemini 3.8 Flash",86],["GPT-6 Sol",83],["Qwen3.8 Max",83]],
+       read:"Two points separate first from third, and third costs a fifth as much per output token. For checking a layout, reading a competitor's screenshot or captioning a chart, Gemini 3.8 Flash is the sane default. None of these models generate images - they read them.",
+       s:[["Artificial Analysis — MMMU-Pro","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-research", side:"rest", label:"Research workflows", bench:"Terminal-Bench-Science 0.1", roster:"18 models",
+       what:"Agentic scientific research run in a terminal: find the data, process it, reach a defensible answer.",
+       top:[["GPT-6 Astra",63],["Claude Opus 5.5",59],["Claude Sonnet 5.5",53],["Claude Fable 5.1",43],["GPT-6 Sol",30]],
+       read:"The steepest cliff on the page - sixth place is 12%. Below the top four there is effectively nothing, so this is not a job to hand to a budget tier.",
+       s:[["Artificial Analysis — Terminal-Bench-Science","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-bizops", side:"rest", label:"Business operations", bench:"EnterpriseOps-Gym-AA", roster:"10 models, no frontier tier",
+       what:"Agentic business operations: multi-step back-office processes with tools and state.",
+       top:[["Kimi K3",45],["Qwen3.8 27B",44],["Gemini 3.5 Flash-Lite",42],["Inkling",38],["GLM-5.3",36]],
+       read:"AA has not yet run Claude, GPT-6 or Gemini 3.8 on this one, so the leaderboard is a tour of the cheap and open-weight tiers. Useful as a floor, not as a recommendation - revisit when the roster fills out.",
+       s:[["Artificial Analysis — EnterpriseOps-Gym-AA","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-devops", side:"rest", label:"Incident root-cause analysis", bench:"ITBench-AA", roster:"11 models",
+       what:"Kubernetes incident diagnosis: read the cluster state and say what actually broke.",
+       top:[["Gemini 3.8 Flash",53],["GLM-5.3-Flash",51],["Claude Fable 5.1",50],["GPT-6 Sol",49],["GPT-6 Astra",49]],
+       read:"The only leaderboard here that a Google model tops, and it tops it at $0.75/$3.75. Opus 5.5 sits tenth of eleven at 38% - a reminder that the general index does not predict every role.",
+       s:[["Artificial Analysis — ITBench-AA","https://artificialanalysis.ai/models"]]},
+
+      {id:"air-tools", side:"both", label:"Tool use", bench:"τ³-Banking", roster:"16 models",
+       what:"Agentic tool calling against a banking API: pick the right call, with the right arguments, in the right order.",
+       top:[["Muse Spark 1.3",51],["GLM-5.3",50],["Qwen3.8 27B",48],["Qwen3.8 Max",48],["Claude Fable 5.1",47]],
+       read:"Tight and low: the whole field sits between 51% and 14%, and the frontier names are mid-table. Any automation that calls a real API needs a confirmation step regardless of which model drives it.",
+       s:[["Artificial Analysis — τ³-Banking","https://artificialanalysis.ai/models"]]}
+    ],
+
+    /* Two sides of one toggle. Each card names a first choice, a cheaper
+       choice that is defensible, and the thing that goes wrong - always tied
+       back to one of the roles above so the pick is checkable. */
+    depts: [
+      {id:"aid-content", side:"marketing", icon:"fa-pen-nib", name:"Content & copy",
+       jobs:"Blogs, product pages, newsletters, campaign copy, translation passes, editing.",
+       pick:{m:"Claude Sonnet 5.5", why:"Level with Opus on real-world work tasks (67%) and top of the writing-adjacent leaderboards, at $2/$10 per 1M."},
+       value:{m:"Claude Fable 5.1", why:"Only when the voice is the deliverable - the strongest raw prose in the set, at $10/$50 and 69 tokens/s. Reserve it for the final pass on a hero asset."},
+       careful:"Fable 5.1 hallucinates more than anything else on this page (27% non-hallucination). Every product name, number and date goes back through docs.continia.com before it ships - that rule already exists on this site and it exists because of exactly this.",
+       s:[["Artificial Analysis — Models","https://artificialanalysis.ai/models"],["Anthropic — API pricing","https://www.anthropic.com/pricing"]]},
+
+      {id:"aid-video", side:"marketing", icon:"fa-clapperboard", name:"Video",
+       jobs:"Scripts, hooks, subtitle cleanup, cutting a webinar into shorts, transcript summaries.",
+       pick:{m:"Claude Sonnet 5.5", why:"Script work is writing work - same leaderboards, same reasoning as the content desk."},
+       value:{m:"Gemini 3.8 Flash", why:"239 tokens/s and $0.75/$3.75 per 1M with a 1M context: the right tool for chewing through a two-hour transcript before a person reads it."},
+       careful:"Gemini 3.8 Flash is on introductory pricing until 31 December 2026. From 1 January 2027 it is $1.50/$7.50 - double. Anything budgeted on today's rate needs re-costing before the new year.",
+       s:[["Artificial Analysis — Models","https://artificialanalysis.ai/models"],["Google — Gemini API pricing","https://ai.google.dev/gemini-api/docs/pricing"]]},
+
+      {id:"aid-graphics", side:"marketing", icon:"fa-palette", name:"Graphics & design",
+       jobs:"Reading a layout back, alt text, checking a chart against its data, judging a competitor's screenshot.",
+       pick:{m:"Claude Opus 5.5", why:"Top of MMMU-Pro at 88% when the judgement has to hold up."},
+       value:{m:"Gemini 3.8 Flash", why:"86% on the same benchmark at a fifth of the output price and 2.5x the speed. The default for volume."},
+       careful:"None of these models draw. They read images and describe them - image generation is a separate tool and a separate compliance question. Alt text written by a model still gets a human read: it describes what is in the frame, not what the image is doing in the page.",
+       s:[["Artificial Analysis — MMMU-Pro","https://artificialanalysis.ai/models"],["Google — Gemini API pricing","https://ai.google.dev/gemini-api/docs/pricing"]]},
+
+      {id:"aid-mktdata", side:"marketing", icon:"fa-chart-column", name:"Data & reporting",
+       jobs:"LinkedIn and YouTube trawls, campaign readouts, competitor tables, the CSVs behind this dashboard.",
+       pick:{m:"Claude Fable 5.1", why:"57% on AA-AnalystAgent, 18 points clear of third place. The one role where the priciest model is unambiguously the right one."},
+       value:{m:"GPT-6 Astra", why:"51% on the same benchmark at the same $10/$50 but with a cheaper cost per completed task ($3.26 vs $7.63)."},
+       careful:"AA-AnalystAgent has only been run on seven models, so this ranking covers a short list rather than the field. And a model reading a spreadsheet is still doing arithmetic in prose - the archive rule applies: save the outgoing data before anything replaces it.",
+       s:[["Artificial Analysis — AA-AnalystAgent","https://artificialanalysis.ai/models"]]},
+
+      {id:"aid-seo", side:"marketing", icon:"fa-magnifying-glass-chart", name:"SEO & web",
+       jobs:"Meta titles and descriptions, schema, internal linking, bulk alt text, CMS updates.",
+       pick:{m:"Claude Sonnet 5.5", why:"Tops AutomationBench-AA at 71% - the benchmark that measures driving a SaaS tool end to end, which is what a CMS pass is."},
+       value:{m:"GPT-6 Luna", why:"$0.10/$0.50 per 1M and $0.07 per completed index task, roughly 1/85th of Opus. For a thousand meta descriptions that a person will skim anyway, the quality gap is not worth 85x."},
+       careful:"Luna scores 37 on the intelligence index. It is fine for mechanical text against a clear template and wrong for anything that states a fact about a product.",
+       s:[["Artificial Analysis — AutomationBench-AA","https://artificialanalysis.ai/models"],["OpenAI — API pricing","https://developers.openai.com/api/docs/pricing"]]},
+
+      {id:"aid-social", side:"marketing", icon:"fa-comments", name:"Social & community",
+       jobs:"LinkedIn posts, comment replies, repurposing a blog into a carousel, monitoring competitor pages.",
+       pick:{m:"Claude Sonnet 5.5", why:"Same writing case as the content desk, and fast enough at 139 tokens/s to sit in a drafting loop."},
+       value:{m:"Gemini 3.8 Flash", why:"For volume classification and triage of what comes back - sorting comments, tagging posts, first-pass summaries of a trawl."},
+       careful:"Social copy is where an invented statistic travels furthest and fastest. The hallucination row applies hardest here: nothing with a number in it goes out without a source.",
+       s:[["Artificial Analysis — Models","https://artificialanalysis.ai/models"]]},
+
+      {id:"aid-legal", side:"rest", icon:"fa-scale-balanced", name:"Legal & contracts",
+       jobs:"First-pass review of partner agreements and DPAs, clause comparison, plain-language summaries.",
+       pick:{m:"Claude Sonnet 5.5", why:"93% criterion pass rate on Harvey LAB-AA, one point off the leader, at a fifth of Fable's price."},
+       value:{m:"Kimi K3", why:"95%, the highest score recorded on that benchmark, with open weights and $3/$15 pricing."},
+       careful:"Only seven models have been run on Harvey LAB-AA, and a criterion pass rate is not legal advice. Nothing a model says about a contract is a substitute for counsel, and no signed agreement or personal data goes into a consumer tier.",
+       s:[["Artificial Analysis — Harvey LAB-AA","https://artificialanalysis.ai/models"],["Anthropic — API pricing","https://www.anthropic.com/pricing"]]},
+
+      {id:"aid-dev", side:"rest", icon:"fa-code", name:"Developers",
+       jobs:"Writing and reviewing code, agentic refactors, test generation, reading an unfamiliar repo.",
+       pick:{m:"Claude Sonnet 5.5", why:"Tops Terminal-Bench 4.0 at 64% - the widest first-to-fifth spread of any role here, so the choice matters."},
+       value:{m:"Claude Opus 5.5", why:"Not cheaper, but the right escalation: it beats Sonnet on SciCode (67% vs 61%), so Sonnet does the work and Opus reviews the hard function."},
+       careful:"Sonnet wins the agent loop, Opus writes the more correct code. Picking one for both jobs gives up a few points either way.",
+       s:[["Artificial Analysis — Terminal-Bench 4.0","https://artificialanalysis.ai/models"],["Artificial Analysis — SciCode","https://artificialanalysis.ai/models"]]},
+
+      {id:"aid-data", side:"rest", icon:"fa-database", name:"Data & BI",
+       jobs:"Reporting, reconciliations, model-assisted analysis of exports, ad-hoc questions against a spreadsheet.",
+       pick:{m:"Claude Fable 5.1", why:"57% on AA-AnalystAgent, the quantitative-analysis benchmark, ahead of everything else tested."},
+       value:{m:"GPT-6 Astra", why:"51% on the same benchmark, and a lower cost per completed task."},
+       careful:"Seven-model roster. And the general intelligence index does not predict this role - check the leaderboard, not the headline score.",
+       s:[["Artificial Analysis — AA-AnalystAgent","https://artificialanalysis.ai/models"]]},
+
+      {id:"aid-research", side:"rest", icon:"fa-flask", name:"Research",
+       jobs:"Market and competitor research, literature passes, synthesising a stack of long documents.",
+       pick:{m:"GPT-6 Astra", why:"63% on Terminal-Bench-Science, four points clear of Opus and the top of a very steep leaderboard."},
+       value:{m:"Kimi K3", why:"89% on AA-LCR, the best long-context reasoning measured, for the jobs that are mostly about holding a lot of text at once."},
+       careful:"Sixth place on the research benchmark scores 12%. There is no cheap tier for this job - below the top four the results are not usable.",
+       s:[["Artificial Analysis — Terminal-Bench-Science","https://artificialanalysis.ai/models"],["Artificial Analysis — AA-LCR v1.1","https://artificialanalysis.ai/models"]]},
+
+      {id:"aid-hr", side:"rest", icon:"fa-users", name:"HR & people",
+       jobs:"Job ads, interview guides, policy drafts, onboarding material, internal comms.",
+       pick:{m:"Claude Sonnet 5.5", why:"Level with Opus on GDPval-AA (67%), the benchmark graded by people who do the occupations being tested."},
+       value:{m:"GPT-6 Sol", why:"Same $2/$10 price as Sonnet with a different house style - useful as a second opinion on tone, not as the default."},
+       careful:"No employee data, candidate data or anything else personal goes into a consumer tier. This is the department where the tool choice is a GDPR question before it is a quality question.",
+       s:[["Artificial Analysis — GDPval-AA","https://artificialanalysis.ai/models"],["OpenAI — API pricing","https://developers.openai.com/api/docs/pricing"]]},
+
+      {id:"aid-mgmt", side:"rest", icon:"fa-chess-king", name:"Management",
+       jobs:"Board material, business cases, budget narratives, reading a long report before a decision.",
+       pick:{m:"Claude Opus 5.5", why:"Top of both indices that matter here - 58 on the Intelligence Index and 61 on the Finance & Accounting Index - and top of AA-Briefcase at 1822 Elo."},
+       value:{m:"Claude Sonnet 5.5", why:"57 on the Finance & Accounting Index for half the price. The gap is four points; the price gap is 2x."},
+       careful:"The document-reading ceiling is low: the best model gets under a third of PDFs fully right on GDP.pdf. A model summary of a long report is a first pass, never the thing you decide on.",
+       s:[["Artificial Analysis — Finance & Accounting Index","https://artificialanalysis.ai/models"],["Artificial Analysis — GDP.pdf","https://artificialanalysis.ai/models"]]},
+
+      {id:"aid-itops", side:"rest", icon:"fa-server", name:"IT & operations",
+       jobs:"Incident triage, log reading, runbook drafting, back-office process automation.",
+       pick:{m:"Gemini 3.8 Flash", why:"Tops ITBench-AA at 53% - the only leaderboard on this page a Google model wins, and it wins it at $0.75/$3.75."},
+       value:{m:"GLM-5.3", why:"Open weights, 45 on the intelligence index, $1.40/$4.40 - the cheapest way to buy a frontier-adjacent score for internal tooling."},
+       careful:"Opus 5.5 sits tenth of eleven on ITBench-AA at 38%. Reaching for the most expensive model by reflex is the wrong move in this department.",
+       s:[["Artificial Analysis — ITBench-AA","https://artificialanalysis.ai/models"],["Google — Gemini API pricing","https://ai.google.dev/gemini-api/docs/pricing"]]},
+
+      {id:"aid-finance", side:"rest", icon:"fa-coins", name:"Finance & accounting",
+       jobs:"Reconciliations, month-end narrative, invoice and document handling, cost analysis.",
+       pick:{m:"Claude Opus 5.5", why:"61 on the Finance & Accounting Index, four clear of second. The domain our own products serve."},
+       value:{m:"Claude Sonnet 5.5", why:"57 on the same index at half the price."},
+       careful:"A model doing arithmetic is doing it in prose, not in a calculator. Every figure it produces gets checked against the system of record before it enters a report.",
+       s:[["Artificial Analysis — Finance & Accounting Index","https://artificialanalysis.ai/models"]]}
+    ],
+
+    watch: [
+      {t:"Gemini 3.8 Flash doubles on 1 January 2027", d:"Its $0.75/$3.75 per 1M is introductory pricing through 31 December 2026. Standard pricing is $1.50/$7.50. Anything costed on today's rate needs re-costing before the new year.",
+       s:[["Google — Gemini API pricing","https://ai.google.dev/gemini-api/docs/pricing"]]},
+      {t:"The best writers are the worst at admitting ignorance", d:"Claude Opus 5.5 scores 41% on non-hallucination, Fable 5.1 27% and DeepSeek V4.1 Flash 4%, while models nobody would use for copy sit at 70-82%. Fluency and factual caution are inversely related in the current generation, which is why the source rule on this page is not optional.",
+       s:[["Artificial Analysis — AA-Omniscience","https://artificialanalysis.ai/models"]]},
+      {t:"A missing model was not tested, not beaten", d:"Artificial Analysis runs different rosters per evaluation: 24 models on the Intelligence Index, 18 on Terminal-Bench-Science, 16 on tool use, 15 on MMMU-Pro, 11 on ITBench, 10 on EnterpriseOps and 7 on both Harvey LAB-AA and AA-AnalystAgent. Every role above states its roster size for that reason.",
+       s:[["Artificial Analysis — Models","https://artificialanalysis.ai/models"]]},
+      {t:"These are list prices, not what you pay", d:"Batch processing halves input and output at all three vendors, and a cache hit costs the third column - 3% to 10% of input. A workload that reuses a long system prompt is dramatically cheaper than the headline rate suggests.",
+       s:[["Anthropic — API pricing","https://www.anthropic.com/pricing"],["OpenAI — API pricing","https://developers.openai.com/api/docs/pricing"],["Google — Gemini API pricing","https://ai.google.dev/gemini-api/docs/pricing"]]},
+      {t:"Model names and scores move monthly", d:"The Intelligence Index was at v4.3.2 when this was captured and the leaderboard changed twice in the preceding month. Re-read the live page before repeating a ranking in a customer or partner conversation - the same rule the rest of this page applies to dated facts.",
+       s:[["Artificial Analysis — Models","https://artificialanalysis.ai/models"]]}
+    ]
+  }
 };

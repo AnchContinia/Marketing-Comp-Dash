@@ -8,7 +8,7 @@
 <script>try{if(!sessionStorage.getItem("continia-auth")&&!localStorage.getItem("continia-auth"))location.replace("login.html")}catch(e){}</script>
 <script>try{if(localStorage.getItem("continia-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <script>try{if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("reveal-on")}catch(e){}</script>
-<link rel="stylesheet" href="./dashboard.css?v=20260925b">
+<link rel="stylesheet" href="./dashboard.css?v=20260929a">
 <script src="https://kit.fontawesome.com/c11880975e.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -52,6 +52,23 @@
 <div class="ck3-grid" id="ck-tools-body"></div>
 <div class="footnote">The only part of this page not built from the two Continia portals — docs.continia.com has nothing to say about a Dutch image compressor. Every row here is sourced to the vendor’s own trust, security or privacy page, and says what the vendor states rather than what we assume. Compliance posture moves: re-read the linked page before you repeat a claim in a customer conversation. None of this is legal advice — a tool being certified says nothing about whether the specific file you are about to upload should leave the building.</div></section>
 
+<section class="section" id="ck-ai"><div class="section-head"><h2>AI model assessment</h2><span class="hint">which model for which job, what it costs, and the benchmark behind every claim</span></div>
+<div class="cka-switch">
+<div class="cka-tabs" role="tablist" aria-label="Which part of Continia">
+<button type="button" class="cka-tab is-on" data-side="marketing" role="tab" aria-selected="true"><i class="fa-light fa-bullhorn" aria-hidden="true"></i> Marketing</button>
+<button type="button" class="cka-tab" data-side="rest" role="tab" aria-selected="false"><i class="fa-light fa-building" aria-hidden="true"></i> Rest of Continia</button>
+</div>
+<span class="cka-note" id="cka-note"></span>
+</div>
+<div class="cka-grid" id="cka-depts"></div>
+<div class="ck-sub"><h3>What each job actually needs</h3><p>One named benchmark per role, so a recommendation can be checked rather than believed. The roster line says how many models were tested — a model that is absent was not run, not beaten.</p></div>
+<div class="ck-body" id="cka-roles"></div>
+<div class="ck-sub"><h3>The models, side by side</h3><p>List prices per 1&nbsp;million tokens. Sort by any column.</p></div>
+<div class="cka-tablewrap" id="cka-models"></div>
+<div class="ck-sub"><h3>Before you quote any of this</h3><p>Five things that change the answer.</p></div>
+<div class="ck-body" id="cka-watch"></div>
+<div class="footnote">The second part of this page not built from the two Continia portals, for the same reason as the tools above. Scores come from Artificial Analysis, list prices from Anthropic, OpenAI and Google directly, and the two are never mixed — a benchmark result and a price are different kinds of claim. Everything here was read on the capture date shown; the leaderboard moved twice in the month before it, so re-read the live page before repeating a ranking outside the building.</div></section>
+
 <section class="section" id="ck-portals"><div class="section-head"><h2>Where this comes from</h2><span class="hint">two portals · everything above traces back to one of them</span></div>
 <div class="ck-portals" id="ck-portals-body"></div>
 <div class="ck-sub"><h3>How to use them</h3><p>Five rules, in the order to apply them.</p></div>
@@ -62,8 +79,8 @@
 
 <footer>Continia Marketing Hub · <span id="footerDate">September 23, 2026</span></footer>
 </div></main></div>
-<script src="./continia-knowledge.js?v=20260924-ck"></script>
-<script src="./dashboard.js?v=20260925j"></script>
+<script src="./continia-knowledge.js?v=20260929a-ck"></script>
+<script src="./dashboard.js?v=20260929a"></script>
 <script>(function(){if(!document.documentElement.classList.contains("reveal-on"))return;var m=document.querySelectorAll(".workspace>*");if(!m.length)return;var vh=innerHeight,li=0;m.forEach(function(el){if(el.getBoundingClientRect().top<vh*0.92){el.style.transitionDelay=Math.min(li*70,350)+"ms";li++;}});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("rv-in");io.unobserve(e.target);}});},{threshold:0.08,rootMargin:"0px 0px -5% 0px"});m.forEach(function(el){io.observe(el);});})();</script>
 </body>
 </html>

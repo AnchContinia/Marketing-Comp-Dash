@@ -1173,6 +1173,96 @@ html[data-theme="dark"] .ck3-dlg-t{color:#fff}
 html[data-theme="dark"] .ck3-dlg-host{color:var(--cyan)}
 html[data-theme="dark"] .ck3-ov{background:rgba(2,8,20,.74)}
 
+/* ----- AI model assessment (ck-ai) -----
+   Two sides live in the DOM at once and the toggle only flips data-side on
+   the section; the hide rules are scoped inside #ck-ai so anything the page
+   search lifts into #ck-hits stays visible there. Uniform 1px borders, tiles
+   at 15px, and no link ever takes the generic blue - light mode is --ink or
+   --navy, dark mode is --cyan. */
+.cka-switch{display:flex;flex-wrap:wrap;align-items:center;gap:12px;padding:16px 18px 2px}
+.cka-tabs{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:15px;background:var(--panel)}
+.cka-tab{display:inline-flex;align-items:center;gap:7px;padding:8px 15px;border:0;border-radius:11px;
+  background:transparent;cursor:pointer;font:inherit;font-size:12.5px;font-weight:850;
+  letter-spacing:.02em;color:var(--muted);transition:background .16s ease,color .16s ease}
+.cka-tab i{font-size:12px}
+.cka-tab:hover{color:var(--ink)}
+.cka-tab.is-on{background:var(--navy);color:#fff}
+.cka-note{font-size:12px;line-height:1.5;color:var(--muted)}
+
+.cka-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;padding:14px 18px 4px}
+#ck-ai[data-side="marketing"] .cka-card[data-side="rest"],
+#ck-ai[data-side="rest"] .cka-card[data-side="marketing"],
+#ck-ai[data-side="marketing"] .cka-role-rest,
+#ck-ai[data-side="rest"] .cka-role-marketing{display:none}
+
+.cka-card{display:flex;flex-direction:column;padding:16px 16px 14px;border:1px solid var(--line);
+  border-radius:15px;background:var(--paper)}
+.cka-c-head{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.cka-ic{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;
+  flex:0 0 30px;border:1px solid var(--line);border-radius:9px;background:var(--panel);
+  font-size:13px;color:var(--navy)}
+.cka-c-head h3{margin:0;font-size:15px;font-weight:850;line-height:1.15;color:var(--navy)}
+.cka-jobs{margin:0 0 12px;font-size:12.5px;line-height:1.6;color:var(--muted)}
+.cka-picks{margin:0;display:grid;grid-template-columns:1fr;gap:9px}
+.cka-picks dt{font-size:9.5px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.cka-picks dd{margin:3px 0 0;font-size:12.5px;line-height:1.65;color:var(--ink)}
+.cka-picks dd b{color:var(--navy)}
+.cka-careful{margin:13px 0 0;padding:11px 13px;border:1px solid var(--line);border-radius:8px;
+  background:var(--panel);font-size:12.5px;line-height:1.65;color:var(--ink)}
+.cka-careful b{display:block;margin-bottom:3px;font-size:9.5px;font-weight:850;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--navy)}
+
+.cka-bench{margin-left:auto;padding-left:14px;font-size:11px;font-weight:700;color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46%}
+.cka-what{margin:0 0 12px!important;font-size:13px;line-height:1.7;color:var(--ink)}
+.cka-bars{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.cka-bars li{display:grid;grid-template-columns:minmax(0,150px) 1fr 54px;align-items:center;gap:10px}
+.cka-bn{font-size:12px;font-weight:700;color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cka-bt{display:block;height:9px;border-radius:5px;background:var(--panel);border:1px solid var(--line);overflow:hidden}
+.cka-bt i{display:block;height:100%;background:var(--navy)}
+.cka-bv{font-size:12px;font-weight:850;color:var(--navy);text-align:right;font-variant-numeric:tabular-nums}
+.cka-roster{margin:9px 0 0!important;font-size:11.5px;color:var(--muted)}
+.cka-read{margin:13px 0 0!important;padding:11px 13px;border:1px solid var(--line);border-radius:8px;
+  background:var(--panel);font-size:12.5px;line-height:1.65;color:var(--ink)}
+.cka-read b{display:block;margin-bottom:3px;font-size:9.5px;font-weight:850;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--navy)}
+
+.cka-tablewrap{padding:4px 18px 4px;overflow-x:auto}
+.cka-tbl{width:100%;min-width:880px;border-collapse:collapse;border:1px solid var(--line);border-radius:8px}
+.cka-tbl caption{caption-side:bottom;padding:10px 2px 0;text-align:left;font-size:11.5px;
+  line-height:1.6;color:var(--muted)}
+.cka-tbl th{padding:0;border-bottom:1px solid var(--line);background:var(--panel);text-align:left}
+.cka-tbl th button{display:flex;align-items:center;gap:6px;width:100%;padding:9px 11px;border:0;
+  background:transparent;cursor:pointer;font:inherit;font-size:9.5px;font-weight:850;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.cka-tbl th.cka-n button{justify-content:flex-end}
+.cka-tbl th button i{font-size:9px;opacity:.55}
+.cka-tbl th.is-sorted button{color:var(--navy)}
+.cka-tbl th.is-sorted button i{opacity:1}
+.cka-tbl td{padding:9px 11px;font-size:12.5px;line-height:1.5;color:var(--ink);vertical-align:top}
+.cka-tbl td b{color:var(--navy)}
+.cka-tbl td.cka-n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cka-noterow td{padding:0 11px 11px;border-bottom:1px solid var(--line);font-size:11.5px;
+  line-height:1.6;color:var(--muted)}
+.cka-tbl tbody tr:last-child td{border-bottom:0}
+
+@media(max-width:1180px){.cka-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:760px){
+  .cka-grid{grid-template-columns:1fr;padding-left:14px;padding-right:14px}
+  .cka-switch{padding-left:14px;padding-right:14px}
+  .cka-tablewrap{padding-left:14px;padding-right:14px}
+  .cka-bars li{grid-template-columns:minmax(0,110px) 1fr 48px;gap:8px}
+  .cka-bench{display:none}}
+
+html[data-theme="dark"] .cka-c-head h3,html[data-theme="dark"] .cka-picks dd b,
+html[data-theme="dark"] .cka-careful b,html[data-theme="dark"] .cka-read b,
+html[data-theme="dark"] .cka-bv,html[data-theme="dark"] .cka-tbl td b{color:#fff}
+/* --navy is cyan in dark mode, so the "on" tab pairs the other way round -
+   cyan text on a cyan fill does not read */
+html[data-theme="dark"] .cka-tab.is-on{background:#8ff8ff;color:#052975}
+html[data-theme="dark"] .cka-ic{color:var(--cyan)}
+html[data-theme="dark"] .cka-tbl th.is-sorted button{color:var(--cyan)}
+
 /* ----- hero ----- */
 /* keep .section's overflow:hidden - it is what clips the blue hero to the
    card's 8px corners. Nothing inside the hero needs to escape the box. */
