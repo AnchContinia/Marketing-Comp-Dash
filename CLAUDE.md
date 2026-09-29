@@ -144,8 +144,8 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **three components** (`reel-gallery`, `magic-transform` and `user-cursor`, all category
-`ui`), so `library.json` holds 52 entries.
+Plus **four components** (`reel-gallery`, `magic-transform`, `user-cursor` and `hover-preview`,
+all category `ui`), so `library.json` holds 53 entries.
 
 **Two kinds of entry**, told apart by `meta.json → kind`. `"animation"` is a CSS class generated
 from `base-animations.css` — never hand-edit those files. `"component"` is a JS module written by
@@ -174,7 +174,25 @@ a `<script>` tag would — bump it with the rest. **A dynamic `import()` specifi
 `./`, `../` or `/`**; anything else is a bare specifier and the browser refuses to resolve it
 without an import map. `BASE` is therefore `"./"` on a root page, not `""`. This shipped broken
 once: jsdom can stub the import away, so only a real browser catches it. A component card that
-renders empty is this bug until proven otherwise — open the console. A component's `demo` in `meta.json` should not
+renders empty is this bug until proven otherwise — open the console. **One component may build on another.** `hover-preview` mounts `user-cursor` rather than
+redrawing the arrow, which means three things. Its `meta.json → dependencies` names
+`user-cursor`, and **both stylesheets must be linked** on any page that uses it - the arrow is a
+real dependency, not a convenience. It mounts the cursor on an inner `.mlhp-stage`, never on its
+own node, because both would otherwise fight over `el.__ml`; its `.mlhp-card` is inserted
+**between** `.mluc-content` and `.mluc-layer`, since appended first it would be laid out inside
+the cursor's flex column and appended last it would paint over the arrow. And `user-cursor` grew
+two hooks for it: `autoPath(clock, W, H) -> [x, y]` replaces the wander, and `at()` reports where
+the tip is heading; both speak in **tip** coordinates, not the SVG box's. Hit-testing reads
+`at()` rather than the real pointer, so the preview and the arrow can never disagree about what
+is hovered - including while the cursor drives itself.
+
+**Hit-test a wrapped inline trigger per line.** `getBoundingClientRect()` on a `<span>` that
+wraps returns the union of both lines - the full column width - which swallows every word beside
+it, so the hit test answers with whichever wrapped trigger comes first and the last word on the
+second line can never be reached. Use `getClientRects()` and test each fragment; it is also the
+right anchor, because a card belongs above the line the cursor is on.
+
+A component's `demo` in `meta.json` should not
 depend on particular images: the reel's is a row of numbered `.mlrg-card` boxes, which read in
 both themes because they are drawn in `--panel` / `--line` / `--navy`.
 

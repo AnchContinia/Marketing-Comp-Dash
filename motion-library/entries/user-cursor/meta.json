@@ -85,6 +85,11 @@
       "type": "boolean",
       "default": false,
       "note": "the card-sized skin - smaller arrow, pill and demo type, for a stage under ~200px"
+    },
+    "autoPath": {
+      "type": "function",
+      "default": null,
+      "note": "(clock, W, H) -> [x, y], replacing the sine wander. The point it returns is where the arrow's TIP should go, not where its box starts, so a caller aiming at a word does not have to know the arrow's geometry. Read it back with at(), which reports the tip's target and which source is setting it - a component built on this one hit-tests against that rather than against the real pointer, so the two can never disagree about what is hovered. Hover Preview is what these two exist for. A function, so init/update only - never a data- attribute."
     }
   },
   "reducedMotion": "No loop and no wander. The cursor is still there and still follows the pointer, but it is written straight through with no smoothing and no lean, so there is never a moving element nobody asked for - and never an invisible pointer either, which is the trap with a custom cursor.",

@@ -644,6 +644,27 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Loop stops; the element rests in its idle state."
   },
   {
+    "slug": "hover-preview",
+    "name": "Hover Preview",
+    "category": "ui",
+    "kind": "component",
+    "feel": "A paragraph where three words are live. The cursor walks to one, a small card lifts above it from three quarters size, and the card sits at a small angle of its own rather than hanging straight. Walk to the next word and the same card glides across and cross-fades its contents on the way - it never closes and reopens, so the eye never has to find it again. Once a lap the cursor drops below the copy and the card folds away, which is the only way a reader learns it can.",
+    "useFor": "Dense copy that names things the reader may not know: a solutions paragraph, a release note listing modules, a partner page naming integrations. It shows the thing without sending anyone to another page. It is a component rather than a class, so it carries its own JS - and it mounts the User Cursor, so it needs that entry's stylesheet too.",
+    "prompt": "Build a paragraph whose key words open a preview. Mark a few words in the page's --navy at weight 800 with a pointer cursor and a 12% tint of the same colour on hover, and nothing else - no underline and no pill, because a paragraph with four buttons in it stops being a paragraph. Hovering one lifts a card above it: a square about 132px wide with a 15px radius, the page's --panel behind a 1px --line border, a soft shadow in 20% of --navy, its bottom edge 14px above the top of the word and its horizontal centre on the word's, clamped so a word near an edge cannot push it out of view. The card fades in and grows from 0.74 to full over 250ms on the standard ease-out, with the scale on a child element so the parent is free to carry position and angle. Each word's card rests at its own small angle within 7 degrees either way, derived from the word rather than drawn at random so it leans the same way on every load. Moving to another word does not close the card: the same card glides to the new word by closing 1 - exp(-dt/400ms) of the remaining distance each frame, its angle easing on the same constant, while two stacked slots cross-fade the old contents out and the new in over 250ms. While a word is held, the card slides up to 10px with the cursor as it crosses the word, so it leans toward the side being read instead of sitting dead centre. With no pointer on the stage the component drives itself: the cursor tours the word centres, resting 1300ms on each, then rests below the copy for one beat so the card folds away before the lap restarts. Hit-testing reads where the cursor's own tip is heading rather than the real pointer, so the two can never disagree about which word is hovered. Park the loop when the stage is off-screen. Under prefers-reduced-motion there is no tour, no glide and no lean: the words still work and the card still appears on hover, at rest, where it belongs.",
+    "demo": "<p class=\"mlhp-copy\">Built on <span data-hp=\"dc\">Document Capture</span>, <span data-hp=\"em\">Expense Management</span> and <span data-hp=\"do\">Document Output</span>.</p><template data-hp-for=\"dc\"><div class=\"mlhp-tile\"><b>DC</b><span>Capture</span></div></template><template data-hp-for=\"em\"><div class=\"mlhp-tile\"><b>EM</b><span>Expense</span></div></template><template data-hp-for=\"do\"><div class=\"mlhp-tile\"><b>DO</b><span>Output</span></div></template>",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "width": 62,
+      "gap": 8,
+      "size": 16,
+      "dwell": 1100,
+      "name": "Sophie"
+    },
+    "loops": true,
+    "reducedMotion": "No tour, no glide, no lean. The words still work and the card still appears on hover - it appears where it belongs, at rest, and the lift and the cross-fade stop animating. The self-driving demo is the part that goes: a card that moves on its own is exactly what the setting is asking not to happen."
+  },
+  {
     "slug": "magic-transform",
     "name": "Magic Transform",
     "category": "ui",

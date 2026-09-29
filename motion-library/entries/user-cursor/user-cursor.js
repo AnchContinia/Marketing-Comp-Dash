@@ -50,14 +50,28 @@ export const DEFAULTS = {
   autoplay: true,         /* wander when no pointer is on the stage */
   hideNative: true,       /* hide the real cursor while the pointer is inside */
   paused: false,
-  compact: false          /* the card-sized skin */
+  compact: false,         /* the card-sized skin */
+
+  /* Somewhere for another component to steer this one. A function
+     (clock, W, H) -> [x, y] replaces the sine wander, and the point it returns
+     is where the arrow's TIP should go, not where the SVG box starts - a
+     caller aiming at a word means the visible point of the arrow. Left null
+     the cursor wanders as before. It is a function, so it can only be passed
+     to init/update, never as a data- attribute. */
+  autoPath: null
 };
 
 /* The tilt reaches its maximum at this speed. A brisk flick across a laptop
    trackpad is around 1.6px per millisecond; anything faster is already at the
    limit, which is what keeps a fast move from spinning the arrow. */
 var TILT_AT = 1.6;
-var SEQ = 0;                       /* so every instance gets its own gradient ids */
+var SEQ = 0;
+
+/* Where the rounded tip sits inside the 24-unit box, as a fraction of size.
+   The arrow is drawn from the mount point down-right, so the tip is this far
+   past it - both autoPath and at() speak in tip coordinates so a caller never
+   has to know that. */
+var TIP_X = 0.241, TIP_Y = 0.168;                       /* so every instance gets its own gradient ids */
 
 var ACCENTS = ["auto", "blue", "cyan", "green", "purple"];
 var NUM = ["height", "size", "follow", "labelFollow", "maxTrail", "tilt", "drift"];
@@ -181,6 +195,10 @@ export function initUserCursor(node, options) {
      while before it repeats. Slow on purpose: this is someone else's cursor
      drifting, not a pointer being flicked around. */
   function autoTarget() {
+    if (typeof o.autoPath === "function") {
+      var p = o.autoPath(clock, W, H);
+      if (p) { tx = p[0] - o.size * TIP_X; ty = p[1] - o.size * TIP_Y; return; }
+    }
     var w = (2 * Math.PI) / (o.drift * 1000);
     tx = W * 0.5 + W * 0.30 * Math.sin(w * clock);
     ty = H * 0.5 + H * 0.26 * Math.sin(w * clock * 0.618 + 1.1);
@@ -312,6 +330,13 @@ export function initUserCursor(node, options) {
       node.classList.toggle("is-paused", !!o.paused);
       if (o.paused) halt(); else kick();
       return api;
+    },
+    /* Where the tip is headed, in the stage's own coordinates, and which
+       source is setting it. A component built on this one hit-tests against
+       the same point the arrow is chasing rather than against the real
+       pointer, so the two can never disagree about what is hovered. */
+    at: function () {
+      return { x: tx + o.size * TIP_X, y: ty + o.size * TIP_Y, mode: mode, reduced: reduced };
     },
     /* so a host can label its own play/pause control without tracking state */
     isPaused: function () { return !!o.paused; },

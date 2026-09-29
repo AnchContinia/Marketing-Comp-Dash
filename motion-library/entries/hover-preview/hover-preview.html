@@ -1,0 +1,60 @@
+<!-- Continia Motion Library — Hover Preview
+
+     Two stylesheets and one module. user-cursor.css is a real dependency, not a
+     convenience: the arrow on the stage IS the User Cursor entry, mounted by
+     this module rather than redrawn, so it needs its own styles. Drop it, and
+     data-cursor="0", if you only want the previews.
+
+     <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+     <link rel="stylesheet" href="motion-library/entries/user-cursor/user-cursor.css">
+     <link rel="stylesheet" href="motion-library/entries/hover-preview/hover-preview.css">
+     <script type="module" src="motion-library/entries/hover-preview/hover-preview.js"></script>
+
+     A trigger is any element carrying data-hp. Its card comes from the
+     <template data-hp-for="…"> with the same key, or from data-hp-img for the
+     common single-image case, or failing both from the trigger's own text. -->
+
+<div data-ml="hover-preview" data-height="340" data-width="150" data-name="Sophie">
+
+  <p class="mlhp-copy">
+    Built inside Business Central on
+    <span data-hp="dc">Document Capture</span>,
+    <span data-hp="em">Expense Management</span> and
+    <span data-hp="do">Document Output</span>.
+  </p>
+
+  <template data-hp-for="dc">
+    <img src="Assets/previews/document-capture.png" alt="">
+  </template>
+  <template data-hp-for="em">
+    <img src="Assets/previews/expense-management.png" alt="">
+  </template>
+  <template data-hp-for="do">
+    <img src="Assets/previews/document-output.png" alt="">
+  </template>
+</div>
+
+
+<!-- A 16:9 screenshot rather than the square, with the shorthand instead of a
+     template, and one word's angle pinned so it does not collide with the one
+     beside it:
+
+<div data-ml="hover-preview" data-height="300" data-width="210" data-ratio="1.78">
+  <p class="mlhp-copy">
+    The <span data-hp="wap" data-hp-img="Assets/previews/web-approval-portal.png"
+      data-hp-tilt="-4">Web Approval Portal</span> approves from anywhere.
+  </p>
+</div>
+-->
+
+<!-- No arrow: the page keeps its own cursor and the previews answer the real
+     pointer. Use this where the component sits inside real copy rather than on
+     a stage of its own.
+
+<div data-ml="hover-preview" data-cursor="0" data-height="220">
+  <p class="mlhp-copy">
+    Ask about <span data-hp="cdn">the Continia Delivery Network</span>.
+  </p>
+  <template data-hp-for="cdn"><div class="mlhp-tile"><b>CDN</b><span>Delivery</span></div></template>
+</div>
+-->
