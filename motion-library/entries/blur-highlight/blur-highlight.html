@@ -1,0 +1,39 @@
+<!-- Continia Motion Library — Blur Highlight
+
+     One stylesheet and one module. No dependencies: this entry draws nothing
+     but the copy it is given.
+
+     <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+     <link rel="stylesheet" href="motion-library/entries/blur-highlight/blur-highlight.css">
+     <script type="module" src="motion-library/entries/blur-highlight/blur-highlight.js"></script>
+
+     Write the paragraph as you would anyway and put the phrases that carry the
+     point in <mark>. With the module absent it is still a highlighted
+     paragraph, which is the whole reason for using <mark> rather than a span
+     with a class on it. -->
+
+<div data-ml="blur-highlight">
+  <p>
+    Continia is <mark>built inside Business Central</mark>, so approvals,
+    <mark>document capture</mark> and payments happen where the finance team
+    already works - not in <mark>another system</mark> to log in to.
+  </p>
+</div>
+
+
+<!-- The highlighter running the other way, drawn one phrase at a time rather
+     than all at once, and in Smart Green:
+
+<div data-ml="blur-highlight" data-direction="rtl" data-stagger="160" data-accent="green">
+  <p>Thirty years, <mark>21,000 customers</mark> and <mark>2,000 partners</mark>.</p>
+</div>
+-->
+
+<!-- Opening from the middle of each phrase, with no loop - it plays once when
+     it scrolls into view and stays finished. Use this in real copy, where a
+     paragraph that re-highlights itself every few seconds is a distraction:
+
+<div data-ml="blur-highlight" data-direction="center" data-loop="0">
+  <p>Everything above is <mark>verifiable on docs.continia.com</mark>.</p>
+</div>
+-->

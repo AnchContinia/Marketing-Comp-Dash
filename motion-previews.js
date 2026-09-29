@@ -527,6 +527,25 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it."
   },
   {
+    "slug": "blur-highlight",
+    "name": "Blur Highlight",
+    "category": "text",
+    "kind": "component",
+    "feel": "A paragraph that is out of focus before it is anything else, then pulls sharp - and once it can actually be read, a highlighter is drawn across the three or four phrases that carry the point, left to right, all of them at once. The ink in a marked phrase darkens as the fill reaches it, so a word is on paper until the pen gets there.",
+    "useFor": "A claim you want read rather than skimmed: a hero sub-line, the opening of a solution page, a stat paragraph, the one sentence in a newsletter that has to land. It is a component rather than a class, so it carries its own JS - but it needs no other entry, and the markup is a paragraph with the phrases in <mark>, so it still means what it says with the JS switched off.",
+    "prompt": "Build a paragraph that arrives out of focus and then highlights itself. Two beats, in this order and never the other way round: the whole paragraph - not word by word - goes from blur(12px) and opacity 0 to sharp over --motion-duration-slow on the expo-out, and then, 60ms after it lands, a highlighter is drawn across every phrase marked in it, over --motion-duration-slower on the same easing, all of the phrases together rather than one after another. Draw the fill as the mark's own background-image sized from 0% to 100% of its own width, not as a pseudo-element scaled on X: a phrase that wraps is two boxes, and an absolutely positioned child of an inline element covers the union of them - the full column width, straight through the text beside it - so set box-decoration-break: clone and let each line fragment draw its own fill, which is what a highlighter pen does anyway. Because the sizing is a fraction of each phrase's own width rather than a speed, a long phrase and a short one finish together. The direction is the background's anchor and nothing else: left for a pen running right, right for one running left, centre for a fill opening from the middle of each phrase in both directions at once. The text in a marked phrase changes colour on its own short transition, delayed so it darkens as the fill arrives underneath it rather than before. Highlighter colours come from the Continia palette only - Innovation Blue #8ff8ff with Tech Blue ink on it in both themes by default - never a tint mixed to make the contrast work. The paragraph stands finished for 2200ms and runs again; pausing is animation-play-state, so the marks freeze part-drawn instead of snapping finished. Under prefers-reduced-motion it is simply already there, sharp and fully highlighted, with no loop: the marks are content, not decoration.",
+    "demo": "<p>Continia is <mark>built inside Business Central</mark>, so approvals, <mark>document capture</mark> and payments happen where the finance team already works - not in <mark>another system</mark> to log in to.</p>",
+    "attrs": {
+      "height": 172,
+      "pad": 16,
+      "compact": 1,
+      "blur": 9,
+      "hold": 1600
+    },
+    "loops": true,
+    "reducedMotion": "The paragraph is copy with phrases marked in it, so under reduced motion it is simply already there: sharp, fully highlighted, no loop. Nothing is withheld - the marks are content, not decoration, and a reader who has asked for less motion still needs to see which phrases carry the point."
+  },
+  {
     "slug": "focus-in",
     "name": "Focus In",
     "category": "text",

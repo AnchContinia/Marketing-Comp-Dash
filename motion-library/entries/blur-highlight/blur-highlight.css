@@ -1,0 +1,130 @@
+/* Continia Motion Library — Blur Highlight
+   Requires tokens/motion-tokens.css.
+
+   Both beats live here as CSS animations on the duration scale; the module
+   only sequences them and owns the loop. Reduced motion needs no rule of its
+   own - the tokens collapse to 1ms and the finished state is the resting one. */
+
+.mlbh {
+  position: relative;
+  display: block;
+  --mlbh-blur: 12px;
+  --mlbh-rise: 0px;
+  --mlbh-stagger: 0ms;
+  --mlbh-gap: 60ms;
+  /* the highlighter, the ink that reads on top of it, and the ink before the
+     pen has arrived - which is the paragraph's own colour */
+  --mlbh-mark: #8ff8ff;
+  --mlbh-on-mark: var(--ink, #111827);
+  --mlbh-off-mark: var(--ink, #111827);
+}
+
+.mlbh-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: var(--mlbh-h, auto);
+  padding: var(--mlbh-pad, 0);
+}
+
+.mlbh-copy {
+  max-width: 34em;
+  color: var(--ink, #111827);
+  font-size: 19px;
+  line-height: 1.55;
+  letter-spacing: -.005em;
+}
+.mlbh-copy > * { margin: 0; }
+.mlbh-copy > * + * { margin-top: .6em; }
+
+/* ---- beat one: the copy pulls sharp ----
+   Blur and opacity together. A blur on its own reads as a smudge that was
+   always there; the fade is what makes it arrive. */
+@keyframes mlbh-blur-in {
+  from { filter: blur(var(--mlbh-blur)); opacity: 0; transform: translateY(var(--mlbh-rise)); }
+  to   { filter: blur(0); opacity: 1; transform: translateY(0); }
+}
+
+.mlbh .mlbh-copy { filter: blur(var(--mlbh-blur)); opacity: 0; }
+.mlbh.is-playing .mlbh-copy {
+  animation: mlbh-blur-in var(--motion-duration-slow) var(--motion-ease-out) both;
+}
+.mlbh.is-done .mlbh-copy { filter: none; opacity: 1; transform: none; }
+
+/* ---- beat two: the highlighter ----
+   The fill is the mark's own background, sized from 0 to full width, rather
+   than a pseudo-element scaled on X. A <mark> that wraps is two boxes, and an
+   absolutely positioned child of an inline element covers the UNION of them -
+   the whole column width, straight through the text beside it. With
+   `box-decoration-break: clone` each line fragment draws its own background,
+   so a phrase broken across a line break is highlighted line by line, which is
+   what a highlighter pen does. */
+@keyframes mlbh-wipe {
+  from { background-size: 0% 100%; }
+  to   { background-size: 100% 100%; }
+}
+
+.mlbh-mark {
+  position: relative;
+  color: inherit;
+  background-color: transparent;
+  background-image: linear-gradient(var(--mlbh-mark), var(--mlbh-mark));
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  padding: .06em .18em;
+  margin: 0 -.02em;
+  border-radius: 3px;
+  color: var(--mlbh-off-mark);
+}
+
+/* The ink turns WITH the fill, on the same delay and the same duration - not
+   on a transition hung off the playing class. Hung off the class it turned the
+   moment the paragraph started, which in dark mode painted the words Tech Blue
+   on a dark ground a third of a second before any highlighter arrived under
+   them: measurably invisible text, and only in the theme nobody screenshots. */
+@keyframes mlbh-ink {
+  from { color: var(--mlbh-off-mark); }
+  to   { color: var(--mlbh-on-mark); }
+}
+
+.mlbh.is-playing .mlbh-mark {
+  animation: mlbh-wipe var(--motion-duration-slower) var(--motion-ease-out) both,
+             mlbh-ink var(--motion-duration-slower) var(--motion-ease-out) both;
+  /* after the copy is sharp, plus this mark's place in the queue */
+  animation-delay: calc(var(--motion-duration-slow) + var(--mlbh-gap) + var(--mlbh-i) * var(--mlbh-stagger));
+}
+.mlbh.is-done .mlbh-mark { background-size: 100% 100%; color: var(--mlbh-on-mark); }
+
+/* Which way the highlighter runs. It is the background's anchor and nothing
+   else: anchored left it grows rightward, anchored centre it opens from the
+   middle in both directions at once. */
+.mlbh[data-dir="ltr"] .mlbh-mark { background-position: left center; }
+.mlbh[data-dir="rtl"] .mlbh-mark { background-position: right center; }
+.mlbh[data-dir="center"] .mlbh-mark { background-position: center center; }
+
+/* ---- the palette ----
+   Innovation Blue is the default in both themes, because it is the one colour
+   in the set that works as a highlighter: dark ink on it in light mode, Tech
+   Blue on it in dark. The others are named so a page already leaning on one of
+   them can match, and every pairing here is a brand colour against the ink
+   that reads on it - never a tint mixed to make the contrast work. */
+.mlbh[data-accent="blue"]   { --mlbh-mark: #052975; --mlbh-on-mark: #fff; }
+.mlbh[data-accent="cyan"]   { --mlbh-mark: #8ff8ff; --mlbh-on-mark: #052975; }
+.mlbh[data-accent="green"]  { --mlbh-mark: #5f9e8d; --mlbh-on-mark: #fff; }
+.mlbh[data-accent="purple"] { --mlbh-mark: #983eae; --mlbh-on-mark: #fff; }
+
+/* Dark mode: the fill stays Innovation Blue and the ink on it turns Tech Blue.
+   Paired the other way round - cyan type on a cyan fill - it does not read. */
+html[data-theme="dark"] .mlbh { --mlbh-on-mark: #052975; --mlbh-off-mark: var(--ink, #fff); }
+html[data-theme="dark"] .mlbh[data-accent="blue"] { --mlbh-mark: #8ff8ff; --mlbh-on-mark: #052975; }
+
+/* The pause freezes the marks part-drawn rather than snapping them finished,
+   which is the point of pausing a wipe. */
+.mlbh.is-paused .mlbh-copy,
+.mlbh.is-paused .mlbh-mark { animation-play-state: paused; }
+
+/* the card-sized skin */
+.mlbh-sm .mlbh-copy { font-size: 12.5px; line-height: 1.5; max-width: 26em; }
+.mlbh-sm .mlbh-mark { border-radius: 2px; padding: .05em .16em; }

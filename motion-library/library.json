@@ -1825,6 +1825,124 @@
     "addedAt": "2026-09-24"
   },
   {
+    "slug": "blur-highlight",
+    "name": "Blur Highlight",
+    "kind": "component",
+    "source": "continia",
+    "sourceUrl": "https://pro.reactbits.dev/docs/components/blur-highlight",
+    "license": "Continia internal",
+    "category": "text",
+    "class": "js",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-base",
+      "--motion-duration-slow",
+      "--motion-duration-slower",
+      "--motion-ease-out"
+    ],
+    "options": {
+      "height": {
+        "type": "number",
+        "default": 0,
+        "unit": "px",
+        "note": "0 means the copy's own height - in a page this is a paragraph, not a stage. The gallery and the Video page set one so the card has something to centre"
+      },
+      "pad": {
+        "type": "number",
+        "default": 0,
+        "unit": "px",
+        "note": "breathing room inside that height"
+      },
+      "blur": {
+        "type": "number",
+        "default": 12,
+        "unit": "px",
+        "note": "how far out of focus the copy starts"
+      },
+      "rise": {
+        "type": "number",
+        "default": 0,
+        "unit": "px",
+        "note": "how far it lifts as it sharpens. 0 by default: the copy arriving in place, rather than travelling, is what keeps this readable as text and not as an entrance"
+      },
+      "direction": {
+        "type": "string",
+        "default": "ltr",
+        "values": [
+          "ltr",
+          "rtl",
+          "center"
+        ],
+        "note": "which way the highlighter runs. `center` opens from the middle of each phrase in both directions at once"
+      },
+      "accent": {
+        "type": "string",
+        "default": "auto",
+        "values": [
+          "auto",
+          "blue",
+          "cyan",
+          "green",
+          "purple"
+        ],
+        "note": "the highlighter colour, from the Continia palette only. `auto` is Innovation Blue in both themes"
+      },
+      "stagger": {
+        "type": "number",
+        "default": 0,
+        "unit": "ms",
+        "note": "between one mark and the next. 0 draws them all together, which is what makes a paragraph read as one marked thought rather than as a list"
+      },
+      "gap": {
+        "type": "number",
+        "default": 60,
+        "unit": "ms",
+        "note": "between the copy landing sharp and the first mark. The order is the whole idea - a highlight over a blur is decorating something nobody can read yet"
+      },
+      "hold": {
+        "type": "number",
+        "default": 2200,
+        "unit": "ms",
+        "note": "how long the finished paragraph stands before it replays"
+      },
+      "loop": {
+        "type": "boolean",
+        "default": true,
+        "note": "false plays it once when it scrolls into view and leaves it finished - the right setting in real copy"
+      },
+      "autoplay": {
+        "type": "boolean",
+        "default": true,
+        "note": "play when it scrolls into view"
+      },
+      "paused": {
+        "type": "boolean",
+        "default": false
+      },
+      "compact": {
+        "type": "boolean",
+        "default": false,
+        "note": "the card-sized skin"
+      }
+    },
+    "reducedMotion": "The paragraph is copy with phrases marked in it, so under reduced motion it is simply already there: sharp, fully highlighted, no loop. Nothing is withheld - the marks are content, not decoration, and a reader who has asked for less motion still needs to see which phrases carry the point.",
+    "notPorted": [
+      "the per-character reveal. The reference offers a character-level variant; this one works at the paragraph, because a blur applied per character costs a filter per glyph and the effect reads the same from a metre away.",
+      "the reference's default highlight colours (#FF9FFC light, #7C3AED dark). Both are off the Continia palette, and neither is a tint of anything in it, so the default is Innovation Blue and the alternatives are the other three brand colours."
+    ],
+    "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties. This repo is public and ships dist/ as a reusable bundle, so none of it may enter here. This entry is built from scratch on the Continia tokens from the public docs page and a screen recording; sourceUrl is provenance, not a source file. The one deliberate difference beyond the palette is the markup contract: the phrases are <mark> elements rather than a prop, so the paragraph still means what it says with the JS absent.",
+    "blurb": "A paragraph that arrives out of focus, pulls sharp, and then draws a highlighter across the phrases that carry the point. The order is the idea: the copy is readable before anything in it is marked.",
+    "demo": "<p>Continia is <mark>built inside Business Central</mark>, so approvals, <mark>document capture</mark> and payments happen where the finance team already works - not in <mark>another system</mark> to log in to.</p>",
+    "addedAt": "2026-09-29",
+    "demoAttrs": {
+      "height": 172,
+      "pad": 16,
+      "compact": 1,
+      "blur": 9,
+      "hold": 1600
+    }
+  },
+  {
     "slug": "focus-in",
     "name": "Focus In",
     "kind": "animation",

@@ -144,9 +144,10 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **seven components** (`reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
-`modal-cards`, `color-carousel` and `tile-reveal`, all category `ui`), so `library.json` holds
-56 entries.
+Plus **eight components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+`modal-cards`, `color-carousel` and `tile-reveal` in category `ui`, and `blur-highlight` in
+category `text`, because a component's category says what it is for, not how it is built — so
+`library.json` holds 57 entries.
 
 **Two kinds of entry**, told apart by `meta.json → kind`. `"animation"` is a CSS class generated
 from `base-animations.css` — never hand-edit those files. `"component"` is a JS module written by
@@ -252,6 +253,24 @@ one tile size and a single flat plane are the three things that make a wall read
 randomness is **seeded and computed once**: re-rolling it in the per-frame or per-resize path
 would have the wall rearrange itself while you watch, and the two hosts would disagree about the
 layout.
+
+**A phrase highlight is a `<mark>` background, not a pseudo-element.** `blur-highlight` wipes its
+marks by animating `background-size` from `0% 100%` on a flat `linear-gradient`, with
+`box-decoration-break: clone` so a phrase that wraps gets a fill on each line. The obvious
+alternative - an absolutely positioned `::before` scaled on X - is one box per trigger, so it
+draws a single rectangle across both lines of a wrapped phrase and over whatever sits beside it.
+The background also needs no measuring, so each mark fills in proportion to its own width with no
+JS in the loop at all.
+
+**A colour that has to arrive with a fill is a keyframe, not a transition.** The ink on those
+marks started as a `transition` hung off `is-playing`, which fired the moment the class landed -
+so in the dark theme the text turned Tech Blue at ~250ms while its cyan fill did not start until
+660ms, and the paragraph was Tech Blue on a near-black ground for half a second. Measured:
+`rgb(5,41,117)` at `background-size: 0%` from 360ms to 720ms. The fix is a second keyframe
+(`mlbh-ink`) sharing the wipe's delay and duration, plus an explicit off-mark colour - a
+transition cannot be given the delay of an animation it is not part of. Any "swap the colour when
+the highlight lands" is this bug waiting to happen; check it in dark mode, where the off-state and
+the on-state are furthest apart.
 
 **Hit-test a wrapped inline trigger per line.** `getBoundingClientRect()` on a `<span>` that
 wraps returns the union of both lines - the full column width - which swallows every word beside
