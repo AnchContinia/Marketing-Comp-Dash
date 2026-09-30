@@ -980,6 +980,258 @@ window.CK_DATA = {
        s:[["Anthropic — API pricing","https://www.anthropic.com/pricing"],["OpenAI — API pricing","https://developers.openai.com/api/docs/pricing"],["Google — Gemini API pricing","https://ai.google.dev/gemini-api/docs/pricing"]]},
       {t:"Model names and scores move monthly", d:"The Intelligence Index was at v4.3.2 when this was captured and the leaderboard changed twice in the preceding month. Re-read the live page before repeating a ranking in a customer or partner conversation - the same rule the rest of this page applies to dated facts.",
        s:[["Artificial Analysis — Models","https://artificialanalysis.ai/models"]]}
-    ]
+    ],
+
+    /* ---------- effort levels, task by task ----------
+       The section above picks a model per department. This one goes a level
+       down: per job-to-be-done, which model AND which effort level is the
+       cheapest setting that still does the job.
+
+       Scope, stated plainly because it is a real limit: `effort` is an
+       Anthropic API parameter. It is GA, it takes no beta header, and it is
+       supported on Claude Fable 5.1, Opus 5.5/5/4.8/4.7/4.6 and Sonnet
+       5.5/5/4.6 - but NOT on Claude Haiku 4.5, and the GPT-6 and Gemini
+       models in the table above have their own controls that do not map onto
+       these five names. Where a job's right answer is one of those, the row
+       says so and the level is left blank rather than guessed.
+
+       Read on the live Anthropic docs and pricing page on `captured`, not
+       from the capture above - the two were read a day apart. */
+    effort: {
+      captured: "2026-09-30",
+      param: "output_config.effort",
+      scope: "Claude Fable 5.1, Claude Opus 5.5 / 5 / 4.8 / 4.7 / 4.6 and Claude Sonnet 5.5 / 5 / 4.6. Not Claude Haiku 4.5, and not the GPT-6 or Gemini models above.",
+      s: [["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"],
+          ["Claude — API pricing","https://claude.com/pricing"]],
+
+      /* The five levels, in the vendor's own words plus what that means for a
+         desk here. `max` runs on every supported model; `xhigh` does not -
+         Sonnet 4.6 and Opus 4.6 have no xhigh. */
+      levels: [
+        {k:"low", t:"Most efficient. Significant token savings with some capability reduction.",
+         use:"Simple, well-scoped jobs, high volume, and anything latency-sensitive. On Sonnet 5.5 it is also a starting point for chat."},
+        {k:"medium", t:"Balanced approach with moderate token savings. The default on Claude Opus 5.5.",
+         use:"Agentic work that needs speed, cost and quality at once. On Sonnet 5.5, the starting point for well-specified agentic coding and multistep tool use."},
+        {k:"high", t:"Spends as many tokens as the task needs for excellent results. The default on every model that supports effort except Opus 5.5.",
+         use:"Complex reasoning and difficult work. On Sonnet 5.5 it is where to start for anything that is neither agentic nor latency-sensitive."},
+        {k:"xhigh", t:"Extended capability for long-horizon work.",
+         use:"Runs over about half an hour with token budgets in the millions. Only once an eval shows the gain over high."},
+        {k:"max", t:"Absolute maximum capability with no constraints on token spending.",
+         use:"Frontier problems only. Measure headroom at the level below before paying for it."}
+      ],
+
+      /* Seven things that decide whether a setting is actually the cheap one.
+         Caching comes first on purpose: it is free quality, and effort is the
+         first lever that trades quality for money. */
+      rules: [
+        {t:"Effort is not the first lever - caching is",
+         d:"A cache hit on Opus 5.5 costs $0.20 per 1M against $4 for fresh input, so a reused system prompt runs at 5% of the headline rate. The write costs $5 per 1M, which means it pays for itself on the second call. Get the prefix stable before you start trading quality for money."},
+        {t:"Set it explicitly - the default is not the same everywhere",
+         d:"Opus 5.5 defaults to medium; Fable 5.1, Sonnet 5.5 and every other supported model default to high. Code that omits the parameter therefore runs one level lower on Opus 5.5 than the identical code did on Opus 5. Passing the default is the same as omitting it, so writing it down costs nothing and removes the surprise."},
+        {t:"It is a behavioural signal, not a token budget",
+         d:"At low the model still thinks on a genuinely hard problem - it just thinks less than it would at high on the same problem. Effort does not cap anything. max_tokens is the hard limit, and thinking counts toward it even when the thinking is not returned."},
+        {t:"Levels do not transfer between models",
+         d:"Sonnet 5.5's levels are recalibrated from Sonnet 5, so the same word does not buy the same amount of thinking. Carrying a setting across a model upgrade is the quiet way to change what your pipeline costs and how well it works at the same time. Re-run the sweep."},
+        {t:"Hold it constant inside a cached conversation",
+         d:"Changing the top-level value between requests invalidates the prompt cache, which can cost more than the effort drop saves. Vary it across workloads rather than within one conversation. Fable 5.1, Opus 5.5, Opus 5 and Sonnet 5.5 accept a per-message effort change (beta) that keeps the cache."},
+        {t:"Lower effort changes how tools are used, not just how long the answer is",
+         d:"At low the model combines operations into fewer tool calls, goes straight to the action without a preamble and confirms tersely. That is an improvement in a scripted pipeline and a loss in a job where you need to see the plan before it runs."},
+        {t:"Judge cost per completed task, not per request",
+         d:"A request at low that needs three turns and a correction is not cheaper than one at high that lands. This is also why the cheapest row is rarely the lowest level: the number that matters is what it cost to finish the job."}
+      ],
+
+      /* One group per department, same ids and icons as the cards above so
+         the two sections line up. Every row names the level and why that
+         level rather than the one below it. */
+      groups: [
+        {id:"aie-content", side:"marketing", icon:"fa-pen-nib", name:"Content & copy",
+         rows:[
+           {t:"Blog post, first draft from a brief", m:"Claude Sonnet 5.5", e:"high",
+            w:"Neither agentic nor latency-sensitive, which is the case the docs put at high - and high is Sonnet's default, so this setting is free."},
+           {t:"Rewriting an existing page to the style guide", m:"Claude Sonnet 5.5", e:"medium",
+            w:"The style guide is the specification, so the job is well specified. Step back up if the voice keeps coming back wrong."},
+           {t:"Final pass on a hero asset where the voice is the deliverable", m:"Claude Fable 5.1", e:"high",
+            w:"Fable's default level and the strongest prose in the set. At $10/$50 this is one pass over a finished draft, never the draft itself."},
+           {t:"Translating signed-off copy into another market", m:"Claude Sonnet 5.5", e:"low",
+            w:"The source is fixed and there is no reasoning left to do - the definition of a simple, well-scoped job."},
+           {t:"Checking a draft's product names, numbers and dates against Docs", m:"Claude Sonnet 5.5", e:"high",
+            w:"The one row here not to economise on. The models that write best are the worst at admitting ignorance, so the checking pass is where the money belongs."}
+         ],
+         s:[["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"],["Claude — API pricing","https://claude.com/pricing"]]},
+
+        {id:"aie-video", side:"marketing", icon:"fa-clapperboard", name:"Video",
+         rows:[
+           {t:"Reducing a two-hour webinar transcript to its moments", m:"Gemini 3.8 Flash", e:"",
+            w:"Not a Claude model, so there is no effort level to set - 239 tokens/s at $0.75/$3.75 with a 1M context is the whole reason to use it. On Claude the same job is Sonnet 5.5 at low."},
+           {t:"Script from an approved outline", m:"Claude Sonnet 5.5", e:"medium",
+            w:"The outline is the specification. Medium is the balanced setting for work that is already scoped."},
+           {t:"Twenty hook variants for one short", m:"Claude Sonnet 5.5", e:"low",
+            w:"Volume with a person choosing at the end. Nothing here repays thinking depth."},
+           {t:"Subtitle cleanup against the transcript", m:"Claude Sonnet 5.5", e:"low",
+            w:"Mechanical correction against a source that is already right."},
+           {t:"Turning a customer story into a 90-second script", m:"Claude Sonnet 5.5", e:"high",
+            w:"A named customer and real claims, so it is neither routine nor forgiving."}
+         ],
+         s:[["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"],["Google — Gemini API pricing","https://ai.google.dev/gemini-api/docs/pricing"]]},
+
+        {id:"aie-graphics", side:"marketing", icon:"fa-palette", name:"Graphics & design",
+         rows:[
+           {t:"Alt text for a batch of images", m:"Gemini 3.8 Flash", e:"",
+            w:"86% on MMMU-Pro at a fifth of Opus's output price, and no effort parameter to tune. Every line still gets a human read."},
+           {t:"Judging whether a layout holds together", m:"Claude Opus 5.5", e:"high",
+            w:"Set it explicitly: Opus 5.5 would otherwise run this judgement call at medium."},
+           {t:"Checking a chart against the data behind it", m:"Claude Opus 5.5", e:"high",
+            w:"Tops MMMU-Pro at 88%, and a wrong chart travels further than a wrong sentence."},
+           {t:"Reading a competitor's screenshot", m:"Gemini 3.8 Flash", e:"",
+            w:"Two points behind the leader at a fifth of the price. Volume work, no level to set."}
+         ],
+         s:[["Artificial Analysis — MMMU-Pro","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-mktdata", side:"marketing", icon:"fa-chart-column", name:"Data & reporting",
+         rows:[
+           {t:"Quantitative pass over a campaign export", m:"Claude Fable 5.1", e:"high",
+            w:"57% on AA-AnalystAgent, 18 points clear of third. High is its default and the right floor for arithmetic."},
+           {t:"Building the competitor table from a trawl CSV", m:"Claude Sonnet 5.5", e:"medium",
+            w:"Multistep tool use against a known format - the docs' starting point for a well-specified agentic job."},
+           {t:"Sanity-checking one number before it goes in a deck", m:"Claude Opus 5.5", e:"high",
+            w:"Cheap in tokens, expensive to get wrong. Set the level; the default would run it at medium."},
+           {t:"Tagging and de-duplicating rows in a trawl", m:"Claude Sonnet 5.5", e:"low",
+            w:"Classification at volume, which the docs name as the low case."}
+         ],
+         s:[["Artificial Analysis — AA-AnalystAgent","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-seo", side:"marketing", icon:"fa-magnifying-glass-chart", name:"SEO & web",
+         rows:[
+           {t:"A thousand meta descriptions against a template", m:"Claude Sonnet 5.5", e:"low",
+            w:"Mechanical text on a fixed template. GPT-6 Luna is cheaper still at $0.10/$0.50 but has no effort control and scores 37 on the index - fine here, wrong anywhere a product fact appears."},
+           {t:"Driving the CMS through a bulk update", m:"Claude Sonnet 5.5", e:"medium",
+            w:"Tops AutomationBench-AA at 71%, and a bulk CMS pass is exactly the well-specified tool-use job medium is for."},
+           {t:"Rewriting a page for a target query", m:"Claude Sonnet 5.5", e:"high",
+            w:"A judgement about what the page should argue, not a template fill."},
+           {t:"Schema markup from a page's own content", m:"Claude Sonnet 5.5", e:"low",
+            w:"A fixed output shape from a fixed input. Nothing to reason about."}
+         ],
+         s:[["Artificial Analysis — AutomationBench-AA","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-social", side:"marketing", icon:"fa-comments", name:"Social & community",
+         rows:[
+           {t:"Five LinkedIn variants from one blog post", m:"Claude Sonnet 5.5", e:"medium",
+            w:"The source is written and the job is repackaging. Medium buys the savings without a visible quality drop."},
+           {t:"Sorting and tagging what comes back", m:"Claude Sonnet 5.5", e:"low",
+            w:"Classification at volume."},
+           {t:"Drafting a reply to a partner's public comment", m:"Claude Sonnet 5.5", e:"high",
+            w:"Public, on the record, and named. This is not the row to save on."},
+           {t:"First-pass summary of a competitor trawl", m:"Claude Sonnet 5.5", e:"low",
+            w:"A person reads it next. Low is the setting for a first pass that is not the answer."}
+         ],
+         s:[["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"],["Claude — API pricing","https://claude.com/pricing"]]},
+
+        {id:"aie-legal", side:"rest", icon:"fa-scale-balanced", name:"Legal & contracts",
+         rows:[
+           {t:"First-pass read of a partner agreement", m:"Claude Sonnet 5.5", e:"high",
+            w:"93% criterion pass rate on Harvey LAB-AA at a fifth of Fable's price, and high is its default."},
+           {t:"Clause-by-clause comparison of two DPAs", m:"Claude Opus 5.5", e:"high",
+            w:"A difference that is missed is the whole cost of the exercise. Set the level - the default is medium."},
+           {t:"Plain-language summary of a clause you have already read", m:"Claude Sonnet 5.5", e:"medium",
+            w:"The reading is done; this is restating it for someone else."},
+           {t:"Anything involving a signed agreement or personal data", m:"—", e:"",
+            w:"A tier question before it is a model question: nothing signed and nothing personal goes into a consumer tier, at any effort level."}
+         ],
+         s:[["Artificial Analysis — Harvey LAB-AA","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-dev", side:"rest", icon:"fa-code", name:"Developers",
+         rows:[
+           {t:"Agentic refactor across a repo", m:"Claude Sonnet 5.5", e:"medium",
+            w:"The docs' own starting point for well-specified agentic coding on this model. Set max_tokens to 128,000 and stream - thinking counts toward it even when it is not returned."},
+           {t:"Reviewing the one hard function", m:"Claude Opus 5.5", e:"high",
+            w:"Opus writes the more correct code (67% on SciCode against Sonnet's 61%) while Sonnet runs the better agent loop. Escalate for the review, not for the work."},
+           {t:"A migration that runs past half an hour", m:"Claude Sonnet 5.5", e:"xhigh",
+            w:"xhigh exists for long-horizon runs with token budgets in the millions. Only after an eval shows it beats high - it is a real cost step."},
+           {t:"Generating tests for code that already works", m:"Claude Sonnet 5.5", e:"medium",
+            w:"Specified by the code it is testing."},
+           {t:"Reading an unfamiliar repo to answer one question", m:"Claude Sonnet 5.5", e:"low",
+            w:"A scoped lookup. Low also means fewer, more combined tool calls, which is what you want here."}
+         ],
+         s:[["Artificial Analysis — Terminal-Bench 4.0","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-data", side:"rest", icon:"fa-database", name:"Data & BI",
+         rows:[
+           {t:"Analysis across several spreadsheets at once", m:"Claude Fable 5.1", e:"high",
+            w:"The one role where the most expensive model is unambiguously right - 57% on AA-AnalystAgent against 39% for third place."},
+           {t:"Reconciling two exports against each other", m:"Claude Opus 5.5", e:"high",
+            w:"Set it: a reconciliation run at the medium default is a false economy the first time it misses a break."},
+           {t:"Ad-hoc question against one sheet", m:"Claude Sonnet 5.5", e:"medium",
+            w:"Scoped, single-source, answered in one pass."},
+           {t:"Classifying rows into categories", m:"Claude Sonnet 5.5", e:"low",
+            w:"Volume classification."}
+         ],
+         s:[["Artificial Analysis — AA-AnalystAgent","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-research", side:"rest", icon:"fa-flask", name:"Research",
+         rows:[
+           {t:"A long agentic research run that finds and processes its own sources", m:"Claude Opus 5.5", e:"xhigh",
+            w:"GPT-6 Astra tops Terminal-Bench-Science at 63% with Opus second at 59%; on Claude this is the long-horizon case xhigh is for. Sixth place on that benchmark scores 12%, so there is no budget tier here."},
+           {t:"Synthesising a stack of long documents", m:"Claude Opus 5.5", e:"high",
+            w:"Long-context reasoning is the flattest leaderboard on this page, so the money goes on the reasoning rather than on the window."},
+           {t:"A first sweep to see what is out there", m:"Claude Sonnet 5.5", e:"low",
+            w:"Deliberately shallow, and a person decides what to look at properly."}
+         ],
+         s:[["Artificial Analysis — Terminal-Bench-Science","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-hr", side:"rest", icon:"fa-users", name:"HR & people",
+         rows:[
+           {t:"Job ad from a role description", m:"Claude Sonnet 5.5", e:"high",
+            w:"External, public and legally sensitive wording. High is its default anyway."},
+           {t:"Interview guide from a finished job ad", m:"Claude Sonnet 5.5", e:"medium",
+            w:"Derived from a document that is already right."},
+           {t:"Policy draft", m:"Claude Opus 5.5", e:"high",
+            w:"Set it. A policy is read literally by people it affects."},
+           {t:"Tidying internal comms", m:"Claude Sonnet 5.5", e:"low",
+            w:"Light editing of text a person already approved."},
+           {t:"Anything with candidate or employee data in it", m:"—", e:"",
+            w:"A GDPR question before it is a quality question. No effort level makes a consumer tier acceptable here."}
+         ],
+         s:[["Artificial Analysis — GDPval-AA","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-mgmt", side:"rest", icon:"fa-chess-king", name:"Management",
+         rows:[
+           {t:"Business case with numbers in it", m:"Claude Opus 5.5", e:"high",
+            w:"Top of both indices that matter here. Set the level - the default would run a board paper at medium."},
+           {t:"Reading a long report before a decision", m:"Claude Opus 5.5", e:"high",
+            w:"And still a first pass: the best model gets under a third of documents fully right on GDP.pdf."},
+           {t:"Board summary of material you wrote yourself", m:"Claude Sonnet 5.5", e:"medium",
+            w:"You already know it is right; the model is shortening it."},
+           {t:"Rewriting a paragraph you already agree with", m:"Claude Sonnet 5.5", e:"low",
+            w:"No judgement left in the job."}
+         ],
+         s:[["Artificial Analysis — Finance & Accounting Index","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-itops", side:"rest", icon:"fa-server", name:"IT & operations",
+         rows:[
+           {t:"Incident triage from cluster state", m:"Gemini 3.8 Flash", e:"",
+            w:"Tops ITBench-AA at 53% at $0.75/$3.75, with no effort parameter. Opus 5.5 sits tenth of eleven here at 38% - reaching for the expensive model by reflex is the wrong move in this department."},
+           {t:"Back-office process automation with tools", m:"Claude Sonnet 5.5", e:"medium",
+            w:"Well-specified multistep tool use."},
+           {t:"Runbook draft from a resolved incident", m:"Claude Sonnet 5.5", e:"high",
+            w:"Someone will follow it at 3am without checking it."},
+           {t:"Log classification at volume", m:"Claude Sonnet 5.5", e:"low",
+            w:"High volume and latency-sensitive, which is the low case twice over."}
+         ],
+         s:[["Artificial Analysis — ITBench-AA","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]},
+
+        {id:"aie-finance", side:"rest", icon:"fa-coins", name:"Finance & accounting",
+         rows:[
+           {t:"Month-end narrative from the ledger", m:"Claude Opus 5.5", e:"high",
+            w:"61 on the Finance & Accounting Index, four clear of second. Set the level."},
+           {t:"Reconciliation across two systems", m:"Claude Fable 5.1", e:"high",
+            w:"The spreadsheet benchmark's leader by 18 points, and a missed break costs more than the token difference."},
+           {t:"Cost analysis that ends in a recommendation", m:"Claude Opus 5.5", e:"high",
+            w:"The recommendation is the deliverable, so the reasoning is what you are buying."},
+           {t:"Coding an invoice against the chart of accounts", m:"Claude Sonnet 5.5", e:"low",
+            w:"Classification against a fixed list, at volume, with the system of record as the check."}
+         ],
+         s:[["Artificial Analysis — Finance & Accounting Index","https://artificialanalysis.ai/models"],["Anthropic — Effort","https://platform.claude.com/docs/en/build-with-claude/effort"]]}
+      ]
+    }
   }
 };

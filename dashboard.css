@@ -1263,6 +1263,59 @@ html[data-theme="dark"] .cka-tab.is-on{background:#8ff8ff;color:#052975}
 html[data-theme="dark"] .cka-ic{color:var(--cyan)}
 html[data-theme="dark"] .cka-tbl th.is-sorted button{color:var(--cyan)}
 
+/* ----- effort levels -----
+   The level is drawn as five pips rather than a coloured pill: the question
+   is "how much of the scale", which a five-step meter answers at a glance and
+   a colour ramp only answers once you have learned the ramp. It also keeps
+   the whole section on one accent, which is what the palette rule wants. */
+.cke-scale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:14px 18px 0}
+.cke-lvl{padding:14px 15px 13px;border:1px solid var(--line);border-radius:15px;background:var(--paper)}
+.cke-lvl h3{margin:0;font-size:14px;font-weight:850;letter-spacing:.02em;color:var(--navy)}
+.cke-pips{display:flex;gap:3px;margin:9px 0 11px}
+.cke-pips i{display:block;flex:1;height:6px;border-radius:3px;background:var(--panel);border:1px solid var(--line)}
+.cke-pips i.on{background:var(--navy);border-color:var(--navy)}
+.cke-lvl p{margin:0;font-size:12px;line-height:1.6;color:var(--ink)}
+.cke-lvl p+p{margin-top:9px;color:var(--muted)}
+.cke-scope{margin:0;padding:12px 18px 0;font-size:12px;line-height:1.65;color:var(--muted)}
+.cke-scope b{color:var(--navy)}
+
+#ck-effort[data-side="marketing"] .cke-g-rest,
+#ck-effort[data-side="rest"] .cke-g-marketing{display:none}
+.cke-ic{margin-right:10px;font-size:13px;color:var(--navy)}
+.cke-tbl{width:100%;border-collapse:collapse}
+.cke-tbl th{padding:0 12px 7px 0;text-align:left;font-size:9.5px;font-weight:850;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
+.cke-tbl td{padding:11px 12px 11px 0;font-size:12.5px;line-height:1.65;color:var(--ink);
+  vertical-align:top;border-bottom:1px solid var(--line)}
+.cke-tbl tr:last-child td{border-bottom:0}
+.cke-tbl td:last-child,.cke-tbl th:last-child{padding-right:0}
+.cke-t{width:26%;font-weight:700}
+.cke-m{width:16%;font-weight:700}
+/* `.cke-tbl td` outranks a bare class, so the two coloured cells have to be
+   qualified or they quietly inherit --ink */
+.cke-tbl td.cke-m{color:var(--navy)}
+.cke-tbl td.cke-w{color:var(--muted)}
+.cke-ecol{width:17%}
+.cke-e b{display:block;margin-bottom:6px;font-size:11px;font-weight:850;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--navy)}
+.cke-e .cke-pips{margin:0}
+.cke-na{color:var(--muted);font-weight:700}
+
+@media(max-width:1180px){.cke-scale{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){
+  .cke-scale{grid-template-columns:1fr;padding-left:14px;padding-right:14px}
+  .cke-scope{padding-left:14px;padding-right:14px}
+  .cke-tbl,.cke-tbl tbody,.cke-tbl tr,.cke-tbl td{display:block;width:auto}
+  .cke-tbl thead{display:none}
+  .cke-tbl tr{padding:12px 0;border-bottom:1px solid var(--line)}
+  .cke-tbl tr:last-child{border-bottom:0}
+  .cke-tbl td{padding:0 0 6px;border-bottom:0}
+  .cke-tbl td:last-child{padding-bottom:0}}
+
+html[data-theme="dark"] .cke-lvl h3,html[data-theme="dark"] .cke-tbl td.cke-m,
+html[data-theme="dark"] .cke-e b,html[data-theme="dark"] .cke-scope b{color:#fff}
+html[data-theme="dark"] .cke-ic{color:var(--cyan)}
+
 /* ----- hero ----- */
 /* keep .section's overflow:hidden - it is what clips the blue hero to the
    card's 8px corners. Nothing inside the hero needs to escape the box. */

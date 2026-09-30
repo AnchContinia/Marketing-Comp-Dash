@@ -122,6 +122,33 @@ linked vendor pages before repeating a claim**; the certification edition is the
 (iLovePDF's page still names ISO/IEC 27001:**2017**, and every pre-2022 certificate lapsed on
 31 October 2025).
 
+### The second exception: the AI model assessment
+
+`CK_DATA.ai` (the **AI model assessment** and **Effort levels per task** sections) is the other
+part of the page not built from the two portals, and it is sourced the same way the tools are:
+scores to **Artificial Analysis**, list prices to each vendor's own pricing page, and the effort
+levels to **Anthropic's effort documentation**. A benchmark result and a price are different kinds
+of claim and are never mixed in one row.
+
+`ai.effort` is the per-job layer under the per-department cards. Four things it exists to keep
+straight, all of which have already caught someone out:
+
+- **`output_config.effort` is an Anthropic parameter.** It runs on Fable 5.1, Opus 5.5/5/4.8/4.7/4.6
+  and Sonnet 5.5/5/4.6 — **not on Haiku 4.5**, which is absent from the supported list, and not on
+  the GPT-6 or Gemini rows in the table, which have their own controls. A row whose answer is one
+  of those carries no level; **never invent a mapping onto the five names.**
+- **The default is not the same everywhere.** Opus 5.5 defaults to `medium`; everything else that
+  supports effort defaults to `high`. Code that omits the parameter therefore runs one level lower
+  on Opus 5.5 than the identical code did on Opus 5.
+- **Levels do not transfer between models** — Sonnet 5.5's were recalibrated from Sonnet 5, so the
+  same word does not buy the same amount of thinking. Any recommendation here is a starting point
+  for an eval, never a measurement.
+- **The department and job counts are counted, never typed** — same rule as the motion library's
+  tally. `dashboard.js` derives the toggle's note line from `effort.groups`.
+
+Re-read the live effort page and `claude.com/pricing` before repeating any of it; both moved in the
+month before the capture, and `anthropic.com/pricing` now redirects to `claude.com/pricing`.
+
 ## Motion library (`motion-library/`)
 
 A **fifth page**, and the only one in a sub-folder: `motion-library/index.html`. It is the gallery

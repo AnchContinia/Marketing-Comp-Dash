@@ -2340,7 +2340,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV = "20260929n";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20260929o";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
@@ -2719,6 +2719,95 @@ if(contentIdeasList){
 
     draw();
     drawTable();
+  }
+
+  /* ---------- effort levels, job by job ----------
+     Same two-sided toggle as the section above, rendered the same way and for
+     the same reason: the page search pulls .ckx elements out of the DOM, so
+     re-rendering on a toggle would hand it detached nodes.
+
+     The level is drawn as five pips rather than a coloured pill. The question
+     a reader has is "how far up the scale is this", which a five-step meter
+     answers before it has been learned and a colour ramp only answers after.
+
+     A row whose answer is not a Claude model gets no pips at all rather than a
+     guessed level: `effort` is an Anthropic parameter, and the GPT-6 and
+     Gemini models in the table above have their own controls that do not map
+     onto these five names. Saying so is more useful than inventing a mapping. */
+  var em=document.getElementById("cke-groups");
+  if(em&&D.ai&&D.ai.effort){
+    var E=D.ai.effort, eside="marketing";
+    var ORDER=E.levels.map(function(l){ return l.k; });
+
+    function pips(k){
+      var n=ORDER.indexOf(k)+1;
+      return '<span class="cke-pips" aria-hidden="true">'+ORDER.map(function(_,i){
+        return "<i"+(i<n?' class="on"':"")+"></i>";
+      }).join("")+"</span>";
+    }
+
+    document.getElementById("cke-levels").innerHTML=E.levels.map(function(l){
+      return '<article class="cke-lvl"><h3>'+esc(l.k)+"</h3>"+pips(l.k)+
+        "<p>"+esc(l.t)+"</p><p>"+esc(l.use)+"</p></article>";
+    }).join("");
+
+    document.getElementById("cke-scope").innerHTML=
+      "<b>"+esc(E.param)+"</b> — supported on "+esc(E.scope)+
+      " Read on the live documentation and pricing page on "+esc(E.captured)+".";
+
+    function jobRow(r){
+      return '<tr><td class="cke-t">'+esc(r.t)+"</td>"+
+        '<td class="cke-m">'+esc(r.m)+"</td>"+
+        '<td class="cke-ecol cke-e">'+(r.e
+          ? "<b>"+esc(r.e)+"</b>"+pips(r.e)
+          : '<span class="cke-na">no effort control</span>')+"</td>"+
+        '<td class="cke-w">'+esc(r.w)+"</td></tr>";
+    }
+
+    em.innerHTML=E.groups.map(function(g){
+      return acc({id:g.id, kind:"Effort per job", title:g.name, cls:"ckx-sub cke-g-"+g.side,
+        head:'<span class="cke-ic" aria-hidden="true"><i class="fa-light '+esc(g.icon)+'"></i></span>'+
+             '<span class="ckx-mn">'+esc(g.name)+"</span>"+
+             '<span class="cka-bench">'+g.rows.length+" jobs</span>",
+        body:'<table class="cke-tbl"><thead><tr><th class="cke-t">Job</th>'+
+             '<th class="cke-m">Model</th><th class="cke-ecol">Effort</th>'+
+             '<th class="cke-w">Why that level, and not the one below</th></tr></thead><tbody>'+
+             g.rows.map(jobRow).join("")+"</tbody></table>"+srcRow(g.s)});
+    }).join("");
+
+    document.getElementById("cke-rules").innerHTML=E.rules.map(function(r,i){
+      return acc({id:"aie-rule-"+i, kind:"Effort rule", title:r.t, cls:"ckx-sub",
+        head:'<span class="ckx-mn">'+esc(r.t)+"</span>",
+        body:"<p>"+esc(r.d)+"</p>"+srcRow(E.s)});
+    }).join("");
+
+    var esec=document.getElementById("ck-effort");
+    /* Counted from the data, never typed - the same rule the motion library's
+       tally learned the hard way. Adding a job or a desk updates this line. */
+    function edraw(){
+      esec.setAttribute("data-side",eside);
+      var gs=E.groups.filter(function(g){ return g.side===eside; }),
+          n=gs.reduce(function(a,g){ return a+g.rows.length; },0);
+      document.getElementById("cke-note").textContent=
+        gs.length+" departments, "+n+" jobs. "+(eside==="marketing"
+          ? "Switch to see legal, developers, data, research and the rest."
+          : "Switch back for the marketing desks.");
+    }
+
+    document.querySelectorAll("#ck-effort .cka-tab").forEach(function(b){
+      b.addEventListener("click",function(){
+        if(b.getAttribute("data-side")===eside) return;
+        eside=b.getAttribute("data-side");
+        document.querySelectorAll("#ck-effort .cka-tab").forEach(function(o){
+          var on=o===b;
+          o.classList.toggle("is-on",on);
+          o.setAttribute("aria-selected",on?"true":"false");
+        });
+        edraw();
+      });
+    });
+
+    edraw();
   }
 
   /* ---------- portals and rules ---------- */
@@ -3204,6 +3293,7 @@ if(contentIdeasList){
       {id:"ck-names", icon:"fa-spell-check", label:"Names & gotchas"},
       {id:"ck-tools", icon:"fa-toolbox", label:"3rd party tools"},
       {id:"ck-ai", icon:"fa-robot", label:"AI model assessment"},
+      {id:"ck-effort", icon:"fa-sliders", label:"Effort levels"},
       {id:"ck-portals", icon:"fa-compass", label:"Where this comes from"}
     ]}
   ];
@@ -3300,7 +3390,7 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-09-29 15:10";
+var DASHBOARD_UPDATED = "2026-09-30 11:30";
 var MODULE_UPDATED = {
   /* index.html */
   "news":            {at:"2026-09-22 16:52", src:"News sweep"},
@@ -3328,6 +3418,7 @@ var MODULE_UPDATED = {
   "ck-search":       {at:"2026-09-23 15:25", src:"Key terms re-read off the product pages"},
   "ck-tools":        {at:"2026-09-24 10:40", src:"Vendor trust / security / privacy pages"},
   "ck-ai":           {at:"2026-09-29 15:10", src:"Artificial Analysis + Anthropic / OpenAI / Google pricing pages"},
+  "ck-effort":       {at:"2026-09-30 11:30", src:"Anthropic effort documentation + Claude API pricing"},
   "motion-previews": {at:"2026-09-24 16:20", src:"motion-library/library.json"},
   "ck-solutions":    {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
   "ck-platform":     {at:"2026-09-23 14:05", src:"Docs + continia.com read"},
