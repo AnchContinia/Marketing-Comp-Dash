@@ -2340,7 +2340,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV = "20260929q";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20260929r";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
@@ -3280,7 +3280,7 @@ if(contentIdeasList){
     ]},
     {page:"video.html", icon:"fa-clapperboard", label:"Video", items:[
       {id:"youtube", icon:"fa-chart-line", label:"YouTube Analysis"},
-      {id:"continia-uploads", icon:"fa-magnifying-glass-chart", label:"In-depth Continia"},
+      {id:"continia-uploads", icon:"fa-magnifying-glass-chart", label:"In-depth Continia uploads"},
       {id:"video-ideas", icon:"fa-film", label:"Long- & short form ideas"},
       {id:"youtube-bank", icon:"fa-photo-film", label:"Youtube thumbnails bank"},
       {id:"video-assets", icon:"fa-layer-group", label:"Video asset library"},
@@ -3289,7 +3289,7 @@ if(contentIdeasList){
     {page:"knowledge.html", icon:"fa-book-open", label:"Knowledge base", items:[
       {id:"ck-search", icon:"fa-magnifying-glass", label:"Search"},
       {id:"ck-solutions", icon:"fa-cubes", label:"Solutions"},
-      {id:"ck-platform", icon:"fa-diagram-project", label:"Platform & shared"},
+      {id:"ck-platform", icon:"fa-diagram-project", label:"Platform & shared components"},
       {id:"ck-names", icon:"fa-spell-check", label:"Names & gotchas"},
       {id:"ck-tools", icon:"fa-toolbox", label:"3rd party tools"},
       {id:"ck-ai", icon:"fa-robot", label:"AI model assessment"},
