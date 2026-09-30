@@ -12,9 +12,9 @@
     "--motion-duration-slow",
     "--motion-ease-out"
   ],
-  "blurb": "A lit sphere with a liquid swirl turning on its surface, breathing between almost-still and churning. It is a state orb: what an assistant shows while it is idle, listening, thinking or answering - and the state is five scalars, so changing it costs nothing and never restarts the animation.",
+  "blurb": "A frosted-glass sphere with a liquid swirl turning inside it, breathing between almost-still and churning. It is a state orb: what an assistant shows while it is idle, listening, thinking or answering - and the state is five scalars, so changing it costs nothing and never restarts the animation.",
   "reducedMotion": "Renders one frame of the ball, a quarter of the way into a breath, and stops. The ball is the content, so an empty box is not a reduced version of it. The fade-up transition is dropped too.",
-  "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the parameters were measured off a 300-frame capture and the rest is derived from a shaded sphere; sourceUrl points at the docs page for provenance only.\n\nWhat the capture actually gave, so the numbers are not invented: the ball never moves (identical bounding box in all 300 frames, so everything happens on the surface); the pattern is two-armed (an FFT of the luminance puts m=2 on top in every radius band, 6367/6299/4617/2870, with m=1 and m=4 as the secondaries - which is why this is three sinusoids and not noise, since noise would have given a flat spectrum); and it breathes (standard deviation inside the disc runs 10 at frame 60, peaks at 52 at frame 217, falls back to 25). What it did not give: rotation came out at 20-40 deg/s against a measurement whose own bin size is 20 deg/s, so spin is the right order and not a measured figure.\n\nThe brand decisions. The stage is dark in BOTH themes, as with Data Transfer and Vortex: the ball's whole read is a highlight and a terminator, and a lit object on a light ground is a flat disc. The reference ball is grey; ours runs deep Tech Blue in the shadow through Tech Blue at the terminator to Innovation Blue in the light and white at the hotspot. The shadow end is Tech Blue SCALED DOWN, not a new colour - a darker version of a palette hue is shading, a lightened tint of one would be an off-palette colour and those are banned.",
+  "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the parameters were measured off a 300-frame capture and the rest is derived from a shaded sphere; sourceUrl points at the docs page for provenance only.\n\nWhat the capture actually gave, so the numbers are not invented: the ball never moves (identical bounding box in all 300 frames, so everything happens on the surface); the pattern is two-armed (an FFT of the luminance puts m=2 on top in every radius band, 6367/6299/4617/2870, with m=1 and m=4 as the secondaries - which is why this is three sinusoids and not noise, since noise would have given a flat spectrum); and it breathes (standard deviation inside the disc runs 10 at frame 60, peaks at 52 at frame 217, falls back to 25). What it did not give: rotation came out at 20-40 deg/s against a measurement whose own bin size is 20 deg/s, so spin is the right order and not a measured figure.\n\nThe brand decisions. The stage is dark in BOTH themes, as with Data Transfer and Vortex: the ball's whole read is a highlight and a terminator, and a lit object on a light ground is a flat disc. The reference ball is grey; ours runs deep Tech Blue in the shadow through Tech Blue at the terminator to Innovation Blue in the light and white at the hotspot. The shadow end is Tech Blue SCALED DOWN, not a new colour - a darker version of a palette hue is shading, a lightened tint of one would be an off-palette colour and those are banned.\n\nThe frosted-glass pass added five terms and one lesson. Wrapped diffuse (a hard terminator is what makes a sphere read as stone), a wide specular, an all-round limb light, a haze that lifts shadows far more than highlights, and a real defocus on the swirl. The lesson: every one of those is ADDED to the diffuse term, so the diffuse term had to come down from 0.68 to 0.48 - leaving it where it was put a fifth of the ball at flat white, measured, not guessed.",
   "options": {
     "height": {
       "type": "number",
@@ -90,7 +90,7 @@
     },
     "ambient": {
       "type": "number",
-      "default": 0.2,
+      "default": 0.1,
       "note": "fill light, so the shadow side is a dark side rather than a hole"
     },
     "rim": {
@@ -143,6 +143,32 @@
       "type": "boolean",
       "default": false,
       "note": "the card-sized skin, for a stage under ~200px"
+    },
+    "wrap": {
+      "type": "number",
+      "default": 0.24,
+      "note": "how far the key light wraps past the terminator. A translucent body carries light around its own edge, and a hard terminator is the one thing that makes a sphere read as stone rather than as glass."
+    },
+    "frost": {
+      "type": "number",
+      "default": 0.22,
+      "note": "the milkiness. A diffusing medium lifts its shadows far more than its highlights - veiling glare - so this mixes the ramp toward white in inverse proportion to brightness rather than evenly. Mixing it evenly just washes the ball out."
+    },
+    "sheen": {
+      "type": "number",
+      "default": 0.34,
+      "note": "the specular: the soft window reflection glass catches, sitting off the key light"
+    },
+    "edge": {
+      "type": "number",
+      "default": 0.85,
+      "note": "the bright ring at the circumference. Glass is brightest where you look through the most of it, and this is the strongest single tell that a thing is glass rather than plastic - it survives being shrunk to a favicon, which none of the interior shading does."
+    },
+    "blur": {
+      "type": "number",
+      "default": 3,
+      "note": "px of defocus on the swirl at the drawn size. The churn is seen THROUGH the frost, not painted on it. Skipped where ctx.filter is unsupported rather than faked - the ball is simply sharper there.",
+      "unit": "px"
     }
   },
   "notPorted": [
@@ -150,7 +176,7 @@
     "No true displacement or WebGL. The reference shades a real displaced mesh; this is a shading perturbation on a flat sphere - the height field's gradient projected on the light, plus the height itself. The hub has no build step and no 3D library and must not grow one, and at this softness the difference is not visible. It is named honestly in the code rather than dressed up as a normal map.",
     "No inward flow. Nothing is swallowed or spawned. Every frame is computed from the clock alone, which is what makes it seekable, resize-safe and correct after a pause - a surface that advects would need history and would lose all three."
   ],
-  "demo": "<p class=\"mlab-label\">Thinking</p>",
+  "demo": "",
   "addedAt": "2026-09-30",
   "demoAttrs": {
     "height": 172,
