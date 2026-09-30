@@ -373,6 +373,31 @@ Winding Agentic Ball's spiral by the screen radius drew a pinwheel on a disc; wi
 foreshortens, and the chain rule carries the same correction into the shading for free. One
 substitution, and the flat disc became a ball.
 
+**Glass is five terms, and a hard terminator is what makes it stone.** The single change that
+turned Agentic Ball from a lit rock into frosted glass was wrapping the diffuse term — shifting
+and rescaling the dot product so light carries round past 90 degrees instead of being cut off at
+the terminator, which is what a body you can see *into* does. The other four are a wide
+Blinn-Phong specular (the reflection of a window, not of a point), a limb light that runs all the
+way round rather than only opposite the key (at the edge you are looking through the whole
+thickness of the ball), a haze that lifts the **shadows far more than the highlights**, and a real
+defocus on what is inside. That haze asymmetry is veiling glare and it is the whole difference
+between frosted and washed out: mixing the entire ramp toward white by a constant just removes the
+ball. Add a thin bright ring at the circumference last — it is the strongest single tell that a
+thing is glass, and the only one that survives being shrunk to a card.
+
+**Every one of those terms is *added*, so the diffuse term has to come down.** Bolting the glass
+pass onto a base already tuned to peak at 0.78 put 19.4% of the ball at flat white. Dropping the
+lambert coefficient 0.68 → 0.48 brought it to 12.8%, which is the swirl's own hotspot at the top
+of the breath and not a clipped face. Budget the range *before* adding highlights, not after —
+and measure it as luminance, for the reason two paragraphs up.
+
+**A blur samples past the edge, so the buffer must be shaded past the edge.** Defocusing the ball
+by drawing the offscreen buffer through `ctx.filter` pulled a grey ring inward from the
+transparent pixels beyond the limb. The fix is to shade *every* pixel of the square — clamping the
+normal at the limb so there is something plausible out there — and draw it oversize by the blur
+radius under a clipped arc, which keeps the silhouette crisp. It also removed the only branch from
+the per-pixel loop, so the slow path got faster.
+
 **A text effect that changes a layout property re-wraps the text while it runs.** `ml-focus-in`
 animated `letter-spacing` from `0.3em` to `normal`, so its headline was three lines wide at the
 start and two at the end and the words jumped a line 200ms in, under the blur. A focus pull is
