@@ -611,6 +611,29 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Loop stops; the element rests in its idle state."
   },
   {
+    "slug": "data-transfer",
+    "name": "Data Transfer",
+    "category": "ambient",
+    "kind": "component",
+    "feel": "A dark band with streams of light running into it from off-frame, all of them bending toward one point near the top and disappearing into it. Because the shutter is open the whole time, each stream is a long trail rather than a moving dot, and where the trails cross on their way in they add up and burn out white. It reads as a motorway shot from a bridge at night, which is the point: a lot of separate things, all going to the same place.",
+    "useFor": "A band that has to say \"everything ends up here\" without a diagram: a hero strip, an integrations page, the top of a platform or Continia Hub page, an event splash. It is a background rather than a picture - whatever you put inside it is laid over the trails and keeps its own layout, so the copy belongs to the page. It is a component, so it carries its own JS, but it needs no other entry and no library.",
+    "prompt": "Build a dark band with light trails converging on a single point near the top right of centre. Pick a convergence point at 60% across and 8% down, fan sixteen streams away from it over a 104 degree arc centred on 145 degrees, and spawn each one just outside the edge its own ray leaves by - not at one radius for the whole fan, or the streams crossing a short edge spend most of the loop off-frame and the fan looks half empty. Each stream is a quadratic curve from its spawn point to the convergence point, with the control point at half distance rotated by up to 0.17 radians; keep that rotation the same sign across the whole fan and vary only its size, so the trails cross each other near the point instead of reading as noise. Then photograph it: do not accumulate a smear by wiping the canvas translucently each frame, because that ties the trail length to the frame rate and turns a pause into a smudge. Redraw every trail in full each frame instead, as the slice of its own curve between head minus 0.58 and head, so the picture is a pure function of the clock. Draw the slice in ten chunks with brightness ramping as the 1.7 power from the open end to the head, everything in additive blending so crossings blow out to white on their own. Two strokes per chunk: a wide halo in the stream's own colour at 17% alpha and a narrow core in that colour mixed 72% toward white - the whitened core is what a long exposure does to its own centre and it is the only reason a dark navy is visible on a near-black ground at all. Taper width and dim brightness toward the convergence point, because that is the only depth cue a flat canvas has. Let the head run from 0 to 1 and the tail keep going to 1.58, so a trail is swallowed by the point rather than switched off. Colours come from the Continia palette only - Innovation Blue, Smart Green and Tech Blue - never a lightened tint mixed to make it read. Cap the pixel ratio at 2, stop the loop when the band scrolls out of view or the tab is hidden, and clamp the frame step to 64ms so a backgrounded tab resumes instead of teleporting. Under prefers-reduced-motion request no frames at all and draw one still exposure with the streams at their own phases - the entry is a photograph, so the reduced state is simply the photograph.",
+    "demo": "<div class=\"mldt-demo\">Every document, one place</div>",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "count": 18,
+      "speed": 5000,
+      "tail": 0.6,
+      "width": 1.6,
+      "glow": 9,
+      "vanishX": 0.56,
+      "vanishY": 0.14
+    },
+    "loops": true,
+    "reducedMotion": "A photograph, not an empty box. The streams are frozen at their own phases part-way through the run, so what is on screen is exactly one long exposure - which is what the entry is. Nothing loops, no frame is ever requested, and the fade-in is dropped."
+  },
+  {
     "slug": "flicker",
     "name": "Flicker",
     "category": "ambient",

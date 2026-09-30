@@ -1,0 +1,43 @@
+<!-- Continia Motion Library — Data Transfer
+
+     One stylesheet and one module. No dependencies: the trails are drawn into
+     a canvas this entry creates itself.
+
+     <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+     <link rel="stylesheet" href="motion-library/entries/data-transfer/data-transfer.css">
+     <script type="module" src="motion-library/entries/data-transfer/data-transfer.js"></script>
+
+     It is a background. Whatever you put inside is kept and laid over the
+     exposure, so this is a band you drop copy into - the module never owns the
+     words. With the module absent the markup is a div with a heading in it. -->
+
+<div data-ml="data-transfer">
+  <h2>Every document lands in one place</h2>
+  <p>Purchase invoices, receipts, bank files and e-invoices - captured where
+     they arrive, approved on the way, and posted inside Business Central.</p>
+</div>
+
+
+<!-- Running the other way: the same trails leaving the point instead of
+     arriving at it. Use it for what goes out - e-invoices on the Continia
+     Delivery Network, payment files, documents to a customer:
+
+<div data-ml="data-transfer" data-direction="out" data-accent="green">
+  <h2>And back out again</h2>
+</div>
+-->
+
+<!-- A quieter band with no copy on it at all, for the top of a page that has
+     its own headline underneath. Fewer streams, a longer shutter, slower:
+
+<div data-ml="data-transfer" data-height="220" data-count="10" data-tail="0.72"
+     data-speed="7400" data-glow="8" data-bloom="0"></div>
+-->
+
+<!-- Straight rays with no bend and a centred convergence point read as a
+     starburst rather than as traffic - it is a different picture, and
+     occasionally the one you want:
+
+<div data-ml="data-transfer" data-curve="0" data-arc="90" data-spread="360"
+     data-vanish-x="0.5" data-vanish-y="0.5" data-accent="cyan"></div>
+-->

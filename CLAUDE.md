@@ -171,10 +171,10 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **eight components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
-`modal-cards`, `color-carousel` and `tile-reveal` in category `ui`, and `blur-highlight` in
-category `text`, because a component's category says what it is for, not how it is built — so
-`library.json` holds 57 entries.
+Plus **nine components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+`modal-cards`, `color-carousel` and `tile-reveal` in category `ui`, `blur-highlight` in
+category `text` and `data-transfer` in category `ambient`, because a component's category says
+what it is for, not how it is built — so `library.json` holds 58 entries.
 
 **The counts on the page are counted, never typed.** Both section heads — the gallery's
 `#ml-intro` and the Video page's `#motion-previews` — carry a `[data-ml-tally]` span, and each
@@ -308,6 +308,24 @@ so in the dark theme the text turned Tech Blue at ~250ms while its cyan fill did
 transition cannot be given the delay of an animation it is not part of. Any "swap the colour when
 the highlight lands" is this bug waiting to happen; check it in dark mode, where the off-state and
 the on-state are furthest apart.
+
+**An additive canvas that does not accumulate has no burnout, and `lighter` will not give you
+one.** `data-transfer` redraws every trail in full each frame as a slice of a fixed Bézier, so the
+picture is a pure function of the clock - framerate-independent, resize-safe, seekable, and a pause
+lands on a correct frame. The cost is the thing a long exposure is recognised by: film collects
+every pass through the convergence point, while a non-accumulating frame collects only the one or
+two heads that happen to be in the last tenth of their path, so the point stayed dark at
+`whitePx: 0` however bright the strokes got. Model the integral back (`core()`, a radial bloom at
+the vanishing point sized off the shorter edge) rather than chasing it with more alpha - and say so
+in the comment, because "the crossings burn out by themselves" was written there first and was
+wrong.
+
+**A fan aimed off-centre empties half its own frame.** Every lane leaves the convergence point in
+the direction `arc` names, so an `arc` past ~130 with the point at `vanishX: 0.54` put all 26 of
+them down-left and the right half of the band never lit at all. Two separate knobs read as one
+here: the `arc` has to point at the middle of the space the lanes are meant to cover, and `spread`
+has to be wide enough to reach both bottom corners without going past ~120, where the lanes stop
+reading as lanes and it becomes a starburst.
 
 **A text effect that changes a layout property re-wraps the text while it runs.** `ml-focus-in`
 animated `letter-spacing` from `0.3em` to `normal`, so its headline was three lines wide at the

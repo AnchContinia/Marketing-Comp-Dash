@@ -1,0 +1,161 @@
+{
+  "slug": "data-transfer",
+  "name": "Data Transfer",
+  "kind": "component",
+  "source": "continia",
+  "sourceUrl": "https://pro.reactbits.dev/docs/components/long-exposure",
+  "license": "Continia internal",
+  "category": "ambient",
+  "class": "js",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-slow",
+    "--motion-ease-out"
+  ],
+  "options": {
+    "height": {
+      "type": "number",
+      "default": 360,
+      "unit": "px",
+      "note": "the stage. Both hosts clamp a component's mount to the card, so this only bites when the entry is used on its own."
+    },
+    "count": {
+      "type": "number",
+      "default": 26,
+      "note": "how many streams are in the air at once. Under about eight it reads as a few stray lines rather than as traffic; the burnout at the convergence point also scales with it, because that is the one place every stream passes through."
+    },
+    "speed": {
+      "type": "number",
+      "default": 6200,
+      "unit": "ms",
+      "note": "how long one stream takes to run its whole path. A loop length, so it is an option rather than a token."
+    },
+    "vary": {
+      "type": "number",
+      "default": 0.45,
+      "note": "the spread of speeds across the streams. 0 runs them in lockstep, which reads as a machine rather than as traffic."
+    },
+    "tail": {
+      "type": "number",
+      "default": 0.66,
+      "note": "how much of the path the shutter was open for, 0-1. This is the exposure: near 0 it is a moving dot, near 1 the whole path is lit at once and nothing appears to move."
+    },
+    "width": {
+      "type": "number",
+      "default": 2.6,
+      "unit": "px",
+      "note": "the core at its thickest, at the near end of the path"
+    },
+    "glow": {
+      "type": "number",
+      "default": 16,
+      "unit": "px",
+      "note": "the halo around the core, and the radius the head blooms to"
+    },
+    "heat": {
+      "type": "number",
+      "default": 0.72,
+      "note": "how far the core is mixed toward white. A long exposure saturates its own centre, and it is also the only reason Tech Blue is legible on a near-black ground."
+    },
+    "arc": {
+      "type": "number",
+      "default": 115,
+      "unit": "deg",
+      "note": "the direction the fan points away from the convergence point. 0 is right, 90 is down. Aimed down rather than down-left so the fan covers the stage: past about 130 every lane sits on one side of the convergence point and the other half of the frame stays empty for the whole loop."
+    },
+    "spread": {
+      "type": "number",
+      "default": 95,
+      "unit": "deg",
+      "note": "how wide the fan opens. Wide enough to reach both bottom corners, narrow enough that the lanes still read as lanes; past about 120 it turns into a starburst, and 360 gives rays in every direction."
+    },
+    "curve": {
+      "type": "number",
+      "default": 0.3,
+      "unit": "rad",
+      "note": "how far the paths bend on their way in. 0 is straight rays; the bend is what makes them cross near the convergence point, which is the tangle the effect is recognised by."
+    },
+    "vanishX": {
+      "type": "number",
+      "default": 0.54,
+      "note": "the convergence point across the stage, 0-1"
+    },
+    "vanishY": {
+      "type": "number",
+      "default": 0.12,
+      "note": "and down it. Near the top is the road-at-night read; in the middle it is a starburst. Not flush with the edge - the bundle is the subject, and at 0.02 the frame crops it."
+    },
+    "direction": {
+      "type": "string",
+      "default": "in",
+      "values": [
+        "in",
+        "out"
+      ],
+      "note": "toward the convergence point or away from it. in is data arriving, which is the default because that is the Continia story - documents coming from everywhere and landing in one place."
+    },
+    "accent": {
+      "type": "string",
+      "default": "mixed",
+      "values": [
+        "mixed",
+        "blue",
+        "cyan",
+        "green",
+        "purple"
+      ],
+      "note": "palette only. mixed is a weighted bag of Innovation Blue, Smart Green and Tech Blue - three hues read as one photograph, four read as a test card. There is no auto: the ground is always dark, so there is nothing for it to follow."
+    },
+    "background": {
+      "type": "string",
+      "default": "",
+      "note": "empty keeps the stylesheet's, which is the hub's own dark canvas. The module reads the resolved colour back off the element, so the stylesheet and the JS can never disagree about what colour the stage is."
+    },
+    "bloom": {
+      "type": "boolean",
+      "default": true,
+      "note": "the soft head on the leading end of each trail, and the blown-out core at the convergence point. Off is cheaper and reads as a drawn line rather than as a light."
+    },
+    "seed": {
+      "type": "number",
+      "default": 11,
+      "note": "the fan is random but fixed - the same seed always lays out the same way, on both hosts and across every resize"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true,
+      "note": "run once it scrolls into view, and stop again when it leaves or the tab is hidden"
+    },
+    "paused": {
+      "type": "boolean",
+      "default": false
+    },
+    "compact": {
+      "type": "boolean",
+      "default": false,
+      "note": "the card-sized skin, for a stage under ~200px"
+    }
+  },
+  "reducedMotion": "A photograph, not an empty box. The streams are frozen at their own phases part-way through the run, so what is on screen is exactly one long exposure - which is what the entry is. Nothing loops, no frame is ever requested, and the fade-in is dropped.",
+  "notPorted": [
+    "the reference's own subject. It is a general long-exposure treatment over whatever is behind it; this is one specific picture - light converging on a point - because that is the one that says something about Continia rather than just looking expensive.",
+    "accumulation. The obvious build is a translucent wipe over the canvas each frame with a dot moving across it, letting the smear pile up. That trail's length depends on the frame rate, the exposure has to be thrown away and rebuilt on every resize, and pausing freezes a half-built smudge. Here the whole trail is redrawn every frame from a fixed curve, so the picture is a pure function of the clock: framerate-independent, resize-safe, and seekable.",
+    "colour as a free value. The source takes any hex; accent here is one of four palette names or mixed, and anything else throws.",
+    "copy. The entry keeps whatever children it is given and lays them over the exposure, so the words belong to the page and not to this module."
+  ],
+  "brandNotes": "Not a port. The source is React Bits Pro: the code is behind a subscription and its licence (§2.4) forbids putting the source in a repository or making it available to third parties - this repo is public and ships a reusable bundle in dist/, which is exactly the case that clause names. So the motion idea was rebuilt from the documented behaviour and a screen recording, on the Continia tokens. Two brand decisions are load-bearing. The stage is dark in both themes, because a light trail only exists against a dark ground - the hub already does this with the dashboard's .watch panel, so it is an established shape here rather than a new one. And every trail is drawn twice: the halo in the stream's own palette colour and the core in that colour mixed toward white. That is what a long exposure physically does to its own centre, and it is also the only reason Tech Blue #052975 is legible at all when it is being added to a #0b1120 ground - the alternative would have been a lightened blue tint, which is the one thing the palette rule bans outright.",
+  "blurb": "Streams of light running in from off-frame and converging on a single point, photographed at a long shutter speed - so each one is a trail rather than a dot, and where the trails cross they burn out white. Data arriving from everywhere and landing in one place.",
+  "demo": "<div class=\"mldt-demo\">Every document, one place</div>",
+  "addedAt": "2026-09-30",
+  "demoAttrs": {
+    "height": 172,
+    "compact": 1,
+    "count": 18,
+    "speed": 5000,
+    "tail": 0.6,
+    "width": 1.6,
+    "glow": 9,
+    "vanishX": 0.56,
+    "vanishY": 0.14
+  }
+}

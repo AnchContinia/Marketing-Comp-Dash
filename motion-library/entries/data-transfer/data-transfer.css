@@ -1,0 +1,82 @@
+/* Continia Motion Library — Data Transfer
+   ----------------------------------------------------------------------
+   The shape only. Every pixel that moves is drawn by data-transfer.js into
+   the canvas; this file places the canvas, holds the stage open, and keeps
+   the caller's own content in front of it.
+
+   The stage is dark in BOTH themes on purpose. This is a long exposure - a
+   photograph of light - and light trails only exist against a dark ground.
+   The hub already does this with the dashboard's .watch panel, so a dark box
+   on a light page is an established shape here rather than a new one.
+
+   Nothing here centres with flex on .mldt itself: both hosts clamp a
+   component's mount with `display:block;width:100%;height:100%`, which wins
+   on specificity, so a layout hung off the host element is a layout that
+   works in the gallery and not on a card. The content is centred inside its
+   own absolutely positioned layer instead, which the clamp cannot reach. */
+
+.mldt {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  /* the hub's tile radius - this is a tile-shaped surface, not a card */
+  border-radius: 15px;
+  background: var(--mldt-bg, #0b1120);
+  height: var(--mldt-h, 360px);
+  /* a paint containment boundary, so the canvas's additive blending cannot
+     interact with whatever the page has stacked behind the stage */
+  isolation: isolate;
+}
+
+.mldt-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0;
+  /* the one transition in the file, and it is a real one: the exposure fades
+     up once there is something on it, so the stage never shows a bare dark
+     rectangle mid-load */
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+}
+.mldt.is-lit .mldt-canvas { opacity: 1 }
+
+/* The caller's markup, laid over the trails. It keeps its own layout - this
+   component adds a stacking context, centring and a text colour, and nothing
+   else, so a heading dropped in here is still just a heading. */
+.mldt-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  text-align: center;
+  color: #fff;
+}
+.mldt-content:empty { display: none }
+.mldt-content > * { margin: 0; max-width: 100% }
+.mldt-content > * + * { margin-top: 10px }
+
+/* The gallery's and the Video page's demo copy. Scoped to the parent on
+   purpose: a bare `.mldt-demo` (0,1,0) loses to the `.mldt-content > *` rule
+   above it (0,1,1), which is how a demo's type has silently reverted before. */
+.mldt-content .mldt-demo { font-size: 15px; font-weight: 850; line-height: 1.25 }
+.mldt-content .mldt-demo-sub { font-size: 11.5px; font-weight: 650; color: #c9d6ea }
+.mldt-sm .mldt-content .mldt-demo { font-size: 13.5px }
+.mldt-sm .mldt-content .mldt-demo-sub { font-size: 10.5px }
+
+/* The card-sized skin. Padding and rhythm only - the trails themselves are
+   sized by the module's options, not by CSS. */
+.mldt-sm { border-radius: 8px }
+.mldt-sm .mldt-content { padding: 0 14px }
+.mldt-sm .mldt-content > * + * { margin-top: 6px }
+
+@media (prefers-reduced-motion: reduce) {
+  .mldt-canvas { transition: none }
+}
+html[data-motion="reduced"] .mldt-canvas { transition: none }
