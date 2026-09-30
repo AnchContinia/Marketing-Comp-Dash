@@ -1,0 +1,164 @@
+{
+  "slug": "vortex",
+  "name": "Vortex",
+  "kind": "component",
+  "category": "ambient",
+  "class": "js",
+  "source": "continia",
+  "sourceUrl": "https://pro.reactbits.dev/docs/components/vortex",
+  "license": "Continia internal",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-slow",
+    "--motion-ease-out"
+  ],
+  "blurb": "A field of small lights lying on the surface of a whirlpool - flat at the rim, a steep wall, a throat that comes to rest. It turns forever, and faster at the centre than at the rim, because the silhouette and the rotation come from the same model.",
+  "reducedMotion": "Renders one frame of the field and stops - the field is the content, so an empty box is not a reduced version of it. The fade-up transition is dropped too.",
+  "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the shape is derived from the Rankine vortex, the standard two-part model of a real whirlpool, and sourceUrl points at the docs page for provenance only.\n\nTwo brand decisions are load-bearing. The stage is dark in BOTH themes: this is a field of small lights and a light only exists against a dark ground, which is the same reasoning as Data Transfer and follows the dashboard's own .watch panel. And the dots are whitened by `heat` rather than drawn in flat palette colours - at 1.5px on near-black, unmixed Tech Blue does not read at all, and the whitening is what a light source does to its own centre anyway. The reference field is white; ours is Innovation Blue weighted 5:2:1 against Smart Green and Tech Blue, because three hues read as one photograph and four read as a legend.",
+  "options": {
+    "height": {
+      "type": "number",
+      "default": 380,
+      "unit": "px",
+      "note": "the stage. Both hosts clamp a component's mount to the card, so this only bites when the entry is used on its own."
+    },
+    "rings": {
+      "type": "number",
+      "default": 30,
+      "note": "concentric rings from rim to throat. Under about twelve the surface reads as separate hoops rather than as water."
+    },
+    "dots": {
+      "type": "number",
+      "default": 700,
+      "note": "dots on the rim ring. Inner rings get proportionally fewer so the dots-per-length stays even - a fixed count per ring crowds the throat into a solid line."
+    },
+    "minDots": {
+      "type": "number",
+      "default": 40,
+      "note": "the floor, so a small inner ring never reads as a dashed arc"
+    },
+    "spin": {
+      "type": "number",
+      "default": 7200,
+      "unit": "ms",
+      "note": "how long the CORE takes to turn once. The rim is slower by core x core, which is the model's doing rather than a second setting. A loop length, so it is an option rather than a token."
+    },
+    "core": {
+      "type": "number",
+      "default": 0.27,
+      "note": "core radius, 0-1 of the rim, and the single most load-bearing number here: it sets the silhouette AND the spin falloff at once. Small is a deep narrow funnel whose rim is nearly still; large is a shallow dish turning almost as one disc."
+    },
+    "depth": {
+      "type": "number",
+      "default": 0.3,
+      "note": "the funnel's vertical span as a fraction of the stage height"
+    },
+    "tilt": {
+      "type": "number",
+      "default": 0.52,
+      "note": "the viewing angle - how far the rings are squashed. 1 is straight down, which is concentric circles with no funnel to see; near 0 is edge-on, where the rings collapse to lines."
+    },
+    "centreY": {
+      "type": "number",
+      "default": 0.44,
+      "note": "where the RIM's ring sits down the stage, 0-1. The throat hangs `depth` below it, so this is not the centre of the picture."
+    },
+    "fill": {
+      "type": "number",
+      "default": 1.0,
+      "note": "the rim's diameter as a fraction of the stage width. At 1 the rim just touches the edges, which is where the field stops looking like an object sitting in a box."
+    },
+    "size": {
+      "type": "number",
+      "default": 1.15,
+      "unit": "px",
+      "note": "px, a near-side rim dot at full brightness. Around 1.2 the rings read as dotted lines; much above it they read as a spray."
+    },
+    "bright": {
+      "type": "number",
+      "default": 1,
+      "note": "the field's overall exposure, 0-1"
+    },
+    "twinkle": {
+      "type": "number",
+      "default": 2600,
+      "unit": "ms",
+      "note": "one dot's brightness cycle. Every dot carries its own phase, so the field shimmers instead of pulsing as one sheet."
+    },
+    "shimmer": {
+      "type": "number",
+      "default": 0.38,
+      "note": "how much of a dot's brightness the twinkle owns. 0 is a steady field; 1 blinks dots fully out."
+    },
+    "far": {
+      "type": "number",
+      "default": 0.42,
+      "note": "how much dimmer the far half of each ring is. The only depth cue on a flat canvas - at 0 the rings read as flat ovals rather than as circles lying in a bowl."
+    },
+    "heat": {
+      "type": "number",
+      "default": 0.8,
+      "note": "how far a dot is mixed toward white. A light saturates its own centre, and it is also the only reason Tech Blue reads at 1.5px on near-black."
+    },
+    "accent": {
+      "type": "string",
+      "default": "mixed",
+      "values": [
+        "mixed",
+        "blue",
+        "cyan",
+        "green",
+        "purple"
+      ],
+      "note": "palette only. mixed is Innovation Blue weighted against Smart Green and Tech Blue. There is no auto: the ground is always dark, so there is nothing for it to follow."
+    },
+    "glow": {
+      "type": "boolean",
+      "default": false,
+      "note": "a soft bloom at the throat. Off by default: the rings really do bunch there, so the crowding produces the brightening on its own and the bloom only smears it. Turn it on for a small stage, where there are too few rings for the crowding to read."
+    },
+    "background": {
+      "type": "string",
+      "default": "",
+      "note": "empty keeps the stylesheet's dark stage. The module reads the resolved colour back off the element, so the stylesheet and the JS can never disagree about what colour the stage is."
+    },
+    "seed": {
+      "type": "number",
+      "default": 7,
+      "note": "the field is random but fixed - the same seed lays out identically on both hosts and across every resize"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true,
+      "note": "turn once it scrolls into view, and stop again when it leaves or the tab is hidden"
+    },
+    "paused": {
+      "type": "boolean",
+      "default": false
+    },
+    "compact": {
+      "type": "boolean",
+      "default": false,
+      "note": "the card-sized skin, for a stage under ~200px"
+    }
+  },
+  "notPorted": [
+    "No mouse interaction. The reference lets the pointer push the field around; here it is a background that sits behind copy, and a background that reacts to the cursor steals the pointer from the text on top of it.",
+    "No inward drift. Dots hold their radius and only rotate. A vortex that visibly swallows its own dots has to keep spawning replacements at the rim, which makes the field's density a function of elapsed time - and that breaks the property the whole module is built on, that a frame is a pure function of the clock.",
+    "No colour gradient along the radius. The reference fades hue from rim to throat; the palette has three usable hues on a dark ground, and spreading them radially read as three separate stacked objects rather than one surface."
+  ],
+  "demo": "<div class=\"mlvx-demo\">Every number, one place</div>",
+  "addedAt": "2026-09-30",
+  "demoAttrs": {
+    "height": 172,
+    "compact": 1,
+    "rings": 22,
+    "dots": 300,
+    "min-dots": 24,
+    "size": 1.1,
+    "fill": 1.04,
+    "centre-y": 0.44,
+    "depth": 0.3,
+    "spin": 8200
+  }
+}

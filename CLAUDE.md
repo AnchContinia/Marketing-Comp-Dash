@@ -171,10 +171,10 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **nine components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+Plus **ten components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
 `modal-cards`, `color-carousel` and `tile-reveal` in category `ui`, `blur-highlight` in
-category `text` and `data-transfer` in category `ambient`, because a component's category says
-what it is for, not how it is built — so `library.json` holds 58 entries.
+category `text` and `data-transfer` and `vortex` in category `ambient`, because a component's
+category says what it is for, not how it is built — so `library.json` holds 59 entries.
 
 **The counts on the page are counted, never typed.** Both section heads — the gallery's
 `#ml-intro` and the Video page's `#motion-previews` — carry a `[data-ml-tally]` span, and each
@@ -326,6 +326,26 @@ them down-left and the right half of the band never lit at all. Two separate kno
 here: the `arc` has to point at the middle of the space the lanes are meant to cover, and `spread`
 has to be wide enough to reach both bottom corners without going past ~120, where the lanes stop
 reading as lanes and it becomes a starburst.
+
+**A silhouette that comes from a physical model has one number, not five.** `vortex` takes its
+shape from the Rankine vortex - depth falls as `a²/r²` outside the core radius `a` and as a
+parabola inside it - so `core` sets the funnel's profile *and* the differential rotation at once,
+and the two branches meet at `r = a` with the same value and the same slope. That last part is
+the whole reason to bother: a hand-drawn funnel joins its wall to its throat with a crease, and a
+crease is the tell that the picture was drawn rather than photographed.
+
+**A dot field reads as a surface only when the rings read as lines.** The first Vortex had 108
+dots on the rim and 26 rings, which at an 800px stage is 21px between dots - the rim came out as
+grey dust with a hole in it, and no amount of brightness fixed it, because the thing that was
+missing was the *line*. 700 dots at 1.15px and 30 rings is the same field at a tenth the dot size
+and reads immediately. The measurable version: dots-per-ring has to beat the ring's circumference
+in pixels by roughly 3:1 before a ring stops being a scatter.
+
+**A `data-*` key written from JSON must be hyphenated, because an attribute name has no case.**
+Both hosts write `meta.json → demoAttrs` straight onto the mount as `data-<key>`, so a camelCase
+key lands in `dataset` lowercased and never matches the module's option name. `data-vanishX`
+had been silently ignored on both of Data Transfer's cards since it shipped; the values were
+close enough to the defaults that nothing looked wrong. Write `centre-y`, not `centreY`.
 
 **A text effect that changes a layout property re-wraps the text while it runs.** `ml-focus-in`
 animated `letter-spacing` from `0.3em` to `normal`, so its headline was three lines wide at the

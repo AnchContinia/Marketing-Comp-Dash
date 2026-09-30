@@ -1,0 +1,79 @@
+/* Continia Motion Library — Vortex
+   ----------------------------------------------------------------------
+   The shape only. Every pixel that moves is drawn by vortex.js into the
+   canvas; this file places the canvas, holds the stage open, and keeps the
+   caller's own content in front of it.
+
+   The stage is dark in BOTH themes, for the same reason Data Transfer's is:
+   this is a field of small lights, and a light only exists against a dark
+   ground. The hub already does this with the dashboard's .watch panel, so a
+   dark box on a light page is an established shape here rather than a new one.
+
+   Nothing here centres with flex on .mlvx itself: both hosts clamp a
+   component's mount with `display:block;width:100%;height:100%`, which wins on
+   specificity, so a layout hung off the host element is a layout that works in
+   the gallery and not on a card. The content is centred inside its own
+   absolutely positioned layer instead, which the clamp cannot reach. */
+
+.mlvx {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  /* the hub's tile radius - this is a tile-shaped surface, not a card */
+  border-radius: 15px;
+  background: var(--mlvx-bg, #070d1a);
+  height: var(--mlvx-h, 380px);
+  /* a paint containment boundary, so the canvas's additive blending cannot
+     interact with whatever the page has stacked behind the stage */
+  isolation: isolate;
+}
+
+.mlvx-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0;
+  /* the one transition in the file, and it is a real one: the field fades up
+     once there is something on it, so the stage never shows a bare dark box
+     for the frame between mounting and the first paint */
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+}
+.mlvx.is-lit .mlvx-canvas { opacity: 1 }
+
+.mlvx-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  text-align: center;
+  color: #fff;
+  /* the copy sits over the throat, which is the busiest part of the picture,
+     so it carries its own shadow rather than relying on the field being quiet
+     there - the field is never quiet there */
+  text-shadow: 0 2px 18px rgba(7, 13, 26, .85);
+}
+/* an empty layer must not eat pointer events or force a flex line */
+.mlvx-content:empty { display: none }
+
+.mlvx-content .mlvx-demo {
+  font-size: 15px;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+/* the card-sized skin: the hub's ordinary panel radius, because at 172px the
+   15px tile radius reads as a lozenge rather than as a tile */
+.mlvx-sm { border-radius: 8px }
+
+@media (prefers-reduced-motion: reduce) {
+  /* the canvas still renders one frame - the field is the content, and an
+     empty box is not a reduced version of it. Only the fade-up goes. */
+  .mlvx-canvas { transition: none }
+}

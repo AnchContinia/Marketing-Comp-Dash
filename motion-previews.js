@@ -627,8 +627,8 @@ window.MOTION_PREVIEWS = [
       "tail": 0.6,
       "width": 1.6,
       "glow": 9,
-      "vanishX": 0.56,
-      "vanishY": 0.14
+      "vanish-x": 0.56,
+      "vanish-y": 0.14
     },
     "loops": true,
     "reducedMotion": "A photograph, not an empty box. The streams are frozen at their own phases part-way through the run, so what is on screen is exactly one long exposure - which is what the entry is. Nothing loops, no frame is ever requested, and the fade-in is dropped."
@@ -684,6 +684,30 @@ window.MOTION_PREVIEWS = [
     "attrs": null,
     "loops": true,
     "reducedMotion": "Loop stops; the element rests in its idle state."
+  },
+  {
+    "slug": "vortex",
+    "name": "Vortex",
+    "category": "ambient",
+    "kind": "component",
+    "feel": "A whirlpool seen from just above the water, drawn as thousands of small lights lying on its surface. The rim is almost flat and turns slowly; the wall drops away steeply; the throat at the bottom comes back to level and spins several times faster, because that is what water does. The far side of every ring is dimmer than the near side, which is the only reason it reads as a bowl rather than as a stack of ovals.",
+    "useFor": "A background for a hero or a section that has to feel like a lot of separate things being drawn into one place - a platform page, an integrations or data page, an event splash, a Continia Hub header. Whatever you put inside it is laid over the field and keeps its own layout, so the copy belongs to the page. It is a component, so it carries its own JS, but it needs no other entry and no library.",
+    "prompt": "Build a whirlpool as a field of small lights lying on its surface, seen from just above the water. Do not invent the silhouette: take it from the Rankine vortex, the standard two-part model of a real one, so that a single number - the core radius, at 0.34 of the rim - sets both the shape and the speed at once. Outside the core the surface drops as the inverse square of the radius and a ring turns at core squared over radius squared, so the rim is nearly flat and nearly still; inside it the surface is a parabola and every ring turns together as one solid disc, several times faster than the rim. The two branches meet at the core radius with the same value and the same slope, which is why the wall joins the throat with no crease in it - a hand-drawn funnel always has one. Lay twenty-six rings from rim to throat, squash them to 0.45 of their height for the viewing angle, and put proportionally fewer dots on the inner rings so the dots-per-length stays even rather than crowding the throat into a solid line. Size the rim off the stage width, not its height, because a squashed funnel is far wider than it is tall. Each dot carries its own brightness cycle and its own phase, so the field shimmers instead of pulsing as one sheet, and the far half of every ring is dimmed to about 0.58 - that dimming is the only depth cue a flat canvas has, and without it the rings read as flat ovals. Mix each dot toward white, both because a light source saturates its own centre and because a 1.5px dot of Tech Blue is invisible on near-black otherwise. Colours are Continia palette only - Innovation Blue weighted about five to two to one against Smart Green and Tech Blue, never a lightened tint mixed to make it read - and the stage stays dark in both themes, because a light only exists against a dark ground. Redraw the whole field each frame as a pure function of the clock rather than smearing a previous frame, so a pause lands on a correct picture and a resize keeps the layout; lay the random part down once from a fixed seed so the field never rearranges itself. Draw the dots in buckets of colour and quantised alpha, one fill per bucket, so fifteen hundred dots cost about thirty fills; bloom the throat with a radial gradient sized off the throat ring itself, because the rings bunch there and a real surface would be brightest there. Cap the pixel ratio at 2, stop the loop when the band scrolls out of view or the tab is hidden, clamp the frame step to 64ms, and under prefers-reduced-motion request no frames at all and draw one still frame of the field - the field is the content, so an empty box is not a reduced version of it.",
+    "demo": "<div class=\"mlvx-demo\">Every number, one place</div>",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "rings": 22,
+      "dots": 300,
+      "min-dots": 24,
+      "size": 1.1,
+      "fill": 1.04,
+      "centre-y": 0.44,
+      "depth": 0.3,
+      "spin": 8200
+    },
+    "loops": true,
+    "reducedMotion": "Renders one frame of the field and stops - the field is the content, so an empty box is not a reduced version of it. The fade-up transition is dropped too."
   },
   {
     "slug": "color-carousel",

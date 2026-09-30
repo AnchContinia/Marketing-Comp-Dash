@@ -155,7 +155,7 @@
     "tail": 0.6,
     "width": 1.6,
     "glow": 9,
-    "vanishX": 0.56,
-    "vanishY": 0.14
+    "vanish-x": 0.56,
+    "vanish-y": 0.14
   }
 }

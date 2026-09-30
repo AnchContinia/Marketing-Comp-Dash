@@ -1,0 +1,48 @@
+<!-- Continia Motion Library — Vortex
+     Load in this order: tokens/motion-tokens.css, base/base-animations.css,
+     then this entry's stylesheet. The module is an ES module and mounts
+     itself onto every [data-ml="vortex"] on the page.
+
+       <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+       <link rel="stylesheet" href="motion-library/base/base-animations.css">
+       <link rel="stylesheet" href="motion-library/entries/vortex/vortex.css">
+       <script type="module" src="motion-library/entries/vortex/vortex.js"></script>
+
+     The children are kept and laid over the canvas, so this is a background
+     with copy on it - the module never owns the copy. It is ambient: it never
+     resolves, so put it behind something, never beside it as a thing to watch.
+-->
+
+<div data-ml="vortex" data-height="420">
+  <h2 class="mlvx-demo">Every number, one place</h2>
+</div>
+
+
+<!-- A quieter band, no copy: a section divider rather than a hero. Fewer dots,
+     a slower turn and the bloom off, so it sits under a heading without
+     competing with it. -->
+<!--
+<div data-ml="vortex" data-height="180" data-dots="70" data-rings="18"
+     data-spin="11000" data-bright="0.6" data-glow="0"></div>
+-->
+
+
+<!-- Seen from further above (tilt toward 1) with a wide core: a shallow dish
+     turning almost as one disc. This is the variant to reach for when the copy
+     is long - the deep funnel's throat lands in the middle of the stage and
+     fights a second line of text. -->
+<!--
+<div data-ml="vortex" data-tilt="0.72" data-core="0.55" data-depth="0.3"
+     data-centre-y="0.24">
+  <h2 class="mlvx-demo">21,000 customers, one ledger</h2>
+</div>
+-->
+
+
+<!-- A deep, narrow, slow well in a single accent. `core` is the one number
+     that sets both the silhouette and the spin falloff, so a small core is a
+     steep funnel whose rim is nearly still. -->
+<!--
+<div data-ml="vortex" data-core="0.2" data-depth="0.66" data-spin="14000"
+     data-accent="cyan" data-shimmer="0.4"></div>
+-->
