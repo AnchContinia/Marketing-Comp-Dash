@@ -87,22 +87,7 @@ export const DEFAULTS = {
                            only visible where its gradient faces the key. */
   light: 128,           /* degrees, the key light's bearing. 0 is from the
                            right, 90 from directly above. */
-  ambient: 0.1,         /* fill light, so the dark side is not a hole */
-  wrap: 0.24,           /* how far the key light wraps past the terminator. A
-                           translucent body carries light around its own edge,
-                           and a hard terminator is the single thing that makes
-                           a sphere read as stone rather than as glass. */
-  frost: 0.22,           /* the milkiness. A diffusing medium lifts its shadows
-                           far more than its highlights - veiling glare - so
-                           this mixes the ramp toward white in inverse
-                           proportion to brightness rather than evenly. */
-  sheen: 0.34,           /* the specular: the soft window reflection glass
-                           catches, sitting off the key light */
-  edge: 0.85,           /* the bright ring at the circumference. Glass is
-                           brightest where you look through the most of it,
-                           which is exactly at the limb. */
-  blur: 3,              /* px of defocus on the swirl, at the drawn size. The
-                           churn is seen THROUGH the frost, not painted on it. */
+  ambient: 0.2,         /* fill light, so the dark side is not a hole */
   rim: 0.55,            /* the back rim that separates the ball from the
                            stage. Opposite the key, which is why the reference
                            has a bright edge at the bottom right. */
@@ -150,17 +135,13 @@ var STATES = {
 };
 
 var NUM = ["height", "size", "arms", "swirl", "spin", "breath", "calm", "swell",
-  "relief", "tone", "light", "ambient", "wrap", "frost", "sheen", "edge", "blur",
-  "rim", "detail", "seed"];
+  "relief", "tone", "light", "ambient", "rim", "detail", "seed"];
 var BOOL = ["glow", "autoplay", "paused", "compact"];
 
 var TAU = Math.PI * 2;
 var LUT = 256;
-/* How much of the ramp the DIFFUSE term is allowed to use. It is not the whole
-   headroom: the specular, the rim and the frost haze are all added on top of
-   it, and the swirl on top of those. Raising it without taking the others down
-   is what put a fifth of the ball at flat white. */
-var LAMBERT = 0.48;
+/* how much of the ramp the bare sphere is allowed to use - see build() */
+var LAMBERT = 0.62;
 
 function fromData(el) {
   var o = {}, d = el.dataset, k, camel;
@@ -252,7 +233,6 @@ export function initAgenticBall(el, options) {
   node.appendChild(content);
 
   var ctx = canvas.getContext("2d");
-  var supportsFilter = "filter" in ctx;
   var W = 0, H = 0, dpr = 1, cx = 0, cy = 0, rad = 0;
   var clock = 0, last = 0, raf = 0, playing = false, lit = false, onScreen = true;
   var listeners = [], io = null, ro = null;
@@ -284,11 +264,27 @@ export function initAgenticBall(el, options) {
     /* Four stops rather than two. A shaded sphere needs a RANGE, and a ramp
        that sits in one hue for most of its length gives a flat sticker
        whatever the shading does. Deep Tech Blue in the shadow, Tech Blue
-       through the terminator, the accent in the light, white in the hotspot. */
+       only through the terminator, the accent across the whole lit face,
+       white in the hotspot.
+
+       Where the accent stop SITS is the ball's brightness, and it is a
+       stronger control than any of the lighting numbers. At 0.72 the navy
+       reached most of the way up the lit side and the ball read as Tech
+       Blue with a cyan edge; at 0.46 the navy is confined to the
+       terminator and the face is Innovation Blue, which is the lighter,
+       cooler ball. Adjust this before reaching for `ambient` or LAMBERT -
+       those move the shading, this moves the colour. */
     var stops = [
-      [0.0, [PALETTE.blue[0] * 0.2, PALETTE.blue[1] * 0.2, PALETTE.blue[2] * 0.26]],
-      [0.34, [PALETTE.blue[0], PALETTE.blue[1], PALETTE.blue[2]]],
-      [0.72, hi],
+      [0.0, [PALETTE.blue[0] * 0.24, PALETTE.blue[1] * 0.24, PALETTE.blue[2] * 0.3]],
+      [0.24, [PALETTE.blue[0], PALETTE.blue[1], PALETTE.blue[2]]],
+      [0.46, hi],
+      /* A fifth stop, so the accent holds most of the way to the top and
+         only the last fifth of the range washes to white. It does NOT
+         change how much of the ball clips - measured either way at 16%,
+         because those pixels come from the SHADE saturating at 1.0, which
+         no ramp can undo - but it keeps the whole lit face reading as
+         Innovation Blue instead of drifting pale from 0.46 upward. */
+      [0.78, [hi[0] + (255 - hi[0]) * 0.28, hi[1] + (255 - hi[1]) * 0.28, hi[2] + (255 - hi[2]) * 0.28]],
       [1.0, [255, 255, 255]]
     ];
     var i, t, c, k2;
@@ -297,15 +293,8 @@ export function initAgenticBall(el, options) {
       for (k2 = 0; k2 < stops.length - 1 && t > stops[k2 + 1][0]; k2++) { /* find span */ }
       var a = stops[k2], b2 = stops[k2 + 1] || a;
       var f = b2[0] === a[0] ? 0 : (t - a[0]) / (b2[0] - a[0]);
-      /* Veiling glare: a diffusing medium scatters a fraction of the light
-         back out uniformly, which raises the floor far more than it raises the
-         ceiling. Mixing the whole ramp toward white by a constant would just
-         wash the ball out; mixing it in inverse proportion to brightness is
-         what actually makes it read as frosted. */
-      var haze = o.frost * (1 - 0.55 * t);
       for (c = 0; c < 3; c++) {
         var v = a[1][c] + (b2[1][c] - a[1][c]) * f;
-        v = v + (255 - v) * haze;
         ramp[i * 3 + c] = v < 0 ? 0 : v > 255 ? 255 : v;
       }
     }
@@ -349,50 +338,25 @@ export function initAgenticBall(el, options) {
       for (i = 0; i < B; i++) {
         var idx = j * B + i;
         var nx = (2 * (i + 0.5)) / B - 1;
-        /* Every pixel of the square is shaded, including the corners that fall
-           outside the ball - they are clipped away at draw time. The reason is
-           the defocus: a blur samples past the limb, and if those samples are
-           transparent it pulls a dark ring in all the way round. Clamping the
-           normal at the limb extends the edge colour outward instead, so the
-           blur has real pixels to read and the clipped arc stays crisp. It
-           also removes the only branch in the per-pixel loop. */
         var u2 = nx * nx + ny * ny;
+        if (u2 >= 1) { base[idx] = -1; continue; }   /* outside the ball */
         var u = Math.sqrt(u2);
-        if (u > 1) { nx /= u; ny /= u; u2 = 1; u = 1; }
-        var nz = Math.sqrt(1 - u2 < 0 ? 0 : 1 - u2);
+        var nz = Math.sqrt(1 - u2);
 
         /* the bare sphere */
         var lam = nx * lx + ny * ly + nz * lz;
-        /* Wrapped diffuse. The raw dot product cuts off at the terminator with
-           a hard edge; shifting and rescaling it carries light round past 90
-           degrees, which is what a body you can see into actually does. */
-        lam = (lam + o.wrap) / (1 + o.wrap);
-        if (lam < 0) lam = 0; else if (lam > 1) lam = 1;
-
-        /* Blinn-Phong, wide and soft: the reflection of a window, not a point
-           source. The half-vector against a straight-on viewer is just the
-           light plus z. */
-        var hx = lx, hy = ly, hz = lz + 1;
-        var hl = Math.sqrt(hx * hx + hy * hy + hz * hz);
-        var nh = (nx * hx + ny * hy + nz * hz) / hl;
-        if (nh < 0) nh = 0;
-        var spec = Math.pow(nh, 14);
-
-        /* The rim runs all the way round rather than only opposite the key:
-           at the limb you are looking through the whole thickness of the ball,
-           so it lights everywhere, brightest on the far side. */
+        if (lam < 0) lam = 0;
+        /* a back rim, opposite the key: pow(1-nz, 4) is tight to the limb */
         var e = 1 - nz, e2 = e * e;
         var back = -(nx * lx + ny * ly);
         if (back < 0) back = 0;
-        back = 0.38 + 0.62 * back;
         /* The bare sphere is deliberately mixed to peak around 0.78, not 1.
            The swirl is ADDED to this, so a base that already reaches the top
            of the ramp leaves it nowhere to go: at 0.92 gain a third of the
            disc clipped to flat white at the peak of the breath, which is a
            third of the ball with no pattern on it at all. Headroom is the
            whole reason for the number. */
-        base[idx] = o.ambient + LAMBERT * Math.pow(lam, 1.4)
-                  + o.rim * e2 * e2 * back + o.sheen * spec;
+        base[idx] = o.ambient + LAMBERT * Math.pow(lam, 1.4) + o.rim * e2 * e2 * back;
 
         /* The swirl lives ON the sphere, so its radial coordinate is the
            surface polar angle, not the screen radius: q = asin(u), normalised.
@@ -488,6 +452,7 @@ export function initAgenticBall(el, options) {
 
     for (i = 0; i < N; i++, o4 += 4) {
       v = base[i];
+      if (v < 0) { px[o4 + 3] = 0; continue; }
       /* cos(p - wt) for the relief, sin(p - wt) for the tone - two readings
          of the same precomputed pair, so the second term costs four multiplies
          rather than a second field.
@@ -522,44 +487,7 @@ export function initAgenticBall(el, options) {
     ctx.beginPath();
     ctx.arc(cx, cy, rad, 0, TAU);
     ctx.clip();
-    /* The defocus. Drawn OVERSIZE by the blur radius, so the clip is always
-       cut from covered pixels - a blur draws its own soft edge inward, and
-       without the overscan the ball would arrive with a grey halo inside its
-       own outline. ctx.filter is skipped where it is not supported rather
-       than faked: the ball is simply sharper there. */
-    var bl = o.blur * (rad / 160);
-    var over = 0;
-    if (bl > 0.3 && supportsFilter) {
-      ctx.filter = "blur(" + bl.toFixed(2) + "px)";
-      over = bl * 2.5;
-    }
-    ctx.drawImage(buf, cx - rad - over, cy - rad - over, (rad + over) * 2, (rad + over) * 2);
-    ctx.filter = "none";
-    ctx.restore();
-
-    if (o.edge > 0) edge();
-  }
-
-  /* The edge. Glass is brightest where you look through the most of it, and a
-     thin bright ring at the circumference is the single strongest tell that a
-     thing is glass rather than plastic - it survives being shrunk to a
-     favicon, which none of the interior shading does. Two arcs: a cool one on
-     the lit side, and a second, fainter one opposite, which is the light that
-     went all the way through. */
-  function edge() {
-    var c = PALETTE[o.accent];
-    var la = (o.light * Math.PI) / 180;
-    var ex = Math.cos(la), ey = -Math.sin(la);
-    var g = ctx.createLinearGradient(cx - ex * rad, cy - ey * rad, cx + ex * rad, cy + ey * rad);
-    g.addColorStop(0, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (0.5 * o.edge).toFixed(3) + ")");
-    g.addColorStop(0.42, "rgba(255,255,255," + (0.12 * o.edge).toFixed(3) + ")");
-    g.addColorStop(1, "rgba(255,255,255," + (0.92 * o.edge).toFixed(3) + ")");
-    ctx.save();
-    ctx.lineWidth = Math.max(1, rad * 0.022);
-    ctx.strokeStyle = g;
-    ctx.beginPath();
-    ctx.arc(cx, cy, rad - ctx.lineWidth / 2, 0, TAU);
-    ctx.stroke();
+    ctx.drawImage(buf, cx - rad, cy - rad, rad * 2, rad * 2);
     ctx.restore();
   }
 
@@ -569,8 +497,8 @@ export function initAgenticBall(el, options) {
     var c = PALETTE[o.accent];
     var r = rad * (1.5 + 0.28 * amp);
     var g = ctx.createRadialGradient(cx, cy, rad * 0.75, cx, cy, r);
-    g.addColorStop(0, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (0.13 + 0.16 * amp).toFixed(3) + ")");
-    g.addColorStop(0.45, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (0.04 + 0.07 * amp).toFixed(3) + ")");
+    g.addColorStop(0, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (0.1 + 0.16 * amp).toFixed(3) + ")");
+    g.addColorStop(0.45, "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + (0.03 + 0.07 * amp).toFixed(3) + ")");
     g.addColorStop(1, "rgba(" + c[0] + "," + c[1] + "," + c[2] + ",0)");
     ctx.fillStyle = g;
     ctx.beginPath();
