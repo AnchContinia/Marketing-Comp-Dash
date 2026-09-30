@@ -2675,6 +2675,167 @@
     }
   },
   {
+    "slug": "agentic-ball",
+    "name": "Agentic Ball",
+    "kind": "component",
+    "category": "ui",
+    "class": "js",
+    "source": "continia",
+    "sourceUrl": "https://pro.reactbits.dev/docs/components/agentic-ball",
+    "license": "Continia internal",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-slow",
+      "--motion-ease-out"
+    ],
+    "blurb": "A lit sphere with a liquid swirl turning on its surface, breathing between almost-still and churning. It is a state orb: what an assistant shows while it is idle, listening, thinking or answering - and the state is five scalars, so changing it costs nothing and never restarts the animation.",
+    "reducedMotion": "Renders one frame of the ball, a quarter of the way into a breath, and stops. The ball is the content, so an empty box is not a reduced version of it. The fade-up transition is dropped too.",
+    "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the parameters were measured off a 300-frame capture and the rest is derived from a shaded sphere; sourceUrl points at the docs page for provenance only.\n\nWhat the capture actually gave, so the numbers are not invented: the ball never moves (identical bounding box in all 300 frames, so everything happens on the surface); the pattern is two-armed (an FFT of the luminance puts m=2 on top in every radius band, 6367/6299/4617/2870, with m=1 and m=4 as the secondaries - which is why this is three sinusoids and not noise, since noise would have given a flat spectrum); and it breathes (standard deviation inside the disc runs 10 at frame 60, peaks at 52 at frame 217, falls back to 25). What it did not give: rotation came out at 20-40 deg/s against a measurement whose own bin size is 20 deg/s, so spin is the right order and not a measured figure.\n\nThe brand decisions. The stage is dark in BOTH themes, as with Data Transfer and Vortex: the ball's whole read is a highlight and a terminator, and a lit object on a light ground is a flat disc. The reference ball is grey; ours runs deep Tech Blue in the shadow through Tech Blue at the terminator to Innovation Blue in the light and white at the hotspot. The shadow end is Tech Blue SCALED DOWN, not a new colour - a darker version of a palette hue is shading, a lightened tint of one would be an off-palette colour and those are banned.",
+    "options": {
+      "height": {
+        "type": "number",
+        "default": 320,
+        "unit": "px",
+        "note": "px of stage. Both hosts clamp a component's mount to the card, so this only bites when the entry is used on its own."
+      },
+      "size": {
+        "type": "number",
+        "default": 0.58,
+        "note": "the ball's diameter as a fraction of the stage's shorter side"
+      },
+      "arms": {
+        "type": "number",
+        "default": 2,
+        "note": "the dominant harmonic. Measured m=2 off the reference, where an FFT of the luminance puts m=2 on top in every radius band. Rebuilds the per-pixel tables, so it is set once, not animated."
+      },
+      "swirl": {
+        "type": "number",
+        "default": 200,
+        "unit": "deg",
+        "note": "degrees the pattern winds from centre to limb. Measured at about 200 - though fitting the wind as A*r^p leaves an 11-14 degree residual for every p from 1 to 3, so the capture cannot tell a straight wind from a curved one and this uses the straight one. Rebuilds the tables."
+      },
+      "spin": {
+        "type": "number",
+        "default": 12000,
+        "unit": "ms",
+        "note": "ms for the dominant harmonic to go once round. The other two are locked to integer multiples of it, so the whole picture is exactly periodic and the ball returns to its own first frame."
+      },
+      "breath": {
+        "type": "number",
+        "default": 6000,
+        "unit": "ms",
+        "note": "ms for one swell of activity, from calm to churning and back"
+      },
+      "state": {
+        "type": "string",
+        "default": "thinking",
+        "values": [
+          "idle",
+          "listening",
+          "thinking",
+          "speaking",
+          "custom"
+        ],
+        "note": "a preset over calm/swell/spin/breath/relief/tone. It fills only the options you have NOT set yourself - data-calm wins over the preset. \"\" or \"custom\" uses your values as given."
+      },
+      "calm": {
+        "type": "number",
+        "default": 0.26,
+        "note": "the floor of the swirl's amplitude - what the ball looks like between breaths"
+      },
+      "swell": {
+        "type": "number",
+        "default": 0.4,
+        "note": "how much the breath adds on top of the floor"
+      },
+      "relief": {
+        "type": "number",
+        "default": 1.5,
+        "note": "how hard the swirl carves ridges: its gradient, projected on the light. Visible where the pattern runs along the light, gone where it runs across it - which is what `tone` is for."
+      },
+      "tone": {
+        "type": "number",
+        "default": 0.34,
+        "note": "how much the swirl darkens and lightens on its own, independent of the light. Shows everywhere. Relief without tone puts the whole pattern on one side of the ball."
+      },
+      "light": {
+        "type": "number",
+        "default": 128,
+        "unit": "deg",
+        "note": "degrees, the key light's bearing. 0 is from the right, 90 from directly above. Rebuilds the tables."
+      },
+      "ambient": {
+        "type": "number",
+        "default": 0.2,
+        "note": "fill light, so the shadow side is a dark side rather than a hole"
+      },
+      "rim": {
+        "type": "number",
+        "default": 0.55,
+        "note": "the back rim that lifts the ball off the stage. Opposite the key, which is why the reference has its brightest edge at the bottom right."
+      },
+      "accent": {
+        "type": "string",
+        "default": "cyan",
+        "values": [
+          "cyan",
+          "blue",
+          "green",
+          "purple"
+        ],
+        "note": "palette only. The ramp runs deep Tech Blue - Tech Blue - accent - white, so the accent is the colour of the LIT side, not of the whole ball."
+      },
+      "glow": {
+        "type": "boolean",
+        "default": true,
+        "note": "the halo the ball throws onto the stage. Brightens with the swell, which is how you can tell across a room whether it is working."
+      },
+      "detail": {
+        "type": "number",
+        "default": 288,
+        "unit": "px",
+        "note": "the shading buffer's longest side in px. The ball is upscaled from it, which is invisible because a sphere's shading has no hard edges - and the silhouette is a clipped arc, so it stays crisp whatever this is set to. Lower it on a busy page before lowering anything else."
+      },
+      "background": {
+        "type": "string",
+        "default": "",
+        "note": "empty keeps the stylesheet's dark stage"
+      },
+      "seed": {
+        "type": "number",
+        "default": 5,
+        "note": "the three harmonics' phase offsets. Fixed, so both hosts and every resize draw the same ball. Rebuilds the tables."
+      },
+      "autoplay": {
+        "type": "boolean",
+        "default": true,
+        "note": "turn once it scrolls into view, and stop again when it leaves or the tab is hidden"
+      },
+      "paused": {
+        "type": "boolean",
+        "default": false
+      },
+      "compact": {
+        "type": "boolean",
+        "default": false,
+        "note": "the card-sized skin, for a stage under ~200px"
+      }
+    },
+    "notPorted": [
+      "No pointer interaction. The reference lets the cursor push the surface around. This one is a status display: something that answers the mouse invites being played with, and an orb that reacts to hover reads as a control rather than as a readout.",
+      "No true displacement or WebGL. The reference shades a real displaced mesh; this is a shading perturbation on a flat sphere - the height field's gradient projected on the light, plus the height itself. The hub has no build step and no 3D library and must not grow one, and at this softness the difference is not visible. It is named honestly in the code rather than dressed up as a normal map.",
+      "No inward flow. Nothing is swallowed or spawned. Every frame is computed from the clock alone, which is what makes it seekable, resize-safe and correct after a pause - a surface that advects would need history and would lose all three."
+    ],
+    "demo": "<p class=\"mlab-label\">Thinking</p>",
+    "addedAt": "2026-09-30",
+    "demoAttrs": {
+      "height": 172,
+      "compact": 1,
+      "size": 0.72,
+      "detail": 192
+    }
+  },
+  {
     "slug": "color-carousel",
     "name": "Color Carousel",
     "kind": "component",

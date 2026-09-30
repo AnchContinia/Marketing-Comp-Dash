@@ -1,0 +1,48 @@
+<!-- Continia Motion Library — Agentic Ball
+     Load in this order: tokens/motion-tokens.css, base/base-animations.css,
+     then this entry's stylesheet. The module is an ES module and mounts itself
+     onto every [data-ml="agentic-ball"] on the page.
+
+       <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+       <link rel="stylesheet" href="motion-library/base/base-animations.css">
+       <link rel="stylesheet" href="motion-library/entries/agentic-ball/agentic-ball.css">
+       <script type="module" src="motion-library/entries/agentic-ball/agentic-ball.js"></script>
+
+     The children are kept and laid over the ball, so the module never owns the
+     copy. It is ambient in the strict sense - it never resolves - so it is a
+     state, not an event.
+-->
+
+<div data-ml="agentic-ball" data-state="thinking">
+  <p class="mlab-label">Working on it</p>
+</div>
+
+
+<!-- Driven from the assistant, which is the whole point of the four states.
+     setState moves five scalars and nothing else: no rebuild, no reallocation,
+     and the clock does not restart, so the ball changes character mid-turn
+     instead of jumping. Safe to call on every token. -->
+<!--
+<script type="module">
+  import { initAgenticBall } from "./motion-library/entries/agentic-ball/agentic-ball.js";
+  const orb = initAgenticBall(document.querySelector("#assistant-orb"));
+  socket.on("status", s => orb.setState(s));   // idle | listening | thinking | speaking
+</script>
+-->
+
+
+<!-- A quiet one, for a corner of a panel rather than a stage of its own.
+     `compact` is the card skin; `size` fills more of a small box. -->
+<!--
+<div data-ml="agentic-ball" data-height="120" data-compact="1"
+     data-state="idle" data-size="0.8" data-glow="0"></div>
+-->
+
+
+<!-- Four arms and a harder wind: busier, and a different creature. `arms` and
+     `swirl` are the two that rebuild the per-pixel tables, so they are set
+     once and left alone - unlike state, they are not free to change. -->
+<!--
+<div data-ml="agentic-ball" data-arms="4" data-swirl="300" data-accent="green"
+     data-state="speaking"></div>
+-->

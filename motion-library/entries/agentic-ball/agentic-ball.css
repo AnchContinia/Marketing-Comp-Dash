@@ -1,0 +1,71 @@
+/* Continia Motion Library — Agentic Ball
+   The stage and the chrome only. Everything you can see on the ball itself is
+   drawn into the canvas by agentic-ball.js; there is no CSS animation here,
+   because a shaded sphere is a per-pixel job and CSS has no way to say it. */
+
+.mlab {
+  position: relative;
+  display: block;                 /* both hosts clamp the mount with display:block,
+                                     so flex here would lose to them anyway */
+  overflow: hidden;
+  border-radius: 15px;            /* the hub's tile radius - never 20, never a % */
+  background: var(--mlab-bg, #070d1a);
+  height: var(--mlab-h, 320px);
+  isolation: isolate;
+}
+
+/* The stage is dark in BOTH themes on purpose. The ball is lit - its whole
+   read is a highlight and a terminator - and a lit object on a light ground
+   is a flat disc. Same call as Data Transfer and Vortex. */
+
+.mlab-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+}
+.mlab.is-lit .mlab-canvas { opacity: 1; }
+
+/* The caller's children, laid over the ball rather than inside it. A separate
+   absolutely positioned layer, because the host element itself is clamped to
+   display:block and cannot be the flex container. */
+.mlab-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Under the ball, not across it. A status label centred on a lit sphere
+     crosses the hotspot and the terminator in the same line of type, and no
+     amount of text-shadow makes that read. */
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  /* the copy sits over a moving highlight, which is never quiet */
+  text-shadow: 0 2px 18px rgba(7, 13, 26, .85);
+}
+.mlab-content:empty { display: none; }
+
+/* The label under the ball - the common case for a state orb. */
+.mlab-label {
+  margin: 0;
+  font-size: .82rem;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: #8ff8ff;
+}
+
+.mlab-sm { border-radius: 8px; }      /* the card skin */
+.mlab-sm .mlab-content { padding: 10px; }
+.mlab-sm .mlab-label { font-size: .68rem; }
+
+/* Reduced motion kills only the fade-up. The canvas still renders one frame:
+   the ball IS the content, so an empty box is not a reduced version of it. */
+@media (prefers-reduced-motion: reduce) {
+  .mlab-canvas { transition: none; }
+}

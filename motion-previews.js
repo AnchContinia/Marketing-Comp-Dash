@@ -710,6 +710,24 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Renders one frame of the field and stops - the field is the content, so an empty box is not a reduced version of it. The fade-up transition is dropped too."
   },
   {
+    "slug": "agentic-ball",
+    "name": "Agentic Ball",
+    "category": "ui",
+    "kind": "component",
+    "feel": "A lit ball with a liquid swirl turning on it - two arms winding from the centre out to the edge, carved into ridges by the light and wrapping the whole surface. It breathes: almost still for a while, then churning, then still again. Nothing arrives and nothing leaves, so it reads as something working rather than something happening.",
+    "useFor": "The status of an assistant, shown rather than spelled out: an AI panel in the hub, a chat header, a Continia Hub agent, a waiting state that is not a spinner. It carries four states - idle, listening, thinking, speaking - and switching between them moves five numbers, so it can follow a live conversation without ever restarting or jumping. Whatever you put inside it is laid over the ball and keeps its own layout. It is a component, so it carries its own JS, but it needs no other entry and no library.",
+    "prompt": "Build a lit sphere with a swirl turning on its surface, on a stage that is dark in both themes because a lit object on a light ground is a flat disc. Shade the ball first: a normal from the screen position, a key light low enough that the terminator falls ON the disc rather than past its edge, a fill so the shadow side is a dark side and not a hole, and a tight rim opposite the key so the ball lifts off the stage. Let the bare sphere use only about three quarters of the available range - the swirl is added on top of it, and a base that already reaches white leaves the pattern nowhere to go. Then the swirl. It is not noise: use three sinusoids, a dominant two-armed one with a weaker one-armed and a weaker four-armed over it, each winding about two hundred degrees from centre to limb and each turning at its own whole number of turns per cycle, one of them backwards, so the composite is exactly periodic and the ball comes back to its own first frame. Give the swirl the sphere's own radial coordinate - the surface polar angle, not the screen radius - and the fringes crowd toward the edge the way a texture on a real sphere does, instead of reading as a pinwheel painted on a disc. Shade the swirl twice over, because one way is not enough: its gradient projected on the light, which carves ridges but vanishes wherever the pattern runs across the light, plus the height itself, which is visible everywhere. Window it off at the exact centre, where every arm meets and a one-over-r term goes singular, and at the limb, where the texture is edge-on. Breathe the amplitude from a floor up to a peak and back once per cycle, sharpened so it spends longer calm than churning. Colour it from the Continia palette only: deep Tech Blue in the shadow, Tech Blue through the terminator, Innovation Blue in the light, white at the hotspot - the dark end is Tech Blue scaled down, never a lightened tint. Make every frame a pure function of the clock, with the per-pixel parts precomputed once so a frame is a dot product rather than a pile of trigonometry, and render into a small buffer that is upscaled under a clipped arc, so the shading can be cheap while the silhouette stays crisp. Give it four named states - idle, listening, thinking, speaking - that move only scalars, so an assistant can change them on every token without a rebuild and without the animation restarting. Cap the pixel ratio at 2, stop the loop when it scrolls out of view or the tab is hidden, clamp the frame step to 64ms, and under prefers-reduced-motion request no frames at all and draw one still ball: it is the content, so an empty box is not a reduced version of it.",
+    "demo": "<p class=\"mlab-label\">Thinking</p>",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "size": 0.72,
+      "detail": 192
+    },
+    "loops": true,
+    "reducedMotion": "Renders one frame of the ball, a quarter of the way into a breath, and stops. The ball is the content, so an empty box is not a reduced version of it. The fade-up transition is dropped too."
+  },
+  {
     "slug": "color-carousel",
     "name": "Color Carousel",
     "category": "ui",

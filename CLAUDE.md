@@ -171,10 +171,11 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **ten components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
-`modal-cards`, `color-carousel` and `tile-reveal` in category `ui`, `blur-highlight` in
-category `text` and `data-transfer` and `vortex` in category `ambient`, because a component's
-category says what it is for, not how it is built — so `library.json` holds 59 entries.
+Plus **eleven components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+`modal-cards`, `color-carousel`, `tile-reveal` and `agentic-ball` in category `ui`,
+`blur-highlight` in category `text` and `data-transfer` and `vortex` in category `ambient`,
+because a component's category says what it is for, not how it is built — so `library.json`
+holds 60 entries.
 
 **The counts on the page are counted, never typed.** Both section heads — the gallery's
 `#ml-intro` and the Video page's `#motion-previews` — carry a `[data-ml-tally]` span, and each
@@ -346,6 +347,31 @@ Both hosts write `meta.json → demoAttrs` straight onto the mount as `data-<key
 key lands in `dataset` lowercased and never matches the module's option name. `data-vanishX`
 had been silently ignored on both of Data Transfer's cards since it shipped; the values were
 close enough to the defaults that nothing looked wrong. Write `centre-y`, not `centreY`.
+
+**A measurement can lie in your favour as well as against you.** Judging Agentic Ball's
+highlight clipping with `max(r,g,b) >= 254` reported that 34% of the ball was blown out, and
+the fix for that was half an hour of retuning. Innovation Blue is `#8ff8ff` — its blue channel
+*is* 255, so the test called every correctly-lit pixel clipped. Measured as luminance, with
+white defined as all three channels at the top, the real figure was 3.7%. On a palette with a
+saturated hue, any per-channel threshold is measuring the palette, not the picture.
+
+**A bump term dotted with the light disappears where it runs across the light.** That is what a
+gradient does, and it is correct — but it put the whole of Agentic Ball's swirl on one side of
+the sphere and left the other side bare. The fix is a second reading of the same field: the
+gradient carves the ridges, and the *height itself* tints, which shows everywhere. Both terms
+come off the same precomputed `cos(p)`/`sin(p)` pair, so the second one costs four multiplies
+rather than a second field.
+
+**A shaded base has to leave the pattern somewhere to go.** Whatever is added on top of a
+lambert term — a swirl, a noise, a highlight — is added to a value that already fills the ramp
+if the base is allowed to reach 1. Agentic Ball's bare sphere is deliberately mixed to peak
+around 0.78, and the headroom is the only reason its pattern survives the top of the breath.
+
+**A pattern painted on a sphere uses the sphere's own radial coordinate, not the screen's.**
+Winding Agentic Ball's spiral by the screen radius drew a pinwheel on a disc; winding it by
+`asin(u)` — the surface polar angle — crowds the fringes toward the limb the way a real texture
+foreshortens, and the chain rule carries the same correction into the shading for free. One
+substitution, and the flat disc became a ball.
 
 **A text effect that changes a layout property re-wraps the text while it runs.** `ml-focus-in`
 animated `letter-spacing` from `0.3em` to `normal`, so its headline was three lines wide at the
