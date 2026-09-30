@@ -1283,7 +1283,7 @@ html[data-theme="dark"] .cka-tbl th.is-sorted button{color:var(--cyan)}
 #ck-effort[data-side="rest"] .cke-g-marketing{display:none}
 .cke-ic{margin-right:10px;font-size:13px;color:var(--navy)}
 .cke-tbl{width:100%;border-collapse:collapse}
-.cke-tbl th{padding:0 12px 7px 0;text-align:left;font-size:9.5px;font-weight:850;letter-spacing:.06em;
+.cke-tbl th{padding:3px 12px 7px 0;text-align:left;font-size:9.5px;font-weight:850;letter-spacing:.06em;
   text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
 .cke-tbl td{padding:11px 12px 11px 0;font-size:12.5px;line-height:1.65;color:var(--ink);
   vertical-align:top;border-bottom:1px solid var(--line)}
@@ -1309,6 +1309,7 @@ html[data-theme="dark"] .cka-tbl th.is-sorted button{color:var(--cyan)}
   .cke-tbl thead{display:none}
   .cke-tbl tr{padding:12px 0;border-bottom:1px solid var(--line)}
   .cke-tbl tr:last-child{border-bottom:0}
+  .cke-tbl tr:first-child{padding-top:0}
   .cke-tbl td{padding:0 0 6px;border-bottom:0}
   .cke-tbl td:last-child{padding-bottom:0}}
 
@@ -1424,6 +1425,19 @@ html[data-theme="dark"] .cke-ic{color:var(--cyan)}
 .ck-h4{margin:16px 0 8px;font-size:11px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;color:var(--navy)}
 .ck-ul{margin:0 0 10px;padding-left:20px;max-width:84ch}
 .ckx-in .ck-ul{padding-left:36px}
+/* A table with border-collapse:collapse ignores padding on the table box - all
+   four sides - so the gutter .ckx-in gives every other child did nothing for
+   one: the text sat 1px off the card border and the header row sat on the
+   panel's top rule. Padding the outer cells fixes left and right but not top,
+   and breaks again wherever the table is switched to display:block for a
+   narrow screen. The wrapper takes the padding as an ordinary block, at every
+   breakpoint, and any future table in an accordion gets it for free. */
+.ckx-tw{overflow-x:auto}
+/* The wrapper's 16px is the ONLY horizontal gutter: an outer cell that keeps
+   its own padding lands the text further in than every other module's body
+   text, which is how the naming table sat at 27px against everyone else's 17. */
+.ckx-tw th:first-child,.ckx-tw td:first-child{padding-left:0}
+.ckx-tw th:last-child,.ckx-tw td:last-child{padding-right:0}
 .ck-ul li{font-size:13.5px;line-height:1.65;color:var(--ink);margin-bottom:5px}
 .ck-st{font-size:9.5px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;
   border:1px solid var(--line);border-radius:999px;padding:3px 9px;background:var(--paper)}
@@ -1442,7 +1456,7 @@ html[data-theme="dark"] .cke-ic{color:var(--cyan)}
 
 /* ----- naming table ----- */
 .ck-table{width:100%;border-collapse:collapse;font-size:13px}
-.ck-table th{text-align:left;padding:8px 10px;font-size:9.5px;font-weight:850;letter-spacing:.07em;
+.ck-table th{text-align:left;padding:3px 10px 8px;font-size:9.5px;font-weight:850;letter-spacing:.07em;
   text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--line)}
 .ck-table td{padding:8px 10px;border-bottom:1px solid var(--line);color:var(--ink);vertical-align:top}
 .ck-table tbody tr:last-child td{border-bottom:0}

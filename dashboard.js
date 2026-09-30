@@ -2340,7 +2340,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV = "20260929o";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20260929p";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
@@ -2462,10 +2462,10 @@ if(contentIdeasList){
     head:'<span class="ckx-t"><b>Product and component names</b></span>'+
          '<span class="ckx-one">Use the left column exactly. The internal abbreviations (DC, EM, DO, CB, CF, CM, WAP, CDN) are fine in partner-facing and internal material once spelled out.</span>'+
          '<span class="ckx-meta">'+D.naming.length+" rows</span>",
-    body:'<table class="ck-table"><thead><tr><th>Use this</th><th>Not this</th></tr></thead><tbody>'+
+    body:'<div class="ckx-tw"><table class="ck-table"><thead><tr><th>Use this</th><th>Not this</th></tr></thead><tbody>'+
       D.naming.map(function(r){
         return '<tr class="ck-nm" data-kind="Naming" data-title="'+esc(r.ok)+'"><td><b>'+esc(r.ok)+"</b></td><td>"+esc(r.no)+"</td></tr>";
-      }).join("")+"</tbody></table>"
+      }).join("")+"</tbody></table></div>"
   });
 
   /* ---------- gotchas ---------- */
@@ -2769,10 +2769,10 @@ if(contentIdeasList){
         head:'<span class="cke-ic" aria-hidden="true"><i class="fa-light '+esc(g.icon)+'"></i></span>'+
              '<span class="ckx-mn">'+esc(g.name)+"</span>"+
              '<span class="cka-bench">'+g.rows.length+" jobs</span>",
-        body:'<table class="cke-tbl"><thead><tr><th class="cke-t">Job</th>'+
+        body:'<div class="ckx-tw"><table class="cke-tbl"><thead><tr><th class="cke-t">Job</th>'+
              '<th class="cke-m">Model</th><th class="cke-ecol">Effort</th>'+
              '<th class="cke-w">Why that level, and not the one below</th></tr></thead><tbody>'+
-             g.rows.map(jobRow).join("")+"</tbody></table>"+srcRow(g.s)});
+             g.rows.map(jobRow).join("")+"</tbody></table></div>"+srcRow(g.s)});
     }).join("");
 
     document.getElementById("cke-rules").innerHTML=E.rules.map(function(r,i){
