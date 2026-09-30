@@ -2340,7 +2340,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV = "20260930c";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20260930k";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
@@ -3326,6 +3326,78 @@ if(contentIdeasList){
   html+='</nav>';
   html+='<button class="sb-logout" id="sbLogout" type="button"><i class="fa-light fa-right-from-bracket"></i><span>Sign out</span></button>';
   mount.innerHTML=html;
+
+  /* ---- Mobile / tablet drawer ----------------------------------------
+     Below 1100px the sidebar is off-canvas (dashboard.css). The button that
+     opens it lives in the topbar, not in the sidebar - a control cannot sit
+     inside the panel it reveals - and it is built here rather than written
+     into five HTML shells, for the same reason the nav itself is. */
+  (function(){
+    var bar=document.querySelector(".topbar");
+    if(!bar) return;
+
+    var btn=document.createElement("button");
+    btn.type="button";
+    btn.className="sb-toggle";
+    btn.id="sbToggle";
+    btn.setAttribute("aria-controls","sidebar");
+    btn.setAttribute("aria-expanded","false");
+    bar.insertBefore(btn, bar.firstChild);
+
+    var scrim=document.createElement("div");
+    scrim.className="sb-scrim";
+    scrim.setAttribute("aria-hidden","true");
+    document.body.appendChild(scrim);
+
+    var open=false, keptY=0;
+    function paint(){
+      btn.setAttribute("aria-expanded", open?"true":"false");
+      btn.setAttribute("aria-label", open?"Close navigation":"Open navigation");
+      btn.innerHTML='<i class="fa-light '+(open?"fa-xmark":"fa-bars")+'" aria-hidden="true"></i>';
+    }
+    paint();
+
+    /* iOS ignores `overflow:hidden` on the body, so the page is pinned with
+       `position:fixed` instead - which loses the scroll offset unless it is
+       carried on `top` and put back by hand. */
+    function set(v, refocus){
+      if(v===open) return;
+      open=v;
+      if(v){
+        keptY=window.scrollY||window.pageYOffset||0;
+        document.body.style.top=(-keptY)+"px";
+        document.body.classList.add("nav-open");
+        mount.scrollTop=0;
+        var first=mount.querySelector("a");
+        if(first) first.focus({preventScroll:true});
+      }else{
+        document.body.classList.remove("nav-open");
+        document.body.style.top="";
+        window.scrollTo(0, keptY);
+        if(refocus) btn.focus({preventScroll:true});
+      }
+      paint();
+    }
+
+    btn.addEventListener("click", function(){ set(!open, true); });
+    scrim.addEventListener("click", function(){ set(false, true); });
+    document.addEventListener("keydown", function(e){
+      if((e.key==="Escape"||e.key==="Esc") && open) set(false, true);
+    });
+    /* A same-page anchor never reloads, so nothing else would close it. The
+       focus is left on the link, which is where the visitor just acted. */
+    mount.addEventListener("click", function(e){
+      var a=e.target.closest ? e.target.closest("a") : null;
+      if(a) set(false, false);
+    });
+    /* Turning a tablet past the breakpoint would otherwise leave an open
+       drawer - and a pinned body - over a layout that has no drawer. */
+    var mq=window.matchMedia("(max-width:1100px)");
+    function onMq(){ if(!mq.matches) set(false, false); }
+    if(mq.addEventListener) mq.addEventListener("change", onMq);
+    else if(mq.addListener) mq.addListener(onMq);
+  })();
+
 
   /* Mirror each nav item's icon onto its module heading: prepend the same
      fa-light icon in front of the section's <h2>. Data-driven from NAV, so a
