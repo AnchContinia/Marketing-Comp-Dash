@@ -1576,7 +1576,7 @@ html[data-theme="dark"] mark.ck-mk{background:rgba(143,248,255,.24);color:#8ff8f
    takes it out of flow entirely, which is the only way the page starts at
    the topbar. `100dvh` rather than `100vh` so the drawer is not cut off by
    the iOS address bar, with a vh fallback for browsers without dvh. */
-.sb-toggle{display:none;width:42px;height:42px;flex:none;border:1px solid var(--line);border-radius:8px;background:var(--paper);color:var(--ink);cursor:pointer;place-items:center;font-size:17px;padding:0}
+.sb-toggle{display:none;width:42px;height:42px;flex:none;border:1px solid var(--line2);border-radius:8px;background:var(--paper);color:var(--ink);cursor:pointer;place-items:center;font-size:17px;padding:0}
 .sb-toggle:hover{border-color:var(--line2)}
 .sb-toggle:focus-visible{outline:2px solid var(--navy);outline-offset:2px}
 .sb-scrim{display:none}
@@ -1606,7 +1606,6 @@ html[data-theme="dark"] mark.ck-mk{background:rgba(143,248,255,.24);color:#8ff8f
 @media(prefers-reduced-motion:reduce){
   .sidebar,.sb-scrim{transition:none}
 }
-html[data-theme="dark"] .sb-toggle{background:#0f1728;border-color:#22304d;color:#e6edf8}
 html[data-theme="dark"] .sb-scrim{background:rgba(2,6,16,.6)}
 
 /* A grid item's default `min-width:auto` will not shrink below its content,
@@ -1758,4 +1757,20 @@ html[data-theme="dark"] .tl{
   .app input:not([type=checkbox]):not([type=radio]),
   .app select:not([hidden]),
   .app textarea:not([hidden]){font-size:16px}
+}
+
+/* Phones: the topbar hides .status because "Updated <date>" has nowhere to sit,
+   and the theme toggle went with it - it is injected into .status, not beside
+   it. Bring the block back with only the button in it, and order it ahead of
+   the crumb so the moon sits left of "Marketing Hub", next to the hamburger.
+   .sb-toggle needs the lower order value or the button would jump in front of
+   it. */
+@media(max-width:760px){
+  .topbar .status{display:flex;order:-1;gap:0;margin-right:auto}
+  .topbar .status>span{display:none}
+  .sb-toggle{order:-2}
+  /* It stands next to the hamburger here rather than alone at the far end,
+     so it takes the same 42px box - and 34px was under the touch floor
+     every other control on a phone got. Tablet keeps its 34px button. */
+  .theme-toggle{width:42px;height:42px;border-radius:8px;font-size:17px}
 }
