@@ -478,6 +478,57 @@ reel — all three only showed up in Chrome. Drive the real browser for anything
 `login.html` without it), and read `getComputedStyle` rather than `getBoundingClientRect` — the
 reel's rects are rotated and scaled, so a correct 55×74 item measures 73×91.
 
+## Tablet and phone
+
+Two breakpoints carry the shell. **1100px** turns the sidebar into an off-canvas
+drawer and **760px** is the phone band; between them sits a tablet-portrait band
+(`min-width:761px and max-width:1100px`) that exists only for the competitor card
+header, whose three columns cannot share 300px.
+
+The drawer is built in `dashboard.js`, in the IIFE straight after the sidebar is
+injected — it appends its own hamburger to `.topbar` and its own scrim to `<body>`,
+so no page markup mentions either. Four things it has to get right, all of which
+are one-line regressions:
+
+- **Pin the body, do not just hide its overflow.** iOS Safari scrolls a body that
+  only has `overflow:hidden`. The drawer stores `scrollY`, sets
+  `position:fixed;top:-Ypx`, and restores the scroll on close — without the restore
+  the page jumps to the top every time the drawer is used.
+- **Close on a resize past 1100px**, or the desktop layout inherits `nav-open` and
+  renders a scrim over a sidebar that is no longer a drawer.
+- **`visibility` needs the delayed transition.** A drawer translated off-screen is
+  still focusable, so it is `visibility:hidden` with `transition:…,visibility 0s
+  linear .26s` — the delay is what lets it stay visible for the whole slide out.
+- **Close on a nav click, but do not steal focus back to the hamburger** when the
+  link is an in-page anchor; return focus only when the visitor closed it themselves.
+
+**Every typeable field reads at 16px on a phone.** iOS Safari zooms the whole page
+whenever a focused field is under 16px and never zooms back out, so the visitor
+pans a magnified page for the rest of the session. The rule is written as
+`.app input:not([type=checkbox]):not([type=radio])` — the `:not()` pairs are there
+for specificity as much as for correctness, because the field rules they have to
+beat reach (0,2,1).
+
+**A scrolling shadow is a linear gradient, not the radial one everybody copies.**
+`radial-gradient(farthest-side at 100% 50%, …)` in an `18px x 100%` box is an
+ellipse half the box's height, so on a 1900px-tall table it has faded to nothing
+except at the vertical middle — the first version of these drew, measurably,
+nothing at all. The four-layer stack (two `--paper` covers on `background-attachment:
+local`, two shadows on `scroll`) is on every horizontal scroller: the YouTube tables,
+the CK tables and the timeline.
+
+**Content that clips with no way to scroll to it is the failure worth hunting.**
+`#continia-uploads` clipped 558/356 and the AppSource G2 rows 507/320 — both looked
+fine in a screenshot and were unreachable. The audit measures `scrollWidth` against
+`clientWidth` for every element whose `overflow-x` is not `auto`/`scroll`; a hit
+there is either a re-flow (the upload grid to one column, the G2 row to
+name-over-bar) or a missing scroller, never a `text-overflow:ellipsis`.
+
+Under `@media(hover:none)` the chips, pills, source links, filters and player
+controls take a **36px** floor. What is left under 32px is deliberate and should
+stay: a star-fill overlay that is meant to be partial, the motion-library demo
+stages, and the 7-column month grid on a 390px phone.
+
 ## Box styling rule (no left-accent bars)
 
 **Never style a box/panel with a colored left-accent bar** (`border-left:4px solid …` or
