@@ -1594,13 +1594,14 @@ if(contentIdeasList){
   function show(q){
     q=(q||"").trim().toLowerCase();
     var list,label;
-    if(!q){ list=ALL.slice(0,4); label="Showing the 4 most recent uploads"; }
+    if(!q){ list=ALL.slice(0,4); label="Showing the 4 most recent uploads \u00b7 open one to browse all "+ALL.length; }
     else if(q==="all"){ list=ALL.slice(); label="Showing all "+ALL.length+" images"; }
     else {
       list=ALL.filter(function(f){return (f+" "+title(f)).toLowerCase().indexOf(q)>-1;});
       label=list.length+" result"+(list.length===1?"":"s")+' for “'+q+'”';
     }
     current=list;
+    filtered=!!q && q!=="all";
     meta.textContent=label;
     grid.innerHTML = list.length ? list.map(card).join("") : '<div class="is-empty">No images match — try a different keyword.</div>';
   }
@@ -1613,16 +1614,21 @@ if(contentIdeasList){
       lbClose=document.getElementById("is-lb-close"),
       lbPrev=document.getElementById("is-lb-prev"),
       lbNext=document.getElementById("is-lb-next"),
-      lbIndex=-1;
-  function loadLB(){ var f=current[lbIndex]; if(!f) return; lbImg.src=src(f); lbImg.alt=title(f); lbCap.textContent=title(f)+"  ·  "+(lbIndex+1)+" / "+current.length; }
+      lbIndex=-1,
+      /* The grid shows four by default, but the photo-box walks the whole
+         bank - a display cap is not a selection. A search IS one, so while a
+         query is active the arrows stay inside its results. */
+      filtered=false,
+      lbSet=ALL;
+  function loadLB(){ var f=lbSet[lbIndex]; if(!f) return; lbImg.src=src(f); lbImg.alt=title(f); lbCap.textContent=title(f)+"  ·  "+(lbIndex+1)+" / "+lbSet.length; }
   function openLB(i){ if(!lb||i<0) return; lbIndex=i; loadLB(); lb.classList.add("open"); lb.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; }
   function closeLB(){ if(!lb) return; lb.classList.remove("open"); lb.setAttribute("aria-hidden","true"); lbImg.src=""; lbIndex=-1; document.body.style.overflow=""; }
-  function navLB(d){ if(lbIndex<0||!current.length) return; lbIndex=(lbIndex+d+current.length)%current.length; loadLB(); }
-  grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(fig&&fig.dataset.file){ var i=current.indexOf(fig.dataset.file); if(i>-1) openLB(i); } });
+  function navLB(d){ if(lbIndex<0||!lbSet.length) return; lbIndex=(lbIndex+d+lbSet.length)%lbSet.length; loadLB(); }
+  grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(!fig||!fig.dataset.file) return; lbSet=filtered?current:ALL; var i=lbSet.indexOf(fig.dataset.file); if(i>-1) openLB(i); });
   if(lb) lb.addEventListener("click",function(e){ if(e.target===lb) closeLB(); });
   if(lbClose) lbClose.addEventListener("click",closeLB);
   var lbDl=lb&&lb.querySelector(".is-lb-dl");
-  if(lbDl) lbDl.addEventListener("click",function(){ var f=current[lbIndex]; if(!f) return; var a=document.createElement("a"); a.href=src(f); a.download=f; document.body.appendChild(a); a.click(); a.remove(); });
+  if(lbDl) lbDl.addEventListener("click",function(){ var f=lbSet[lbIndex]; if(!f) return; var a=document.createElement("a"); a.href=src(f); a.download=f; document.body.appendChild(a); a.click(); a.remove(); });
   if(lbPrev) lbPrev.addEventListener("click",function(){navLB(-1);});
   if(lbNext) lbNext.addEventListener("click",function(){navLB(1);});
   document.addEventListener("keydown",function(e){
@@ -1658,13 +1664,14 @@ if(contentIdeasList){
   function show(q){
     q=(q||"").trim().toLowerCase();
     var list,label;
-    if(!q){ list=ALL.slice(0,4); label="Showing the 4 most recent uploads"; }
+    if(!q){ list=ALL.slice(0,4); label="Showing the 4 most recent uploads \u00b7 open one to browse all "+ALL.length; }
     else if(q==="all"){ list=ALL.slice(); label="Showing all "+ALL.length+" images"; }
     else {
       list=ALL.filter(function(f){return (f+" "+title(f)).toLowerCase().indexOf(q)>-1;});
       label=list.length+" result"+(list.length===1?"":"s")+' for “'+q+'”';
     }
     current=list;
+    filtered=!!q && q!=="all";
     meta.textContent=label;
     grid.innerHTML = list.length ? list.map(card).join("") : '<div class="is-empty">No images match — try a different keyword.</div>';
   }
@@ -1676,16 +1683,21 @@ if(contentIdeasList){
       lbClose=document.getElementById("ns-lb-close"),
       lbPrev=document.getElementById("ns-lb-prev"),
       lbNext=document.getElementById("ns-lb-next"),
-      lbIndex=-1;
-  function loadLB(){ var f=current[lbIndex]; if(!f) return; lbImg.src=src(f); lbImg.alt=title(f); lbCap.textContent=title(f)+"  ·  "+(lbIndex+1)+" / "+current.length; }
+      lbIndex=-1,
+      /* The grid shows four by default, but the photo-box walks the whole
+         bank - a display cap is not a selection. A search IS one, so while a
+         query is active the arrows stay inside its results. */
+      filtered=false,
+      lbSet=ALL;
+  function loadLB(){ var f=lbSet[lbIndex]; if(!f) return; lbImg.src=src(f); lbImg.alt=title(f); lbCap.textContent=title(f)+"  ·  "+(lbIndex+1)+" / "+lbSet.length; }
   function openLB(i){ if(!lb||i<0) return; lbIndex=i; loadLB(); lb.classList.add("open"); lb.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; }
   function closeLB(){ if(!lb) return; lb.classList.remove("open"); lb.setAttribute("aria-hidden","true"); lbImg.src=""; lbIndex=-1; document.body.style.overflow=""; }
-  function navLB(d){ if(lbIndex<0||!current.length) return; lbIndex=(lbIndex+d+current.length)%current.length; loadLB(); }
-  grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(fig&&fig.dataset.file){ var i=current.indexOf(fig.dataset.file); if(i>-1) openLB(i); } });
+  function navLB(d){ if(lbIndex<0||!lbSet.length) return; lbIndex=(lbIndex+d+lbSet.length)%lbSet.length; loadLB(); }
+  grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(!fig||!fig.dataset.file) return; lbSet=filtered?current:ALL; var i=lbSet.indexOf(fig.dataset.file); if(i>-1) openLB(i); });
   if(lb) lb.addEventListener("click",function(e){ if(e.target===lb) closeLB(); });
   if(lbClose) lbClose.addEventListener("click",closeLB);
   var lbDl=lb&&lb.querySelector(".is-lb-dl");
-  if(lbDl) lbDl.addEventListener("click",function(){ var f=current[lbIndex]; if(!f) return; var a=document.createElement("a"); a.href=src(f); a.download=f; document.body.appendChild(a); a.click(); a.remove(); });
+  if(lbDl) lbDl.addEventListener("click",function(){ var f=lbSet[lbIndex]; if(!f) return; var a=document.createElement("a"); a.href=src(f); a.download=f; document.body.appendChild(a); a.click(); a.remove(); });
   if(lbPrev) lbPrev.addEventListener("click",function(){navLB(-1);});
   if(lbNext) lbNext.addEventListener("click",function(){navLB(1);});
   document.addEventListener("keydown",function(e){
@@ -1721,13 +1733,14 @@ if(contentIdeasList){
   function show(q){
     q=(q||"").trim().toLowerCase();
     var list,label;
-    if(!q){ list=ALL.slice(0,4); label="Showing the 4 most recent thumbnails"; }
+    if(!q){ list=ALL.slice(0,4); label="Showing the 4 most recent thumbnails \u00b7 open one to browse all "+ALL.length; }
     else if(q==="all"){ list=ALL.slice(); label="Showing all "+ALL.length+" thumbnails"; }
     else {
       list=ALL.filter(function(f){return (f+" "+title(f)).toLowerCase().indexOf(q)>-1;});
       label=list.length+" result"+(list.length===1?"":"s")+' for “'+q+'”';
     }
     current=list;
+    filtered=!!q && q!=="all";
     meta.textContent=label;
     grid.innerHTML = list.length ? list.map(card).join("") : '<div class="is-empty">No thumbnails match — try a different keyword.</div>';
   }
@@ -1739,16 +1752,21 @@ if(contentIdeasList){
       lbClose=document.getElementById("ytb-lb-close"),
       lbPrev=document.getElementById("ytb-lb-prev"),
       lbNext=document.getElementById("ytb-lb-next"),
-      lbIndex=-1;
-  function loadLB(){ var f=current[lbIndex]; if(!f) return; lbImg.src=src(f); lbImg.alt=title(f); lbCap.textContent=title(f)+"  ·  "+(lbIndex+1)+" / "+current.length; }
+      lbIndex=-1,
+      /* The grid shows four by default, but the photo-box walks the whole
+         bank - a display cap is not a selection. A search IS one, so while a
+         query is active the arrows stay inside its results. */
+      filtered=false,
+      lbSet=ALL;
+  function loadLB(){ var f=lbSet[lbIndex]; if(!f) return; lbImg.src=src(f); lbImg.alt=title(f); lbCap.textContent=title(f)+"  ·  "+(lbIndex+1)+" / "+lbSet.length; }
   function openLB(i){ if(!lb||i<0) return; lbIndex=i; loadLB(); lb.classList.add("open"); lb.setAttribute("aria-hidden","false"); document.body.style.overflow="hidden"; }
   function closeLB(){ if(!lb) return; lb.classList.remove("open"); lb.setAttribute("aria-hidden","true"); lbImg.src=""; lbIndex=-1; document.body.style.overflow=""; }
-  function navLB(d){ if(lbIndex<0||!current.length) return; lbIndex=(lbIndex+d+current.length)%current.length; loadLB(); }
-  grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(fig&&fig.dataset.file){ var i=current.indexOf(fig.dataset.file); if(i>-1) openLB(i); } });
+  function navLB(d){ if(lbIndex<0||!lbSet.length) return; lbIndex=(lbIndex+d+lbSet.length)%lbSet.length; loadLB(); }
+  grid.addEventListener("click",function(e){ var fig=e.target.closest(".is-card"); if(!fig||!fig.dataset.file) return; lbSet=filtered?current:ALL; var i=lbSet.indexOf(fig.dataset.file); if(i>-1) openLB(i); });
   if(lb) lb.addEventListener("click",function(e){ if(e.target===lb) closeLB(); });
   if(lbClose) lbClose.addEventListener("click",closeLB);
   var lbDl=lb&&lb.querySelector(".is-lb-dl");
-  if(lbDl) lbDl.addEventListener("click",function(){ var f=current[lbIndex]; if(!f) return; var a=document.createElement("a"); a.href=src(f); a.download=f; document.body.appendChild(a); a.click(); a.remove(); });
+  if(lbDl) lbDl.addEventListener("click",function(){ var f=lbSet[lbIndex]; if(!f) return; var a=document.createElement("a"); a.href=src(f); a.download=f; document.body.appendChild(a); a.click(); a.remove(); });
   if(lbPrev) lbPrev.addEventListener("click",function(){navLB(-1);});
   if(lbNext) lbNext.addEventListener("click",function(){navLB(1);});
   document.addEventListener("keydown",function(e){
@@ -1930,7 +1948,7 @@ if(contentIdeasList){
   if(clearBtn) clearBtn.addEventListener("click",function(){ listEl.innerHTML=""; items=[]; actions.hidden=true; totalEl.textContent=""; });
 })();
 
-/* ---- SEO Scanner: fetch a URL via the seo-proxy Worker, run on-page checks ----
+/* ---- Quick SEO Scanner: fetch a URL via the seo-proxy Worker, run on-page checks ----
    Rules-based, no AI. The Worker returns the page HTML server-side (CORS-safe);
    all analysis happens here in the browser. Leave PROXY_SEO empty until the
    Worker is deployed (see seo-proxy/README.md) — the module shows a config note. */
@@ -2348,7 +2366,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV = "20261001i";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20261001j";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
@@ -3283,7 +3301,7 @@ if(contentIdeasList){
       {id:"linkedin-compare", icon:"fa-thumbs-up", label:"LinkedIn Engagement"},
       {id:"image-search", icon:"fa-images", label:"Linkedin image bank"},
       {id:"newsletter-bank", icon:"fa-envelope-open-text", label:"Newsletter image bank"},
-      {id:"seo-scan", icon:"fa-magnifying-glass-chart", label:"SEO Scanner"},
+      {id:"seo-scan", icon:"fa-magnifying-glass-chart", label:"Quick SEO Scanner"},
       {id:"compress", icon:"fa-compress", label:"Image & PDF compression"}
     ]},
     {page:"video.html", icon:"fa-clapperboard", label:"Video", items:[
@@ -3467,7 +3485,7 @@ if(contentIdeasList){
      at   "YYYY-MM-DD HH:MM" - when that data actually landed on the hub
      src  short label naming the routine or file it came from
    Sections deliberately absent: the hero, the Method panel, the static asset
-   tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
+   tiles, and the live tools (Event Calendar, Quick SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
 var DASHBOARD_UPDATED = "2026-10-01 14:55";
