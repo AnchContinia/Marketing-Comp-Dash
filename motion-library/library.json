@@ -2170,6 +2170,204 @@
     "addedAt": "2026-09-24"
   },
   {
+    "slug": "center-flow",
+    "name": "Center Flow",
+    "kind": "component",
+    "category": "ambient",
+    "class": "js",
+    "source": "continia",
+    "sourceUrl": "https://pro.reactbits.dev/docs/components/center-flow",
+    "license": "Continia internal",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-slow",
+      "--motion-ease-out"
+    ],
+    "blurb": "A lit tile in the middle of a dark stage with eight smaller ones around it, and a pulse of light leaving the centre along every spoke in turn. Each pulse lands on its node, the node answers with a short flash, and the spoke goes quiet again. The hourglass in the hub runs while it happens.",
+    "reducedMotion": "Renders one frame and stops - the diagram is the content, so an empty box is not a reduced version of it. The frame is taken with pulses mid-flight and the glass half run, so the still says what the moving version says.",
+    "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the geometry, the comet and the glyphs are written here, and sourceUrl points at the docs page for provenance only.\n\nThree decisions are load-bearing. The stage is dark in BOTH themes, as Globe's and Vortex's are: this is a lit object, and a lit object on a light ground is a flat grey box. The hub tile and the pulses are always Innovation Blue, never a lightened tint - at a 2px line width on near-black, Tech Blue is not visible, which is the same finding Vortex's field and Globe's land produced, so `accent` moves the SATELLITES instead, where a second hue can do some work. And the hub tile lands on the hub's own 15px tile radius at its default size, with the satellites taking the same fraction so they stay tiles rather than becoming circles.",
+    "options": {
+      "height": {
+        "type": "number",
+        "default": 420,
+        "unit": "px",
+        "note": "the stage. Both hosts clamp a component's mount to the card, so this only bites when the entry is used on its own."
+      },
+      "nodes": {
+        "type": "number",
+        "default": 8,
+        "note": "the satellites. Six reads as a diagram and twelve as a dial; eight is the count that still leaves room for a flash on each."
+      },
+      "spread": {
+        "type": "number",
+        "default": 0.84,
+        "note": "the node ring's width as a fraction of the stage"
+      },
+      "ratio": {
+        "type": "number",
+        "default": 0.52,
+        "note": "the ring's height as a fraction of its width. 1 is a circle, which leaves a gutter at each side of a wide stage; near 0 collapses the fan to a line. The ring is also clamped to the stage's height, so a card never runs its top and bottom nodes off the edge."
+      },
+      "centreSize": {
+        "type": "number",
+        "default": 86,
+        "unit": "px",
+        "note": "the hub tile at the default 420px stage. Every px option here is scaled by the stage, so a card gets a smaller diagram rather than a cropped one."
+      },
+      "nodeSize": {
+        "type": "number",
+        "default": 34,
+        "unit": "px",
+        "note": "a satellite tile at the default stage"
+      },
+      "radius": {
+        "type": "number",
+        "default": 0.175,
+        "note": "corner radius as a fraction of a tile's size, so the hub lands on the hub's own 15px tile radius and the satellites stay in proportion instead of turning into circles"
+      },
+      "bow": {
+        "type": "number",
+        "default": 0.11,
+        "note": "how far a spoke bows off its chord. 0 is a star of straight lines; past about 0.3 the spokes cross one another. One sign for the whole fan, so it turns together rather than mirroring."
+      },
+      "cycle": {
+        "type": "number",
+        "default": 2600,
+        "unit": "ms",
+        "note": "one pulse: leave, travel, land, and the gap before the next"
+      },
+      "travel": {
+        "type": "number",
+        "default": 0.62,
+        "note": "how much of the cycle the pulse is in flight for. The rest is the gap - without one the spokes are a permanent chain of lights and nothing reads as leaving."
+      },
+      "tail": {
+        "type": "number",
+        "default": 0.34,
+        "note": "the comet's length as a fraction of the spoke. It runs past the far end, so a pulse is swallowed by its node rather than switched off on top of it."
+      },
+      "stagger": {
+        "type": "number",
+        "default": 1,
+        "note": "how far the pulses are spread around the fan, in whole cycles. 1 walks the fan once per cycle; 0 fires all eight together."
+      },
+      "pulseWidth": {
+        "type": "number",
+        "default": 2.2,
+        "unit": "px",
+        "note": "the pulse's core at its head; it tapers to a third of that at the tail"
+      },
+      "lineWidth": {
+        "type": "number",
+        "default": 1,
+        "unit": "px",
+        "note": "the resting spoke. It is always drawn - the system has to be legible in the gap between pulses, not only while something is travelling."
+      },
+      "flash": {
+        "type": "number",
+        "default": 0.55,
+        "note": "how hard a node answers when a pulse lands, 0-1. The flash is handed to the nodes by the pulse pass rather than worked out twice, so the two can never disagree about when a pulse arrived."
+      },
+      "icon": {
+        "type": "string",
+        "default": "hourglass",
+        "values": [
+          "hourglass",
+          "layers",
+          "ring",
+          "none"
+        ],
+        "note": "the glyph in the hub tile, drawn in code rather than loaded - a font or an SVG here is a second request that can 404 on a page that has already painted"
+      },
+      "drain": {
+        "type": "boolean",
+        "default": true,
+        "note": "the hourglass runs: the sand falls and the glass turns over when it is empty. A still glyph in the middle of eight moving spokes reads as a dead pixel."
+      },
+      "glassCycle": {
+        "type": "number",
+        "default": 7800,
+        "unit": "ms",
+        "note": "the glass empties and turns over once. Deliberately not a multiple of `cycle` - when the two line up, the flip always lands on the same spoke and the whole picture picks up a beat."
+      },
+      "breathe": {
+        "type": "number",
+        "default": 5200,
+        "unit": "ms",
+        "note": "the hub's halo swells and settles once"
+      },
+      "glow": {
+        "type": "boolean",
+        "default": true,
+        "note": "the halo behind the hub tile. Drawn BEFORE the spokes, so it reads as light coming off the tile rather than as a wash over the diagram."
+      },
+      "grid": {
+        "type": "boolean",
+        "default": true,
+        "note": "the faint dot field. Not decoration: a plain dark box gives the eye nothing to measure the spokes against, so the fan reads as floating."
+      },
+      "gridGap": {
+        "type": "number",
+        "default": 22,
+        "unit": "px",
+        "note": "between grid dots, at the default stage"
+      },
+      "accent": {
+        "type": "string",
+        "default": "mixed",
+        "values": [
+          "mixed",
+          "blue",
+          "cyan",
+          "green",
+          "purple"
+        ],
+        "note": "the SATELLITES' palette. The hub and the pulses stay Innovation Blue whatever this is - they are the lit part, and a dark hue there is invisible on a near-black ground."
+      },
+      "background": {
+        "type": "string",
+        "default": "",
+        "note": "empty keeps the stylesheet's dark stage"
+      },
+      "seed": {
+        "type": "number",
+        "default": 5,
+        "note": "the node colours and the field are random but fixed - the same seed lays out identically on both hosts and across every resize"
+      },
+      "autoplay": {
+        "type": "boolean",
+        "default": true,
+        "note": "run once it scrolls into view, and stop again when it leaves or the tab is hidden"
+      },
+      "paused": {
+        "type": "boolean",
+        "default": false
+      },
+      "compact": {
+        "type": "boolean",
+        "default": false,
+        "note": "the card-sized skin, for a stage under ~200px"
+      }
+    },
+    "notPorted": [
+      "No labels on the nodes. A label needs a font, a width and a side to sit on, and at a card's size there is room for none of the three. `nodeAt(i)` returns a node's screen position and size, so a caller who wants real labels - or links - can place them over the stage.",
+      "No inbound direction. Everything leaves the centre; there is no mode where the pulses run the other way. A hub that both sends and receives on the same spoke needs two lanes, and at this scale two lanes read as one thicker line.",
+      "No hover. The entry is a background with a picture on it, and a diagram that answers the cursor steals the pointer from whatever is laid over it."
+    ],
+    "demo": "",
+    "addedAt": "2026-10-01",
+    "demoAttrs": {
+      "height": 172,
+      "compact": 1,
+      "centre-size": 72,
+      "node-size": 30,
+      "spread": 0.9,
+      "ratio": 0.56,
+      "grid-gap": 20,
+      "cycle": 2400
+    }
+  },
+  {
     "slug": "data-transfer",
     "name": "Data Transfer",
     "kind": "component",

@@ -611,6 +611,28 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Loop stops; the element rests in its idle state."
   },
   {
+    "slug": "center-flow",
+    "name": "Center Flow",
+    "category": "ambient",
+    "kind": "component",
+    "feel": "A lit tile in the middle of a dark field with eight smaller ones around it, and a pulse of light leaving the centre along every spoke in turn. Each pulse lands on its node, the node answers with a short flash, and the spoke goes quiet again. An hourglass runs in the hub while it happens, and turns itself over when the sand is through.",
+    "useFor": "Anything where one thing feeds a lot of other things and you would otherwise draw a diagram: a platform or integrations page, an architecture slide, the top of a Continia Hub page, a section that has to say automatic without a screenshot. Whatever you put inside it is laid out as a caption under the diagram rather than over it, so the hub tile is never covered. It is a component, so it carries its own JS, but it needs no other entry and no library.",
+    "prompt": "Build a hub-and-spoke diagram that runs: one lit tile in the middle of a dark stage, eight smaller tiles around it, and a pulse of light leaving the centre along every spoke in turn. Draw the whole thing into ONE canvas rather than as DOM tiles plus an SVG of paths - three coordinate systems have to be reconciled on every resize, and an animated dash offset draws a uniform segment, so the head of a pulse cannot be brighter than its tail without a gradient per path per frame. Put the nodes on an ellipse rather than a circle, about half as tall as it is wide, because a stage is wider than it is tall and a circle of nodes leaves a gutter at each side; clamp that ellipse to the stage's height as well, or a short card runs its top and bottom nodes off the edge. Make each spoke a quadratic curve whose control point is pushed perpendicular to its chord, all with the same rotational sense, so the fan has a slight turn in it instead of reading as a star - and start each spoke at the hub tile's edge and stop it at its node's, so no spoke is ever drawn under a tile it is supposed to be touching. Draw every spoke at rest as one dim stroke, always, because the system has to be legible in the gap between pulses and not only while something is travelling. Draw a pulse as a run of short segments whose alpha and width ramp to a bright head - a single stroke at one alpha is a wire, and a wire does not read as something leaving - and let its tail run past the far end so it is swallowed by its node rather than switched off on top of it. Have the pulse pass hand each node its own flash rather than working the timing out a second time, so the arrival and the answer can never disagree; the answer is a ring that opens out of the node's own shape and fades. Scale every px measurement by the stage, with a floor, because the same hub tile that is right at 420px is half the picture on a 172px card. Behind it all put a faint dot field, dimmed toward the edges: a plain dark box gives the eye nothing to measure the spokes against, so the fan reads as floating. Give the hub a halo that breathes, drawn BEFORE the spokes so it reads as light coming off the tile rather than as a wash over the diagram. Put an hourglass in the hub tile and let it run, drawn in code rather than loaded as a font or an SVG: sand falling as a cone standing on the neck, a heap growing underneath it, a thin stream between them, and the glass turning over when it is through, on a cycle that is deliberately not a multiple of the pulses' so the flip never lands on the same spoke twice. Take the square root of the fraction left when you set the sand's height - a bulb is a cone, so the silhouette the eye reads goes as the square of the height, and a linear level looks like a loading bar stood on its end. Colours are Continia palette only: the hub and the pulses are Innovation Blue, never a lightened tint, because at a 2px line width a deep blue is not visible on near-black; let the accent move the satellites instead. Make every frame a pure function of the clock, cap the pixel ratio at 2, stop the loop when the stage scrolls out of view or the tab is hidden, clamp the frame step to 64ms, and under prefers-reduced-motion request no frames at all and draw one still frame with pulses mid-flight and the glass half run.",
+    "demo": "",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "centre-size": 72,
+      "node-size": 30,
+      "spread": 0.9,
+      "ratio": 0.56,
+      "grid-gap": 20,
+      "cycle": 2400
+    },
+    "loops": true,
+    "reducedMotion": "Renders one frame and stops - the diagram is the content, so an empty box is not a reduced version of it. The frame is taken with pulses mid-flight and the glass half run, so the still says what the moving version says."
+  },
+  {
     "slug": "data-transfer",
     "name": "Data Transfer",
     "category": "ambient",

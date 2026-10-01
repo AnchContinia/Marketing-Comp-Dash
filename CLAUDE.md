@@ -171,11 +171,11 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **twelve components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+Plus **thirteen components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
 `modal-cards`, `color-carousel`, `tile-reveal` and `agentic-ball` in category `ui`,
-`blur-highlight` in category `text` and `data-transfer`, `vortex` and `globe` in category
-`ambient`, because a component's category says what it is for, not how it is built — so
-`library.json` holds 61 entries.
+`blur-highlight` in category `text` and `data-transfer`, `vortex`, `globe` and `center-flow` in
+category `ambient`, because a component's category says what it is for, not how it is built — so
+`library.json` holds 62 entries.
 
 **The counts on the page are counted, never typed.** Both section heads — the gallery's
 `#ml-intro` and the Video page's `#motion-previews` — carry a `[data-ml-tally]` span, and each
@@ -347,6 +347,13 @@ looked right on a 300px hero. They are scaled by the globe's own radius with a f
 (`U = max(0.55, R/150)`). The companion mistake is in the data: every leg starts at the hub,
 so nine European cities in the default list put nine markers inside eight pixels. Five in
 Europe and nine elsewhere is the same idea with the picture left legible.
+
+**A glyph has to survive the move it is making.** Center Flow's hourglass was two caps with an
+X between them, which is a bowtie: it reads as an hourglass only while it stands upright, and the
+turn — the half of the cycle that makes it an hourglass rather than an icon — had it down to four
+loose strokes at an angle. A closed silhouette (bowed walls meeting at a neck) in a two-post stand
+reads at every rotation, and the sand then clips to the bulbs instead of being drawn as its own
+pair of triangles. Judge a glyph on the frame furthest from rest, never on the still.
 
 **A silhouette that comes from a physical model has one number, not five.** `vortex` takes its
 shape from the Rankine vortex - depth falls as `a²/r²` outside the core radius `a` and as a

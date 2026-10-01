@@ -1,0 +1,39 @@
+<!-- Continia Motion Library — Center Flow
+     Load in this order: tokens/motion-tokens.css, base/base-animations.css,
+     then this entry's stylesheet. The module is an ES module and mounts
+     itself onto every [data-ml="center-flow"] on the page.
+
+       <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+       <link rel="stylesheet" href="motion-library/base/base-animations.css">
+       <link rel="stylesheet" href="motion-library/entries/center-flow/center-flow.css">
+       <script type="module" src="motion-library/entries/center-flow/center-flow.js"></script>
+
+     No markup is required inside it. Children, if there are any, are laid out
+     as a caption under the diagram rather than over it.
+-->
+
+<div data-ml="center-flow" data-height="440"></div>
+
+
+<!-- With a caption. The copy sits at the foot of the stage, so it never
+     covers the hub tile. -->
+<!--
+<div data-ml="center-flow" data-height="460">
+  <p class="mlcf-demo">One hub, every system it feeds</p>
+</div>
+-->
+
+
+<!-- A quieter band: six nodes, no dot field, a slower queue. For a section
+     divider that sits under a heading without competing with it. -->
+<!--
+<div data-ml="center-flow" data-height="240" data-nodes="6" data-grid="0"
+     data-cycle="4200" data-centre-size="64" data-node-size="26"></div>
+-->
+
+
+<!-- The other two glyphs, and the whole fan firing at once (`stagger` 0)
+     rather than one spoke after another. -->
+<!--
+<div data-ml="center-flow" data-icon="layers" data-stagger="0" data-bow="0"></div>
+-->

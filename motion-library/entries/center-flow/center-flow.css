@@ -1,0 +1,78 @@
+/* Continia Motion Library — Center Flow
+   ----------------------------------------------------------------------
+   The shape only. The tiles, the spokes, the pulses, the dot field and the
+   hourglass are all drawn by center-flow.js into the canvas; this file
+   places that canvas, holds the stage open, and puts the caller's own
+   content under the diagram.
+
+   The stage is dark in BOTH themes, for the same reason Globe's and Vortex's
+   are: this is a lit object, and a lit object on a light ground is a flat
+   grey box. The hub already does this with the dashboard's .watch panel.
+
+   Nothing here centres with flex on .mlcf itself: both hosts clamp a
+   component's mount with `display:block;width:100%;height:100%`, which wins
+   on specificity, so a layout hung off the host element works in the gallery
+   and not on a card. */
+
+.mlcf {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  /* the hub's tile radius - this is a tile-shaped surface, not a card */
+  border-radius: 15px;
+  background: var(--mlcf-bg, #050c1c);
+  height: var(--mlcf-h, 420px);
+  isolation: isolate;
+}
+
+.mlcf-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0;
+  /* the one transition in the file: the diagram fades up once there is
+     something on it, so the stage never shows a bare dark box for the frame
+     between mounting and the first paint */
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+}
+.mlcf.is-lit .mlcf-canvas { opacity: 1 }
+
+/* The caption sits at the FOOT of the stage, not in the middle of it: the
+   hub tile is the subject, and copy centred here would cover the one thing
+   the entry is for. */
+.mlcf-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 24px 18px;
+  text-align: center;
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(5, 12, 28, .9);
+}
+/* an empty layer must not eat pointer events or force a flex line */
+.mlcf-content:empty { display: none }
+
+.mlcf-content .mlcf-demo {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+/* the card-sized skin: the hub's ordinary panel radius, because at 172px the
+   15px tile radius reads as a lozenge rather than as a tile */
+.mlcf-sm { border-radius: 8px }
+
+@media (prefers-reduced-motion: reduce) {
+  /* the canvas still renders one frame - the diagram is the content, and an
+     empty box is not a reduced version of it. Only the fade-up goes. */
+  .mlcf-canvas { transition: none }
+}
