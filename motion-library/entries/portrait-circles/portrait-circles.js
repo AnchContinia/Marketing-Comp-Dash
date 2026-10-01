@@ -1,4 +1,4 @@
-/* Continia Motion Library — Circles
+/* Continia Motion Library — Portrait Circles
    ----------------------------------------------------------------------
    Concentric rings of faces turning around a common centre. The ring in the
    middle is sharp and the rings behind it fall away into blur, so the set
@@ -126,12 +126,12 @@ function prefersReducedMotion() {
 /* The stand-in avatar: head and shoulders, drawn once as a path and tinted
    per face. It is deliberately a silhouette and not a monogram - a letter
    makes a claim about who the person is, and this is scenery. */
-var SIL = '<svg class="mlci-sil" viewBox="0 0 48 48" aria-hidden="true" focusable="false">' +
+var SIL = '<svg class="mlpc-sil" viewBox="0 0 48 48" aria-hidden="true" focusable="false">' +
   '<circle cx="24" cy="18.5" r="7.6"/>' +
   '<path d="M24 28.5c-7.4 0-13.4 4.9-13.4 11V48h26.8v-8.5c0-6.1-6-11-13.4-11Z"/>' +
   '</svg>';
 
-export function initCircles(el, options) {
+export function initPortraitCircles(el, options) {
   var node = typeof el === "string" ? document.querySelector(el) : el;
   if (!node) return null;
   if (node.__ml && node.__ml.destroy) node.__ml.destroy();
@@ -177,7 +177,7 @@ export function initCircles(el, options) {
     rings.length = 0;
 
     field = document.createElement("div");
-    field.className = "mlci-field";
+    field.className = "mlpc-field";
     node.appendChild(field);
 
     var W = node.clientWidth || 1, H = node.clientHeight || 1;
@@ -198,46 +198,46 @@ export function initCircles(el, options) {
 
       if (o.guides) {
         var track = document.createElement("div");
-        track.className = "mlci-track";
-        track.style.setProperty("--mlci-d", (rad * 2) + "px");
-        track.style.setProperty("--mlci-o", (0.5 - 0.3 * depth).toFixed(3));
+        track.className = "mlpc-track";
+        track.style.setProperty("--mlpc-d", (rad * 2) + "px");
+        track.style.setProperty("--mlpc-o", (1 - 0.45 * depth).toFixed(3));
         field.appendChild(track);
       }
 
       var orbit = document.createElement("div");
-      orbit.className = "mlci-orbit";
-      orbit.style.setProperty("--mlci-sp", spin + "ms");
-      orbit.style.setProperty("--mlci-op", (1 - (1 - o.dim) * depth).toFixed(3));
+      orbit.className = "mlpc-orbit";
+      orbit.style.setProperty("--mlpc-sp", spin + "ms");
+      orbit.style.setProperty("--mlpc-op", (1 - (1 - o.dim) * depth).toFixed(3));
       /* every other ring turns the other way: it is the single cheapest thing
          that stops four concentric rings reading as one disc */
-      if (o.alternate && i % 2 === 1) orbit.classList.add("mlci-rev");
+      if (o.alternate && i % 2 === 1) orbit.classList.add("mlpc-rev");
 
       var faces = [];
       for (var k = 0; k < count; k++) {
         var a = (360 / count) * k + (i * 11);        /* a per-ring offset, so the
                                                         rings never line up into spokes */
         var slot = document.createElement("div");
-        slot.className = "mlci-slot";
-        slot.style.setProperty("--mlci-a", a + "deg");
-        slot.style.setProperty("--mlci-r", rad + "px");
+        slot.className = "mlpc-slot";
+        slot.style.setProperty("--mlpc-a", a + "deg");
+        slot.style.setProperty("--mlpc-r", rad + "px");
 
         var face = document.createElement("div");
-        face.className = "mlci-face";
-        face.style.setProperty("--mlci-a", a + "deg");
-        face.style.setProperty("--mlci-sp", spin + "ms");
-        face.style.setProperty("--mlci-s", size.toFixed(1) + "px");
+        face.className = "mlpc-face";
+        face.style.setProperty("--mlpc-a", a + "deg");
+        face.style.setProperty("--mlpc-sp", spin + "ms");
+        face.style.setProperty("--mlpc-s", size.toFixed(1) + "px");
         var t = tint(r);
-        face.style.setProperty("--mlci-t", css(toward(t, 0.08), 1));
-        face.style.setProperty("--mlci-t2", css(toward(t, 0.42), 1));
+        face.style.setProperty("--mlpc-t", css(toward(t, 0.08), 1));
+        face.style.setProperty("--mlpc-t2", css(toward(t, 0.42), 1));
         if (o.blur > 0 && depth > 0) {
-          face.style.setProperty("--mlci-bl", (o.blur * depth * depth).toFixed(2) + "px");
-          face.classList.add("mlci-soft");
+          face.style.setProperty("--mlpc-bl", (o.blur * depth * depth).toFixed(2) + "px");
+          face.classList.add("mlpc-soft");
         }
         /* the accent ring goes on the sharp faces only - a coloured outline
            under 5px of blur is a smudge, not a highlight */
         if (o.accentEvery > 0 && depth < 0.34 && n % o.accentEvery === 0) {
-          face.classList.add("mlci-on");
-          face.style.setProperty("--mlci-ac", css(acc, 0.95));
+          face.classList.add("mlpc-on");
+          face.style.setProperty("--mlpc-ac", css(acc, 0.95));
         }
         if (o.images && o.images.length) {
           var img = document.createElement("img");
@@ -260,12 +260,12 @@ export function initCircles(el, options) {
 
     if (o.vignette) {
       veil = document.createElement("div");
-      veil.className = "mlci-veil";
+      veil.className = "mlpc-veil";
       field.appendChild(veil);
     }
 
     content = document.createElement("div");
-    content.className = "mlci-content";
+    content.className = "mlpc-content";
     kept.forEach(function (c) { content.appendChild(c); });
     node.appendChild(content);
   }
@@ -292,13 +292,13 @@ export function initCircles(el, options) {
       var f = o.rings === 1 ? 1 : i / (o.rings - 1);
       var rad = Rmax * (o.inner + (1 - o.inner) * f);
       for (k = 0; k < rings[i].faces.length; k++) {
-        rings[i].faces[k].parentNode.style.setProperty("--mlci-r", rad + "px");
+        rings[i].faces[k].parentNode.style.setProperty("--mlpc-r", rad + "px");
       }
     }
-    var tracks = field.querySelectorAll(".mlci-track");
+    var tracks = field.querySelectorAll(".mlpc-track");
     for (i = 0; i < tracks.length; i++) {
       var ff = o.rings === 1 ? 1 : i / (o.rings - 1);
-      tracks[i].style.setProperty("--mlci-d", (Rmax * (o.inner + (1 - o.inner) * ff) * 2) + "px");
+      tracks[i].style.setProperty("--mlpc-d", (Rmax * (o.inner + (1 - o.inner) * ff) * 2) + "px");
     }
   }
 
@@ -309,10 +309,10 @@ export function initCircles(el, options) {
   }
 
   function vars() {
-    node.style.setProperty("--mlci-h", o.height + "px");
-    if (o.background) node.style.setProperty("--mlci-bg", o.background);
-    else node.style.removeProperty("--mlci-bg");
-    node.classList.toggle("mlci-sm", !!o.compact);
+    node.style.setProperty("--mlpc-h", o.height + "px");
+    if (o.background) node.style.setProperty("--mlpc-bg", o.background);
+    else node.style.removeProperty("--mlpc-bg");
+    node.classList.toggle("mlpc-sm", !!o.compact);
   }
 
   /* play and pause are one class: the animations are never removed, so a
@@ -329,7 +329,7 @@ export function initCircles(el, options) {
 
   function on(t, ev, fn, opt) { t.addEventListener(ev, fn, opt); listeners.push([t, ev, fn, opt]); }
 
-  node.classList.add("mlci");
+  node.classList.add("mlpc");
   validate();
   vars();
   sig = signature();
@@ -356,7 +356,7 @@ export function initCircles(el, options) {
        label or a tooltip off one. Read from the live box rather than from the
        clock, because the clock is the compositor's here, not ours. */
     faceAt: function (i) {
-      var all = node.querySelectorAll(".mlci-face");
+      var all = node.querySelectorAll(".mlpc-face");
       if (i < 0 || i >= all.length) return null;
       var r = all[i].getBoundingClientRect(), b = node.getBoundingClientRect();
       return { x: r.left - b.left + r.width / 2, y: r.top - b.top + r.height / 2, el: all[i] };
@@ -377,15 +377,15 @@ export function initCircles(el, options) {
       listeners.length = 0;
       if (io) io.disconnect();
       if (ro) ro.disconnect();
-      node.classList.remove("mlci", "mlci-sm", "is-lit", "is-still");
-      ["--mlci-h", "--mlci-bg"].forEach(function (v) { node.style.removeProperty(v); });
+      node.classList.remove("mlpc", "mlpc-sm", "is-lit", "is-still");
+      ["--mlpc-h", "--mlpc-bg"].forEach(function (v) { node.style.removeProperty(v); });
       node.innerHTML = "";
       kept.forEach(function (n2) { node.appendChild(n2); });
-      delete node.__mlCircles;
+      delete node.__mlPortraitCircles;
       delete node.__ml;
     }
   };
-  node.__mlCircles = api;
+  node.__mlPortraitCircles = api;
   /* the handle both hosts look for - never the per-entry name */
   node.__ml = api;
   return api;
@@ -393,8 +393,8 @@ export function initCircles(el, options) {
 
 /* Auto-init, so a page only needs the markup and this module. */
 export function mountAll(root) {
-  return [].slice.call((root || document).querySelectorAll('[data-ml="circles"]'))
-    .map(function (n) { return initCircles(n); });
+  return [].slice.call((root || document).querySelectorAll('[data-ml="portrait-circles"]'))
+    .map(function (n) { return initPortraitCircles(n); });
 }
 if (typeof document !== "undefined") {
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", function () { mountAll(); });

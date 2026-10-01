@@ -1,12 +1,12 @@
-<!-- Continia Motion Library — Circles
+<!-- Continia Motion Library — Portrait Circles
      Load in this order: tokens/motion-tokens.css, base/base-animations.css,
      then this entry's stylesheet. The module is an ES module and mounts
-     itself onto every [data-ml="circles"] on the page.
+     itself onto every [data-ml="portrait-circles"] on the page.
 
        <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
        <link rel="stylesheet" href="motion-library/base/base-animations.css">
-       <link rel="stylesheet" href="motion-library/entries/circles/circles.css">
-       <script type="module" src="motion-library/entries/circles/circles.js"></script>
+       <link rel="stylesheet" href="motion-library/entries/portrait-circles/portrait-circles.css">
+       <script type="module" src="motion-library/entries/portrait-circles/portrait-circles.js"></script>
 
      The children are kept and laid in the middle of the rings, so this is a
      background with copy on it - the module never owns the copy. It is
@@ -14,15 +14,15 @@
      it as a thing to watch.
 -->
 
-<div data-ml="circles" data-height="460">
-  <h2 class="mlci-demo">2,000+ partners</h2>
+<div data-ml="portrait-circles" data-height="460">
+  <h2 class="mlpc-demo">2,000+ partners</h2>
 </div>
 
 
 <!-- A quieter band: two rings, no guides, a slower turn, for a section
      divider that sits under a heading without competing with it. -->
 <!--
-<div data-ml="circles" data-height="220" data-rings="2" data-guides="0"
+<div data-ml="portrait-circles" data-height="220" data-rings="2" data-guides="0"
      data-spin="72000" data-face-size="34" data-density="12"></div>
 -->
 
@@ -30,8 +30,8 @@
 <!-- Flat: every ring sharp and at full strength. Use it when the rings are
      the subject rather than the depth - a logo wall rather than a crowd. -->
 <!--
-<div data-ml="circles" data-blur="0" data-dim="1" data-vignette="0">
-  <h2 class="mlci-demo">Built Inside Business Central</h2>
+<div data-ml="portrait-circles" data-blur="0" data-dim="1" data-vignette="0">
+  <h2 class="mlpc-demo">Built Inside Business Central</h2>
 </div>
 -->
 
@@ -41,10 +41,10 @@
      a parser nobody asked for. The list is cycled, so it can be shorter than
      the number of faces on the rings. -->
 <!--
-<div id="people" data-ml="circles" data-face-size="52"></div>
+<div id="people" data-ml="portrait-circles" data-face-size="52"></div>
 <script type="module">
-  import { initCircles } from "./motion-library/entries/circles/circles.js";
-  initCircles("#people", {
+  import { initPortraitCircles } from "./motion-library/entries/portrait-circles/portrait-circles.js";
+  initPortraitCircles("#people", {
     images: [
       "Assets/team/anna.jpg",
       "Assets/team/jonas.jpg",

@@ -48,7 +48,7 @@ export const DEFAULTS = {
   nodes: 8,             /* the satellites. Six reads as a diagram, twelve as a
                            dial; eight is the reference's count and the one
                            that still has room for a flash on each. */
-  spread: 0.84,         /* the node ring's width as a fraction of the stage */
+  spread: 0.64,         /* the node ring's width as a fraction of the stage */
   ratio: 0.52,          /* the ring's height as a fraction of its width. 1 is
                            a circle, which leaves a gutter at each side of a
                            wide stage; near 0 collapses the fan to a line. */
@@ -479,39 +479,47 @@ export function initCenterFlow(el, options) {
      the square root of the remaining fraction is what makes the surface fall
      fast at the start and crawl at the end, the way a real one does; a linear
      level looks like a loading bar standing on its end. */
-  /* The glass is two bulbs with bowed walls meeting at a neck, hung in a
-     two-post stand. The obvious version - two caps and an X between them -
-     is a bowtie: it reads as an hourglass only while it is upright, and the
-     moment the turn starts it is four loose strokes. A closed silhouette
-     with a stand reads at every angle, which is the half of the cycle the
-     first version got wrong. */
-  function glassPath(w, h, nw) {
-    ctx.beginPath();
-    ctx.moveTo(-w, -h);
-    ctx.quadraticCurveTo(-w * 0.60, -h * 0.14, -nw, 0);
-    ctx.lineTo(nw, 0);
-    ctx.quadraticCurveTo(w * 0.60, -h * 0.14, w, -h);
-    ctx.closePath();
-    ctx.moveTo(-w, h);
-    ctx.quadraticCurveTo(-w * 0.60, h * 0.14, -nw, 0);
-    ctx.lineTo(nw, 0);
-    ctx.quadraticCurveTo(w * 0.60, h * 0.14, w, h);
-    ctx.closePath();
-  }
+  /* THE GLYPH IS CONTINIA'S OWN MARK, NOT A DRAWN HOURGLASS.
+     The logo is two quarter discs meeting at a point - an hourglass - and the
+     numbers below are the logo's own path data, lifted from
+     Assets/Hourglass.svg (viewBox 378.18 x 349.13) and scaled about its
+     centre. Nothing here is drawn by eye, and nothing redraws the shape:
+     an earlier version built a glass with bowed walls in a two-post stand,
+     which was a perfectly good hourglass and the wrong one.
 
-  /* one bulb on its own, used as a clip so the sand can be drawn as a plain
-     level or a plain heap and still take the shape of the glass holding it */
-  function bulbPath(w, h, nw, sign) {
+     The mark is therefore whole in every frame. The sand is a HIGHLIGHT
+     clipped to each lobe rather than a shape of its own - the level falls
+     through the upper lobe and the heap rises in the lower one, and at no
+     point is a piece of the logo missing. */
+  var MARK = { w: 378.18, h: 349.13, cx: 189.09, cy: 174.565 };
+
+  /* `which` is "top", "bottom" or anything else for both. The two lobes are
+     separate sub-paths and never overlap, so a nonzero fill is correct. */
+  function markPath(k, which) {
+    var X = function (v) { return (v - MARK.cx) * k; };
+    var Y = function (v) { return (v - MARK.cy) * k; };
     ctx.beginPath();
-    ctx.moveTo(-w, sign * h);
-    ctx.quadraticCurveTo(-w * 0.60, sign * h * 0.14, -nw, 0);
-    ctx.lineTo(nw, 0);
-    ctx.quadraticCurveTo(w * 0.60, sign * h * 0.14, w, sign * h);
-    ctx.closePath();
+    if (which !== "top") {               /* the lower-left lobe */
+      ctx.moveTo(X(189.09), Y(174.62));
+      ctx.lineTo(X(189.09), Y(349.13));
+      ctx.lineTo(X(0), Y(349.13));
+      ctx.bezierCurveTo(X(0), Y(252.73), X(78.11), Y(174.62), X(174.51), Y(174.62));
+      ctx.closePath();
+    }
+    if (which !== "bottom") {            /* the upper-right lobe */
+      ctx.moveTo(X(189.09), Y(174.51));
+      ctx.lineTo(X(189.09), Y(0));
+      ctx.lineTo(X(378.18), Y(0));
+      ctx.bezierCurveTo(X(378.18), Y(96.4), X(300.07), Y(174.51), X(203.67), Y(174.51));
+      ctx.closePath();
+    }
   }
 
   function hourglass(t, sz) {
-    var g = sz * 0.46, h = g / 2, w = g * 0.37, nw = w * 0.10;
+    /* the mark's height as a fraction of the hub tile. It is wider than it is
+       tall, so the height is what has to fit. */
+    var k = (sz * 0.56) / MARK.h;
+    var hh = (MARK.h / 2) * k, hw = (MARK.w / 2) * k;
     var d = 0, turn = 0;
     if (o.drain) {
       var c = ((t / o.glassCycle) % 1 + 1) % 1;
@@ -522,61 +530,54 @@ export function initCenterFlow(el, options) {
     ctx.save();
     ctx.translate(cx, cy);
     /* the flip is eased at both ends: a glass that starts and stops its turn
-       at full speed reads as a sprite being rotated, not as a hand doing it */
+       at full speed reads as a sprite being rotated, not as a hand doing it.
+       The mark has 180-degree rotational symmetry, so it comes back to itself
+       exactly - the turn is visible on the way round and invisible at the end,
+       which is what lets the sand start at the top again without a cut. */
     if (turn > 0) ctx.rotate(Math.PI * (turn < 0.5 ? 2 * turn * turn : 1 - 2 * (1 - turn) * (1 - turn)));
 
-    var sand = rgba(toward(PALETTE.cyan, 0.22), 0.92);
-    /* the level in the top bulb falls as the square root of what is left:
-       a bulb is widest at the cap, so the surface drops slowly and then
+    /* the mark itself, always whole */
+    ctx.fillStyle = rgba(glyphRGB, 0.6);
+    markPath(k, "both");
+    ctx.fill();
+
+    /* the sand is white and the mark is Innovation Blue under it, rather than
+       two tints of the same hue: at 52% the drained half read as a grey panel
+       and the logo looked like it had been cut, which is the one thing this
+       glyph may not do */
+    var sand = "rgba(255,255,255,0.96)";
+    /* the level in the upper lobe falls as the square root of what is left:
+       the lobe is widest at the top, so the surface drops slowly and then
        quickly, which is the thing that makes a real glass look impatient */
     var up = Math.sqrt(Math.max(0, 1 - d));
     if (up > 0.01) {
       ctx.save();
-      bulbPath(w, h, nw, -1); ctx.clip();
+      markPath(k, "top"); ctx.clip();
       ctx.fillStyle = sand;
-      ctx.fillRect(-w, -h * up, w * 2, h * up);
+      ctx.fillRect(-hw, -hh * up, hw * 2, hh * up);
       ctx.restore();
     }
-    /* and the heap below, which rises as a mound rather than as a level:
-       sand lands in a cone, it does not fill a glass the way water does */
+    /* and the heap below, which rises as a level inside a lobe that narrows
+       toward the neck - so it fills quickly at first and then slowly, which is
+       the drain read backwards */
     if (d > 0.01) {
-      var dn = Math.sqrt(d), lv = h * 1.02 * dn;
+      var dn = Math.sqrt(d), lv = hh * 1.02 * dn;
       ctx.save();
-      bulbPath(w, h, nw, 1); ctx.clip();
+      markPath(k, "bottom"); ctx.clip();
       ctx.fillStyle = sand;
-      ctx.beginPath();
-      ctx.moveTo(-w, h);
-      ctx.lineTo(w, h);
-      ctx.lineTo(w, h - lv * 0.5);
-      ctx.lineTo(0, h - lv);
-      ctx.lineTo(-w, h - lv * 0.5);
-      ctx.closePath();
-      ctx.fill();
+      ctx.fillRect(-hw, hh - lv, hw * 2, lv);
       ctx.restore();
     }
-    /* the stream, only while there is something left to fall */
+    /* the stream, only while there is something left to fall. It runs down the
+       lower lobe's own straight edge, which is where the two lobes meet. */
     if (o.drain && d > 0.02 && d < 0.995 && turn === 0) {
-      ctx.strokeStyle = rgba(toward(PALETTE.cyan, 0.5), 0.8);
-      ctx.lineWidth = Math.max(0.8, g * 0.04);
+      ctx.strokeStyle = sand;
+      ctx.lineWidth = Math.max(0.8, sz * 0.022);
       ctx.beginPath();
-      ctx.moveTo(0, 0);
-      ctx.lineTo(0, h * 0.92);
+      ctx.moveTo(0, -hh * 0.06);
+      ctx.lineTo(0, hh * 0.92);
       ctx.stroke();
     }
-    /* the glass itself, over the sand, then the stand it hangs in */
-    ctx.lineJoin = "round";
-    ctx.lineCap = "round";
-    ctx.strokeStyle = rgba(glyphRGB, 0.95);
-    ctx.lineWidth = Math.max(0.9, g * 0.065);
-    glassPath(w, h, nw);
-    ctx.stroke();
-    ctx.strokeStyle = rgba(glyphRGB, 0.82);
-    ctx.beginPath();
-    ctx.moveTo(-w * 1.22, -h); ctx.lineTo(w * 1.22, -h);
-    ctx.moveTo(-w * 1.22, h); ctx.lineTo(w * 1.22, h);
-    ctx.moveTo(-w * 1.13, -h); ctx.lineTo(-w * 1.13, h);
-    ctx.moveTo(w * 1.13, -h); ctx.lineTo(w * 1.13, h);
-    ctx.stroke();
     ctx.restore();
   }
 

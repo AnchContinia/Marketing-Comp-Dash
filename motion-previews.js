@@ -773,29 +773,6 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Renders one frame of the ball, a quarter of the way into a breath, and stops. The ball is the content, so an empty box is not a reduced version of it. The fade-up transition is dropped too."
   },
   {
-    "slug": "circles",
-    "name": "Circles",
-    "category": "ui",
-    "kind": "component",
-    "feel": "Rings of faces turning around a common centre on a dark field. The ring in front is sharp and every ring behind it is softer, dimmer and slower, so the set reads as a crowd with depth rather than as a diagram of one. Neighbouring rings turn opposite ways, which is what stops four circles reading as one disc.",
-    "useFor": "Anywhere a number of people has to be a picture rather than a figure: a partner or community page, an about page, a careers header, a customer wall, the top of a Continia Hub page. Whatever you put inside it sits in the middle of the rings and keeps its own layout. Real photographs go in through `images`; without them the faces are drawn silhouettes, so the entry never depends on particular files. It is a component, so it carries its own JS, but it needs no other entry and no library.",
-    "prompt": "Build concentric rings of round faces turning around a common centre on a stage that is dark in both themes. Do NOT drive it from an animation frame: give each ring one infinite linear rotate animation and each face the same animation reversed so it stays upright, and the whole picture then runs on the compositor with the main thread doing nothing once the DOM is built - which is the difference between a page that scrolls and a page that stutters when several of these share it. Put the two rotations in two different properties, because an animation replaces a whole property: the static one that cancels a face's own slot angle goes in `transform`, and the animated one that cancels its ring's turn goes in the individual `rotate` property, which composes first. Size the radii off the LONGER axis of the stage, not the shorter one - a ring fitted to the height of a wide stage leaves the sides empty and reads as a medallion, while one fitted to the width runs off the top and bottom and is clipped, which is what makes it read as part of something larger. State how many faces the OUTERMOST ring holds and give every ring inside it its share pro rata by radius, so the gaps come out even with no arithmetic on the stage at all - do NOT divide each circumference by a gap in pixels, because that has to be measured and two hosts do not measure the same stage at the moment a module mounts, so the same card ends up running different numbers of faces. Offset each ring's first face by a few degrees so the rings never line up into spokes. Carry the depth on three things at once: a blur that grows as the square toward the back, an opacity that falls, and a turn that takes longer - and put the blur on each FACE rather than on the ring, because a face's own content never changes so it is rasterised and blurred once, while a filter on the turning ring is recomputed every frame. Turn every other ring the other way. Lay a dashed track under each ring that does NOT turn, because it is the track and not a thing on it, and darken the corners so the outer ring leaves the frame instead of stopping at it. Make the default face a drawn silhouette in a brand tint rather than a photograph - an entry whose demo needs particular image files breaks when they move - and a silhouette rather than a monogram, because a letter makes a claim about who the person is and this is scenery. Tint the faces from the Continia palette only, Innovation Blue carrying Smart Green and Performance Purple as a minority, since a single hue reads as a logo wall; put a ring in the accent colour on every seventh face, and only on the sharp ones, because a coloured outline under five pixels of blur is a smudge. Seed the tints and the accents so they land in the same places on both hosts and across every resize, and on a resize that does not change how many faces a ring holds, write the radii back instead of rebuilding forty elements. Hold the animations rather than removing them when the stage leaves the viewport, the tab is hidden or it is paused, so a resumed ring picks up where it stopped rather than snapping to the top of its loop. Under prefers-reduced-motion the rings stop where they were laid out - a crowd at rest is still a crowd, so an empty box is not a reduced version of it.",
-    "demo": "",
-    "attrs": {
-      "height": 172,
-      "compact": 1,
-      "rings": 4,
-      "reach": 0.98,
-      "inner": 0.26,
-      "face-size": 26,
-      "spin": 36000,
-      "blur": 4,
-      "density": 15
-    },
-    "loops": true,
-    "reducedMotion": "The rings stop where they were laid out and nothing turns. The composition is the content - a crowd at rest is still a crowd - so an empty box is not a reduced version of it."
-  },
-  {
     "slug": "color-carousel",
     "name": "Color Carousel",
     "category": "ui",
@@ -892,6 +869,29 @@ window.MOTION_PREVIEWS = [
     },
     "loops": true,
     "reducedMotion": "The card still opens and still closes - it is a control, not decoration - it just arrives instead of travelling: no FLIP, no transitions, and no self-driving tour. The cursor's click ring is skipped too, since there is no demo left for it to narrate."
+  },
+  {
+    "slug": "portrait-circles",
+    "name": "Portrait Circles",
+    "category": "ui",
+    "kind": "component",
+    "feel": "Rings of faces turning around a common centre on a dark field. The ring in front is sharp and every ring behind it is softer, dimmer and slower, so the set reads as a crowd with depth rather than as a diagram of one. Neighbouring rings turn opposite ways, which is what stops four circles reading as one disc.",
+    "useFor": "Anywhere a number of people has to be a picture rather than a figure: a partner or community page, an about page, a careers header, a customer wall, the top of a Continia Hub page. Whatever you put inside it sits in the middle of the rings and keeps its own layout. Real photographs go in through `images`; without them the faces are drawn silhouettes, so the entry never depends on particular files. It is a component, so it carries its own JS, but it needs no other entry and no library.",
+    "prompt": "Build concentric rings of round faces turning around a common centre on a stage that is dark in both themes. Do NOT drive it from an animation frame: give each ring one infinite linear rotate animation and each face the same animation reversed so it stays upright, and the whole picture then runs on the compositor with the main thread doing nothing once the DOM is built - which is the difference between a page that scrolls and a page that stutters when several of these share it. Put the two rotations in two different properties, because an animation replaces a whole property: the static one that cancels a face's own slot angle goes in `transform`, and the animated one that cancels its ring's turn goes in the individual `rotate` property, which composes first. Size the radii off the LONGER axis of the stage, not the shorter one - a ring fitted to the height of a wide stage leaves the sides empty and reads as a medallion, while one fitted to the width runs off the top and bottom and is clipped, which is what makes it read as part of something larger. State how many faces the OUTERMOST ring holds and give every ring inside it its share pro rata by radius, so the gaps come out even with no arithmetic on the stage at all - do NOT divide each circumference by a gap in pixels, because that has to be measured and two hosts do not measure the same stage at the moment a module mounts, so the same card ends up running different numbers of faces. Offset each ring's first face by a few degrees so the rings never line up into spokes. Carry the depth on three things at once: a blur that grows as the square toward the back, an opacity that falls, and a turn that takes longer - and put the blur on each FACE rather than on the ring, because a face's own content never changes so it is rasterised and blurred once, while a filter on the turning ring is recomputed every frame. Turn every other ring the other way. Lay a dashed track under each ring that does NOT turn, because it is the track and not a thing on it, and darken the corners so the outer ring leaves the frame instead of stopping at it. Make the default face a drawn silhouette in a brand tint rather than a photograph - an entry whose demo needs particular image files breaks when they move - and a silhouette rather than a monogram, because a letter makes a claim about who the person is and this is scenery. Tint the faces from the Continia palette only, Innovation Blue carrying Smart Green and Performance Purple as a minority, since a single hue reads as a logo wall; put a ring in the accent colour on every seventh face, and only on the sharp ones, because a coloured outline under five pixels of blur is a smudge. Seed the tints and the accents so they land in the same places on both hosts and across every resize, and on a resize that does not change how many faces a ring holds, write the radii back instead of rebuilding forty elements. Hold the animations rather than removing them when the stage leaves the viewport, the tab is hidden or it is paused, so a resumed ring picks up where it stopped rather than snapping to the top of its loop. Under prefers-reduced-motion the rings stop where they were laid out - a crowd at rest is still a crowd, so an empty box is not a reduced version of it.",
+    "demo": "",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "rings": 4,
+      "reach": 0.98,
+      "inner": 0.26,
+      "face-size": 26,
+      "spin": 36000,
+      "blur": 4,
+      "density": 15
+    },
+    "loops": true,
+    "reducedMotion": "The rings stop where they were laid out and nothing turns. The composition is the content - a crowd at rest is still a crowd - so an empty box is not a reduced version of it."
   },
   {
     "slug": "reel-gallery",

@@ -1,4 +1,4 @@
-/* Continia Motion Library — Circles
+/* Continia Motion Library — Portrait Circles
    ----------------------------------------------------------------------
    The whole animation is here. circles.js builds the DOM, measures the stage
    and writes the per-ring custom properties; it runs no frame loop, because
@@ -15,28 +15,28 @@
    The stage is dark in BOTH themes, as Globe's and Vortex's are: these are
    lit objects, and a lit object on a light ground is a flat shape. */
 
-.mlci {
+.mlpc {
   position: relative;
   display: block;
   overflow: hidden;
   /* the hub's tile radius - a tile-shaped surface, not a card */
   border-radius: 15px;
-  background: var(--mlci-bg, #050c1c);
-  height: var(--mlci-h, 420px);
+  background: var(--mlpc-bg, #050c1c);
+  height: var(--mlpc-h, 420px);
   /* a paint containment boundary, so the blurs cannot reach whatever the page
      has stacked behind the stage */
   isolation: isolate;
 }
 
-/* Nothing centres with flex on .mlci itself: both hosts clamp a component's
+/* Nothing centres with flex on .mlpc itself: both hosts clamp a component's
    mount with `display:block;width:100%;height:100%`, which wins on
    specificity. The field is its own absolutely positioned layer instead,
    which the clamp cannot reach. */
-.mlci-field {
+.mlpc-field {
   position: absolute;
   inset: 0;
   z-index: 0;
-  /* the clip lives here and not only on .mlci: the outer ring is meant to run
+  /* the clip lives here and not only on .mlpc: the outer ring is meant to run
      off the stage, and an overflowing descendant of the mount would otherwise
      show up in the hub's own "content that clips with no way to scroll to it"
      sweep as a false positive */
@@ -46,77 +46,82 @@
      so the stage never shows a bare dark box with the faces mid-layout */
   transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
 }
-.mlci.is-lit .mlci-field { opacity: 1 }
+.mlpc.is-lit .mlpc-field { opacity: 1 }
 
 /* the dashed guide, which does not turn - it is the track, not a thing on it */
-.mlci-track {
+.mlpc-track {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: var(--mlci-d);
-  height: var(--mlci-d);
-  margin: calc(var(--mlci-d) / -2) 0 0 calc(var(--mlci-d) / -2);
-  border: 1px dashed rgba(143, 248, 255, .22);
+  width: var(--mlpc-d);
+  height: var(--mlpc-d);
+  margin: calc(var(--mlpc-d) / -2) 0 0 calc(var(--mlpc-d) / -2);
+  /* The track has to be readable, not merely present. At 1px and 22% it was a
+     hint rather than a ring, and the picture then reads as faces floating at
+     random radii - the rings are what says they are ORBITS. The dash is long
+     enough to read as a line and the inner tracks are brighter than the outer
+     ones, which is the same depth order everything else on the stage follows. */
+  border: 1.5px dashed rgba(143, 248, 255, .5);
   border-radius: 50%;
-  opacity: var(--mlci-o, .4);
+  opacity: var(--mlpc-o, .4);
   pointer-events: none;
 }
 
-.mlci-orbit {
+.mlpc-orbit {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 0;
   height: 0;
-  opacity: var(--mlci-op, 1);
+  opacity: var(--mlpc-op, 1);
   rotate: 0deg;
-  animation: mlci-turn var(--mlci-sp, 48000ms) linear infinite;
+  animation: mlpc-turn var(--mlpc-sp, 48000ms) linear infinite;
 }
-.mlci-orbit.mlci-rev { animation-direction: reverse }
+.mlpc-orbit.mlpc-rev { animation-direction: reverse }
 
-.mlci-slot {
+.mlpc-slot {
   position: absolute;
   top: 0;
   left: 0;
-  transform: rotate(var(--mlci-a)) translateX(var(--mlci-r));
+  transform: rotate(var(--mlpc-a)) translateX(var(--mlpc-r));
 }
 
-.mlci-face {
+.mlpc-face {
   position: absolute;
   top: 0;
   left: 0;
-  width: var(--mlci-s, 46px);
-  height: var(--mlci-s, 46px);
-  margin: calc(var(--mlci-s, 46px) / -2) 0 0 calc(var(--mlci-s, 46px) / -2);
+  width: var(--mlpc-s, 46px);
+  height: var(--mlpc-s, 46px);
+  margin: calc(var(--mlpc-s, 46px) / -2) 0 0 calc(var(--mlpc-s, 46px) / -2);
   border-radius: 50%;
   overflow: hidden;
-  background: linear-gradient(160deg, var(--mlci-t2, #8ff8ff) 0%, var(--mlci-t, #0b2a4a) 72%);
+  background: linear-gradient(160deg, var(--mlpc-t2, #8ff8ff) 0%, var(--mlpc-t, #0b2a4a) 72%);
   box-shadow: 0 0 0 1px rgba(255, 255, 255, .10), 0 6px 18px -8px rgba(0, 0, 0, .9);
   /* cancels the slot's own angle, so a face is upright in screen space; the
      ring's turn is cancelled by the `rotate` animation, which composes first */
-  transform: rotate(calc(-1 * var(--mlci-a)));
+  transform: rotate(calc(-1 * var(--mlpc-a)));
   rotate: 0deg;
-  animation: mlci-turn var(--mlci-sp, 48000ms) linear infinite reverse;
+  animation: mlpc-turn var(--mlpc-sp, 48000ms) linear infinite reverse;
 }
-.mlci-rev .mlci-face { animation-direction: normal }
+.mlpc-rev .mlpc-face { animation-direction: normal }
 
 /* the blur is per face rather than per ring: a face's own content never
    changes, so it is rasterised and blurred once and then only composited,
    while a filter on the turning ring would be recomputed every frame */
-.mlci-soft { filter: blur(var(--mlci-bl, 0px)) }
+.mlpc-soft { filter: blur(var(--mlpc-bl, 0px)) }
 
 /* the accent ring, and only on the sharp faces - a coloured outline under
    5px of blur is a smudge rather than a highlight */
-.mlci-on { box-shadow: 0 0 0 2px var(--mlci-ac, #8ff8ff), 0 6px 20px -8px rgba(0, 0, 0, .9) }
+.mlpc-on { box-shadow: 0 0 0 2px var(--mlpc-ac, #8ff8ff), 0 6px 20px -8px rgba(0, 0, 0, .9) }
 
-.mlci-face img {
+.mlpc-face img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
 
-.mlci-sil {
+.mlpc-sil {
   width: 100%;
   height: 100%;
   display: block;
@@ -125,7 +130,7 @@
 
 /* a soft darkening toward the corners, so the outer ring leaves the frame
    instead of stopping at it */
-.mlci-veil {
+.mlpc-veil {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -133,7 +138,7 @@
     radial-gradient(circle at 50% 50%, rgba(5, 12, 28, 0) 30%, rgba(5, 12, 28, .42) 58%, rgba(5, 12, 28, .82) 84%, rgba(5, 12, 28, .97) 100%);
 }
 
-.mlci-content {
+.mlpc-content {
   position: absolute;
   inset: 0;
   z-index: 1;
@@ -149,11 +154,11 @@
   text-shadow: 0 2px 18px rgba(5, 12, 28, .9);
   pointer-events: none;
 }
-.mlci-content > * { pointer-events: auto }
+.mlpc-content > * { pointer-events: auto }
 /* an empty layer must not eat pointer events or force a flex line */
-.mlci-content:empty { display: none }
+.mlpc-content:empty { display: none }
 
-.mlci-content .mlci-demo {
+.mlpc-content .mlpc-demo {
   font-size: 15px;
   font-weight: 850;
   line-height: 1.25;
@@ -162,14 +167,14 @@
 /* off-screen, hidden tab, or paused: the animations stay attached and are
    held, so a resumed ring picks up where it stopped rather than snapping
    back to the top of its loop */
-.mlci.is-still .mlci-orbit,
-.mlci.is-still .mlci-face { animation-play-state: paused }
+.mlpc.is-still .mlpc-orbit,
+.mlpc.is-still .mlpc-face { animation-play-state: paused }
 
 /* the card-sized skin: the hub's ordinary panel radius, because at 172px the
    15px tile radius reads as a lozenge rather than as a tile */
-.mlci-sm { border-radius: 8px }
+.mlpc-sm { border-radius: 8px }
 
-@keyframes mlci-turn {
+@keyframes mlpc-turn {
   from { rotate: 0deg }
   to { rotate: 360deg }
 }
@@ -177,7 +182,7 @@
 @media (prefers-reduced-motion: reduce) {
   /* the rings stop where they were laid out. The composition is the content,
      so an empty box is not a reduced version of it. */
-  .mlci-orbit,
-  .mlci-face { animation: none }
-  .mlci-field { transition: none }
+  .mlpc-orbit,
+  .mlpc-face { animation: none }
+  .mlpc-field { transition: none }
 }

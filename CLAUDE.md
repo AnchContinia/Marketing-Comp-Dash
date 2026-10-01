@@ -172,7 +172,8 @@ motion-library/
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
 Plus **fourteen components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
-`modal-cards`, `color-carousel`, `tile-reveal`, `agentic-ball` and `circles` in category `ui`,
+`modal-cards`, `color-carousel`, `tile-reveal`, `agentic-ball` and `portrait-circles` in
+category `ui`,
 `blur-highlight` in category `text` and `data-transfer`, `vortex`, `globe` and `center-flow` in
 category `ambient`, because a component's category says what it is for, not how it is built — so
 `library.json` holds 63 entries.
@@ -349,7 +350,7 @@ so nine European cities in the default list put nine markers inside eight pixels
 Europe and nine elsewhere is the same idea with the picture left legible.
 
 **Not every component needs a frame loop, and the ones that do not must not have one.**
-`circles` moves elements rather than pixels, so the whole picture is CSS: one infinite linear
+`portrait-circles` moves elements rather than pixels, so the whole picture is CSS: one infinite linear
 `rotate` on each ring, the same animation reversed on each face so it stays upright, and the main
 thread doing nothing at all once the DOM is built. Two things make it work. The two rotations a
 face needs — a static one cancelling its own slot angle, an animated one cancelling its ring's
@@ -359,7 +360,7 @@ face. And the blur goes on each **face**, not on the ring: a face's own content 
 it is rasterised and blurred once and then only composited, while a filter on the turning ring is
 recomputed every frame.
 
-**A count derived from a measurement makes the two hosts disagree.** Circles first set how many
+**A count derived from a measurement makes the two hosts disagree.** Portrait Circles first set how many
 faces a ring holds by dividing its circumference by a gap in px — the obvious way to keep the gaps
 even, and wrong: the gallery card and the Video card are both 335px wide once the page settles,
 but they are not the same width at the moment the module mounts, and whichever size the last
@@ -368,12 +369,22 @@ but they are not the same width at the moment the module mounts, and whichever s
 only move things — and derive them from the *normalised* radius, never the pixel one, so a stage
 that has not been laid out yet still builds the right rings instead of `NaN` of them.
 
-**A glyph has to survive the move it is making.** Center Flow's hourglass was two caps with an
-X between them, which is a bowtie: it reads as an hourglass only while it stands upright, and the
-turn — the half of the cycle that makes it an hourglass rather than an icon — had it down to four
-loose strokes at an angle. A closed silhouette (bowed walls meeting at a neck) in a two-post stand
-reads at every rotation, and the sand then clips to the bulbs instead of being drawn as its own
-pair of triangles. Judge a glyph on the frame furthest from rest, never on the still.
+**A glyph has to survive the move it is making.** Center Flow's first hourglass was two caps with
+an X between them, which is a bowtie: it reads as an hourglass only while it stands upright, and
+the turn — the half of the cycle that makes it an hourglass rather than an icon — had it down to
+four loose strokes at an angle. A closed silhouette in a stand reads at every rotation. Judge a
+glyph on the frame furthest from rest, never on the still.
+
+**Center Flow's hourglass is Continia's mark, and the mark is never cut.** The hub tile holds the
+company's own hourglass — the two quarter discs from `Assets/Hourglass.svg`, viewBox 378.18 ×
+349.13, lifted as path data and scaled about its centre, never redrawn by eye. That rules out the
+obvious way to animate it: the sand is a **highlight clipped to each lobe**, so the level falls
+through the upper lobe and the heap rises in the lower one while both lobes stay fully drawn at
+every frame. White sand on an Innovation Blue mark, not two tints of one hue — at 52% the drained
+half read as a grey panel and the logo looked like a piece of it was missing, which is the one
+thing this glyph may not do. The flip survives because the mark has 180° rotational symmetry: it
+is visible on the way round and returns to itself exactly, which is what lets the sand start at
+the top again without a cut. `data-drain="0"` leaves the mark static.
 
 **A silhouette that comes from a physical model has one number, not five.** `vortex` takes its
 shape from the Rankine vortex - depth falls as `a²/r²` outside the core radius `a` and as a
