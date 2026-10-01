@@ -5,7 +5,25 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg?v=2" type="image/svg+xml">
 <title>Sign in · Continia Marketing Hub</title>
-<script>try{if(sessionStorage.getItem("continia-auth")||localStorage.getItem("continia-auth"))location.replace("index.html")}catch(e){}</script>
+<script>
+/* Where to go once the visitor is in. A deep link - a bookmark to the motion
+   library, say - bounces through here, and landing them on Home instead of the
+   page they asked for is indistinguishable from that page being broken. The
+   guard on each page passes its own location as ?next=.
+   Only a path on this very site is accepted: it must start with a single "/"
+   and carry no scheme, so "//evil.example" and "https://evil.example" fall
+   back to Home rather than turning this into an open redirect. */
+function continiaNext(){
+  try{
+    var q=/[?&]next=([^&]*)/.exec(location.search);
+    if(!q) return "index.html";
+    var v=decodeURIComponent(q[1]);
+    if(v.charAt(0)==="/" && v.charAt(1)!=="/" && v.indexOf("\\")<0 && v.indexOf(":")<0) return v;
+  }catch(e){}
+  return "index.html";
+}
+</script>
+<script>try{if(sessionStorage.getItem("continia-auth")||localStorage.getItem("continia-auth"))location.replace(continiaNext())}catch(e){}</script>
 <style>
   @font-face{font-family:"Alliance No.2";src:url("fonts/AllianceNo2-Regular.ttf") format("truetype");font-weight:400;font-style:normal;font-display:swap}
   @font-face{font-family:"Alliance No.2";src:url("fonts/AllianceNo2-SemiBold.ttf") format("truetype");font-weight:600;font-style:normal;font-display:swap}
@@ -137,7 +155,7 @@
         (remember?localStorage:sessionStorage).setItem("continia-auth","1");
         (remember?sessionStorage:localStorage).removeItem("continia-auth");
       }catch(_){}
-      location.replace("index.html");
+      location.replace(continiaNext());
     }else{
       err.classList.add("show");
       pw.value="";

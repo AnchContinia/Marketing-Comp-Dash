@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="icon" href="./favicon.svg?v=2" type="image/svg+xml">
 <title>Marketing Hub · Content</title>
-<script>try{if(!sessionStorage.getItem("continia-auth")&&!localStorage.getItem("continia-auth"))location.replace("login.html")}catch(e){}</script>
+<script>try{if(!sessionStorage.getItem("continia-auth")&&!localStorage.getItem("continia-auth"))location.replace("login.html?next="+encodeURIComponent(location.pathname+location.search+location.hash))}catch(e){}</script>
 <script>try{if(localStorage.getItem("continia-theme")==="dark")document.documentElement.setAttribute("data-theme","dark")}catch(e){}</script>
 <script>try{if("IntersectionObserver" in window&&!matchMedia("(prefers-reduced-motion:reduce)").matches)document.documentElement.classList.add("reveal-on")}catch(e){}</script>
 <link rel="stylesheet" href="./dashboard.css?v=20260930l">
