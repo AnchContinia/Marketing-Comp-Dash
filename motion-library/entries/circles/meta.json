@@ -1,0 +1,158 @@
+{
+  "slug": "circles",
+  "name": "Circles",
+  "kind": "component",
+  "category": "ui",
+  "class": "js",
+  "source": "continia",
+  "sourceUrl": "https://pro.reactbits.dev/docs/components/circles",
+  "license": "Continia internal",
+  "dependencies": [],
+  "tokens": [
+    "--motion-duration-slow",
+    "--motion-ease-out"
+  ],
+  "blurb": "Concentric rings of faces turning around a common centre, the ring in front sharp and the ones behind it falling away into blur. It turns forever and never resolves, so it goes behind copy rather than beside it.",
+  "reducedMotion": "The rings stop where they were laid out and nothing turns. The composition is the content - a crowd at rest is still a crowd - so an empty box is not a reduced version of it.",
+  "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - sourceUrl points at the docs page for provenance only.\n\nThree decisions are load-bearing. There is no frame loop: every ring carries one infinite linear rotate animation and every face the same animation reversed, so the main thread does nothing once the DOM is built. That is a gallery decision as much as a brand one - sixty entries share a page, and several of them are already painting canvases while you scroll past.\n\nThe default face is a drawn silhouette in a brand tint rather than a photograph, for the same reason the reel's demo is numbered boxes: an entry whose demo needs particular image files breaks when they move. A silhouette and not a monogram, because a letter makes a claim about who the person is and this is scenery.\n\nAnd the stage is dark in BOTH themes, as Globe's and Vortex's are: these are lit objects, and a lit object on a light ground is a flat shape.",
+  "options": {
+    "height": {
+      "type": "number",
+      "default": 420,
+      "unit": "px",
+      "note": "the stage. Both hosts clamp a component's mount to the card, so this only bites when the entry is used on its own."
+    },
+    "rings": {
+      "type": "number",
+      "default": 4,
+      "note": "how many concentric rings, 1-8. The count of faces is not set here - it comes off each ring's own circumference."
+    },
+    "reach": {
+      "type": "number",
+      "default": 0.94,
+      "note": "the outermost ring's radius as a fraction of HALF THE LONGER axis of the stage. Over 1 the ring runs off the top and bottom and is clipped, which is the look: a ring fitted to the shorter axis leaves the sides empty and reads as a medallion."
+    },
+    "inner": {
+      "type": "number",
+      "default": 0.3,
+      "note": "the innermost ring as a fraction of the outermost. It also decides how much room the copy in the middle gets."
+    },
+    "density": {
+      "type": "number",
+      "default": 19,
+      "note": "how many faces the OUTERMOST ring holds. Every ring inside it gets its share pro rata by radius, so the gaps come out even without anyone typing a count per ring. It is a count and not a gap in px on purpose: a gap in px has to be measured against the stage, and the two hosts do not measure the same stage at the moment a module mounts - which had the gallery card and the Video card running different numbers of faces."
+    },
+    "faceSize": {
+      "type": "number",
+      "default": 46,
+      "unit": "px",
+      "note": "a face on the innermost ring"
+    },
+    "faceGrow": {
+      "type": "number",
+      "default": 0.05,
+      "note": "how much bigger each ring out is. Small on purpose - the depth is carried by the blur, and a size ramp steep enough to read on its own makes the outer ring look like a different component."
+    },
+    "spin": {
+      "type": "number",
+      "default": 48000,
+      "unit": "ms",
+      "note": "one full turn of the innermost ring. Slow on purpose: this is scenery. A loop length, so it is an option rather than a token."
+    },
+    "falloff": {
+      "type": "number",
+      "default": 0.34,
+      "note": "how much longer each ring out takes. The parallax is the second half of the depth, after the blur."
+    },
+    "alternate": {
+      "type": "boolean",
+      "default": true,
+      "note": "every other ring turns the other way. The single cheapest thing that stops four concentric rings reading as one disc."
+    },
+    "blur": {
+      "type": "number",
+      "default": 6,
+      "unit": "px",
+      "note": "on the outermost ring, falling off as the square toward the front; the innermost is always sharp. 0 is the flat look - every ring equally present."
+    },
+    "dim": {
+      "type": "number",
+      "default": 0.42,
+      "note": "the outermost ring's opacity. 1 leaves every ring at full strength."
+    },
+    "guides": {
+      "type": "boolean",
+      "default": true,
+      "note": "the dashed track under each ring. It does not turn - it is the track, not a thing on it."
+    },
+    "vignette": {
+      "type": "boolean",
+      "default": true,
+      "note": "the darkening toward the corners, so the outer ring leaves the frame instead of stopping at it"
+    },
+    "accent": {
+      "type": "string",
+      "default": "mixed",
+      "values": [
+        "mixed",
+        "blue",
+        "cyan",
+        "green",
+        "purple"
+      ],
+      "note": "palette only. mixed is Innovation Blue carrying Smart Green and Performance Purple as a minority, which is what gives the crowd grain; a single hue reads as a logo wall."
+    },
+    "accentEvery": {
+      "type": "number",
+      "default": 7,
+      "note": "every Nth face carries a ring in the accent colour. Sharp faces only - a coloured outline under 5px of blur is a smudge. 0 turns them off."
+    },
+    "images": {
+      "type": "array",
+      "default": null,
+      "note": "real faces, as a list of URLs, cycled so it can be shorter than the number of faces. A list, so it comes in through the options object rather than through a data attribute. Without it the faces are drawn silhouettes."
+    },
+    "background": {
+      "type": "string",
+      "default": "",
+      "note": "empty keeps the stylesheet's dark stage"
+    },
+    "seed": {
+      "type": "number",
+      "default": 7,
+      "note": "the tints and the accent placement are random but fixed - the same seed lays out identically on both hosts and across every resize"
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true,
+      "note": "turn once it scrolls into view, and hold again when it leaves or the tab is hidden. The animations are never removed, so a resumed ring picks up where it stopped."
+    },
+    "paused": {
+      "type": "boolean",
+      "default": false
+    },
+    "compact": {
+      "type": "boolean",
+      "default": false,
+      "note": "the card-sized skin, for a stage under ~200px"
+    }
+  },
+  "notPorted": [
+    "No frame loop, and so no seek(). Every other canvas entry here is a pure function of a clock it owns; this one hands the clock to the compositor, which is the whole reason it costs nothing to scroll past. The trade is that a frame cannot be addressed by time - faceAt(i) reads the live box instead.",
+    "No pointer interaction. The reference lets a face be hovered and pulled forward; a hover target that is moving under the pointer and blurred at the back is a fiddly thing to hit, and the hub already has hover-preview for that idea done properly.",
+    "No per-face entrance. Forty faces staggering in is a second animation on top of the turn, and at a card's 172px the two read as one flicker. The rings fade up together instead."
+  ],
+  "demo": "",
+  "addedAt": "2026-10-01",
+  "demoAttrs": {
+    "height": 172,
+    "compact": 1,
+    "rings": 4,
+    "reach": 0.98,
+    "inner": 0.26,
+    "face-size": 26,
+    "spin": 36000,
+    "blur": 4,
+    "density": 15
+  }
+}

@@ -1,0 +1,183 @@
+/* Continia Motion Library — Circles
+   ----------------------------------------------------------------------
+   The whole animation is here. circles.js builds the DOM, measures the stage
+   and writes the per-ring custom properties; it runs no frame loop, because
+   an element that only rotates is handed to the compositor and the main
+   thread is then free for the rest of the page.
+
+   Two rotations per face, and they live in two different properties on
+   purpose. The static one - cancelling the angle of the face's own slot - is
+   in `transform`. The animated one - cancelling the ring's turn - is in the
+   individual `rotate` property, which composes BEFORE `transform`. An
+   animation replaces a whole property, so putting both in `transform` would
+   mean a third element per face.
+
+   The stage is dark in BOTH themes, as Globe's and Vortex's are: these are
+   lit objects, and a lit object on a light ground is a flat shape. */
+
+.mlci {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  /* the hub's tile radius - a tile-shaped surface, not a card */
+  border-radius: 15px;
+  background: var(--mlci-bg, #050c1c);
+  height: var(--mlci-h, 420px);
+  /* a paint containment boundary, so the blurs cannot reach whatever the page
+     has stacked behind the stage */
+  isolation: isolate;
+}
+
+/* Nothing centres with flex on .mlci itself: both hosts clamp a component's
+   mount with `display:block;width:100%;height:100%`, which wins on
+   specificity. The field is its own absolutely positioned layer instead,
+   which the clamp cannot reach. */
+.mlci-field {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* the clip lives here and not only on .mlci: the outer ring is meant to run
+     off the stage, and an overflowing descendant of the mount would otherwise
+     show up in the hub's own "content that clips with no way to scroll to it"
+     sweep as a false positive */
+  overflow: hidden;
+  opacity: 0;
+  /* the one transition in the file: the rings fade up once they are placed,
+     so the stage never shows a bare dark box with the faces mid-layout */
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+}
+.mlci.is-lit .mlci-field { opacity: 1 }
+
+/* the dashed guide, which does not turn - it is the track, not a thing on it */
+.mlci-track {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--mlci-d);
+  height: var(--mlci-d);
+  margin: calc(var(--mlci-d) / -2) 0 0 calc(var(--mlci-d) / -2);
+  border: 1px dashed rgba(143, 248, 255, .22);
+  border-radius: 50%;
+  opacity: var(--mlci-o, .4);
+  pointer-events: none;
+}
+
+.mlci-orbit {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  opacity: var(--mlci-op, 1);
+  rotate: 0deg;
+  animation: mlci-turn var(--mlci-sp, 48000ms) linear infinite;
+}
+.mlci-orbit.mlci-rev { animation-direction: reverse }
+
+.mlci-slot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotate(var(--mlci-a)) translateX(var(--mlci-r));
+}
+
+.mlci-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--mlci-s, 46px);
+  height: var(--mlci-s, 46px);
+  margin: calc(var(--mlci-s, 46px) / -2) 0 0 calc(var(--mlci-s, 46px) / -2);
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(160deg, var(--mlci-t2, #8ff8ff) 0%, var(--mlci-t, #0b2a4a) 72%);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, .10), 0 6px 18px -8px rgba(0, 0, 0, .9);
+  /* cancels the slot's own angle, so a face is upright in screen space; the
+     ring's turn is cancelled by the `rotate` animation, which composes first */
+  transform: rotate(calc(-1 * var(--mlci-a)));
+  rotate: 0deg;
+  animation: mlci-turn var(--mlci-sp, 48000ms) linear infinite reverse;
+}
+.mlci-rev .mlci-face { animation-direction: normal }
+
+/* the blur is per face rather than per ring: a face's own content never
+   changes, so it is rasterised and blurred once and then only composited,
+   while a filter on the turning ring would be recomputed every frame */
+.mlci-soft { filter: blur(var(--mlci-bl, 0px)) }
+
+/* the accent ring, and only on the sharp faces - a coloured outline under
+   5px of blur is a smudge rather than a highlight */
+.mlci-on { box-shadow: 0 0 0 2px var(--mlci-ac, #8ff8ff), 0 6px 20px -8px rgba(0, 0, 0, .9) }
+
+.mlci-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.mlci-sil {
+  width: 100%;
+  height: 100%;
+  display: block;
+  fill: rgba(5, 12, 28, .62);
+}
+
+/* a soft darkening toward the corners, so the outer ring leaves the frame
+   instead of stopping at it */
+.mlci-veil {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(5, 12, 28, 0) 30%, rgba(5, 12, 28, .42) 58%, rgba(5, 12, 28, .82) 84%, rgba(5, 12, 28, .97) 100%);
+}
+
+.mlci-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  text-align: center;
+  color: #fff;
+  /* the copy sits in the middle of the rings, which is the quietest part of
+     the picture but not an empty one, so it carries its own shadow */
+  text-shadow: 0 2px 18px rgba(5, 12, 28, .9);
+  pointer-events: none;
+}
+.mlci-content > * { pointer-events: auto }
+/* an empty layer must not eat pointer events or force a flex line */
+.mlci-content:empty { display: none }
+
+.mlci-content .mlci-demo {
+  font-size: 15px;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+/* off-screen, hidden tab, or paused: the animations stay attached and are
+   held, so a resumed ring picks up where it stopped rather than snapping
+   back to the top of its loop */
+.mlci.is-still .mlci-orbit,
+.mlci.is-still .mlci-face { animation-play-state: paused }
+
+/* the card-sized skin: the hub's ordinary panel radius, because at 172px the
+   15px tile radius reads as a lozenge rather than as a tile */
+.mlci-sm { border-radius: 8px }
+
+@keyframes mlci-turn {
+  from { rotate: 0deg }
+  to { rotate: 360deg }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* the rings stop where they were laid out. The composition is the content,
+     so an empty box is not a reduced version of it. */
+  .mlci-orbit,
+  .mlci-face { animation: none }
+  .mlci-field { transition: none }
+}

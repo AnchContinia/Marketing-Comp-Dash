@@ -10,7 +10,7 @@
 
   /* library.json and each component module are fetched, not <script>-linked, so
      they need the same ?v= cache-busting every other file here gets. */
-  var MLV = "20261001b";
+  var MLV = "20261001c";
 
   var countEl = document.getElementById("ml-count"),
       barEl   = document.getElementById("ml-bar"),
@@ -260,7 +260,6 @@
          replay button has no class to toggle, so neither is wired up. */
       if (el && entries[i].kind !== "component") el.classList.add("ml-paused");
       if (entries[i].kind === "component") c.classList.add("is-component");
-      loadCode(c, entries[i]);
     });
 
     /* Component entries are ES modules that mount themselves onto
@@ -286,10 +285,28 @@
         });
       }, { threshold: 0.25 });
       cards.forEach(function (c) { io.observe(c); });
+
+      /* The code panes are fetched when the card is within a screen and a half
+         of the viewport, not at boot. Loading all of them up front was 140
+         extra requests and half a megabyte of source text in the DOM before
+         the first card was on screen - on a fast local server that measures as
+         nothing, and over Pages it is the whole reason this page felt heavier
+         than the others. A separate observer from the one above, because that
+         one must fire when a card is actually visible and this one has to fire
+         early enough that the pane is filled before you reach it. */
+      var codeIO = new IntersectionObserver(function (es) {
+        es.forEach(function (x) {
+          if (!x.isIntersecting) return;
+          codeIO.unobserve(x.target);
+          loadCode(x.target, entries[cards.indexOf(x.target)]);
+        });
+      }, { rootMargin: "1400px 0px" });
+      cards.forEach(function (c) { codeIO.observe(c); });
     } else {
-      cards.forEach(function (c) {
+      cards.forEach(function (c, i) {
         var a = c.querySelector("[data-anim]");
         if (a) a.classList.remove("ml-paused");
+        loadCode(c, entries[i]);
       });
     }
   }).catch(function (err) {

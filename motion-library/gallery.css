@@ -69,7 +69,18 @@
 .ml-foot{margin-top:auto;padding-top:14px}
 
 /* ----- code panel ----- */
-.ml-code{border-top:1px solid var(--line)}
+/* The code block is skipped entirely while it is off screen. It is the heavy
+   half of a card - up to a few hundred lines of monospace in a <pre>, times 63
+   cards - and it is inert, so there is nothing to lose by not laying it out.
+   `auto` on contain-intrinsic-size makes each block remember its own last real
+   height, so the scrollbar settles after one pass; a fixed guess is what makes
+   this trick feel broken.
+
+   Deliberately NOT on .ml-card. A component measures its stage when it mounts,
+   and a card that is not laid out has a stage of zero width - fourteen
+   components would each have to be proved safe against that. The code pane
+   measures nothing. */
+.ml-code{border-top:1px solid var(--line);content-visibility:auto;contain-intrinsic-size:auto 280px}
 .ml-tabs{display:flex;gap:0;background:var(--paper)}
 .ml-tab{flex:1;border:0;border-right:1px solid var(--line);background:none;font:inherit;
   font-size:10.5px;font-weight:850;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);

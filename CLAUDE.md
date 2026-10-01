@@ -171,11 +171,11 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **thirteen components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
-`modal-cards`, `color-carousel`, `tile-reveal` and `agentic-ball` in category `ui`,
+Plus **fourteen components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+`modal-cards`, `color-carousel`, `tile-reveal`, `agentic-ball` and `circles` in category `ui`,
 `blur-highlight` in category `text` and `data-transfer`, `vortex`, `globe` and `center-flow` in
 category `ambient`, because a component's category says what it is for, not how it is built — so
-`library.json` holds 62 entries.
+`library.json` holds 63 entries.
 
 **The counts on the page are counted, never typed.** Both section heads — the gallery's
 `#ml-intro` and the Video page's `#motion-previews` — carry a `[data-ml-tally]` span, and each
@@ -348,6 +348,26 @@ looked right on a 300px hero. They are scaled by the globe's own radius with a f
 so nine European cities in the default list put nine markers inside eight pixels. Five in
 Europe and nine elsewhere is the same idea with the picture left legible.
 
+**Not every component needs a frame loop, and the ones that do not must not have one.**
+`circles` moves elements rather than pixels, so the whole picture is CSS: one infinite linear
+`rotate` on each ring, the same animation reversed on each face so it stays upright, and the main
+thread doing nothing at all once the DOM is built. Two things make it work. The two rotations a
+face needs — a static one cancelling its own slot angle, an animated one cancelling its ring's
+turn — live in `transform` and in the **individual `rotate` property**, which composes first; put
+both in `transform` and an animation replaces the whole property, which costs a third element per
+face. And the blur goes on each **face**, not on the ring: a face's own content never changes, so
+it is rasterised and blurred once and then only composited, while a filter on the turning ring is
+recomputed every frame.
+
+**A count derived from a measurement makes the two hosts disagree.** Circles first set how many
+faces a ring holds by dividing its circumference by a gap in px — the obvious way to keep the gaps
+even, and wrong: the gallery card and the Video card are both 335px wide once the page settles,
+but they are not the same width at the moment the module mounts, and whichever size the last
+`ResizeObserver` callback saw is the one that stuck. The gallery ran 30 faces and the Video page
+42. A composition's counts belong to the composition — state them (`density`) and let the stage
+only move things — and derive them from the *normalised* radius, never the pixel one, so a stage
+that has not been laid out yet still builds the right rings instead of `NaN` of them.
+
 **A glyph has to survive the move it is making.** Center Flow's hourglass was two caps with an
 X between them, which is a bowtie: it reads as an hourglass only while it stands upright, and the
 turn — the half of the cycle that makes it an hourglass rather than an icon — had it down to four
@@ -488,6 +508,21 @@ on `<html>` so both versions can be seen without changing the OS setting.
 prefixes every nav href, the brand logo and the sign-out redirect with `../`; it also maps the
 page to `motion-library/index.html` so a bare `index.html` does not match Home. Any future
 sub-folder page needs adding to that check.
+
+**The gallery loads its code panes lazily, and that is not optional.** Every card carries the
+entry's real HTML, CSS and JS in a `<pre>`, and `loadCode` used to run for all 63 of them at boot:
+**204 requests and 500,108 characters** of source in the DOM before the first card was on screen,
+against 66 requests on `video.html`. Measured on a local server that reads as nothing — the cost
+is latency per request over Pages and paint over a 16,700px page, which is exactly the "this page
+feels heavier than the others" complaint. A second `IntersectionObserver` with `rootMargin:
+"1400px 0px"` fetches a card's panes a screen and a half before you reach it: **76 requests and
+9,863 characters** at boot, every pane still filled by the time the card arrives. It is a separate
+observer from the one that starts the animations, because that one must fire when a card is
+actually visible and this one has to fire early. `.ml-code` also carries `content-visibility:auto`
+with `contain-intrinsic-size:auto 280px` so an off-screen code block is not laid out at all —
+**deliberately not on `.ml-card`**, because a component measures its stage when it mounts and a
+card that is not laid out has a stage of zero width, which would mean proving fourteen components
+safe against that. The code pane measures nothing.
 
 The gallery reads `library.json` and each entry's real files over `fetch`, so **it has to be
 served over http** — `python3 -m http.server 8000`, then `/motion-library/`. Opening it as a
