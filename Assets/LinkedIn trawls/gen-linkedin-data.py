@@ -30,6 +30,7 @@ SOURCES = [
     ("continia-linkedin-50-posts_16 SEP.csv",          "2026-09-16", "continia"),
     ("linkedin_competitor_posts_18of31_SEP 17.csv",     "2026-09-17", "sweep2"),
     ("linkedin_competitor_trawl_2026-09-22.csv",       "2026-09-22", "sweep2"),
+    ("linkedin_competitor_trawl_2026-10-01.csv",       "2026-10-01", "sweep2"),
     # QUARANTINED - do not re-enable this file:
     #   ("linkedin_konkurrent_posts_16 sep.csv",       "2026-09-16", "sweep2"),
     # The Sep 16 competitor sweep is a broken capture. 635 of its 1398 rows
@@ -46,7 +47,7 @@ SOURCES = [
     # The "sweep2" dialect below is finished and tested against this file, so a
     # clean re-run only needs the SOURCES line above uncommented.
 ]
-CAPTURED = "2026-09-22"   # newest capture; shown as the module's "as of" date
+CAPTURED = "2026-10-01"   # newest capture; shown as the module's "as of" date
 MAX_POSTS = 50            # window size per company, after merging captures
 
 # The "continia" dialect carries no company/company_url columns - they are the
@@ -236,14 +237,29 @@ def read_continia(fname):
             "post_no":     r["#"],
             "date":        r["Dato"],
             "type":        continia_type(r["Type"]),
-            "reactions":   r["Reactions"],
-            "comments":    r["Comments"],
-            "reposts":     r["Reposts"],
+            "reactions":   count(r["Reactions"], fname),
+            "comments":    count(r["Comments"], fname),
+            "reposts":     count(r["Reposts"], fname),
             "title":       r["Titel"],
             "post_url":    r["Link"].strip(),
             "company_url": CONTINIA_URL,
         })
     return out
+
+def count(v, fname):
+    """A counter cell is a number, or BLANK meaning the trawler could not read
+    it. Blank must never become 0: the Sep 16 sweep wrote 0 where it failed to
+    read, 45% of it was unrepairable fake zeros, and that is why the file is
+    quarantined in SOURCES. Blank returns None; the merge then prefers an older
+    capture's real reading, and a post that reads blank in every capture is
+    dropped at emit rather than published as a zero."""
+    v = (v or "").strip().replace(",", "")
+    if v == "":
+        return None
+    if not v.lstrip("-").isdigit():
+        sys.exit("%s: counter cell is neither a number nor blank: %r" % (fname, v))
+    return int(v)
+
 
 def read_sweep2(fname):
     """Sep 16 competitor sweep: own headers, timestamped dates, reposts implied
@@ -260,9 +276,9 @@ def read_sweep2(fname):
             "post_no":     r["Post #"],
             "date":        r["Date (UTC)"].strip()[:10],   # drop the HH:MM
             "type":        ty,
-            "reactions":   r["Reactions"],
-            "comments":    r["Comments"],
-            "reposts":     r["Reposts"],
+            "reactions":   count(r["Reactions"], fname),
+            "comments":    count(r["Comments"], fname),
+            "reposts":     count(r["Reposts"], fname),
             "title":       r["Title (first line of post)"],
             "post_url":    r["Post URL"].strip(),
             "company_url": r["Company page"].strip().split("?")[0],
@@ -312,6 +328,16 @@ for fname, captured, dialect in SOURCES:
         if label in by and label not in RESET:
             merged = collections.OrderedDict((r["post_url"], r) for r in by[label])
             for r in rs:
+                old = merged.get(r["post_url"])
+                if old is not None:
+                    # The newer READING of a post wins, but only where there is
+                    # one. A blank counter means the trawler could not read that
+                    # number, so letting it overwrite would throw away a good
+                    # older value and turn a known count into a dropped post.
+                    # Merge per field, not per row.
+                    for k in ("reactions", "comments", "reposts"):
+                        if r[k] is None and old[k] is not None:
+                            r[k] = old[k]
                 merged[r["post_url"]] = r
             rs = list(merged.values())
         rs.sort(key=lambda r: (r["date"], -int(r["post_no"])), reverse=True)
@@ -328,6 +354,7 @@ if missing:
 
 # ------------------------------------------------------------------- emit ----
 out = []
+unread = []   # posts dropped because no capture could read their counters
 for name in ORDER:
     posts = by[name]               # already newest-first from the merge step
     flag = ' ours: true,' if name in OURS else (' bench: true,' if name in BENCH else '')
@@ -339,6 +366,11 @@ for name in ORDER:
         json.dumps(posts[0]["company_url"], ensure_ascii=False))
     lines = [head]
     for p in posts:
+        if p["reactions"] is None or p["comments"] is None or p["reposts"] is None:
+            # Blank in every capture we hold. There is no number to publish and
+            # 0 is a lie, so the post is left out and counted in the report.
+            unread.append((name, p["date"], p["post_url"]))
+            continue
         lines.append('      {t:%s, ty:%s, r:%s, c:%s, rp:%s, d:%s, u:%s},' % (
             json.dumps(norm(p["title"]), ensure_ascii=False),
             json.dumps(TYMAP[p["type"]]),
@@ -412,4 +444,8 @@ window.LI_DATA = {
 io.open(OUT, "w", encoding="utf-8").write(header)
 print("companies:", len(ORDER), "posts:", sum(len(by[c]) for c in ORDER))
 print("captures:", dict(collections.Counter(cap_of.values())))
+if unread:
+    print("dropped (counters unread in every capture):", len(unread))
+    for n, d, u in unread:
+        print("   ", n, d, u)
 print("types:", dict(seen_types))

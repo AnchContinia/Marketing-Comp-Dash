@@ -2348,7 +2348,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV = "20261001h";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20261001i";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
@@ -3470,12 +3470,12 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-10-01 14:39";
+var DASHBOARD_UPDATED = "2026-10-01 14:55";
 var MODULE_UPDATED = {
   /* index.html */
   "news":            {at:"2026-10-01 13:57", src:"News sweep"},
   "competitors":     {at:"2026-10-01 13:57", src:"News sweep"},
-  "content-gap":     {at:"2026-09-23 09:35", src:"LinkedIn trawl"},
+  "content-gap":     {at:"2026-10-01 14:55", src:"LinkedIn trawl"},
   "battlecards":     {at:"2026-07-01 15:27", src:"Battlecard seed"},
   "appsource":       {at:"2026-07-01 10:55", src:"AppSource review pass"},
   "markets-map":     {at:"2026-06-30 11:38", src:"Market coverage pass"},
@@ -3484,7 +3484,7 @@ var MODULE_UPDATED = {
   "insights":        {at:"2026-06-10 09:32", src:"Strategic readout"},
   "events":          {at:"2026-10-01 13:57", src:"News sweep"},
   "content-ideas":   {at:"2026-08-31 14:53", src:"Content idea pass"},
-  "linkedin-compare":{at:"2026-09-23 09:35", src:"LinkedIn trawl"},
+  "linkedin-compare":{at:"2026-10-01 14:55", src:"LinkedIn trawl"},
   "image-search":    {at:"2026-09-17 13:52", src:"LinkedIn image bank"},
   "newsletter-bank": {at:"2026-09-17 13:52", src:"Newsletter image bank"},
   /* video.html */
