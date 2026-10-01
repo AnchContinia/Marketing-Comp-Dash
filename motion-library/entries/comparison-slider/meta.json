@@ -1,0 +1,167 @@
+{
+  "slug": "comparison-slider",
+  "name": "Comparison Slider",
+  "kind": "component",
+  "category": "ui",
+  "class": "js",
+  "source": "continia",
+  "sourceUrl": "https://pro.reactbits.dev/docs/components/comparison-slider",
+  "license": "Continia internal",
+  "dependencies": [
+    "user-cursor"
+  ],
+  "tokens": [
+    "--motion-duration-fast",
+    "--motion-duration-base",
+    "--motion-ease-out"
+  ],
+  "blurb": "Two versions of one picture stacked exactly on top of each other, with a divider you drag across them. The line does not snap to the pointer - a critically damped spring pulls it there, so a flick throws it and it settles. Horizontal or vertical, drag or hover, and the arrow on the stage is the library's own User Cursor demonstrating the drag until a real hand arrives.",
+  "reducedMotion": "The divider keeps working and stops being thrown: no spring, no tour, no transitions - a drag puts the line exactly under the pointer. The comparison is the content, so switching it off would be switching the entry off; what goes is the motion, not the function.",
+  "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the clip, the spring, the tour and the knob are written here, and sourceUrl points at the docs page for provenance only.\n\nThree decisions are load-bearing. The arrow is the library's User Cursor, mounted, because the standing rule is that any entry whose point is a pointer demonstrates it with that one arrow - a second hand-drawn cursor is what makes two cards look like two libraries. The divider stops short of both ends by default (`bounds`, in px): the frame clips, so a knob taken to the very edge renders as a half circle, and a half circle is not an approved Continia shape - the stop is dropped automatically when there is no knob to protect. And the frame takes the hub's own 15px tile radius rather than a radius of its own, because a media frame is the same family as the video-asset tiles.",
+  "options": {
+    "height": {
+      "type": "number",
+      "default": 360,
+      "unit": "px",
+      "note": "the stage. Both hosts clamp a component's mount to the card, so this only bites when the entry is used on its own."
+    },
+    "orientation": {
+      "type": "string",
+      "default": "horizontal",
+      "values": [
+        "horizontal",
+        "vertical"
+      ],
+      "note": "which way the divider runs. Everything else - the clip, the hit test, the keyboard, the labels - reads this one value, so there is no second vertical code path to keep in step."
+    },
+    "initial": {
+      "type": "number",
+      "default": 50,
+      "note": "where the divider starts, 0-100. Clamped by `bounds` like every other position."
+    },
+    "inertia": {
+      "type": "boolean",
+      "default": true,
+      "note": "the divider is pulled to the pointer by a spring rather than written to it. Off, the line sits exactly under the pointer - which is what you want when a comparison is being measured rather than shown."
+    },
+    "follow": {
+      "type": "number",
+      "default": 250,
+      "unit": "ms",
+      "note": "the spring's time constant, off the duration scale. Bigger is heavier and later. It is a critically damped spring, not a lag: a lag answers a jumped target with its highest speed in the first frame, so a thrown divider would leave at a sprint and crawl in."
+    },
+    "mode": {
+      "type": "string",
+      "default": "drag",
+      "values": [
+        "drag",
+        "hover"
+      ],
+      "note": "drag is press and move; hover follows the pointer with no press. Hover reads well in a hero where nobody is told there is anything to grab, and badly anywhere a visitor might scroll past."
+    },
+    "handle": {
+      "type": "boolean",
+      "default": true,
+      "note": "the knob. Off, the divider is a bare line and `bounds` is dropped, so it reaches both edges."
+    },
+    "grip": {
+      "type": "boolean",
+      "default": true,
+      "note": "the six dots in the knob. Drawn as one dot and five shadows rather than six elements."
+    },
+    "bar": {
+      "type": "boolean",
+      "default": true,
+      "note": "the divider line itself"
+    },
+    "bounds": {
+      "type": "number",
+      "default": 20,
+      "unit": "px",
+      "note": "how close to the ends the divider may come. In px, not percent, so a 350px card and a 1200px hero keep the same visual gap. It exists because the frame clips: at 0 the knob renders as a half circle at each end, which is not an approved shape."
+    },
+    "labels": {
+      "type": "string",
+      "default": "Before,After",
+      "note": "two, comma separated; empty for none. Each one fades out as the divider reaches it - a label on the wrong side of the line sits over the other picture and stops saying anything."
+    },
+    "size": {
+      "type": "number",
+      "default": 36,
+      "unit": "px",
+      "note": "the knob"
+    },
+    "cursor": {
+      "type": "boolean",
+      "default": true,
+      "note": "mount the library's User Cursor and hand it the tour. Off, this is an ordinary slider waiting for a pointer."
+    },
+    "name": {
+      "type": "string",
+      "default": "",
+      "note": "the cursor's pill. Empty is the arrow on its own, which is what a slider wants - the pill is for a demo about a person."
+    },
+    "arrow": {
+      "type": "number",
+      "default": 22,
+      "unit": "px",
+      "note": "the cursor's arrow"
+    },
+    "cycle": {
+      "type": "number",
+      "default": 9000,
+      "unit": "ms",
+      "note": "one full tour: walk to the handle, press, drag to the before side, across to the after side, back to the middle, let go. A loop length, so an option rather than a token."
+    },
+    "reach": {
+      "type": "number",
+      "default": 20,
+      "note": "how far either side of centre the tour drags, in percent. The tour deliberately does not run to the ends: a demo that empties the frame has nothing left to compare."
+    },
+    "accent": {
+      "type": "string",
+      "default": "auto",
+      "values": [
+        "auto",
+        "blue",
+        "cyan",
+        "green",
+        "purple"
+      ],
+      "note": "the divider, the grip and the arrow. auto follows --navy, so Tech Blue on a light ground and Innovation Blue on a dark one."
+    },
+    "autoplay": {
+      "type": "boolean",
+      "default": true,
+      "note": "run once it scrolls into view, and stop again when it leaves or the tab is hidden"
+    },
+    "paused": {
+      "type": "boolean",
+      "default": false,
+      "note": "stops the TOUR, not the component: a visitor can still drag the divider on a paused card, and the spring runs for that drag."
+    },
+    "compact": {
+      "type": "boolean",
+      "default": false,
+      "note": "the card-sized skin, for a stage under ~200px"
+    }
+  },
+  "notPorted": [
+    "No stepped or snapping positions. A slider that clicks into thirds is a different control - it says the comparison has named states - and nothing in the hub has them. `set(n)` takes any position, so a caller who wants steps can round.",
+    "No more than two sides. A third layer needs two dividers and a rule for what happens when they cross, and at a card's width three strips of picture read as stripes rather than as a comparison.",
+    "No automatic image preloading. Both sides are the caller's markup, so an <img> that has not decoded is the caller's to handle with loading/decoding attributes - adding a loader here would mean this entry deciding when someone else's picture is ready."
+  ],
+  "demo": "<div class=\"mlcs-doc\" data-cs=\"before\"><div class=\"mlcs-sheet\"><div class=\"mlcs-doc-top\"><b>Invoice 4471</b><span>Scanned</span></div><div class=\"mlcs-doc-rows\"><i class=\"w1\"></i><i class=\"w2\"></i><i class=\"w3\"></i><i class=\"w4\"></i><i class=\"w5\"></i><i class=\"w6\"></i><i class=\"w7\"></i></div><div class=\"mlcs-doc-foot\"><span>Not matched</span><b>?</b></div></div></div><div class=\"mlcs-doc mlcs-doc-on\" data-cs=\"after\"><div class=\"mlcs-sheet\"><div class=\"mlcs-doc-top\"><b>Invoice 4471</b><span>Captured</span></div><div class=\"mlcs-doc-rows\"><i class=\"w1\"></i><i class=\"w2\"></i><i class=\"w3\"></i><i class=\"w4\"></i><i class=\"w5\"></i><i class=\"w6\"></i><i class=\"w7\"></i></div><div class=\"mlcs-doc-foot\"><span>Matched to PO 1182</span><b>12.480,00</b></div></div></div>",
+  "addedAt": "2026-10-01",
+  "demoAttrs": {
+    "height": 172,
+    "compact": 1,
+    "size": 26,
+    "bounds": 16,
+    "arrow": 16,
+    "cycle": 8000,
+    "reach": 22,
+    "labels": "Before,After",
+    "initial": 52
+  }
+}

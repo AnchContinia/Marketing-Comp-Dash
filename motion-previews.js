@@ -798,6 +798,29 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "The carousel still works - it is a control, not decoration. What goes is the self-driving tour, the glide between cards and the colour's cross-fade: a card arrives in front instead of travelling there, and the stage changes colour instead of bleeding into the next one. Drag, arrow keys and clicking a card are untouched."
   },
   {
+    "slug": "comparison-slider",
+    "name": "Comparison Slider",
+    "category": "ui",
+    "kind": "component",
+    "feel": "Two versions of one picture stacked exactly on top of each other, with a divider dragged across them. The line is thrown rather than placed: let go mid-move and it coasts to a stop. The arrow doing the dragging is the library's own User Cursor, so it hands over the moment a real pointer arrives.",
+    "useFor": "Any before and after that has to be felt rather than read: manual entry against Document Capture, a paper flow against an automated one, an old page against a new one, a dark theme against a light one. Horizontal or vertical, drag or hover, and it takes any markup on either side - two images is the usual case, but two blocks of UI work just as well. It is a component, so it carries its own JS, and it needs one other entry: the User Cursor, whose stylesheet has to be on the page too.",
+    "prompt": "Build a before/after comparison slider: two layers stacked exactly on top of each other, a divider you drag across them, and a round handle on the line. Clip the top layer with clip-path inset rather than animating its width - both layers must stay laid out at full size at every position, because a width animation re-layouts an image sixty times a second and the two sides drift out of register as they re-flow. Do not write the divider to the pointer: pull it there with a critically damped spring, integrated in closed form so a 64ms frame is as stable as a 4ms one, and clamp the frame step. A single-pole lag is the obvious alternative and it is wrong - a lag answers a jumped target with its HIGHEST speed in the very first frame and decays from there, so a divider thrown at the far edge leaves at a sprint and crawls in; the spring leaves at rest, accelerates, and arrives at rest with no overshoot. Stop the divider short of both ends by a distance in PIXELS rather than a percentage, so a small card and a wide hero keep the same visual gap - and because the frame clips, a knob taken to the very edge renders as a half circle. Drop that stop automatically when there is no knob to protect. Drive the whole thing off one orientation value - the clip, the hit test, the keyboard and the labels all read it - so there is no second vertical code path to keep in step. Make it a real slider for the keyboard: role=slider, a live aria-valuenow, arrow keys, Home and End, and preventDefault only on the keys you handle. Use touch-action and user-select rather than preventDefault on pointerdown, or the handle can never take focus. Fade each label out as the divider reaches it, because a label on the wrong side of the line sits over the other picture and stops saying anything. Demonstrate the drag with ONE mounted cursor component rather than drawing a second arrow, hit-test where that arrow's tip is heading rather than the real pointer so the two can never disagree, show the grab with its press, and stand the tour down the instant a real pointer enters. Close the tour's own loop - the last leg has to leave the arrow where the first one starts looking, or every cycle boundary is a teleport - and never aim a waypoint at a live bounding rect of something the tour is itself moving. Under prefers-reduced-motion keep the slider working and take away only the motion: no spring, no tour, no transitions, the line exactly under the pointer. The comparison is the content, so switching it off would be switching the entry off.",
+    "demo": "<div class=\"mlcs-doc\" data-cs=\"before\"><div class=\"mlcs-sheet\"><div class=\"mlcs-doc-top\"><b>Invoice 4471</b><span>Scanned</span></div><div class=\"mlcs-doc-rows\"><i class=\"w1\"></i><i class=\"w2\"></i><i class=\"w3\"></i><i class=\"w4\"></i><i class=\"w5\"></i><i class=\"w6\"></i><i class=\"w7\"></i></div><div class=\"mlcs-doc-foot\"><span>Not matched</span><b>?</b></div></div></div><div class=\"mlcs-doc mlcs-doc-on\" data-cs=\"after\"><div class=\"mlcs-sheet\"><div class=\"mlcs-doc-top\"><b>Invoice 4471</b><span>Captured</span></div><div class=\"mlcs-doc-rows\"><i class=\"w1\"></i><i class=\"w2\"></i><i class=\"w3\"></i><i class=\"w4\"></i><i class=\"w5\"></i><i class=\"w6\"></i><i class=\"w7\"></i></div><div class=\"mlcs-doc-foot\"><span>Matched to PO 1182</span><b>12.480,00</b></div></div></div>",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "size": 26,
+      "bounds": 16,
+      "arrow": 16,
+      "cycle": 8000,
+      "reach": 22,
+      "labels": "Before,After",
+      "initial": 52
+    },
+    "loops": true,
+    "reducedMotion": "The divider keeps working and stops being thrown: no spring, no tour, no transitions - a drag puts the line exactly under the pointer. The comparison is the content, so switching it off would be switching the entry off; what goes is the motion, not the function."
+  },
+  {
     "slug": "hover-preview",
     "name": "Hover Preview",
     "category": "ui",

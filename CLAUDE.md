@@ -171,12 +171,12 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **fourteen components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
-`modal-cards`, `color-carousel`, `tile-reveal`, `agentic-ball` and `portrait-circles` in
-category `ui`,
+Plus **fifteen components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+`modal-cards`, `color-carousel`, `tile-reveal`, `agentic-ball`, `portrait-circles` and
+`comparison-slider` in category `ui`,
 `blur-highlight` in category `text` and `data-transfer`, `vortex`, `globe` and `center-flow` in
 category `ambient`, because a component's category says what it is for, not how it is built — so
-`library.json` holds 63 entries.
+`library.json` holds 64 entries.
 
 **The counts on the page are counted, never typed.** Both section heads — the gallery's
 `#ml-intro` and the Video page's `#motion-previews` — carry a `[data-ml-tally]` span, and each
@@ -368,6 +368,36 @@ but they are not the same width at the moment the module mounts, and whichever s
 42. A composition's counts belong to the composition — state them (`density`) and let the stage
 only move things — and derive them from the *normalised* radius, never the pixel one, so a stage
 that has not been laid out yet still builds the right rings instead of `NaN` of them.
+
+**A demo holds its proportions, not its layout.** Comparison Slider's two sides first filled the
+frame edge to edge, which reads as a document on a 172px card and as four short lines adrift in an
+empty field on a 480px stage - the same markup, and only one of the two sizes was ever looked at.
+The fix is to draw a *sheet on a surface*: the sheet takes its height as a fraction of the stage
+and its width from `aspect-ratio`, so one drawing scales to every size both hosts, a hero and a
+phone will give it. Two things fell out of it. The caption pills had to move from the head of the
+frame to its foot, because at the head they sit exactly where the sheet's own header is and the
+two collided at every size. And a body of four rows centred in `1fr` reads as a blank page with
+something lost in the middle - seven rows aligned to the start reads as a record.
+
+**A tour yields to a pointer by itself and to a keyboard not at all.** The User Cursor reports
+`at().mode === "pointer"`, so a hand on the stage stands the tour down for free - and that is the
+whole of the standing rule, which is why the gap is easy to miss. A key press announces nothing,
+so Comparison Slider's tour wrote the divider back on the very next frame and the arrow keys
+measured as dead: three presses moved it from 39 to 28, in the wrong direction. The fix is a
+`manual` latch that any visitor input sets and `blur` or `pointerleave` clears, with the tour's
+clock rounded up to the next whole cycle when it is handed back - resuming mid-leg yanks the
+divider to wherever the tour had got to. Two traps come with it. **Pointer capture suppresses
+`pointerleave`**, so a drag released outside the frame never fires one and the tour stays off for
+good unless `pointerup` checks where the hand actually let go. And while the latch is set the
+arrow must park on the handle rather than stand wherever the tour froze, or the keyboard moves the
+divider while a second pointer stands across the stage.
+
+**The dark theme's `--paper` is near-black, so a white control becomes a faint ring.** A knob on a
+picture is the one element that has to read as grabbable, and `background: var(--paper)` with a
+`--line` border is invisible on a dark ground. Pair it the other way round, as the palette rule
+requires: the accent becomes the **fill** and its ink the grip, which gives a bright circle with a
+navy grip instead of cyan on cyan. The same inversion the rule already demands for backgrounds,
+applied to a control rather than to a panel.
 
 **A glyph has to survive the move it is making.** Center Flow's first hourglass was two caps with
 an X between them, which is a bowtie: it reads as an hourglass only while it stands upright, and

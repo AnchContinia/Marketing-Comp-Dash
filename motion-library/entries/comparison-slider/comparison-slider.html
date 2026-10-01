@@ -1,0 +1,37 @@
+<!-- Continia Motion Library — Comparison Slider
+
+     Two stylesheets and one module. user-cursor.css is a real dependency, not a
+     convenience: the arrow on the stage IS the User Cursor entry, mounted by
+     this module rather than redrawn. Drop it, and set data-cursor="0", when the
+     slider sits in a real section a visitor drags themselves.
+
+     <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+     <link rel="stylesheet" href="motion-library/entries/user-cursor/user-cursor.css">
+     <link rel="stylesheet" href="motion-library/entries/comparison-slider/comparison-slider.css">
+     <script type="module" src="motion-library/entries/comparison-slider/comparison-slider.js"></script>
+
+     The two sides are the children carrying data-cs="before" and data-cs="after";
+     without them the first two elements are used, in that order. Anything may go
+     in a side - an <img>, a <video>, a block of markup - and both are laid out at
+     full size at every position, so they stay in register as the divider moves.
+
+     The gallery card draws its two sides in CSS instead of loading photographs:
+     a card must not depend on a file that can 404, and a drawing reads in both
+     themes. Real pictures are the normal case and this is it. -->
+
+<div data-ml="comparison-slider" data-height="420"
+     data-labels="Manual entry,Document Capture"
+     data-initial="46" data-orientation="horizontal">
+  <img src="Assets/compare/invoice-manual.jpg" alt="An invoice keyed in by hand" data-cs="before">
+  <img src="Assets/compare/invoice-captured.jpg" alt="The same invoice read by Document Capture" data-cs="after">
+</div>
+
+<!-- Vertical, no tour, no labels: a slider in a real section that waits for the
+     visitor's own hand. data-inertia="0" puts the line exactly under the pointer
+     for the cases where a comparison is being measured rather than shown. -->
+
+<div data-ml="comparison-slider" data-height="380" data-orientation="vertical"
+     data-cursor="0" data-labels="" data-inertia="0" data-initial="60">
+  <img src="Assets/compare/dashboard-before.jpg" alt="Before" data-cs="before">
+  <img src="Assets/compare/dashboard-after.jpg" alt="After" data-cs="after">
+</div>

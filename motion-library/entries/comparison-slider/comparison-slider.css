@@ -1,0 +1,267 @@
+/* Continia Motion Library — Comparison Slider
+   The shape only. Everything that moves - the clip, the divider's position,
+   the knob - is written by the JS as --mlcs-p, so this file never animates a
+   layout property and the two pictures stay in register at every position. */
+
+.mlcs {
+  position: relative;
+  display: block;
+
+  --mlcs-h: 360px;
+  --mlcs-size: 36px;
+  --mlcs-p: 50%;
+
+  /* Palette only. The default follows --navy, so the divider is Tech Blue on a
+     light ground and Innovation Blue on a dark one. */
+  --mlcs-accent: var(--navy, #052975);
+  --mlcs-ink: #fff;
+}
+html[data-theme="dark"] .mlcs { --mlcs-ink: #052975; }
+
+.mlcs[data-accent="blue"]   { --mlcs-accent: #052975; --mlcs-ink: #fff; }
+.mlcs[data-accent="cyan"]   { --mlcs-accent: #8ff8ff; --mlcs-ink: #052975; }
+.mlcs[data-accent="green"]  { --mlcs-accent: #5f9e8d; --mlcs-ink: #fff; }
+.mlcs[data-accent="purple"] { --mlcs-accent: #983eae; --mlcs-ink: #fff; }
+
+.mlcs-stage {
+  position: relative;
+  overflow: hidden;
+  height: var(--mlcs-h, 360px);
+}
+
+/* The User Cursor wraps the frame into .mluc-content, which is a padded,
+   centring flex box - it would shrink-wrap the picture. Two selectors beat
+   its one, so the frame fills the stage and the arrow still floats over it. */
+.mlcs .mluc-content { padding: 0; display: block; }
+
+.mlcs-frame {
+  position: absolute;
+  inset: 0;
+  /* the hub's tile radius - this is a media frame, the same family as the
+     video-asset tiles, so it takes the same 15px rather than a new number */
+  border-radius: 15px;
+  overflow: hidden;
+  border: 1px solid var(--line, #e3e7ef);
+  background: var(--panel, #fbfcff);
+  /* A drag has to beat the browser's own gestures: without touch-action the
+     page scrolls under the finger on a phone, and without user-select a drag
+     across a caption selects it. Neither needs preventDefault, which would
+     also have stopped the knob taking focus for the keyboard. */
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Both layers are laid out at full size at every position - only the clip
+   moves. A width animation here would re-layout an <img> sixty times a second
+   and the two sides would drift out of register as they re-flowed. */
+.mlcs-layer { position: absolute; inset: 0; }
+.mlcs-layer > * {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+}
+
+.mlcs-bar {
+  position: absolute;
+  background: var(--mlcs-accent);
+  pointer-events: none;
+  z-index: 2;
+}
+.mlcs[data-axis="horizontal"] .mlcs-bar { top: 0; bottom: 0; left: var(--mlcs-p); width: 2px; margin-left: -1px; }
+.mlcs[data-axis="vertical"]   .mlcs-bar { left: 0; right: 0; top: var(--mlcs-p); height: 2px; margin-top: -1px; }
+
+.mlcs-knob {
+  position: absolute;
+  width: var(--mlcs-size);
+  height: var(--mlcs-size);
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+  border: 1px solid var(--line, #e3e7ef);
+  background: var(--paper, #fff);
+  color: var(--mlcs-accent);
+  display: grid;
+  place-items: center;
+  cursor: grab;
+  z-index: 3;
+  box-shadow: 0 10px 24px -14px rgba(15, 23, 42, .75);
+  transition: transform var(--motion-duration-fast) var(--motion-ease-out),
+              box-shadow var(--motion-duration-fast) var(--motion-ease-out);
+}
+
+/* In the dark theme --paper is near-black, so a white-on-light knob becomes a
+   faint ring on a dark ground - the one element that has to read as grabbable
+   is the one that disappears. Pair it the other way round, as the palette rule
+   requires: the accent becomes the FILL and its ink the grip, which gives a
+   bright circle with a navy grip rather than cyan on cyan. */
+html[data-theme="dark"] .mlcs .mlcs-knob {
+  background: var(--mlcs-accent);
+  border-color: var(--mlcs-accent);
+  color: var(--mlcs-ink);
+}
+.mlcs[data-axis="horizontal"] .mlcs-knob { top: 50%; left: var(--mlcs-p); transform: translate(-50%, -50%); }
+.mlcs[data-axis="vertical"]   .mlcs-knob { left: 50%; top: var(--mlcs-p); transform: translate(-50%, -50%); }
+
+.mlcs .mlcs-knob:hover,
+.mlcs .mlcs-knob:focus-visible { box-shadow: 0 12px 28px -12px rgba(15, 23, 42, .85); }
+.mlcs .mlcs-knob:focus-visible { outline: 2px solid var(--mlcs-accent); outline-offset: 3px; }
+.mlcs .mlcs-knob.is-grabbed { cursor: grabbing; }
+.mlcs[data-axis="horizontal"] .mlcs-knob.is-grabbed { transform: translate(-50%, -50%) scale(1.08); }
+.mlcs[data-axis="vertical"]   .mlcs-knob.is-grabbed { transform: translate(-50%, -50%) scale(1.08); }
+
+/* Six dots in two columns, drawn as one 2px dot and five shadows rather than
+   six elements - the grip is the only thing inside the knob and it should not
+   cost a subtree. */
+.mlcs-grip {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow:
+     0 -5px 0 0 currentColor,  0 5px 0 0 currentColor,
+     5px -5px 0 0 currentColor, 5px 0 0 0 currentColor, 5px 5px 0 0 currentColor;
+  transform: translateX(-2.5px);
+}
+
+.mlcs-label {
+  position: absolute;
+  bottom: 12px;
+  z-index: 2;
+  pointer-events: none;
+  border: 1px solid var(--line, #e3e7ef);
+  background: var(--paper, #fff);
+  color: var(--ink, #111827);
+  border-radius: 999px;
+  padding: 5px 10px;
+  font-size: 11px;
+  font-weight: 850;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  transition: opacity var(--motion-duration-base) var(--motion-ease-out);
+}
+.mlcs-label.mlcs-is-before { left: 12px; }
+.mlcs-label.mlcs-is-after  { right: 12px; }
+/* A label on the wrong side of the line sits over the other picture and stops
+   saying anything, so it stands down as the divider reaches it. */
+.mlcs-label.is-off { opacity: 0; }
+
+/* Vertical splits top from bottom, so the two captions have to as well -
+   side by side they would both sit in the same half. */
+.mlcs[data-axis="vertical"] .mlcs-label.mlcs-is-before { top: 12px; bottom: auto; left: 12px; right: auto; }
+.mlcs[data-axis="vertical"] .mlcs-label.mlcs-is-after  { top: auto; bottom: 12px; left: 12px; right: auto; }
+
+/* ---- the card-sized skin ------------------------------------------------ */
+.mlcs-sm { --mlcs-size: 26px; }
+.mlcs-sm .mlcs-label { bottom: 8px; padding: 3px 7px; font-size: 9px; }
+.mlcs-sm .mlcs-label.mlcs-is-before { left: 8px; }
+.mlcs-sm .mlcs-label.mlcs-is-after { right: 8px; }
+.mlcs-sm[data-axis="vertical"] .mlcs-label.mlcs-is-before { top: 8px; bottom: auto; }
+.mlcs-sm .mlcs-grip {
+  width: 1.5px; height: 1.5px;
+  box-shadow:
+     0 -4px 0 0 currentColor,  0 4px 0 0 currentColor,
+     4px -4px 0 0 currentColor, 4px 0 0 0 currentColor, 4px 4px 0 0 currentColor;
+  transform: translateX(-2px);
+}
+
+/* ---- the demo both hosts render ----------------------------------------
+   Two drawings of one record rather than two photographs: the entry's own
+   snippet uses real <img>, but a gallery card must not depend on a file that
+   can 404 or on a picture that only reads in one theme.
+
+   It is a SHEET on a surface, not a layout stretched to the stage. The first
+   version filled the frame, which reads as a document at 172px and as four
+   lines floating in an empty field at 480 - a demo has to hold its proportions
+   across every size both hosts and a hero will give it. Fixing the sheet's
+   height as a fraction of the stage and its width by aspect-ratio means one
+   drawing, scaled, at every one of them. Same geometry on both sides, so the
+   slider reveals a restyling of the same record rather than two pictures. */
+.mlcs-doc {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: var(--canvas, #f6f7fb);
+}
+/* the processed side's ground is a touch cooler, so the split is readable
+   even where the sheet does not reach */
+.mlcs .mlcs-doc-on { background: color-mix(in srgb, var(--navy, #052975) 7%, var(--canvas, #f6f7fb)); }
+
+.mlcs .mlcs-sheet {
+  height: 72%;
+  aspect-ratio: 1.35;
+  max-width: 72%;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 9px;
+  padding: 12px;
+  border: 1px solid var(--line, #e3e7ef);
+  border-radius: 10px;
+  background: var(--paper, #fff);
+  box-shadow: 0 16px 36px -28px rgba(15, 23, 42, .7);
+  color: var(--muted, #64748b);
+  font-size: 11px;
+  font-weight: 700;
+  overflow: hidden;
+}
+.mlcs .mlcs-doc-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-radius: 7px;
+  padding: 6px 8px;
+  background: var(--canvas, #f6f7fb);
+}
+.mlcs .mlcs-doc-top b { color: var(--ink, #111827); font-size: 12px; }
+/* The body starts under the header rather than floating in the middle of the
+   sheet: centred, six short rows read as four lines lost in a blank page. */
+.mlcs .mlcs-doc-rows { display: grid; align-content: start; gap: 8px; padding-top: 2px; }
+.mlcs .mlcs-doc-rows i { display: block; height: 6px; border-radius: 999px; background: var(--line2, #cbd5e1); }
+.mlcs .mlcs-doc-rows i.w1 { width: 74% }
+.mlcs .mlcs-doc-rows i.w2 { width: 52% }
+.mlcs .mlcs-doc-rows i.w3 { width: 66% }
+.mlcs .mlcs-doc-rows i.w4 { width: 41% }
+.mlcs .mlcs-doc-rows i.w5 { width: 69% }
+.mlcs .mlcs-doc-rows i.w6 { width: 58% }
+.mlcs .mlcs-doc-rows i.w7 { width: 35% }
+.mlcs .mlcs-doc-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  border-top: 1px solid var(--line, #e3e7ef);
+  padding-top: 7px;
+}
+
+/* the processed side: same sheet, same boxes, Continia's treatment */
+.mlcs .mlcs-doc-on .mlcs-sheet { border-color: color-mix(in srgb, var(--navy, #052975) 30%, var(--line, #e3e7ef)); }
+.mlcs .mlcs-doc-on .mlcs-doc-top { background: var(--navy, #052975); }
+.mlcs .mlcs-doc-on .mlcs-doc-top b,
+.mlcs .mlcs-doc-on .mlcs-doc-top span { color: #fff; }
+html[data-theme="dark"] .mlcs .mlcs-doc-on .mlcs-doc-top b,
+html[data-theme="dark"] .mlcs .mlcs-doc-on .mlcs-doc-top span { color: #052975; }
+.mlcs .mlcs-doc-on .mlcs-doc-rows i { background: color-mix(in srgb, var(--navy, #052975) 34%, transparent); }
+.mlcs .mlcs-doc-on .mlcs-doc-rows i.w1,
+.mlcs .mlcs-doc-on .mlcs-doc-rows i.w5 { background: var(--navy, #052975); }
+.mlcs .mlcs-doc-on .mlcs-doc-foot b { color: var(--navy, #052975); }
+.mlcs .mlcs-doc-on .mlcs-sheet { color: var(--ink, #111827); }
+
+.mlcs-sm .mlcs-sheet { height: 76%; max-width: 82%; padding: 8px; gap: 6px; font-size: 9px; border-radius: 8px; }
+.mlcs-sm .mlcs-doc-top { padding: 4px 6px; border-radius: 5px; }
+.mlcs-sm .mlcs-doc-top b { font-size: 10px; }
+.mlcs-sm .mlcs-doc-rows { gap: 5px; padding-top: 1px; }
+.mlcs-sm .mlcs-doc-rows i { height: 4px; }
+.mlcs-sm .mlcs-doc-foot { padding-top: 5px; }
+
+/* ---- reduced motion -----------------------------------------------------
+   The divider keeps working - it is the content, not an ornament - it just
+   stops being thrown and stops being toured. Nothing here transitions. */
+@media (prefers-reduced-motion: reduce) {
+  .mlcs-knob, .mlcs-label { transition: none; }
+}
+:root[data-motion="reduced"] .mlcs-knob,
+:root[data-motion="reduced"] .mlcs-label { transition: none; }
