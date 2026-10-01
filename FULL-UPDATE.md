@@ -130,9 +130,19 @@ Monday scheduled task): the Cowork sandbox has no outbound network.
 | Dooap | https://www.dooap.com/blog/rss.xml | https://www.dooap.com/blog |
 | Medius | — (404 at /feed and /resources/feed) | https://www.medius.com/resources/ |
 | Tipalti | — (500 at /feed; /blog/feed/ is 200 **HTML**) | https://tipalti.com/blog/ |
-| Rillion | — (/feed/ is 200 **HTML**, not RSS) | https://www.rillion.com/news/ |
+| Rillion | — (/feed/ is 200 **HTML**, not RSS) | https://www.rillion.com/press/ + https://www.rillion.com/blog/ |
 | Zetadocs (Equisys) | — (/news/feed is 200 **HTML**) | https://www.equisys.com/news |
+| Medius | — | https://www.medius.com/news/ (lists dated items; /press-releases/ is 404) |
+| onPhase | — | https://www.onphase.com/news-legacy (dated list; item URLs are /news/<slug>) |
+| Payhawk | — | https://payhawk.com/newsroom (item URLs are /blog/<slug>) |
+| Qvalia | — | https://qvalia.com/news/ |
+| Dooap | https://www.dooap.com/blog/rss.xml | https://www.dooap.com/blog |
 | *(add rows as feeds are found)* | | |
+
+**Newsroom URLs rot too.** `rillion.com/news/` was in this table and has been a 404 for at
+least one run — the live page is `/press/`. Check each newsroom URL in the table resolves
+before trusting an empty result from it; an empty newsroom and a 404 look identical in a
+run summary, and only one of them means the competitor was quiet.
 
 ### What to check per competitor
 
