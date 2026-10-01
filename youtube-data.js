@@ -577,66 +577,66 @@ window.YT_DATA = {
   videoIdeas: {
     longForm: [
       {
-        score: 85,
+        score: 86,
         title: "Continia Expense Management, end to end: capture, approve, reimburse",
-        desc: "Build on the channel's strongest theme - 'Mobile App - Expense Management' (6,071 views), 'Why Expense Management?' (5,488) and 'Create expenses' (5,441) are all top-five all-time. A definitive expense walkthrough plays straight to proven demand."
+        desc: "Still the channel's strongest theme - the Expense Management mobile app is the #1 all-time video (6,071 views), with 'Why Expense Management?' (5,488) and 'Create expenses' (5,441) alongside it. The Oct 1 snapshot says the same thing about recent uploads: 'Stop Manual Receipts' (153 views) and 'How to Manage Credit Card Transactions' (124) are the two best long-form performers of the window. A definitive end-to-end walkthrough plays straight to proven demand."
       },
       {
-        score: 83,
-        title: "End-to-end AP automation in Business Central",
-        desc: "Follow one invoice from PDF capture and OCR through coding, the approval portal and payment - the full flow in a single demo. Matches the channel's top-performing how-tos."
+        score: 84,
+        title: "Business Central 2026 wave 2: what changes for your Continia setup",
+        desc: "v29.0 reaches general availability in early October, and Microsoft has stopped publishing Dynamics 365 Release Plans - the page partners used to scan is gone. A calm admin-level walkthrough of what to check before updating fills a gap that no longer has an owner, and it is searched for in a predictable week twice a year."
+      },
+      {
+        score: 82,
+        title: "Moving off OPplus: a guided migration to Continia Banking and Finance",
+        desc: "Support for OPplus ends Sep 30, 2027, and the migration tools carry the important data into the two successors. Nobody else can make this video. Show the field mapping per module, what moves automatically and what gets rebuilt, in German as well as English - a year out is when a DACH finance team starts budgeting for it."
       },
       {
         score: 80,
-        title: "Microsoft's BC Payables Agent vs Continia Document Capture: a side-by-side",
-        desc: "With Microsoft's own Payables Agent now shipping 'Known Senders' inside BC 2026 Wave 1, show honestly where the base agent stops and Continia's capture accuracy, approval governance and exception handling take over. Rides the platform-owner story on a demo the buyer is already asking for."
+        title: "Nemhandel by default: sending and receiving e-invoices in Business Central",
+        desc: "Denmark makes e-invoicing the default from Mar 1, 2027 - automatic registration with a four-week opt-out, MitID verification, and OIOUBL and Peppol BIS converging on one specification from mid-2028. A home-market walkthrough of a document going out and coming back through Continia Delivery Network answers the question every Danish BC customer is about to ask."
       },
       {
         score: 78,
-        title: "e-Invoicing & Peppol: get Business Central ready before the deadlines",
-        desc: "A step-by-step compliance walkthrough tied to the live France (Sep 1 2026) mandate plus Spain VeriFactu and Saudi ZATCA Wave 25 - how to get a BC setup ready to receive and send. High, recurring search demand around every mandate week."
+        title: "Microsoft's Payables and Expense Agents vs Continia: an honest side-by-side",
+        desc: "The platform owner now ships both agents inside BC, and 'Known Senders' landed in 2026 wave 1. Buyers are already asking where the base agent stops. Show it running, then show capture accuracy on a messy invoice, approval governance and exception handling picking up where it leaves off. Honesty is what makes this watchable rather than a pitch."
       },
       {
-        score: 76,
-        title: "Document Output done right: automated, compliant distribution from BC",
-        desc: "Refresh the channel's #2 all-time video ('Document Output - Solution demo intro', 5,604 views) into a 2026 walkthrough - per-customer layouts, protected PDFs, eIDAS sealing and Peppol delivery, all inside Business Central."
-      },
-      {
-        score: 72,
-        title: "AI agents vs your audit trail: what to automate in AP (and what not to)",
-        desc: "With Coupa (Navi agents + MCP), Dooap (dooapstudio.ai) and Stampli all pushing 'ask-anything' autonomy - and Rillion's data showing only 39% of CFOs trust AI to run alone - a grounded explainer on what to hand to AI versus what stays in a governed BC approval flow."
+        score: 75,
+        title: "Document Output in 2026: layouts, protected PDFs, eIDAS sealing and Peppol delivery",
+        desc: "Refresh the channel's #2 all-time video ('Document Output - Solution demo intro', 5,604 views) for 2026, in the month Tabellae takes the Lasernet name and consolidates the BC-native output niche. Proven appetite, and a timely reason to republish."
       }
     ],
     shortForm: [
       {
-        score: 81,
+        score: 82,
         title: "Approve an invoice from your phone in 10 seconds",
-        desc: "A single-take mobile screen-grab of a manager approving on the go - no laptop, no VPN, no chasing. Mirrors the channel's #1 all-time video (the Expense Management mobile app) in a punchy cut."
+        desc: "A single-take mobile screen-grab of a manager approving on the go - no laptop, no VPN, no chasing. Mirrors the channel's #1 all-time video in a punchy cut."
       },
       {
-        score: 79,
-        title: "France's e-invoice mandate is live - can your BC receive one?",
-        desc: "A 20-second timely hook on the Sep 1 2026 France go-live: from day one you must be able to receive a structured e-invoice. Show it landing and being approved inside Business Central. Built for the exact week the deadline hits the feed."
+        score: 80,
+        title: "Stop keying receipts - watch one file itself",
+        desc: "The long-form 'Stop Manual Receipts' was the best-performing upload of the Oct 1 window at 153 views. Cut the same promise to 20 seconds: photograph a receipt, watch the expense line appear coded in Business Central."
       },
       {
-        score: 75,
+        score: 77,
+        title: "Your credit card statement, already matched",
+        desc: "'How to Manage Credit Card Transactions in Expense Management' pulled 124 views as a full video in the last window. The short version is one screen: the statement lands, the lines are matched, nothing is keyed."
+      },
+      {
+        score: 74,
+        title: "Denmark is switching e-invoicing on by default. Can your BC receive one?",
+        desc: "A 20-second hook on automatic Nemhandel registration and the four-week opt-out, showing a structured invoice landing and being approved inside Business Central. Built for the weeks either side of Mar 1, 2027, and reusable every time the date moves."
+      },
+      {
+        score: 71,
         title: "'Ask anything' is cool. Who approved it?",
-        desc: "A fast myth-vs-reality clip riffing on the trending agentic-finance launches - AI can answer, but an audit trail says who approved and why. Rides a hot hook and lands on Continia's governance edge."
+        desc: "Four rivals opened expense and card data to Claude and ChatGPT in twelve days. A fast myth-vs-reality clip: an assistant can answer, but an audit trail says who approved and why. Rides a hot hook and lands on the governance edge."
       },
       {
-        score: 73,
-        title: "One invoice, three approvals, zero chasing",
-        desc: "A 30-second before/after showing an invoice stuck in email versus the same approval moving cleanly through Continia. Borrows the punchy comparison format outperforming for BC-native rivals like Yavrio."
-      },
-      {
-        score: 70,
-        title: "The fraud check hiding in your approval flow",
-        desc: "A quick clip on a vendor-bank-detail change caught before payment - the control buyers are suddenly asking about as Basware buys fraud tooling and expense fraud makes headlines. Lands on BC-native audit trail and segregation."
-      },
-      {
-        score: 67,
-        title: "3 invoice fields OCR should be reading for you",
-        desc: "A quick tip clip pointing at vendor, amount and due date being captured automatically instead of keyed by hand. Educational, repurposable and easy to series."
+        score: 68,
+        title: "The bank-detail change that never reached payment",
+        desc: "A quick clip on a vendor bank-detail change caught before the money moves - the control buyers started asking about as fraud tooling gets acquired and payments drift further from the ledger. Lands on BC-native audit trail and segregation."
       }
     ]
   }
