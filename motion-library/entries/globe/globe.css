@@ -1,0 +1,94 @@
+/* Continia Motion Library — Globe
+   ----------------------------------------------------------------------
+   The shape only. Every pixel that moves - the dots, the arcs, the markers,
+   the rings and the haze - is drawn by globe.js into the canvas; this file
+   places that canvas, holds the stage open, and keeps the caller's own
+   content in front of it.
+
+   The stage is dark in BOTH themes, for the same reason Vortex's and Data
+   Transfer's are: this is a lit object, and a lit object on a light ground is
+   a flat disc. The hub already does this with the dashboard's .watch panel,
+   so a dark box on a light page is an established shape here rather than a
+   new one.
+
+   Nothing here centres with flex on .mlgb itself: both hosts clamp a
+   component's mount with `display:block;width:100%;height:100%`, which wins
+   on specificity, so a layout hung off the host element works in the gallery
+   and not on a card. The content is centred inside its own absolutely
+   positioned layer instead, which the clamp cannot reach. */
+
+.mlgb {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  /* the hub's tile radius - this is a tile-shaped surface, not a card */
+  border-radius: 15px;
+  background: var(--mlgb-bg, #050c1c);
+  height: var(--mlgb-h, 420px);
+  /* a paint containment boundary, so the haze cannot interact with whatever
+     the page has stacked behind the stage */
+  isolation: isolate;
+}
+
+.mlgb-canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  opacity: 0;
+  /* the one transition in the file, and it is a real one: the globe fades up
+     once there is something on it, so the stage never shows a bare dark box
+     for the frame between mounting and the first paint */
+  transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+  /* a drag has to own the gesture, or a swipe on a phone scrolls the page
+     and spins the globe at the same time */
+  touch-action: none;
+}
+.mlgb.is-lit .mlgb-canvas { opacity: 1 }
+
+/* the grab cursor is on the canvas and only when dragging is enabled, so a
+   globe used purely as a background does not advertise an interaction it
+   does not have */
+.mlgb-drag .mlgb-canvas { cursor: grab }
+.mlgb-drag.is-dragging .mlgb-canvas { cursor: grabbing }
+
+.mlgb-content {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  text-align: center;
+  color: #fff;
+  /* the copy sits over the lit face, which is the busiest part of the
+     picture, so it carries its own shadow rather than relying on the globe
+     being quiet behind it */
+  text-shadow: 0 2px 18px rgba(5, 12, 28, .9);
+  /* the layer must not swallow the drag: the canvas under it owns the
+     gesture, and a child that wants its own clicks turns them back on */
+  pointer-events: none;
+}
+.mlgb-content > * { pointer-events: auto }
+/* an empty layer must not eat pointer events or force a flex line */
+.mlgb-content:empty { display: none }
+
+.mlgb-content .mlgb-demo {
+  font-size: 15px;
+  font-weight: 850;
+  line-height: 1.25;
+}
+
+/* the card-sized skin: the hub's ordinary panel radius, because at 172px the
+   15px tile radius reads as a lozenge rather than as a tile */
+.mlgb-sm { border-radius: 8px }
+
+@media (prefers-reduced-motion: reduce) {
+  /* the canvas still renders one frame - the globe is the content, and an
+     empty box is not a reduced version of it. Only the fade-up goes. */
+  .mlgb-canvas { transition: none }
+}

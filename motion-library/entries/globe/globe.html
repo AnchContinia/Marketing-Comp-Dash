@@ -1,0 +1,57 @@
+<!-- Continia Motion Library — Globe
+     Load in this order: tokens/motion-tokens.css, base/base-animations.css,
+     then this entry's stylesheet. The module is an ES module and mounts
+     itself onto every [data-ml="globe"] on the page.
+
+       <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+       <link rel="stylesheet" href="motion-library/base/base-animations.css">
+       <link rel="stylesheet" href="motion-library/entries/globe/globe.css">
+       <script type="module" src="motion-library/entries/globe/globe.js"></script>
+
+     The children are kept and laid over the canvas, so this is a background
+     with copy on it - the module never owns the copy. It is ambient: it never
+     resolves, so put it behind something rather than beside it as a thing to
+     watch.
+-->
+
+<div data-ml="globe" data-height="460">
+  <h2 class="mlgb-demo">Everywhere our partners are</h2>
+</div>
+
+
+<!-- A quieter band: no rings, no haze, a slower turn and fewer legs, for a
+     section divider that sits under a heading without competing with it. -->
+<!--
+<div data-ml="globe" data-height="220" data-orbits="0" data-glow="0"
+     data-spin="54000" data-arc-cycle="7200" data-dots="3600"></div>
+-->
+
+
+<!-- The ocean switched on. `sea` is the brightness of a water dot and
+     `sea-dots` how many of them are kept - a full ocean at land density
+     hides the land, so it is a wash rather than a second surface. -->
+<!--
+<div data-ml="globe" data-sea="0.3" data-sea-dots="0.4" data-light="0.72">
+  <h2 class="mlgb-demo">One hub, every market</h2>
+</div>
+-->
+
+
+<!-- Named legs. `hub` and `points` are lists, so they come in through the
+     options object rather than through a data attribute - an attribute that
+     parses a list is a parser nobody asked for. -->
+<!--
+<div id="reach" data-ml="globe" data-arc-cycle="4200"></div>
+<script type="module">
+  import { initGlobe } from "./motion-library/entries/globe/globe.js";
+  initGlobe("#reach", {
+    hub: { name: "Ballerup", lat: 55.73, lon: 12.37 },
+    points: [
+      { name: "London", lat: 51.5, lon: -0.1 },
+      { name: "Munich", lat: 48.1, lon: 11.6 },
+      { name: "New York", lat: 40.7, lon: -74.0 },
+      { name: "Singapore", lat: 1.4, lon: 103.8 }
+    ]
+  });
+</script>
+-->

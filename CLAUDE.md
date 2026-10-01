@@ -171,11 +171,11 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **eleven components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+Plus **twelve components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
 `modal-cards`, `color-carousel`, `tile-reveal` and `agentic-ball` in category `ui`,
-`blur-highlight` in category `text` and `data-transfer` and `vortex` in category `ambient`,
-because a component's category says what it is for, not how it is built — so `library.json`
-holds 60 entries.
+`blur-highlight` in category `text` and `data-transfer`, `vortex` and `globe` in category
+`ambient`, because a component's category says what it is for, not how it is built — so
+`library.json` holds 61 entries.
 
 **The counts on the page are counted, never typed.** Both section heads — the gallery's
 `#ml-intro` and the Video page's `#motion-previews` — carry a `[data-ml-tally]` span, and each
@@ -327,6 +327,26 @@ them down-left and the right half of the band never lit at all. Two separate kno
 here: the `arc` has to point at the middle of the space the lanes are meant to cover, and `spread`
 has to be wide enough to reach both bottom corners without going past ~120, where the lanes stop
 reading as lanes and it becomes a starburst.
+
+**A coastline is a shape, not a dataset.** `globe` draws its Earth from ~30 hand-written
+rings of `[lon, lat]` in the module, not from a GeoJSON or a 1-bit raster - a file nobody in
+the repo could read, edit or check, and one that would outweigh every other entry together.
+Two things fall out of it. An enclosed sea needs no hole and no second pass: a ring walked in
+along one shore and back out along the other leaves the water outside it, which is how the
+Baltic, the Gulf, the Red Sea and Hudson Bay are cut. And the result is testable - 36 cities
+must come back land and 36 open-water points must come back sea, which is the check that
+found Singapore sitting in a 0.15-degree sliver and Dubai inside the Gulf. The land ends up
+at **29.5% of the sphere**, against the Earth's own 29.2%, which is the second check and
+costs nothing. Dots go on a **Fibonacci sphere**, never a lat/lon grid: a grid puts as many
+dots on a polar row as on the equator, so the Arctic becomes a solid cap while the tropics
+stay a sieve, and density reading as land area is the one thing the picture is for.
+
+**A px is a different size on every stage.** Globe's markers and arcs were written in px, so
+at the card's 67px radius the fourteen legs landed as one white knot while the same numbers
+looked right on a 300px hero. They are scaled by the globe's own radius with a floor
+(`U = max(0.55, R/150)`). The companion mistake is in the data: every leg starts at the hub,
+so nine European cities in the default list put nine markers inside eight pixels. Five in
+Europe and nine elsewhere is the same idea with the picture left legible.
 
 **A silhouette that comes from a physical model has one number, not five.** `vortex` takes its
 shape from the Rankine vortex - depth falls as `a²/r²` outside the core radius `a` and as a

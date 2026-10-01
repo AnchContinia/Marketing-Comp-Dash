@@ -647,6 +647,29 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Loop stops; the element rests in its idle state."
   },
   {
+    "slug": "globe",
+    "name": "Globe",
+    "category": "ambient",
+    "kind": "component",
+    "feel": "A dotted Earth turning slowly on a dark stage, with a few thin rings tumbling outside it. Every couple of seconds a line of light leaves one city, arches over the curve and is swallowed at another, and a ring pulses where it lands. Nothing arrives and nothing finishes - it is a standing state, a map that is always working.",
+    "useFor": "A hero or a section that has to say reach without a list of flags: a platform or partner page, an international page, an event splash, a Continia Hub header. Whatever you put inside it is laid over the globe and keeps its own layout, so the copy belongs to the page. The hub and the cities the legs go to are both replaceable, and the defaults are a shape rather than a claim about where anyone has an office. It is a component, so it carries its own JS, but it needs no other entry and no library.",
+    "prompt": "Build a dotted globe on a stage that is dark in both themes, because a lit object on a light ground is a flat disc. Do not reach for a 3D library or a world dataset: describe the coastlines as about thirty closed rings of longitude and latitude in the file itself, and let an enclosed sea be a notch - a boundary walked in along one shore and back out along the other, which is what makes the Baltic, the Gulf, the Red Sea and Hudson Bay wet without a single hole or special case. Lay the dots on a Fibonacci sphere, the golden-angle spiral, rather than on a grid of latitude and longitude: a grid puts the same number of dots on a polar row as on the equator, so the Arctic becomes a solid cap while the tropics stay a sieve, and the one thing the picture is for is density reading as land. Keep a dot when it falls inside a ring, draw the ocean either not at all or as a thinned wash, and mix the land a third of the way toward white - at a pixel and a half on near-black, an unmixed deep blue is not visible at all. Rotate with one yaw about the polar axis and then a fixed tilt of about eighteen degrees toward the viewer, six multiplies a dot, and cull the far side by the sign of the rotated depth; that same sign is the whole occlusion model, so the back halves of the rings go down first, an opaque disc paints over them, and everything on the near side goes on top. Fly the legs as great circles - slerp between the two points, never a lerp, which bunches toward the ends and makes the comet slow down at both airports - and bow each one away from the surface in proportion to its OWN angular length, so a short hop stays low and a long haul climbs. Draw a leg as a run of short segments whose alpha ramps to a bright head, let the tail run past the far end so the leg is swallowed rather than switched off, and give each leg its own phase so they stagger without a scheduler. Pulse a ring at each end, timed off that leg's own phase so it lands with the arc instead of beating against it. Add a haze outside the disc drawn BEFORE the ball, so it reads as air around the planet rather than as a bloom on it, and a thin bright edge drawn last. Colours are Continia palette only - Innovation Blue with Smart Green and Tech Blue as a minority - never a lightened tint mixed to make something read. Bucket the dots by colour and by a quantised alpha and fill each bucket as one path, so a few thousand dots cost about thirty fills; cap the pixel ratio at 2, stop the loop when the stage scrolls out of view or the tab is hidden, clamp the frame step to 64ms, and lay the random part down once from a fixed seed so the continents never rearrange themselves. Let a pointer drag it, with a throw that decays back into the automatic turn - that drag is the one thing allowed to be state rather than a function of the clock, because a globe that snapped back the frame after the finger lifted would fight the hand on it. Under prefers-reduced-motion request no frames at all and draw one still globe, taken at a moment when no leg is mid-flight: the globe is the content, so an empty box is not a reduced version of it.",
+    "demo": "",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "dots": 6000,
+      "size": 1.25,
+      "fill": 0.88,
+      "orbits": 3,
+      "orbit-spread": 1.12,
+      "arc-cycle": 4200,
+      "spin": 30000
+    },
+    "loops": true,
+    "reducedMotion": "Renders one frame and stops - the globe is the content, so an empty box is not a reduced version of it. The frame is taken off zero, at the moment no leg is mid-flight. Dragging still works: it is the visitor's own gesture, not motion the page chose to play."
+  },
+  {
     "slug": "ken-burns",
     "name": "Ken Burns",
     "category": "ambient",

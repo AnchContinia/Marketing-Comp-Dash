@@ -2376,6 +2376,219 @@
     "addedAt": "2026-09-24"
   },
   {
+    "slug": "globe",
+    "name": "Globe",
+    "kind": "component",
+    "category": "ambient",
+    "class": "js",
+    "source": "continia",
+    "sourceUrl": "https://pro.reactbits.dev/docs/components/globe",
+    "license": "Continia internal",
+    "dependencies": [],
+    "tokens": [
+      "--motion-duration-slow",
+      "--motion-ease-out"
+    ],
+    "blurb": "A dotted Earth turning on a dark stage, with great-circle arcs flying out of one hub to the places it reaches and a ring that pulses where each one lands. It turns forever and never resolves, so it goes behind copy rather than beside it.",
+    "reducedMotion": "Renders one frame and stops - the globe is the content, so an empty box is not a reduced version of it. The frame is taken off zero, at the moment no leg is mid-flight. Dragging still works: it is the visitor's own gesture, not motion the page chose to play.",
+    "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the coastlines are hand-written rings of [lon, lat] in this file, the dots are a Fibonacci sphere, and sourceUrl points at the docs page for provenance only.\n\nThree brand decisions are load-bearing. The stage is dark in BOTH themes, as Vortex's and Data Transfer's are: this is a lit object, and a lit object on a light ground is a flat disc. The land is Innovation Blue mixed a third of the way toward white, with Smart Green and Tech Blue as a minority that gives the continents grain - at 1.5px on near-black, unmixed Tech Blue is not visible at all, which is the same finding Vortex's field produced. And the default legs are a shape rather than a claim: nothing on the page says these cities are offices, and `points` replaces the list wholesale.\n\nThe gallery card carries no copy over the globe. A 172px card gives a globe about 140px across, and a headline centred on it covers the one thing the card is for - so the demo is the picture alone, and globe.html shows the copy case at full size.",
+    "options": {
+      "height": {
+        "type": "number",
+        "default": 420,
+        "unit": "px",
+        "note": "the stage. Both hosts clamp a component's mount to the card, so this only bites when the entry is used on its own."
+      },
+      "dots": {
+        "type": "number",
+        "default": 13000,
+        "note": "candidate points on the WHOLE sphere, before the land test. The land rings take 29.5% of them - which is the Earth's own land fraction, and a decent check that the coastlines are not nonsense - and half of those face away, so this is about 1900 dots on screen. Under about 8000 the continents read as a scatter rather than as shapes."
+      },
+      "size": {
+        "type": "number",
+        "default": 1.5,
+        "unit": "px",
+        "note": "a land dot at the centre of the disc. Dots shrink toward the limb, which is half of what makes the disc read as a ball."
+      },
+      "fill": {
+        "type": "number",
+        "default": 0.82,
+        "note": "the globe's diameter as a fraction of the stage's shorter axis. The rings are fitted outside it, so turning `orbits` off makes the globe itself bigger at the same `fill`."
+      },
+      "centreY": {
+        "type": "number",
+        "default": 0.5,
+        "note": "where the centre of the globe sits down the stage, 0-1"
+      },
+      "tilt": {
+        "type": "number",
+        "default": 18,
+        "unit": "deg",
+        "note": "how far the north pole is tipped toward the viewer. 0 is the equator dead-on, which reads as a circle with no axis - the tilt is the thing that says globe."
+      },
+      "spin": {
+        "type": "number",
+        "default": 34000,
+        "unit": "ms",
+        "note": "one full turn. Slow on purpose: this is scenery, and it also sets the rate the rings precess at. A loop length, so it is an option rather than a token."
+      },
+      "sea": {
+        "type": "number",
+        "default": 0,
+        "note": "brightness of an ocean dot, 0-1. At 0 none are drawn at all, which is the reference's look: the sphere is then read from its land, its rim and its arcs."
+      },
+      "seaDots": {
+        "type": "number",
+        "default": 0.45,
+        "note": "how many of the ocean's candidates are kept when `sea` is on. A full ocean at land density hides the land, so this thins it to a wash."
+      },
+      "poles": {
+        "type": "boolean",
+        "default": true,
+        "note": "draw Antarctica. It is real, and leaving it off makes the south look like a rendering error - but a tilted globe shows it as a bright band at the rim, so it is a switch."
+      },
+      "light": {
+        "type": "number",
+        "default": 0.62,
+        "note": "how much of a dot's brightness comes from facing the viewer. 0 is a flat disc of dots; 1 is so dark at the limb that the silhouette closes early and the globe reads smaller than it is."
+      },
+      "twinkle": {
+        "type": "number",
+        "default": 3400,
+        "unit": "ms",
+        "note": "one dot's brightness cycle. Every dot carries its own phase."
+      },
+      "shimmer": {
+        "type": "number",
+        "default": 0.16,
+        "note": "how much of a dot's brightness the twinkle owns. Deliberately lower than Vortex's: this is a surface, not a field of lights, and a surface that sparkles reads as static."
+      },
+      "arcs": {
+        "type": "boolean",
+        "default": true,
+        "note": "the great-circle flights"
+      },
+      "arcCycle": {
+        "type": "number",
+        "default": 5200,
+        "unit": "ms",
+        "note": "one leg's whole cycle: climb, flight, arrival, and the gap before it goes again. Each leg is offset by its own place in the list, so they stagger without a scheduler."
+      },
+      "arcLift": {
+        "type": "number",
+        "default": 0.3,
+        "note": "how far an arc bows away from the surface, as a fraction of its own angular length - so a short hop stays low and a long haul climbs. A fixed lift puts a 300km hop on the same arch as a transatlantic one, which is the tell that the curve was drawn rather than flown."
+      },
+      "arcTail": {
+        "type": "number",
+        "default": 0.42,
+        "note": "the comet's length, as a fraction of the leg. The tail runs past the far end rather than stopping on it, so a leg is swallowed at the destination instead of switched off."
+      },
+      "arcWidth": {
+        "type": "number",
+        "default": 1.6,
+        "unit": "px",
+        "note": "the arc's core at the head. It tapers to under half that at the tail."
+      },
+      "markers": {
+        "type": "boolean",
+        "default": true,
+        "note": "the pulsing rings at each end of a leg"
+      },
+      "markerSize": {
+        "type": "number",
+        "default": 3.2,
+        "unit": "px",
+        "note": "the dot at a marker's centre; the ring is drawn off it. The hub's is a quarter larger."
+      },
+      "orbits": {
+        "type": "number",
+        "default": 4,
+        "note": "thin rings tumbling outside the globe. Not satellite tracks and not pretending to be - they are what keeps the silhouette from being a single hard circle."
+      },
+      "orbitSpread": {
+        "type": "number",
+        "default": 1.14,
+        "note": "a ring's radius as a fraction of the globe's. The globe is sized down to make room for them, so a bigger spread is a smaller planet on the same stage."
+      },
+      "glow": {
+        "type": "boolean",
+        "default": true,
+        "note": "the atmosphere: a haze outside the disc and a thin bright edge on it. The haze is drawn BEFORE the ball, so it reads as air around the planet rather than as a bloom on top of it."
+      },
+      "drag": {
+        "type": "boolean",
+        "default": true,
+        "note": "pointer-drag to spin it, with a throw that decays back into the automatic turn. This is the one piece of state outside the clock, and it has to be: a globe that snapped back to its clock position the frame after the finger lifted would fight the hand on it. Turn it off for a pure background."
+      },
+      "accent": {
+        "type": "string",
+        "default": "mixed",
+        "values": [
+          "mixed",
+          "blue",
+          "cyan",
+          "green",
+          "purple"
+        ],
+        "note": "palette only. mixed is Innovation Blue weighted against Smart Green and Tech Blue. There is no auto: the ground is always dark, so there is nothing for it to follow."
+      },
+      "background": {
+        "type": "string",
+        "default": "",
+        "note": "empty keeps the stylesheet's dark stage"
+      },
+      "seed": {
+        "type": "number",
+        "default": 11,
+        "note": "the dot lay-out and the rings are random but fixed - the same seed lays out identically on both hosts and across every resize"
+      },
+      "hub": {
+        "type": "object",
+        "default": "{ name: \"Copenhagen\", lat: 55.7, lon: 12.6 }",
+        "note": "where every leg starts. A list, so it comes in through the options object rather than through a data attribute."
+      },
+      "points": {
+        "type": "array",
+        "default": "14 cities",
+        "note": "where the legs go, as { name, lat, lon }. Replaces the default list wholesale - the defaults are a shape, not a claim about where anyone has an office."
+      },
+      "autoplay": {
+        "type": "boolean",
+        "default": true,
+        "note": "turn once it scrolls into view, and stop again when it leaves or the tab is hidden"
+      },
+      "paused": {
+        "type": "boolean",
+        "default": false
+      },
+      "compact": {
+        "type": "boolean",
+        "default": false,
+        "note": "the card-sized skin, for a stage under ~200px"
+      }
+    },
+    "notPorted": [
+      "No texture, no bump, no shading of the ball itself beyond a dark gradient. The reference's globe is a shaded sphere with the dots on top; here the ball's only job is to be opaque, so that whatever passed behind it is gone. A shaded sphere under a dot field reads as two globes.",
+      "No labels on the markers. A label has to track a moving point, flip side at the limb and avoid its neighbours, and at 172px there is no room for one anyway. `at(lat, lon)` returns the screen position of a point, or null when it is on the far side, so a caller who wants labels can place them.",
+      "No vertical drag. The axis stays where `tilt` puts it: letting the pointer pitch it as well means the poles can swing to the middle of the stage, where the dot field is at its densest and the globe stops reading as a globe.",
+      "No zoom. A dot field has one density that works; scaling it either thins the land to a sieve or crowds it into a solid cap."
+    ],
+    "demo": "",
+    "addedAt": "2026-10-01",
+    "demoAttrs": {
+      "height": 172,
+      "compact": 1,
+      "dots": 6000,
+      "size": 1.25,
+      "fill": 0.88,
+      "orbits": 3,
+      "orbit-spread": 1.12,
+      "arc-cycle": 4200,
+      "spin": 30000
+    }
+  },
+  {
     "slug": "ken-burns",
     "name": "Ken Burns",
     "kind": "animation",
