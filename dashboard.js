@@ -158,12 +158,23 @@ const data = [
   web:"https://www.lasernetgroup.com/",
   cat:"Document output & e-invoicing · BC + F&O",
   head:"BC-native output engine (rival to Continia Document Output) — now taken private, delisted, and running as a single-product company.",
-  rel:"Take-private complete — Tabellae BidCo (Mission Trail Partners) declared its recommended SEK 30/share cash offer unconditional on Jul 23, 2026 at ~92% acceptance (~SEK 620M for the remaining 70.69%) and moved to compulsory redemption; Lasernet Group delisted from Nasdaq Stockholm with last trading day Aug 24, 2026. Lasernet for BC stays live on AppSource (20+ report types, Azure AI mapping); Temenos Exchange Partner of the Year 2026; joined the IFS partner network. The delisting was confirmed complete on Aug 25, 2026 and the old Formpipe IR site now redirects to the Lasernet Group newsroom; Lasernet Core 11.2 shipped Aug 28, 2026.",
+  rel:"Take-private complete — Tabellae BidCo (Mission Trail Partners) declared its recommended SEK 30/share cash offer unconditional on Jul 23, 2026 at ~92% acceptance (~SEK 620M for the remaining 70.69%) and moved to compulsory redemption; Lasernet Group delisted from Nasdaq Stockholm with last trading day Aug 24, 2026. Lasernet for BC stays live on AppSource (20+ report types, Azure AI mapping); Temenos Exchange Partner of the Year 2026; joined the IFS partner network. The delisting was confirmed complete on Aug 25, 2026 and the old Formpipe IR site now redirects to the Lasernet Group newsroom; Lasernet Core 11.2 shipped Aug 28, 2026. The Feb 12, 2026 release also dates the next move: a new Business Central product offering with \u201cmarket launch \u2026 planned for Q4 2026\u201d \u2014 the same quarter as BC 2026 wave 2. The owner now has its own card.",
   str:"Formpipe Software AB renamed itself Lasernet Group AB (briefly ticker LASER from Jun 9, 2026) and sold Formpipe Public to Sikri AS (STG) in Dec 2025, leaving a pure Lasernet platform business — now owned outright by the PE-led Tabellae/Mission Trail consortium.",
   pos:"Embedded in BC — design, send and archive documents without leaving the ERP.",
   ai:"Azure AI for data mapping; primarily strong on output/compliance rather than AI marketing.",
   sc:"SEK 242M net sales 2025 (+9%) · offices across Europe + US · 20+ years",
-  s:[["Delisting complete (Aug 2026)","https://www.lasernetgroup.com/news-blogs/lasernet-group-delists-from-nasdaq-stockholm"],["Lasernet Group","https://www.lasernetgroup.com/news-blogs/bc-connector-now-on-appsource"],["Offer completed (~92%)","https://mfn.se/all/a/tabellaebidco/tabellae-bidco-completes-the-recommended-offer-to-the-shareholders-of-lasernet-at-92-0-percent-and-extends-the-acceptance-period"],["Formpipe/Lasernet split","https://www.formpipe.com/news-formpipe-lasernet-split"],["Delisting / IR","https://ir.lasernetgroup.com/"]]},
+  s:[["Delisting complete (Aug 2026)","https://www.lasernetgroup.com/news-blogs/lasernet-group-delists-from-nasdaq-stockholm"],["Lasernet Group","https://www.lasernetgroup.com/news-blogs/bc-connector-now-on-appsource"],["Offer completed (~92%)","https://mfn.se/all/a/tabellaebidco/tabellae-bidco-completes-the-recommended-offer-to-the-shareholders-of-lasernet-at-92-0-percent-and-extends-the-acceptance-period"],["Formpipe/Lasernet split","https://www.formpipe.com/news-formpipe-lasernet-split"],["Delisting / IR","https://ir.lasernetgroup.com/"],["BC offering planned Q4 2026","https://news.cision.com/lasernet-group-ab--publ-/r/lasernet-group-hits-the-ground-running-in-2026,c4306319"]]},
+
+ {n:"Tabellae", o:"Tabellae A/S \u00b7 Copenhagen (Mission Trail + Grenspecialisten)", stance:"cons", sl:"Bought its own vendor \u00b7 DK output", prox:"High",
+  web:"https://tabellae.com/da/",
+  cat:"Document output + input management \u00b7 services around Lasernet \u00b7 BC + F&O",
+  head:"The implementation partner bought the product \u2014 Continia\u2019s nearest output rival is now owned by a Danish consultancy that both builds and installs it, on Continia\u2019s home ground.",
+  rel:"Jul 23, 2026: Tabellae BidCo \u2014 Tabellae HoldCo with Mission Trail Partners and Grenspecialisten \u2014 declared its SEK 30/share cash offer for Lasernet Group (ex-Formpipe) unconditional at ~92% of shares and votes, and moved to compulsory redemption. Jul 24, 2026: Lasernet formally joined Tabellae; the post states \u201cThe Lasernet products, team and support remain unchanged\u201d and promises continued investment in the platform, with Lennart Garbarsch (Tabellae MD) and Sophie Reinius (acting CEO/CFO, Lasernet Group) named. Nasdaq Stockholm delisting followed, last trading day Aug 24, 2026. The roadmap it now owns is dated: Lasernet\u2019s Feb 12, 2026 release plans the market launch of a new Business Central product offering for Q4 2026 \u2014 the same quarter as BC 2026 wave 2.",
+  str:"A 13-year-old Danish output-management consultancy that went from 30 to 70 people and four to six countries in five years, then bought the software it had been implementing. Services first \u2014 requirements mapping, document design, Tabellae Academy training and 24/5 application management \u2014 now with the vendor\u2019s margin behind it.",
+  pos:"The preferred Output Management implementation partner for leading ERP vendors \u2014 ERP-agnostic specialists rather than a single-product house (Dynamics 365 BC and F&O, SAP, Infor M3, Oracle, IFS).",
+  ai:"No AI claim of its own on the site \u2014 the AI in this stack is Lasernet\u2019s Azure AI data mapping. The only one of the high-proximity names making no AI argument at all.",
+  sc:"600+ implementations across 30+ countries \u00b7 70+ specialists (the About page also claims 90 experts) \u00b7 7 offices: DK (Copenhagen, Vejle), SE, NO, DE, PT, US, PH",
+  s:[["Tabellae (DA)","https://tabellae.com/da/"],["Transaction completed (Jul 23, 2026)","https://tabellae.com/articles/tabellae-and-lasernet-group-transaction-completed/"],["Lasernet joins Tabellae (Jul 24, 2026)","https://www.lasernetgroup.com/news-blogs/lasernet-joins-tabellae"],["About Tabellae","https://tabellae.com/en/about-us/"],["Lasernet partner page","https://www.lasernetgroup.com/partners/tabellae/"],["BC offering planned Q4 2026","https://news.cision.com/lasernet-group-ab--publ-/r/lasernet-group-hits-the-ground-running-in-2026,c4306319"]]},
 
  {n:"AMC Banking", o:"AMC-Consult · Frederiksberg, DK", stance:"steady", sl:"BC-native · banking", prox:"High",
   web:"https://www.amcbanking.com/",
@@ -380,6 +391,7 @@ const events = [
  {w:"Aug 6, 2026", d:"2026-08-06", c:"steady", t:"<b>France (DGFiP)</b> confirms the Sept 1, 2026 B2B e-invoicing go-live with no further postponement — the voluntary pilot runs through Aug 31; from launch all firms must be able to receive and large/mid firms must issue, under a good-faith soft-landing."},
  {w:"Aug 1, 2026", d:"2026-08-01", c:"steady", t:"<b>Poland (KSeF)</b> — the obligation to include the KSeF number in bank transfers (incl. split-payment) takes effect; the broader KSeF penalty grace period runs to Jan 1, 2027."},
  {w:"Jul 29, 2026", d:"2026-07-29", c:"steady", t:"<b>Pagero</b> (Thomson Reuters) — France's DGFiP approves its Partner Dematerialization Platform (PDP), certifying it for e-invoicing/e-reporting ahead of the Sept 1 mandate."},
+ {w:"Jul 24, 2026", d:"2026-07-24", c:"cons", t:"<b>Tabellae</b> completes its take-private of <b>Lasernet Group</b> (ex-Formpipe) at ~92% and Lasernet formally joins it \u2014 the Danish firm that implements the output engine now owns it. Products, team and support are stated unchanged; delisting from Nasdaq Stockholm follows with a last trading day of Aug 24."},
  {w:"Jul 18, 2026", d:"2026-07-18", c:"steady", t:"<b>Belgium</b> approves a draft law mandating 5-corner (Peppol) near-real-time B2B e-reporting from Jan 1, 2028 — building on its B2B e-invoicing mandate live since Jan 2026."},
  {w:"Jul 8, 2026", d:"2026-07-08", c:"ai", t:"<b>Payhawk</b> passes <b>$100M ARR</b> after a 24-month \u201cAI-native rebuild\u201d \u2014 159% YoY net-new business, 95% YoY payments volume and ARR per employee up 75% to ~$238K, on ~$120M burned since founding."},
  {w:"Jul 2026", d:"2026-07-01", c:"ai", t:"<b>Dooap Studio</b> (agentic AP automation) goes live on Microsoft Marketplace — discoverable and deployable directly for D365 Finance customers."},
@@ -413,6 +425,7 @@ const events = [
  {w:"Apr 14, 2026", d:"2026-04-14", c:"ai", t:"<b>Forrester</b> publishes Top Agentic AI Use Cases for AP 2026 — warns that agentic branding is widespread but real autonomy is rare; evaluators should prioritise production metrics over demos."},
  {w:"Apr 2026", d:"2026-04-01", c:"ai", t:"<b>Tipalti</b> expands agentic AI to include tariff-refund processing."},
  {w:"Mar 31, 2026", d:"2026-03-31", c:"ai", t:"<b>Stampli</b> launches Deep Finance — turning invoice data into consultant-grade executive spend intelligence."},
+ {w:"Feb 12, 2026", d:"2026-02-12", c:"cons", t:"<b>Lasernet Group</b> dates its next Business Central move \u2014 a new BC product offering with \u201cmarket launch \u2026 planned for Q4 2026\u201d, alongside the Temenos Exchange Partner of the Year award and joining the IFS partner network. A refresh of the nearest rival to Continia Document Output, landing in the same quarter as BC 2026 wave 2."},
  {w:"Early 2026", d:"2026-01-01", c:"ai", t:"<b>Medius</b> named Market Leader + Elite Performer for AI Innovation (Ardent Partners 2026)."},
  {w:"Jan 22, 2026", d:"2026-01-22", c:"cons", t:"<b>Pagero</b> (Thomson Reuters) and Deloitte launch global e-invoicing alliance."},
  {w:"Jan 21, 2026", d:"2026-01-21", c:"cons", t:"<b>onPhase</b> (DocuPhase) acquires enterprise AP player iPayables."},
@@ -2366,7 +2379,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV = "20261001j";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20261001k";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
@@ -3488,11 +3501,11 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, Quick SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-10-01 14:55";
+var DASHBOARD_UPDATED = "2026-10-01 15:49";
 var MODULE_UPDATED = {
   /* index.html */
-  "news":            {at:"2026-10-01 13:57", src:"News sweep"},
-  "competitors":     {at:"2026-10-01 13:57", src:"News sweep"},
+  "news":            {at:"2026-10-01 15:49", src:"News sweep"},
+  "competitors":     {at:"2026-10-01 15:49", src:"News sweep"},
   "content-gap":     {at:"2026-10-01 14:55", src:"LinkedIn trawl"},
   "battlecards":     {at:"2026-07-01 15:27", src:"Battlecard seed"},
   "appsource":       {at:"2026-07-01 10:55", src:"AppSource review pass"},
@@ -3500,7 +3513,7 @@ var MODULE_UPDATED = {
   "timeline":        {at:"2026-07-01 10:34", src:"E-invoicing mandate pass"},
   /* content.html */
   "insights":        {at:"2026-06-10 09:32", src:"Strategic readout"},
-  "events":          {at:"2026-10-01 13:57", src:"News sweep"},
+  "events":          {at:"2026-10-01 15:49", src:"News sweep"},
   "content-ideas":   {at:"2026-08-31 14:53", src:"Content idea pass"},
   "linkedin-compare":{at:"2026-10-01 14:55", src:"LinkedIn trawl"},
   "image-search":    {at:"2026-09-17 13:52", src:"LinkedIn image bank"},

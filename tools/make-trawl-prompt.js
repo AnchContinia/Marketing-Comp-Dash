@@ -24,11 +24,24 @@ global.window = {};
 eval(fs.readFileSync(path.join(ROOT, "linkedin-data.js"), "utf8"));
 const LI = global.window.LI_DATA;
 
+/* Companies on the competitor register that LinkedIn data does not cover yet.
+   The roster below is built from linkedin-data.js, so a brand-new card can
+   never ask for its own first capture - that chicken-and-egg left Tabellae
+   invisible in the Content-Gap Analysis the day it was added. A PENDING row
+   joins the first batch with no stop marker (take 50). Remove it once the
+   capture has landed and the label is mapped in KEEP. */
+const PENDING = [
+  { name: "Tabellae", url: "https://www.linkedin.com/company/tabellae/posts/" }
+];
+
 const cos = LI.companies.map(c => {
   const posts = (c.posts || []).slice().sort((a, b) => (b.d || "").localeCompare(a.d || ""));
   return { name: c.name, url: c.url, cap: c.cap || LI.captured,
            newest: posts[0] || null, n: posts.length };
 }).sort((a, b) => (a.cap === b.cap ? a.name.localeCompare(b.name) : a.cap.localeCompare(b.cap)));
+
+/* Never captured = maximally out of date, so these lead batch 1. */
+PENDING.forEach(c => cos.unshift({ name: c.name, url: c.url, cap: "never", newest: null, n: 0 }));
 
 const batches = [];
 for (let i = 0; i < cos.length; i += BATCH) batches.push(cos.slice(i, i + BATCH));

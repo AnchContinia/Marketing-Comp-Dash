@@ -101,6 +101,11 @@ KEEP = collections.OrderedDict([
     ("Dime Scheduler",            "Dime Scheduler"),
     ("Dime Software",             "Dime Scheduler"),
     ("Acubiz",                    "Acubiz"),
+    # Added to the competitor register Oct 1, 2026, with no LinkedIn capture
+    # yet. ORDER is built from KEEP and the run exits on a label with no rows,
+    # so this line stays commented until the first Tabellae sweep lands - the
+    # page is already queued in tools/make-trawl-prompt.js -> PENDING.
+    # ("Tabellae",                  "Tabellae"),
     # Benchmarks: not competitors. They render with a Benchmark badge, stay out
     # of the engagement bar's scale and are excluded from content-gap / SOV.
     ("Stripe",                    "Stripe"),
