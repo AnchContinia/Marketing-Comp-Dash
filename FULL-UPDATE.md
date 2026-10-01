@@ -72,11 +72,27 @@ in this order, and only fall back to open web search at the end:**
 
 1. **Native feeds where they exist.** Some competitor sites expose RSS; use it —
    it is the only source that reliably shows *everything* they published, dated.
-   Known working (Sep 2026): `https://www.stampli.com/feed/`,
+   Known working (re-checked Oct 1, 2026): `https://www.stampli.com/feed/`,
    `https://www.dooap.com/blog/rss.xml`. Medius, Tipalti, Rillion and Equisys
    have **no** feed at the standard paths — do not waste time guessing; use 2–3.
    When you find a new working feed, **add it to the table below** so the next
    run has it.
+
+   **A feed that answers 403 is not a dead feed.** Stampli's returns 403 to a
+   bare `curl` and 200 with a browser `User-Agent` — it was written off as dead
+   on the 403 alone and nearly deleted from this table while it was still
+   publishing (newest item Sep 30, 2026). Fetch every feed as a browser before
+   calling it gone:
+
+   ```bash
+   curl -sL -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 \
+   (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36' "<feed url>" | head -c 200
+   ```
+
+   The opposite trap is the same check read the other way: `tipalti.com/blog/feed/`,
+   `rillion.com/feed/` and `equisys.com/news/feed` all answer **200 with HTML**,
+   not RSS. A status code alone decides nothing — read the first bytes and
+   require `<rss` or `<feed`.
 2. **Google News RSS per company** — works for every competitor with zero setup
    and returns dated, linkable items:
    `https://news.google.com/rss/search?q="<Company name>"&hl=en&gl=US&ceid=US:en`
@@ -110,12 +126,12 @@ Monday scheduled task): the Cowork sandbox has no outbound network.
 
 | Card | Native feed | Newsroom / blog |
 |---|---|---|
-| Stampli | https://www.stampli.com/feed/ | https://www.stampli.com/blog/ |
+| Stampli | https://www.stampli.com/feed/ (403 without a browser UA) | https://www.stampli.com/blog/ |
 | Dooap | https://www.dooap.com/blog/rss.xml | https://www.dooap.com/blog |
-| Medius | — (none at /feed) | https://www.medius.com/resources/ |
-| Tipalti | — (500 at /feed) | https://tipalti.com/blog/ |
-| Rillion | — | https://www.rillion.com/news/ |
-| Zetadocs (Equisys) | — | https://www.equisys.com/news |
+| Medius | — (404 at /feed and /resources/feed) | https://www.medius.com/resources/ |
+| Tipalti | — (500 at /feed; /blog/feed/ is 200 **HTML**) | https://tipalti.com/blog/ |
+| Rillion | — (/feed/ is 200 **HTML**, not RSS) | https://www.rillion.com/news/ |
+| Zetadocs (Equisys) | — (/news/feed is 200 **HTML**) | https://www.equisys.com/news |
 | *(add rows as feeds are found)* | | |
 
 ### What to check per competitor

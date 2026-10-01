@@ -44,7 +44,7 @@
   opacity: 0;
   /* the one transition in the file: the rings fade up once they are placed,
      so the stage never shows a bare dark box with the faces mid-layout */
-  transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+  transition: opacity var(--motion-duration-moderate) var(--motion-ease-out);
 }
 .mlpc.is-lit .mlpc-field { opacity: 1 }
 

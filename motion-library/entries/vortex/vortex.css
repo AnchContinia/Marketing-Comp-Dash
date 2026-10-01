@@ -39,7 +39,7 @@
   /* the one transition in the file, and it is a real one: the field fades up
      once there is something on it, so the stage never shows a bare dark box
      for the frame between mounting and the first paint */
-  transition: opacity var(--motion-duration-slow) var(--motion-ease-out);
+  transition: opacity var(--motion-duration-moderate) var(--motion-ease-out);
 }
 .mlvx.is-lit .mlvx-canvas { opacity: 1 }
 
