@@ -215,7 +215,7 @@ table re-ranks. (Channels with no stats yet sort to the bottom at 0.)
 
 The local folder `~/Desktop/Claude-Marketing-dashboard` is a git working copy of
 `AnchContinia/Marketing-Comp-Dash` (HTTPS remote, token in the macOS keychain).
-Claude writes and commits; **you run the push** (see step 4 for why).
+Claude writes and commits; **you run the push** (see step 5 for why).
 
 1. Claude writes the new snapshot into `youtube-data.js`.
 2. **Stamp the date.** Set `DASHBOARD_UPDATED` in **`dashboard.js`** (near the
@@ -224,11 +224,26 @@ Claude writes and commits; **you run the push** (see step 4 for why).
    date stamp on the page consistent. Do this on **every** refresh — YouTube *and*
    News. (It used to live in `index.html`; it does not any more.) If another
    refresh already ran today, it is already correct — leave it alone.
-3. Claude commits the changed files:
-   `git add youtube-data.js dashboard.js && git commit -m "..."`.
+3. **The three steps that carry the data to a browser.** None of these are
+   optional, and all three have now been skipped on three separate runs
+   (Sep 23, Oct 1 YouTube, Oct 1 Tabellae) — each time the commit looked
+   finished and the live page did not change:
+
+   - **Bump `youtube-data.js?v=` on `video.html`.** It carries its own value,
+     separate from the page-wide one. Without the bump a returning visitor is
+     served the cached file and reads last month's numbers under today's
+     "Updated …" stamp — the one failure that is worse than not refreshing.
+   - **Keep a dated copy of the outgoing file**: `cp youtube-data.js
+     "Assets/youtube-data_<Mon D>.js"` **before** the new snapshot goes in.
+   - **Re-export the archive CSVs**: `node tools/export-archive-csv.js`.
+     `archive-youtube-channels.csv` gains a row per channel per snapshot, so a
+     new channel or a new snapshot leaves it stale until this runs.
+
+4. Claude commits the changed files:
+   `git add youtube-data.js dashboard.js video.html archive-*.csv "Assets/youtube-data_*.js" && git commit -m "..."`.
    (The `.gitignore` keeps local-only files — the `.indd`, images, MCP links,
    backups — out of the commit automatically.)
-4. **You push.** Claude's shell on this Mac runs in an isolated Linux sandbox that
+5. **You push.** Claude's shell on this Mac runs in an isolated Linux sandbox that
    has no `credential-osxkeychain`, so the GitHub token in the macOS keychain is
    out of reach and `git push` fails with
    `could not read Username for 'https://github.com'`. Run it yourself:
@@ -238,7 +253,7 @@ Claude writes and commits; **you run the push** (see step 4 for why).
    ```
 
    GitHub Pages updates the live dashboard within a minute.
-5. **If git then complains about `index.lock` / `HEAD.lock`:** a failed push from
+6. **If git then complains about `index.lock` / `HEAD.lock`:** a failed push from
    the sandbox can leave lock files behind that it is not allowed to delete.
    `rm -f .git/index.lock .git/HEAD.lock .git/objects/maintenance.lock` clears them.
 
