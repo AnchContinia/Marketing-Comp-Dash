@@ -29,10 +29,10 @@ window.YT_DATA = {
 
   channels: [
     { name: "Medius",             handle: "@mediusapautomation", totalViews: "5.1M total views",  socialBlade: "https://socialblade.com/youtube/handle/mediusapautomation", ours: false },
-    { name: "Stampli",            handle: "@stampli",            totalViews: "1.02M total views",   socialBlade: "https://socialblade.com/youtube/handle/stampli",            ours: false },
-    { name: "Yooz",               handle: "@why_yooz",           totalViews: "152K total views",   socialBlade: "https://socialblade.com/youtube/handle/why_yooz",           ours: false },
+    { name: "Stampli",            handle: "@stampli",            totalViews: "1.03M total views",   socialBlade: "https://socialblade.com/youtube/handle/stampli",            ours: false },
+    { name: "Yooz",               handle: "@why_yooz",           totalViews: "153K total views",   socialBlade: "https://socialblade.com/youtube/handle/why_yooz",           ours: false },
     { name: "Tipalti",            handle: "@tipaltivideos",      totalViews: "3.02M total views",  socialBlade: "https://socialblade.com/youtube/handle/tipaltivideos",      ours: false },
-    { name: "Continia",           handle: "@continiasoftware",   totalViews: "536K total views",   socialBlade: "https://socialblade.com/youtube/handle/continiasoftware",   ours: true  },
+    { name: "Continia",           handle: "@continiasoftware",   totalViews: "539K total views",   socialBlade: "https://socialblade.com/youtube/handle/continiasoftware",   ours: true  },
     { name: "Equisys (Zetadocs)", handle: "@equisysplc",         totalViews: "42K total views",    socialBlade: "https://socialblade.com/youtube/handle/equisysplc",         ours: false },
     { name: "Dooap",              handle: "@dooap",              totalViews: "147K total views",   socialBlade: "https://socialblade.com/youtube/handle/dooap",              ours: false },
 
@@ -44,19 +44,19 @@ window.YT_DATA = {
     { name: "ExFlow (Truvio)",     handle: "SignUp Software",      totalViews: "145K total views",  socialBlade: "https://socialblade.com/youtube/channel/UCcRBDOXYUHYZ18mJzVwptYg", ours: false },
     { name: "AvidXchange",         handle: "@avidxchange",         totalViews: "10.8M total views",   socialBlade: "https://socialblade.com/youtube/channel/UCyUdf0l5aenkbP6Rjbm1boA", ours: false },
     { name: "Compleat",            handle: "@compleatp2p",         totalViews: "100K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCBHrVWn7hW3bimt1RIHVBJg", ours: false },
-    { name: "Tungsten Automation", handle: "@tungstenautomation",  totalViews: "896K total views",  socialBlade: "https://socialblade.com/youtube/channel/UCLXjytmoPLmzMT9-jRK9eMw", ours: false },
+    { name: "Tungsten Automation", handle: "@tungstenautomation",  totalViews: "898K total views",  socialBlade: "https://socialblade.com/youtube/channel/UCLXjytmoPLmzMT9-jRK9eMw", ours: false },
     { name: "onPhase",             handle: "@onphase",             totalViews: "1K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCfZ5vZy9s3WC0mcAhGy-6Pg", ours: false },
     { name: "Dime Scheduler",      handle: "Dime Software",        totalViews: "26K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCYD4LGox7SJLL7r8gmjulNA", ours: false },
-    { name: "Qvalia",              handle: "Qvalia",               totalViews: "789 total views",   socialBlade: "https://socialblade.com/youtube/channel/UC1x8GlYfNAh4jjp3mquVAvw", ours: false },
+    { name: "Qvalia",              handle: "Qvalia",               totalViews: "791 total views",   socialBlade: "https://socialblade.com/youtube/channel/UC1x8GlYfNAh4jjp3mquVAvw", ours: false },
     { name: "Acubiz",              handle: "@acubiztv",            totalViews: "4.8K total views",  socialBlade: "https://socialblade.com/youtube/channel/UC69VeuWKBJRLmON3deGjwdw", ours: false },
-    { name: "B2Brouter",           handle: "@b2brouter",           totalViews: "1.22M total views",  socialBlade: "https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ", ours: false },
+    { name: "B2Brouter",           handle: "@b2brouter",           totalViews: "1.23M total views",  socialBlade: "https://socialblade.com/youtube/channel/UChJ6FQX35UJ5CA54wojtaiQ", ours: false },
     /* Added Sep 10, 2026 with the six new 1:1 solution rivals; measured on Social
        Blade the same day, so pending is gone and they render in the table. */
-    { name: "Pleo",                handle: "@Pleo",                totalViews: "43K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCQQitvQIlEgIxNyLlOgilXQ", ours: false },
-    { name: "Payhawk",             handle: "@payhawk_io",          totalViews: "584K total views",  socialBlade: "https://socialblade.com/youtube/handle/payhawk_io",              ours: false },
+    { name: "Pleo",                handle: "@Pleo",                totalViews: "44K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCQQitvQIlEgIxNyLlOgilXQ", ours: false },
+    { name: "Payhawk",             handle: "@payhawk_io",          totalViews: "585K total views",  socialBlade: "https://socialblade.com/youtube/handle/payhawk_io",              ours: false },
     { name: "Rydoo",               handle: "@rydoo",               totalViews: "1.1M total views",  socialBlade: "https://socialblade.com/youtube/channel/UCTZYj7vm_ZcsGFL18jWHt_A", ours: false },
     { name: "Expensify",           handle: "@Expensify",           totalViews: "440K total views",  socialBlade: "https://socialblade.com/youtube/channel/UC6D-zsQ1hs3muJRpdpPfKJw", ours: false },
-    { name: "Zoho Expense",        handle: "@ZohoExpense",         totalViews: "50.5M total views",   socialBlade: "https://socialblade.com/youtube/channel/UCbqmJgmRfq0ezuVVNvtEwKg", ours: false },
+    { name: "Zoho Expense",        handle: "@ZohoExpense",         totalViews: "50.6M total views",   socialBlade: "https://socialblade.com/youtube/channel/UCbqmJgmRfq0ezuVVNvtEwKg", ours: false },
     { name: "DocuWare",            handle: "@docuware",            totalViews: "1.41M total views",  socialBlade: "https://socialblade.com/youtube/user/docuware",                  ours: false }
   ],
 
@@ -259,6 +259,34 @@ window.YT_DATA = {
         "Expensify":          { subs: "3.88K", monthlyViews:  1300,   monthlyViewsLabel: "+1.3K", monthlySubs: "0",   earnings: "$0-$5" },
         "Zoho Expense":       { subs: "4.86K", monthlyViews:  501000, monthlyViewsLabel: "+501K", monthlySubs: "+20", earnings: "$125-$2K" },
         "DocuWare":           { subs: "16.9K", monthlyViews:  4800,   monthlyViewsLabel: "+4.8K", monthlySubs: "0",   earnings: "$1-$19" }
+      }
+    },
+    {
+      date: "2026-10-01",
+      stats: {
+        "Medius":             { subs: "362",  monthlyViews:  19000,  monthlyViewsLabel: "+19K",  monthlySubs: "+13", earnings: "$5-$74" },
+        "Stampli":            { subs: "1.78K", monthlyViews:  39000,  monthlyViewsLabel: "+39K",  monthlySubs: "0",   earnings: "$10-$158" },
+        "Yooz":               { subs: "208",  monthlyViews:  778,    monthlyViewsLabel: "+778",  monthlySubs: "+2",  earnings: "$0-$3" },
+        "Tipalti":            { subs: "3.29K", monthlyViews:  3300,   monthlyViewsLabel: "+3.3K", monthlySubs: "+10", earnings: "$1-$13" },
+        "Continia":           { subs: "1.52K", monthlyViews:  8900,   monthlyViewsLabel: "+8.9K", monthlySubs: "+20", earnings: "$2-$35" },
+        "Equisys (Zetadocs)": { subs: "131",  monthlyViews:  205,    monthlyViewsLabel: "+205",  monthlySubs: "0",   earnings: "$0-$1" },
+        "Dooap":              { subs: "63",   monthlyViews:  189,    monthlyViewsLabel: "+189",  monthlySubs: "+1",  earnings: "$0-$1" },
+        "AMC Banking":        { subs: "134",  monthlyViews:  315,    monthlyViewsLabel: "+315",  monthlySubs: "+1",  earnings: "$0-$1" },
+        "ExFlow (Truvio)":    { subs: "1.53K", monthlyViews:  752,    monthlyViewsLabel: "+752",  monthlySubs: "+10", earnings: "$0-$3" },
+        "AvidXchange":        { subs: "3.47K", monthlyViews:  168,    monthlyViewsLabel: "+168",  monthlySubs: "-10", earnings: "$0-$1" },
+        "Compleat":           { subs: "178",  monthlyViews:  181,    monthlyViewsLabel: "+181",  monthlySubs: "0",   earnings: "$0-$1" },
+        "Tungsten Automation":{ subs: "3.62K", monthlyViews:  9400,   monthlyViewsLabel: "+9.4K", monthlySubs: "+20", earnings: "$2-$38" },
+        "onPhase":            { subs: "11",   monthlyViews:  44,     monthlyViewsLabel: "+44",   monthlySubs: "0",   earnings: "$0" },
+        "Dime Scheduler":     { subs: "85",   monthlyViews:  219,    monthlyViewsLabel: "+219",  monthlySubs: "0",   earnings: "$0-$1" },
+        "Qvalia":             { subs: "19",   monthlyViews:  5,      monthlyViewsLabel: "+5",    monthlySubs: "0",   earnings: "$0" },
+        "Acubiz":             { subs: "66",   monthlyViews:  36,     monthlyViewsLabel: "+36",   monthlySubs: "0",   earnings: "$0" },
+        "B2Brouter":          { subs: "1.5K", monthlyViews:  16000,  monthlyViewsLabel: "+16K",  monthlySubs: "+10", earnings: "$4-$63" },
+        "Pleo":               { subs: "1.25K", monthlyViews: -33000,  monthlyViewsLabel: "-33K",  monthlySubs: "+10", earnings: "$0", flag: "correction" },
+        "Payhawk":            { subs: "426",  monthlyViews:  1900,   monthlyViewsLabel: "+1.9K", monthlySubs: "+9",  earnings: "$0-$8" },
+        "Rydoo":              { subs: "676",  monthlyViews:  1300,   monthlyViewsLabel: "+1.3K", monthlySubs: "+6",  earnings: "$0-$5" },
+        "Expensify":          { subs: "3.88K", monthlyViews:  1500,   monthlyViewsLabel: "+1.5K", monthlySubs: "0",   earnings: "$0-$6" },
+        "Zoho Expense":       { subs: "4.87K", monthlyViews:  436000, monthlyViewsLabel: "+436K", monthlySubs: "+20", earnings: "$109-$1.7K" },
+        "DocuWare":           { subs: "16.9K", monthlyViews:  5000,   monthlyViewsLabel: "+5K",   monthlySubs: "0",   earnings: "$1-$20" }
       }
     }
   ],
@@ -505,6 +533,32 @@ window.YT_DATA = {
           { title: "Why Expense Management?",                                                        views: 5877, vph: "0.24", outlier: "11.06x" },
           { title: "Create expenses – Expense Management",                                      views: 5752, vph: "0.24", outlier: "6.03x"  },
           { title: "Continia Document Capture 2025 | Full Demo & Invoice Automation Overview",       views: 4751, vph: "0.37", outlier: "13.2x"  }
+        ]
+      },
+      {
+        date: "2026-10-01",
+        defaultPeriod: "28D",
+        /* Long-form vs Shorts per period, from vidIQ longShortStats (uploads + views). */
+        periods: {
+          "7D":  { longForm: { uploads: 0,  views: 0     }, shorts: { uploads: 0,  views: 0    } },
+          "28D": { longForm: { uploads: 0,  views: 0     }, shorts: { uploads: 0,  views: 0    } },
+          "3M":  { longForm: { uploads: 0,  views: 0     }, shorts: { uploads: 0,  views: 0    } },
+          "1Y":  { longForm: { uploads: 38, views: 14303 }, shorts: { uploads: 15, views: 1927 } },
+          "YTD": { longForm: { uploads: 22, views: 5134  }, shorts: { uploads: 15, views: 1927 } }
+        },
+        recent: [
+          { title: "How finance teams are saving thousands of hours #finance #automation #shorts",   views: 71,  outlier: null, age: "4 months ago" },
+          { title: "How to Manage Credit Card Transactions in Expense Management",                   views: 124, outlier: null, age: "4 months ago" },
+          { title: "Stop Manual Receipts | Automate Invoice & Expense Processing",                   views: 153, outlier: null, age: "5 months ago" },
+          { title: "Expense Management — Smarter expense management — What's new in 2026 R1 (NA)", views: 74,  outlier: null, age: "5 months ago" },
+          { title: "Document Output — Automated Document sending — What's new in 2026 R1 (NA)",    views: 54,  outlier: null, age: "5 months ago" }
+        ],
+        top: [
+          { title: "Mobile App – Expense Management",                                          views: 6460, vph: "0.27", outlier: "7.28x"  },
+          { title: "Document Output – Solution demo intro (2023)",                             views: 6032, vph: "0.24", outlier: null     },
+          { title: "Why Expense Management?",                                                        views: 5905, vph: "0.24", outlier: "11.04x" },
+          { title: "Create expenses – Expense Management",                                      views: 5779, vph: "0.24", outlier: "5.99x"  },
+          { title: "Continia Document Capture 2025 | Full Demo & Invoice Automation Overview",       views: 4801, vph: "0.37", outlier: "13.34x" }
         ]
       }
     ]
