@@ -169,12 +169,12 @@ const data = [
   web:"https://tabellae.com/da/",
   cat:"Document output + input management \u00b7 services around Lasernet \u00b7 BC + F&O",
   head:"The implementation partner bought the product \u2014 Continia\u2019s nearest output rival is now owned by a Danish consultancy that both builds and installs it, on Continia\u2019s home ground.",
-  rel:"Jul 23, 2026: Tabellae BidCo \u2014 Tabellae HoldCo with Mission Trail Partners and Grenspecialisten \u2014 declared its SEK 30/share cash offer for Lasernet Group (ex-Formpipe) unconditional at ~92% of shares and votes, and moved to compulsory redemption. Jul 24, 2026: Lasernet formally joined Tabellae; the post states \u201cThe Lasernet products, team and support remain unchanged\u201d and promises continued investment in the platform, with Lennart Garbarsch (Tabellae MD) and Sophie Reinius (acting CEO/CFO, Lasernet Group) named. Nasdaq Stockholm delisting followed, last trading day Aug 24, 2026. The roadmap it now owns is dated: Lasernet\u2019s Feb 12, 2026 release plans the market launch of a new Business Central product offering for Q4 2026 \u2014 the same quarter as BC 2026 wave 2.",
+  rel:"Jul 23, 2026: Tabellae BidCo \u2014 Tabellae HoldCo with Mission Trail Partners and Grenspecialisten \u2014 declared its SEK 30/share cash offer for Lasernet Group (ex-Formpipe) unconditional at ~92% of shares and votes, and moved to compulsory redemption. Jul 24, 2026: Lasernet formally joined Tabellae; the post states \u201cThe Lasernet products, team and support remain unchanged\u201d and promises continued investment in the platform, with Lennart Garbarsch (Tabellae MD) and Sophie Reinius (acting CEO/CFO, Lasernet Group) named. Nasdaq Stockholm delisting followed, last trading day Aug 24, 2026. The roadmap it now owns is dated: Lasernet\u2019s Feb 12, 2026 release plans the market launch of a new Business Central product offering for Q4 2026 \u2014 the same quarter as BC 2026 wave 2. Oct 1, 2026: the acquirer takes the acquired company\u2019s name \u2014 \u201cTabellae skifter navn til Lasernet\u201d on its own LinkedIn page. Neither tabellae.com nor the Lasernet newsroom carried it the same day, so the post is the source until the sites follow. First LinkedIn capture (Oct 1, 50 posts back to Jan 6, 2026): 42 own posts and 8 reposts, image-led (29 image, 9 video, 2 carousel, 2 event), best post 99 reactions \u2014 an active page, not a dormant one.",
   str:"A 13-year-old Danish output-management consultancy that went from 30 to 70 people and four to six countries in five years, then bought the software it had been implementing. Services first \u2014 requirements mapping, document design, Tabellae Academy training and 24/5 application management \u2014 now with the vendor\u2019s margin behind it.",
   pos:"The preferred Output Management implementation partner for leading ERP vendors \u2014 ERP-agnostic specialists rather than a single-product house (Dynamics 365 BC and F&O, SAP, Infor M3, Oracle, IFS).",
   ai:"No AI claim of its own on the site \u2014 the AI in this stack is Lasernet\u2019s Azure AI data mapping. The only one of the high-proximity names making no AI argument at all.",
   sc:"600+ implementations across 30+ countries \u00b7 70+ specialists (the About page also claims 90 experts) \u00b7 7 offices: DK (Copenhagen, Vejle), SE, NO, DE, PT, US, PH",
-  s:[["Tabellae (DA)","https://tabellae.com/da/"],["Transaction completed (Jul 23, 2026)","https://tabellae.com/articles/tabellae-and-lasernet-group-transaction-completed/"],["Lasernet joins Tabellae (Jul 24, 2026)","https://www.lasernetgroup.com/news-blogs/lasernet-joins-tabellae"],["About Tabellae","https://tabellae.com/en/about-us/"],["Lasernet partner page","https://www.lasernetgroup.com/partners/tabellae/"],["BC offering planned Q4 2026","https://news.cision.com/lasernet-group-ab--publ-/r/lasernet-group-hits-the-ground-running-in-2026,c4306319"]]},
+  s:[["Tabellae (DA)","https://tabellae.com/da/"],["Transaction completed (Jul 23, 2026)","https://tabellae.com/articles/tabellae-and-lasernet-group-transaction-completed/"],["Lasernet joins Tabellae (Jul 24, 2026)","https://www.lasernetgroup.com/news-blogs/lasernet-joins-tabellae"],["About Tabellae","https://tabellae.com/en/about-us/"],["Lasernet partner page","https://www.lasernetgroup.com/partners/tabellae/"],["Rename to Lasernet (LinkedIn, Oct 1, 2026)","https://www.linkedin.com/feed/update/urn:li:activity:7511401383947071489/"],["BC offering planned Q4 2026","https://news.cision.com/lasernet-group-ab--publ-/r/lasernet-group-hits-the-ground-running-in-2026,c4306319"]]},
 
  {n:"AMC Banking", o:"AMC-Consult · Frederiksberg, DK", stance:"steady", sl:"BC-native · banking", prox:"High",
   web:"https://www.amcbanking.com/",
@@ -344,6 +344,7 @@ const BC_NATIVE_COUNT   = 11;   // BC-native players (incl. Microsoft's Expense 
 const MNA_COUNT         = 10;   // M&A / capital moves 2025-26 (acquisitions + funding + the Medius sale process and the Visma Acubiz/Dicom merger)
 
 const events = [
+ {w:"Oct 1, 2026", d:"2026-10-01", c:"cons", t:"<b>Tabellae</b> announces on its own LinkedIn page that it is taking the name of the company it bought: \u201cTabellae skifter navn til Lasernet\u201d. Ten weeks after the take-private, the Danish implementation partner and the output engine become one brand \u2014 the websites had not followed on the day."},
  {w:"Sept 30, 2026", d:"2026-09-30", c:"ai", t:"<b>Tungsten Automation</b> launches <b>InvoiceAgility+</b> — an agentic invoice-to-pay engine that pulls invoices from email and portals, turns them into AI-ready data and drives matching, coding, validation, approvals and payment orchestration on policy. The ex-Kofax AP line moves from capture to the whole run, three weeks after its IDP Gartner badge."},
  {w:"Sept 30, 2026", d:"2026-09-30", c:"steady", t:"<b>Stampli</b> adds <b>Amazon Business punchout</b> to Stampli Procurement — requisitioners shop in Amazon Business from inside Stampli and the cart comes back with SKUs, quantities, tax and shipping prefilled, with approvals, budgets and PO-to-invoice matching untouched. Meeting staff where they already buy rather than forcing them into the procurement form."},
  {w:"Sept 30, 2026", d:"2026-09-30", c:"steady", t:"<b>Payhawk</b> opens a <b>Stockholm</b> office as its Nordic hub and a <b>Warsaw</b> office for Poland, taking it to 11 offices. The spend vendor sitting closest to Business Central is now putting people on Continia’s home ground."},
@@ -2379,7 +2380,7 @@ if(contentIdeasList){
      is a bare specifier, and the browser refuses to resolve it without an
      import map. Dropping it cost a release - the card rendered empty. */
   var BASE=(segs.pop()||"")==="motion-library"?"../":"./";
-  var MLV = "20261001k";        /* same cache-busting job the <script> ?v= does */
+  var MLV = "20261001l";        /* same cache-busting job the <script> ?v= does */
   P.filter(function(m){ return m.kind==="component"; }).forEach(function(m){
     import(BASE+"motion-library/entries/"+m.slug+"/"+m.slug+".js?v="+MLV).then(function(mod){
       if(mod.mountAll) mod.mountAll(grid);
@@ -3501,25 +3502,25 @@ if(contentIdeasList){
    tiles, and the live tools (Event Calendar, Quick SEO scan, image/PDF compress) -
    none of them hold captured data, so a stamp would be noise.
    Update the entry for every module a refresh touches, not just the global. */
-var DASHBOARD_UPDATED = "2026-10-01 15:49";
+var DASHBOARD_UPDATED = "2026-10-01 15:54";
 var MODULE_UPDATED = {
   /* index.html */
-  "news":            {at:"2026-10-01 15:49", src:"News sweep"},
-  "competitors":     {at:"2026-10-01 15:49", src:"News sweep"},
-  "content-gap":     {at:"2026-10-01 14:55", src:"LinkedIn trawl"},
+  "news":            {at:"2026-10-01 15:54", src:"News sweep"},
+  "competitors":     {at:"2026-10-01 15:54", src:"News sweep"},
+  "content-gap":     {at:"2026-10-01 15:54", src:"LinkedIn trawl"},
   "battlecards":     {at:"2026-07-01 15:27", src:"Battlecard seed"},
   "appsource":       {at:"2026-07-01 10:55", src:"AppSource review pass"},
   "markets-map":     {at:"2026-06-30 11:38", src:"Market coverage pass"},
   "timeline":        {at:"2026-07-01 10:34", src:"E-invoicing mandate pass"},
   /* content.html */
   "insights":        {at:"2026-06-10 09:32", src:"Strategic readout"},
-  "events":          {at:"2026-10-01 15:49", src:"News sweep"},
+  "events":          {at:"2026-10-01 15:54", src:"News sweep"},
   "content-ideas":   {at:"2026-08-31 14:53", src:"Content idea pass"},
-  "linkedin-compare":{at:"2026-10-01 14:55", src:"LinkedIn trawl"},
+  "linkedin-compare":{at:"2026-10-01 15:54", src:"LinkedIn trawl"},
   "image-search":    {at:"2026-09-17 13:52", src:"LinkedIn image bank"},
   "newsletter-bank": {at:"2026-09-17 13:52", src:"Newsletter image bank"},
   /* video.html */
-  "youtube":         {at:"2026-10-01 14:39", src:"Social Blade snapshot"},
+  "youtube":         {at:"2026-10-01 15:54", src:"Social Blade snapshot"},
   "continia-uploads":{at:"2026-10-01 14:39", src:"vidIQ upload pass"},
   "video-ideas-long":{at:"2026-09-17 13:52", src:"Video idea pass"},
   "video-ideas-short":{at:"2026-09-17 13:52", src:"Video idea pass"},

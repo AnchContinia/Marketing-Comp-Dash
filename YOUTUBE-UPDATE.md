@@ -57,6 +57,7 @@ SB builds history. Until captured they render as "—" in the live table.
 | 21 | Expensify | https://socialblade.com/youtube/channel/UC6D-zsQ1hs3muJRpdpPfKJw | |
 | 22 | Zoho Expense | https://socialblade.com/youtube/channel/UCbqmJgmRfq0ezuVVNvtEwKg | |
 | 23 | DocuWare | https://socialblade.com/youtube/user/docuware | |
+| 24 | Tabellae | https://socialblade.com/youtube/channel/UCs4OijX14ZlIsXs_UtrFEgQ | |
 
 > **Channels 18-23 are pending (added Sep 10, 2026).** They came in with the six
 > new 1:1 solution rivals (Pleo, Payhawk, Rydoo, Expensify, Zoho Expense,

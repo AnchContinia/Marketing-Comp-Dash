@@ -57,7 +57,8 @@ window.YT_DATA = {
     { name: "Rydoo",               handle: "@rydoo",               totalViews: "1.1M total views",  socialBlade: "https://socialblade.com/youtube/channel/UCTZYj7vm_ZcsGFL18jWHt_A", ours: false },
     { name: "Expensify",           handle: "@Expensify",           totalViews: "440K total views",  socialBlade: "https://socialblade.com/youtube/channel/UC6D-zsQ1hs3muJRpdpPfKJw", ours: false },
     { name: "Zoho Expense",        handle: "@ZohoExpense",         totalViews: "50.6M total views",   socialBlade: "https://socialblade.com/youtube/channel/UCbqmJgmRfq0ezuVVNvtEwKg", ours: false },
-    { name: "DocuWare",            handle: "@docuware",            totalViews: "1.41M total views",  socialBlade: "https://socialblade.com/youtube/user/docuware",                  ours: false }
+    { name: "DocuWare",            handle: "@docuware",            totalViews: "1.41M total views",  socialBlade: "https://socialblade.com/youtube/user/docuware",                  ours: false },
+    { name: "Tabellae",            handle: "@tabellae",            totalViews: "26K total views",   socialBlade: "https://socialblade.com/youtube/channel/UCs4OijX14ZlIsXs_UtrFEgQ", ours: false }
   ],
 
   snapshots: [
@@ -286,7 +287,8 @@ window.YT_DATA = {
         "Rydoo":              { subs: "676",  monthlyViews:  1300,   monthlyViewsLabel: "+1.3K", monthlySubs: "+6",  earnings: "$0-$5" },
         "Expensify":          { subs: "3.88K", monthlyViews:  1500,   monthlyViewsLabel: "+1.5K", monthlySubs: "0",   earnings: "$0-$6" },
         "Zoho Expense":       { subs: "4.87K", monthlyViews:  436000, monthlyViewsLabel: "+436K", monthlySubs: "+20", earnings: "$109-$1.7K" },
-        "DocuWare":           { subs: "16.9K", monthlyViews:  5000,   monthlyViewsLabel: "+5K",   monthlySubs: "0",   earnings: "$1-$20" }
+        "DocuWare":           { subs: "16.9K", monthlyViews:  5000,   monthlyViewsLabel: "+5K",   monthlySubs: "0",   earnings: "$1-$20" },
+        "Tabellae":           { subs: "72",   monthlyViews:  206,    monthlyViewsLabel: "+206",  monthlySubs: "0",   earnings: "$0-$1" }
       }
     }
   ],
