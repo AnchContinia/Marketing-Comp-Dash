@@ -29,9 +29,10 @@ const LI = global.window.LI_DATA;
    never ask for its own first capture - that chicken-and-egg left Tabellae
    invisible in the Content-Gap Analysis the day it was added. A PENDING row
    joins the first batch with no stop marker (take 50). Remove it once the
-   capture has landed and the label is mapped in KEEP. */
+   capture has landed and the label is mapped in KEEP - leaving it in lists the
+   company twice, once as "never" and once from its real row. */
 const PENDING = [
-  { name: "Tabellae", url: "https://www.linkedin.com/company/tabellae/posts/" }
+  /* { name: "Example", url: "https://www.linkedin.com/company/example/posts/" } */
 ];
 
 const cos = LI.companies.map(c => {

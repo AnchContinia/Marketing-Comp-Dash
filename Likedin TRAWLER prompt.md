@@ -67,52 +67,52 @@ are ordered by how out of date the data is — batch 1 matters most. Name each f
 
 | Company (use this label verbatim) | Page | Stop marker — newest post on file |
 |---|---|---|
-| **Tabellae**<br><sub>last captured never</sub> | https://www.linkedin.com/company/tabellae/posts/ | *(nothing on file — take 50)* |
 | **Acubiz**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/acubiz/posts/ | 2026-09-22 · I fredags trak hele Acubiz og vores svenske <br>https://www.linkedin.com/feed/update/urn:li:activity:7508057571363315714/ |
 | **AMC Banking**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/amc-banking/posts/ | 2026-09-29 · Your CFO probably doesn’t care about ISO 200<br>https://www.linkedin.com/feed/update/urn:li:activity:7510614735957041153/ |
 | **AvidXchange**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/avidxchange-inc-/posts/ | 2026-09-29 · Time is running out to nominate a Change Mak<br>https://www.linkedin.com/feed/update/urn:li:activity:7510700063950659584/ |
 | **B2Brouter**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/b2brouter/posts/ | 2026-09-30 · La adaptación afecta a cómo el software gene<br>https://www.linkedin.com/feed/update/urn:li:activity:7510987307655753728/ |
 | **Compleat**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/compleat-software-ltd/posts/ | 2026-09-30 · Growth gets blamed for a lot of things that <br>https://www.linkedin.com/feed/update/urn:li:activity:7511002948907401218/ |
+| **Continia Software**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/continia-software-a-s/posts/ | 2026-09-30 · E-invoicing is quickly becoming the new stan<br>https://www.linkedin.com/feed/update/urn:li:activity:7511028400283832320/ |
 
 ### Batch 2 of 6
 
 | Company (use this label verbatim) | Page | Stop marker — newest post on file |
 |---|---|---|
-| **Continia Software**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/continia-software-a-s/posts/ | 2026-09-30 · E-invoicing is quickly becoming the new stan<br>https://www.linkedin.com/feed/update/urn:li:activity:7511028400283832320/ |
 | **Dime Scheduler**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/dimesoftware/posts/ | 2026-09-16 · Big changes are coming to Dime.Scheduler, an<br>https://www.linkedin.com/feed/update/urn:li:activity:7505901427463155712/ |
 | **DocuWare**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/docuware-corporation/posts/ | 2026-09-30 · Yesterday, we celebrated the launch of the n<br>https://www.linkedin.com/feed/update/urn:li:activity:7511053455113732097/ |
 | **Dooap**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/dooap/posts/ | 2026-09-30 · We're proud to see our very own Ina Myllykos<br>https://www.linkedin.com/feed/update/urn:li:activity:7511196054868979712/ |
 | **Equisys**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/equisys/posts/ | 2026-09-30 · Missed our "Ask us anything" webinars? No wo<br>https://www.linkedin.com/feed/update/urn:li:activity:7511044418188107776/ |
 | **Expensify**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/expensify/posts/ | 2026-09-30 · One of the annoying things about month-end i<br>https://www.linkedin.com/feed/update/urn:li:activity:7511204087049203714/ |
+| **Fidesic**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/fidesic/posts/ | 2026-09-30 · When it comes to Multi-location and Multi-en<br>https://www.linkedin.com/feed/update/urn:li:activity:7511103202709209088/ |
 
 ### Batch 3 of 6
 
 | Company (use this label verbatim) | Page | Stop marker — newest post on file |
 |---|---|---|
-| **Fidesic**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/fidesic/posts/ | 2026-09-30 · When it comes to Multi-location and Multi-en<br>https://www.linkedin.com/feed/update/urn:li:activity:7511103202709209088/ |
 | **Incedo**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/incedo-inc/posts/ | 2026-09-30 · Incedo Navigator brings AI agents, operation<br>https://www.linkedin.com/feed/update/urn:li:activity:7511065061243715584/ |
 | **Lasernet**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/showcase/lasernet-formpipe/posts/ | 2026-09-30 · How do you stop the PDF and XML in a hybrid <br>https://www.linkedin.com/feed/update/urn:li:activity:7510997395703476225/ |
 | **Medius**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/medius/posts/ | 2026-09-30 · Adopting agentic AI isn't the tough part any<br>https://www.linkedin.com/feed/update/urn:li:activity:7511149641762185217/ |
 | **MineralTree**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/mineraltree-inc-/posts/ | 2026-09-29 · Supplier payments may seem like a routine pa<br>https://www.linkedin.com/feed/update/urn:li:activity:7510711386830770176/ |
 | **onPhase**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/onphase/posts/ | 2026-09-30 · We're headed to Nashville for Community Summ<br>https://www.linkedin.com/feed/update/urn:li:activity:7511059531662094337/ |
+| **Pagero**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/pagero/posts/ | 2026-10-01 · Germany has announced key developments in it<br>https://www.linkedin.com/feed/update/urn:li:activity:7511323514369667072/ |
 
 ### Batch 4 of 6
 
 | Company (use this label verbatim) | Page | Stop marker — newest post on file |
 |---|---|---|
-| **Pagero**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/pagero/posts/ | 2026-10-01 · Germany has announced key developments in it<br>https://www.linkedin.com/feed/update/urn:li:activity:7511323514369667072/ |
 | **Payhawk**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/payhawk/posts/ | 2026-10-01 · A new office and a birthday, both celebrated<br>https://www.linkedin.com/feed/update/urn:li:activity:7511385529641316353/ |
 | **Pleo**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/pleo-company/posts/ | 2026-10-01 · “Who’s still missing a receipt?” used to mea<br>https://www.linkedin.com/feed/update/urn:li:activity:7511341991213907968/ |
 | **Qvalia**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/qvalia/posts/ | 2026-09-16 · We are glad to support the UAE Buyer's Guide<br>https://www.linkedin.com/feed/update/urn:li:activity:7505934833659961344/ |
 | **Rillion**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/rillion/posts/ | 2026-09-30 · Want to know what other finance teams are do<br>https://www.linkedin.com/feed/update/urn:li:activity:7511037140185735170/ |
 | **Rydoo**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/rydoo/posts/ | 2026-10-01 · We won Gold for AI that solves real problems<br>https://www.linkedin.com/feed/update/urn:li:activity:7511371653231067136/ |
+| **Stampli**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/stampli/posts/ | 2026-09-30 · Amazon Business Punchout is now available in<br>https://www.linkedin.com/feed/update/urn:li:activity:7511108842970140672/ |
 
 ### Batch 5 of 6
 
 | Company (use this label verbatim) | Page | Stop marker — newest post on file |
 |---|---|---|
-| **Stampli**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/stampli/posts/ | 2026-09-30 · Amazon Business Punchout is now available in<br>https://www.linkedin.com/feed/update/urn:li:activity:7511108842970140672/ |
 | **Stripe**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/stripe/posts/ | 2026-09-30 · We’re welcoming Parafin to Stripe. Together,<br>https://www.linkedin.com/feed/update/urn:li:activity:7511095253190246400/ |
+| **Tabellae**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/tabellae/posts/ | 2026-10-01 · Tabellae skifter navn til Lasernet.<br>https://www.linkedin.com/feed/update/urn:li:activity:7511401383947071489/ |
 | **Tipalti**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/tipalti/posts/ | 2026-09-30 · Tipalti has officially passed $100B in annua<br>https://www.linkedin.com/feed/update/urn:li:activity:7511121897837936640/ |
 | **Truvio**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/truvio-official/posts/ | 2026-10-01 · ...and we're live at Bella Sky in Copenhagen<br>https://www.linkedin.com/feed/update/urn:li:activity:7511352757266653185/ |
 | **Tungsten Automation**<br><sub>last captured 2026-10-01</sub> | https://www.linkedin.com/company/tungstenautomation/posts/ | 2026-10-01 · What I'm learning most from Andrew Ng and ou<br>https://www.linkedin.com/feed/update/urn:li:activity:7511343712761827328/ |

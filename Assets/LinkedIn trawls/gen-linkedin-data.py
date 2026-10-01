@@ -31,6 +31,7 @@ SOURCES = [
     ("linkedin_competitor_posts_18of31_SEP 17.csv",     "2026-09-17", "sweep2"),
     ("linkedin_competitor_trawl_2026-09-22.csv",       "2026-09-22", "sweep2"),
     ("linkedin_competitor_trawl_2026-10-01.csv",       "2026-10-01", "sweep2"),
+    ("tabellae_linkedin_trawl_2026-10-01.csv",         "2026-10-01", "sweep2"),
     # QUARANTINED - do not re-enable this file:
     #   ("linkedin_konkurrent_posts_16 sep.csv",       "2026-09-16", "sweep2"),
     # The Sep 16 competitor sweep is a broken capture. 635 of its 1398 rows
@@ -101,11 +102,10 @@ KEEP = collections.OrderedDict([
     ("Dime Scheduler",            "Dime Scheduler"),
     ("Dime Software",             "Dime Scheduler"),
     ("Acubiz",                    "Acubiz"),
-    # Added to the competitor register Oct 1, 2026, with no LinkedIn capture
-    # yet. ORDER is built from KEEP and the run exits on a label with no rows,
-    # so this line stays commented until the first Tabellae sweep lands - the
-    # page is already queued in tools/make-trawl-prompt.js -> PENDING.
-    # ("Tabellae",                  "Tabellae"),
+    # Added to the competitor register Oct 1, 2026; its own sweep landed the
+    # same day. The page is Tabellae DK; it announced a rename to Lasernet on
+    # Oct 1, so expect a future capture to come back under a new label.
+    ("Tabellae",                  "Tabellae"),
     # Benchmarks: not competitors. They render with a Benchmark badge, stay out
     # of the engagement bar's scale and are excluded from content-gap / SOV.
     ("Stripe",                    "Stripe"),
@@ -167,6 +167,11 @@ SELF_ALIAS = {
     "Pagero (Thomson Reuters)": {"Thomson Reuters Europe", "Thomson Reuters",
                                  "Thomson Reuters ONESOURCE"},
     "Lasernet (Formpipe)":      {"Lasernet"},
+    # The page posts as "Tabellae DK - ERP Document Output Management
+    # Specialists". Without this line all 50 of its posts came back Repost and
+    # its own 42 native posts vanished from the type mix.
+    "Tabellae":                 {"Tabellae DK - ERP Document Output "
+                                 "Management Specialists"},
 }
 
 # Pill vocabulary kept identical to every earlier capture so type-mix

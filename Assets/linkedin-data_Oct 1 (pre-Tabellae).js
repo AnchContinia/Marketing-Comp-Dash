@@ -11,7 +11,6 @@
      linkedin_competitor_posts_18of31_SEP 17.csv  (captured 2026-09-17, sweep2 dialect)
      linkedin_competitor_trawl_2026-09-22.csv  (captured 2026-09-22, sweep2 dialect)
      linkedin_competitor_trawl_2026-10-01.csv  (captured 2026-10-01, sweep2 dialect)
-     tabellae_linkedin_trawl_2026-10-01.csv  (captured 2026-10-01, sweep2 dialect)
    Some have a matching linkedin_competitor_summary_*.csv holding the same
    numbers pre-aggregated; those are kept only as a cross-check.
 
@@ -1488,59 +1487,6 @@ window.LI_DATA = {
       {t:"Vi er så begejstrede over, at byde Malene Drost Henriksen velkommen som vores nye management trainee fra Visma!", ty:"Image", r:121, c:8, rp:0, d:"2026-01-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7421869613908471808/"},
       {t:"Udgifter er en del af hverdagen.", ty:"Video", r:18, c:1, rp:1, d:"2026-01-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7420065733956771840/"},
       {t:"Er du også træt af at slæbe rundt på dine kvitteringer?", ty:"Document/carousel", r:23, c:0, rp:1, d:"2026-01-19", u:"https://www.linkedin.com/feed/update/urn:li:activity:7418925227096756225/"}
-    ]},
-
-    { name: "Tabellae", url: "https://www.linkedin.com/company/tabellae/posts/", posts: [
-      {t:"Tabellae skifter navn til Lasernet.", ty:"Video", r:23, c:2, rp:2, d:"2026-10-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7511401383947071489/"},
-      {t:"Attending Nordic Summit at Legoland?", ty:"Image", r:99, c:9, rp:7, d:"2026-09-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7507773707306659841/"},
-      {t:"Endnu et 10-års jubilæum hos Tabellae – Tillykke, Sanna Lundh!", ty:"Image", r:73, c:9, rp:1, d:"2026-09-16", u:"https://www.linkedin.com/feed/update/urn:li:activity:7505938705875025920/"},
-      {t:"I dag kan the Lasernet Wizard Nicky Vlad-Christensen fejre 10-års jubilæum hos Tabellae Men for 13 år siden startede han faktisk med Lasernet som blot en sideopgave, mens han var ansat hos en kunde - og han reagerede nogenlunde sådan her:", ty:"Image", r:93, c:4, rp:1, d:"2026-09-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7504162954246934528/"},
-      {t:"Emballageleverandører på D365 F&O får snart et konkret ZUGFeRD-behov: ROVEMA vælger Tabellae", ty:"Image", r:26, c:0, rp:4, d:"2026-09-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7503011643581186048/"},
-      {t:"Mød det nye, større salgsteam I august mødtes salgsteamene fra Tabellae og Lasernet i Danmark til vores første workshop, siden vi slog os sammen", ty:"Image", r:109, c:2, rp:4, d:"2026-09-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7500453985061892097/"},
-      {t:"Kun 8,5% af store projekter rammer både budget og tidsplan. Vil du sikre, at jeres ERP-projekt bliver en del af den positive statistik?", ty:"Document/carousel", r:33, c:0, rp:8, d:"2026-08-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7495413797172715520/"},
-      {t:"1 land er overskueligt. 5 er ikke", ty:"Video", r:17, c:0, rp:4, d:"2026-08-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7493606559021764608/"},
-      {t:"Tabellae is pleased to share that the transaction regarding Lasernet Group (formerly known as Formpipe) has now been completed with full effect the 10th of August 2026.", ty:"Image", r:303, c:89, rp:10, d:"2026-07-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7486348046956486656/"},
-      {t:"Tabellae ønsker jer en fantastisk sommer fyldt med sol og sjov! Hvis I har brug for os i løbet af sommeren – så bare rolig, vi er her stadig", ty:"Image", r:78, c:0, rp:2, d:"2026-07-02", u:"https://www.linkedin.com/feed/update/urn:li:activity:7478363109636681728/"},
-      {t:"Hvad kan man bruge Output Management til?", ty:"Video", r:16, c:0, rp:2, d:"2026-06-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7476203350829563905/"},
-      {t:"De dyreste ERP-fejl opstår sjældent i de områder, der får mest opmærksomhed.", ty:"Repost", r:34, c:2, rp:4, d:"2026-06-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7473294458147504128/"},
-      {t:"Projekter får budget. Drift får rester.", ty:"Repost", r:60, c:2, rp:5, d:"2026-06-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7470748400590794752/"},
-      {t:"WEBINAR: 45 minutter du ikke må gå glip af, hvis du planlægger at skifte til Dynamics 365 F&O", ty:"Video", r:16, c:0, rp:3, d:"2026-06-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467844155633799168/"},
-      {t:"Nye krav til e-fakturering er på vej i hele Europa – er din virksomhed klar?", ty:"Video", r:21, c:2, rp:7, d:"2026-06-01", u:"https://www.linkedin.com/feed/update/urn:li:activity:7467147878315220992/"},
-      {t:"DynamicsMinds er nu slut. Sikke en fantastisk konference – endnu en gang", ty:"Image", r:53, c:1, rp:2, d:"2026-05-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7465670769428025344/"},
-      {t:"Så er det ved at være tid for Platform X, der afholdes i morgen den 27. maj 2026 på Fisketorvet.", ty:"Repost", r:56, c:11, rp:7, d:"2026-05-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7464944277022867456/"},
-      {t:"Deltag i vores live webinar med fokus på obligatoriske krav til e-fakturering, compliance og Dynamics 365 F&O.", ty:"Video", r:1, c:0, rp:1, d:"2026-05-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7460282981270798336/"},
-      {t:"Tak for en rigtig god dag på Columbus' Innovate to Accelerate event på Silverstone racerbanen midt i England.", ty:"Image", r:32, c:0, rp:0, d:"2026-05-11", u:"https://www.linkedin.com/feed/update/urn:li:activity:7459546021728161794/"},
-      {t:"Tabellae er i Århus Stiftstidende i dag. Lennart Garbarsch kommenterer på det kommende Aarhus Stadion - ikke på fodboldspillet (heldigvis... ), men på selve projektet.", ty:"Image", r:17, c:10, rp:2, d:"2026-05-08", u:"https://www.linkedin.com/feed/update/urn:li:activity:7458424117369774080/"},
-      {t:"Tabellaes direktør er i Finans i dag!", ty:"Image", r:80, c:8, rp:4, d:"2026-04-30", u:"https://www.linkedin.com/feed/update/urn:li:activity:7455581147499261952/"},
-      {t:"E-fakturering i D365 F&O gjort enkelt. Se det live på bare 10 minutter.", ty:"Video", r:22, c:2, rp:1, d:"2026-04-28", u:"https://www.linkedin.com/feed/update/urn:li:activity:7454803231861456896/"},
-      {t:"Da virksomheden Nviro skulle skifte ERP-system til Dynamics 365F&O, gjorde de noget interessant:", ty:"Image", r:31, c:2, rp:1, d:"2026-04-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7452295674903220225/"},
-      {t:"Har du nogensinde oplevet, at en faktura blev afvist i et andet land – uden at du anede hvorfor? Eller fået at vide, at dit \"fuldt compliant ERP-system\" pludselig ikke længere er så compliant?", ty:"Image", r:30, c:1, rp:4, d:"2026-04-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7450093426248765440/"},
-      {t:"75% af ERP-projekter oplever forsinkelser ved go-live, og manglende fokus på Output Management er ofte den skjulte årsag.", ty:"Image", r:41, c:3, rp:3, d:"2026-04-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7447944404172066816/"},
-      {t:"Hvem er vi hos Tabellae og hvad hjælper vi virksomheder med? Kort fortalt Vi hjælper virksomheder med at få fuldt udbytte af deres", ty:"Video", r:30, c:1, rp:3, d:"2026-04-07", u:"https://www.linkedin.com/feed/update/urn:li:activity:7447206498662772736/"},
-      {t:"I fredags skålede vi både for fortiden og fremtiden", ty:"Image", r:62, c:3, rp:1, d:"2026-03-31", u:"https://www.linkedin.com/feed/update/urn:li:activity:7444706322651975680/"},
-      {t:"Stærke løsninger bygger på stærke kompetencer.", ty:"Image", r:34, c:1, rp:3, d:"2026-03-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7442878483665436672/"},
-      {t:"Når væksten tager fart, afsløres det hurtigt, hvis ERP og data kan ikke følge med...", ty:"Image", r:26, c:1, rp:2, d:"2026-03-24", u:"https://www.linkedin.com/feed/update/urn:li:activity:7442140728408969217/"},
-      {t:"ERP-projekter fejler sjældent på systemet... men på detaljerne, ingen prioriterer", ty:"Document/carousel", r:22, c:0, rp:4, d:"2026-03-20", u:"https://www.linkedin.com/feed/update/urn:li:activity:7440687922267324416/"},
-      {t:"Hvordan reducerer du omkostningerne til behandling af leverandørfakturaer med Microsoft AI?", ty:"Event", r:18, c:1, rp:2, d:"2026-03-17", u:"https://www.linkedin.com/feed/update/urn:li:activity:7439656116659224577/"},
-      {t:"Mange forstår ikke, at seniorer nærmest udgør en betingelse for succes", ty:"Image", r:150, c:9, rp:4, d:"2026-03-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7438167069528899584/"},
-      {t:"Deltag i vores webinar og lær hvordan Microsofts AI-baseret automatisering af leverandørfakturaer kan reducere omkostningerne", ty:"Image", r:18, c:0, rp:3, d:"2026-03-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7437060270213980161/"},
-      {t:"Derfor er seniorer nærmest en betingelse for succes.", ty:"Repost", r:164, c:22, rp:5, d:"2026-03-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7435653747797622784/"},
-      {t:"Stort tillykke til vores nyeste certificerede deltagere fra Tabellae Academy!", ty:"Image", r:28, c:1, rp:3, d:"2026-03-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7434553335560630272/"},
-      {t:"Stort tillykke til vores nyeste certificerede deltagere fra Tabellae Academy!", ty:"Image", r:28, c:1, rp:3, d:"2026-03-03", u:"https://www.linkedin.com/feed/update/urn:li:activity:7434530347842863105/"},
-      {t:"Polen og Letland strammer grebet om e-fakturering i 2026 – er jeres ERP klar?", ty:"Image", r:14, c:0, rp:3, d:"2026-02-26", u:"https://www.linkedin.com/feed/update/urn:li:activity:7432714175656771584/"},
-      {t:"Hvor komplekse er jeres fakturaer og labels på tværs af lande – og hvad betyder det i en ERP-transformation?", ty:"Image", r:24, c:1, rp:1, d:"2026-02-18", u:"https://www.linkedin.com/feed/update/urn:li:activity:7429858603983052801/"},
-      {t:"Vælg en løsning, der passer til jeres fremtid – ikke kun til i dag. Output Management bliver ofte betragtet som en lille del af et ERP-projekt – 5 %.", ty:"Image", r:20, c:1, rp:4, d:"2026-02-12", u:"https://www.linkedin.com/feed/update/urn:li:activity:7427650652740173824/"},
-      {t:"Hvad betyder samhandelsaftalen mellem EU og Indien helt konkret for dansk erhvervsliv? Ifølge partner i Tabellae, Lennart Garbarsch , er der nærmest ingen grænser for, hvor stor gevinsten kan være, hvis de danske virksomheder er omstillingsparate og nysgerrige.", ty:"Image", r:32, c:4, rp:9, d:"2026-02-10", u:"https://www.linkedin.com/feed/update/urn:li:activity:7426909847780155393/"},
-      {t:"Har du styr på de nye regler for Microsoft Dynamics 365 F&O-licenser? De trådte i kraft pr. 15. januar 2026.", ty:"Event", r:17, c:4, rp:8, d:"2026-02-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7425097374462636032/"},
-      {t:"Kun 8,5 % af store projekter holder sig inden for BÅDE budget og tidsramme.", ty:"Repost", r:75, c:12, rp:6, d:"2026-02-05", u:"https://www.linkedin.com/feed/update/urn:li:activity:7425094779463430144/"},
-      {t:"ARTIKELSERIE OM AI OG ERP: AGENTERNE FLYTTER IND", ty:"Repost", r:15, c:5, rp:1, d:"2026-01-27", u:"https://www.linkedin.com/feed/update/urn:li:activity:7421861021985796096/"},
-      {t:"Vi glæder os til at deltage i konferencen \"Derfor skal du videre fra Dynamics AX – og sådan gør du\" i Aarhus den 3. februar, hvor Lennart Garbarsch vil fortælle, hvordan man gør D365 opgraderinger til en succes!", ty:"Video", r:17, c:2, rp:2, d:"2026-01-22", u:"https://www.linkedin.com/feed/update/urn:li:activity:7420048911219720192/"},
-      {t:"Efter 26 år i marketing har jeg aldrig set en teknologi med så stort potentiale som", ty:"Repost", r:41, c:10, rp:5, d:"2026-01-21", u:"https://www.linkedin.com/feed/update/urn:li:activity:7419683640617385984/"},
-      {t:"Belgien & Kroatien har netop gjort", ty:"Image", r:21, c:0, rp:2, d:"2026-01-15", u:"https://www.linkedin.com/feed/update/urn:li:activity:7417488080443432960/"},
-      {t:"Gamle AX-installationer kræver tid, ressourcer og konstant vedligehold. På vores konference i Aarhus den 3. februar får du indsigt i, hvordan cloud-løsninger kan skabe stabil drift og frigive tid. Tilmeld dig og få styr på, om det er tid til cloud.", ty:"Repost", r:13, c:3, rp:4, d:"2026-01-14", u:"https://www.linkedin.com/feed/update/urn:li:activity:7417184112182071296/"},
-      {t:"Hvor mange leverandørfakturaer taster I stadig manuelt i ERP? Og hvor meget tid koster det jer - reelt?", ty:"Image", r:23, c:4, rp:4, d:"2026-01-13", u:"https://www.linkedin.com/feed/update/urn:li:activity:7416793450261647360/"},
-      {t:"Mens de fleste af os stadig prøver at huske, hvilket år det er , markerer vi også nytåret med et 10 års jubilæum. Vores dygtige løsningsarkitekt, Flemming Lindenstrøm, har nemlig været en del af Tabellae i hele 10 år.", ty:"Image", r:99, c:11, rp:1, d:"2026-01-09", u:"https://www.linkedin.com/feed/update/urn:li:activity:7415309200496771072/"},
-      {t:"Hos Tabellae elsker vi Lasernet til Output Management – men vores", ty:"Image", r:15, c:0, rp:1, d:"2026-01-06", u:"https://www.linkedin.com/feed/update/urn:li:activity:7414241585384734720/"}
     ]},
 
     { name: "Stripe", bench: true, url: "https://www.linkedin.com/company/stripe/posts/", posts: [
