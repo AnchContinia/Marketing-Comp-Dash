@@ -66,11 +66,12 @@ export const DEFAULTS = {
   twinkle: 2600,
   sparkle: 0.3,           /* 0..1, how deep the shimmer cuts */
 
-  /* One hue, and it is Innovation Blue. A field of small lights in three
-     colours reads as confetti rather than as a Continia surface, and at this
-     dot size a minority tint is a stray coloured pixel, not an accent.
-     "mixed" is still here for a stage that wants the speckle. */
-  accent: "cyan",         /* cyan | blue | green | purple | mixed - palette only */
+  /* Two hues: Innovation Blue carries the word, Performance Purple speckles
+     through it. Three was one too many - green sits close enough to cyan in
+     value that at a 2px square it read as a dirty cyan rather than as a second
+     colour, while purple is far enough away to register as deliberate. A single
+     named accent paints every particle one colour. */
+  accent: "mixed",        /* mixed | cyan | blue | green | purple - palette only */
   bg: "",                 /* "" keeps the stylesheet's dark stage */
   seed: 7,
 
@@ -278,17 +279,13 @@ export function initParticleText(node, options) {
     resizeCanvas();
   }
 
-  /* A named accent paints every particle that colour, which is the default and
-     the one to use. "mixed" keeps Innovation Blue in the majority and lets Smart
-     Green and Performance Purple speckle through it - the same split Portrait
-     Circles uses, and the reason it is not the default here is scale: a face is
-     a disc you can see, a particle is a 2px square, so the minority tints read
-     as stray pixels rather than as an accent. */
+  /* "mixed" is the default: Innovation Blue in the clear majority with
+     Performance Purple through it. The majority has to stay large - the word is
+     read off the cyan, and an even split reads as two words printed on top of
+     each other. A named accent paints every particle that colour instead. */
   function pick(x) {
     if (o.accent !== "mixed") return ["blue", "cyan", "green", "purple"].indexOf(o.accent);
-    if (x < 0.62) return 1;      /* cyan */
-    if (x < 0.83) return 2;      /* green */
-    return 3;                    /* purple */
+    return x < 0.78 ? 1 : 3;     /* cyan : purple */
   }
 
   function resizeCanvas() {

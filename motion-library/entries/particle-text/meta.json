@@ -16,7 +16,7 @@
   ],
   "blurb": "A word rasterised into a grid of small lights, with a hole the pointer carries through it. The particles never scatter: each one keeps a home cell in the glyph and a critically damped spring pulls it back, so the word stays legible and the hole is the only thing that moves. The arrow on the stage is the library's own User Cursor, demonstrating it until a real hand arrives.",
   "reducedMotion": "The word renders assembled and completely still - no tour, no shimmer, no hole. The particles ARE the content, so switching the entry off would leave an empty box rather than a reduced version of it; what goes is every moving part.",
-  "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the sampler, the spring, the rim target and the tour are written here against a screen recording, and sourceUrl points at the docs page for provenance only.\n\nFour decisions are load-bearing. The hole is a TARGET, not a force: a particle inside the radius is given a target on the rim, so the inside empties completely and the boundary draws itself - a repulsive force moves each particle by however long it has been in the field, which blows the word into a cloud and never produces an edge. The stage is dark in both themes, like Vortex's and Data Transfer's, because a field of small lights only exists against a dark ground. Every particle is Innovation Blue: a three-colour field reads as confetti rather than as a Continia surface, and at a 2px square a minority tint is a stray coloured pixel, not an accent - the speckled version is kept as accent=mixed for a stage big enough to carry it. Tech Blue is in the palette and is never the default here, since #052975 on #070d1a is not a light. And the arrow is the library's User Cursor, mounted, with its pill empty: the standing rule is that any entry whose point is a pointer demonstrates it with that one arrow, and a name pill on a demo that is not about a person is a label with nothing to say.",
+  "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the sampler, the spring, the rim target and the tour are written here against a screen recording, and sourceUrl points at the docs page for provenance only.\n\nFour decisions are load-bearing. The hole is a TARGET, not a force: a particle inside the radius is given a target on the rim, so the inside empties completely and the boundary draws itself - a repulsive force moves each particle by however long it has been in the field, which blows the word into a cloud and never produces an edge. The stage is dark in both themes, like Vortex's and Data Transfer's, because a field of small lights only exists against a dark ground. The field is two hues: Innovation Blue in the clear majority, Performance Purple through it. Three was one too many - Smart Green sits close enough to cyan in value that at a 2px square it read as a dirty cyan rather than as a second colour, while purple is far enough away to register as deliberate. The majority has to stay large either way, because the word is read off the cyan. Tech Blue is in the palette and is never the default here, since #052975 on #070d1a is not a light. And the arrow is the library's User Cursor, mounted, with its pill empty: the standing rule is that any entry whose point is a pointer demonstrates it with that one arrow, and a name pill on a demo that is not about a person is a label with nothing to say.",
   "options": {
     "height": {
       "type": "number",
@@ -109,15 +109,15 @@
     },
     "accent": {
       "type": "string",
-      "default": "cyan",
+      "default": "mixed",
       "values": [
+        "mixed",
         "cyan",
         "blue",
         "green",
-        "purple",
-        "mixed"
+        "purple"
       ],
-      "note": "every particle in one hue, and the default is Innovation Blue - at this dot size a minority tint is a stray coloured pixel rather than an accent, so one colour is what makes the word read as a Continia surface. \"mixed\" keeps Innovation Blue in the majority and speckles Smart Green and Performance Purple through it, for a stage big enough to carry it. Tech Blue is available and is never the default: #052975 on the near-black ground is not a light."
+      "note": "mixed is Innovation Blue in the clear majority with Performance Purple speckled through it - the majority has to stay large, because the word is read off the cyan and an even split reads as two words printed on top of each other. Smart Green was in the mix and came out: at a 2px square it sits close enough to cyan in value to read as a dirty cyan rather than as a second colour, while purple is far enough away to register as deliberate. A named accent paints every particle that one colour. Tech Blue is available and is never the default: #052975 on the near-black ground is not a light."
     },
     "bg": {
       "type": "string",
