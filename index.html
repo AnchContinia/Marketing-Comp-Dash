@@ -30,6 +30,12 @@
 <script src="./linkedin-data.js?v=20261001b-li"></script>
 <script src="./youtube-data.js?v=20260917-youtube"></script>
 <script src="./dashboard.js?v=20261001m"></script>
-<script>(function(){if(!document.documentElement.classList.contains("reveal-on"))return;var m=document.querySelectorAll(".workspace>*");if(!m.length)return;var vh=innerHeight,li=0;m.forEach(function(el){if(el.getBoundingClientRect().top<vh*0.92){el.style.transitionDelay=Math.min(li*70,350)+"ms";li++;}});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("rv-in");io.unobserve(e.target);}});},{threshold:0.08,rootMargin:"0px 0px -5% 0px"});m.forEach(function(el){io.observe(el);});})();</script>
+<!-- Reveal-on-scroll. threshold MUST stay 0 and rootMargin "0px": a ratio
+     threshold is unreachable for an element taller than 1/threshold viewports,
+     and a negative bottom inset is unreachable for the last element on the page.
+     At 0.08 the Motion library section (36x the viewport height on a phone, 12.7x
+     on a desktop) never intersected and stayed at opacity 0 - the section was in
+     the DOM, laid out, and invisible on every device. -->
+<script>(function(){if(!document.documentElement.classList.contains("reveal-on"))return;var m=document.querySelectorAll(".workspace>*");if(!m.length)return;var vh=innerHeight,li=0;m.forEach(function(el){if(el.getBoundingClientRect().top<vh*0.92){el.style.transitionDelay=Math.min(li*70,350)+"ms";li++;}});var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("rv-in");io.unobserve(e.target);}});},{threshold:0,rootMargin:"0px"});m.forEach(function(el){io.observe(el);});})();</script>
 </body>
 </html>

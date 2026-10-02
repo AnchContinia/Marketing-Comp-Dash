@@ -612,6 +612,18 @@ pans a magnified page for the rest of the session. The rule is written as
 for specificity as much as for correctness, because the field rules they have to
 beat reach (0,2,1).
 
+**A ratio threshold on a scroll-reveal is a height limit.** The site-wide reveal
+(`html.reveal-on .workspace>*` at `opacity:0` until an `IntersectionObserver` adds
+`.rv-in`) ran at `threshold:0.08`, which no element taller than ~12.5 viewports can
+ever satisfy - 8% of it does not fit on the screen. The Motion library section is 36x
+the viewport on a 390px phone and 12.7x on a 1440px desktop, so it was rendered, laid
+out, mounted, erroring-free **and permanently invisible**. The same shape of bug sits
+in the `rootMargin`: a negative bottom inset is unreachable for the last element on the
+page, because there is nothing left to scroll. The observer is therefore
+`{threshold:0, rootMargin:"0px"}` on all four pages and must stay that way. A section
+that is in the DOM with the right content and does not appear is this bug - check
+`getComputedStyle(el).opacity` before looking at anything else.
+
 **A scrolling shadow is a linear gradient, not the radial one everybody copies.**
 `radial-gradient(farthest-side at 100% 50%, …)` in an `18px x 100%` box is an
 ellipse half the box's height, so on a 1900px-tall table it has faded to nothing
