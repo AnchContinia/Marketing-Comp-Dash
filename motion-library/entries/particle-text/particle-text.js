@@ -66,7 +66,11 @@ export const DEFAULTS = {
   twinkle: 2600,
   sparkle: 0.3,           /* 0..1, how deep the shimmer cuts */
 
-  accent: "mixed",        /* mixed | blue | cyan | green | purple - palette only */
+  /* One hue, and it is Innovation Blue. A field of small lights in three
+     colours reads as confetti rather than as a Continia surface, and at this
+     dot size a minority tint is a stray coloured pixel, not an accent.
+     "mixed" is still here for a stage that wants the speckle. */
+  accent: "cyan",         /* cyan | blue | green | purple | mixed - palette only */
   bg: "",                 /* "" keeps the stylesheet's dark stage */
   seed: 7,
 
@@ -274,9 +278,12 @@ export function initParticleText(node, options) {
     resizeCanvas();
   }
 
-  /* Innovation Blue carries the word and the other two are a minority, the
-     same split Portrait Circles uses: one hue reads as a logo, four read as
-     confetti. A named accent paints every particle that colour. */
+  /* A named accent paints every particle that colour, which is the default and
+     the one to use. "mixed" keeps Innovation Blue in the majority and lets Smart
+     Green and Performance Purple speckle through it - the same split Portrait
+     Circles uses, and the reason it is not the default here is scale: a face is
+     a disc you can see, a particle is a 2px square, so the minority tints read
+     as stray pixels rather than as an accent. */
   function pick(x) {
     if (o.accent !== "mixed") return ["blue", "cyan", "green", "purple"].indexOf(o.accent);
     if (x < 0.62) return 1;      /* cyan */
