@@ -1988,6 +1988,194 @@
     "addedAt": "2026-09-24"
   },
   {
+    "slug": "particle-text",
+    "name": "Particle Text",
+    "kind": "component",
+    "category": "text",
+    "class": "js",
+    "source": "continia",
+    "sourceUrl": "https://pro.reactbits.dev/docs/components/particle-text",
+    "license": "Continia internal",
+    "dependencies": [
+      "user-cursor"
+    ],
+    "tokens": [
+      "--motion-duration-fast",
+      "--motion-duration-slow"
+    ],
+    "blurb": "A word rasterised into a grid of small lights, with a hole the pointer carries through it. The particles never scatter: each one keeps a home cell in the glyph and a critically damped spring pulls it back, so the word stays legible and the hole is the only thing that moves. The arrow on the stage is the library's own User Cursor, demonstrating it until a real hand arrives.",
+    "reducedMotion": "The word renders assembled and completely still - no tour, no shimmer, no hole. The particles ARE the content, so switching the entry off would leave an empty box rather than a reduced version of it; what goes is every moving part.",
+    "brandNotes": "A rebuild, not a port. The idea comes from React Bits Pro, whose source is paid and gated and whose licence (2.4) forbids putting the Product in a repository or making it available to third parties; this repo is public and ships dist/ as a reusable bundle, so no Pro source may enter it. Nothing was copied - the sampler, the spring, the rim target and the tour are written here against a screen recording, and sourceUrl points at the docs page for provenance only.\n\nFour decisions are load-bearing. The hole is a TARGET, not a force: a particle inside the radius is given a target on the rim, so the inside empties completely and the boundary draws itself - a repulsive force moves each particle by however long it has been in the field, which blows the word into a cloud and never produces an edge. The stage is dark in both themes, like Vortex's and Data Transfer's, because a field of small lights only exists against a dark ground. Tech Blue is in the palette and is deliberately not the mixed default, since #052975 on #070d1a is not a light - Innovation Blue carries the word, with Smart Green and Performance Purple as a minority. And the arrow is the library's User Cursor, mounted, with its pill empty: the standing rule is that any entry whose point is a pointer demonstrates it with that one arrow, and a name pill on a demo that is not about a person is a label with nothing to say.",
+    "options": {
+      "height": {
+        "type": "number",
+        "default": 360,
+        "unit": "px",
+        "note": "the stage. Both hosts clamp a component's mount to the card, so this only bites when the entry is used on its own."
+      },
+      "text": {
+        "type": "string",
+        "default": "",
+        "note": "empty takes the element's own text, which is the usual case - the word stays in the DOM for a screen reader either way. Pass it only when the visible markup cannot be the word."
+      },
+      "weight": {
+        "type": "number",
+        "default": 850,
+        "note": "the hub's heaviest weight. A light weight does not survive the sampler: at a 5px grid a hairline stroke lands on one cell in three and the word comes out dotted."
+      },
+      "family": {
+        "type": "string",
+        "default": "",
+        "note": "empty inherits the page's font, which is what you want - this entry never loads one. The raster is rebuilt on document.fonts.ready, because sampling before the webfont arrives samples the fallback's shapes and the word silently comes out in the wrong typeface."
+      },
+      "gap": {
+        "type": "number",
+        "default": 5,
+        "unit": "px",
+        "note": "the grid step. In px rather than a ratio, because the picture IS a pixel grid - scaling it with the stage would make a card and a hero two different textures."
+      },
+      "dot": {
+        "type": "number",
+        "default": 2.6,
+        "unit": "px",
+        "note": "the square drawn at each cell. dot < gap is what leaves the lattice visible; at dot = gap the word is a solid block and the effect is invisible until the pointer arrives."
+      },
+      "max": {
+        "type": "number",
+        "default": 9000,
+        "note": "particle cap. `gap` is widened until the count fits, so a long word on a wide hero costs the same as a short one."
+      },
+      "fillX": {
+        "type": "number",
+        "default": 0.86,
+        "note": "how much of the width the word may take. Two numbers because a long word is limited by the width and a short one by the height; the smaller of the two sizes is the one used."
+      },
+      "fillY": {
+        "type": "number",
+        "default": 0.62,
+        "note": "how much of the height the word may take, measured on the ink rather than the line box - a word with no descender sits visibly low when it is centred on the line box instead."
+      },
+      "maxSize": {
+        "type": "number",
+        "default": 0,
+        "unit": "px",
+        "note": "cap on the font size; 0 is no cap. For a one- or two-letter word on a wide stage, where filling the width would make a single glyph the size of the section."
+      },
+      "radius": {
+        "type": "number",
+        "default": 90,
+        "unit": "px",
+        "note": "the hole. Judge it against the cap height, not the stage: a radius under the word's own height reads as a smudge rather than as something being carried through it."
+      },
+      "swirl": {
+        "type": "number",
+        "default": 18,
+        "unit": "px",
+        "note": "how far the rim target slides sideways. It is what makes the pile streak tangentially instead of stacking; at 0 the rim is a clean ring and reads as a stencil."
+      },
+      "push": {
+        "type": "number",
+        "default": 150,
+        "unit": "ms",
+        "note": "the spring's time constant while a particle is displaced, off the duration scale. The hole has to open as fast as the pointer moves or it trails the arrow."
+      },
+      "settle": {
+        "type": "number",
+        "default": 600,
+        "unit": "ms",
+        "note": "the time constant on the way home. Deliberately four times `push`: the slow return is the whole of the wake, and matching the two makes the hole look like a hole punched in paper rather than carried through a field."
+      },
+      "twinkle": {
+        "type": "number",
+        "default": 2600,
+        "unit": "ms",
+        "note": "the shimmer's loop length. A loop, so an option rather than a token - the duration scale is for things that start and finish."
+      },
+      "sparkle": {
+        "type": "number",
+        "default": 0.3,
+        "note": "0-1, how deep the shimmer cuts. A flat field of identical squares reads as a halftone print; a per-particle phase makes it read as something lit. Past ~0.6 the word starts to flicker rather than breathe."
+      },
+      "accent": {
+        "type": "string",
+        "default": "mixed",
+        "values": [
+          "mixed",
+          "blue",
+          "cyan",
+          "green",
+          "purple"
+        ],
+        "note": "mixed is Innovation Blue carrying the word with Smart Green and Performance Purple as a minority - one hue reads as a logo, four read as confetti. Tech Blue is available and is not the default: #052975 on the near-black stage is not a light."
+      },
+      "bg": {
+        "type": "string",
+        "default": "",
+        "note": "empty keeps the stylesheet's dark stage. Palette colours only, and dark ones - the particles are lights."
+      },
+      "seed": {
+        "type": "number",
+        "default": 7,
+        "note": "the tints and the shimmer phases. Seeded and rolled once, so the gallery card and the Video card agree about every particle and a resize does not reshuffle the field."
+      },
+      "cursor": {
+        "type": "boolean",
+        "default": true,
+        "note": "mount the library's User Cursor and hand it the tour. Off, this is a word waiting for a real pointer."
+      },
+      "name": {
+        "type": "string",
+        "default": "",
+        "note": "the cursor's pill. Empty is the arrow on its own, which is what this wants - the pill is for a demo about a person."
+      },
+      "arrow": {
+        "type": "number",
+        "default": 22,
+        "unit": "px",
+        "note": "the cursor's arrow"
+      },
+      "cycle": {
+        "type": "number",
+        "default": 9000,
+        "unit": "ms",
+        "note": "one full figure-eight. A loop length, so an option rather than a token."
+      },
+      "autoplay": {
+        "type": "boolean",
+        "default": true,
+        "note": "run once it scrolls into view, and stop again when it leaves or the tab is hidden. The last frame stays on the canvas, so a card scrolled back into view already shows the word."
+      },
+      "paused": {
+        "type": "boolean",
+        "default": false,
+        "note": "stops the loop. The word stays assembled on screen - a paused card shows the content, not an empty stage."
+      },
+      "compact": {
+        "type": "boolean",
+        "default": false,
+        "note": "the card-sized skin, for a stage under ~200px"
+      }
+    },
+    "notPorted": [
+      "No click, and no press() on the tour. This is a hover demo: the hole follows the pointer and a click does nothing, so rendering one would be the demo claiming a behaviour the entry does not have. The standing rule is the other way round - an entry about clicking that never shows a click is the failure - and it does not apply to an entry about hovering.",
+      "No assemble-on-enter. Flying the particles in from the edges at mount is the obvious opening and it costs the thing the entry is for: the word has to be readable the instant it is on screen, and a card that arrives as a cloud reads as a loading state. The spring is already the entry's whole motion vocabulary; it is spent on the hole.",
+      "No image source. Rasterising a photograph rather than a glyph is the same sampler and a different entry - the font fitting, the accessibility span and the per-particle tinting all exist because this one is text. A picture would want none of them.",
+      "No WebGL. At the counts this runs (a card is ~500 particles, a hero ~4,000) one ImageData write per frame is cheaper than a context, a program and a buffer upload, and it keeps the entry dependency-free - the hub ships no Three.js and must not grow one for a word."
+    ],
+    "demo": "Continia",
+    "addedAt": "2026-10-02",
+    "demoAttrs": {
+      "height": 172,
+      "compact": 1,
+      "gap": 3,
+      "dot": 1.7,
+      "radius": 50,
+      "swirl": 11,
+      "arrow": 15,
+      "cycle": 7000
+    }
+  },
+  {
     "slug": "text-pop-up",
     "name": "Text Pop Up",
     "kind": "animation",

@@ -171,12 +171,12 @@ motion-library/
 
 **49 animations in five categories** — entrance (20), exit (10), attention (10), text (4),
 ambient (5). Ambient means it loops forever; attention means it fires once and returns to rest.
-Plus **fifteen components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
+Plus **sixteen components** — `reel-gallery`, `magic-transform`, `user-cursor`, `hover-preview`,
 `modal-cards`, `color-carousel`, `tile-reveal`, `agentic-ball`, `portrait-circles` and
 `comparison-slider` in category `ui`,
-`blur-highlight` in category `text` and `data-transfer`, `vortex`, `globe` and `center-flow` in
-category `ambient`, because a component's category says what it is for, not how it is built — so
-`library.json` holds 64 entries.
+`blur-highlight` and `particle-text` in category `text` and `data-transfer`, `vortex`, `globe` and
+`center-flow` in category `ambient`, because a component's category says what it is for, not how it
+is built — so `library.json` holds 65 entries.
 
 **The counts on the page are counted, never typed.** Both section heads — the gallery's
 `#ml-intro` and the Video page's `#motion-previews` — carry a `[data-ml-tally]` span, and each
@@ -473,6 +473,18 @@ lighting moves the shading, the stop moves the colour.
 all-round limb light, a veiling haze and a real defocus on the swirl do produce glass — and glass
 read as a milky bauble rather than as something working. The lit-sphere version is the one that
 ships. Worth knowing if the idea comes round again: the physics was not the problem.
+
+**A displacement effect needs a target, not a force.** `particle-text` rasterises its word, keeps
+one home cell per particle and pulls every particle there with the house spring; the pointer's hole
+works by giving a particle *inside* the radius a target **on the rim** instead. The obvious
+alternative - a repulsive force added to the velocity - moves each particle by however long it has
+been in the field rather than by where it is, so the word inflates into a cloud that never comes
+back the same and no edge ever forms. The rim target empties the inside completely and draws the
+boundary for free, which is the one thing the effect is recognised by. Two companions: the arrow is
+the User Cursor with `accent` forced off `auto`, because this stage is near-black in both themes and
+`auto` follows `--navy`, which is Tech Blue on a light page - a navy arrow on a navy ground; and the
+raster is rebuilt on `document.fonts.ready`, because sampling before the webfont lands samples the
+*fallback's* glyphs and the word silently ships in the wrong typeface.
 
 **A text effect that changes a layout property re-wraps the text while it runs.** `ml-focus-in`
 animated `letter-spacing` from `0.3em` to `normal`, so its headline was three lines wide at the

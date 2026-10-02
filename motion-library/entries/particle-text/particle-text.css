@@ -1,0 +1,81 @@
+/* Continia Motion Library — Particle Text
+   ----------------------------------------------------------------------
+   The shape only. Every pixel that moves is drawn by particle-text.js into
+   the canvas; this file places the canvas, holds the stage open, and keeps
+   the real text in the accessibility tree.
+
+   The stage is dark in BOTH themes, for the same reason Vortex's and Data
+   Transfer's are: this is a field of small lights, and a light only exists
+   against a dark ground. The hub already does this with the dashboard's
+   .watch panel, so a dark box on a light page is an established shape here
+   rather than a new one.
+
+   Nothing here centres with flex on .mlpt itself: both hosts clamp a
+   component's mount with `display:block;width:100%;height:100%`, which wins
+   on specificity, so a layout hung off the host element is a layout that
+   works in the gallery and not on a card. The canvas is positioned inside
+   its own absolute layer instead, which the clamp cannot reach. */
+
+.mlpt {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  /* the hub's tile radius - this is a tile-shaped surface, not a card */
+  border-radius: 15px;
+  background: var(--mlpt-bg, #070d1a);
+  height: var(--mlpt-h, 360px);
+  /* a paint containment boundary, so nothing the page has stacked behind the
+     stage can show through the transparent part of the canvas */
+  isolation: isolate;
+}
+
+/* The stage is the User Cursor's mount, so it carries .mluc too and inherits
+   that component's `height: var(--mluc-h)`. Two classes beat one: the stage
+   has to track the host, because both hosts clamp the host to the card and a
+   stage still standing at its own 360px would put the arrow's hit area and
+   the canvas in two different boxes. */
+.mlpt .mlpt-stage {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.mlpt .mlpt-c {
+  position: absolute;
+  inset: 0;
+  display: block;
+  /* the element's own width/height attributes are the device-pixel buffer;
+     these two keep it at CSS size whatever the ratio turns out to be */
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* The word itself, kept in the DOM and out of the picture. A canvas full of
+   squares says nothing to a screen reader, and the whole point of the entry
+   is that it is text. destroy() puts the original nodes back where they were. */
+.mlpt-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* the card-sized skin: the hub's ordinary panel radius, because at 172px the
+   15px tile radius reads as a lozenge rather than as a tile */
+.mlpt-sm { border-radius: 8px }
+
+@media (prefers-reduced-motion: reduce) {
+  /* The word still renders - the particles ARE the content, and an empty box
+     is not a reduced version of it. What goes is the loop: the module paints
+     one assembled, still frame and runs no tour and no repulsion. */
+  .mlpt { scroll-behavior: auto }
+}

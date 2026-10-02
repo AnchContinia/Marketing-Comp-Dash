@@ -559,6 +559,28 @@ window.MOTION_PREVIEWS = [
     "reducedMotion": "Swapped for a plain fade - a rotation or a skew cannot be collapsed by shortening it."
   },
   {
+    "slug": "particle-text",
+    "name": "Particle Text",
+    "category": "text",
+    "kind": "component",
+    "feel": "A word built out of a grid of small lights, with a hole the pointer carries through it. The particles never scatter: each one keeps a home cell in the glyph and a spring pulls it back, so the word stays readable the whole time and the hole is the only thing moving. The arrow carrying it is the library's own User Cursor, so it hands over the moment a real pointer arrives.",
+    "useFor": "A headline that has to be looked at rather than read past - a hero word, a section opener, a campaign line, a product name on a dark band. It takes the element's own text, so the word stays in the page for a screen reader and for search, and it inherits the page's font rather than loading one. Best on a short word: the grid is in pixels, so a sentence shrinks the type until the lattice closes up and the effect disappears. It is a component, so it carries its own JS, and it needs one other entry: the User Cursor, whose stylesheet has to be on the page too.",
+    "prompt": "Build a particle text effect: rasterise a word into an offscreen canvas, read the pixels back, sample them on a fixed grid, and draw one small square per cell that lands on ink. Give the hole a TARGET rather than a force - a particle inside the radius is pulled to a point ON THE RIM plus a tangential offset, which empties the inside completely and lets the boundary draw itself; a repulsive force moves each particle by however long it has been in the field, so the word blows apart into a cloud and no edge ever forms. Pull every particle home with a critically damped spring integrated in closed form, with two time constants: a fast one while it is displaced, so the hole keeps up with the pointer, and one about four times slower on the way back, because the slow return is the entire wake. Write the frame into a single ImageData buffer and put it once - a fillStyle change per particle is what makes this effect cost a frame, and the buffer is what lets each particle carry its own tint. Keep the grid step and the square size in pixels rather than as a fraction of the stage, or a card and a hero become two different textures, and widen the step until the particle count fits under a cap so a long word costs the same as a short one. Rebuild the raster when the webfont arrives: sampling before it does samples the fallback's shapes and the word silently comes out in the wrong typeface. Size the type from a single measurement at a reference size and scale it, and centre it on the ink rather than on the line box - a word with no descender sits visibly low otherwise. Keep the real text in the DOM in a visually-hidden span and mark the canvas aria-hidden, because a canvas full of squares reads as nothing at all. Seed the tints and the shimmer phases and roll them once, so two hosts agree about every particle and a resize does not reshuffle the field. Demonstrate the hover with ONE mounted cursor component rather than drawing a second arrow, read the hole's position from that arrow's own tip so the two can never disagree, and let it stand down the instant a real pointer arrives. Walk the tour on a figure-eight, which closes its own loop by construction - a tour that ends anywhere but where it started teleports at every cycle boundary. Cap the device pixel ratio, stop the loop off-screen and in a hidden tab, and leave the last frame on the canvas. Under prefers-reduced-motion render the word assembled and completely still: the particles are the content, so switching it off leaves an empty box rather than a reduced version.",
+    "demo": "Continia",
+    "attrs": {
+      "height": 172,
+      "compact": 1,
+      "gap": 3,
+      "dot": 1.7,
+      "radius": 50,
+      "swirl": 11,
+      "arrow": 15,
+      "cycle": 7000
+    },
+    "loops": true,
+    "reducedMotion": "The word renders assembled and completely still - no tour, no shimmer, no hole. The particles ARE the content, so switching the entry off would leave an empty box rather than a reduced version of it; what goes is every moving part."
+  },
+  {
     "slug": "text-pop-up",
     "name": "Text Pop Up",
     "category": "text",

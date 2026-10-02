@@ -240,7 +240,8 @@ Object.keys(META).forEach(function (slug) {
    into library.json. They are listed here so an orphan is still an error. */
 var COMPONENTS = ["reel-gallery", "magic-transform", "user-cursor", "hover-preview", "modal-cards",
   "color-carousel", "tile-reveal", "blur-highlight", "data-transfer", "vortex", "agentic-ball",
-  "globe", "center-flow", "portrait-circles", "comparison-slider"];
+  "globe", "center-flow", "portrait-circles", "comparison-slider",
+  "particle-text"];
 COMPONENTS.forEach(function (slug) {
   var f = path.join(ML, "entries", slug, "meta.json");
   if (!fs.existsSync(f)) { console.error("Component entry " + slug + " has no meta.json"); process.exit(1); }

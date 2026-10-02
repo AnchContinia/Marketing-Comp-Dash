@@ -1,0 +1,34 @@
+<!-- Continia Motion Library — Particle Text
+
+     Two stylesheets and one module. user-cursor.css is a real dependency, not a
+     convenience: the arrow on the stage IS the User Cursor entry, mounted by this
+     module rather than redrawn. Drop it, and set data-cursor="0", when the text
+     sits in a real section a visitor points at themselves.
+
+     <link rel="stylesheet" href="motion-library/tokens/motion-tokens.css">
+     <link rel="stylesheet" href="motion-library/entries/user-cursor/user-cursor.css">
+     <link rel="stylesheet" href="motion-library/entries/particle-text/particle-text.css">
+     <script type="module" src="motion-library/entries/particle-text/particle-text.js"></script>
+
+     The element's own text is what gets rasterised, so the markup is just the
+     word. It stays in the DOM in a visually-hidden span, which is why this is a
+     real heading rather than an empty div with the text in an attribute: the
+     picture is a canvas, and a canvas of squares reads as nothing at all. -->
+
+<h2 data-ml="particle-text" data-height="380">Continia</h2>
+
+<!-- A hero-sized version with no tour: the hole follows the visitor's own
+     pointer, and the stage is quiet until a hand arrives. A bigger radius and a
+     wider gap keep the texture reading at a size where the default 5px grid
+     would turn the word into a solid block. -->
+
+<h1 data-ml="particle-text" data-height="520" data-cursor="0"
+    data-gap="7" data-dot="3.4" data-radius="150" data-swirl="26">brilliant.</h1>
+
+<!-- One colour, tighter grid, shorter tour - the shape a card wants. `compact`
+     swaps the tile radius for the hub's panel radius, which is what a 15px
+     corner has to become under about 200px. -->
+
+<div data-ml="particle-text" data-height="172" data-compact="1"
+     data-gap="3" data-dot="1.7" data-accent="cyan"
+     data-radius="50" data-swirl="11" data-arrow="15" data-cycle="7000">Automate</div>

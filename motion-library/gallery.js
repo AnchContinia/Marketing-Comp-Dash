@@ -10,7 +10,7 @@
 
   /* library.json and each component module are fetched, not <script>-linked, so
      they need the same ?v= cache-busting every other file here gets. */
-  var MLV = "20261001m";
+  var MLV = "20261001n";
 
   var countEl = document.getElementById("ml-count"),
       barEl   = document.getElementById("ml-bar"),
